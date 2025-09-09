@@ -11,7 +11,9 @@ website:
   sidebar:
     style: floating
     contents:
-      - text: "Tutorial 01"; href: tutorials/tutorial_01.qmd
+      - text: "Tutorial 01"
+        href: tutorials/tutorial_01.qmd
+
 format:
   html:
-    toc: true
+    toc: false
