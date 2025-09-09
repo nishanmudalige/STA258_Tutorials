@@ -11,18 +11,7 @@ website:
   sidebar:
     style: floating
     contents:
-      - text: "Tutorial 01"; href: tutorials/01/index.qmd
-      - text: "Tutorial 02"; href: tutorials/02/index.qmd
-      - text: "Tutorial 03"; href: tutorials/02/index.qmd
-      - text: "Tutorial 04"; href: tutorials/02/index.qmd
-      - text: "Tutorial 05"; href: tutorials/02/index.qmd
-      - text: "Tutorial 06"; href: tutorials/02/index.qmd
-      - text: "Tutorial 07"; href: tutorials/02/index.qmd
-      - text: "Tutorial 08"; href: tutorials/02/index.qmd
-      - text: "Tutorial 09"; href: tutorials/02/index.qmd
-      - text: "Tutorial 10"; href: tutorials/02/index.qmd
-      - text: "Tutorial 11"; href: tutorials/02/index.qmd
-      - text: "Tutorial 12"; href: tutorials/12/index.qmd
+      - text: "Tutorial 01"; href: tutorials/tutorial_01.qmd
 format:
   html:
     toc: true
