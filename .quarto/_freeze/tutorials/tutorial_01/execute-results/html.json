@@ -1,0 +1,15 @@
+{
+  "hash": "4d72e5c9e332b8f548ee88793eddcb3a",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Tutorial 01\"\ntoc: true\nformat: html\nengine: knitr\n#webr:\n#  show-startup-message: false    # Disable display of webR initialization state\n#  show-header-message: true      # Display whether COOP&COEP headers are set for speed.\n#  packages: ['ggplot2', 'dplyr'] # Pre-install dependencies\n#  autoload-packages: false       # Disable automatic library calls on R packages specified in packages.\n#  repos:                         # Specify repositories to check for custom packages\n#    - https://github-username.github.io/reponame\n#    - https://username.r-universe.dev\n#  channel-type: 'post-message'   # Specify a specific communication channel type.\n#  home-dir: \"/home/rstudio\"      # Customize where the working directory is\n#  base-url: ''                   # Base URL used for downloading R WebAssembly binaries\n#  service-worker-url: ''         # URL from where to load JavaScript worker scripts when loading webR with the ServiceWorker communication channel.\nfilters:\n- webr\n\n---\n\n## Demo\n\nThis is a webr-enabled code cell in a Quarto HTML document.\n\n```{webr-r}\n1 + 1 \n```\n\n```{webr-r}\nfit = lm(mpg ~ am, data = mtcars)\nsummary(fit)\n```\n\n```{webr-r}\nplot(cars)\n```\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
