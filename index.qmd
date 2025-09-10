@@ -3,7 +3,7 @@ title: "STA258 Course Tutorials"
 ---
 
 
-Welcome ! 
+Welcome to STA258 tutorials! 
 
 
 
