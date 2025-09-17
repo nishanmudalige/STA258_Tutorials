@@ -183,7 +183,7 @@
     "href": "tutorials/tutorial_01.html#q3-draw-a-histogram-from-cars-type-the-full-call",
     "title": "Tutorial 01",
     "section": "Q3 — Draw a histogram from cars (type the full call)",
-    "text": "Q3 — Draw a histogram from cars (type the full call)\nType exactly one of these and nothing else:\nhist(cars$dist) or hist(cars$speed)\n\n\n\n\n\n\n\n\n\n\n\nhist(cars$dist)\nhist(cars$dist)",
+    "text": "Q3 — Draw a histogram from cars (type the full call)\nUse exactly one of these numeric columns and nothing else:\ndist or speed\n\n\n\n\n\n\n\n\n\n\n\nhist(cars$dist)\nhist(cars$dist)",
     "crumbs": [
       "Home",
       "Tutorial 01"
