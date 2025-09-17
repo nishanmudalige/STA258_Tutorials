@@ -16,7 +16,6 @@ Replace `BLANK` with a number so the expression evaluates to **10**.
 ```{webr}
 #| setup: true
 #| exercise: ex_sum
-# soft blank so it parses before students edit
 BLANK <- NA_real_
 ```
 
@@ -150,8 +149,8 @@ gradethis::grade_this({
 
 ## Q3 — Draw a histogram from `cars` (type the full call)
 
-Type **exactly one** of these and nothing else:  
-`hist(cars$dist)`  **or**  `hist(cars$speed)`
+Use **exactly one** of these numeric columns and nothing else:  
+dist  **or**  speed
 
 ```{webr}
 #| exercise: ex_hist_exact
