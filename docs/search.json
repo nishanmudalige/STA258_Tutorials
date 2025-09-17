@@ -11,7 +11,7 @@
     "href": "tutorials/tutorial_01.html",
     "title": "Tutorial 01",
     "section": "",
-    "text": "This is a webr-enabled code cell in a Quarto HTML document.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "text": "Replace BLANK with a number so the expression evaluates to 10.\n\n\n\n\n\n\n\n\n\n\n\n\nTry 4.\n\n\n\n\n1 + 2 + 3 + 4\n1 + 2 + 3 + 4",
     "crumbs": [
       "Home",
       "Tutorial 01"
@@ -22,7 +22,7 @@
     "href": "tutorials/tutorial_01.html#demo",
     "title": "Tutorial 01",
     "section": "",
-    "text": "This is a webr-enabled code cell in a Quarto HTML document.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "text": "This is a webr-enabled code cell in a Quarto HTML document.\nFill in the blanks to add any 2 numbers which add up to 2\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
     "crumbs": [
       "Home",
       "Tutorial 01"
@@ -34,5 +34,159 @@
     "title": "STA258 Course Tutorials",
     "section": "",
     "text": "Welcome !"
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#welcome",
+    "href": "tutorials/tutorial_01.html#welcome",
+    "title": "Tutorial 01",
+    "section": "",
+    "text": "Edit code directly in the browser.\nClick Run Code to evaluate.\nUse Check Answer to get feedback.\nClick Show hint / Show solution as needed.",
+    "crumbs": [
+      "Home",
+      "Tutorial 01"
+    ]
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#exercise-1-fill-the-blank-so-the-result-is-10",
+    "href": "tutorials/tutorial_01.html#exercise-1-fill-the-blank-so-the-result-is-10",
+    "title": "Tutorial 01",
+    "section": "Exercise 1 — Fill the blank so the result is 10",
+    "text": "Exercise 1 — Fill the blank so the result is 10\n\n\n\n\n\n\n\n\n\n\n\n\n6 + what is 10?\n\n\n\n\n1 + 2 + 3 + 4\n1 + 2 + 3 + 4",
+    "crumbs": [
+      "Home",
+      "Tutorial 01"
+    ]
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#exercise-2-write-a-function",
+    "href": "tutorials/tutorial_01.html#exercise-2-write-a-function",
+    "title": "Tutorial 01",
+    "section": "Exercise 2 — Write a function",
+    "text": "Exercise 2 — Write a function\nMake double(x) return 2 * x. Keep the function name the same.\n\n\n\n\n\n\n\n\n\nInside the function body, return 2 * x.",
+    "crumbs": [
+      "Home",
+      "Tutorial 01"
+    ]
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#exercise-3-create-a-derived-column-with-setup",
+    "href": "tutorials/tutorial_01.html#exercise-3-create-a-derived-column-with-setup",
+    "title": "Tutorial 01",
+    "section": "Exercise 3 — Create a derived column (with setup)",
+    "text": "Exercise 3 — Create a derived column (with setup)\nCreate df$ratio equal to mpg / hp in mtcars, then preview it.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ndf$ratio &lt;- df$mpg / df$hp\nhead(df$ratio)\ndf$ratio &lt;- df$mpg / df$hp\nhead(df$ratio)",
+    "crumbs": [
+      "Home",
+      "Tutorial 01"
+    ]
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#a-regular-editablerunnable-non-exercise-cell",
+    "href": "tutorials/tutorial_01.html#a-regular-editablerunnable-non-exercise-cell",
+    "title": "Tutorial 01",
+    "section": "A regular editable/runnable (non-exercise) cell",
+    "text": "A regular editable/runnable (non-exercise) cell",
+    "crumbs": [
+      "Home",
+      "Tutorial 01"
+    ]
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#exercise-make-the-sum-10",
+    "href": "tutorials/tutorial_01.html#exercise-make-the-sum-10",
+    "title": "Tutorial 01",
+    "section": "Exercise — make the sum 10",
+    "text": "Exercise — make the sum 10\n\nviewof add = Inputs.number({ label: \"Missing addend\", value: 4, step: 1 })",
+    "crumbs": [
+      "Home",
+      "Tutorial 01"
+    ]
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#how-to-use-this-page",
+    "href": "tutorials/tutorial_01.html#how-to-use-this-page",
+    "title": "Tutorial 01",
+    "section": "How to use this page",
+    "text": "How to use this page\n\nEdit the code in each exercise and click Run Code.\nClick Check Answer for instant feedback.\nUse Show hint / Show solution as needed.\nYour edits persist in the browser.",
+    "crumbs": [
+      "Home",
+      "Tutorial 01"
+    ]
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#q1-make-the-sum-equal-10",
+    "href": "tutorials/tutorial_01.html#q1-make-the-sum-equal-10",
+    "title": "Tutorial 01",
+    "section": "Q1 — Make the sum equal 10",
+    "text": "Q1 — Make the sum equal 10\nReplace BLANK with a number so the expression evaluates to 10.\n\n\n\n\n\n\n\n\n\n\n\n\nReplace the two BLANKS with 2 numbers that add up to 7.\n\n\n\n\n1 + 2 + 3 + 4\n1 + 2 + 3 + 4",
+    "crumbs": [
+      "Home",
+      "Tutorial 01"
+    ]
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#q2-write-a-function",
+    "href": "tutorials/tutorial_01.html#q2-write-a-function",
+    "title": "Tutorial 01",
+    "section": "Q2 — Write a function",
+    "text": "Q2 — Write a function\nMake double(x) return 2 * x. Keep the function name the same.\nBehavior is graded, so x*2 and 2*x are both accepted.",
+    "crumbs": [
+      "Home",
+      "Tutorial 01"
+    ]
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#optional-plain-runnable-cell-no-grading",
+    "href": "tutorials/tutorial_01.html#optional-plain-runnable-cell-no-grading",
+    "title": "Tutorial 01",
+    "section": "(Optional) Plain runnable cell (no grading)",
+    "text": "(Optional) Plain runnable cell (no grading)",
+    "crumbs": [
+      "Home",
+      "Tutorial 01"
+    ]
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#how-this-works",
+    "href": "tutorials/tutorial_01.html#how-this-works",
+    "title": "Tutorial 01",
+    "section": "",
+    "text": "Edit the code in each exercise, click Run Code, then Check Answer.\n“Soft blanks” use a placeholder so you don’t get parse errors.\nGrading is behavior-based (no gradethis needed).",
+    "crumbs": [
+      "Home",
+      "Tutorial 01"
+    ]
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#q2-write-doublex",
+    "href": "tutorials/tutorial_01.html#q2-write-doublex",
+    "title": "Tutorial 01",
+    "section": "Q2 — Write double(x)",
+    "text": "Q2 — Write double(x)\nMake double(x) return 2 * x. Keep the function name the same.\nGrading is behavior-based, so x*2 and 2*x both pass (and it must work on vectors).\n\n\n\n\n\n\n\n\n\n\n\n\nReturn 2 * x (or x * 2 — both are fine).\n\n\n\n\ndouble &lt;- function(x) {\n  2 * x\n}\ndouble(5)\ndouble &lt;- function(x) {\n  2 * x\n}\ndouble(5)",
+    "crumbs": [
+      "Home",
+      "Tutorial 01"
+    ]
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#q3-draw-a-histogram-from-cars",
+    "href": "tutorials/tutorial_01.html#q3-draw-a-histogram-from-cars",
+    "title": "Tutorial 01",
+    "section": "Q3 — Draw a histogram from cars",
+    "text": "Q3 — Draw a histogram from cars\nMake a histogram using a numeric column from cars.\nValid: hist(cars$dist), hist(cars$speed), with(cars, hist(speed)), hist(cars[[\"dist\"]]), hist(cars[, \"speed\"]), hist(cars[, 2]).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nhist(cars$dist)\nhist(cars$dist)",
+    "crumbs": [
+      "Home",
+      "Tutorial 01"
+    ]
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#q3-draw-a-histogram-from-cars-type-the-full-call",
+    "href": "tutorials/tutorial_01.html#q3-draw-a-histogram-from-cars-type-the-full-call",
+    "title": "Tutorial 01",
+    "section": "Q3 — Draw a histogram from cars (type the full call)",
+    "text": "Q3 — Draw a histogram from cars (type the full call)\nType exactly one of these and nothing else:\nhist(cars$dist) or hist(cars$speed)\n\n\n\n\n\n\n\n\n\n\n\nhist(cars$dist)\nhist(cars$dist)",
+    "crumbs": [
+      "Home",
+      "Tutorial 01"
+    ]
   }
 ]

@@ -1,39 +1,115 @@
 ---
 title: "Tutorial 01"
-toc: true
-format: html
+format: live-html
 engine: knitr
-#webr:
-#  show-startup-message: false    # Disable display of webR initialization state
-#  show-header-message: true      # Display whether COOP&COEP headers are set for speed.
-#  packages: ['ggplot2', 'dplyr'] # Pre-install dependencies
-#  autoload-packages: false       # Disable automatic library calls on R packages specified in packages.
-#  repos:                         # Specify repositories to check for custom packages
-#    - https://github-username.github.io/reponame
-#    - https://username.r-universe.dev
-#  channel-type: 'post-message'   # Specify a specific communication channel type.
-#  home-dir: "/home/rstudio"      # Customize where the working directory is
-#  base-url: ''                   # Base URL used for downloading R WebAssembly binaries
-#  service-worker-url: ''         # URL from where to load JavaScript worker scripts when loading webR with the ServiceWorker communication channel.
-filters:
-- webr
-
+# prevent any project filters from interfering
+filters: []
 ---
 
-## Demo
+{{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
+{{< include ../_extensions/r-wasm/live/_gradethis.qmd >}}
 
-This is a webr-enabled code cell in a Quarto HTML document.
+## Q1 — Make the sum equal 10
 
-```{webr-r}
-1 + 1 
+Replace `BLANK` with a number so the expression evaluates to **10**.
+
+```{webr}
+#| setup: true
+#| exercise: ex_sum
+# soft blank so it parses before students edit
+BLANK <- NA_real_
 ```
 
-```{webr-r}
-fit = lm(mpg ~ am, data = mtcars)
-summary(fit)
+```{webr}
+#| exercise: ex_sum
+1 + 2 + BLANK + BLANK
 ```
 
-```{webr-r}
-plot(cars)
+::: {.hint exercise="ex_sum"}
+Replace the two BLANKS with 2 numbers that add up to 7.
+:::
+
+::: {.solution exercise="ex_sum"}
+```{webr}
+#| exercise: ex_sum
+#| solution: true
+1 + 2 + 3 + 4
+```
+:::
+
+```{webr}
+#| exercise: ex_sum
+#| check: true
+gradethis::grade_this({
+  if (grepl("\\bBLANK\\b", .user_code)) {
+    fail("Replace BLANK with a number.")
+  }
+  # Pass if the evaluated result is (numerically) 10
+  if (is.numeric(.result) && length(.result) == 1 &&
+      isTRUE(all.equal(.result, 10))) {
+    pass("✅ Correct!")
+  } else {
+    fail("Not quite — try to make the expression evaluate to 10.")
+  }
+})
 ```
 
+## Q3 — Draw a histogram from `cars` (type the full call)
+
+Type **exactly one** of these and nothing else:  
+`hist(cars$dist)`  **or**  `hist(cars$speed)`
+
+```{webr}
+#| exercise: ex_hist_exact
+# Type your answer on the next line (one command only):
+# hist(cars$dist)
+```
+
+::: {.solution exercise="ex_hist_exact"}
+```{webr}
+#| exercise: ex_hist_exact
+#| solution: true
+hist(cars$dist)
+```
+:::
+
+```{webr}
+#| exercise: ex_hist_exact
+#| check: true
+gradethis::grade_this({
+  # Grab what they typed (keep it robust)
+  code <- .user_code
+  lines <- strsplit(code, "\n", fixed = TRUE)[[1]]
+  # strip comments per-line, then trim and drop empties
+  lines <- sub("#.*$", "", lines)
+  trim  <- function(s) sub("^\\s+|\\s+$", "", s)
+  lines <- trim(lines)
+  lines <- lines[nzchar(lines)]
+
+  if (length(lines) == 0) {
+    fail("Type your answer: hist(cars$dist) or hist(cars$speed).")
+  }
+  if (length(lines) > 1) {
+    fail("Enter exactly **one** command.")
+  }
+
+  one <- lines[1]
+  # Did it actually draw a histogram?
+  if (!inherits(.result, "histogram")) {
+    fail("Your code should draw a histogram.")
+  }
+
+  # Normalize spaces for exact-match check
+  normalized <- gsub("\\s+", "", one)
+
+  if (normalized %in% c("hist(cars$dist)", "hist(cars$speed)")) {
+    pass("✅ Correct!")
+  } else if (grepl("^hist\\s*\\(\\s*cars\\s*\\)\\s*$", one)) {
+    fail("`hist(cars)` won’t work—choose a numeric column: hist(cars$dist) or hist(cars$speed).")
+  } else if (grepl("^hist\\s*\\(", one)) {
+    fail("For this question, type exactly `hist(cars$dist)` or `hist(cars$speed)` (and nothing else).")
+  } else {
+    fail("Use `hist(...)` with a column from `cars`.")
+  }
+})
+```
