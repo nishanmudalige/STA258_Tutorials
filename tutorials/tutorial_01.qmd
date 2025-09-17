@@ -62,7 +62,6 @@ Type **exactly one** of these and nothing else:
 ```{webr}
 #| exercise: ex_hist_exact
 # Type your answer on the next line (one command only):
-# hist(cars$dist)
 ```
 
 ::: {.solution exercise="ex_hist_exact"}
@@ -87,7 +86,7 @@ gradethis::grade_this({
   lines <- lines[nzchar(lines)]
 
   if (length(lines) == 0) {
-    fail("Type your answer: hist(cars$dist) or hist(cars$speed).")
+    fail("Type your answer, it cant be empty.")
   }
   if (length(lines) > 1) {
     fail("Enter exactly **one** command.")
