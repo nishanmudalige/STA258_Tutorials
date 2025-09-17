@@ -54,6 +54,100 @@ gradethis::grade_this({
 })
 ```
 
+## Q2 — Write a function using division
+
+Define a function called `divide_nums` that takes two arguments (`a` and `b`) and returns the results of:
+
+1. `a / b`  
+2. `b / a`  
+
+Both results should be stored in separate variables before being returned.
+
+```{webr}
+#| exercise: ex_fun_div
+#| exercise.lines: 8
+#| echo: false
+divide_nums <- function(a, b) {
+  # your code here
+}
+```
+::: {.hint exercise="ex_fun_div"}
+Start with:
+res1 <- a / b
+res2 <- b / a
+list(res1, res2)
+:::
+
+::: {.solution exercise="ex_fun_div"}
+
+```{webr}
+#| exercise: ex_fun_div
+#| solution: true
+divide_nums <- function(a, b) {
+  res1 <- a / b
+  res2 <- b / a
+  list(res1, res2)
+}
+```
+
+:::
+
+```{webr}
+#| exercise: ex_fun_div
+#| check: true
+gradethis::grade_this({
+  code <- .user_code
+
+  # 0) Empty/untouched?
+  if (!nzchar(gsub("\\s|#.*", "", code))) {
+    fail("Type your answer in the editor.")
+  }
+
+  # 1) Find the student's env (webR/gradethis names vary)
+  env <- get0(".envir_result", ifnotfound = NULL)
+  if (is.null(env)) env <- get0(".user_env", ifnotfound = NULL)
+  if (is.null(env)) env <- parent.frame()
+
+  # 2) Get their function (prefer the named binding; fall back to .result)
+  f <- NULL
+  if (exists("divide_nums", envir = env, inherits = FALSE)) {
+    f <- get("divide_nums", envir = env)
+  } else if (is.function(.result)) {
+    f <- .result
+  }
+
+  if (!is.function(f)) {
+    fail("Define a function named `divide_nums(a, b)` (use `divide_nums <- function(a, b) { ... }`).")
+  }
+
+  # 3) Run it and grade
+  val <- tryCatch(f(8, 2), error = function(e) e)
+  if (inherits(val, "error")) {
+    msg <- conditionMessage(val)
+    if (grepl("object .* not found", msg)) {
+      fail("Looks like you referenced a variable that wasn’t created (e.g., `res1` or `res2`).")
+    } else {
+      fail(paste0("Your function raised an error: ", msg))
+    }
+  }
+
+  if (!is.list(val) || length(val) != 2) {
+    fail("Return a **list** of two elements: `list(res1, res2)`.")
+  }
+  if (!(is.numeric(val[[1]]) && is.numeric(val[[2]]))) {
+    fail("Both returned values must be numeric (`a/b` and `b/a`).")
+  }
+
+  ok <- isTRUE(all.equal(val[[1]], 4,    tol = 1e-8)) &&
+        isTRUE(all.equal(val[[2]], 0.25, tol = 1e-8))
+  if (!ok) {
+    fail("Close! Compute `res1 <- a / b` and `res2 <- b / a`, then return `list(res1, res2)`.")
+  }
+
+  pass("✅ Well done! Function name, outputs, and return format are correct.")
+})
+```
+
 ## Q3 — Draw a histogram from `cars` (type the full call)
 
 Type **exactly one** of these and nothing else:  
