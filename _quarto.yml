@@ -15,5 +15,6 @@ website:
         href: tutorials/tutorial_01.qmd
 
 format:
-  html:
+  live-html:
     toc: false
+
