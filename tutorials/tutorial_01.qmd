@@ -11,21 +11,21 @@ filters: []
 
 ## Q1 — Make the sum equal 10
 
-Replace `BLANK` with a number so the expression evaluates to **10**.
+Replace `＿` with a number so the expression evaluates to **10**.
 
 ```{webr}
 #| setup: true
 #| exercise: ex_sum
-BLANK <- NA_real_
+＿ <- NA_real_
 ```
 
 ```{webr}
 #| exercise: ex_sum
-1 + 2 + BLANK + BLANK
+1 + 2 + ＿ + ＿
 ```
 
 ::: {.hint exercise="ex_sum"}
-Replace the two BLANKS with 2 numbers that add up to 7.
+Replace the two ＿ with 2 numbers that add up to 7.
 :::
 
 ::: {.solution exercise="ex_sum"}
@@ -40,8 +40,8 @@ Replace the two BLANKS with 2 numbers that add up to 7.
 #| exercise: ex_sum
 #| check: true
 gradethis::grade_this({
-  if (grepl("\\bBLANK\\b", .user_code)) {
-    fail("Replace BLANK with a number.")
+  if (grepl("\\b＿\\b", .user_code)) {
+    fail("Replace ＿ with a number.")
   }
   # Pass if the evaluated result is (numerically) 10
   if (is.numeric(.result) && length(.result) == 1 &&
