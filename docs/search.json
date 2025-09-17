@@ -11,7 +11,7 @@
     "href": "tutorials/tutorial_01.html",
     "title": "Tutorial 01",
     "section": "",
-    "text": "Replace BLANK with a number so the expression evaluates to 10.\n\n\n\n\n\n\n\n\n\n\n\n\nTry 4.\n\n\n\n\n1 + 2 + 3 + 4\n1 + 2 + 3 + 4",
+    "text": "#| edit: false\n#| output: false\nwebr::install(\"gradethis\", quiet = TRUE)\nlibrary(gradethis)\noptions(webr.exercise.checker = function(\n  label, user_code, solution_code, check_code, envir_result, evaluate_result,\n  envir_prep, last_value, engine, stage, ...\n) {\n  if (is.null(check_code)) {\n    # No grading code, so just skip grading\n    invisible(NULL)\n  } else if (is.null(label)) {\n    list(\n      correct = FALSE,\n      type = \"warning\",\n      message = \"All exercises must have a label.\"\n    )\n  } else if (is.null(solution_code)) {\n    list(\n      correct = FALSE,\n      type = \"warning\",\n      message = htmltools::tags$div(\n        htmltools::tags$p(\"A problem occurred grading this exercise.\"),\n        htmltools::tags$p(\n          \"No solution code was found. Note that grading exercises using the \",\n          htmltools::tags$code(\"gradethis\"),\n          \"package requires a model solution to be included in the document.\"\n        )\n      )\n    )\n  } else {\n    gradethis::gradethis_exercise_checker(\n      label = label, solution_code = solution_code, user_code = user_code,\n      check_code = check_code, envir_result = envir_result,\n      evaluate_result = evaluate_result, envir_prep = envir_prep,\n      last_value = last_value, stage = stage, engine = engine)\n  }\n})",
     "crumbs": [
       "Home",
       "Tutorial 01"
@@ -184,6 +184,17 @@
     "title": "Tutorial 01",
     "section": "Q3 — Draw a histogram from cars (type the full call)",
     "text": "Q3 — Draw a histogram from cars (type the full call)\nType exactly one of these and nothing else:\nhist(cars$dist) or hist(cars$speed)\n\n\n\n\n\n\n\n\n\n\n\nhist(cars$dist)\nhist(cars$dist)",
+    "crumbs": [
+      "Home",
+      "Tutorial 01"
+    ]
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#q2-write-a-function-using-division",
+    "href": "tutorials/tutorial_01.html#q2-write-a-function-using-division",
+    "title": "Tutorial 01",
+    "section": "Q2 — Write a function using division",
+    "text": "Q2 — Write a function using division\nDefine a function called divide_nums that takes two arguments (a and b) and returns the results of:\n\na / b\n\nb / a\n\nBoth results should be stored in separate variables before being returned.\n\n\n\n\n\n\n\n\n\nStart with: res1 &lt;- a / b res2 &lt;- b / a list(res1, res2)\n\n\n\n\ndivide_nums &lt;- function(a, b) {\n  res1 &lt;- a / b\n  res2 &lt;- b / a\n  list(res1, res2)\n}\ndivide_nums &lt;- function(a, b) {\n  res1 &lt;- a / b\n  res2 &lt;- b / a\n  list(res1, res2)\n}",
     "crumbs": [
       "Home",
       "Tutorial 01"
