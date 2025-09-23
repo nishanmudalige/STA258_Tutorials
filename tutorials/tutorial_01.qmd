@@ -62,6 +62,16 @@ Define a function called `divide_nums` that takes two arguments (`a` and `b`) an
 
 Both results should be stored in separate variables before being returned.
 
+
+::: {.callout-note title="Info"}
+Remember: in R, division by zero (1/0) will return Inf rather than an error.
+:::
+
+::: {.callout-note title="Info"}
+In R, lists are written with list(a, b, c). Each element can be anything: a number, a string, or even another list.
+:::
+
+
 ```{webr}
 #| exercise: ex_fun_div
 #| exercise.lines: 8
