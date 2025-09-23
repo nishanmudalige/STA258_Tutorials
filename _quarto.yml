@@ -8,6 +8,10 @@ website:
     left:
       - text: "Home"
         href: index.qmd
+      - text: "Tutorials"
+        menu:
+        - text: "Tutorial 1"
+          href: tutorials/tutorial_01.qmd
   sidebar:
     style: floating
     contents:
