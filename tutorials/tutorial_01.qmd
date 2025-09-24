@@ -4,6 +4,15 @@ format: live-html
 engine: knitr
 # prevent any project filters from interfering
 filters: []
+sidebar:
+  style: docked
+  contents:
+    - text: "Q1 — Sum to 10"
+      href: "#q1"
+    - text: "Q2 — Division"
+      href: "#q2"
+    - text: "Q3 — Histogram"
+      href: "#q3"
 ---
 
 {{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
@@ -244,7 +253,7 @@ gradethis::grade_this({
 
 ```
 
-## Q5 — Draw a histogram from `cars` (type the full call)
+## Q5 — Draw a histogram from `cars` (type the full call) {#q3}
 
 Use **exactly one** of these numeric columns and nothing else:  
 dist  **or**  speed
@@ -375,3 +384,107 @@ gradethis::grade_this({
   }
 })
 ```
+
+## Q7 — Add a color to the histogram
+
+Re-draw a histogram of **cars$dist** and set **any** bar color using the `col=` argument.
+
+```{webr}
+#| exercise: ex_hist_col
+# (one command)
+```
+
+::: {.hint exercise="ex_hist_col"}
+Example: hist(cars$dist, col = "steelblue")
+:::
+
+::: {.solution exercise="ex_hist_col"}
+
+```{webr}
+#| exercise: ex_hist_col
+#| solution: true
+hist(cars$dist, col = "steelblue")
+```
+:::
+
+```{webr}
+#| exercise: ex_hist_col
+#| check: true
+gradethis::grade_this({
+  line <- paste(.user_code, collapse = "\n")
+  msgs <- c()
+
+  if (!inherits(.result, "histogram")) fail("Use `hist(...)` to draw a histogram of `cars$dist`.")
+  msgs <- c(msgs, "✅ drew a histogram.")
+
+  if (!grepl("hist\\s*\\(\\s*cars\\s*\\$\\s*dist", line)) msgs <- c(msgs, "❌ use `cars$dist`.") else msgs <- c(msgs, "✅ used `cars$dist`.")
+  if (!grepl("col\\s*=", line)) msgs <- c(msgs, "❌ add a color with `col = ...`.") else msgs <- c(msgs, "✅ specified a color (`col = ...`).")
+
+  if (all(grepl("^✅", msgs))) pass(paste(msgs, collapse = "\n")) else fail(paste(msgs, collapse = "\n"))
+})
+```
+
+
+## Q8 — Boxplot (make it horizontal)
+
+Draw a boxplot of **cars$speed** and make it **horizontal** using the `horizontal = TRUE` argument.
+
+```{webr}
+#| exercise: ex_box_h
+# (one command)
+```
+
+::: {.hint exercise="ex_box_h"}
+Example: boxplot(cars$speed, horizontal = TRUE)
+:::
+
+::: {.solution exercise="ex_box_h"}
+
+```{webr}
+#| exercise: ex_box_h
+#| solution: true
+boxplot(cars$speed, horizontal = TRUE)
+```
+:::
+
+```{webr}
+#| exercise: ex_box_h
+#| check: true
+gradethis::grade_this({
+  line <- gsub("\\s+", " ", paste(.user_code, collapse = " "))
+  msgs <- c()
+
+  # Did they call boxplot?
+  if (!grepl("\\bboxplot\\s*\\(", line)) {
+    fail("Use `boxplot(...)` to draw a boxplot.")
+  } else {
+    msgs <- c(msgs, "✅ called `boxplot(...)`.")
+  }
+
+  # Correct data column?
+  if (!grepl("boxplot\\s*\\(\\s*cars\\s*\\$\\s*speed", line)) {
+    msgs <- c(msgs, "❌ use `cars$speed`.")
+  } else {
+    msgs <- c(msgs, "✅ used `cars$speed`.")
+  }
+
+  # Horizontal = TRUE (accept T/TRUE, any spacing)
+  if (!grepl("horizontal\\s*=\\s*(TRUE|T)\\b", line)) {
+    msgs <- c(msgs, "❌ add `horizontal = TRUE`.")
+  } else {
+    msgs <- c(msgs, "✅ made it horizontal.")
+  }
+
+  # Structural sanity check on result (base boxplot returns a list with $stats)
+  if (!(is.list(.result) && !is.null(.result$stats))) {
+    msgs <- c(msgs, "⚠️ sanity check: result doesn’t look like a base boxplot object; ensure you used base `boxplot()`.")
+  }
+
+  if (all(grepl("^✅", msgs))) {
+    pass(paste(msgs, collapse = "\n"))
+  } else {
+    fail(paste(msgs, collapse = "\n"))
+  }
+})
+```
+

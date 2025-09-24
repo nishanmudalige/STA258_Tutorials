@@ -12,7 +12,6 @@ website:
         menu:
         - text: "Tutorial 1"
           href: tutorials/tutorial_01.qmd
-  sidebar: false
 
 format:
   live-html:
