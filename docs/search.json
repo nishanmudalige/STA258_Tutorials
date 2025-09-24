@@ -187,5 +187,33 @@
     "title": "Tutorial 01",
     "section": "Q2 — Write a function using division",
     "text": "Q2 — Write a function using division\nDefine a function called divide_nums that takes two arguments (a and b) and returns the results of:\n\na / b\n\nb / a\n\nBoth results should be stored in separate variables before being returned.\n\n\n\n\n\n\nInfo\n\n\n\nRemember: in R, division by zero (1/0) will return Inf rather than an error.\n\n\n\n\n\n\n\n\nInfo\n\n\n\nIn R, lists are written with list(a, b, c). Each element can be anything: a number, a string, or even another list.\n\n\n\n\n\n\n\n\n\n\n\nStart with: res1 &lt;- a / b res2 &lt;- b / a list(res1, res2)\n\n\n\n\ndivide_nums &lt;- function(a, b) {\n  res1 &lt;- a / b\n  res2 &lt;- b / a\n  list(res1, res2)\n}\ndivide_nums &lt;- function(a, b) {\n  res1 &lt;- a / b\n  res2 &lt;- b / a\n  list(res1, res2)\n}"
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#q1",
+    "href": "tutorials/tutorial_01.html#q1",
+    "title": "Tutorial 01",
+    "section": "Q1 — Make the sum equal 10",
+    "text": "Q1 — Make the sum equal 10\nReplace ＿ with a number so the expression evaluates to 10.\n\n\n\n\n\n\n\n\n\n\n\n\nReplace the two ＿ with 2 numbers that add up to 7.\n\n\n\n\n1 + 2 + 3 + 4\n1 + 2 + 3 + 4"
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#q2",
+    "href": "tutorials/tutorial_01.html#q2",
+    "title": "Tutorial 01",
+    "section": "Q2 — Write a function using division",
+    "text": "Q2 — Write a function using division\nDefine a function called divide_nums that takes two arguments (a and b) and returns the results of:\n\na / b\n\nb / a\n\nBoth results should be stored in separate variables before being returned.\n\n\n\n\n\n\nInfo\n\n\n\nRemember: in R, division by zero (1/0) will return Inf rather than an error.\n\n\n\n\n\n\n\n\nInfo\n\n\n\nIn R, lists are written with list(a, b, c). Each element can be anything: a number, a string, or even another list.\n\n\n\n\n\n\n\n\n\n\n\nStart with: res1 &lt;- a / b res2 &lt;- b / a list(res1, res2)\n\n\n\n\ndivide_nums &lt;- function(a, b) {\n  res1 &lt;- a / b\n  res2 &lt;- b / a\n  list(res1, res2)\n}\ndivide_nums &lt;- function(a, b) {\n  res1 &lt;- a / b\n  res2 &lt;- b / a\n  list(res1, res2)\n}"
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#q3",
+    "href": "tutorials/tutorial_01.html#q3",
+    "title": "Tutorial 01",
+    "section": "Q3 — Draw a histogram from cars (type the full call)",
+    "text": "Q3 — Draw a histogram from cars (type the full call)\nUse exactly one of these numeric columns and nothing else:\ndist or speed\n\n\n\n\n\n\n\n\n\n\n\nhist(cars$dist)\nhist(cars$dist)"
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#q4",
+    "href": "tutorials/tutorial_01.html#q4",
+    "title": "Tutorial 01",
+    "section": "Q6 — Draw a boxplot from cars (type the full call)",
+    "text": "Q6 — Draw a boxplot from cars (type the full call)\nUse exactly one of these numeric columns and nothing else:\ndist or speed\n\n\n\n\n\n\n\n\n\n\n\nboxplot(cars$dist)\nboxplot(cars$dist)"
   }
 ]
