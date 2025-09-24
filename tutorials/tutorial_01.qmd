@@ -40,7 +40,7 @@ Replace the two ＿ with 2 numbers that add up to 7.
 #| exercise: ex_sum
 #| check: true
 gradethis::grade_this({
-  if (grepl("\\b＿\\b", .user_code)) {
+  if (grepl("＿", .user_code, fixed = TRUE)) {
     fail("Replace ＿ with a number.")
   }
   # Pass if the evaluated result is (numerically) 10
@@ -157,7 +157,95 @@ gradethis::grade_this({
 })
 ```
 
-## Q3 — Draw a histogram from `cars` (type the full call)
+
+## Q3 — Create a vector
+
+Make a vector called `my_vec` that contains the numbers **5, 10, 15, 20**.
+
+```{webr}
+#| exercise: ex_vec
+#| exercise.lines: 2
+#| echo: false
+my_vec <- NULL
+
+```
+
+::: {.hint exercise="ex_vec"}
+Use the c() function to combine numbers: c(1, 2, 3)
+:::
+
+::: {.solution exercise="ex_vec"}
+```{webr}
+#| exercise: ex_vec
+#| solution: true
+my_vec <- c(5, 10, 15, 20)
+
+```
+
+:::
+
+```{webr}
+#| exercise: ex_vec
+#| check: true
+gradethis::grade_this({
+  if (!exists("my_vec", envir = .envir_result)) {
+    fail("You need to define `my_vec`.")
+  }
+  v <- get("my_vec", envir = .envir_result)
+  if (!is.numeric(v)) {
+    fail("`my_vec` should be numeric.")
+  }
+  if (!identical(v, c(5, 10, 15, 20))) {
+    fail("`my_vec` should contain exactly 5, 10, 15, 20 in that order.")
+  }
+  pass("✅ Nice! Your vector is correct.")
+})
+
+```
+## Q4 — Find the average
+
+Compute the mean of the vector `c(2, 4, 6, 8, 10)`.  
+Your answer should be stored in a variable called `avg_val`.
+
+```{webr}
+#| exercise: ex_mean
+#| exercise.lines: 2
+#| echo: false
+avg_val <- NULL
+```
+
+::: {.hint exercise="ex_mean"}
+Use the mean() function: mean(c(...))
+:::
+
+::: {.solution exercise="ex_mean"}
+```{webr}
+#| exercise: ex_mean
+#| solution: true
+avg_val <- mean(c(2, 4, 6, 8, 10))
+
+```
+:::
+```{webr}
+#| exercise: ex_mean
+#| check: true
+gradethis::grade_this({
+  if (!exists("avg_val", envir = .envir_result)) {
+    fail("You need to define `avg_val`.")
+  }
+  v <- get("avg_val", envir = .envir_result)
+  if (!is.numeric(v) || length(v) != 1) {
+    fail("`avg_val` should be a single numeric value.")
+  }
+  if (!isTRUE(all.equal(v, 6, tol = 1e-8))) {
+    fail("Not quite — the mean of c(2,4,6,8,10) is 6.")
+  }
+  pass("✅ Correct! You computed the mean successfully.")
+})
+
+```
+
+## Q5 — Draw a histogram from `cars` (type the full call)
 
 Use **exactly one** of these numeric columns and nothing else:  
 dist  **or**  speed
