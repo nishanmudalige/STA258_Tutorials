@@ -9,7 +9,7 @@ filters: []
 {{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
 {{< include ../_extensions/r-wasm/live/_gradethis.qmd >}}
 
-## Q1 — Make the sum equal 10
+## Q1 — Make the sum equal 10 {#q1}
 
 Replace `＿` with a number so the expression evaluates to **10**.
 
@@ -53,7 +53,7 @@ gradethis::grade_this({
 })
 ```
 
-## Q2 — Write a function using division
+## Q2 — Write a function using division {#q2}
 
 Define a function called `divide_nums` that takes two arguments (`a` and `b`) and returns the results of:
 
@@ -157,7 +157,7 @@ gradethis::grade_this({
 })
 ```
 
-## Q3 — Draw a histogram from `cars` (type the full call)
+## Q3 — Draw a histogram from `cars` (type the full call) {#q3}
 
 Use **exactly one** of these numeric columns and nothing else:  
 dist  **or**  speed
@@ -212,6 +212,79 @@ gradethis::grade_this({
     fail("For this question, type exactly `hist(cars$dist)` or `hist(cars$speed)` (and nothing else).")
   } else {
     fail("Use `hist(...)` with a column from `cars`.")
+  }
+})
+```
+
+## Q6 — Draw a boxplot from `cars` (type the full call) {#q4}
+
+Use **exactly one** of these numeric columns and nothing else:  
+dist  **or**  speed
+
+```{webr}
+#| exercise: ex_boxplot_exact
+# Type your answer on the next line (one command only):
+```
+
+::: {.solution exercise="ex_boxplot_exact"}
+```{webr}
+#| exercise: ex_boxplot_exact
+#| solution: true
+boxplot(cars$dist)
+```
+:::
+
+
+```{webr}
+#| exercise: ex_boxplot_exact
+#| check: true
+gradethis::grade_this({
+  code <- .user_code
+
+  # Normalize to a single, comment-free line
+  lines <- strsplit(code, "\n", fixed = TRUE)[[1]]
+  lines <- sub("#.*$", "", lines)              # strip end-of-line comments
+  trim  <- function(s) sub("^\\s+|\\s+$", "", s)
+  lines <- trim(lines)
+  lines <- lines[nzchar(lines)]
+
+  if (length(lines) == 0) {
+    fail("Type your answer, it can't be empty.")
+  }
+  if (length(lines) > 1) {
+    fail("Enter exactly **one** command.")
+  }
+
+  one <- lines[1]
+
+  # Parse safely (don't rely on .result for plots)
+  expr <- try(parse(text = one)[[1]], silent = TRUE)
+  if (inherits(expr, "try-error")) {
+    fail("Your code must be a single valid R expression.")
+  }
+
+  # Must be a call to boxplot(...)
+  if (!(is.call(expr) && identical(as.character(expr[[1]]), "boxplot"))) {
+    fail("Use `boxplot(...)`.")
+  }
+
+  # Be strict: exactly one argument, and it must be cars$dist or cars$speed
+  # (students can add spaces; we check the parsed argument)
+  n_args <- length(as.list(expr)) - 1L
+  if (n_args != 1L) {
+    fail("For this question, pass exactly **one** argument to `boxplot()`.")
+  }
+
+  arg <- as.list(expr)[[2]]
+  arg_txt <- paste0(deparse(arg), collapse = "")
+  allowed <- c("cars$dist", "cars$speed")
+
+  if (arg_txt %in% allowed) {
+    pass("✅ Correct!")
+  } else if (grepl("^cars\\s*$", arg_txt)) {
+    fail("`boxplot(cars)` won’t work—choose a numeric column: `boxplot(cars$dist)` or `boxplot(cars$speed)`.")
+  } else {
+    fail("For this question, type exactly `boxplot(cars$dist)` or `boxplot(cars$speed)` (and nothing else).")
   }
 })
 ```

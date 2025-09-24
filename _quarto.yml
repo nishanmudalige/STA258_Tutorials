@@ -12,15 +12,7 @@ website:
         menu:
         - text: "Tutorial 1"
           href: tutorials/tutorial_01.qmd
-  sidebar:
-    style: docked
-    contents:
-      - text: "Q1 — Make the sum equal 10"
-        href: tutorial_01.qmd#q1-make-the-sum-equal-10
-      - text: "Q2 — Write a function"
-        href: tutorial_01.qmd#q2-write-a-function-using-division
-      - text: "Q3 — Draw a histogram"
-        href: tutorial_01.qmd#q3-draw-a-histogram
+  sidebar: false
 
 format:
   live-html:
