@@ -1,0 +1,146 @@
+---
+title: "Tutorial 02"
+format: live-html
+engine: knitr
+# prevent any project filters from interfering
+sidebar:
+  style: docked
+  contents:
+    - text: "Q1 — Sum to 10"
+      href: "#q1"
+    - text: "Q2 — Division"
+      href: "#q2"
+    - text: "Q3 — Histogram"
+      href: "#q3"
+---
+
+{{< include ../_extensions/r-wasm/live/_knitr.qmd >}} {{< include ../_extensions/r-wasm/live/_gradethis.qmd >}}
+
+## Q1 — Quick five-number summary {#q1}
+
+Create mpg_summary as the output of summary(mtcars$mpg).
+
+```{webr}
+#| exercise: ex_summary_mpg
+#| exercise.lines: 2
+#| echo: false
+mpg_summary <- NULL
+```
+
+::: {.hint exercise="ex_summary_mpg"}
+Use summary(mtcars$mpg).
+:::
+
+::: {.solution exercise="ex_summary_mpg"}
+```{webr}
+#| exercise: ex_summary_mpg
+#| solution: true
+mpg_summary <- summary(mtcars$mpg)
+```
+:::
+
+```{webr}
+#| exercise: ex_summary_mpg
+#| check: true
+gradethis::grade_this({
+  e <- get0(".envir_result", ifnotfound = parent.frame())
+  if (!exists("mpg_summary", envir = e)) fail("Create `mpg_summary`.")
+  s <- get("mpg_summary", envir = e)
+  if (!is.numeric(s) || length(s) < 6) fail("`summary(mtcars$mpg)` returns a named numeric vector (Min., 1st Qu., Median, Mean, 3rd Qu., Max.).")
+  need <- c("Min.", "1st Qu.", "Median", "Mean", "3rd Qu.", "Max.")
+  if (!all(need %in% names(s))) fail("`mpg_summary` should come from `summary(...)` with standard names.")
+  pass("✅ Summary looks good.")
+})
+```
+
+## Q2 — Mean, variance, and sd {#q2}
+
+Create a named numeric vector stats_wt containing the mean, var, and sd of mtcars$wt with na.rm = TRUE.
+
+```{webr}
+#| exercise: ex_stats_wt
+#| exercise.lines: 3
+#| echo: false
+stats_wt <- NULL
+```
+
+::: {.hint exercise="ex_stats_wt"}
+c(mean = mean(...), var = var(...), sd = sd(...))
+:::
+
+::: {.solution exercise="ex_stats_wt"}
+```{webr}
+#| exercise: ex_stats_wt
+#| solution: true
+stats_wt <- c(
+  mean = mean(mtcars$wt, na.rm = TRUE),
+  var  = var(mtcars$wt,  na.rm = TRUE),
+  sd   = sd(mtcars$wt,   na.rm = TRUE)
+)
+```
+:::
+
+```{webr}
+#| exercise: ex_stats_wt
+#| check: true
+gradethis::grade_this({
+  e <- get0(".envir_result", ifnotfound = parent.frame())
+  if (!exists("stats_wt", envir = e)) fail("Define `stats_wt`.")
+  v <- get("stats_wt", envir = e)
+  if (!is.numeric(v) || is.null(names(v))) fail("Return a **named numeric vector**.")
+  need <- c("mean","var","sd")
+  if (!setequal(names(v), need)) fail("Names must be exactly: mean, var, sd.")
+  # target values (computed once here)
+  tgt <- c(mean = mean(mtcars$wt), var = var(mtcars$wt), sd = sd(mtcars$wt))
+  ok <- all(mapply(function(x,y) isTRUE(all.equal(x,y,tol=1e-8)), v[need], tgt[need]))
+  if (ok) pass("✅ Correct mean/var/sd.")
+  else fail("Recheck the formulas and use `na.rm = TRUE` (even though there are no NAs here).")
+})
+```
+
+## Q3 — Z-scores
+
+Compute z-scores for mtcars$mpg and store them in z_mpg.
+
+::: {.callout-note title="Info"}
+Remember: z <- (x - mean(x, na.rm = TRUE)) / sd(x, na.rm = TRUE)  
+:::
+
+
+```{webr}
+#| exercise: ex_z_mpg
+#| exercise.lines: 3
+#| echo: false
+z_mpg <- NULL
+
+```
+
+::: {.hint exercise="ex_z_mpg"}
+(x - mean(x, na.rm=TRUE)) / sd(x, na.rm=TRUE)
+:::
+
+::: {.solution exercise="ex_z_mpg"}
+```{webr}
+#| exercise: ex_z_mpg
+#| solution: true
+x <- mtcars$mpg
+z_mpg <- (x - mean(x, na.rm = TRUE)) / sd(x, na.rm = TRUE)
+
+```
+:::
+
+```{webr}
+#| exercise: ex_z_mpg
+#| check: true
+gradethis::grade_this({
+  e <- get0(".envir_result", ifnotfound = parent.frame())
+  if (!exists("z_mpg", envir = e)) fail("Create `z_mpg`.")
+  z <- get("z_mpg", envir = e)
+  if (!is.numeric(z) || length(z) != nrow(mtcars)) fail("`z_mpg` should be a numeric vector of length nrow(mtcars).")
+  ok_mean <- abs(mean(z)) < 1e-8
+  ok_sd   <- isTRUE(all.equal(sd(z), 1, tol = 1e-8))
+  if (ok_mean && ok_sd) pass("✅ Looks like proper z-scores (mean ≈ 0, sd ≈ 1).")
+  else fail("Compute z = (x - mean(x))/sd(x) with `na.rm=TRUE`.")
+})
+```
+
