@@ -10,5 +10,11 @@
   },
   "tutorials/index.qmd": {
     "index.html": "e379def9"
+  },
+  "practice/index.qmd": {
+    "index.html": "722b54c3"
+  },
+  "practice/prac_01.qmd": {
+    "prac_01.html": "7368074c"
   }
 }
