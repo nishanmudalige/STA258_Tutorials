@@ -103,7 +103,7 @@ gradethis::grade_this({
 Compute z-scores for mtcars$mpg and store them in z_mpg.
 
 ::: {.callout-note title="Info"}
-Remember: z <- (x - mean(x, na.rm = TRUE)) / sd(x, na.rm = TRUE)  
+Remember: $$z = \frac{x - \mu }{\sigma/\sqrt{n})} $$
 :::
 
 

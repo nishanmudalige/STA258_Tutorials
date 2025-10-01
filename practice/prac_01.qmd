@@ -127,7 +127,7 @@ gradethis::grade_this({
 
 ## Q3 —Transformed Histogram
 
-Generate a histogram of log_10(cars$dist) with breaks = 10. 
+Generate a histogram of log$_{10}$(cars$dist) with breaks = 10. 
 
 ::: {.callout-note title="Info"}
 Remember: in R, the breaks argument in a hist command controls the number of bars, cells or bins of the histogram! 
