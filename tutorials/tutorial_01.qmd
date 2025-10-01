@@ -40,7 +40,7 @@ Replace the two ＿ with 2 numbers that add up to 7.
 ::: {.solution exercise="ex_sum"}
 ```{webr}
 #| exercise: ex_sum
-#| solution: true
+#| solution: true 
 1 + 2 + 3 + 4
 ```
 :::
@@ -398,7 +398,7 @@ Re-draw a histogram of **cars$dist** and set **any** bar color using the `col=` 
 Example: hist(cars$dist, col = "steelblue")
 :::
 
-::: {.solution exercise="ex_hist_col"}
+::: {.solution exercise="ex _hist_col"}
 
 ```{webr}
 #| exercise: ex_hist_col
