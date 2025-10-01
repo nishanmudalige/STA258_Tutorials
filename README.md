@@ -19,7 +19,7 @@
   - Build on tutorial 1, use a data set to analyze summary stats, and create plots
 - Week 4 (Tutorial 3)
   - Distributions: Normal, Chi-square, t, F
-  - `pnorm`, `qnorm` etc.
+  - `pnorm`, `qnorm`, `pt`, `qt`, `pchisq`, `qchisq`, `pf`, `qf`
   - Central limit theorem + LLN
 - Week 5 (Tutorial 4)
   - One sample confidence intervals on the mean
