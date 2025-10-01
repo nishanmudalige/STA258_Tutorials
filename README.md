@@ -21,6 +21,7 @@
   - Distributions: Normal, Chi-square, t, F
   - `pnorm`, `qnorm`, `pt`, `qt`, `pchisq`, `qchisq`, `pf`, `qf`
   - **Include plots** to illustrate the regions of interest under each density
+    - Use `plotly` (preferred) or `ggplot2`
   - Central limit theorem + LLN
 - Week 5 (Tutorial 4)
   - One sample confidence intervals on the mean
