@@ -12,6 +12,11 @@ website:
         menu:
         - text: "Tutorial 1"
           href: tutorials/tutorial_01.qmd
+          
+      - text: "Practice"
+        menu:
+        - text: "Practical 1"
+          href: practice/prac_01.qmd
 
 format:
   live-html:
