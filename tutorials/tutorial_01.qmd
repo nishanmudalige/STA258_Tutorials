@@ -3,7 +3,6 @@ title: "Tutorial 01"
 format: live-html
 engine: knitr
 # prevent any project filters from interfering
-filters: []
 sidebar:
   style: docked
   contents:
@@ -488,3 +487,243 @@ gradethis::grade_this({
 })
 ```
 
+
+## Q9 — Load a CSV as a DataFrame
+
+Load iris.csv into a dataframe named df.
+```{webr}
+# Q9 SETUP — create iris.csv inside the webR filesystem
+#| setup: true
+#| exercise: ex_csv_load
+write.csv(iris, "iris.csv", row.names = FALSE)
+
+```
+
+```{webr}
+## Q9 — Load a CSV as a data frame
+# Read data/iris.csv into a data frame named df
+# Read iris.csv into a data frame named df
+#| exercise: ex_csv_load
+#| exercise.lines: 3
+#| echo: false
+df <- 
+
+```
+::: {.hint exercise="ex_csv_load"}
+Use df <- read.csv("iris.csv").
+:::
+
+::: {.solution exercise="ex_csv_load"}
+```{webr}
+#| exercise: ex_csv_load
+#| solution: true
+#| files: ["data/iris.csv"]   # solution runs in its own sandbox — mount again
+df <- read.csv("iris.csv")
+
+```
+::: 
+```{webr}
+#| exercise: ex_csv_load
+#| check: true
+gradethis::grade_this({
+  if (!exists("df", envir = .envir_result)) fail("Create `df` with `read.csv(\"iris.csv\")`.")
+  x <- get("df", envir = .envir_result)
+  if (!is.data.frame(x)) fail("`df` should be a data frame.")
+  need <- c("Sepal.Length","Sepal.Width","Petal.Length","Petal.Width","Species")
+  if (!all(need %in% names(x))) fail("`df` doesn't look like the expected columns.")
+  pass("✅ Loaded correctly!")
+})
+```
+
+## Q10 — Count rows in iris.csv
+
+Count the number of rows in iris.csv and store them in the variable rows
+```{webr}
+# Q10 setup
+#| setup: true
+#| exercise: ex_csv_nrows
+write.csv(iris, "iris.csv", row.names = FALSE)
+
+```
+
+
+```{webr}
+#| exercise: ex_csv_nrows
+#| exercise.lines: 3
+#| echo: false
+df <- read.csv("iris.csv")
+rows <- 
+```
+
+::: {.hint exercise="ex_csv_nrows"}
+Use nrow.
+:::
+
+::: {.solution exercise="ex_csv_nrows"}
+```{webr}
+#| exercise: ex_csv_nrows
+#| solution: true
+#| files: ["data/iris.csv"]   # solution runs in its own sandbox — mount again
+rows <- nrow("iris.csv")
+
+```
+:::
+
+```{webr}
+#| exercise: ex_csv_nrows
+#| check: true
+gradethis::grade_this({
+  stopifnot(exists("rows", envir=.envir_result))
+  x <- get("rows", envir=.envir_result)
+  if (!is.numeric(x) || length(x)!=1) fail("`rows` must be a single number.")
+  if (x==150) pass("✅ 150 rows.") else pass("ℹ️ Count recorded.")
+})
+
+```
+
+
+## Q11 — Show column names
+
+Print the column names from iris.csv
+```{webr}
+#| setup: true
+#| exercise: ex_csv_names
+write.csv(iris, "iris.csv", row.names = FALSE)
+
+```
+
+```{webr}
+#| exercise: ex_csv_names
+#| exercise.lines: 4
+#| echo: false
+# Read the CSV and print the column names
+df   <- read.csv("iris.csv")
+cols <- 
+
+```
+
+::: {.hint exercise="ex_csv_names"}
+Use names.
+:::
+
+::: {.solution exercise="ex_csv_names"}
+```{webr}
+#| exercise: ex_csv_names
+#| solution: true
+#| files: ["data/iris.csv"]   # solution runs in its own sandbox — mount again
+cols <- names("iris.csv")
+cols
+```
+:::
+
+```{webr}
+#| exercise: ex_csv_names
+#| check: true
+gradethis::grade_this({
+  if (!exists("cols", envir=.envir_result)) fail("Create `cols <- names(df)` and print it.")
+  x <- get("cols", envir=.envir_result)
+  if (!is.character(x)) fail("`cols` should be a character vector from `names(df)`.")
+  need <- c("Sepal.Length","Sepal.Width","Petal.Length","Petal.Width","Species")
+  if (!all(need %in% x)) fail("Those don’t look like the iris columns—did you read the CSV and call `names(df)`?")
+  pass("✅ Columns detected: Sepal/ Petal and Species.")
+})
+
+```
+
+## Q12 — Print some of the data
+
+Print the first 5 rows from iris.csv.
+```{webr}
+#| setup: true
+#| exercise: ex_csv_head
+write.csv(iris, "iris.csv", row.names = FALSE)
+
+```
+
+```{webr}
+#| exercise: ex_csv_head
+#| exercise.lines: 4
+#| echo: false
+# Read the CSV and print the column names
+df   <- read.csv("iris.csv")
+#your code here
+
+```
+
+::: {.hint exercise="ex_csv_head"}
+Use head.
+:::
+
+::: {.solution exercise="ex_csv_head"}
+```{webr}
+#| exercise: ex_csv_head
+#| solution: true
+#| files: ["data/iris.csv"]   # solution runs in its own sandbox — mount again
+df <- read.csv("iris.csv")
+head(df)
+```
+:::
+
+```{webr}
+#| exercise: ex_csv_head
+#| check: true
+gradethis::grade_this({
+  # If the *last* expression is head(df, 5), .result should be a 5-row data.frame
+  if (!(is.data.frame(.result) && nrow(.result)==5)) {
+    fail("Show the first 5 rows (e.g., `head(df, 5)`) as the **last** line.")
+  }
+  if (!all(c("Sepal.Length","Sepal.Width","Petal.Length","Petal.Width","Species") %in% names(.result))) {
+    fail("Your preview should be from `df` read from the CSV (it must have the iris columns).")
+  }
+  pass("✅ Nice—now you can clearly see the columns and a few rows.")
+})
+
+
+```
+
+
+## Q13 — Make a histogram from iris.csv
+
+Make a histogram of the column Sepal.Length from iris.csv.
+```{webr}
+#| setup: true
+#| exercise: ex_csv_hist
+write.csv(iris, "iris.csv", row.names = FALSE)
+
+```
+
+```{webr}
+#| exercise: ex_csv_hist
+#| exercise.lines: 3
+#| echo: false
+df <- read.csv("iris.csv")
+
+
+```
+
+::: {.hint exercise="ex_csv_hist"}
+Use hist (see Q5).
+:::
+
+::: {.solution exercise="ex_csv_hist"}
+```{webr}
+#| exercise: ex_csv_hist
+#| solution: true
+#| files: ["data/iris.csv"]   # solution runs in its own sandbox — mount again
+df <- read.csv("iris.csv")
+hist(df$Sepal.Length, col = "lightgray", main = "Sepal.Length", xlab = "cm") 
+```
+:::
+
+```{webr}
+#| exercise: ex_csv_hist
+#| check: true
+gradethis::grade_this({
+  if (!inherits(.result,"histogram")) fail("Use base `hist(df$Sepal.Length, ...)`.")
+  if (!grepl("Sepal\\.Length", paste(.user_code, collapse="\n"))) fail("Plot `df$Sepal.Length`.")
+  pass("✅ Histogram detected.")
+})
+
+
+
+```
