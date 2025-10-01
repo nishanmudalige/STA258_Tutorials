@@ -18,10 +18,11 @@ sidebar:
 {{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
 {{< include ../_extensions/r-wasm/live/_gradethis.qmd >}}
 
-## Q1 — Creating Pythagorean Triplets {q1}
+:::{.callout-note title="Q1 _ Pythagorean Triples" #Q1}
 
 Set three positive integers a, b, and c such that: \ a^2^ \+\ b^2^ \=\ c^2^ \, 
 0<a<b<c, and c <= 50.
+:::
 
 ```{webr}
 #| exercise: ex_pythag
