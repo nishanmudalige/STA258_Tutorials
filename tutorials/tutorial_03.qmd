@@ -1,0 +1,957 @@
+---
+title: "Tutorial 03"
+format: live-html
+engine: knitr
+# prevent any project filters from interfering
+sidebar:
+  style: docked
+  contents:
+    - text: "Q1 — Sum to 10"
+      href: "#q1"
+    - text: "Q2 — Division"
+      href: "#q2"
+    - text: "Q3 — Histogram"
+      href: "#q3"
+---
+
+{{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
+{{< include ../_extensions/r-wasm/live/_gradethis.qmd >}}
+
+## Q1 — Standard Normal - Left Tail Probability
+
+Compute $P(Z <= 1.25)$, where $Z ∼ N(0,1)$. Save your answer in p_left.
+
+::: {.callout-note title="Info"}
+Remember: R calculates area to the left unlike probability tables. 
+:::
+
+```{webr}
+#| setup: true
+#| exercise: norm_left
+#| echo: false
+# Tiny helper to draw a density and shade [lower, upper]
+plot_shade <- function(dfun, from, to, lower=-Inf, upper=Inf, ...,
+                       main="Density with shaded region", xlab="x"){
+  xs <- seq(from, to, length.out = 600)
+  ys <- dfun(xs, ...)
+  plot(xs, ys, type = "l", xlab = xlab, ylab = "density", main = main)
+  xs_s <- xs[xs >= lower & xs <= upper]
+  if (length(xs_s) > 1) {
+    polygon(c(xs_s, rev(xs_s)),
+            c(rep(0, length(xs_s)), rev(dfun(xs_s, ...))),
+            col = "lightgray", border = NA)
+  }
+  lines(xs, ys)
+}
+
+```
+
+```{webr}
+#| exercise: norm_left
+#| exercise.lines: 3
+#| echo: false
+p_left <- 
+plot_shade(dnorm, from=-4, to=4, lower=-4, upper=1.25,
+           main="Standard Normal: P(Z ≤ 1.25)", xlab="z")
+
+```
+
+::: {.hint exercise="norm_left"}
+Use pnorm.
+:::
+
+::: {.solution exercise="norm_left"}
+```{webr}
+#| exercise: norm_left
+#| solution: true
+p_left <- pnorm(1.25)
+plot_shade(dnorm, from=-4, to=4, lower=-4, upper=1.25,
+           main="Standard Normal: P(Z ≤ 1.25)", xlab="z")
+
+```
+:::
+
+```{webr}
+#| exercise: norm_left
+#| check: true
+gradethis::grade_this({
+  if (!exists("p_left", envir=.envir_result)) fail("Save the result in `p_left`.")
+  v <- get("p_left", envir=.envir_result)
+  if (!is.numeric(v) || length(v)!=1) fail("`p_left` should be a single number.")
+  if (abs(v - pnorm(1.25)) < 1e-6) pass("✅ Correct.")
+  else fail("Not quite. There's still something missing.")
+})
+
+```
+
+
+
+
+## Q2 — Standard Normal - Right Tail Probability
+
+Compute $P(Z >= 1.25)$, where $Z ∼ N(0,1)$. Save your answer in p_right.
+
+::: {.callout-note title="Info"}
+Remember: R calculates area to the left unlike probability tables. 
+:::
+
+```{webr}
+#| setup: true
+#| exercise: norm_right
+#| echo: false
+# Tiny helper to draw a density and shade [lower, upper]
+plot_shade <- function(dfun, from, to, lower=-Inf, upper=Inf, ...,
+                       main="Density with shaded region", xlab="x"){
+  xs <- seq(from, to, length.out = 600)
+  ys <- dfun(xs, ...)
+  plot(xs, ys, type = "l", xlab = xlab, ylab = "density", main = main)
+  xs_s <- xs[xs >= lower & xs <= upper]
+  if (length(xs_s) > 1) {
+    polygon(c(xs_s, rev(xs_s)),
+            c(rep(0, length(xs_s)), rev(dfun(xs_s, ...))),
+            col = "lightgray", border = NA)
+  }
+  lines(xs, ys)
+}
+
+```
+
+```{webr}
+#| exercise: norm_right
+#| exercise.lines: 3
+#| echo: false
+p_right <- 
+plot_shade(dnorm, from=-4, to=4, lower=1.25, upper=4,
+           main="Standard Normal: P(Z >= 1.25)", xlab="z")
+
+```
+
+::: {.hint exercise="norm_right"}
+pnorm gives area to the left. Remember, we need area to the right.
+:::
+
+::: {.solution exercise="norm_right"}
+```{webr}
+#| exercise: norm_right
+#| solution: true
+p_right <- 1 - pnorm(1.25)
+plot_shade(dnorm, from=-4, to=4, lower=1.25, upper=4,
+           main="P(Z ≥ 1.25) shaded", xlab="z")
+
+```
+:::
+
+```{webr}
+#| exercise: norm_right
+#| check: true
+gradethis::grade_this({
+  if (!exists("p_right", envir=.envir_result)) fail("Save the result in `p_right`.")
+  v <- get("p_right", envir=.envir_result)
+  if (!is.numeric(v) || length(v)!=1) fail("`p_right` should be a single number.")
+  if (abs(v - (1 - pnorm(1.25))) < 1e-6) pass("✅ Correct.")
+  else fail("Not quite. There's still something missing.")
+})
+
+```
+
+
+
+
+## Q3 — Standard Normal - Two-Sided Probability
+
+Compute $P(∣Z∣ >= 1.25)$,  where $Z ∼ N(0,1)$, and store the result in p_two.
+
+::: {.callout-note title="Info"}
+Remember: R calculates area to the left unlike probability tables. 
+:::
+
+```{webr}
+#| setup: true
+#| exercise: norm_two_sided
+#| echo: false
+plot_shade <- function(dfun, from, to, lower = -Inf, upper = Inf,
+                       add = FALSE, ..., main = "Density with shaded region", xlab = "x") {
+  xs <- seq(from, to, length.out = 600)
+  ys <- dfun(xs, ...)
+  if (!add) {
+    plot(xs, ys, type = "l", xlab = xlab, ylab = "density", main = main)
+  }
+  xs_s <- xs[xs >= lower & xs <= upper]
+  if (length(xs_s) > 1) {
+    polygon(c(xs_s, rev(xs_s)),
+            c(rep(0, length(xs_s)), rev(dfun(xs_s, ...))),
+            col = "lightgray", border = NA)
+  }
+  if (!add) lines(xs, ys)
+}
+
+```
+
+```{webr}
+#| exercise: norm_two_sided
+#| exercise.lines: 6
+#| echo: false
+p_two <- 
+plot_shade(dnorm, from=-4, to=4, lower=-4,  upper=-1.25, main="P(|Z| ≥ 1.25)", xlab="z")
+plot_shade(dnorm, from=-4, to=4, lower= 1.25, upper= 4, add=TRUE)
+
+```
+
+::: {.hint exercise="norm_two_sided"}
+Effectively use pnorm.
+:::
+
+::: {.solution exercise="norm_two_sided"}
+```{webr}
+#| exercise: norm_two_sided
+#| solution: true
+p_two <- 2 * (1 - pnorm(1.25))
+plot_shade(dnorm, from=-4, to=4, lower=-4,  upper=-1.25, main="P(|Z| ≥ 1.25)", xlab="z")
+plot_shade(dnorm, from=-4, to=4, lower= 1.25, upper= 4, add=TRUE)
+
+
+
+```
+:::
+
+```{webr}
+#| exercise: norm_two_sided
+#| check: true
+gradethis::grade_this({
+  if (!exists("p_two", envir=.envir_result)) fail("Save the result in `p_two`.")
+  v <- get("p_two", envir=.envir_result)
+  if (!is.numeric(v) || length(v)!=1) fail("`p_two` should be a single numeric value.")
+  target <- 2 * (1 - pnorm(1.25))
+  if (abs(v - target) < 1e-6) pass("✅ Correct: two tails summed.")
+  else fail("Use `2 * (1 - pnorm(1.25))` (two symmetric tails).")
+})
+
+
+
+```
+
+
+
+## Q4 — Normal Quantile (Critical Value)
+
+Compute  $Z_{0.975}$ where $Z ∼ N(0,1)$, and store the result in z_star.
+
+
+```{webr}
+#| setup: true
+#| exercise: qnorm
+#| echo: false
+plot_shade <- function(dfun, from, to, lower = -Inf, upper = Inf,
+                       add = FALSE, ..., main = "Density with shaded region", xlab = "x") {
+  xs <- seq(from, to, length.out = 600)
+  ys <- dfun(xs, ...)
+  if (!add) {
+    plot(xs, ys, type = "l", xlab = xlab, ylab = "density", main = main)
+  }
+  xs_s <- xs[xs >= lower & xs <= upper]
+  if (length(xs_s) > 1) {
+    polygon(c(xs_s, rev(xs_s)),
+            c(rep(0, length(xs_s)), rev(dfun(xs_s, ...))),
+            col = "lightgray", border = NA)
+  }
+  if (!add) lines(xs, ys)
+}
+
+```
+
+```{webr}
+#| exercise: qnorm
+#| exercise.lines: 3
+#| echo: false
+z_star <- 
+plot_shade(dnorm, from=-4, to=4, lower=-4, upper=z_star,
+           main="P(Z ≤ z*) = 0.975", xlab="z")
+abline(v = z_star, col="tomato", lwd=2, lty=2)
+
+
+```
+
+::: {.hint exercise="qnorm"}
+Use qnorm.
+:::
+
+::: {.solution exercise="qnorm"}
+```{webr}
+#| exercise: qnorm
+#| solution: true
+z_star <- qnorm(0.975)
+plot_shade(dnorm, from=-4, to=4, lower=-4, upper=z_star,
+           main="P(Z ≤ z*) = 0.975", xlab="z")
+abline(v = z_star, col="tomato", lwd=2, lty=2)
+
+
+
+
+```
+:::
+
+```{webr}
+#| exercise: qnorm
+#| check: true
+gradethis::grade_this({
+  if (!exists("z_star", envir=.envir_result)) fail("Save the quantile in `z_star`.")
+  if (abs(get("z_star", envir=.envir_result) - qnorm(0.975)) < 1e-6) pass("✅ 1.96-ish is correct.")
+  else fail("Not quite.")
+})
+
+```
+
+## Q5 — T-distribution - Right Tailed
+
+Let  $T ∼ t_{10}$. Compute $P(T >= 1.5 )$, and store the result in pt_right.
+
+
+```{webr}
+#| setup: true
+#| exercise: t_right
+#| echo: false
+plot_shade <- function(fun, from, to, lower = -Inf, upper = Inf,
+                       add = FALSE, ..., main = "Density with shaded region", xlab = "x") {
+  f <- match.fun(fun)                     # works for dt or "dt"
+  xs <- seq(from, to, length.out = 600)
+  ys <- f(xs, ...)
+  if (!add) {
+    plot(xs, ys, type = "l", xlab = xlab, ylab = "density", main = main)
+  }
+  xs_s <- xs[xs >= lower & xs <= upper]
+  if (length(xs_s) > 1) {
+    polygon(c(xs_s, rev(xs_s)),
+            c(rep(0, length(xs_s)), rev(f(xs_s, ...))),
+            col = "lightgray", border = NA)
+  }
+  if (!add) lines(xs, ys)
+}
+
+```
+
+```{webr}
+#| exercise: t_right
+#| exercise.lines: 4
+#| echo: false
+pt_right <- 
+plot_shade("dt", from = -4, to = 4, lower = 1.5, upper = 4, df = 10,
+           main = "t(10): P(T ≥ 1.5)", xlab = "t")
+
+
+```
+
+::: {.hint exercise="t_right"}
+Use pt.
+:::
+
+::: {.solution exercise="t_right"}
+```{webr}
+#| exercise: t_right
+#| solution: true
+pt_right <- 1 - pt(1.5, df = 10)
+plot_shade("dt", from = -4, to = 4, lower = 1.5, upper = 4, df = 10,
+           main = "t(10): P(T ≥ 1.5)", xlab = "t")
+
+
+```
+:::
+
+```{webr}
+#| exercise: t_right
+#| check: true
+gradethis::grade_this({
+  msgs <- c()
+
+  code <- .user_code
+ 
+  parsed <- try(parse(text = code), silent = TRUE)
+
+ 
+  find_pt_call <- function(exprs) {
+    last <- NULL
+    for (e in exprs) {
+      if (is.call(e) && identical(as.character(e[[1]]), "pt")) last <- e
+      # also look inside assignments like pt_right <- 1 - pt(...)
+      if (is.call(e) && as.character(e[[1]]) %in% c("<-", "=")) {
+        rhs <- e[[3]]
+        if (is.call(rhs) && identical(as.character(rhs[[1]]), "pt")) last <- rhs
+        # handle 1 - pt(...)
+        if (is.call(rhs) && as.character(rhs[[1]]) %in% c("-", "+", "*", "/", "(", "1")) {
+          # walk one level deeper
+          kids <- as.list(rhs)[-1]
+          for (k in kids) {
+            if (is.call(k) && identical(as.character(k[[1]]), "pt")) last <- k
+          }
+        }
+      }
+    }
+    last
+  }
+
+  pt_call <- if (inherits(parsed, "try-error")) NULL else find_pt_call(parsed)
+
+  # Check 1: used pt()
+  if (!is.null(pt_call)) {
+    msgs <- c(msgs, "✅ used `pt()`.")
+  } else {
+    msgs <- c(msgs, "❌ did not call `pt()`.")
+  }
+
+  # Extract arguments if we found a call
+  q_ok <- NA; df_ok <- NA
+  if (!is.null(pt_call)) {
+    # pt(q, df, ncp, lower.tail, log.p)
+    args <- as.list(pt_call)[-1]  # drop function symbol
+
+    # q (first argument)
+    q_expr <- if (length(args) >= 1) args[[1]] else NULL
+    q_val  <- try(eval(q_expr, envir = .envir_result), silent = TRUE)
+    if (!inherits(q_val, "try-error") && is.numeric(q_val) && length(q_val) == 1) {
+      if (isTRUE(all.equal(q_val, 1.5, tol = 1e-8))) {
+        msgs <- c(msgs, "✅ correct first argument `q = 1.5`.")
+        q_ok <- TRUE
+      } else {
+        msgs <- c(msgs, paste0("❌ first argument isn't right.(you used ", deparse(q_expr), ")."))
+        q_ok <- FALSE
+      }
+    } else {
+      msgs <- c(msgs, "❌ could not evaluate the first argument to a number.")
+      q_ok <- FALSE
+    }
+
+    # df (named or positional 2nd)
+    df_expr <- NULL
+    # named?
+    if (!is.null(names(args)) && "df" %in% names(args)) {
+      df_expr <- args[["df"]]
+    } else if (length(args) >= 2) {
+      df_expr <- args[[2]]
+    }
+    if (!is.null(df_expr)) {
+      df_val <- try(eval(df_expr, envir = .envir_result), silent = TRUE)
+      if (!inherits(df_val, "try-error") && is.numeric(df_val) && length(df_val) == 1) {
+        if (isTRUE(all.equal(df_val, 10, tol = 1e-8))) {
+          msgs <- c(msgs, "✅ correct degrees of freedom `df = 10`.")
+          df_ok <- TRUE
+        } else {
+          msgs <- c(msgs, paste0("❌ `df` sis incorrect. you used ", deparse(df_expr), ")."))
+          df_ok <- FALSE
+        }
+      } else {
+        msgs <- c(msgs, "❌ `df` was not a single numeric value.")
+        df_ok <- FALSE
+      }
+    } else {
+      msgs <- c(msgs, "❌ no `df` supplied (remember `pt(q, df=...)`).")
+      df_ok <- FALSE
+    }
+  }
+
+  # Final numeric check on pt_right, if present
+  has_obj <- exists("pt_right", envir = .envir_result)
+  if (!has_obj) {
+    fail(paste(c(msgs, "❌ Save your answer in `pt_right`.") , collapse = "\n"))
+  }
+  v <- get("pt_right", envir = .envir_result)
+  if (!(is.numeric(v) && length(v) == 1)) {
+    fail(paste(c(msgs, "❌ `pt_right` must be a single numeric value.") , collapse = "\n"))
+  }
+  target <- 1 - pt(1.5, df = 10)
+  if (abs(v - target) < 1e-6) {
+    pass(paste(c(msgs, "✅ Numeric answer is correct.") , collapse = "\n"))
+  } else {
+    fail(paste(c(msgs, "❌ Numeric value is not correct yet.") , collapse = "\n"))
+  }
+})
+
+```
+
+
+## Q6 — T Quantile - Left Probability
+
+Find $t^*$ such that $P(T <= f^*)$ = 0.975, where $T ∼ t_{10}$. Store the result in t_q.
+
+
+```{webr}
+# SETUP — safe shaded-density helper
+#| setup: true
+#| exercise: t_q
+#| echo: false
+plot_shade <- function(fun, from, to, lower=-Inf, upper=Inf,
+                       add=FALSE, ..., main="t density", xlab="t"){
+  f <- match.fun(fun)
+  xs <- seq(from, to, length.out = 600)
+  ys <- f(xs, ...)
+  if (!add) plot(xs, ys, type="l", xlab=xlab, ylab="density", main=main)
+  xs_s <- xs[xs >= lower & xs <= upper]
+  if (length(xs_s) > 1) {
+    polygon(c(xs_s, rev(xs_s)),
+            c(rep(0, length(xs_s)), rev(f(xs_s, ...))),
+            col="lightgray", border=NA)
+  }
+  if (!add) lines(xs, ys)
+}
+
+
+
+```
+
+```{webr}
+#| exercise: t_q
+#| exercise.lines: 5
+#| echo: false
+t_q <- 
+plot_shade(dt, from=-4, to=4, df=10, upper=0)
+abline(v = t_q, col="tomato", lwd=2, lty=2)
+
+
+```
+
+::: {.hint exercise="t_q"}
+Use qt.
+:::
+
+::: {.solution exercise="t_q"}
+```{webr}
+#| exercise: t_q
+#| solution: true
+t_q <- qt(0.975, df = 10)
+plot_shade(dt, from=-4, to=4, df=10)
+abline(v = t_q, col="tomato", lwd=2, lty=2)
+
+
+
+```
+:::
+
+```{webr}
+#| exercise: t_q
+#| check: true
+gradethis::grade_this({
+  msgs <- c()
+  code <- .user_code
+  parsed <- try(parse(text = code), silent = TRUE)
+
+  # find a qt(...) call anywhere in the code (rhs, nested, etc.)
+  find_call <- function(exprs, fname) {
+    last <- NULL
+    for (e in exprs) {
+      if (is.call(e) && as.character(e[[1]]) %in% c("<-","=")) e <- e[[3]]
+      if (is.call(e) && identical(as.character(e[[1]]), fname)) last <- e
+      if (is.call(e)) {
+        kids <- as.list(e)[-1]
+        for (k in kids) if (is.call(k) && identical(as.character(k[[1]]), fname)) last <- k
+      }
+    }
+    last
+  }
+
+  qt_call <- if (inherits(parsed, "try-error")) NULL else find_call(parsed, "qt")
+  msgs <- c(msgs, if (!is.null(qt_call)) "✅ used `qt()`." else "❌ did not call `qt()`.")
+
+  p_ok <- df_ok <- FALSE
+  if (!is.null(qt_call)) {
+    args <- as.list(qt_call)[-1]  # drop function symbol
+
+    # prob (first argument)
+    p_expr <- if (length(args) >= 1) args[[1]] else NULL
+    p_val  <- try(eval(p_expr, envir = .envir_result), silent = TRUE)
+    if (!inherits(p_val, "try-error") && is.numeric(p_val) && length(p_val) == 1 &&
+        abs(p_val - 0.975) < 1e-8) {
+      msgs <- c(msgs, "✅ probability = 0.975.")
+      p_ok <- TRUE
+    } else {
+      msgs <- c(msgs, "❌ first argument seems incorrect.")
+    }
+
+    # df (named or 2nd positional)
+    df_expr <- if (!is.null(names(args)) && "df" %in% names(args)) args[["df"]]
+               else if (length(args) >= 2) args[[2]] else NULL
+    df_val  <- try(eval(df_expr, envir = .envir_result), silent = TRUE)
+    if (!is.null(df_expr) && !inherits(df_val, "try-error") &&
+        is.numeric(df_val) && length(df_val) == 1 && abs(df_val - 10) < 1e-8) {
+      msgs <- c(msgs, "✅ df = 10.")
+      df_ok <- TRUE
+    } else {
+      msgs <- c(msgs, "❌ `df` seems incorrect.")
+    }
+
+    # lower.tail note (optional)
+    if (!is.null(names(args)) && "lower.tail" %in% names(args)) {
+      lt <- try(eval(args[["lower.tail"]], envir = .envir_result), silent = TRUE)
+      if (identical(lt, TRUE)) msgs <- c(msgs, "✅ using left tail (default).")
+      if (identical(lt, FALSE)) msgs <- c(msgs, "ℹ️ using right tail: then probability seems incorrect.")
+    }
+  }
+
+  # final object exists?
+  if (!exists("t_q", envir = .envir_result)) {
+    fail(paste(c(msgs, "❌ Save your result in `t_q`."), collapse = "\n"))
+  }
+  v <- get("t_q", envir = .envir_result)
+  target <- qt(0.975, df = 10)
+
+  if (!(is.numeric(v) && length(v) == 1)) {
+    fail(paste(c(msgs, "❌ `t_q` must be a single numeric value."), collapse = "\n"))
+  }
+
+  if (abs(v - target) < 1e-6) {
+    pass(paste(c(msgs, "✅ Numeric answer is correct."), collapse = "\n"))
+  } else {
+    fail(paste(c(msgs, "❌ Numeric value is not correct yet."), collapse = "\n"))
+  }
+})
+
+
+```
+
+
+## Q7 — Chi-Square Distribution - Right Tailed
+
+Let  $X ∼ {\chi^2}_{8}$. Compute $P(X >= 15 )$, and store the result in p_chi.
+
+
+```{webr}
+
+#| setup: true
+#| exercise: chi_right
+#| echo: false
+plot_shade <- function(fun, from, to, lower=-Inf, upper=Inf,
+                       add=FALSE, ..., main="Density with shaded region", xlab="x"){
+  f <- match.fun(fun); xs <- seq(from,to,length.out=600); ys <- f(xs,...)
+  if (!add) plot(xs,ys,type="l",xlab=xlab,ylab="density",main=main)
+  xs_s <- xs[xs>=lower & xs<=upper]
+  if (length(xs_s)>1) polygon(c(xs_s,rev(xs_s)),
+                              c(rep(0,length(xs_s)),rev(f(xs_s,...))),
+                              col="lightgray", border=NA)
+  if (!add) lines(xs,ys)
+}
+
+
+```
+
+
+```{webr}
+#| exercise: chi_right
+#| exercise.lines: 4
+#| echo: false
+p_chi <- 
+plot_shade(dchisq, from=0, to=30, lower=15, upper=30, df=8,
+           main="Chi-square(8): P(X ≥ 15)", xlab="x")
+
+
+```
+
+::: {.hint exercise="chi_right"}
+Use pchisq.
+:::
+
+::: {.solution exercise="chi_right"}
+```{webr}
+#| exercise: chi_right
+#| solution: true
+p_chi <- 1 - pchisq(15, df = 8)
+plot_shade(dchisq, from=0, to=30, lower=15, upper=30, df=8,
+           main="Chi-square(8): P(X ≥ 15)", xlab="x")
+
+
+```
+:::
+
+```{webr}
+#| exercise: chi_right
+#| check: true
+gradethis::grade_this({
+  msgs <- c()
+  code <- .user_code; parsed <- try(parse(text=code), silent=TRUE)
+  find_call <- function(exprs, fname){
+    last <- NULL
+    for(e in exprs){
+      if (is.call(e) && as.character(e[[1]]) %in% c("<-","=")) e <- e[[3]]
+      if (is.call(e) && identical(as.character(e[[1]]), fname)) last <- e
+      if (is.call(e)) for (k in as.list(e)[-1]) if (is.call(k) && identical(as.character(k[[1]]), fname)) last <- k
+    } ; last
+  }
+  pc <- if (inherits(parsed,"try-error")) NULL else find_call(parsed, "pchisq")
+  msgs <- c(msgs, if (!is.null(pc)) "✅ used `pchisq()`." else "❌ did not call `pchisq()`.")
+  x_ok <- df_ok <- tail_ok <- FALSE
+  if (!is.null(pc)){
+    args <- as.list(pc)[-1]
+    # x
+    x_expr <- if (length(args)>=1) args[[1]] else NULL
+    x_val  <- try(eval(x_expr, envir=.envir_result), silent=TRUE)
+    if (!inherits(x_val,"try-error") && is.numeric(x_val) && length(x_val)==1 && abs(x_val-15)<1e-8){
+      msgs <- c(msgs,"✅ x = 15."); x_ok <- TRUE
+    } else msgs <- c(msgs,"❌ first argument does not seem right")
+    # df
+    df_expr <- if (!is.null(names(args)) && "df" %in% names(args)) args[["df"]] else if (length(args)>=2) args[[2]] else NULL
+    df_val  <- try(eval(df_expr, envir=.envir_result), silent=TRUE)
+    if (!is.null(df_expr) && !inherits(df_val,"try-error") && is.numeric(df_val) && length(df_val)==1 && abs(df_val-8)<1e-8){
+      msgs <- c(msgs,"✅ df = 8."); df_ok <- TRUE
+    } else msgs <- c(msgs,"❌ `df` does not seem right")
+    # tail (optional)
+    lt <- if (!is.null(names(args)) && "lower.tail" %in% names(args)) try(eval(args[["lower.tail"]], envir=.envir_result), silent=TRUE) else NA
+    if (isTRUE(identical(lt, FALSE))) { msgs <- c(msgs,"✅ used `lower.tail=FALSE`."); tail_ok <- TRUE }
+    else msgs <- c(msgs,"ℹ️ right tail may be done via `1 - pchisq(...)` or `lower.tail=FALSE`.")
+  }
+  if (!exists("p_chi", envir=.envir_result)) fail(paste(c(msgs, "❌ Save result in `p_chi`."), collapse="\n"))
+  v <- get("p_chi", envir=.envir_result); target <- 1 - pchisq(15, df=8)
+  if (is.numeric(v) && length(v)==1 && abs(v-target)<1e-6) pass(paste(c(msgs,"✅ Numeric answer is correct."), collapse="\n"))
+  else fail(paste(c(msgs,"❌ Numeric value not correct yet."), collapse="\n"))
+})
+
+```
+
+## Q8 — Chi-Square Quantile - Left Probability
+
+Find $x^*$ such that $P(X <= x^*)$ = 0.95, where  $X ∼ {\chi^2}_{8}$. Store the result in chi_q.
+
+
+```{webr}
+# Q7 SETUP
+#| setup: true
+#| exercise: chi_q
+#| echo: false
+plot_shade <- function(fun, from, to, lower=-Inf, upper=Inf, add=FALSE, ..., main="Chi-square(10)", xlab="x"){
+  f <- match.fun(fun); xs <- seq(from,to,length.out=600); ys <- f(xs,...)
+  if (!add) plot(xs,ys,type="l",xlab=xlab,ylab="density",main=main)
+  if (!add) lines(xs,ys)
+}
+
+```
+
+```{webr}
+#| exercise: chi_q
+#| exercise.lines: 4
+#| echo: false
+chi_q <- 
+plot_shade(dchisq, from=0, to=40, df=10)
+abline(v = chi_q, col="tomato", lwd=2, lty=2)
+
+
+```
+
+::: {.hint exercise="chi_q"}
+Use qchisq.
+:::
+
+::: {.solution exercise="chi_q"}
+```{webr}
+#| exercise: chi_q
+#| solution: true
+chi_q <- qchisq(0.95, df = 10)
+plot_shade(dchisq, from=0, to=40, df=10)
+abline(v = chi_q, col="tomato", lwd=2, lty=2)
+
+```
+:::
+
+```{webr}
+#| exercise: chi_q
+#| check: true
+gradethis::grade_this({
+  msgs <- c()
+  code <- .user_code; parsed <- try(parse(text=code), silent=TRUE)
+  find_call <- function(exprs, fname){ last <- NULL
+    for(e in exprs){ if (is.call(e) && as.character(e[[1]]) %in% c("<-","=")) e <- e[[3]]
+      if (is.call(e) && identical(as.character(e[[1]]), fname)) last <- e
+      if (is.call(e)) for(k in as.list(e)[-1]) if (is.call(k) && identical(as.character(k[[1]]), fname)) last <- k }
+    last }
+  qc <- if (inherits(parsed,"try-error")) NULL else find_call(parsed,"qchisq")
+  msgs <- c(msgs, if (!is.null(qc)) "✅ used `qchisq()`." else "❌ did not call `qchisq()`.")
+  p_ok <- df_ok <- FALSE
+  if (!is.null(qc)){
+    args <- as.list(qc)[-1]
+    p_expr <- if (length(args)>=1) args[[1]] else NULL
+    p_val  <- try(eval(p_expr, envir=.envir_result), silent=TRUE)
+    if (!inherits(p_val,"try-error") && is.numeric(p_val) && length(p_val)==1 && abs(p_val-0.95)<1e-8){
+      msgs <- c(msgs,"✅ prob = 0.95."); p_ok <- TRUE
+    } else msgs <- c(msgs,"❌ first argument does not seem right")
+    df_expr <- if (!is.null(names(args)) && "df" %in% names(args)) args[["df"]] else if (length(args)>=2) args[[2]] else NULL
+    df_val  <- try(eval(df_expr, envir=.envir_result), silent=TRUE)
+    if (!is.null(df_expr) && !inherits(df_val,"try-error") && is.numeric(df_val) && length(df_val)==1 && abs(df_val-10)<1e-8){
+      msgs <- c(msgs,"✅ df = 10."); df_ok <- TRUE
+    } else msgs <- c(msgs,"❌ `df` does not seem correct")
+  }
+  if (!exists("chi_q", envir=.envir_result)) fail(paste(c(msgs,"❌ Save result in `chi_q`."), collapse="\n"))
+  v <- get("chi_q", envir=.envir_result); target <- qchisq(0.95, df=10)
+  if (is.numeric(v) && length(v)==1 && abs(v-target)<1e-6) pass(paste(c(msgs,"✅ Numeric answer is correct."), collapse="\n"))
+  else fail(paste(c(msgs,"❌ Numeric value not correct yet."), collapse="\n"))
+})
+
+
+```
+
+
+
+
+## Q9 — F Distribution - Right Tail
+
+Let $F ∼ F_{5, 12}$. Compute $P(F \ge 3)$ and store the result in p_f.
+
+
+```{webr}
+# Q8 SETUP
+#| setup: true
+#| exercise: f_right
+#| echo: false
+plot_shade <- function(fun, from, to, lower=-Inf, upper=Inf, add=FALSE, ..., main="F(5,12)", xlab="f"){
+  f <- match.fun(fun); xs <- seq(from,to,length.out=600); ys <- f(xs,...)
+  if (!add) plot(xs,ys,type="l",xlab=xlab,ylab="density",main=main)
+  xs_s <- xs[xs>=lower & xs<=upper]
+  if (length(xs_s)>1) polygon(c(xs_s,rev(xs_s)),
+                              c(rep(0,length(xs_s)),rev(f(xs_s,...))),
+                              col="lightgray", border=NA)
+  if (!add) lines(xs,ys)
+}
+
+```
+
+```{webr}
+#| exercise: f_right
+#| exercise.lines: 4
+#| echo: false
+p_f <- 
+plot_shade(df, from=0, to=8, lower=3, upper=8, df1=5, df2=12,
+           main="F(5,12): P(F ≥ 3)", xlab="f")
+
+```
+
+::: {.hint exercise="f_right"}
+Use pf.
+:::
+
+::: {.solution exercise="f_right"}
+```{webr}
+#| exercise: f_right
+#| solution: true
+p_f <- 1 - pf(3, df1=5, df2=12)
+plot_shade(df, from=0, to=8, lower=3, upper=8, df1=5, df2=12,
+           main="F(5,12): P(F ≥ 3)", xlab="f")
+```
+:::
+
+```{webr}
+#| exercise: f_right
+#| check: true
+gradethis::grade_this({
+  msgs <- c()
+  code <- .user_code; parsed <- try(parse(text=code), silent=TRUE)
+  find_call <- function(exprs, fname){ last <- NULL
+    for(e in exprs){ if (is.call(e) && as.character(e[[1]]) %in% c("<-","=")) e <- e[[3]]
+      if (is.call(e) && identical(as.character(e[[1]]), fname)) last <- e
+      if (is.call(e)) for (k in as.list(e)[-1]) if (is.call(k) && identical(as.character(k[[1]]), fname)) last <- k }
+    last }
+  pc <- if (inherits(parsed,"try-error")) NULL else find_call(parsed, "pf")
+  msgs <- c(msgs, if (!is.null(pc)) "✅ used `pf()`." else "❌ did not call `pf()`.")
+  x_ok <- df1_ok <- df2_ok <- FALSE
+  if (!is.null(pc)){
+    args <- as.list(pc)[-1]
+    # x
+    x_expr <- if (length(args)>=1) args[[1]] else NULL
+    x_val  <- try(eval(x_expr, envir=.envir_result), silent=TRUE)
+    msgs <- c(msgs, if (!inherits(x_val,"try-error") && is.numeric(x_val) && length(x_val)==1 && abs(x_val-3)<1e-8) { x_ok<-TRUE; "✅ first arg x = 3." } else "❌ first arg should be 3.")
+    # df1
+    df1_expr <- if (!is.null(names(args)) && "df1" %in% names(args)) args[["df1"]] else if (length(args)>=2) args[[2]] else NULL
+    df1_val  <- try(eval(df1_expr, envir=.envir_result), silent=TRUE)
+    msgs <- c(msgs, if (!is.null(df1_expr) && !inherits(df1_val,"try-error") && is.numeric(df1_val) && length(df1_val)==1 && abs(df1_val-5)<1e-8) { df1_ok<-TRUE; "✅ df1 = 5." } else "❌ `df1` should be 5.")
+    # df2
+    df2_expr <- if (!is.null(names(args)) && "df2" %in% names(args)) args[["df2"]] else if (length(args)>=3) args[[3]] else NULL
+    df2_val  <- try(eval(df2_expr, envir=.envir_result), silent=TRUE)
+    msgs <- c(msgs, if (!is.null(df2_expr) && !inherits(df2_val,"try-error") && is.numeric(df2_val) && length(df2_val)==1 && abs(df2_val-12)<1e-8) { df2_ok<-TRUE; "✅ df2 = 12." } else "❌ `df2` should be 12.")
+  }
+  if (!exists("p_f", envir=.envir_result)) fail(paste(c(msgs,"❌ Save result in `p_f`."), collapse="\n"))
+  v <- get("p_f", envir=.envir_result); target <- 1 - pf(3, df1=5, df2=12)
+  if (is.numeric(v) && length(v)==1 && abs(v-target)<1e-6) pass(paste(c(msgs,"✅ Numeric answer is correct."), collapse="\n"))
+  else fail(paste(c(msgs,"❌ Numeric value not correct yet."), collapse="\n"))
+})
+
+
+
+```
+
+
+
+## Q10 — F Quantile - Left Probability
+
+Find $f^*$ such that $P(F <= f^*)$ = 0.95, where  $F ∼ F_{3, 20}$. Store the result in f_q.
+
+
+```{webr}
+# Q9 SETUP
+#| setup: true
+#| exercise: f_q
+#| echo: false
+plot_shade <- function(fun, from, to, add=FALSE, ..., main="F(3,20)", xlab="f"){
+  f <- match.fun(fun); xs <- seq(from,to,length.out=600); ys <- f(xs,...)
+  if (!add) plot(xs,ys,type="l",xlab=xlab,ylab="density",main=main)
+  if (!add) lines(xs,ys)
+}
+
+
+```
+
+```{webr}
+#| exercise: f_q
+#| exercise.lines: 4
+#| echo: false
+f_q <- 
+plot_shade(df, from=0, to=6, df1=3, df2=20)
+abline(v = f_q, col="tomato", lwd=2, lty=2)
+
+
+
+```
+
+::: {.hint exercise="f_q"}
+Use qf.
+:::
+
+::: {.solution exercise="f_q"}
+```{webr}
+#| exercise: f_q
+#| solution: true
+f_q <- qf(0.95, df1=3, df2=20)
+plot_shade(df, from=0, to=6, df1=3, df2=20)
+abline(v = f_q, col="tomato", lwd=2, lty=2)
+
+
+```
+:::
+
+```{webr}
+#| exercise: f_q
+#| check: true
+gradethis::grade_this({
+  msgs <- c(); code <- .user_code; parsed <- try(parse(text=code), silent=TRUE)
+  find_call <- function(exprs, fname){ last <- NULL
+    for(e in exprs){ if (is.call(e) && as.character(e[[1]]) %in% c("<-","=")) e <- e[[3]]
+      if (is.call(e) && identical(as.character(e[[1]]), fname)) last <- e
+      if (is.call(e)) for (k in as.list(e)[-1]) if (is.call(k) && identical(as.character(k[[1]]), fname)) last <- k } ; last }
+  qc <- if (inherits(parsed,"try-error")) NULL else find_call(parsed,"qf")
+  msgs <- c(msgs, if (!is.null(qc)) "✅ used `qf()`." else "❌ did not call `qf()`.")
+  p_ok <- df1_ok <- df2_ok <- FALSE
+  if (!is.null(qc)){
+    args <- as.list(qc)[-1]
+    p_expr <- if (length(args)>=1) args[[1]] else NULL
+    p_val  <- try(eval(p_expr, envir=.envir_result), silent=TRUE)
+    msgs <- c(msgs, if (!inherits(p_val,"try-error") && is.numeric(p_val) && length(p_val)==1 && abs(p_val-0.95)<1e-8) { p_ok<-TRUE; "✅ prob = 0.95." } else "❌ first argument seems incorrect")
+    df1_expr <- if (!is.null(names(args)) && "df1" %in% names(args)) args[["df1"]] else if (length(args)>=2) args[[2]] else NULL
+    df1_val  <- try(eval(df1_expr, envir=.envir_result), silent=TRUE)
+    msgs <- c(msgs, if (!is.null(df1_expr) && !inherits(df1_val,"try-error") && is.numeric(df1_val) && length(df1_val)==1 && abs(df1_val-3)<1e-8) { df1_ok<-TRUE; "✅ df1 = 3." } else "❌ `df1` seems incorrect")
+    df2_expr <- if (!is.null(names(args)) && "df2" %in% names(args)) args[["df2"]] else if (length(args)>=3) args[[3]] else NULL
+    df2_val  <- try(eval(df2_expr, envir=.envir_result), silent=TRUE)
+    msgs <- c(msgs, if (!is.null(df2_expr) && !inherits(df2_val,"try-error") && is.numeric(df2_val) && length(df2_val)==1 && abs(df2_val-20)<1e-8) { df2_ok<-TRUE; "✅ df2 = 20." } else "❌ `df2` sdoes not seem correct")
+  }
+  if (!exists("f_q", envir=.envir_result)) fail(paste(c(msgs,"❌ Save result in `f_q`."), collapse="\n"))
+  v <- get("f_q", envir=.envir_result); target <- qf(0.95, df1=3, df2=20)
+  if (is.numeric(v) && length(v)==1 && abs(v-target)<1e-6) pass(paste(c(msgs,"✅ Numeric answer is correct."), collapse="\n"))
+  else fail(paste(c(msgs,"❌ Numeric value not correct yet."), collapse="\n"))
+})
+
+```
+
+
+
+
+
