@@ -14,7 +14,9 @@ sidebar:
       href: "#q3"
 ---
 
-{{< include ../_extensions/r-wasm/live/_knitr.qmd >}} {{< include ../_extensions/r-wasm/live/_gradethis.qmd >}}
+{{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
+{{< include ../_extensions/r-wasm/live/_gradethis.qmd >}}
+
 
 ## Q1 — Make the sum equal 10 {#q1}
 
