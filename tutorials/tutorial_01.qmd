@@ -379,6 +379,7 @@ gradethis::grade_this({
 })
 ```
 
+<!--
 ## Q8 — Load a CSV as a DataFrame
 
 Load iris.csv into a dataframe named df.
@@ -399,7 +400,6 @@ write.csv(iris, "iris.csv", row.names = FALSE)
 #| exercise.lines: 3
 #| echo: false
 df <- 
-
 ```
 
 ::: {.hint exercise="ex_csv_load"}
@@ -428,6 +428,7 @@ gradethis::grade_this({
   pass("✅ Loaded correctly!")
 })
 ```
+-->
 
 ## Q9 — Count rows in iris.csv
 

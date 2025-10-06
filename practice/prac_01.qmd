@@ -20,9 +20,37 @@ sidebar:
 
 :::{.callout-note title="Q1 _ Pythagorean Triples" #Q1}
 
+
+```{r, echo=FALSE} 
+# Left-tail shading for z = 1.28 under N(0,1) in base R
+z <- 1.28
+ 
+# Draw the standard normal density
+curve(dnorm(x), from = -4, to = 4, n = 1000,
+      xlab = "z", ylab = "Density",
+      main = bquote("Standard Normal: " ~ P(Z <= .(z))))
+ 
+# Shade the area to the left of z
+x_shade <- seq(-4, z, length.out = 500)
+y_shade <- dnorm(x_shade)
+polygon(c(x_shade, rev(x_shade)),
+        c(y_shade, rep(0, length(y_shade))),
+        col = rgb(0, 114, 178, 120, maxColorValue = 255),  # semi-transparent fill
+        border = NA)
+ 
+# Vertical reference line and redraw the curve on top
+abline(v = z, lty = 2)
+lines(seq(-4, 4, length.out = 1000), dnorm(seq(-4, 4, length.out = 1000)))
+ 
+```
+
+
+
 Set three positive integers a, b, and c such that: \ a^2^ \+\ b^2^ \=\ c^2^ \, 
 0<a<b<c, and c <= 50.
 :::
+
+
 
 ```{webr}
 #| exercise: ex_pythag
