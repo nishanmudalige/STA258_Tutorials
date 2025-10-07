@@ -21,7 +21,10 @@ website:
         menu:
         - text: "Practical 1"
           href: practice/prac_01.qmd
-
+        - text: "Practical 2"
+          href: practice/prac_02.qmd
+        - text: "Practical 3"
+          href: practice/prac_03.qmd
 format:
   live-html:
     toc: false
