@@ -144,7 +144,7 @@ gradethis::grade_this({
 })
 ```
 
-## Q4 — summary() on the whole data frame (Descriptive stats + summary)
+## Q4 — summary() on the whole data frame 
 
 Create mtcars_summary as summary(mtcars).
 
@@ -177,5 +177,194 @@ gradethis::grade_this({
   s <- get("mtcars_summary", envir = e)
   if (!is.list(s) && !is.matrix(s)) fail("`summary(mtcars)` returns a structured summary per column.")
   pass("✅ Data-frame summary created.")
+})
+```
+
+
+## Q5 — Quick data health check with skimr 
+
+Use skimr::skim(mtcars) and save to skim_out.
+
+```{webr}
+#| exercise: ex_skim
+#| exercise.lines: 2
+#| echo: false
+skim_out <- NULL
+
+```
+
+::: {.hint exercise="ex_skim"}
+skimr::skim(mtcars)
+:::
+
+::: {.solution exercise="ex_skim"}
+```{webr}
+#| exercise: ex_skim
+#| solution: true
+skim_out <- skimr::skim(mtcars)
+```
+:::
+
+```{webr}
+#| exercise: ex_skim
+#| check: true
+gradethis::grade_this({
+  if (!requireNamespace("skimr", quietly = TRUE)) fail("Please install/load **skimr**.")
+  e <- get0(".envir_result", ifnotfound = parent.frame())
+  if (!exists("skim_out", envir = e)) fail("Store the result in `skim_out`.")
+  so <- get("skim_out", envir = e)
+  ok <- is.data.frame(so) && all(c("skim_type","skim_variable") %in% names(so))
+  if (!ok) fail("`skim_out` should be a skim data frame.")
+  pass("✅ skim summary captured.")
+})
+```
+
+## Q6 — Grouped summary with dplyr (Intro to tidyverse)
+
+Create a tibble by_cyl with one row per cyl containing:
+
+n (row count),
+
+mpg_mean,
+
+hp_sd.
+
+```{webr}
+#| exercise: ex_dplyr_group
+#| exercise.lines: 7
+#| echo: false
+by_cyl <- NULL
+
+```
+
+::: {.solution exercise="ex_dplyr_group"}
+```{webr}
+#| exercise: ex_dplyr_group
+#| solution: true
+by_cyl <- mtcars |>
+  dplyr::as_tibble() |>
+  dplyr::group_by(cyl) |>
+  dplyr::summarise(
+    n = dplyr::n(),
+    mpg_mean = mean(mpg, na.rm = TRUE),
+    hp_sd = sd(hp, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+```
+:::
+
+```{webr}
+#| exercise: ex_dplyr_group
+#| check: true
+gradethis::grade_this({
+  if (!requireNamespace("dplyr", quietly = TRUE)) fail("Load **dplyr**.")
+  e <- get0(".envir_result", ifnotfound = parent.frame())
+  if (!exists("by_cyl", envir = e)) fail("Create `by_cyl`.")
+  df <- get("by_cyl", envir = e)
+  need <- c("cyl","n","mpg_mean","hp_sd")
+  if (!all(need %in% names(df))) fail("Include columns: cyl, n, mpg_mean, hp_sd.")
+  if (nrow(df) != length(unique(mtcars$cyl))) fail("One row per `cyl`.")
+  pass("✅ Grouped summary OK.")
+})
+```
+
+## Q7 — Multiple summaries with across() (tidyverse)
+
+Make by_am with one row per am and columns:
+
+n,
+
+mpg_mean, mpg_sd,
+
+wt_mean, wt_sd.
+
+```{webr}
+#| exercise: ex_across
+#| exercise.lines: 10
+#| echo: false
+by_am <- NULL
+```
+
+::: {.solution exercise="ex_across"}
+```{webr}
+#| exercise: ex_across
+#| solution: true
+by_am <- mtcars |>
+  dplyr::as_tibble() |>
+  dplyr::group_by(am) |>
+  dplyr::summarise(
+    n = dplyr::n(),
+    dplyr::across(
+      c(mpg, wt),
+      list(mean = ~mean(.x, na.rm = TRUE), sd = ~sd(.x, na.rm = TRUE)),
+      .names = "{.col}_{.fn}"
+    ),
+    .groups = "drop"
+  )
+```
+:::
+
+```{webr}
+#| exercise: ex_across
+#| check: true
+gradethis::grade_this({
+  if (!requireNamespace("dplyr", quietly = TRUE)) fail("Load **dplyr**.")
+  e <- get0(".envir_result", ifnotfound = parent.frame())
+  if (!exists("by_am", envir = e)) fail("Create `by_am`.")
+  df <- get("by_am", envir = e)
+  need <- c("am","n","mpg_mean","mpg_sd","wt_mean","wt_sd")
+  if (!all(need %in% names(df))) fail("Include columns: am, n, mpg_mean, mpg_sd, wt_mean, wt_sd.")
+  pass("✅ Multiple summaries computed.")
+})
+```
+
+## Q8 — Histogram of mpg (ggplot2)
+
+Make by_am with one row per am and columns:
+
+n,
+
+mpg_mean, mpg_sd,
+
+wt_mean, wt_sd.
+
+```{webr}
+#| exercise: ex_across
+#| exercise.lines: 10
+#| echo: false
+by_am <- NULL
+```
+
+::: {.solution exercise="ex_across"}
+```{webr}
+#| exercise: ex_across
+#| solution: true
+by_am <- mtcars |>
+  dplyr::as_tibble() |>
+  dplyr::group_by(am) |>
+  dplyr::summarise(
+    n = dplyr::n(),
+    dplyr::across(
+      c(mpg, wt),
+      list(mean = ~mean(.x, na.rm = TRUE), sd = ~sd(.x, na.rm = TRUE)),
+      .names = "{.col}_{.fn}"
+    ),
+    .groups = "drop"
+  )
+```
+:::
+
+```{webr}
+#| exercise: ex_across
+#| check: true
+gradethis::grade_this({
+  if (!requireNamespace("dplyr", quietly = TRUE)) fail("Load **dplyr**.")
+  e <- get0(".envir_result", ifnotfound = parent.frame())
+  if (!exists("by_am", envir = e)) fail("Create `by_am`.")
+  df <- get("by_am", envir = e)
+  need <- c("am","n","mpg_mean","mpg_sd","wt_mean","wt_sd")
+  if (!all(need %in% names(df))) fail("Include columns: am, n, mpg_mean, mpg_sd, wt_mean, wt_sd.")
+  pass("✅ Multiple summaries computed.")
 })
 ```
