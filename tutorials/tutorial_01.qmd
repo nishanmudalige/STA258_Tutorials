@@ -381,7 +381,7 @@ gradethis::grade_this({
 })
 ```
 
-<!--
+
 ## Q8 — Load a CSV as a DataFrame
 
 Load iris.csv into a dataframe named df.
@@ -430,7 +430,7 @@ gradethis::grade_this({
   pass("✅ Loaded correctly!")
 })
 ```
--->
+
 
 ## Q9 — Count rows in iris.csv
 

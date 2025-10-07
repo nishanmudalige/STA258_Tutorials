@@ -144,3 +144,38 @@ gradethis::grade_this({
 })
 ```
 
+## Q4 — summary() on the whole data frame (Descriptive stats + summary)
+
+Create mtcars_summary as summary(mtcars).
+
+```{webr}
+#| exercise: ex_summary_df
+#| exercise.lines: 2
+#| echo: false
+mtcars_summary <- NULL
+
+```
+
+::: {.hint exercise="ex_summary_df"}
+Use summary(mtcars).
+:::
+
+::: {.solution exercise="ex_summary_df"}
+```{webr}
+#| exercise: ex_summary_df
+#| solution: true
+mtcars_summary <- summary(mtcars)
+```
+:::
+
+```{webr}
+#| exercise: ex_summary_df
+#| check: true
+gradethis::grade_this({
+  e <- get0(".envir_result", ifnotfound = parent.frame())
+  if (!exists("mtcars_summary", envir = e)) fail("Create `mtcars_summary`.")
+  s <- get("mtcars_summary", envir = e)
+  if (!is.list(s) && !is.matrix(s)) fail("`summary(mtcars)` returns a structured summary per column.")
+  pass("✅ Data-frame summary created.")
+})
+```

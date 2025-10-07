@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.24">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -67,15 +67,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-ff63373b1067ca6f91cf1456aa1f00a2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-991b1886d3c685c7aa2b62b80640c7af.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -122,7 +121,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+      if (mathElements[i].tagName == "SPAN") {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -147,8 +146,6 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Course Tutorials</span>
     </a>
@@ -246,7 +243,7 @@ eyJhdHRyIjp7ImVkaXQiOmZhbHNlLCJldmFsIjp0cnVlLCJvdXRwdXQiOmZhbHNlfSwiY29kZSI6Indl
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Info
+Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -277,9 +274,9 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJu
 <code id="interpolate-5" class="solution-code d-none">p_left &lt;- pnorm(1.25)
 plot_shade(dnorm, from=-4, to=4, lower=-4, upper=1.25,
            main="Standard Normal: P(Z ≤ 1.25)", xlab="z")</code>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-6-1"><a href="#interpolate-6-1" aria-hidden="true" tabindex="-1"></a>p_left <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(<span class="fl">1.25</span>)</span>
+<div class="sourceCode cell-code" id="interpolate-6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-6-1"><a href="#interpolate-6-1" aria-hidden="true" tabindex="-1"></a>p_left <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(<span class="fl">1.25</span>)</span>
 <span id="interpolate-6-2"><a href="#interpolate-6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_shade</span>(dnorm, <span class="at">from=</span><span class="sc">-</span><span class="dv">4</span>, <span class="at">to=</span><span class="dv">4</span>, <span class="at">lower=</span><span class="sc">-</span><span class="dv">4</span>, <span class="at">upper=</span><span class="fl">1.25</span>,</span>
-<span id="interpolate-6-3"><a href="#interpolate-6-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">main=</span><span class="st">"Standard Normal: P(Z ≤ 1.25)"</span>, <span class="at">xlab=</span><span class="st">"z"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="interpolate-6-3"><a href="#interpolate-6-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">main=</span><span class="st">"Standard Normal: P(Z ≤ 1.25)"</span>, <span class="at">xlab=</span><span class="st">"z"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -298,7 +295,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6Im5v
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Info
+Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -329,9 +326,9 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJu
 <code id="interpolate-11" class="solution-code d-none">p_right &lt;- 1 - pnorm(1.25)
 plot_shade(dnorm, from=-4, to=4, lower=1.25, upper=4,
            main="P(Z ≥ 1.25) shaded", xlab="z")</code>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-12-1"><a href="#interpolate-12-1" aria-hidden="true" tabindex="-1"></a>p_right <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fl">1.25</span>)</span>
+<div class="sourceCode cell-code" id="interpolate-12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-12-1"><a href="#interpolate-12-1" aria-hidden="true" tabindex="-1"></a>p_right <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fl">1.25</span>)</span>
 <span id="interpolate-12-2"><a href="#interpolate-12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_shade</span>(dnorm, <span class="at">from=</span><span class="sc">-</span><span class="dv">4</span>, <span class="at">to=</span><span class="dv">4</span>, <span class="at">lower=</span><span class="fl">1.25</span>, <span class="at">upper=</span><span class="dv">4</span>,</span>
-<span id="interpolate-12-3"><a href="#interpolate-12-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">main=</span><span class="st">"P(Z ≥ 1.25) shaded"</span>, <span class="at">xlab=</span><span class="st">"z"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="interpolate-12-3"><a href="#interpolate-12-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">main=</span><span class="st">"P(Z ≥ 1.25) shaded"</span>, <span class="at">xlab=</span><span class="st">"z"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -350,7 +347,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6Im5v
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Info
+Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -381,9 +378,9 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJu
 <code id="interpolate-17" class="solution-code d-none">p_two &lt;- 2 * (1 - pnorm(1.25))
 plot_shade(dnorm, from=-4, to=4, lower=-4,  upper=-1.25, main="P(|Z| ≥ 1.25)", xlab="z")
 plot_shade(dnorm, from=-4, to=4, lower= 1.25, upper= 4, add=TRUE)</code>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-18-1"><a href="#interpolate-18-1" aria-hidden="true" tabindex="-1"></a>p_two <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fl">1.25</span>))</span>
+<div class="sourceCode cell-code" id="interpolate-18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-18-1"><a href="#interpolate-18-1" aria-hidden="true" tabindex="-1"></a>p_two <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fl">1.25</span>))</span>
 <span id="interpolate-18-2"><a href="#interpolate-18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_shade</span>(dnorm, <span class="at">from=</span><span class="sc">-</span><span class="dv">4</span>, <span class="at">to=</span><span class="dv">4</span>, <span class="at">lower=</span><span class="sc">-</span><span class="dv">4</span>,  <span class="at">upper=</span><span class="sc">-</span><span class="fl">1.25</span>, <span class="at">main=</span><span class="st">"P(|Z| ≥ 1.25)"</span>, <span class="at">xlab=</span><span class="st">"z"</span>)</span>
-<span id="interpolate-18-3"><a href="#interpolate-18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_shade</span>(dnorm, <span class="at">from=</span><span class="sc">-</span><span class="dv">4</span>, <span class="at">to=</span><span class="dv">4</span>, <span class="at">lower=</span> <span class="fl">1.25</span>, <span class="at">upper=</span> <span class="dv">4</span>, <span class="at">add=</span><span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="interpolate-18-3"><a href="#interpolate-18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_shade</span>(dnorm, <span class="at">from=</span><span class="sc">-</span><span class="dv">4</span>, <span class="at">to=</span><span class="dv">4</span>, <span class="at">lower=</span> <span class="fl">1.25</span>, <span class="at">upper=</span> <span class="dv">4</span>, <span class="at">add=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -421,10 +418,10 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJx
 plot_shade(dnorm, from=-4, to=4, lower=-4, upper=z_star,
            main="P(Z ≤ z*) = 0.975", xlab="z")
 abline(v = z_star, col="tomato", lwd=2, lty=2)</code>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-24-1"><a href="#interpolate-24-1" aria-hidden="true" tabindex="-1"></a>z_star <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>)</span>
+<div class="sourceCode cell-code" id="interpolate-24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-24-1"><a href="#interpolate-24-1" aria-hidden="true" tabindex="-1"></a>z_star <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>)</span>
 <span id="interpolate-24-2"><a href="#interpolate-24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_shade</span>(dnorm, <span class="at">from=</span><span class="sc">-</span><span class="dv">4</span>, <span class="at">to=</span><span class="dv">4</span>, <span class="at">lower=</span><span class="sc">-</span><span class="dv">4</span>, <span class="at">upper=</span>z_star,</span>
 <span id="interpolate-24-3"><a href="#interpolate-24-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">main=</span><span class="st">"P(Z ≤ z*) = 0.975"</span>, <span class="at">xlab=</span><span class="st">"z"</span>)</span>
-<span id="interpolate-24-4"><a href="#interpolate-24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> z_star, <span class="at">col=</span><span class="st">"tomato"</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="interpolate-24-4"><a href="#interpolate-24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> z_star, <span class="at">col=</span><span class="st">"tomato"</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -461,9 +458,9 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJ0
 <code id="interpolate-29" class="solution-code d-none">pt_right &lt;- 1 - pt(1.5, df = 10)
 plot_shade("dt", from = -4, to = 4, lower = 1.5, upper = 4, df = 10,
            main = "t(10): P(T ≥ 1.5)", xlab = "t")</code>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-30-1"><a href="#interpolate-30-1" aria-hidden="true" tabindex="-1"></a>pt_right <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pt</span>(<span class="fl">1.5</span>, <span class="at">df =</span> <span class="dv">10</span>)</span>
+<div class="sourceCode cell-code" id="interpolate-30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-30-1"><a href="#interpolate-30-1" aria-hidden="true" tabindex="-1"></a>pt_right <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pt</span>(<span class="fl">1.5</span>, <span class="at">df =</span> <span class="dv">10</span>)</span>
 <span id="interpolate-30-2"><a href="#interpolate-30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_shade</span>(<span class="st">"dt"</span>, <span class="at">from =</span> <span class="sc">-</span><span class="dv">4</span>, <span class="at">to =</span> <span class="dv">4</span>, <span class="at">lower =</span> <span class="fl">1.5</span>, <span class="at">upper =</span> <span class="dv">4</span>, <span class="at">df =</span> <span class="dv">10</span>,</span>
-<span id="interpolate-30-3"><a href="#interpolate-30-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">main =</span> <span class="st">"t(10): P(T ≥ 1.5)"</span>, <span class="at">xlab =</span> <span class="st">"t"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="interpolate-30-3"><a href="#interpolate-30-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">main =</span> <span class="st">"t(10): P(T ≥ 1.5)"</span>, <span class="at">xlab =</span> <span class="st">"t"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -500,9 +497,9 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJ0
 <code id="interpolate-35" class="solution-code d-none">t_q &lt;- qt(0.975, df = 10)
 plot_shade(dt, from=-4, to=4, df=10)
 abline(v = t_q, col="tomato", lwd=2, lty=2)</code>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-36-1"><a href="#interpolate-36-1" aria-hidden="true" tabindex="-1"></a>t_q <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">10</span>)</span>
+<div class="sourceCode cell-code" id="interpolate-36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-36-1"><a href="#interpolate-36-1" aria-hidden="true" tabindex="-1"></a>t_q <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">10</span>)</span>
 <span id="interpolate-36-2"><a href="#interpolate-36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_shade</span>(dt, <span class="at">from=</span><span class="sc">-</span><span class="dv">4</span>, <span class="at">to=</span><span class="dv">4</span>, <span class="at">df=</span><span class="dv">10</span>)</span>
-<span id="interpolate-36-3"><a href="#interpolate-36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> t_q, <span class="at">col=</span><span class="st">"tomato"</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="interpolate-36-3"><a href="#interpolate-36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> t_q, <span class="at">col=</span><span class="st">"tomato"</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -539,9 +536,9 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJj
 <code id="interpolate-41" class="solution-code d-none">p_chi &lt;- 1 - pchisq(15, df = 8)
 plot_shade(dchisq, from=0, to=30, lower=15, upper=30, df=8,
            main="Chi-square(8): P(X ≥ 15)", xlab="x")</code>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-42-1"><a href="#interpolate-42-1" aria-hidden="true" tabindex="-1"></a>p_chi <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pchisq</span>(<span class="dv">15</span>, <span class="at">df =</span> <span class="dv">8</span>)</span>
+<div class="sourceCode cell-code" id="interpolate-42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-42-1"><a href="#interpolate-42-1" aria-hidden="true" tabindex="-1"></a>p_chi <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pchisq</span>(<span class="dv">15</span>, <span class="at">df =</span> <span class="dv">8</span>)</span>
 <span id="interpolate-42-2"><a href="#interpolate-42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_shade</span>(dchisq, <span class="at">from=</span><span class="dv">0</span>, <span class="at">to=</span><span class="dv">30</span>, <span class="at">lower=</span><span class="dv">15</span>, <span class="at">upper=</span><span class="dv">30</span>, <span class="at">df=</span><span class="dv">8</span>,</span>
-<span id="interpolate-42-3"><a href="#interpolate-42-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">main=</span><span class="st">"Chi-square(8): P(X ≥ 15)"</span>, <span class="at">xlab=</span><span class="st">"x"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="interpolate-42-3"><a href="#interpolate-42-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">main=</span><span class="st">"Chi-square(8): P(X ≥ 15)"</span>, <span class="at">xlab=</span><span class="st">"x"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -578,9 +575,9 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJj
 <code id="interpolate-47" class="solution-code d-none">chi_q &lt;- qchisq(0.95, df = 10)
 plot_shade(dchisq, from=0, to=40, df=10)
 abline(v = chi_q, col="tomato", lwd=2, lty=2)</code>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-48-1"><a href="#interpolate-48-1" aria-hidden="true" tabindex="-1"></a>chi_q <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="fl">0.95</span>, <span class="at">df =</span> <span class="dv">10</span>)</span>
+<div class="sourceCode cell-code" id="interpolate-48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-48-1"><a href="#interpolate-48-1" aria-hidden="true" tabindex="-1"></a>chi_q <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="fl">0.95</span>, <span class="at">df =</span> <span class="dv">10</span>)</span>
 <span id="interpolate-48-2"><a href="#interpolate-48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_shade</span>(dchisq, <span class="at">from=</span><span class="dv">0</span>, <span class="at">to=</span><span class="dv">40</span>, <span class="at">df=</span><span class="dv">10</span>)</span>
-<span id="interpolate-48-3"><a href="#interpolate-48-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> chi_q, <span class="at">col=</span><span class="st">"tomato"</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="interpolate-48-3"><a href="#interpolate-48-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> chi_q, <span class="at">col=</span><span class="st">"tomato"</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -617,9 +614,9 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJm
 <code id="interpolate-53" class="solution-code d-none">p_f &lt;- 1 - pf(3, df1=5, df2=12)
 plot_shade(df, from=0, to=8, lower=3, upper=8, df1=5, df2=12,
            main="F(5,12): P(F ≥ 3)", xlab="f")</code>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-54-1"><a href="#interpolate-54-1" aria-hidden="true" tabindex="-1"></a>p_f <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pf</span>(<span class="dv">3</span>, <span class="at">df1=</span><span class="dv">5</span>, <span class="at">df2=</span><span class="dv">12</span>)</span>
+<div class="sourceCode cell-code" id="interpolate-54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-54-1"><a href="#interpolate-54-1" aria-hidden="true" tabindex="-1"></a>p_f <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pf</span>(<span class="dv">3</span>, <span class="at">df1=</span><span class="dv">5</span>, <span class="at">df2=</span><span class="dv">12</span>)</span>
 <span id="interpolate-54-2"><a href="#interpolate-54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_shade</span>(df, <span class="at">from=</span><span class="dv">0</span>, <span class="at">to=</span><span class="dv">8</span>, <span class="at">lower=</span><span class="dv">3</span>, <span class="at">upper=</span><span class="dv">8</span>, <span class="at">df1=</span><span class="dv">5</span>, <span class="at">df2=</span><span class="dv">12</span>,</span>
-<span id="interpolate-54-3"><a href="#interpolate-54-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">main=</span><span class="st">"F(5,12): P(F ≥ 3)"</span>, <span class="at">xlab=</span><span class="st">"f"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="interpolate-54-3"><a href="#interpolate-54-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">main=</span><span class="st">"F(5,12): P(F ≥ 3)"</span>, <span class="at">xlab=</span><span class="st">"f"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -656,9 +653,9 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJm
 <code id="interpolate-59" class="solution-code d-none">f_q &lt;- qf(0.95, df1=3, df2=20)
 plot_shade(df, from=0, to=6, df1=3, df2=20)
 abline(v = f_q, col="tomato", lwd=2, lty=2)</code>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-60-1"><a href="#interpolate-60-1" aria-hidden="true" tabindex="-1"></a>f_q <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="fl">0.95</span>, <span class="at">df1=</span><span class="dv">3</span>, <span class="at">df2=</span><span class="dv">20</span>)</span>
+<div class="sourceCode cell-code" id="interpolate-60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-60-1"><a href="#interpolate-60-1" aria-hidden="true" tabindex="-1"></a>f_q <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="fl">0.95</span>, <span class="at">df1=</span><span class="dv">3</span>, <span class="at">df2=</span><span class="dv">20</span>)</span>
 <span id="interpolate-60-2"><a href="#interpolate-60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_shade</span>(df, <span class="at">from=</span><span class="dv">0</span>, <span class="at">to=</span><span class="dv">6</span>, <span class="at">df1=</span><span class="dv">3</span>, <span class="at">df2=</span><span class="dv">20</span>)</span>
-<span id="interpolate-60-3"><a href="#interpolate-60-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> f_q, <span class="at">col=</span><span class="st">"tomato"</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="interpolate-60-3"><a href="#interpolate-60-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> f_q, <span class="at">col=</span><span class="st">"tomato"</span>, <span class="at">lwd=</span><span class="dv">2</span>, <span class="at">lty=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -751,14 +748,13 @@ window._ojs.runtime.interpretFromScriptTags();
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
         }
-      }
-      return codeEl.innerText;
+        return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
