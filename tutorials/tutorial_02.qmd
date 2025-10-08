@@ -245,26 +245,40 @@ gradethis::grade_this({
 
 ## Q5 — Histogram with Tukey fences 
 
+Show a histogram of mtcars$mpg and add vertical lines at Q1, Q3, and the Tukey fences Q1−1.5·IQR, Q3+1.5·IQR
+
 ::: {.callout-note title="Info"}
-skimr::skim() is like an enhanced summary(): it detects column types and prints type-specific stats (e.g., numeric vs. factor). Great to see NAs and distributions quickly. 
+Tukey fences are statistical boundaries, used to identify potential outliers in a dataset. Data points falling outside these fences are considered outliers. 
 :::
 
 ```{webr}
-#| exercise: ex_peng_skim
-#| exercise.lines: 2
+#| exercise: ex_mpg_hist_fences
+#| exercise.lines: 14
 #| echo: false
-# One expression that returns a skim data frame
+# Return a ggplot object that draws the histogram.
+
+qs <- quantile(mtcars$mpg, c(.25,.75))
+lo <- qs[1] - 1.5*diff(qs); hi <- qs[2] + 1.5*diff(qs)
+ggplot2::ggplot(mtcars, ggplot2::aes(mpg)) +
+  ggplot2::geom_histogram(bins = 12) +
+  ggplot2::geom_vline(xintercept = c(qs[1], qs[2], lo, hi))
+
 ```
 
-::: {.hint exercise="ex_peng_skim"}
-Call the package’s main function on the entire data frame; no assignments.
+::: {.hint exercise="ex_mpg_hist_fences"}
+geom_vline is used to add vertical lines in the plot at certain positions.
 :::
 
-::: {.solution exercise="ex_peng_skim"}
+::: {.solution exercise="ex_mpg_hist_fences"}
 ```{webr}
-#| exercise: ex_peng_skim
+#| exercise: ex_mpg_hist_fences
 #| solution: true
-skimr::skim(penguins)
+qs <- quantile(mtcars$mpg, c(.25,.75))
+lo <- qs[1] - 1.5*diff(qs); hi <- qs[2] + 1.5*diff(qs)
+ggplot2::ggplot(mtcars, ggplot2::aes(mpg)) +
+  ggplot2::geom_histogram(bins = 12) +
+  ggplot2::geom_vline(xintercept = c(qs[1], qs[2], lo, hi))
+
 ```
 :::
 

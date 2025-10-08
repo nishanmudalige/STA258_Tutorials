@@ -392,6 +392,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6ImV4
 </section>
 <section id="q5-histogram-with-tukey-fences" class="level2">
 <h2 class="anchored" data-anchor-id="q5-histogram-with-tukey-fences">Q5 — Histogram with Tukey fences</h2>
+<p>Show a histogram of mtcars$mpg and add vertical lines at Q1, Q3, and the Tukey fences Q1−1.5·IQR, Q3+1.5·IQR</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Info">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -402,27 +403,35 @@ Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>skimr::skim() is like an enhanced summary(): it detects column types and prints type-specific stats (e.g., numeric vs.&nbsp;factor). Great to see NAs and distributions quickly.</p>
+<p>Tukey fences are statistical boundaries, used to identify potential outliers in a dataset. Data points falling outside these fences are considered outliers.</p>
 </div>
 </div>
-<div class="cell" data-exercise="ex_peng_skim" data-exercise.lines="2">
+<div class="cell" data-exercise="ex_mpg_hist_fences" data-exercise.lines="14">
 <div>
 <div id="webr-23" class="exercise-cell">
 
 </div>
 <script type="webr-23-contents">
-eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJleF9wZW5nX3NraW0iLCJleGVyY2lzZS5saW5lcyI6Mn0sImNvZGUiOiIjIE9uZSBleHByZXNzaW9uIHRoYXQgcmV0dXJucyBhIHNraW0gZGF0YSBmcmFtZSJ9
+eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJleF9tcGdfaGlzdF9mZW5jZXMiLCJleGVyY2lzZS5saW5lcyI6MTR9LCJjb2RlIjoiIyBSZXR1cm4gYSBnZ3Bsb3Qgb2JqZWN0IHRoYXQgZHJhd3MgdGhlIGhpc3RvZ3JhbS5cblxucXMgPC0gcXVhbnRpbGUobXRjYXJzJG1wZywgYyguMjUsLjc1KSlcbmxvIDwtIHFzWzFdIC0gMS41KmRpZmYocXMpOyBoaSA8LSBxc1syXSArIDEuNSpkaWZmKHFzKVxuZ2dwbG90Mjo6Z2dwbG90KG10Y2FycywgZ2dwbG90Mjo6YWVzKG1wZykpICtcbiAgZ2dwbG90Mjo6Z2VvbV9oaXN0b2dyYW0oYmlucyA9IDEyKSArXG4gIGdncGxvdDI6Omdlb21fdmxpbmUoeGludGVyY2VwdCA9IGMocXNbMV0sIHFzWzJdLCBsbywgaGkpKSJ9
 </script>
 </div>
 </div>
-<div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="ex_peng_skim">
-<p>Call the package’s main function on the entire data frame; no assignments.</p>
+<div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="ex_mpg_hist_fences">
+<p>geom_vline is used to add vertical lines in the plot at certain positions.</p>
 </div>
-<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="ex_peng_skim">
-<div class="cell" data-exercise="ex_peng_skim" data-solution="true">
-<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="ex_peng_skim">
-<code id="interpolate-25" class="solution-code d-none">skimr::skim(penguins)</code>
-<div class="sourceCode cell-code" id="interpolate-26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-26-1"><a href="#interpolate-26-1" aria-hidden="true" tabindex="-1"></a>skimr<span class="sc">::</span><span class="fu">skim</span>(penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="ex_mpg_hist_fences">
+<div class="cell" data-exercise="ex_mpg_hist_fences" data-solution="true">
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="ex_mpg_hist_fences">
+<code id="interpolate-25" class="solution-code d-none">qs &lt;- quantile(mtcars$mpg, c(.25,.75))
+lo &lt;- qs[1] - 1.5*diff(qs); hi &lt;- qs[2] + 1.5*diff(qs)
+ggplot2::ggplot(mtcars, ggplot2::aes(mpg)) +
+  ggplot2::geom_histogram(bins = 12) +
+  ggplot2::geom_vline(xintercept = c(qs[1], qs[2], lo, hi))</code>
+<div class="sourceCode cell-code" id="interpolate-26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-26-1"><a href="#interpolate-26-1" aria-hidden="true" tabindex="-1"></a>qs <span class="ot">&lt;-</span> <span class="fu">quantile</span>(mtcars<span class="sc">$</span>mpg, <span class="fu">c</span>(.<span class="dv">25</span>,.<span class="dv">75</span>))</span>
+<span id="interpolate-26-2"><a href="#interpolate-26-2" aria-hidden="true" tabindex="-1"></a>lo <span class="ot">&lt;-</span> qs[<span class="dv">1</span>] <span class="sc">-</span> <span class="fl">1.5</span><span class="sc">*</span><span class="fu">diff</span>(qs); hi <span class="ot">&lt;-</span> qs[<span class="dv">2</span>] <span class="sc">+</span> <span class="fl">1.5</span><span class="sc">*</span><span class="fu">diff</span>(qs)</span>
+<span id="interpolate-26-3"><a href="#interpolate-26-3" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(mtcars, ggplot2<span class="sc">::</span><span class="fu">aes</span>(mpg)) <span class="sc">+</span></span>
+<span id="interpolate-26-4"><a href="#interpolate-26-4" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="interpolate-26-5"><a href="#interpolate-26-5" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(qs[<span class="dv">1</span>], qs[<span class="dv">2</span>], lo, hi))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
