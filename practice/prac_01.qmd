@@ -50,8 +50,6 @@ Set three positive integers a, b, and c such that: \ a^2^ \+\ b^2^ \=\ c^2^ \,
 0<a<b<c, and c <= 50.
 :::
 
-
-
 ```{webr}
 #| exercise: ex_pythag
 #| exercise.lines: 5

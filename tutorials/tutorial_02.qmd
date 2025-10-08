@@ -2,369 +2,552 @@
 title: "Tutorial 02"
 format: live-html
 engine: knitr
-# prevent any project filters from interfering
 sidebar:
   style: docked
   contents:
-    - text: "Q1 — Sum to 10"
+    - text: "Q1 — Five-number summary"
       href: "#q1"
-    - text: "Q2 — Division"
+    - text: "Q2 — Mean/Var/SD"
       href: "#q2"
-    - text: "Q3 — Histogram"
+    - text: "Q3 — Grouped summary (base)"
       href: "#q3"
+    - text: "Q4 — Boxplot (ggplot2, ordered)"
+      href: "#q4"
+    - text: "Q5 — Histogram with fences"
+      href: "#q5"
+    - text: "Q6 — Histogram (store object)"
+      href: "#q6"
+    - text: "Q7 — Boxplot by cyl (store object)"
+      href: "#q7"
+    - text: "Q8 — Scatter + smoother (store object)"
+      href: "#q8"
+    - text: "Q9 — Mean by month (base aggregate)"
+      href: "#q9"
 ---
 
-{{< include ../_extensions/r-wasm/live/_knitr.qmd >}} {{< include ../_extensions/r-wasm/live/_gradethis.qmd >}}
-
-## Q1 — Quick five-number summary {#q1}
-
-Create mpg_summary as the output of summary(mtcars$mpg).
+{{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
+{{< include ../_extensions/r-wasm/live/_gradethis.qmd >}}
 
 ```{webr}
-#| exercise: ex_summary_mpg
-#| exercise.lines: 2
+#| setup: true
 #| echo: false
-mpg_summary <- NULL
+# Small helper to (optionally) install ggplot2 when a ggplot exercise runs in webR
+ensure_pkgs <- function(pkgs){
+  miss <- pkgs[!vapply(pkgs, requireNamespace, logical(1), quietly = TRUE)]
+  if (length(miss)) webr::install(miss)
+  invisible(lapply(pkgs, function(p) library(p, character.only = TRUE)))
+}
+# Ensure built-in datasets are available (they ship with R)
+data("airquality")  # columns: Ozone, Solar.R, Wind, Temp, Month, Day
+data("mtcars")      # columns incl. mpg, wt, cyl, etc.
 ```
 
-::: {.hint exercise="ex_summary_mpg"}
-Use summary(mtcars$mpg).
+## Q1 — Five-number summary {#q1}
+
+The five-number summary (Min, Q1, Median, Q3, Max) + IQR quickly reveals center and spread. Return a five number summary for the dataset airquality's Ozone column. Further, return the IQR.
+
+::: {.callout-note title="Info"}
+The five-number summary (Min, Q1, Median, Q3, Max) quickly shows center and spread. The IQR = Q3 − Q1 is robust to outliers and underlies boxplot fences (Q1 − 1.5·IQR, Q3 + 1.5·IQR). You’ll use base R functions that compute these directly for a numeric 
 :::
 
-::: {.solution exercise="ex_summary_mpg"}
 ```{webr}
-#| exercise: ex_summary_mpg
+#| exercise: ex_ozone_fivenum
+#| exercise.lines: 4
+#| echo: false
+# On the first line, print five-number summary for airquality$Ozone.
+
+# On the next line, return the IQR for that same vector.
+
+```
+  
+::: {.hint exercise="ex_ozone_fivenum"}
+Call the base function that prints the five key stats, then on the next line return the robust spread of that same column; remember missing values.
+:::
+
+::: {.solution exercise="ex_ozone_fivenum"}
+```{webr}
+#| exercise: ex_ozone_fivenum
 #| solution: true
-mpg_summary <- summary(mtcars$mpg)
+summary(airquality$Ozone)
+IQR(airquality$Ozone, na.rm = TRUE)
+
 ```
 :::
 
 ```{webr}
-#| exercise: ex_summary_mpg
+#| exercise: ex_ozone_fivenum
 #| check: true
 gradethis::grade_this({
-  e <- get0(".envir_result", ifnotfound = parent.frame())
-  if (!exists("mpg_summary", envir = e)) fail("Create `mpg_summary`.")
-  s <- get("mpg_summary", envir = e)
-  if (!is.numeric(s) || length(s) < 6) fail("`summary(mtcars$mpg)` returns a named numeric vector (Min., 1st Qu., Median, Mean, 3rd Qu., Max.).")
-  need <- c("Min.", "1st Qu.", "Median", "Mean", "3rd Qu.", "Max.")
-  if (!all(need %in% names(s))) fail("`mpg_summary` should come from `summary(...)` with standard names.")
-  pass("✅ Summary looks good.")
+  code <- paste(.user_code, collapse = "\n")
+  if (!grepl("summary\\s*\\(\\s*airquality\\$Ozone\\s*\\)", code))
+    fail("First line should be `summary(airquality$Ozone)`.")
+  out <- .result
+  tgt <- IQR(airquality$Ozone, na.rm = TRUE)
+  if (!is.numeric(out) || length(out) != 1 || !is.finite(out))
+    fail("Second line should evaluate to a single numeric IQR (use `na.rm=TRUE`).")
+  if (!isTRUE(all.equal(out, tgt, tol = 1e-8)))
+    fail("IQR doesn’t match `IQR(airquality$Ozone, na.rm=TRUE)`.")
+  pass("✅ Summary then IQR returned correctly.")
 })
+
+
 ```
 
 ## Q2 — Mean, variance, and sd {#q2}
 
-Create a named numeric vector stats_wt containing the mean, var, and sd of mtcars$wt with na.rm = TRUE.
+Compute Mean, Variance and Standard Deviation of airquality dataset's Temp column.
 
-```{webr}
-#| exercise: ex_stats_wt
-#| exercise.lines: 3
-#| echo: false
-stats_wt <- NULL
-```
-
-::: {.hint exercise="ex_stats_wt"}
-c(mean = mean(...), var = var(...), sd = sd(...))
+::: {.callout-note title="Info"}
+Mean, variance, and standard deviation summarize center and spread. Variance and SD are in squared and original units respectively. Real-world data often has NAs; make sure your summary ignores them appropriately. 
 :::
 
-::: {.solution exercise="ex_stats_wt"}
 ```{webr}
-#| exercise: ex_stats_wt
+#| exercise: ex_temp_stats
+#| exercise.lines: 4
+#| echo: false
+# Return a named vector: c(mean=..., var=..., sd=...)
+# using airquality$Temp and na.rm=TRUE.
+
+```
+
+::: {.hint exercise="ex_temp_stats"}
+Construct a single named vector with three entries; each entry calls the corresponding base summary function with missing-value handling.
+:::
+
+::: {.solution exercise="ex_temp_stats"}
+```{webr}
+#| exercise: ex_temp_stats
 #| solution: true
-stats_wt <- c(
-  mean = mean(mtcars$wt, na.rm = TRUE),
-  var  = var(mtcars$wt,  na.rm = TRUE),
-  sd   = sd(mtcars$wt,   na.rm = TRUE)
+c(
+  mean = mean(airquality$Temp, na.rm = TRUE),
+  var  = var(airquality$Temp,  na.rm = TRUE),
+  sd   = sd(airquality$Temp,   na.rm = TRUE)
+)
+
+```
+:::
+
+```{webr}
+#| exercise: ex_temp_stats
+#| check: true
+gradethis::grade_this({
+  v <- .result
+  if (!is.numeric(v) || !setequal(names(v), c("mean","var","sd")))
+    fail("Return a **named** numeric vector with names exactly: mean, var, sd (use `na.rm=TRUE`).")
+  pass("✅ mean/var/sd computed.")
+})
+```
+
+## Q3 — Grouped summary by Month
+
+Compute the mean Ozone by Month using base R. Return a named numeric vector (names are months).
+
+```{webr}
+#| exercise: ex_group_month
+#| exercise.lines: 3
+#| echo: false
+# Return a named numeric vector: mean Ozone per Month
+tapply(airquality$＿＿, airquality$＿＿, mean, na.rm = ＿＿)
+```
+
+::: {.hint exercise="ex_group_month"}
+Learn about the function tapply().
+:::
+
+::: {.solution exercise="ex_group_month"}
+```{webr}
+#| exercise: ex_group_month
+#| solution: true
+tapply(airquality$Ozone, airquality$Month, mean, na.rm = TRUE)
+
+```
+:::
+
+```{webr}
+#| exercise: ex_group_month
+#| check: true
+gradethis::grade_this({
+  # expected via tapply
+  target <- tapply(airquality$Ozone, airquality$Month, mean, na.rm = TRUE)
+
+  res <- .result
+
+  # Allow either a named numeric vector OR a 2-col data.frame (Month, Ozone)
+  if (is.numeric(res) && !is.null(names(res))) {
+    # named numeric vector path
+    same_names <- setequal(names(res), names(target))
+    close_vals <- all.equal(res[order(names(res))], target[order(names(target))], tol = 1e-8)
+    if (!same_names) fail("Return a **named** numeric vector with month names (e.g., 5, 6, 7, ...).")
+    if (!isTRUE(close_vals)) fail("Values don’t match `tapply(airquality$Ozone, airquality$Month, mean, na.rm=TRUE)`.")
+    pass("✅ Mean Ozone by month computed (named numeric vector).")
+  } else if (is.data.frame(res) && all(c("Month","Ozone") %in% names(res))) {
+    # accept aggregate-like result too
+    comp <- setNames(res$Ozone, res$Month)
+    close_vals <- all.equal(comp[order(names(comp))], target[order(names(target))], tol = 1e-8)
+    if (!isTRUE(close_vals)) fail("The numbers don’t match the month-wise means with `na.rm=TRUE`.")
+    pass("✅ Mean Ozone by month (data frame) accepted.")
+  } else {
+    fail("Return either a **named numeric vector** (preferred) or a data frame with columns `Month` and `Ozone` means.")
+  }
+})
+
+```
+
+## Q4 — ggplot Boxplot ordered by median
+
+Now, we are moving on to the mtcars dataset that gives details about various cars' specifications. Return a ggplot object that boxplots mpg (miles per gallon) by cyl (number of engine cylinders), with cyl reordered by the median mpg. Fill in the missing blanks with the correct answer.
+
+::: {.callout-note title="Info"}
+You can reorder categories by a statistic (like the median) right inside aes() to make comparisons meaningful. In ggplot2, this is commonly done with reorder() (or forcats helpers). The layer for boxplots is geom_boxplot(). 
+:::
+
+```{webr}
+#| exercise: ex_box_reorder
+#| exercise.lines: 8
+#| echo: false
+# Return a ggplot object that boxplots mpg by cyl, with cyl reordered by the median mpg.
+ggplot2:: ＿＿ ( ＿＿ ,
+  ggplot2::aes(x = reorder(factor( ＿＿ ), ＿＿ , FUN = median), y = ＿＿ )
+) + ggplot2::＿＿ () #Boxplot command in ggplot
+
+
+```
+
+::: {.hint exercise="ex_box_reorder"}
+Build a boxplot mapping the cyl to x and mpg to y; reorder x by the median of y within aes(...).
+:::
+
+::: {.solution exercise="ex_box_reorder"}
+```{webr}
+#| exercise: ex_box_reorder
+#| solution: true
+ggplot2::ggplot(
+  mtcars,
+  ggplot2::aes(x = reorder(factor(cyl), mpg, FUN = median), y = mpg)
+) + 
+  ggplot2::geom_boxplot()
+```
+:::
+
+```{webr}
+#| exercise: ex_box_reorder
+#| check: true
+gradethis::grade_this({
+  if (!requireNamespace("ggplot2", quietly=TRUE)) fail("Load **ggplot2**.")
+  p <- .result
+  ok <- inherits(p, "ggplot") && any(vapply(p$layers, \(L) inherits(L$geom,"GeomBoxplot"), logical(1)))
+  if (!ok) fail("Return a ggplot with `geom_boxplot()` and x reordered by median mpg.")
+  pass("✅ Boxplot created.")
+})
+
+```
+
+
+## Q5 — Histogram with Tukey fences 
+
+::: {.callout-note title="Info"}
+skimr::skim() is like an enhanced summary(): it detects column types and prints type-specific stats (e.g., numeric vs. factor). Great to see NAs and distributions quickly. 
+:::
+
+```{webr}
+#| exercise: ex_peng_skim
+#| exercise.lines: 2
+#| echo: false
+# One expression that returns a skim data frame
+```
+
+::: {.hint exercise="ex_peng_skim"}
+Call the package’s main function on the entire data frame; no assignments.
+:::
+
+::: {.solution exercise="ex_peng_skim"}
+```{webr}
+#| exercise: ex_peng_skim
+#| solution: true
+skimr::skim(penguins)
+```
+:::
+
+```{webr}
+#| exercise: ex_peng_skim
+#| check: true
+gradethis::grade_this({
+  if (!requireNamespace("skimr", quietly=TRUE)) fail("Please install/load **skimr**.")
+  x <- .result
+  if (!is.data.frame(x)) fail("Return the skim output data frame (no variable needed).")
+  pass("✅ skim captured.")
+})
+```
+
+## Q6 — Gapminder 2007: grouped summary
+
+::: {.callout-note title="Info"}
+Gapminder tracks life expectancy, income (GDP per capita), and population across countries and time. Filter to 2007 first, then group by continent, summarising rows and a couple of key stats. 
+:::
+
+```{webr}
+#| exercise: ex_gapminder_2007_group
+#| exercise.lines: 10
+#| echo: false
+# One pipeline: filter year==2007 then summarise by continent
+```
+
+::: {.hint exercise="ex_gapminder_2007_group"}
+Filter for the focal year, group by continent, then summarise a count and two numeric summaries; drop the grouping in the output.
+:::
+
+::: {.solution exercise="ex_gapminder_2007_group"}
+```{webr}
+#| exercise: ex_gapminder_2007_group
+#| solution: true
+gapminder |>
+  dplyr::filter(year == 2007) |>
+  dplyr::group_by(continent) |>
+  dplyr::summarise(
+    n            = dplyr::n(),
+    lifeExp_mean = mean(lifeExp),
+    gdpPercap_sd = sd(gdpPercap),
+    .groups = "drop"
+  )
+```
+:::
+
+```{webr}
+#| exercise: ex_gapminder_2007_group
+#| check: true
+gradethis::grade_this({
+  if (!requireNamespace("dplyr", quietly=TRUE)) fail("Load **dplyr**.")
+  x <- .result
+  need <- c("continent","n","lifeExp_mean","gdpPercap_sd")
+  if (!is.data.frame(x) || !all(need %in% names(x)))
+    fail("Return a data frame with continent, n, lifeExp_mean, gdpPercap_sd for year 2007.")
+  pass("✅ Grouped 2007 summary OK.")
+})
+```
+
+## Q7 — ggplot histogram with Tukey fences
+
+::: {.callout-note title="Info"}
+A histogram shows distribution shape; overlaying Q1/Q3 and Tukey fences makes unusual values visible. Compute quartiles/fences from the 2007 subset and add vertical reference lines to the plot.
+:::
+
+```{webr}
+#| exercise: ex_gapminder_2007_hist_iqr
+#| exercise.lines: 14
+#| echo: false
+# Return a ggplot object (no variable)
+```
+
+::: {.hint exercise="ex_gapminder_2007_hist_iqr"}
+Subset to the target year inside both the data and the quartile calculations; draw the histogram and then add multiple reference lines at key quantiles and bounds.
+:::
+
+::: {.solution exercise="ex_gapminder_2007_hist_iqr"}
+```{webr}
+#| exercise: ex_gapminder_2007_hist_iqr
+#| solution: true
+ggplot2::ggplot(
+  subset(gapminder, year == 2007),
+  ggplot2::aes(gdpPercap)
+) +
+  ggplot2::geom_histogram(bins = 20) +
+  ggplot2::geom_vline(
+    xintercept = c(
+      as.numeric(quantile(subset(gapminder, year==2007)$gdpPercap, 0.25)),
+      as.numeric(quantile(subset(gapminder, year==2007)$gdpPercap, 0.75)),
+      {
+        qs <- quantile(subset(gapminder, year==2007)$gdpPercap, c(.25,.75))
+        lo <- qs[1] - 1.5*diff(qs); hi <- qs[2] + 1.5*diff(qs)
+        c(lo, hi)
+      }
+    )
+  )
 )
 ```
 :::
 
 ```{webr}
-#| exercise: ex_stats_wt
+#| exercise: ex_gapminder_2007_hist_iqr
 #| check: true
 gradethis::grade_this({
-  e <- get0(".envir_result", ifnotfound = parent.frame())
-  if (!exists("stats_wt", envir = e)) fail("Define `stats_wt`.")
-  v <- get("stats_wt", envir = e)
-  if (!is.numeric(v) || is.null(names(v))) fail("Return a **named numeric vector**.")
-  need <- c("mean","var","sd")
-  if (!setequal(names(v), need)) fail("Names must be exactly: mean, var, sd.")
-  # target values (computed once here)
-  tgt <- c(mean = mean(mtcars$wt), var = var(mtcars$wt), sd = sd(mtcars$wt))
-  ok <- all(mapply(function(x,y) isTRUE(all.equal(x,y,tol=1e-8)), v[need], tgt[need]))
-  if (ok) pass("✅ Correct mean/var/sd.")
-  else fail("Recheck the formulas and use `na.rm = TRUE` (even though there are no NAs here).")
-})
-```
-
-## Q3 — Z-scores
-
-Compute z-scores for mtcars$mpg and store them in z_mpg.
-
-::: {.callout-note title="Info"}
-Remember: $$z = \frac{x - \mu }{\sigma/\sqrt{n})} $$
-:::
-
-
-```{webr}
-#| exercise: ex_z_mpg
-#| exercise.lines: 3
-#| echo: false
-z_mpg <- NULL
-
-```
-
-::: {.hint exercise="ex_z_mpg"}
-(x - mean(x, na.rm=TRUE)) / sd(x, na.rm=TRUE)
-:::
-
-::: {.solution exercise="ex_z_mpg"}
-```{webr}
-#| exercise: ex_z_mpg
-#| solution: true
-x <- mtcars$mpg
-z_mpg <- (x - mean(x, na.rm = TRUE)) / sd(x, na.rm = TRUE)
-
-```
-:::
-
-```{webr}
-#| exercise: ex_z_mpg
-#| check: true
-gradethis::grade_this({
-  e <- get0(".envir_result", ifnotfound = parent.frame())
-  if (!exists("z_mpg", envir = e)) fail("Create `z_mpg`.")
-  z <- get("z_mpg", envir = e)
-  if (!is.numeric(z) || length(z) != nrow(mtcars)) fail("`z_mpg` should be a numeric vector of length nrow(mtcars).")
-  ok_mean <- abs(mean(z)) < 1e-8
-  ok_sd   <- isTRUE(all.equal(sd(z), 1, tol = 1e-8))
-  if (ok_mean && ok_sd) pass("✅ Looks like proper z-scores (mean ≈ 0, sd ≈ 1).")
-  else fail("Compute z = (x - mean(x))/sd(x) with `na.rm=TRUE`.")
-})
-```
-
-## Q4 — summary() on the whole data frame 
-
-Create mtcars_summary as summary(mtcars).
-
-```{webr}
-#| exercise: ex_summary_df
-#| exercise.lines: 2
-#| echo: false
-mtcars_summary <- NULL
-
-```
-
-::: {.hint exercise="ex_summary_df"}
-Use summary(mtcars).
-:::
-
-::: {.solution exercise="ex_summary_df"}
-```{webr}
-#| exercise: ex_summary_df
-#| solution: true
-mtcars_summary <- summary(mtcars)
-```
-:::
-
-```{webr}
-#| exercise: ex_summary_df
-#| check: true
-gradethis::grade_this({
-  e <- get0(".envir_result", ifnotfound = parent.frame())
-  if (!exists("mtcars_summary", envir = e)) fail("Create `mtcars_summary`.")
-  s <- get("mtcars_summary", envir = e)
-  if (!is.list(s) && !is.matrix(s)) fail("`summary(mtcars)` returns a structured summary per column.")
-  pass("✅ Data-frame summary created.")
-})
-```
-
-
-## Q5 — Quick data health check with skimr 
-
-Use skimr::skim(mtcars) and save to skim_out.
-
-```{webr}
-#| exercise: ex_skim
-#| exercise.lines: 2
-#| echo: false
-skim_out <- NULL
-
-```
-
-::: {.hint exercise="ex_skim"}
-skimr::skim(mtcars)
-:::
-
-::: {.solution exercise="ex_skim"}
-```{webr}
-#| exercise: ex_skim
-#| solution: true
-skim_out <- skimr::skim(mtcars)
-```
-:::
-
-```{webr}
-#| exercise: ex_skim
-#| check: true
-gradethis::grade_this({
-  if (!requireNamespace("skimr", quietly = TRUE)) fail("Please install/load **skimr**.")
-  e <- get0(".envir_result", ifnotfound = parent.frame())
-  if (!exists("skim_out", envir = e)) fail("Store the result in `skim_out`.")
-  so <- get("skim_out", envir = e)
-  ok <- is.data.frame(so) && all(c("skim_type","skim_variable") %in% names(so))
-  if (!ok) fail("`skim_out` should be a skim data frame.")
-  pass("✅ skim summary captured.")
-})
-```
-
-## Q6 — Grouped summary with dplyr (Intro to tidyverse)
-
-Create a tibble by_cyl with one row per cyl containing:
-
-n (row count),
-
-mpg_mean,
-
-hp_sd.
-
-```{webr}
-#| exercise: ex_dplyr_group
-#| exercise.lines: 7
-#| echo: false
-by_cyl <- NULL
-
-```
-
-::: {.solution exercise="ex_dplyr_group"}
-```{webr}
-#| exercise: ex_dplyr_group
-#| solution: true
-by_cyl <- mtcars |>
-  dplyr::as_tibble() |>
-  dplyr::group_by(cyl) |>
-  dplyr::summarise(
-    n = dplyr::n(),
-    mpg_mean = mean(mpg, na.rm = TRUE),
-    hp_sd = sd(hp, na.rm = TRUE),
-    .groups = "drop"
-  )
-
-```
-:::
-
-```{webr}
-#| exercise: ex_dplyr_group
-#| check: true
-gradethis::grade_this({
-  if (!requireNamespace("dplyr", quietly = TRUE)) fail("Load **dplyr**.")
-  e <- get0(".envir_result", ifnotfound = parent.frame())
-  if (!exists("by_cyl", envir = e)) fail("Create `by_cyl`.")
-  df <- get("by_cyl", envir = e)
-  need <- c("cyl","n","mpg_mean","hp_sd")
-  if (!all(need %in% names(df))) fail("Include columns: cyl, n, mpg_mean, hp_sd.")
-  if (nrow(df) != length(unique(mtcars$cyl))) fail("One row per `cyl`.")
-  pass("✅ Grouped summary OK.")
-})
-```
-
-## Q7 — Multiple summaries with across() (tidyverse)
-
-Make by_am with one row per am and columns:
-
-n,
-
-mpg_mean, mpg_sd,
-
-wt_mean, wt_sd.
-
-```{webr}
-#| exercise: ex_across
-#| exercise.lines: 10
-#| echo: false
-by_am <- NULL
-```
-
-::: {.solution exercise="ex_across"}
-```{webr}
-#| exercise: ex_across
-#| solution: true
-by_am <- mtcars |>
-  dplyr::as_tibble() |>
-  dplyr::group_by(am) |>
-  dplyr::summarise(
-    n = dplyr::n(),
-    dplyr::across(
-      c(mpg, wt),
-      list(mean = ~mean(.x, na.rm = TRUE), sd = ~sd(.x, na.rm = TRUE)),
-      .names = "{.col}_{.fn}"
-    ),
-    .groups = "drop"
-  )
-```
-:::
-
-```{webr}
-#| exercise: ex_across
-#| check: true
-gradethis::grade_this({
-  if (!requireNamespace("dplyr", quietly = TRUE)) fail("Load **dplyr**.")
-  e <- get0(".envir_result", ifnotfound = parent.frame())
-  if (!exists("by_am", envir = e)) fail("Create `by_am`.")
-  df <- get("by_am", envir = e)
-  need <- c("am","n","mpg_mean","mpg_sd","wt_mean","wt_sd")
-  if (!all(need %in% names(df))) fail("Include columns: am, n, mpg_mean, mpg_sd, wt_mean, wt_sd.")
-  pass("✅ Multiple summaries computed.")
+  if (!requireNamespace("ggplot2", quietly=TRUE)) fail("Load **ggplot2**.")
+  p <- .result
+  has_hist  <- inherits(p, "ggplot") && any(vapply(p$layers, \(L) inherits(L$geom,"GeomBar"),   logical(1)))
+  has_vline <- inherits(p, "ggplot") && any(vapply(p$layers, \(L) inherits(L$geom,"GeomVline"), logical(1)))
+  if (!(has_hist && has_vline)) fail("Use `geom_histogram(bins=20)` and add vlines for Q1/Q3 & Tukey bounds (year 2007).")
+  pass("✅ Histogram with IQR fences.")
 })
 ```
 
 ## Q8 — Histogram of mpg (ggplot2)
 
-Make by_am with one row per am and columns:
-
-n,
-
-mpg_mean, mpg_sd,
-
-wt_mean, wt_sd.
+Make a histogram with ~12 bins. Store in p_hist.
 
 ```{webr}
-#| exercise: ex_across
-#| exercise.lines: 10
+#| exercise: ex_hist
+#| exercise.lines: 5
 #| echo: false
-by_am <- NULL
+p_hist <- NULL
 ```
 
-::: {.solution exercise="ex_across"}
+::: {.hint exercise="ex_hist"}
+```{r}
+  p_hist <- ggplot2::ggplot(mtcars, ggplot2::aes(mpg)) +
+  ggplot2::geom_histogram(bins = 12)
+
+```
+:::
+
+::: {.solution exercise="ex_hist"}
 ```{webr}
-#| exercise: ex_across
+#| exercise: ex_hist
 #| solution: true
-by_am <- mtcars |>
-  dplyr::as_tibble() |>
-  dplyr::group_by(am) |>
-  dplyr::summarise(
-    n = dplyr::n(),
-    dplyr::across(
-      c(mpg, wt),
-      list(mean = ~mean(.x, na.rm = TRUE), sd = ~sd(.x, na.rm = TRUE)),
-      .names = "{.col}_{.fn}"
-    ),
-    .groups = "drop"
-  )
+p_hist <- ggplot2::ggplot(mtcars, ggplot2::aes(mpg)) +
+  ggplot2::geom_histogram(bins = 12)
+``` 
+:::
+
+```{webr}
+#| exercise: ex_hist
+#| check: true
+gradethis::grade_this({
+  if (!requireNamespace("ggplot2", quietly = TRUE)) fail("Load **ggplot2**.")
+  e <- get0(".envir_result", ifnotfound = parent.frame())
+  if (!exists("p_hist", envir = e)) fail("Create `p_hist`.")
+  p <- get("p_hist", envir = e)
+  if (!inherits(p, "ggplot")) fail("Should be a ggplot object.")
+  ok <- any(vapply(p$layers, function(L) inherits(L$geom, "GeomBar"), logical(1)))
+  if (!ok) fail("Use `geom_histogram()`.")
+  pass("✅ Histogram done.")
+})
+```
+
+## Q9 — Boxplot of mpg by cyl (ggplot2)
+
+Store in p_box.
+
+```{webr}
+#| exercise: ex_box
+#| exercise.lines: 5
+#| echo: false
+p_box <- NULL
+```
+
+::: {.hint exercise="ex_box"}
+ggplot(mtcars, aes(factor(cyl), mpg)) + geom_boxplot()
+:::
+
+::: {.solution exercise="ex_box"}
+```{webr}
+#| exercise: ex_box
+#| solution: true
+p_box <- ggplot2::ggplot(mtcars, ggplot2::aes(x = factor(cyl), y = mpg)) +
+  ggplot2::geom_boxplot()
 ```
 :::
 
 ```{webr}
-#| exercise: ex_across
+#| exercise: ex_box
 #| check: true
 gradethis::grade_this({
-  if (!requireNamespace("dplyr", quietly = TRUE)) fail("Load **dplyr**.")
+  if (!requireNamespace("ggplot2", quietly = TRUE)) fail("Load **ggplot2**.")
   e <- get0(".envir_result", ifnotfound = parent.frame())
-  if (!exists("by_am", envir = e)) fail("Create `by_am`.")
-  df <- get("by_am", envir = e)
-  need <- c("am","n","mpg_mean","mpg_sd","wt_mean","wt_sd")
-  if (!all(need %in% names(df))) fail("Include columns: am, n, mpg_mean, mpg_sd, wt_mean, wt_sd.")
-  pass("✅ Multiple summaries computed.")
+  if (!exists("p_box", envir = e)) fail("Create `p_box`.")
+  p <- get("p_box", envir = e)
+  has_geom <- any(vapply(p$layers, function(L) inherits(L$geom, "GeomBoxplot"), logical(1)))
+  if (!inherits(p, "ggplot") || !has_geom) fail("Use `geom_boxplot()`.")
+  pass("✅ Boxplot good.")
+})
+```
+
+## Q10 — Scatter with smoother: wt vs mpg (ggplot2)
+
+Store in p_scatter.
+
+```{webr}
+#| exercise: ex_scatter
+#| exercise.lines: 6
+#| echo: false
+p_scatter <- NULL
+```
+
+::: {.hint exercise="ex_scatter"}
+```{r}
+p_scatter <- ggplot2::ggplot(mtcars, ggplot2::aes(wt, mpg)) +
+  ggplot2::geom_point() +
+  ggplot2::geom_smooth(se = FALSE)
+```
+:::
+
+::: {.solution exercise="ex_scatter"}
+```{webr}
+#| exercise: ex_scatter
+#| solution: true
+p_scatter <- ggplot2::ggplot(mtcars, ggplot2::aes(wt, mpg)) +
+  ggplot2::geom_point() +
+  ggplot2::geom_smooth(se = FALSE)
+
+```
+:::
+
+```{webr}
+#| exercise: ex_scatter
+#| check: true
+gradethis::grade_this({
+  if (!requireNamespace("ggplot2", quietly = TRUE)) fail("Load **ggplot2**.")
+  e <- get0(".envir_result", ifnotfound = parent.frame())
+  if (!exists("p_scatter", envir = e)) fail("Create `p_scatter`.")
+  p <- get("p_scatter", envir = e)
+  pts <- any(vapply(p$layers, function(L) inherits(L$geom, "GeomPoint"), logical(1)))
+  sm  <- any(vapply(p$layers, function(L) inherits(L$geom, "GeomSmooth"), logical(1)))
+  if (!(pts && sm)) fail("Include both points and a smoother.")
+  pass("✅ Scatter + smooth OK.")
+})
+```
+
+## Q11 — Descriptive stats & NA trap
+
+Compute mean Sepal.Length by Species (no tidyverse yet). Store as mean_sl_by_species with columns Species and mean_SL.
+
+```{webr}
+#| setup: true
+#| exercise: ex_aggregate_iris
+write.csv(iris, "iris.csv", row.names = FALSE)
+```
+
+```{webr}
+#| exercise: ex_aggregate_iris
+#| exercise.lines: 4
+#| echo: false
+mean_sl_by_species <- NULLL
+```
+
+::: {.hint exercise="ex_aggregate_iris"}
+aggregate(Sepal.Length ~ Species, data=df, FUN=mean)
+:::
+
+::: {.solution exercise="ex_aggregate_iris"}
+```{webr}
+#| exercise: ex_scatter
+#| solution: true
+p_scatter <- ggplot2::ggplot(mtcars, ggplot2::aes(wt, mpg)) +
+  ggplot2::geom_point() +
+  ggplot2::geom_smooth(se = FALSE)
+
+```
+:::
+
+```{webr}
+#| exercise: ex_scatter
+#| check: true
+gradethis::grade_this({
+  if (!requireNamespace("ggplot2", quietly = TRUE)) fail("Load **ggplot2**.")
+  e <- get0(".envir_result", ifnotfound = parent.frame())
+  if (!exists("p_scatter", envir = e)) fail("Create `p_scatter`.")
+  p <- get("p_scatter", envir = e)
+  pts <- any(vapply(p$layers, function(L) inherits(L$geom, "GeomPoint"), logical(1)))
+  sm  <- any(vapply(p$layers, function(L) inherits(L$geom, "GeomSmooth"), logical(1)))
+  if (!(pts && sm)) fail("Include both points and a smoother.")
+  pass("✅ Scatter + smooth OK.")
 })
 ```
