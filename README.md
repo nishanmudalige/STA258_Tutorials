@@ -29,6 +29,7 @@
     - sigma unknown
   - One sample confidence intervals on a proportion
   - One sample confidence intervals on a variance
+  - Sample size calculation when sigma is known
 - Week 6 (Tutorial 5)
   - Two sample confidence intervals on a difference of means
     - Variances assumed equal (pooled)
