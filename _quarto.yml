@@ -1,0 +1,19 @@
+project:
+  type: website
+  output-dir: "docs"
+
+website:
+  title: "Course Tutorials"
+  navbar:
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "Tutorials"
+        menu:
+        - text: "Tutorial 1"
+          href: tutorials/tutorial_01.qmd
+
+format:
+  live-html:
+    toc: false
+

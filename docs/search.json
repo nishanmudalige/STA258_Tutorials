@@ -1,0 +1,265 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "STA258 Course Tutorials",
+    "section": "",
+    "text": "Welcome to STA258 tutorials!"
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html",
+    "href": "tutorials/tutorial_01.html",
+    "title": "Tutorial 01",
+    "section": "",
+    "text": "#| edit: false\n#| output: false\nwebr::install(\"gradethis\", quiet = TRUE)\nlibrary(gradethis)\noptions(webr.exercise.checker = function(\n  label, user_code, solution_code, check_code, envir_result, evaluate_result,\n  envir_prep, last_value, engine, stage, ...\n) {\n  if (is.null(check_code)) {\n    # No grading code, so just skip grading\n    invisible(NULL)\n  } else if (is.null(label)) {\n    list(\n      correct = FALSE,\n      type = \"warning\",\n      message = \"All exercises must have a label.\"\n    )\n  } else if (is.null(solution_code)) {\n    list(\n      correct = FALSE,\n      type = \"warning\",\n      message = htmltools::tags$div(\n        htmltools::tags$p(\"A problem occurred grading this exercise.\"),\n        htmltools::tags$p(\n          \"No solution code was found. Note that grading exercises using the \",\n          htmltools::tags$code(\"gradethis\"),\n          \"package requires a model solution to be included in the document.\"\n        )\n      )\n    )\n  } else {\n    gradethis::gradethis_exercise_checker(\n      label = label, solution_code = solution_code, user_code = user_code,\n      check_code = check_code, envir_result = envir_result,\n      evaluate_result = evaluate_result, envir_prep = envir_prep,\n      last_value = last_value, stage = stage, engine = engine)\n  }\n})",
+    "crumbs": [
+      "Home",
+      "Tutorial 01"
+    ]
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#demo",
+    "href": "tutorials/tutorial_01.html#demo",
+    "title": "Tutorial 01",
+    "section": "",
+    "text": "This is a webr-enabled code cell in a Quarto HTML document.\nFill in the blanks to add any 2 numbers which add up to 2\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "Home",
+      "Tutorial 01"
+    ]
+  },
+  {
+    "objectID": "tutorials/index.html",
+    "href": "tutorials/index.html",
+    "title": "STA258 Course Tutorials",
+    "section": "",
+    "text": "Welcome !"
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#welcome",
+    "href": "tutorials/tutorial_01.html#welcome",
+    "title": "Tutorial 01",
+    "section": "",
+    "text": "Edit code directly in the browser.\nClick Run Code to evaluate.\nUse Check Answer to get feedback.\nClick Show hint / Show solution as needed.",
+    "crumbs": [
+      "Home",
+      "Tutorial 01"
+    ]
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#exercise-1-fill-the-blank-so-the-result-is-10",
+    "href": "tutorials/tutorial_01.html#exercise-1-fill-the-blank-so-the-result-is-10",
+    "title": "Tutorial 01",
+    "section": "Exercise 1 — Fill the blank so the result is 10",
+    "text": "Exercise 1 — Fill the blank so the result is 10\n\n\n\n\n\n\n\n\n\n\n\n\n6 + what is 10?\n\n\n\n\n1 + 2 + 3 + 4\n1 + 2 + 3 + 4",
+    "crumbs": [
+      "Home",
+      "Tutorial 01"
+    ]
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#exercise-2-write-a-function",
+    "href": "tutorials/tutorial_01.html#exercise-2-write-a-function",
+    "title": "Tutorial 01",
+    "section": "Exercise 2 — Write a function",
+    "text": "Exercise 2 — Write a function\nMake double(x) return 2 * x. Keep the function name the same.\n\n\n\n\n\n\n\n\n\nInside the function body, return 2 * x.",
+    "crumbs": [
+      "Home",
+      "Tutorial 01"
+    ]
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#exercise-3-create-a-derived-column-with-setup",
+    "href": "tutorials/tutorial_01.html#exercise-3-create-a-derived-column-with-setup",
+    "title": "Tutorial 01",
+    "section": "Exercise 3 — Create a derived column (with setup)",
+    "text": "Exercise 3 — Create a derived column (with setup)\nCreate df$ratio equal to mpg / hp in mtcars, then preview it.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ndf$ratio &lt;- df$mpg / df$hp\nhead(df$ratio)\ndf$ratio &lt;- df$mpg / df$hp\nhead(df$ratio)",
+    "crumbs": [
+      "Home",
+      "Tutorial 01"
+    ]
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#a-regular-editablerunnable-non-exercise-cell",
+    "href": "tutorials/tutorial_01.html#a-regular-editablerunnable-non-exercise-cell",
+    "title": "Tutorial 01",
+    "section": "A regular editable/runnable (non-exercise) cell",
+    "text": "A regular editable/runnable (non-exercise) cell",
+    "crumbs": [
+      "Home",
+      "Tutorial 01"
+    ]
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#exercise-make-the-sum-10",
+    "href": "tutorials/tutorial_01.html#exercise-make-the-sum-10",
+    "title": "Tutorial 01",
+    "section": "Exercise — make the sum 10",
+    "text": "Exercise — make the sum 10\n\nviewof add = Inputs.number({ label: \"Missing addend\", value: 4, step: 1 })",
+    "crumbs": [
+      "Home",
+      "Tutorial 01"
+    ]
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#how-to-use-this-page",
+    "href": "tutorials/tutorial_01.html#how-to-use-this-page",
+    "title": "Tutorial 01",
+    "section": "How to use this page",
+    "text": "How to use this page\n\nEdit the code in each exercise and click Run Code.\nClick Check Answer for instant feedback.\nUse Show hint / Show solution as needed.\nYour edits persist in the browser.",
+    "crumbs": [
+      "Home",
+      "Tutorial 01"
+    ]
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#q1-make-the-sum-equal-10",
+    "href": "tutorials/tutorial_01.html#q1-make-the-sum-equal-10",
+    "title": "Tutorial 01",
+    "section": "Q1 — Make the sum equal 10",
+    "text": "Q1 — Make the sum equal 10\nReplace ＿ with a number so the expression evaluates to 10.\n\n\n\n\n\n\n\n\n\n\n\n\nReplace the two ＿ with 2 numbers that add up to 7.\n\n\n\n\n1 + 2 + 3 + 4\n1 + 2 + 3 + 4"
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#q2-write-a-function",
+    "href": "tutorials/tutorial_01.html#q2-write-a-function",
+    "title": "Tutorial 01",
+    "section": "Q2 — Write a function",
+    "text": "Q2 — Write a function\nMake double(x) return 2 * x. Keep the function name the same.\nBehavior is graded, so x*2 and 2*x are both accepted.",
+    "crumbs": [
+      "Home",
+      "Tutorial 01"
+    ]
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#optional-plain-runnable-cell-no-grading",
+    "href": "tutorials/tutorial_01.html#optional-plain-runnable-cell-no-grading",
+    "title": "Tutorial 01",
+    "section": "(Optional) Plain runnable cell (no grading)",
+    "text": "(Optional) Plain runnable cell (no grading)",
+    "crumbs": [
+      "Home",
+      "Tutorial 01"
+    ]
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#how-this-works",
+    "href": "tutorials/tutorial_01.html#how-this-works",
+    "title": "Tutorial 01",
+    "section": "",
+    "text": "Edit the code in each exercise, click Run Code, then Check Answer.\n“Soft blanks” use a placeholder so you don’t get parse errors.\nGrading is behavior-based (no gradethis needed).",
+    "crumbs": [
+      "Home",
+      "Tutorial 01"
+    ]
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#q2-write-doublex",
+    "href": "tutorials/tutorial_01.html#q2-write-doublex",
+    "title": "Tutorial 01",
+    "section": "Q2 — Write double(x)",
+    "text": "Q2 — Write double(x)\nMake double(x) return 2 * x. Keep the function name the same.\nGrading is behavior-based, so x*2 and 2*x both pass (and it must work on vectors).\n\n\n\n\n\n\n\n\n\n\n\n\nReturn 2 * x (or x * 2 — both are fine).\n\n\n\n\ndouble &lt;- function(x) {\n  2 * x\n}\ndouble(5)\ndouble &lt;- function(x) {\n  2 * x\n}\ndouble(5)",
+    "crumbs": [
+      "Home",
+      "Tutorial 01"
+    ]
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#q3-draw-a-histogram-from-cars",
+    "href": "tutorials/tutorial_01.html#q3-draw-a-histogram-from-cars",
+    "title": "Tutorial 01",
+    "section": "Q3 — Draw a histogram from cars",
+    "text": "Q3 — Draw a histogram from cars\nMake a histogram using a numeric column from cars.\nValid: hist(cars$dist), hist(cars$speed), with(cars, hist(speed)), hist(cars[[\"dist\"]]), hist(cars[, \"speed\"]), hist(cars[, 2]).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nhist(cars$dist)\nhist(cars$dist)",
+    "crumbs": [
+      "Home",
+      "Tutorial 01"
+    ]
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#q3-draw-a-histogram-from-cars-type-the-full-call",
+    "href": "tutorials/tutorial_01.html#q3-draw-a-histogram-from-cars-type-the-full-call",
+    "title": "Tutorial 01",
+    "section": "Q3 — Draw a histogram from cars (type the full call)",
+    "text": "Q3 — Draw a histogram from cars (type the full call)\nUse exactly one of these numeric columns and nothing else:\ndist or speed\n\n\n\n\n\n\n\n\n\n\n\nhist(cars$dist)\nhist(cars$dist)"
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#q2-write-a-function-using-division",
+    "href": "tutorials/tutorial_01.html#q2-write-a-function-using-division",
+    "title": "Tutorial 01",
+    "section": "Q2 — Write a function using division",
+<<<<<<< HEAD
+    "text": "Q2 — Write a function using division\nDefine a function called divide_nums that takes two arguments (a and b) and returns the results of:\n\na / b\n\nb / a\n\nBoth results should be stored in separate variables before being returned.\n\n\n\n\n\n\nInfo\n\n\n\nRemember: in R, division by zero (1/0) will return Inf rather than an error.\n\n\n\n\n\n\n\n\nInfo\n\n\n\nIn R, lists are written with list(a, b, c). Each element can be anything: a number, a string, or even another list.\n\n\n\n\n\n\n\n\n\n\n\nStart with: res1 &lt;- a / b res2 &lt;- b / a list(res1, res2)\n\n\n\n\ndivide_nums &lt;- function(a, b) {\n  res1 &lt;- a / b\n  res2 &lt;- b / a\n  list(res1, res2)\n}\ndivide_nums &lt;- function(a, b) {\n  res1 &lt;- a / b\n  res2 &lt;- b / a\n  list(res1, res2)\n}"
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#q1",
+    "href": "tutorials/tutorial_01.html#q1",
+    "title": "Tutorial 01",
+    "section": "Q1 — Make the sum equal 10",
+    "text": "Q1 — Make the sum equal 10\nReplace ＿ with a number so the expression evaluates to 10.\n\n\n\n\n\n\n\n\n\n\n\n\nReplace the two ＿ with 2 numbers that add up to 7.\n\n\n\n\n1 + 2 + 3 + 4\n1 + 2 + 3 + 4"
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#q2",
+    "href": "tutorials/tutorial_01.html#q2",
+    "title": "Tutorial 01",
+    "section": "Q2 — Write a function using division",
+    "text": "Q2 — Write a function using division\nDefine a function called divide_nums that takes two arguments (a and b) and returns the results of:\n\na / b\n\nb / a\n\nBoth results should be stored in separate variables before being returned.\n\n\n\n\n\n\nInfo\n\n\n\nRemember: in R, division by zero (1/0) will return Inf rather than an error.\n\n\n\n\n\n\n\n\nInfo\n\n\n\nIn R, lists are written with list(a, b, c). Each element can be anything: a number, a string, or even another list.\n\n\n\n\n\n\n\n\n\n\n\nStart with: res1 &lt;- a / b res2 &lt;- b / a list(res1, res2)\n\n\n\n\ndivide_nums &lt;- function(a, b) {\n  res1 &lt;- a / b\n  res2 &lt;- b / a\n  list(res1, res2)\n}\ndivide_nums &lt;- function(a, b) {\n  res1 &lt;- a / b\n  res2 &lt;- b / a\n  list(res1, res2)\n}"
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#q3",
+    "href": "tutorials/tutorial_01.html#q3",
+    "title": "Tutorial 01",
+    "section": "Q3 — Draw a histogram from cars (type the full call)",
+    "text": "Q3 — Draw a histogram from cars (type the full call)\nUse exactly one of these numeric columns and nothing else:\ndist or speed\n\n\n\n\n\n\n\n\n\n\n\nhist(cars$dist)\nhist(cars$dist)"
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#q4",
+    "href": "tutorials/tutorial_01.html#q4",
+    "title": "Tutorial 01",
+    "section": "Q6 — Draw a boxplot from cars (type the full call)",
+    "text": "Q6 — Draw a boxplot from cars (type the full call)\nUse exactly one of these numeric columns and nothing else:\ndist or speed\n\n\n\n\n\n\n\n\n\n\n\nboxplot(cars$dist)\nboxplot(cars$dist)"
+=======
+    "text": "Q2 — Write a function using division\nDefine a function called divide_nums that takes two arguments (a and b) and returns the results of:\n\na / b\n\nb / a\n\nBoth results should be stored in separate variables before being returned.\n\n\n\n\n\n\nNoteInfo\n\n\n\nRemember: in R, division by zero (1/0) will return Inf rather than an error.\n\n\n\n\n\n\n\n\nNoteInfo\n\n\n\nIn R, lists are written with list(a, b, c). Each element can be anything: a number, a string, or even another list.\n\n\n\n\n\n\n\n\n\n\n\nStart with: res1 &lt;- a / b res2 &lt;- b / a list(res1, res2)\n\n\n\n\ndivide_nums &lt;- function(a, b) {\n  res1 &lt;- a / b\n  res2 &lt;- b / a\n  list(res1, res2)\n}\ndivide_nums &lt;- function(a, b) {\n  res1 &lt;- a / b\n  res2 &lt;- b / a\n  list(res1, res2)\n}"
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#q2-create-a-vector",
+    "href": "tutorials/tutorial_01.html#q2-create-a-vector",
+    "title": "Tutorial 01",
+    "section": "Q2 — Create a vector",
+    "text": "Q2 — Create a vector\nMake a vector called my_vec that contains the numbers 5, 10, 15, 20.\n\n\n\n\n\n\n\n\n\nUse the c() function to combine numbers: c(1, 2, 3)\n\n\n\n\nmy_vec &lt;- c(5, 10, 15, 20)\nmy_vec &lt;- c(5, 10, 15, 20)"
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#q4-write-a-function-using-division",
+    "href": "tutorials/tutorial_01.html#q4-write-a-function-using-division",
+    "title": "Tutorial 01",
+    "section": "Q4 — Write a function using division",
+    "text": "Q4 — Write a function using division\nDefine a function called divide_nums that takes two arguments (a and b) and returns the results of:\n\na / b\n\nb / a\n\nBoth results should be stored in separate variables before being returned.\n\n\n\n\n\n\nNoteInfo\n\n\n\nRemember: in R, division by zero (1/0) will return Inf rather than an error.\n\n\n\n\n\n\n\n\nNoteInfo\n\n\n\nIn R, lists are written with list(a, b, c). Each element can be anything: a number, a string, or even another list.\n\n\n\n\n\n\n\n\n\n\n\nStart with: res1 &lt;- a / b res2 &lt;- b / a list(res1, res2)\n\n\n\n\ndivide_nums &lt;- function(a, b) {\n  res1 &lt;- a / b\n  res2 &lt;- b / a\n  list(res1, res2)\n}\ndivide_nums &lt;- function(a, b) {\n  res1 &lt;- a / b\n  res2 &lt;- b / a\n  list(res1, res2)\n}"
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#q5-draw-a-histogram-from-cars-type-the-full-call",
+    "href": "tutorials/tutorial_01.html#q5-draw-a-histogram-from-cars-type-the-full-call",
+    "title": "Tutorial 01",
+    "section": "Q5 — Draw a histogram from cars (type the full call)",
+    "text": "Q5 — Draw a histogram from cars (type the full call)\nUse exactly one of these numeric columns and nothing else:\ndist or speed\n\n\n\n\n\n\n\n\n\n\n\nhist(cars$dist)\nhist(cars$dist)"
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#q5-find-the-average",
+    "href": "tutorials/tutorial_01.html#q5-find-the-average",
+    "title": "Tutorial 01",
+    "section": "Q5 — Find the average",
+    "text": "Q5 — Find the average\nCompute the mean of the vector c(2, 4, 6, 8, 10).\nYour answer should be stored in a variable called avg_val.\n\n\n\n\n\n\n\n\n\nUse the mean() function: mean(c(…))\n\n\n\n\navg_val &lt;- mean(c(2, 4, 6, 8, 10))\navg_val &lt;- mean(c(2, 4, 6, 8, 10))"
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#q3-create-a-vector",
+    "href": "tutorials/tutorial_01.html#q3-create-a-vector",
+    "title": "Tutorial 01",
+    "section": "Q3 — Create a vector",
+    "text": "Q3 — Create a vector\nMake a vector called my_vec that contains the numbers 5, 10, 15, 20.\n\n\n\n\n\n\n\n\n\nUse the c() function to combine numbers: c(1, 2, 3)\n\n\n\n\nmy_vec &lt;- c(5, 10, 15, 20)\nmy_vec &lt;- c(5, 10, 15, 20)"
+  },
+  {
+    "objectID": "tutorials/tutorial_01.html#q4-find-the-average",
+    "href": "tutorials/tutorial_01.html#q4-find-the-average",
+    "title": "Tutorial 01",
+    "section": "Q4 — Find the average",
+    "text": "Q4 — Find the average\nCompute the mean of the vector c(2, 4, 6, 8, 10).\nYour answer should be stored in a variable called avg_val.\n\n\n\n\n\n\n\n\n\nUse the mean() function: mean(c(…))\n\n\n\n\navg_val &lt;- mean(c(2, 4, 6, 8, 10))\navg_val &lt;- mean(c(2, 4, 6, 8, 10))"
+>>>>>>> aarushi_changes
+  }
+]
