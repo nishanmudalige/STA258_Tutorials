@@ -25,30 +25,34 @@
   - Central limit theorem + LLN
 - Week 5 (Tutorial 4)
   - One sample confidence intervals on the mean
+    - sigma known
+    - sigma unknown
   - One sample confidence intervals on a proportion
   - One sample confidence intervals on a variance
-- Week 5 (Tutorial 5)
+- Week 6 (Tutorial 5)
   - Two sample confidence intervals on a difference of means
     - Variances assumed equal (pooled)
     - Variances assumed different (Welch)
   - Two sample confidence intervals on a difference of proportions
   - Two sample confidence intervals on a ratio of variances
-- Week 6 (Tutorial 5)
+- Week 7 (Tutorial 6)
   - One sample hypothesis tests on the mean
+    - sigma known
+    - sigma unknown
   - One sample hypothesis tests on a proportion
   - One sample hypothesis tests on a variance
-- Week 7 (Tutorial 6)
+- Week 8 (Tutorial 7)
   - Two sample hypothesis tests on a difference of means
     - Variances assumed equal (pooled)
     - Variances assumed different (Welch)
   - Two sample hypothesis tests on a difference of proportions
   - Two sample hypothesis tests on a ratio of variances
-- Week 8 (Tutorial 7)
+- Week 9 (Tutorial 8)
   - One way ANOVA
   - Simultaneous comparisons (Bonferroni, Fisher's LSD)
-- Week 9 (Tutorial 8)
-  - Introduction to Regression
 - Week 10 (Tutorial 9)
+  - Introduction to Regression
+- Week 11 (Tutorial 10)
   - Inference techniques on Regression
   - Residual analysis
 - Week 11 (Tutorial 10)
