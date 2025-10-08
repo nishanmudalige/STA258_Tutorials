@@ -55,5 +55,5 @@
 - Week 11 (Tutorial 10)
   - Inference techniques on Regression
   - Residual analysis
-- Week 11 (Tutorial 10)
+- Week 12 (Tutorial 11)
   - Categorical data
