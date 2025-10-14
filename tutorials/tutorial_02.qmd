@@ -253,11 +253,16 @@ Tukey fences are statistical boundaries, used to identify potential outliers in 
 
 ```{webr}
 #| setup: true
-#| message: false
-#| warning: false
+#| exercise: ex_mpg_hist_fences
+#| echo: false
+ensure_pkgs <- function(pkgs){
+  miss <- pkgs[!vapply(pkgs, requireNamespace, logical(1), quietly = TRUE)]
+  if (length(miss)) webr::install(miss)
+  invisible(lapply(pkgs, function(p) library(p, character.only = TRUE)))
+}
+ensure_pkgs(c("skimr","ggplot2"))
+df <- ggplot2::msleep
 
-options(repos = c(CRAN = "https://repo.r-wasm.org/"))
-webr::install(c("ggplot2", "gradethis"))
 ```
 
 ```{webr}
@@ -287,7 +292,6 @@ lo <- qs[1] - 1.5*diff(qs); hi <- qs[2] + 1.5*diff(qs)
 ggplot2::ggplot(mtcars, ggplot2::aes(mpg)) +
   ggplot2::geom_histogram(bins = 12) +
   ggplot2::geom_vline(xintercept = c(qs[1], qs[2], lo, hi))
-
 ```
 :::
 
@@ -295,12 +299,12 @@ ggplot2::ggplot(mtcars, ggplot2::aes(mpg)) +
 #| exercise: ex_mpg_hist_fences
 #| check: true
 gradethis::grade_this({
-  p <- .result
-  if (!inherits(p, "ggplot")) fail("Return a ggplot object.")
-  geoms <- vapply(p$layers, function(l) class(l$geom)[1], "")
-  if (!any(grepl("GeomHistogram", geoms))) fail("Add a histogram with geom_histogram().")
-  if (!any(grepl("GeomVline", geoms))) fail("Add the vertical lines with geom_vline().")
-  pass("✅ Looks good: histogram + fences detected.")
+  e <- .envir_result; qs <- get0("qs", e); lo <- get0("lo", e); hi <- get0("hi", e)
+  if (is.null(qs) || is.null(lo) || is.null(hi) || length(qs) < 2) fail("Define qs, lo, hi.")
+  r <- as.numeric(quantile(mtcars$mpg, c(.25,.75))); ok <- function(a,b) abs(as.numeric(a)-b) < 1e-8
+  if (ok(qs[1], r[1]) && ok(qs[2], r[2]) &&
+      ok(lo, r[1] - 1.5*diff(r)) && ok(hi, r[2] + 1.5*diff(r))) pass("✅ Correct.")
+  else fail("❌ Incorrect.")
 })
 ```
 
