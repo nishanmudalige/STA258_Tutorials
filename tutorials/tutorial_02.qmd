@@ -252,6 +252,15 @@ Tukey fences are statistical boundaries, used to identify potential outliers in 
 :::
 
 ```{webr}
+#| setup: true
+#| message: false
+#| warning: false
+
+options(repos = c(CRAN = "https://repo.r-wasm.org/"))
+webr::install(c("ggplot2", "gradethis"))
+```
+
+```{webr}
 #| exercise: ex_mpg_hist_fences
 #| exercise.lines: 14
 #| echo: false
@@ -283,13 +292,15 @@ ggplot2::ggplot(mtcars, ggplot2::aes(mpg)) +
 :::
 
 ```{webr}
-#| exercise: ex_peng_skim
+#| exercise: ex_mpg_hist_fences
 #| check: true
 gradethis::grade_this({
-  if (!requireNamespace("skimr", quietly=TRUE)) fail("Please install/load **skimr**.")
-  x <- .result
-  if (!is.data.frame(x)) fail("Return the skim output data frame (no variable needed).")
-  pass("✅ skim captured.")
+  p <- .result
+  if (!inherits(p, "ggplot")) fail("Return a ggplot object.")
+  geoms <- vapply(p$layers, function(l) class(l$geom)[1], "")
+  if (!any(grepl("GeomHistogram", geoms))) fail("Add a histogram with geom_histogram().")
+  if (!any(grepl("GeomVline", geoms))) fail("Add the vertical lines with geom_vline().")
+  pass("✅ Looks good: histogram + fences detected.")
 })
 ```
 
