@@ -435,19 +435,11 @@ lo &lt;- qs[1] - 1.5*diff(qs); hi &lt;- qs[2] + 1.5*diff(qs)
 ggplot2::ggplot(mtcars, ggplot2::aes(mpg)) +
   ggplot2::geom_histogram(bins = 12) +
   ggplot2::geom_vline(xintercept = c(qs[1], qs[2], lo, hi))</code>
-<<<<<<< HEAD
-<div class="sourceCode cell-code" id="interpolate-27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-27-1"><a href="#interpolate-27-1" aria-hidden="true" tabindex="-1"></a>qs <span class="ot">&lt;-</span> <span class="fu">quantile</span>(mtcars<span class="sc">$</span>mpg, <span class="fu">c</span>(.<span class="dv">25</span>,.<span class="dv">75</span>))</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-27-1"><a href="#interpolate-27-1" aria-hidden="true" tabindex="-1"></a>qs <span class="ot">&lt;-</span> <span class="fu">quantile</span>(mtcars<span class="sc">$</span>mpg, <span class="fu">c</span>(.<span class="dv">25</span>,.<span class="dv">75</span>))</span>
 <span id="interpolate-27-2"><a href="#interpolate-27-2" aria-hidden="true" tabindex="-1"></a>lo <span class="ot">&lt;-</span> qs[<span class="dv">1</span>] <span class="sc">-</span> <span class="fl">1.5</span><span class="sc">*</span><span class="fu">diff</span>(qs); hi <span class="ot">&lt;-</span> qs[<span class="dv">2</span>] <span class="sc">+</span> <span class="fl">1.5</span><span class="sc">*</span><span class="fu">diff</span>(qs)</span>
 <span id="interpolate-27-3"><a href="#interpolate-27-3" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(mtcars, ggplot2<span class="sc">::</span><span class="fu">aes</span>(mpg)) <span class="sc">+</span></span>
 <span id="interpolate-27-4"><a href="#interpolate-27-4" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
-<span id="interpolate-27-5"><a href="#interpolate-27-5" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(qs[<span class="dv">1</span>], qs[<span class="dv">2</span>], lo, hi))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-=======
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-26-1"><a href="#interpolate-26-1" aria-hidden="true" tabindex="-1"></a>qs <span class="ot">&lt;-</span> <span class="fu">quantile</span>(mtcars<span class="sc">$</span>mpg, <span class="fu">c</span>(.<span class="dv">25</span>,.<span class="dv">75</span>))</span>
-<span id="interpolate-26-2"><a href="#interpolate-26-2" aria-hidden="true" tabindex="-1"></a>lo <span class="ot">&lt;-</span> qs[<span class="dv">1</span>] <span class="sc">-</span> <span class="fl">1.5</span><span class="sc">*</span><span class="fu">diff</span>(qs); hi <span class="ot">&lt;-</span> qs[<span class="dv">2</span>] <span class="sc">+</span> <span class="fl">1.5</span><span class="sc">*</span><span class="fu">diff</span>(qs)</span>
-<span id="interpolate-26-3"><a href="#interpolate-26-3" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(mtcars, ggplot2<span class="sc">::</span><span class="fu">aes</span>(mpg)) <span class="sc">+</span></span>
-<span id="interpolate-26-4"><a href="#interpolate-26-4" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
-<span id="interpolate-26-5"><a href="#interpolate-26-5" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(qs[<span class="dv">1</span>], qs[<span class="dv">2</span>], lo, hi))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
->>>>>>> 126c63b (checking out tut2)
+<span id="interpolate-27-5"><a href="#interpolate-27-5" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(qs[<span class="dv">1</span>], qs[<span class="dv">2</span>], lo, hi))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -497,8 +489,7 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJl
     gdpPercap_sd = sd(gdpPercap),
     .groups = "drop"
   )</code>
-<<<<<<< HEAD
-<div class="sourceCode cell-code" id="interpolate-32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-32-1"><a href="#interpolate-32-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">|&gt;</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-32-1"><a href="#interpolate-32-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">|&gt;</span></span>
 <span id="interpolate-32-2"><a href="#interpolate-32-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span>) <span class="sc">|&gt;</span></span>
 <span id="interpolate-32-3"><a href="#interpolate-32-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(continent) <span class="sc">|&gt;</span></span>
 <span id="interpolate-32-4"><a href="#interpolate-32-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
@@ -506,18 +497,7 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJl
 <span id="interpolate-32-6"><a href="#interpolate-32-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">lifeExp_mean =</span> <span class="fu">mean</span>(lifeExp),</span>
 <span id="interpolate-32-7"><a href="#interpolate-32-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">gdpPercap_sd =</span> <span class="fu">sd</span>(gdpPercap),</span>
 <span id="interpolate-32-8"><a href="#interpolate-32-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
-<span id="interpolate-32-9"><a href="#interpolate-32-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-=======
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-31-1"><a href="#interpolate-31-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">|&gt;</span></span>
-<span id="interpolate-31-2"><a href="#interpolate-31-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span>) <span class="sc">|&gt;</span></span>
-<span id="interpolate-31-3"><a href="#interpolate-31-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(continent) <span class="sc">|&gt;</span></span>
-<span id="interpolate-31-4"><a href="#interpolate-31-4" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
-<span id="interpolate-31-5"><a href="#interpolate-31-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">n            =</span> dplyr<span class="sc">::</span><span class="fu">n</span>(),</span>
-<span id="interpolate-31-6"><a href="#interpolate-31-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">lifeExp_mean =</span> <span class="fu">mean</span>(lifeExp),</span>
-<span id="interpolate-31-7"><a href="#interpolate-31-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">gdpPercap_sd =</span> <span class="fu">sd</span>(gdpPercap),</span>
-<span id="interpolate-31-8"><a href="#interpolate-31-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
-<span id="interpolate-31-9"><a href="#interpolate-31-9" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
->>>>>>> 126c63b (checking out tut2)
+<span id="interpolate-32-9"><a href="#interpolate-32-9" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -575,8 +555,7 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJl
     )
   )
 )</code>
-<<<<<<< HEAD
-<div class="sourceCode cell-code" id="interpolate-37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-37-1"><a href="#interpolate-37-1" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-37-1"><a href="#interpolate-37-1" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(</span>
 <span id="interpolate-37-2"><a href="#interpolate-37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(gapminder, year <span class="sc">==</span> <span class="dv">2007</span>),</span>
 <span id="interpolate-37-3"><a href="#interpolate-37-3" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">aes</span>(gdpPercap)</span>
 <span id="interpolate-37-4"><a href="#interpolate-37-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
@@ -592,26 +571,7 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJl
 <span id="interpolate-37-14"><a href="#interpolate-37-14" aria-hidden="true" tabindex="-1"></a>      }</span>
 <span id="interpolate-37-15"><a href="#interpolate-37-15" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="interpolate-37-16"><a href="#interpolate-37-16" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="interpolate-37-17"><a href="#interpolate-37-17" aria-hidden="true" tabindex="-1"></a><span class="er">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-=======
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-36-1"><a href="#interpolate-36-1" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(</span>
-<span id="interpolate-36-2"><a href="#interpolate-36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">subset</span>(gapminder, year <span class="sc">==</span> <span class="dv">2007</span>),</span>
-<span id="interpolate-36-3"><a href="#interpolate-36-3" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">aes</span>(gdpPercap)</span>
-<span id="interpolate-36-4"><a href="#interpolate-36-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
-<span id="interpolate-36-5"><a href="#interpolate-36-5" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>) <span class="sc">+</span></span>
-<span id="interpolate-36-6"><a href="#interpolate-36-6" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_vline</span>(</span>
-<span id="interpolate-36-7"><a href="#interpolate-36-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">xintercept =</span> <span class="fu">c</span>(</span>
-<span id="interpolate-36-8"><a href="#interpolate-36-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as.numeric</span>(<span class="fu">quantile</span>(<span class="fu">subset</span>(gapminder, year<span class="sc">==</span><span class="dv">2007</span>)<span class="sc">$</span>gdpPercap, <span class="fl">0.25</span>)),</span>
-<span id="interpolate-36-9"><a href="#interpolate-36-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as.numeric</span>(<span class="fu">quantile</span>(<span class="fu">subset</span>(gapminder, year<span class="sc">==</span><span class="dv">2007</span>)<span class="sc">$</span>gdpPercap, <span class="fl">0.75</span>)),</span>
-<span id="interpolate-36-10"><a href="#interpolate-36-10" aria-hidden="true" tabindex="-1"></a>      {</span>
-<span id="interpolate-36-11"><a href="#interpolate-36-11" aria-hidden="true" tabindex="-1"></a>        qs <span class="ot">&lt;-</span> <span class="fu">quantile</span>(<span class="fu">subset</span>(gapminder, year<span class="sc">==</span><span class="dv">2007</span>)<span class="sc">$</span>gdpPercap, <span class="fu">c</span>(.<span class="dv">25</span>,.<span class="dv">75</span>))</span>
-<span id="interpolate-36-12"><a href="#interpolate-36-12" aria-hidden="true" tabindex="-1"></a>        lo <span class="ot">&lt;-</span> qs[<span class="dv">1</span>] <span class="sc">-</span> <span class="fl">1.5</span><span class="sc">*</span><span class="fu">diff</span>(qs); hi <span class="ot">&lt;-</span> qs[<span class="dv">2</span>] <span class="sc">+</span> <span class="fl">1.5</span><span class="sc">*</span><span class="fu">diff</span>(qs)</span>
-<span id="interpolate-36-13"><a href="#interpolate-36-13" aria-hidden="true" tabindex="-1"></a>        <span class="fu">c</span>(lo, hi)</span>
-<span id="interpolate-36-14"><a href="#interpolate-36-14" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="interpolate-36-15"><a href="#interpolate-36-15" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="interpolate-36-16"><a href="#interpolate-36-16" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="interpolate-36-17"><a href="#interpolate-36-17" aria-hidden="true" tabindex="-1"></a><span class="er">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
->>>>>>> 126c63b (checking out tut2)
+<span id="interpolate-37-17"><a href="#interpolate-37-17" aria-hidden="true" tabindex="-1"></a><span class="er">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -645,13 +605,8 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJl
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="ex_hist">
 <code id="interpolate-41" class="solution-code d-none">p_hist &lt;- ggplot2::ggplot(mtcars, ggplot2::aes(mpg)) +
   ggplot2::geom_histogram(bins = 12)</code>
-<<<<<<< HEAD
-<div class="sourceCode cell-code" id="interpolate-42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-42-1"><a href="#interpolate-42-1" aria-hidden="true" tabindex="-1"></a>p_hist <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(mtcars, ggplot2<span class="sc">::</span><span class="fu">aes</span>(mpg)) <span class="sc">+</span></span>
-<span id="interpolate-42-2"><a href="#interpolate-42-2" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-=======
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-41-1"><a href="#interpolate-41-1" aria-hidden="true" tabindex="-1"></a>p_hist <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(mtcars, ggplot2<span class="sc">::</span><span class="fu">aes</span>(mpg)) <span class="sc">+</span></span>
-<span id="interpolate-41-2"><a href="#interpolate-41-2" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">12</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
->>>>>>> 126c63b (checking out tut2)
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-42-1"><a href="#interpolate-42-1" aria-hidden="true" tabindex="-1"></a>p_hist <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(mtcars, ggplot2<span class="sc">::</span><span class="fu">aes</span>(mpg)) <span class="sc">+</span></span>
+<span id="interpolate-42-2"><a href="#interpolate-42-2" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">12</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -682,13 +637,8 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJl
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="ex_box">
 <code id="interpolate-46" class="solution-code d-none">p_box &lt;- ggplot2::ggplot(mtcars, ggplot2::aes(x = factor(cyl), y = mpg)) +
   ggplot2::geom_boxplot()</code>
-<<<<<<< HEAD
-<div class="sourceCode cell-code" id="interpolate-47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-47-1"><a href="#interpolate-47-1" aria-hidden="true" tabindex="-1"></a>p_box <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(mtcars, ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(cyl), <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
-<span id="interpolate-47-2"><a href="#interpolate-47-2" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-=======
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-46-1"><a href="#interpolate-46-1" aria-hidden="true" tabindex="-1"></a>p_box <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(mtcars, ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(cyl), <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
-<span id="interpolate-46-2"><a href="#interpolate-46-2" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
->>>>>>> 126c63b (checking out tut2)
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-47-1"><a href="#interpolate-47-1" aria-hidden="true" tabindex="-1"></a>p_box <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(mtcars, ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(cyl), <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="interpolate-47-2"><a href="#interpolate-47-2" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -724,15 +674,9 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJl
 <code id="interpolate-51" class="solution-code d-none">p_scatter &lt;- ggplot2::ggplot(mtcars, ggplot2::aes(wt, mpg)) +
   ggplot2::geom_point() +
   ggplot2::geom_smooth(se = FALSE)</code>
-<<<<<<< HEAD
-<div class="sourceCode cell-code" id="interpolate-52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-52-1"><a href="#interpolate-52-1" aria-hidden="true" tabindex="-1"></a>p_scatter <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(mtcars, ggplot2<span class="sc">::</span><span class="fu">aes</span>(wt, mpg)) <span class="sc">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-52-1"><a href="#interpolate-52-1" aria-hidden="true" tabindex="-1"></a>p_scatter <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(mtcars, ggplot2<span class="sc">::</span><span class="fu">aes</span>(wt, mpg)) <span class="sc">+</span></span>
 <span id="interpolate-52-2"><a href="#interpolate-52-2" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="interpolate-52-3"><a href="#interpolate-52-3" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-=======
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-51-1"><a href="#interpolate-51-1" aria-hidden="true" tabindex="-1"></a>p_scatter <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(mtcars, ggplot2<span class="sc">::</span><span class="fu">aes</span>(wt, mpg)) <span class="sc">+</span></span>
-<span id="interpolate-51-2"><a href="#interpolate-51-2" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="interpolate-51-3"><a href="#interpolate-51-3" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
->>>>>>> 126c63b (checking out tut2)
+<span id="interpolate-52-3"><a href="#interpolate-52-3" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -769,15 +713,9 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJl
 <code id="interpolate-57" class="solution-code d-none">p_scatter &lt;- ggplot2::ggplot(mtcars, ggplot2::aes(wt, mpg)) +
   ggplot2::geom_point() +
   ggplot2::geom_smooth(se = FALSE)</code>
-<<<<<<< HEAD
-<div class="sourceCode cell-code" id="interpolate-58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-58-1"><a href="#interpolate-58-1" aria-hidden="true" tabindex="-1"></a>p_scatter <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(mtcars, ggplot2<span class="sc">::</span><span class="fu">aes</span>(wt, mpg)) <span class="sc">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-58-1"><a href="#interpolate-58-1" aria-hidden="true" tabindex="-1"></a>p_scatter <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(mtcars, ggplot2<span class="sc">::</span><span class="fu">aes</span>(wt, mpg)) <span class="sc">+</span></span>
 <span id="interpolate-58-2"><a href="#interpolate-58-2" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="interpolate-58-3"><a href="#interpolate-58-3" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-=======
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-57-1"><a href="#interpolate-57-1" aria-hidden="true" tabindex="-1"></a>p_scatter <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(mtcars, ggplot2<span class="sc">::</span><span class="fu">aes</span>(wt, mpg)) <span class="sc">+</span></span>
-<span id="interpolate-57-2"><a href="#interpolate-57-2" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="interpolate-57-3"><a href="#interpolate-57-3" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
->>>>>>> 126c63b (checking out tut2)
+<span id="interpolate-58-3"><a href="#interpolate-58-3" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
