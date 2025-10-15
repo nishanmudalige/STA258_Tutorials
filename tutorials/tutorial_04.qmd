@@ -1,0 +1,83 @@
+---
+title: "Tutorial 03"
+format: live-html
+engine: knitr
+---
+
+{{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
+{{< include ../_extensions/r-wasm/live/_gradethis.qmd >}}
+
+```{webr}
+#| setup: true
+set.seed(258)
+
+
+# Continuous data: river lengths in miles
+rivers_data <- rivers
+n_riv <- length(rivers_data)
+mean_riv <- mean(rivers_data)
+sd_riv <- sd(rivers_data)
+
+
+# Proportion data: HairEyeColor table (success = Blue eyes)
+HE <- as.data.frame(HairEyeColor)
+n_eye <- sum(HE$Freq)
+success_blue <- sum(HE$Freq[HE$Eye == "Blue"])
+phat_blue <- success_blue / n_eye
+
+
+# Sample size planning: sleep hours (σ known)
+sleep_sigma_known <- 1.1
+```
+
+## Q1 — Z Critical Value
+
+The dataset rivers contains the lengths (in miles) of 141 major North American rivers.
+
+::: {.callout-note title="Info"}
+Remember: Critical values represent points on a distribution which play an important role in both confidence intervals and hypothesis testing.
+:::
+
+::: {.callout-note title="Info"}
+Here is the overview of the dataset:
+```{r, echo=TRUE} 
+head(rivers_data, 10)
+```
+:::
+
+```{webr}
+#| exercise: norm_left
+#| exercise.lines: 1
+#| echo: false
+#your answer here
+```
+
+::: {.hint exercise="norm_left"}
+Use pnorm.
+:::
+
+::: {.solution exercise="norm_left"}
+```{webr}
+#| exercise: norm_left
+#| solution: true
+pnorm(1.25)
+
+```
+:::
+
+```{webr}
+#| exercise: norm_left
+#| check: true
+gradethis::grade_this({
+  exp <- pnorm(1.25)
+  x <- .result
+  if (!is.numeric(x) || length(x) != 1L || !is.finite(x)) {
+    fail("Your last line must evaluate to a single numeric value.")
+  }
+  if (abs(x - exp) < 1e-6) pass("✅ Correct.")
+  else fail("Not quite — check the function/arguments and try again.")
+})
+
+
+```
+
