@@ -1,5 +1,5 @@
 ---
-title: "Tutorial 03"
+title: "Tutorial 04"
 format: live-html
 engine: knitr
 ---
@@ -92,7 +92,12 @@ mtcars_data <- datasets::mtcars
 head(mtcars_data[, c("mpg","cyl","hp")], 10)
 ```
 :::
-
+::: {.callout-note title="Info"}
+When σ is known,
+$$
+\mathrm{CI}_{1-\alpha}:\ \bar{x} \pm x_{1-\alpha/2}\,\frac{\sigma}{\sqrt{n}}.
+$$
+:::
 
 ```{webr}
 #| exercise: q2_z_ci_mpg
@@ -155,9 +160,6 @@ head(plantgrowth_data, 10)
 :::
 
 
-::: {.callout-note title="Info"}
-When σ is unknown, use the t distribution with degrees of freedom n − 1.
-:::
 
 
 ```{webr}
@@ -170,7 +172,7 @@ n <-
 ```
 
 ::: {.hint exercise="q3_tstar_95"}
-Find n from the weights vector and compute the two-sided 95% t critical value using df = n − 1.
+Find n from the weights vector and print the two-sided 95% t critical value using df = n − 1. Refer to the previous tutorial for a hint about the R command used to print t quantiles.
 :::
 
 ::: {.solution exercise="q3_tstar_95"}
@@ -210,10 +212,18 @@ Using PlantGrowth$weight (σ unknown), construct a 95% CI for the true mean plan
 Run this code chunk to get a glimpse of the dataset. Feel free to change the values to visualize more/less number of rows. 
 ```{webr}
 #| echo: true
-head(plantgrowth_data, 10)
+data("PlantGrowth")
+head(PlantGrowth, 10)
 ```
 :::
 
+::: {.callout-note title="Info"}
+When σ is unknown, replace with the sample SD s and use the t distribution:
+
+$$
+\mathrm{CI}_{1-\alpha}:\ \bar{x} \pm t_{1-\alpha/2,\;n-1}\,\frac{s}{\sqrt{n}},\ \text{df}=n-1.
+$$
+:::
 
 ```{webr}
 #| exercise: q4_t_ci_weight
@@ -229,7 +239,7 @@ critical_value <-
 ```
 
 ::: {.hint exercise="q4_t_ci_weight"}
-Form “center ± margin”: center is the sample mean; margin uses the t critical value with df = n−1, the sample SD, and √n. Output c(lower, upper).
+Form “center ± margin of error”: center is the sample mean; margin uses the t critical value with df = n−1, the sample SD, and √n. Output c(lower, upper).
 :::
 
 ::: {.solution exercise="q4_t_ci_weight"}
@@ -262,9 +272,9 @@ else fail("Check df and make sure it's two-sided 95%.")
 
 ```
 
-## Q3 — T Critical Value
+## Q5 — One sample CI for μ
 
-The dataset used here is river lengths, which gives the lengths (in miles) of 141 “major” rivers in North America, as compiled by the US Geological Survey. Assume river lengths (miles) have known population SD σ = 300. Build a 95% CI for the true mean river length using rivers whe $\alpha = 0.05$ 
+The dataset used here is river lengths, which gives the lengths (in miles) of 141 “major” rivers in North America, as compiled by the US Geological Survey. Assume river lengths (miles) have known population SD σ = 300. Build a 95% CI for the true mean river length using rivers whe $\alpha = 0.05$.
 
 ::: {.callout-note title="Preview"}
 Run this code chunk to get a glimpse of the dataset. Feel free to change the values to visualize more/less number of rows. 
@@ -283,115 +293,54 @@ When σ is unknown, use the t distribution with degrees of freedom n − 1.
 
 
 ```{webr}
-#| exercise: q3_tstar_95
+#| exercise: q5_zstar_95
 #| exercise.lines: 1
 #| echo: false
-data("PlantGrowth")
-n <- 
-
-```
-
-::: {.hint exercise="q3_tstar_95"}
-Find n from the weights vector and compute the two-sided 95% t critical value using df = n − 1.
-:::
-
-::: {.solution exercise="q3_tstar_95"}
-```{webr}
-#| exercise: q3_tstar_95
-#| solution: true
-data("PlantGrowth")
-n <- length(PlantGrowth$weight)
-qt(0.975, df = n - 1)
-
-```
-:::
-
-```{webr}
-#| exercise: q3_tstar_95
-#| check: true
-gradethis::grade_this({
-n <- length(datasets::PlantGrowth$weight)
-exp <- qt(0.975, df = n - 1)
-x <- .result
-if (!is.numeric(x) || length(x)!=1L || !is.finite(x)) fail("Print a single numeric value.")
-if (abs(x - exp) < 1e-6) pass("✅ Correct t* for 95%.")
-else fail("Check df and make sure it's two-sided 95%.")
-})
-
-
-```
-
-
-## Q5 — One-Sample Z CI for μ (σ Known)
-
-Assume river lengths (miles) have known population SD σ = 300. Build a 95% CI for the true mean river length using rivers.
-
-::: {.callout-note title="Info"}
-Use a Z-interval when the population σ is known:
-
-$$
-\bar{x} \pm z_{1-\alpha/2}\,\frac{\sigma}{\sqrt{n}}
-$$
-
-Pick $z^∗$ from the standard normal (e.g., 95% → 0.975).
-:::
-
-::: {.callout-note title="Preview"}
-```{webr}
-#| echo: true
 rivers_data <- data.frame(length_miles = as.numeric(datasets::rivers))
-head(rivers_data, 10)
-```
-:::
 
-```{webr}
-#| exercise: q5_z_ci_rivers
 
-# Print c(lower, upper) for the 95% Z-interval (no assignment)
 ```
 
-::: {.hint exercise="q5_z_ci_rivers"}
-Combine $\bar{x}$ σ, and a two-sided $z^∗$; output c(lower, upper).
+::: {.hint exercise="q5_zstar_95"}
+Find n from the length_miles vector and compute the two-sided 95% z critical value. Then combine it using the formula you have already used in previous questions.
 :::
 
-::: {.solution exercise="q5_z_ci_rivers"}
+::: {.solution exercise="q5_zstar_95"}
 ```{webr}
-#| exercise: q5_z_ci_rivers
+#| exercise: q5_zstar_95
 #| solution: true
+rivers_data <- data.frame(length_miles = as.numeric(datasets::rivers))
 x <- rivers_data$length_miles
 xbar <- mean(x); n <- length(x); z <- qnorm(0.975); sigma <- 300
 xbar + c(-1,1)zsigma/sqrt(n)
+
 ```
 :::
 
 ```{webr}
-#| exercise: q5_z_ci_rivers
+#| exercise: q5_zstar_95
 #| check: true
 gradethis::grade_this({
 x <- as.numeric(datasets::rivers)
 xbar <- mean(x); n <- length(x); z <- qnorm(0.975); sigma <- 300
 exp <- xbar + c(-1,1)*z*sigma/sqrt(n)
-r <- .result
-ok <- is.numeric(r) && length(r)==2L && all(is.finite(r))
+xres <- .result
+ok <- is.numeric(xres) && length(xres)==2L && all(is.finite(xres))
 if (!ok) fail("Print a numeric vector c(lower, upper).")
-if (max(abs(r - exp)) < 1e-6) pass("✅ Correct 95% Z-interval with σ known.")
+if (max(abs(xres - exp)) < 1e-6) pass("✅ Correct 95% Z-interval with σ known.")
 else fail("Recheck x̄, n, z*, and σ = 300.")
 })
+
+
+
 ```
 
-## Q6 — One-Sample t CI for μ (σ Unknown)
 
-Using airquality$Ozone (ignore missing), construct a 90% CI for the true mean ozone level (ppb). Assume normality is reasonable.
+## Q6 — One-Sample CI for μ 
 
-::: {.callout-note title="Info"}
-When σ is unknown, replace with the sample SD s and use the t distribution:
+Using airquality$Ozone (ignore missing), construct and print 90% CI for the true
+mean ozone level (ppb). Assume normality is reasonable.
 
-$$
-\mathrm{CI}_{1-\alpha}:\ \bar{x} \pm t_{1-\alpha/2,\;n-1}\,\frac{s}{\sqrt{n}},\ \text{df}=n-1.
-$$
-
-For two-sided 90%, use $t^* = t_{0.95, n - 1}$
-:::
 
 ::: {.callout-note title="Preview"}
 ```{webr}
@@ -404,8 +353,10 @@ head(oz, 10)
 
 ```{webr}
 #| exercise: q6_t_ci_ozone
-
-Print c(lower, upper) for the 90% t-interval (no assignment)
+w <- oz
+xbar <- mean(w); s <- ＿＿ ; n <- length(w)
+tstar <- ＿＿ 
+xbar + c(-1,1)*tstar * s/sqrt(n)
 ```
 
 ::: {.hint exercise="q6_t_ci_ozone"}
@@ -420,7 +371,7 @@ at 0.95 with df = n−1; use s for the SD.
 w <- oz
 xbar <- mean(w); s <- sd(w); n <- length(w)
 tstar <- qt(0.95, df = n - 1) # two-sided 90%
-xbar + c(-1,1)tstars/sqrt(n)
+xbar + c(-1,1)tstar * s/sqrt(n)
 ```
 :::
 
@@ -431,7 +382,7 @@ gradethis::grade_this({
 w <- na.omit(datasets::airquality$Ozone)
 xbar <- mean(w); s <- sd(w); n <- length(w)
 tstar <- qt(0.95, df = n - 1)
-exp <- xbar + c(-1,1)tstars/sqrt(n)
+exp <- xbar + c(-1,1)*tstar*s/sqrt(n)
 r <- .result
 ok <- is.numeric(r) && length(r)==2L && all(is.finite(r))
 if (!ok) fail("Print a numeric vector c(lower, upper).")
@@ -442,7 +393,8 @@ else fail("Check t* at 0.95 and your s, n.")
 
 ## Q7 — One-Sample CI for a Proportion (Wald)
 
-In mtcars, am is transmission (0 = automatic, 1 = manual). Build a 95% CI for the proportion of manual cars.
+In mtcars, am is transmission (0 = automatic, 1 = manual). Build and print
+c(lower, upper) for the 95% CI on the proportion of manual cars.
 
 ::: {.callout-note title="Info"}
 For a single proportion with sample $ \cap p n$ trials (Wald CI):
@@ -464,8 +416,10 @@ head(mt[, c("am","mpg","cyl")], 10)
 
 ```{webr}
 #| exercise: q7_p_ci_manual
-
-Print c(lower, upper) for the 95% CI on p (no assignment)
+y <- datasets::mtcars$am # 1 = manual
+phat <- ＿＿ ; n <- length(y); z <- __
+se <- sqrt( __ )
+phat + c(-1,1)*z*se
 ```
 
 ::: {.hint exercise="q7_p_ci_manual"}
@@ -479,7 +433,7 @@ Treat am as 0/1; compute $\hat{p}$, then use two-sided $z^∗$ and the proportio
 y <- datasets::mtcars$am # 1 = manual
 phat <- mean(y); n <- length(y); z <- qnorm(0.975)
 se <- sqrt(phat*(1-phat)/n)
-phat + c(-1,1)zse
+phat + c(-1,1)*z*se
 ```
 :::
 
@@ -490,7 +444,7 @@ gradethis::grade_this({
 y <- datasets::mtcars$am
 phat <- mean(y); n <- length(y); z <- qnorm(0.975)
 se <- sqrt(phat*(1-phat)/n)
-exp <- phat + c(-1,1)zse
+exp <- phat + c(-1,1)*z*se
 r <- .result
 ok <- is.numeric(r) && length(r)==2L && all(is.finite(r))
 if (!ok) fail("Print a numeric vector c(lower, upper).")
@@ -502,7 +456,7 @@ else fail("Recompute p̂, n, z*, and SE = sqrt(p̂(1−p̂)/n).")
 
 ## Q8 - One-Sample CI for a Variance (σ²)
 
-Using PlantGrowth$weight, construct a 95% CI for the population variance σ². (Assume normality.)
+Using PlantGrowth$weight, print c(lower, upper) for 95% CI on σ^2. (Assume normality.)
 
 ::: {.callout-note title="Info"}
 For normal data, the variance CI uses the chi-square distribution with df=n−1:
@@ -526,8 +480,11 @@ head(mt[, c("am","mpg","cyl")], 10)
 
 ```{webr}
 #| exercise: q8_var_ci_pg
-
-Print c(lower, upper) for 95% CI on σ^2 (no assignment)
+x <- datasets::PlantGrowth$weight
+n <- length(x); df <- ＿＿ ; s2 <- var(x)
+chi_lo <- ＿＿ (＿＿, df = df) 
+chi_hi <- ＿＿ (0.025, ＿＿)
+c(df * s2/chi_lo, df*s2/chi_hi)
 ```
 
 ::: {.hint exercise="q8_var_ci_pg"}
@@ -538,15 +495,15 @@ Use $s^2$, df = n−1, and chi-square quantiles at 0.975 and 0.025 (note the ord
 ```{webr}
 #| exercise: q8_var_ci_pg
 #| solution: true
-x <- pg
+x <- datasets::PlantGrowth$weight
 n <- length(x); df <- n - 1; s2 <- var(x)
-chi_lo <- qchisq(0.975, df = df)
-chi_hi <- qchisq(0.025, df = df)
-c(dfs2/chi_lo, dfs2/chi_hi)
+chi_lo <- qchisq(0.975, df = df) # upper-tail cutoff
+chi_hi <- qchisq(0.025, df = df) # lower-tail cutoff
+c(df * s2/chi_lo, df*s2/chi_hi)
 ```
 :::
 
-```{Webr}
+```{webr}
 #| exercise: q8_var_ci_pg
 #| check: true
 gradethis::grade_this({
@@ -554,7 +511,7 @@ x <- datasets::PlantGrowth$weight
 n <- length(x); df <- n - 1; s2 <- var(x)
 chi_lo <- qchisq(0.975, df = df)
 chi_hi <- qchisq(0.025, df = df)
-exp <- c(dfs2/chi_lo, dfs2/chi_hi)
+exp <- c(df*s2/chi_lo, df*s2/chi_hi)
 r <- .result
 ok <- is.numeric(r) && length(r)==2L && all(is.finite(r))
 if (!ok) fail("Print a numeric vector c(lower, upper).")
@@ -566,7 +523,7 @@ else fail("Check df=n−1 and chi-square cutoffs (0.025 & 0.975).")
 
 ## Q9 - Sample Size for Mean CI (σ known)
 
-We want a 95% Z-interval for the true mean mpg (from mtcars) with margin of error at most E = 1 mpg, assuming σ = 6 mpg known. Compute the minimum n required (round up).
+We want a 95% Z-interval for the true mean mpg (from mtcars) with margin of error at most E = 1 mpg, assuming σ = 6 mpg known. Compute and print the minimum n required (round up).
 
 ::: {.callout-note title="Info"}
 For known σ, the margin of error and required n are:
@@ -591,8 +548,9 @@ head(datasets::mtcars[, "mpg", drop = FALSE], 10)
 
 ```{webr}
 #| exercise: q9_n_for_margin
+z <- ＿＿ ; sigma <- 6; E <- ＿＿
+＿＿ ((z*sigma/E)^2)
 
-Print the required integer n (no assignment)
 ```
 
 ::: {.hint exercise="q9_n_for_margin"}
@@ -603,17 +561,18 @@ Solve for n using your chosen E, known σ, and two-sided $z^∗$.
 ```{webr}
 #| exercise: q9_n_for_margin
 #| solution: true
+
 z <- qnorm(0.975); sigma <- 6; E <- 1
 ceiling((z*sigma/E)^2)
 ```
 :::
 
-```{Webr}
+```{webr}
 #| exercise: q9_n_for_margin
 #| check: true
 gradethis::grade_this({
 z <- qnorm(0.975); sigma <- 6; E <- 1
-exp <- ceiling((zsigma/E)^2)
+exp <- ceiling((z*sigma/E)^2)
 r <- .result
 if (!is.numeric(r) || length(r)!=1L || !is.finite(r)) fail("Print a single numeric value.")
 if (abs(r - exp) < 1e-12) pass("✅ Correct required sample size.")
@@ -623,7 +582,7 @@ else fail("Rearrange E = zσ/√n and round up.")
 
 ## Q10 - One-Sample CI for a Proportion (99% Practice)
 
-Consider mtcars again. Build a 99% CI for the proportion of cars with mpg ≥ 25.
+Consider mtcars again. Build and print 99% CI for the proportion of cars with mpg ≥ 25.
 
 ::: {.callout-note title="Info"}
 Two-sided 1−α CI for a proportion:
@@ -648,8 +607,10 @@ head(mt[, c("mpg","hi_mpg")], 10)
 
 ```{webr}
 #| exercise: q10_p_ci_highmpg
-
-Print c(lower, upper) for the 99% CI on p (no assignment)
+y <- as.integer(datasets::mtcars$mpg >= 25)
+phat <- mean(y); ＿＿ ; z <- ＿＿
+se <- ＿＿
+＿＿ + c(-1,1) ＿＿
 ```
 
 ::: {.hint exercise="q10_p_ci_highmpg"}
@@ -663,18 +624,18 @@ Build the 0/1 indicator, get p^, pick $z^∗$ for 99%, and form the Wald interva
 y <- as.integer(datasets::mtcars$mpg >= 25)
 phat <- mean(y); n <- length(y); z <- qnorm(0.995)
 se <- sqrt(phat*(1-phat)/n)
-phat + c(-1,1)zse
+phat + c(-1,1)*z*se
 ```
 :::
 
-```{Webr}
+```{webr}
 #| exercise: q10_p_ci_highmpg
 #| check: true
 gradethis::grade_this({
 y <- as.integer(datasets::mtcars$mpg >= 25)
 phat <- mean(y); n <- length(y); z <- qnorm(0.995)
 se <- sqrt(phat*(1-phat)/n)
-exp <- phat + c(-1,1)zse
+exp <- phat + c(-1,1)*z*se
 r <- .result
 ok <- is.numeric(r) && length(r)==2L && all(is.finite(r))
 if (!ok) fail("Print a numeric vector c(lower, upper).")
