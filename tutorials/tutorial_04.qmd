@@ -1,5 +1,5 @@
 ---
-title: "Tutorial 04"
+title: "Tutorial 03"
 format: live-html
 engine: knitr
 ---
@@ -215,11 +215,6 @@ head(plantgrowth_data, 10)
 :::
 
 
-::: {.callout-note title="Info"}
-When σ is unknown, use the t distribution with degrees of freedom n − 1.
-:::
-
-
 ```{webr}
 #| exercise: q4_t_ci_weight
 #| exercise.lines: 1
@@ -266,3 +261,63 @@ else fail("Check df and make sure it's two-sided 95%.")
 
 
 ```
+
+## Q3 — T Critical Value
+
+The dataset used here is river lengths, which gives the lengths (in miles) of 141 “major” rivers in North America, as compiled by the US Geological Survey. Assume river lengths (miles) have known population SD σ = 300. Build a 95% CI for the true mean river length using rivers whe $\alpha = 0.05$ 
+
+::: {.callout-note title="Preview"}
+Run this code chunk to get a glimpse of the dataset. Feel free to change the values to visualize more/less number of rows. 
+```{webr}
+#| echo: true
+rivers_data <- data.frame(length_miles = as.numeric(datasets::rivers))
+head(rivers_data, 10)
+
+```
+:::
+
+
+::: {.callout-note title="Info"}
+When σ is unknown, use the t distribution with degrees of freedom n − 1.
+:::
+
+
+```{webr}
+#| exercise: q3_tstar_95
+#| exercise.lines: 1
+#| echo: false
+data("PlantGrowth")
+n <- 
+
+```
+
+::: {.hint exercise="q3_tstar_95"}
+Find n from the weights vector and compute the two-sided 95% t critical value using df = n − 1.
+:::
+
+::: {.solution exercise="q3_tstar_95"}
+```{webr}
+#| exercise: q3_tstar_95
+#| solution: true
+data("PlantGrowth")
+n <- length(PlantGrowth$weight)
+qt(0.975, df = n - 1)
+
+```
+:::
+
+```{webr}
+#| exercise: q3_tstar_95
+#| check: true
+gradethis::grade_this({
+n <- length(datasets::PlantGrowth$weight)
+exp <- qt(0.975, df = n - 1)
+x <- .result
+if (!is.numeric(x) || length(x)!=1L || !is.finite(x)) fail("Print a single numeric value.")
+if (abs(x - exp) < 1e-6) pass("✅ Correct t* for 95%.")
+else fail("Check df and make sure it's two-sided 95%.")
+})
+
+
+```
+
