@@ -206,9 +206,9 @@ You can reorder categories by a statistic (like the median) right inside aes() t
 #| exercise.lines: 8
 #| echo: false
 # Return a ggplot object that boxplots mpg by cyl, with cyl reordered by the median mpg.
-ggplot2:: ＿＿ ( ＿＿ ,
-  ggplot2::aes(x = reorder(factor( ＿＿ ), ＿＿ , FUN = median), y = ＿＿ )
-) + ggplot2::＿＿ () #Boxplot command in ggplot
+ggplot2:: ＿ ( ＿ ,
+  ggplot2::aes(x = reorder(factor( ＿ ), ＿ , FUN = median), y = ＿ )
+) + ggplot2:: ＿ () #Boxplot command in ggplot
 
 
 ```
@@ -271,11 +271,11 @@ df <- ggplot2::msleep
 #| echo: false
 # Return a ggplot object that draws the histogram.
 
-qs <- quantile(mtcars$mpg, c(.25,.75))
-lo <- qs[1] - 1.5*diff(qs); hi <- qs[2] + 1.5*diff(qs)
-ggplot2::ggplot(mtcars, ggplot2::aes(mpg)) +
+qs <- quantile(mtcars$mpg, ＿ )
+lo <- qs[1] - 1.5*diff(qs); hi <- ＿
+ggplot2::ggplot( ＿ , ggplot2::aes(mpg)) +
   ggplot2::geom_histogram(bins = 12) +
-  ggplot2::geom_vline(xintercept = c(qs[1], qs[2], lo, hi))
+  ggplot2::geom_vline(xintercept = c(qs[1], ＿ , lo, hi))
 
 ```
 
@@ -297,7 +297,7 @@ ggplot2::ggplot(mtcars, ggplot2::aes(mpg)) +
 
 ```{webr}
 #| exercise: ex_mpg_hist_fences
-#| check: true
+#| check: truef
 gradethis::grade_this({
   e <- .envir_result; qs <- get0("qs", e); lo <- get0("lo", e); hi <- get0("hi", e)
   if (is.null(qs) || is.null(lo) || is.null(hi) || length(qs) < 2) fail("Define qs, lo, hi.")
@@ -308,109 +308,114 @@ gradethis::grade_this({
 })
 ```
 
-## Q6 — Gapminder 2007: grouped summary
+## Q6 — ChickWeight (Day 21): grouped summary
 
 ::: {.callout-note title="Info"}
-Gapminder tracks life expectancy, income (GDP per capita), and population across countries and time. Filter to 2007 first, then group by continent, summarising rows and a couple of key stats. 
+**ChickWeight** tracks chick body weight over time under different diets.  
+Filter to **Time == 21** (final day), then group by **Diet**, summarising a row count and two key stats.
 :::
 
 ```{webr}
-#| exercise: ex_gapminder_2007_group
+#| exercise: ex_chickweight
 #| exercise.lines: 10
 #| echo: false
-# One pipeline: filter year==2007 then summarise by continent
+# One pipeline: filter Time==21 then summarise by Diet
 ```
 
-::: {.hint exercise="ex_gapminder_2007_group"}
-Filter for the focal year, group by continent, then summarise a count and two numeric summaries; drop the grouping in the output.
+::: {.hint exercise="ex_chickweight"}
+Filter for the focal day (Time == 21), group_by(Diet), then summarise() a count and two numeric summaries; drop grouping in the output.
 :::
 
-::: {.solution exercise="ex_gapminder_2007_group"}
+::: {.solution exercise="ex_chickweight"}
 ```{webr}
-#| exercise: ex_gapminder_2007_group
+#| exercise: ex_chickweight
 #| solution: true
-gapminder |>
-  dplyr::filter(year == 2007) |>
-  dplyr::group_by(continent) |>
+ChickWeight |>
+  dplyr::filter(Time == 21) |>
+  dplyr::group_by(Diet) |>
   dplyr::summarise(
-    n            = dplyr::n(),
-    lifeExp_mean = mean(lifeExp),
-    gdpPercap_sd = sd(gdpPercap),
+    n           = dplyr::n(),
+    weight_mean = mean(weight),
+    weight_sd   = sd(weight),
     .groups = "drop"
   )
 ```
 :::
 
 ```{webr}
-#| exercise: ex_gapminder_2007_group
+#| exercise: ex_chickweight
 #| check: true
 gradethis::grade_this({
-  if (!requireNamespace("dplyr", quietly=TRUE)) fail("Load **dplyr**.")
+  if (!requireNamespace("dplyr", quietly = TRUE)) fail("Load **dplyr**.")
   x <- .result
-  need <- c("continent","n","lifeExp_mean","gdpPercap_sd")
+  need <- c("Diet","n","weight_mean","weight_sd")
   if (!is.data.frame(x) || !all(need %in% names(x)))
-    fail("Return a data frame with continent, n, lifeExp_mean, gdpPercap_sd for year 2007.")
-  pass("✅ Grouped 2007 summary OK.")
+    fail("Return a data frame with Diet, n, weight_mean, weight_sd for Time == 21.")
+  pass("✅ Grouped Day 21 summary OK.")
 })
 ```
 
 ## Q7 — ggplot histogram with Tukey fences
 
 ::: {.callout-note title="Info"}
-A histogram shows distribution shape; overlaying Q1/Q3 and Tukey fences makes unusual values visible. Compute quartiles/fences from the 2007 subset and add vertical reference lines to the plot.
+A histogram shows distribution shape; overlaying Q1/Q3 and Tukey fences makes unusual values visible. Compute quartiles/fences from the Day 21 subset of ChickWeight and add vertical reference lines.
 :::
 
 ```{webr}
-#| exercise: ex_gapminder_2007_hist_iqr
+#| exercise: ex_chickweight_hist_iqr
 #| exercise.lines: 14
 #| echo: false
-# Return a ggplot object (no variable)
+# Return a ggplot object (no variable) for ChickWeight at Time == 21
 ```
 
-::: {.hint exercise="ex_gapminder_2007_hist_iqr"}
-Subset to the target year inside both the data and the quartile calculations; draw the histogram and then add multiple reference lines at key quantiles and bounds.
+::: {.hint exercise="ex_chickweight_hist_iqr"}
+Subset to the target day inside both the data and the quartile calculations; draw geom_histogram(bins = 20) and then add multiple geom_vline()s at Q1, Q3, and the Tukey bounds.
 :::
 
-::: {.solution exercise="ex_gapminder_2007_hist_iqr"}
+::: {.solution exercise="ex_chickweight_hist_iqr"}
 ```{webr}
-#| exercise: ex_gapminder_2007_hist_iqr
+#| exercise: ex_chickweight_hist_iqr
 #| solution: true
 ggplot2::ggplot(
-  subset(gapminder, year == 2007),
-  ggplot2::aes(gdpPercap)
+  subset(ChickWeight, Time == 21),
+  ggplot2::aes(weight)
 ) +
   ggplot2::geom_histogram(bins = 20) +
   ggplot2::geom_vline(
     xintercept = c(
-      as.numeric(quantile(subset(gapminder, year==2007)$gdpPercap, 0.25)),
-      as.numeric(quantile(subset(gapminder, year==2007)$gdpPercap, 0.75)),
+      as.numeric(quantile(subset(ChickWeight, Time == 21)$weight, 0.25)),
+      as.numeric(quantile(subset(ChickWeight, Time == 21)$weight, 0.75)),
       {
-        qs <- quantile(subset(gapminder, year==2007)$gdpPercap, c(.25,.75))
-        lo <- qs[1] - 1.5*diff(qs); hi <- qs[2] + 1.5*diff(qs)
+        qs <- quantile(subset(ChickWeight, Time == 21)$weight, c(.25, .75))
+        lo <- qs[1] - 1.5 * diff(qs)
+        hi <- qs[2] + 1.5 * diff(qs)
         c(lo, hi)
       }
     )
-  )
-)
+  ) 
 ```
 :::
 
 ```{webr}
-#| exercise: ex_gapminder_2007_hist_iqr
+#| exercise: ex_chickweight_hist_iqr
 #| check: true
 gradethis::grade_this({
   if (!requireNamespace("ggplot2", quietly=TRUE)) fail("Load **ggplot2**.")
   p <- .result
   has_hist  <- inherits(p, "ggplot") && any(vapply(p$layers, \(L) inherits(L$geom,"GeomBar"),   logical(1)))
   has_vline <- inherits(p, "ggplot") && any(vapply(p$layers, \(L) inherits(L$geom,"GeomVline"), logical(1)))
-  if (!(has_hist && has_vline)) fail("Use `geom_histogram(bins=20)` and add vlines for Q1/Q3 & Tukey bounds (year 2007).")
-  pass("✅ Histogram with IQR fences.")
+  if (!(has_hist && has_vline)) fail("Use `geom_histogram(bins=20)` and add vlines for Q1/Q3 & Tukey bounds (Time == 21).")
+  pass("✅ Histogram with IQR fences for ChickWeight Day 21.")
 })
 ```
 
 ## Q8 — Histogram of mpg (ggplot2)
 
 Make a histogram with ~12 bins. Store in p_hist.
+
+::: {.callout-note title="Info"}
+Use the built-in mtcars dataset. Plot the distribution of mpg as a histogram with about 12 bins and assign the plot to`p_hist. Return a ggplot object (no printing required).
+:::
 
 ```{webr}
 #| exercise: ex_hist
@@ -419,12 +424,14 @@ Make a histogram with ~12 bins. Store in p_hist.
 p_hist <- NULL
 ```
 
-::: {.hint exercise="ex_hist"}
-```{r}
-  p_hist <- ggplot2::ggplot(mtcars, ggplot2::aes(mpg)) +
-  ggplot2::geom_histogram(bins = 12)
 
-```
+::: {.hint exercise="ex_hist"}
+
+Create a ggplot using mtcars with mpg mapped on x.
+
+Add a histogram layer and choose ~12 bins.
+
+Save the plot object in p_hist.
 :::
 
 ::: {.solution exercise="ex_hist"}
@@ -433,6 +440,7 @@ p_hist <- NULL
 #| solution: true
 p_hist <- ggplot2::ggplot(mtcars, ggplot2::aes(mpg)) +
   ggplot2::geom_histogram(bins = 12)
+p_hist
 ``` 
 :::
 
@@ -453,7 +461,9 @@ gradethis::grade_this({
 
 ## Q9 — Boxplot of mpg by cyl (ggplot2)
 
-Store in p_box.
+::: {.callout-note title="Info"}
+Use the built-in **mtcars** dataset. Make a **boxplot** of **mpg** grouped by the number of cylinders (**cyl**, treated as a categorical variable). Store the plot object in **`p_box`**. Return a **ggplot** object.
+:::
 
 ```{webr}
 #| exercise: ex_box
@@ -463,8 +473,15 @@ p_box <- NULL
 ```
 
 ::: {.hint exercise="ex_box"}
-ggplot(mtcars, aes(factor(cyl), mpg)) + geom_boxplot()
-:::
+
+Build a ggplot from mtcars.
+
+Map cyl (as a factor) to the x-axis and mpg to y.
+
+Add a boxplot layer.
+
+Assign the result to p_box.
+::: 
 
 ::: {.solution exercise="ex_box"}
 ```{webr}
@@ -472,6 +489,7 @@ ggplot(mtcars, aes(factor(cyl), mpg)) + geom_boxplot()
 #| solution: true
 p_box <- ggplot2::ggplot(mtcars, ggplot2::aes(x = factor(cyl), y = mpg)) +
   ggplot2::geom_boxplot()
+p_box
 ```
 :::
 
@@ -493,6 +511,10 @@ gradethis::grade_this({
 
 Store in p_scatter.
 
+::: {.callout-note title="Info"}
+Use the built-in **mtcars** dataset. Make a scatter plot of **wt** (x) vs **mpg** (y) and add a smoother. Store the plot in **`p_scatter`**. Return a **ggplot** object.
+:::
+
 ```{webr}
 #| exercise: ex_scatter
 #| exercise.lines: 6
@@ -501,11 +523,14 @@ p_scatter <- NULL
 ```
 
 ::: {.hint exercise="ex_scatter"}
-```{r}
-p_scatter <- ggplot2::ggplot(mtcars, ggplot2::aes(wt, mpg)) +
-  ggplot2::geom_point() +
-  ggplot2::geom_smooth(se = FALSE)
-```
+
+Build a ggplot from mtcars mapping wt to x and mpg to y.
+
+Add points.
+
+Add a smooth curve (hide the ribbon/SE band).
+
+Assign the final plot to p_scatter.
 :::
 
 ::: {.solution exercise="ex_scatter"}
@@ -538,6 +563,19 @@ gradethis::grade_this({
 
 Compute mean Sepal.Length by Species (no tidyverse yet). Store as mean_sl_by_species with columns Species and mean_SL.
 
+::: {.callout-note title="Info"}
+Use the **iris.csv** file created in setup (same columns as the built-in `iris`).  
+Read it into an object (e.g., `df`), then compute the **mean Sepal.Length by Species** using **base R** only.  
+Store the result in **`mean_sl_by_species`** with columns **`Species`** and **`mean_SL`**.  
+Be robust to potential missing values.
+:::
+
+```{webr}
+#| setup: true
+# Prep a CSV the grader expects
+write.csv(iris, "iris.csv", row.names = FALSE)
+```
+
 ```{webr}
 #| setup: true
 #| exercise: ex_aggregate_iris
@@ -548,35 +586,67 @@ write.csv(iris, "iris.csv", row.names = FALSE)
 #| exercise: ex_aggregate_iris
 #| exercise.lines: 4
 #| echo: false
-mean_sl_by_species <- NULLL
+mean_sl_by_species <- NULL
 ```
 
 ::: {.hint exercise="ex_aggregate_iris"}
-aggregate(Sepal.Length ~ Species, data=df, FUN=mean)
+
+Read the CSV you wrote in setup: df <- read.csv("iris.csv").
+
+Use base aggregate() with a formula interface to group by Species.
+
+Make the mean robust to NAs (think na.rm = TRUE).
+
+Rename the second column to mean_SL.
 :::
 
 ::: {.solution exercise="ex_aggregate_iris"}
 ```{webr}
-#| exercise: ex_scatter
+#| exercise: ex_aggregate_iris
 #| solution: true
-p_scatter <- ggplot2::ggplot(mtcars, ggplot2::aes(wt, mpg)) +
-  ggplot2::geom_point() +
-  ggplot2::geom_smooth(se = FALSE)
+df <- read.csv("iris.csv")
+mean_sl_by_species <- aggregate(
+  Sepal.Length ~ Species,
+  data = df,
+  FUN = function(x) mean(x, na.rm = TRUE)
+)
+names(mean_sl_by_species)[2] <- "mean_SL"
 
 ```
 :::
 
 ```{webr}
-#| exercise: ex_scatter
+#| exercise: ex_aggregate_iris
 #| check: true
 gradethis::grade_this({
-  if (!requireNamespace("ggplot2", quietly = TRUE)) fail("Load **ggplot2**.")
+  # Look in the exercise result environment (important!)
   e <- get0(".envir_result", ifnotfound = parent.frame())
-  if (!exists("p_scatter", envir = e)) fail("Create `p_scatter`.")
-  p <- get("p_scatter", envir = e)
-  pts <- any(vapply(p$layers, function(L) inherits(L$geom, "GeomPoint"), logical(1)))
-  sm  <- any(vapply(p$layers, function(L) inherits(L$geom, "GeomSmooth"), logical(1)))
-  if (!(pts && sm)) fail("Include both points and a smoother.")
-  pass("✅ Scatter + smooth OK.")
+  if (!exists("mean_sl_by_species", envir = e)) fail("Create `mean_sl_by_species`.")
+  x <- get("mean_sl_by_species", envir = e)
+
+  if (!is.data.frame(x)) fail("`mean_sl_by_species` should be a data frame.")
+  if (!identical(names(x), c("Species", "mean_SL")))
+    fail("Rename columns to `Species` and `mean_SL`.")
+
+  # Recompute expected result from iris.csv (NA-robust)
+  df <- tryCatch(read.csv("iris.csv"), error = \(err) NULL)
+  if (is.null(df)) fail("Couldn't read `iris.csv`.")
+  expected <- aggregate(
+    Sepal.Length ~ Species,
+    data = df,
+    FUN = function(v) mean(v, na.rm = TRUE)
+  )
+  names(expected)[2] <- "mean_SL"
+
+  # Compare after sorting by Species to avoid order issues
+  xs <- x[order(as.character(x$Species)), , drop = FALSE]
+  es <- expected[order(as.character(expected$Species)), , drop = FALSE]
+
+  same_species <- identical(as.character(xs$Species), as.character(es$Species))
+  same_vals <- isTRUE(all.equal(xs$mean_SL, es$mean_SL, tolerance = 1e-8))
+  if (!(same_species && same_vals))
+    fail("Values don’t match the NA-robust group means from `iris.csv`.")
+
+  pass("✅ Means by species computed (base R, NA-robust).")
 })
 ```
