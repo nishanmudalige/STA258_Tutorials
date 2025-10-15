@@ -25,7 +25,7 @@ sidebar:
       href: "#q9"
 ---
 
-{{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
+{{< include ../_extensions/r-wasm/live/_knitr.qmd >}} 
 {{< include ../_extensions/r-wasm/live/_gradethis.qmd >}}
 
 ```{webr}
@@ -47,7 +47,7 @@ data("mtcars")      # columns incl. mpg, wt, cyl, etc.
 The five-number summary (Min, Q1, Median, Q3, Max) + IQR quickly reveals center and spread. Return a five number summary for the dataset airquality's Ozone column. Further, return the IQR.
 
 ::: {.callout-note title="Info"}
-The five-number summary (Min, Q1, Median, Q3, Max) quickly shows center and spread. The IQR = Q3 − Q1 is robust to outliers and underlies boxplot fences (Q1 − 1.5·IQR, Q3 + 1.5·IQR). You’ll use base R functions that compute these directly for a numeric 
+The five-number summary (Min, Q1, Median, Q3, Max) quickly shows center and spread. The IQR = Q3 − Q1 is robust to outliers and underlies boxplot fences (Q1 − 1.5·IQR, Q3 + 1.5·IQR). You’ll use base R functions that compute these directly for a numeric
 :::
 
 ```{webr}
@@ -59,7 +59,7 @@ The five-number summary (Min, Q1, Median, Q3, Max) quickly shows center and spre
 # On the next line, return the IQR for that same vector.
 
 ```
-  
+
 ::: {.hint exercise="ex_ozone_fivenum"}
 Call the base function that prints the five key stats, then on the next line return the robust spread of that same column; remember missing values.
 :::
@@ -98,7 +98,7 @@ gradethis::grade_this({
 Compute Mean, Variance and Standard Deviation of airquality dataset's Temp column.
 
 ::: {.callout-note title="Info"}
-Mean, variance, and standard deviation summarize center and spread. Variance and SD are in squared and original units respectively. Real-world data often has NAs; make sure your summary ignores them appropriately. 
+Mean, variance, and standard deviation summarize center and spread. Variance and SD are in squared and original units respectively. Real-world data often has NAs; make sure your summary ignores them appropriately.
 :::
 
 ```{webr}
@@ -198,7 +198,7 @@ gradethis::grade_this({
 Now, we are moving on to the mtcars dataset that gives details about various cars' specifications. Return a ggplot object that boxplots mpg (miles per gallon) by cyl (number of engine cylinders), with cyl reordered by the median mpg. Fill in the missing blanks with the correct answer.
 
 ::: {.callout-note title="Info"}
-You can reorder categories by a statistic (like the median) right inside aes() to make comparisons meaningful. In ggplot2, this is commonly done with reorder() (or forcats helpers). The layer for boxplots is geom_boxplot(). 
+You can reorder categories by a statistic (like the median) right inside aes() to make comparisons meaningful. In ggplot2, this is commonly done with reorder() (or forcats helpers). The layer for boxplots is geom_boxplot().
 :::
 
 ```{webr}
@@ -242,13 +242,12 @@ gradethis::grade_this({
 
 ```
 
+## Q5 — Histogram with Tukey fences
 
-## Q5 — Histogram with Tukey fences 
-
-Show a histogram of mtcars$mpg and add vertical lines at Q1, Q3, and the Tukey fences Q1−1.5·IQR, Q3+1.5·IQR
+Show a histogram of mtcars\$mpg and add vertical lines at Q1, Q3, and the Tukey fences Q1−1.5·IQR, Q3+1.5·IQR
 
 ::: {.callout-note title="Info"}
-Tukey fences are statistical boundaries, used to identify potential outliers in a dataset. Data points falling outside these fences are considered outliers. 
+Tukey fences are statistical boundaries, used to identify potential outliers in a dataset. Data points falling outside these fences are considered outliers.
 :::
 
 ```{webr}
@@ -411,7 +410,7 @@ gradethis::grade_this({
 
 ## Q8 — Histogram of mpg (ggplot2)
 
-Make a histogram with ~12 bins. Store in p_hist.
+Make a histogram with \~12 bins. Store in p_hist.
 
 ::: {.callout-note title="Info"}
 Use the built-in mtcars dataset. Plot the distribution of mpg as a histogram with about 12 bins and assign the plot to`p_hist. Return a ggplot object (no printing required).
@@ -590,7 +589,6 @@ mean_sl_by_species <- NULL
 ```
 
 ::: {.hint exercise="ex_aggregate_iris"}
-
 Read the CSV you wrote in setup: df <- read.csv("iris.csv").
 
 Use base aggregate() with a formula interface to group by Species.
