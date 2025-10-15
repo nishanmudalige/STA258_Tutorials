@@ -7,77 +7,262 @@ engine: knitr
 {{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
 {{< include ../_extensions/r-wasm/live/_gradethis.qmd >}}
 
-```{webr}
-#| setup: true
-set.seed(258)
 
+::: {.callout-note title="Info — Critical Values for One-Sample CIs"}
 
-# Continuous data: river lengths in miles
-rivers_data <- rivers
-n_riv <- length(rivers_data)
-mean_riv <- mean(rivers_data)
-sd_riv <- sd(rivers_data)
+Here is some info to remember for this entire tutorial:
 
+Let \(X_1,\dots,X_n\) be a sample with mean \(\bar X\).
 
-# Proportion data: HairEyeColor table (success = Blue eyes)
-HE <- as.data.frame(HairEyeColor)
-n_eye <- sum(HE$Freq)
-success_blue <- sum(HE$Freq[HE$Eye == "Blue"])
-phat_blue <- success_blue / n_eye
+**Two-sided confidence level \(1-\alpha\):**
+- **σ known (Z-interval):**  
+  \[
+  \bar X \ \pm\ z^*\,\frac{\sigma}{\sqrt{n}},\quad
+  z^*=\Phi^{-1}\!\bigl(1-\tfrac{\alpha}{2}\bigr).
+  \]
+- **σ unknown (t-interval):**  
+  \[
+  \bar X \ \pm\ t^*\,\frac{s}{\sqrt{n}},\quad
+  t^*=t^{-1}_{\text{df}=n-1}\!\bigl(1-\tfrac{\alpha}{2}\bigr).
+  \]
 
+**One-sided confidence level \(1-\alpha\):**
+- Use \(z^*=\Phi^{-1}(1-\alpha)\) or \(t^*=t^{-1}_{\text{df}=n-1}(1-\alpha)\).
 
-# Sample size planning: sleep hours (σ known)
-sleep_sigma_known <- 1.1
-```
+**Notes:**  
+- Use **Z** when population **σ is known** (or \(n\) huge and σ estimated with strong assumptions).  
+- Use **t** when **σ is unknown** → replace σ with sample \(s\) and df \(=n-1\).
+:::
 
 ## Q1 — Z Critical Value
 
-The dataset rivers contains the lengths (in miles) of 141 major North American rivers.
+Print the 95% 2-sided $Z^*$ critical value when $\alpha = 0.05$. 
 
 ::: {.callout-note title="Info"}
-Remember: Critical values represent points on a distribution which play an important role in both confidence intervals and hypothesis testing.
+Remember: Critical values represent points on a distribution which play an important role in both confidence intervals and hypothesis testing. They are the cutoffs on a reference distribution that set the width of confidence intervals.
 :::
 
-::: {.callout-note title="Info"}
-Here is the overview of the dataset:
-```{r, echo=TRUE} 
-head(rivers_data, 10)
-```
-:::
 
 ```{webr}
-#| exercise: norm_left
+#| exercise: q1_zstar_95
 #| exercise.lines: 1
 #| echo: false
-#your answer here
+
 ```
 
-::: {.hint exercise="norm_left"}
-Use pnorm.
+::: {.hint exercise="q1_zstar_95"}
+Use qnorm.
 :::
 
-::: {.solution exercise="norm_left"}
+::: {.solution exercise="q1_zstar_95"}
 ```{webr}
-#| exercise: norm_left
+#| exercise: q1_zstar_95
 #| solution: true
-pnorm(1.25)
+qnorm(0.975)
 
 ```
 :::
 
 ```{webr}
-#| exercise: norm_left
+#| exercise: q1_zstar_95
 #| check: true
 gradethis::grade_this({
-  exp <- pnorm(1.25)
-  x <- .result
-  if (!is.numeric(x) || length(x) != 1L || !is.finite(x)) {
-    fail("Your last line must evaluate to a single numeric value.")
-  }
-  if (abs(x - exp) < 1e-6) pass("✅ Correct.")
-  else fail("Not quite — check the function/arguments and try again.")
+exp <- qnorm(0.975)
+x <- .result
+if (!is.numeric(x) || length(x)!=1L || !is.finite(x)) fail("Print a single numeric value.")
+if (abs(x - exp) < 1e-6) pass("✅ Correct Z* for 95%.")
+else fail("Not quite — check the percentile for a two-sided 95% interval.")
+})
+
+```
+
+## Q2 — One Sample Z Confidence Interval 
+
+mtcars is a dataset that contains information about 32 automobiles (1973–74 models). This dataset is imported and used for this question. Use mtcars's mpg column as a sample. Assume the population SD is known: σ = 6 mpg. Construct a 95% CI for the true mean mpg when $\alpha = 0.05$. Give output in the form of a vector  c(lower, upper).
+
+::: {.callout-note title="Info"}
+When σ is known, the margin of error uses the standard normal critical value.
+:::
+
+::: {.callout-note title="Preview"}
+Run this code chunk to get a glimpse of the dataset. Feel free to change the values to visualize more/less number of rows. 
+```{webr}
+#| echo: true
+mtcars_data <- datasets::mtcars
+head(mtcars_data[, c("mpg","cyl","hp")], 10)
+```
+:::
+
+
+```{webr}
+#| exercise: q2_z_ci_mpg
+#| exercise.lines: 1
+#| echo: false
+data("mtcars")
+xbar <- 
+n <- 
+z <- 
+
+```
+
+::: {.hint exercise="q2_z_ci_mpg"}
+Compute the sample center and size from mpg, pair with the known σ and your Z critical value from Q1. Output c(lower, upper).
+:::
+
+::: {.solution exercise="q2_z_ci_mpg"}
+```{webr}
+#| exercise: q2_z_ci_mpg
+#| solution: true
+data("mtcars")
+xbar <- mean(mtcars$mpg)
+n <- length(mtcars$mpg)
+z <- qnorm(0.975)
+xbar + c(-1,1)*z*6/sqrt(n)
+
+```
+:::
+
+```{webr}
+#| exercise: q2_z_ci_mpg
+#| check: true
+gradethis::grade_this({
+xbar <- mean(datasets::mtcars$mpg)
+n <- length(datasets::mtcars$mpg)
+z <- qnorm(0.975)
+exp <- xbar + c(-1,1)*z*6/sqrt(n)
+x <- .result
+ok <- is.numeric(x) && length(x)==2L && all(is.finite(x))
+if (!ok) fail("Print a numeric vector c(lower, upper).")
+if (max(abs(x - exp)) < 1e-6) pass("✅ Correct 95% Z-interval.")
+else fail("Recheck center, sample size, and margin with known σ.")
 })
 
 
 ```
 
+
+## Q3 — T Critical Value
+
+PlantGrowth is a dataset that contains results from an experiment to compare yields (as measured by dried weight of plants) obtained under a control and two different treatment conditions. Print the 95% two-sided t* using PlantGrowth's weight column when $\alpha = 0.05$. 
+
+::: {.callout-note title="Preview"}
+Run this code chunk to get a glimpse of the dataset. Feel free to change the values to visualize more/less number of rows. 
+```{webr}
+#| echo: true
+plantgrowth_data <- datasets::PlantGrowth
+head(plantgrowth_data, 10)
+```
+:::
+
+
+::: {.callout-note title="Info"}
+When σ is unknown, use the t distribution with degrees of freedom n − 1.
+:::
+
+
+```{webr}
+#| exercise: q3_tstar_95
+#| exercise.lines: 1
+#| echo: false
+data("PlantGrowth")
+n <- 
+
+```
+
+::: {.hint exercise="q3_tstar_95"}
+Find n from the weights vector and compute the two-sided 95% t critical value using df = n − 1.
+:::
+
+::: {.solution exercise="q3_tstar_95"}
+```{webr}
+#| exercise: q3_tstar_95
+#| solution: true
+data("PlantGrowth")
+n <- length(PlantGrowth$weight)
+qt(0.975, df = n - 1)
+
+```
+:::
+
+```{webr}
+#| exercise: q3_tstar_95
+#| check: true
+gradethis::grade_this({
+n <- length(datasets::PlantGrowth$weight)
+exp <- qt(0.975, df = n - 1)
+x <- .result
+if (!is.numeric(x) || length(x)!=1L || !is.finite(x)) fail("Print a single numeric value.")
+if (abs(x - exp) < 1e-6) pass("✅ Correct t* for 95%.")
+else fail("Check df and make sure it's two-sided 95%.")
+})
+
+
+```
+
+
+
+
+## Q4 — One-Sample Confidence Interval for μ (σ Unknown)
+
+Using PlantGrowth$weight (σ unknown), construct a 95% CI for the true mean plant weight. Give your output as a vector of the form c(lower, upper).
+
+::: {.callout-note title="Preview"}
+Run this code chunk to get a glimpse of the dataset. Feel free to change the values to visualize more/less number of rows. 
+```{webr}
+#| echo: true
+head(plantgrowth_data, 10)
+```
+:::
+
+
+::: {.callout-note title="Info"}
+When σ is unknown, use the t distribution with degrees of freedom n − 1.
+:::
+
+
+```{webr}
+#| exercise: q4_t_ci_weight
+#| exercise.lines: 1
+#| echo: false
+data("PlantGrowth")
+xbar <- 
+sd <- 
+n <- 
+critical_value <- 
+
+
+```
+
+::: {.hint exercise="q4_t_ci_weight"}
+Form “center ± margin”: center is the sample mean; margin uses the t critical value with df = n−1, the sample SD, and √n. Output c(lower, upper).
+:::
+
+::: {.solution exercise="q4_t_ci_weight"}
+```{webr}
+#| exercise: q4_t_ci_weight
+#| solution: true
+data("PlantGrowth")
+xbar <- mean(PlantGrowth$weight); 
+sd <- sd(PlantGrowth$weight); 
+n <- length(PlantGrowth$weight)
+critical_value <- qt(0.975, df = n - 1)
+xbar + c(-1,1)*critical_value*sd/sqrt(n)
+
+
+```
+:::
+
+```{webr}
+#| exercise: q4_t_ci_weight
+#| check: true
+gradethis::grade_this({
+n <- length(datasets::PlantGrowth$weight)
+exp <- qt(0.975, df = n - 1)
+x <- .result
+if (!is.numeric(x) || length(x)!=1L || !is.finite(x)) fail("Print a single numeric value.")
+if (abs(x - exp) < 1e-6) pass("✅ Correct t* for 95%.")
+else fail("Check df and make sure it's two-sided 95%.")
+})
+
+
+```
