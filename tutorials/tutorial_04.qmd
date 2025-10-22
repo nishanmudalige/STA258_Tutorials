@@ -78,7 +78,7 @@ else fail("Not quite — check the percentile for a two-sided 95% interval.")
 
 ## Q2 — One Sample Z Confidence Interval 
 
-mtcars is a dataset that contains information about 32 automobiles (1973–74 models). This dataset is imported and used for this question. Use mtcars's mpg column as a sample. Assume the population SD is known: σ = 6 mpg. Construct a 95% CI for the true mean mpg when $\alpha = 0.05$. Give output in the form of a vector  c(lower, upper).
+The penguins dataset contains measurements for 3 penguin species from the Palmer Archipelago. Use body_mass_g (grams). Assume the population SD is known: σ = 450 g. Construct a 90% Z-interval for the true mean body mass. Print c(lower, upper).
 
 ::: {.callout-note title="Info"}
 When σ is known, the margin of error uses the standard normal critical value.
@@ -88,8 +88,12 @@ When σ is known, the margin of error uses the standard normal critical value.
 Run this code chunk to get a glimpse of the dataset. Feel free to change the values to visualize more/less number of rows. 
 ```{webr}
 #| echo: true
-mtcars_data <- datasets::mtcars
-head(mtcars_data[, c("mpg","cyl","hp")], 10)
+if (!requireNamespace("palmerpenguins", quietly = TRUE)) webr::install("palmerpenguins")
+library(palmerpenguins)
+df <- na.omit(palmerpenguins::penguins[, c("species","island","sex","body_mass_g")])
+head(df, 10)
+summary(df$body_mass_g)
+
 ```
 :::
 ::: {.callout-note title="Info"}
@@ -100,46 +104,58 @@ $$
 :::
 
 ```{webr}
-#| exercise: q2_z_ci_mpg
-#| exercise.lines: 1
+#| exercise: q2_z_ci_penguins
+#| exercise.lines: 4
 #| echo: false
-data("mtcars")
-xbar <- 
-n <- 
-z <- 
+if (!requireNamespace("palmerpenguins", quietly = TRUE)) webr::install("palmerpenguins")
+library(palmerpenguins)
+x <- na.omit(palmerpenguins::penguins$body_mass_g)
+xbar <-
+n <-
+z <-
+sigma <- 450
+
+
+
 
 ```
 
-::: {.hint exercise="q2_z_ci_mpg"}
-Compute the sample center and size from mpg, pair with the known σ and your Z critical value from Q1. Output c(lower, upper).
+::: {.hint exercise="q2_z_ci_penguins"}
+Compute the sample mean, pair with the known σ and your Z critical value. Output c(lower, upper).
 :::
 
-::: {.solution exercise="q2_z_ci_mpg"}
+::: {.solution exercise="q2_z_ci_penguins"}
 ```{webr}
-#| exercise: q2_z_ci_mpg
+#| exercise: q2_z_ci_penguins
 #| solution: true
-data("mtcars")
-xbar <- mean(mtcars$mpg)
-n <- length(mtcars$mpg)
+if (!requireNamespace("palmerpenguins", quietly = TRUE)) webr::install("palmerpenguins")
+library(palmerpenguins)
+x <- na.omit(palmerpenguins::penguins$body_mass_g)
+xbar <- mean(x)
+n <- length(x)
 z <- qnorm(0.975)
-xbar + c(-1,1)*z*6/sqrt(n)
+sigma <- 450
+xbar + c(-1,1) * z * sigma / sqrt(n)
+
 
 ```
 :::
 
 ```{webr}
-#| exercise: q2_z_ci_mpg
+#| exercise: q2_z_ci_penguins
 #| check: true
 gradethis::grade_this({
-xbar <- mean(datasets::mtcars$mpg)
-n <- length(datasets::mtcars$mpg)
-z <- qnorm(0.975)
-exp <- xbar + c(-1,1)*z*6/sqrt(n)
-x <- .result
-ok <- is.numeric(x) && length(x)==2L && all(is.finite(x))
+if (!requireNamespace("palmerpenguins", quietly = TRUE)) webr::install("palmerpenguins")
+library(palmerpenguins)
+x <- na.omit(palmerpenguins::penguins$body_mass_g)
+xbar <- mean(x); n <- length(x); z <- qnorm(0.95); sigma <- 450
+exp <- xbar + c(-1,1) * z * sigma / sqrt(n)
+
+xres <- .result
+ok <- is.numeric(xres) && length(xres)==2L && all(is.finite(xres))
 if (!ok) fail("Print a numeric vector c(lower, upper).")
-if (max(abs(x - exp)) < 1e-6) pass("✅ Correct 95% Z-interval.")
-else fail("Recheck center, sample size, and margin with known σ.")
+if (max(abs(xres - exp)) < 1e-6) pass("✅ Correct 90% Z-interval for penguin body mass.")
+else fail("Recheck mean, n, z*, and the known σ.")
 })
 
 
@@ -582,7 +598,7 @@ else fail("Rearrange E = zσ/√n and round up.")
 
 ## Q10 - One-Sample CI for a Proportion (99% Practice)
 
-Consider mtcars again. Build and print 99% CI for the proportion of cars with mpg ≥ 25.
+HairEyeColor is a built-in contingency table of Hair × Eye × Gender of Statistics students with counts. Treat each person as a trial and estimate the true proportion with Brown eyes. Construct a 95% Z-interval for the population proportion p. Print c(lower, upper).
 
 ::: {.callout-note title="Info"}
 Two-sided 1−α CI for a proportion:
@@ -598,48 +614,57 @@ For 99%, use $z^* = \phi^{-1}$(0.995).
 ::: {.callout-note title="Preview"}
 ```{webr}
 #| echo: true
-mt <- datasets::mtcars
-mt$hi_mpg <- as.integer(mt$mpg >= 25)
-head(mt[, c("mpg","hi_mpg")], 10)
+df <- as.data.frame(datasets::HairEyeColor)
+eye_counts <- aggregate(Freq ~ Eye, data = df, sum)
+eye_counts
+sum(eye_counts$Freq)  # total n
+
 ```
 :::
 
 
 ```{webr}
-#| exercise: q10_p_ci_highmpg
-y <- as.integer(datasets::mtcars$mpg >= 25)
-phat <- mean(y); ＿＿ ; z <- ＿＿
-se <- ＿＿
-＿＿ + c(-1,1) ＿＿
+#| exercise: q10_z_ci_browneyes
+#| exercise.lines: 3
+#| echo: false
+df <- as.data.frame(datasets::HairEyeColor)
+n <- sum(df$＿＿)
+phat <- sum(df$Freq[df$＿＿ == "Brown"]) / ＿＿
+z <-
+
 ```
 
-::: {.hint exercise="q10_p_ci_highmpg"}
-Build the 0/1 indicator, get p^, pick $z^∗$ for 99%, and form the Wald interval.
+::: {.hint exercise="q10_z_ci_browneyes"}
+Use z <- qnorm(0.975) for 95%.
 :::
 
-::: {.solution exercise="q10_p_ci_highmpg"}
+::: {.solution exercise="q10_z_ci_browneyes"}
 ```{webr}
-#| exercise: q10_p_ci_highmpg
+#| exercise: q10_z_ci_browneyes
 #| solution: true
-y <- as.integer(datasets::mtcars$mpg >= 25)
-phat <- mean(y); n <- length(y); z <- qnorm(0.995)
-se <- sqrt(phat*(1-phat)/n)
-phat + c(-1,1)*z*se
+df <- as.data.frame(datasets::HairEyeColor)
+n <- sum(df$Freq)
+phat <- sum(df$Freq[df$Eye == "Brown"]) / n
+z <- qnorm(0.975)
+phat + c(-1,1) * z * sqrt(phat*(1-phat)/n)
 ```
 :::
 
 ```{webr}
-#| exercise: q10_p_ci_highmpg
+#| exercise: q10_z_ci_browneyes
 #| check: true
 gradethis::grade_this({
-y <- as.integer(datasets::mtcars$mpg >= 25)
-phat <- mean(y); n <- length(y); z <- qnorm(0.995)
-se <- sqrt(phat*(1-phat)/n)
-exp <- phat + c(-1,1)*z*se
-r <- .result
-ok <- is.numeric(r) && length(r)==2L && all(is.finite(r))
+df <- as.data.frame(datasets::HairEyeColor)
+n <- sum(df$Freq)
+phat <- sum(df$Freq[df$Eye=="Brown"]) / n
+z <- qnorm(0.975)
+exp <- phat + c(-1,1)*z*sqrt(phat*(1-phat)/n)
+
+x <- .result
+ok <- is.numeric(x) && length(x)==2L && all(is.finite(x))
 if (!ok) fail("Print a numeric vector c(lower, upper).")
-if (max(abs(r - exp)) < 1e-6) pass("✅ Correct 99% CI for p.")
-else fail("Check two-sided 99% (z at 0.995) and the SE formula.")
+if (max(abs(x - exp)) < 1e-6) pass("✅ Correct 95% Z-interval for the Brown-eye proportion.")
+else fail("Recheck n, phat, and the Z margin for a proportion.")
 })
+
 ```
