@@ -8,32 +8,6 @@ engine: knitr
 {{< include ../_extensions/r-wasm/live/_gradethis.qmd >}}
 
 
-::: {.callout-note title="Info — Critical Values for One-Sample CIs"}
-
-Here is some info to remember for this entire tutorial:
-
-Let \(X_1,\dots,X_n\) be a sample with mean \(\bar X\).
-
-**Two-sided confidence level \(1-\alpha\):**
-- **σ known (Z-interval):**  
-  \[
-  \bar X \ \pm\ z^*\,\frac{\sigma}{\sqrt{n}},\quad
-  z^*=\Phi^{-1}\!\bigl(1-\tfrac{\alpha}{2}\bigr).
-  \]
-- **σ unknown (t-interval):**  
-  \[
-  \bar X \ \pm\ t^*\,\frac{s}{\sqrt{n}},\quad
-  t^*=t^{-1}_{\text{df}=n-1}\!\bigl(1-\tfrac{\alpha}{2}\bigr).
-  \]
-
-**One-sided confidence level \(1-\alpha\):**
-- Use \(z^*=\Phi^{-1}(1-\alpha)\) or \(t^*=t^{-1}_{\text{df}=n-1}(1-\alpha)\).
-
-**Notes:**  
-- Use **Z** when population **σ is known** (or \(n\) huge and σ estimated with strong assumptions).  
-- Use **t** when **σ is unknown** → replace σ with sample \(s\) and df \(=n-1\).
-:::
-
 ## Q1 — Z Critical Value
 
 Print the 95% 2-sided $Z^*$ critical value when $\alpha = 0.05$. 
@@ -407,13 +381,12 @@ else fail("Check t* at 0.95 and your s, n.")
 })
 ```
 
-## Q7 — One-Sample CI for a Proportion (Wald)
+## Q7 — One-Sample CI for a Proportion 
 
-In mtcars, am is transmission (0 = automatic, 1 = manual). Build and print
-c(lower, upper) for the 95% CI on the proportion of manual cars.
+In the UCBAdmissions dataset, Admit status for a student is "Admitted" or "Rejected". Build and print c(lower, upper) for the 95% CI on the overall admission proportion.
 
 ::: {.callout-note title="Info"}
-For a single proportion with sample $ \cap p n$ trials (Wald CI):
+For a single proportion:
 
 $$
 \mathrm{CI}_{1-\alpha}:\ \hat{p} \pm z_{1-\alpha/2}\,\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}.
@@ -425,48 +398,61 @@ Rule: Ensure $n\hat{p}$ and $n(1 - \hat{p})$ are not too small
 ::: {.callout-note title="Preview"}
 ```{webr}
 #| echo: true
-mt <- datasets::mtcars
-head(mt[, c("am","mpg","cyl")], 10)
+df <- as.data.frame(datasets::UCBAdmissions)  # factors Admit, Gender, Dept + Freq
+head(df, 10)
+aggregate(Freq ~ Admit, data = df, sum)       # totals by Admit
+sum(df$Freq)                                  # total n
+
 ```
 :::
 
 ```{webr}
-#| exercise: q7_p_ci_manual
-y <- datasets::mtcars$am # 1 = manual
-phat <- ＿＿ ; n <- length(y); z <- __
-se <- sqrt( __ )
-phat + c(-1,1)*z*se
+#| exercise: q7_p_ci_ucb
+df <- as.data.frame(datasets::UCBAdmissions)
+n <- sum(df$Freq)
+phat <- ＿＿  # proportion admitted
+z <- ＿＿      
+se <- ＿＿ #compute standard error
+
+
 ```
 
-::: {.hint exercise="q7_p_ci_manual"}
-Treat am as 0/1; compute $\hat{p}$, then use two-sided $z^∗$ and the proportion SE.
+::: {.hint exercise="q7_p_ci_ucb"}
+phat <- sum(df$Freq[df$Admit == "Admitted"]) / n and z <- qnorm(0.975) for 95%.
 :::
 
-::: {.solution exercise="q7_p_ci_manual"}
+::: {.solution exercise="q7_p_ci_ucb"}
 ```{webr}
-#| exercise: q7_p_ci_manual
+#| exercise: q7_p_ci_ucb
 #| solution: true
-y <- datasets::mtcars$am # 1 = manual
-phat <- mean(y); n <- length(y); z <- qnorm(0.975)
-se <- sqrt(phat*(1-phat)/n)
-phat + c(-1,1)*z*se
+df <- as.data.frame(datasets::UCBAdmissions)
+n <- sum(df$Freq)
+phat <- sum(df$Freq[df$Admit == "Admitted"]) / n
+z <- qnorm(0.975)
+se <- sqrt(phat*(1 - phat)/n)
+phat + c(-1,1) * z * se
+
 ```
 :::
 
 ```{webr}
-#| exercise: q7_p_ci_manual
+#| exercise: q7_p_ci_ucb
 #| check: true
 gradethis::grade_this({
-y <- datasets::mtcars$am
-phat <- mean(y); n <- length(y); z <- qnorm(0.975)
-se <- sqrt(phat*(1-phat)/n)
-exp <- phat + c(-1,1)*z*se
+df <- as.data.frame(datasets::UCBAdmissions)
+n <- sum(df$Freq)
+phat <- sum(df$Freq[df$Admit == "Admitted"]) / n
+z <- qnorm(0.975)
+se <- sqrt(phat*(1 - phat)/n)
+exp <- phat + c(-1,1) * z * se
+
 r <- .result
-ok <- is.numeric(r) && length(r)==2L && all(is.finite(r))
+ok <- is.numeric(r) && length(r) == 2L && all(is.finite(r))
 if (!ok) fail("Print a numeric vector c(lower, upper).")
-if (max(abs(r - exp)) < 1e-6) pass("✅ Correct 95% Wald CI for p.")
+if (max(abs(r - exp)) < 1e-6) pass("✅ Correct 95% Wald CI for the admission proportion.")
 else fail("Recompute p̂, n, z*, and SE = sqrt(p̂(1−p̂)/n).")
 })
+
 ```
 
 
@@ -488,8 +474,8 @@ For 95%, the cutoffs are at 0.025 and 0.975.
 ::: {.callout-note title="Preview"}
 ```{webr}
 #| echo: true
-mt <- datasets::mtcars
-head(mt[, c("am","mpg","cyl")], 10)
+data("PlantGrowth")
+head(PlantGrowth, 10)
 ```
 :::
 
@@ -536,67 +522,7 @@ else fail("Check df=n−1 and chi-square cutoffs (0.025 & 0.975).")
 })
 ```
 
-
-## Q9 - Sample Size for Mean CI (σ known)
-
-We want a 95% Z-interval for the true mean mpg (from mtcars) with margin of error at most E = 1 mpg, assuming σ = 6 mpg known. Compute and print the minimum n required (round up).
-
-::: {.callout-note title="Info"}
-For known σ, the margin of error and required n are:
-
-$$
-E = z_{1-\alpha/2}\,\frac{\sigma}{\sqrt{n}}
-\;\Rightarrow\;
-n = \left(\frac{z_{1-\alpha/2}\,\sigma}{E}\right)^{2},\qquad \text{use }\lceil n\rceil.
-$$
-
-
-For 95%, $z^*$ = $\phi^{-1}$ (0.975).
-:::
-
-::: {.callout-note title="Preview"}
-```{webr}
-#| echo: true
-head(datasets::mtcars[, "mpg", drop = FALSE], 10)
-```
-:::
-
-
-```{webr}
-#| exercise: q9_n_for_margin
-z <- ＿＿ ; sigma <- 6; E <- ＿＿
-＿＿ ((z*sigma/E)^2)
-
-```
-
-::: {.hint exercise="q9_n_for_margin"}
-Solve for n using your chosen E, known σ, and two-sided $z^∗$.
-:::
-
-::: {.solution exercise="q9_n_for_margin"}
-```{webr}
-#| exercise: q9_n_for_margin
-#| solution: true
-
-z <- qnorm(0.975); sigma <- 6; E <- 1
-ceiling((z*sigma/E)^2)
-```
-:::
-
-```{webr}
-#| exercise: q9_n_for_margin
-#| check: true
-gradethis::grade_this({
-z <- qnorm(0.975); sigma <- 6; E <- 1
-exp <- ceiling((z*sigma/E)^2)
-r <- .result
-if (!is.numeric(r) || length(r)!=1L || !is.finite(r)) fail("Print a single numeric value.")
-if (abs(r - exp) < 1e-12) pass("✅ Correct required sample size.")
-else fail("Rearrange E = zσ/√n and round up.")
-})
-```
-
-## Q10 - One-Sample CI for a Proportion (99% Practice)
+## Q9 - One-Sample CI for a Proportion (99% Practice)
 
 HairEyeColor is a built-in contingency table of Hair × Eye × Gender of Statistics students with counts. Treat each person as a trial and estimate the true proportion with Brown eyes. Construct a 95% Z-interval for the population proportion p. Print c(lower, upper).
 
@@ -612,6 +538,7 @@ For 99%, use $z^* = \phi^{-1}$(0.995).
 :::
 
 ::: {.callout-note title="Preview"}
+Here is a glimpse of the UCBAdmissions dataset.
 ```{webr}
 #| echo: true
 df <- as.data.frame(datasets::HairEyeColor)
