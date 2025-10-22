@@ -313,70 +313,40 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJx
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q1_pooled_reviews">
 <code id="interpolate-5" class="solution-code d-none">df &lt;- read.csv("recipe_reviews.csv")
 
-
-
-
 x1 &lt;- subset(df, stars == 5)$best_score
 x2 &lt;- subset(df, stars != 5)$best_score
-
-
-
 
 n1 &lt;- sum(!is.na(x1)); n2 &lt;- sum(!is.na(x2))
 m1 &lt;- mean(x1, na.rm = TRUE); m2 &lt;- mean(x2, na.rm = TRUE)
 s1 &lt;- stats::sd(x1, na.rm = TRUE); s2 &lt;- stats::sd(x2, na.rm = TRUE)
 
-
-
-
 dfree &lt;- n1 + n2 - 2
 sp2 &lt;- (((n1 - 1) * s1^2) + ((n2 - 1) * s2^2)) / dfree
 sp &lt;- sqrt(sp2)
-
-
-
 
 tstar &lt;- qt(0.975, dfree)
 se &lt;- sp * sqrt(1/n1 + 1/n2)
 est &lt;- m1 - m2
 
-
-
-
 c(est - tstar*se, est + tstar*se)</code>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-6-1"><a href="#interpolate-6-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"recipe_reviews.csv"</span>)</span>
 <span id="interpolate-6-2"><a href="#interpolate-6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-6-3"><a href="#interpolate-6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-6-4"><a href="#interpolate-6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-3"><a href="#interpolate-6-3" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, stars <span class="sc">==</span> <span class="dv">5</span>)<span class="sc">$</span>best_score</span>
+<span id="interpolate-6-4"><a href="#interpolate-6-4" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, stars <span class="sc">!=</span> <span class="dv">5</span>)<span class="sc">$</span>best_score</span>
 <span id="interpolate-6-5"><a href="#interpolate-6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-6-6"><a href="#interpolate-6-6" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, stars <span class="sc">==</span> <span class="dv">5</span>)<span class="sc">$</span>best_score</span>
-<span id="interpolate-6-7"><a href="#interpolate-6-7" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, stars <span class="sc">!=</span> <span class="dv">5</span>)<span class="sc">$</span>best_score</span>
-<span id="interpolate-6-8"><a href="#interpolate-6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-6"><a href="#interpolate-6-6" aria-hidden="true" tabindex="-1"></a>n1 <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(x1)); n2 <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(x2))</span>
+<span id="interpolate-6-7"><a href="#interpolate-6-7" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(x1, <span class="at">na.rm =</span> <span class="cn">TRUE</span>); m2 <span class="ot">&lt;-</span> <span class="fu">mean</span>(x2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="interpolate-6-8"><a href="#interpolate-6-8" aria-hidden="true" tabindex="-1"></a>s1 <span class="ot">&lt;-</span> stats<span class="sc">::</span><span class="fu">sd</span>(x1, <span class="at">na.rm =</span> <span class="cn">TRUE</span>); s2 <span class="ot">&lt;-</span> stats<span class="sc">::</span><span class="fu">sd</span>(x2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
 <span id="interpolate-6-9"><a href="#interpolate-6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-6-10"><a href="#interpolate-6-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-6-11"><a href="#interpolate-6-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-6-12"><a href="#interpolate-6-12" aria-hidden="true" tabindex="-1"></a>n1 <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(x1)); n2 <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(x2))</span>
-<span id="interpolate-6-13"><a href="#interpolate-6-13" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(x1, <span class="at">na.rm =</span> <span class="cn">TRUE</span>); m2 <span class="ot">&lt;-</span> <span class="fu">mean</span>(x2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="interpolate-6-14"><a href="#interpolate-6-14" aria-hidden="true" tabindex="-1"></a>s1 <span class="ot">&lt;-</span> stats<span class="sc">::</span><span class="fu">sd</span>(x1, <span class="at">na.rm =</span> <span class="cn">TRUE</span>); s2 <span class="ot">&lt;-</span> stats<span class="sc">::</span><span class="fu">sd</span>(x2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="interpolate-6-15"><a href="#interpolate-6-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-6-16"><a href="#interpolate-6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-10"><a href="#interpolate-6-10" aria-hidden="true" tabindex="-1"></a>dfree <span class="ot">&lt;-</span> n1 <span class="sc">+</span> n2 <span class="sc">-</span> <span class="dv">2</span></span>
+<span id="interpolate-6-11"><a href="#interpolate-6-11" aria-hidden="true" tabindex="-1"></a>sp2 <span class="ot">&lt;-</span> (((n1 <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> s1<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> ((n2 <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> s2<span class="sc">^</span><span class="dv">2</span>)) <span class="sc">/</span> dfree</span>
+<span id="interpolate-6-12"><a href="#interpolate-6-12" aria-hidden="true" tabindex="-1"></a>sp <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(sp2)</span>
+<span id="interpolate-6-13"><a href="#interpolate-6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-14"><a href="#interpolate-6-14" aria-hidden="true" tabindex="-1"></a>tstar <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, dfree)</span>
+<span id="interpolate-6-15"><a href="#interpolate-6-15" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> sp <span class="sc">*</span> <span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">/</span>n1 <span class="sc">+</span> <span class="dv">1</span><span class="sc">/</span>n2)</span>
+<span id="interpolate-6-16"><a href="#interpolate-6-16" aria-hidden="true" tabindex="-1"></a>est <span class="ot">&lt;-</span> m1 <span class="sc">-</span> m2</span>
 <span id="interpolate-6-17"><a href="#interpolate-6-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-6-18"><a href="#interpolate-6-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-6-19"><a href="#interpolate-6-19" aria-hidden="true" tabindex="-1"></a>dfree <span class="ot">&lt;-</span> n1 <span class="sc">+</span> n2 <span class="sc">-</span> <span class="dv">2</span></span>
-<span id="interpolate-6-20"><a href="#interpolate-6-20" aria-hidden="true" tabindex="-1"></a>sp2 <span class="ot">&lt;-</span> (((n1 <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> s1<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> ((n2 <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> s2<span class="sc">^</span><span class="dv">2</span>)) <span class="sc">/</span> dfree</span>
-<span id="interpolate-6-21"><a href="#interpolate-6-21" aria-hidden="true" tabindex="-1"></a>sp <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(sp2)</span>
-<span id="interpolate-6-22"><a href="#interpolate-6-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-6-23"><a href="#interpolate-6-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-6-24"><a href="#interpolate-6-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-6-25"><a href="#interpolate-6-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-6-26"><a href="#interpolate-6-26" aria-hidden="true" tabindex="-1"></a>tstar <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, dfree)</span>
-<span id="interpolate-6-27"><a href="#interpolate-6-27" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> sp <span class="sc">*</span> <span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">/</span>n1 <span class="sc">+</span> <span class="dv">1</span><span class="sc">/</span>n2)</span>
-<span id="interpolate-6-28"><a href="#interpolate-6-28" aria-hidden="true" tabindex="-1"></a>est <span class="ot">&lt;-</span> m1 <span class="sc">-</span> m2</span>
-<span id="interpolate-6-29"><a href="#interpolate-6-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-6-30"><a href="#interpolate-6-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-6-31"><a href="#interpolate-6-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-6-32"><a href="#interpolate-6-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-6-33"><a href="#interpolate-6-33" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(est <span class="sc">-</span> tstar<span class="sc">*</span>se, est <span class="sc">+</span> tstar<span class="sc">*</span>se)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="interpolate-6-18"><a href="#interpolate-6-18" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(est <span class="sc">-</span> tstar<span class="sc">*</span>se, est <span class="sc">+</span> tstar<span class="sc">*</span>se)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -456,11 +426,7 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJx
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q2_pooled_penguins">
 <div class="cell" data-exercise="q2_pooled_penguins" data-solution="true">
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q2_pooled_penguins">
-<code id="interpolate-11" class="solution-code d-none">if (!file.exists("penguins.csv")) {
-stop("Place 'penguins.csv' next to this .qmd and list it under YAML resources:.")
-}
-
-df &lt;- read.csv("penguins.csv")
+<code id="interpolate-11" class="solution-code d-none">df &lt;- read.csv("penguins.csv")
 keep &lt;- df$species %in% c("Adelie","Gentoo")
 df &lt;- subset(df, keep &amp; !is.na(bill_length_mm))
 
@@ -469,19 +435,15 @@ df$yield &lt;- df$bill_length_mm
 
 tt &lt;- t.test(yield ~ method, data = df, var.equal = TRUE, conf.level = 0.90)
 tt$conf.int</code>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-12-1"><a href="#interpolate-12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(<span class="st">"penguins.csv"</span>)) {</span>
-<span id="interpolate-12-2"><a href="#interpolate-12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stop</span>(<span class="st">"Place 'penguins.csv' next to this .qmd and list it under YAML resources:."</span>)</span>
-<span id="interpolate-12-3"><a href="#interpolate-12-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-12-1"><a href="#interpolate-12-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"penguins.csv"</span>)</span>
+<span id="interpolate-12-2"><a href="#interpolate-12-2" aria-hidden="true" tabindex="-1"></a>keep <span class="ot">&lt;-</span> df<span class="sc">$</span>species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Adelie"</span>,<span class="st">"Gentoo"</span>)</span>
+<span id="interpolate-12-3"><a href="#interpolate-12-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, keep <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(bill_length_mm))</span>
 <span id="interpolate-12-4"><a href="#interpolate-12-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-12-5"><a href="#interpolate-12-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"penguins.csv"</span>)</span>
-<span id="interpolate-12-6"><a href="#interpolate-12-6" aria-hidden="true" tabindex="-1"></a>keep <span class="ot">&lt;-</span> df<span class="sc">$</span>species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Adelie"</span>,<span class="st">"Gentoo"</span>)</span>
-<span id="interpolate-12-7"><a href="#interpolate-12-7" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, keep <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(bill_length_mm))</span>
-<span id="interpolate-12-8"><a href="#interpolate-12-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-12-9"><a href="#interpolate-12-9" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>method <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>species, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Adelie"</span>,<span class="st">"Gentoo"</span>)) <span class="co"># order matters for the contrast</span></span>
-<span id="interpolate-12-10"><a href="#interpolate-12-10" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>yield <span class="ot">&lt;-</span> df<span class="sc">$</span>bill_length_mm</span>
-<span id="interpolate-12-11"><a href="#interpolate-12-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-12-12"><a href="#interpolate-12-12" aria-hidden="true" tabindex="-1"></a>tt <span class="ot">&lt;-</span> <span class="fu">t.test</span>(yield <span class="sc">~</span> method, <span class="at">data =</span> df, <span class="at">var.equal =</span> <span class="cn">TRUE</span>, <span class="at">conf.level =</span> <span class="fl">0.90</span>)</span>
-<span id="interpolate-12-13"><a href="#interpolate-12-13" aria-hidden="true" tabindex="-1"></a>tt<span class="sc">$</span>conf.int</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="interpolate-12-5"><a href="#interpolate-12-5" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>method <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>species, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Adelie"</span>,<span class="st">"Gentoo"</span>)) <span class="co"># order matters for the contrast</span></span>
+<span id="interpolate-12-6"><a href="#interpolate-12-6" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>yield <span class="ot">&lt;-</span> df<span class="sc">$</span>bill_length_mm</span>
+<span id="interpolate-12-7"><a href="#interpolate-12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-12-8"><a href="#interpolate-12-8" aria-hidden="true" tabindex="-1"></a>tt <span class="ot">&lt;-</span> <span class="fu">t.test</span>(yield <span class="sc">~</span> method, <span class="at">data =</span> df, <span class="at">var.equal =</span> <span class="cn">TRUE</span>, <span class="at">conf.level =</span> <span class="fl">0.90</span>)</span>
+<span id="interpolate-12-9"><a href="#interpolate-12-9" aria-hidden="true" tabindex="-1"></a>tt<span class="sc">$</span>conf.int</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -546,56 +508,34 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJx
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q4_welch_ttest_penguins">
 <div class="cell" data-exercise="q4_welch_ttest_penguins" data-solution="true">
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q4_welch_ttest_penguins">
-<code id="interpolate-17" class="solution-code d-none">if (!file.exists("penguins.csv")) {
-stop("Place 'penguins.csv' next to this .qmd and list it under YAML resources:.")
-}
+<code id="interpolate-17" class="solution-code d-none">
 df &lt;- read.csv("penguins.csv")
-
-
-
 
 keep &lt;- df$species %in% c("Chinstrap","Gentoo")
 df &lt;- subset(df, keep &amp; !is.na(flipper_length_mm))
 
-
-
-
 df$method &lt;- factor(df$species, levels = c("Chinstrap","Gentoo"))
 df$y &lt;- df$flipper_length_mm
 
-
-
-
 tt &lt;- t.test(y ~ method, data = df, conf.level = 0.80) # Welch by default
 tt$conf.int</code>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-18-1"><a href="#interpolate-18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(<span class="st">"penguins.csv"</span>)) {</span>
-<span id="interpolate-18-2"><a href="#interpolate-18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stop</span>(<span class="st">"Place 'penguins.csv' next to this .qmd and list it under YAML resources:."</span>)</span>
-<span id="interpolate-18-3"><a href="#interpolate-18-3" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="interpolate-18-4"><a href="#interpolate-18-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"penguins.csv"</span>)</span>
-<span id="interpolate-18-5"><a href="#interpolate-18-5" aria-hidden="true" tabindex="-1"></a></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-18-1"><a href="#interpolate-18-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-18-2"><a href="#interpolate-18-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"penguins.csv"</span>)</span>
+<span id="interpolate-18-3"><a href="#interpolate-18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-18-4"><a href="#interpolate-18-4" aria-hidden="true" tabindex="-1"></a>keep <span class="ot">&lt;-</span> df<span class="sc">$</span>species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span>,<span class="st">"Gentoo"</span>)</span>
+<span id="interpolate-18-5"><a href="#interpolate-18-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, keep <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(flipper_length_mm))</span>
 <span id="interpolate-18-6"><a href="#interpolate-18-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-18-7"><a href="#interpolate-18-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-18-8"><a href="#interpolate-18-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-18-9"><a href="#interpolate-18-9" aria-hidden="true" tabindex="-1"></a>keep <span class="ot">&lt;-</span> df<span class="sc">$</span>species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span>,<span class="st">"Gentoo"</span>)</span>
-<span id="interpolate-18-10"><a href="#interpolate-18-10" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, keep <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(flipper_length_mm))</span>
-<span id="interpolate-18-11"><a href="#interpolate-18-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-18-12"><a href="#interpolate-18-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-18-13"><a href="#interpolate-18-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-18-14"><a href="#interpolate-18-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-18-15"><a href="#interpolate-18-15" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>method <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>species, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span>,<span class="st">"Gentoo"</span>))</span>
-<span id="interpolate-18-16"><a href="#interpolate-18-16" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>y <span class="ot">&lt;-</span> df<span class="sc">$</span>flipper_length_mm</span>
-<span id="interpolate-18-17"><a href="#interpolate-18-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-18-18"><a href="#interpolate-18-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-18-19"><a href="#interpolate-18-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-18-20"><a href="#interpolate-18-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-18-21"><a href="#interpolate-18-21" aria-hidden="true" tabindex="-1"></a>tt <span class="ot">&lt;-</span> <span class="fu">t.test</span>(y <span class="sc">~</span> method, <span class="at">data =</span> df, <span class="at">conf.level =</span> <span class="fl">0.80</span>) <span class="co"># Welch by default</span></span>
-<span id="interpolate-18-22"><a href="#interpolate-18-22" aria-hidden="true" tabindex="-1"></a>tt<span class="sc">$</span>conf.int</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="interpolate-18-7"><a href="#interpolate-18-7" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>method <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>species, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span>,<span class="st">"Gentoo"</span>))</span>
+<span id="interpolate-18-8"><a href="#interpolate-18-8" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>y <span class="ot">&lt;-</span> df<span class="sc">$</span>flipper_length_mm</span>
+<span id="interpolate-18-9"><a href="#interpolate-18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-18-10"><a href="#interpolate-18-10" aria-hidden="true" tabindex="-1"></a>tt <span class="ot">&lt;-</span> <span class="fu">t.test</span>(y <span class="sc">~</span> method, <span class="at">data =</span> df, <span class="at">conf.level =</span> <span class="fl">0.80</span>) <span class="co"># Welch by default</span></span>
+<span id="interpolate-18-11"><a href="#interpolate-18-11" aria-hidden="true" tabindex="-1"></a>tt<span class="sc">$</span>conf.int</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
 <div class="cell" data-exercise="q4_welch_ttest_penguins" data-check="true">
 <script type="exercise-check-q4_welch_ttest_penguins-contents">
-eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE0X3dlbGNoX3R0ZXN0X3Blbmd1aW5zIn0sImNvZGUiOiJncmFkZXRoaXM6OmdyYWRlX3RoaXMoe1xuZGYgPC0gdHJ5Q2F0Y2gocmVhZC5jc3YoXCJwZW5ndWlucy5jc3ZcIiksIGVycm9yID0gZnVuY3Rpb24oZSkgTlVMTClcbmlmIChpcy5udWxsKGRmKSkgZmFpbChcIkNvdWxkbid0IHJlYWQgJ3Blbmd1aW5zLmNzdicuXCIpXG5uZWVkIDwtIGMoXCJzcGVjaWVzXCIsXCJmbGlwcGVyX2xlbmd0aF9tbVwiKVxuaWYgKCFhbGwobmVlZCAlaW4lIG5hbWVzKGRmKSkpIGZhaWwoXCJDU1YgbXVzdCBoYXZlICdzcGVjaWVzJyBhbmQgJ2ZsaXBwZXJfbGVuZ3RoX21tJyBjb2x1bW5zLlwiKVxuXG5cblxuXG5rZWVwIDwtIGRmJHNwZWNpZXMgJWluJSBjKFwiQ2hpbnN0cmFwXCIsXCJHZW50b29cIilcbmRmIDwtIHN1YnNldChkZiwga2VlcCAmICFpcy5uYShmbGlwcGVyX2xlbmd0aF9tbSkpXG5pZiAobnJvdyhkZikgPCA0KSBmYWlsKFwiTmVlZCBkYXRhIGZvciBib3RoIENoaW5zdHJhcCBhbmQgR2VudG9vIHdpdGggbm9uLW1pc3NpbmcgZmxpcHBlcl9sZW5ndGhfbW0uXCIpXG5cblxuXG5cbmRmJG1ldGhvZCA8LSBmYWN0b3IoZGYkc3BlY2llcywgbGV2ZWxzID0gYyhcIkNoaW5zdHJhcFwiLFwiR2VudG9vXCIpKVxuZGYkeSA8LSBkZiRmbGlwcGVyX2xlbmd0aF9tbVxuXG5cblxuXG5leHBfY2kgPC0gdC50ZXN0KHkgfiBtZXRob2QsIGRhdGEgPSBkZiwgY29uZi5sZXZlbCA9IDAuODApJGNvbmYuaW50XG5cblxuXG5cbnggPC0gLnJlc3VsdFxuaWYgKCFpcy5udW1lcmljKHgpIHx8IGxlbmd0aCh4KSAhPSAyTCB8fCBhbnkoIWlzLmZpbml0ZSh4KSkpXG5mYWlsKFwiUHJpbnQgYSAyLW51bWJlciBudW1lcmljIHZlY3RvcjogYyhsb3dlciwgdXBwZXIpLlwiKVxuXG5cblxuXG5pZiAobWF4KGFicyh4IC0gZXhwX2NpKSkgPCAxZS02KVxucGFzcyhcIuKchSBDb3JyZWN0IDgwJSBXZWxjaCBDSSBmb3IgQ2hpbnN0cmFwIOKIkiBHZW50b28gKGZsaXBwZXIgbGVuZ3RoKS5cIilcbmVsc2VcbmZhaWwoXCJOb3QgcXVpdGUg4oCUIGNoZWNrIHNwZWNpZXMgZmlsdGVyLCBmYWN0b3Igb3JkZXIsIGFuZCBjb25mLmxldmVsID0gMC44MC5cIilcbn0pIn0=
+eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE0X3dlbGNoX3R0ZXN0X3Blbmd1aW5zIn0sImNvZGUiOiJncmFkZXRoaXM6OmdyYWRlX3RoaXMoe1xuZGYgPC0gdHJ5Q2F0Y2gocmVhZC5jc3YoXCJwZW5ndWlucy5jc3ZcIiksIGVycm9yID0gZnVuY3Rpb24oZSkgTlVMTClcbmlmIChpcy5udWxsKGRmKSkgZmFpbChcIkNvdWxkbid0IHJlYWQgJ3Blbmd1aW5zLmNzdicuXCIpXG5uZWVkIDwtIGMoXCJzcGVjaWVzXCIsXCJmbGlwcGVyX2xlbmd0aF9tbVwiKVxuaWYgKCFhbGwobmVlZCAlaW4lIG5hbWVzKGRmKSkpIGZhaWwoXCJDU1YgbXVzdCBoYXZlICdzcGVjaWVzJyBhbmQgJ2ZsaXBwZXJfbGVuZ3RoX21tJyBjb2x1bW5zLlwiKVxuXG5rZWVwIDwtIGRmJHNwZWNpZXMgJWluJSBjKFwiQ2hpbnN0cmFwXCIsXCJHZW50b29cIilcbmRmIDwtIHN1YnNldChkZiwga2VlcCAmICFpcy5uYShmbGlwcGVyX2xlbmd0aF9tbSkpXG5pZiAobnJvdyhkZikgPCA0KSBmYWlsKFwiTmVlZCBkYXRhIGZvciBib3RoIENoaW5zdHJhcCBhbmQgR2VudG9vIHdpdGggbm9uLW1pc3NpbmcgZmxpcHBlcl9sZW5ndGhfbW0uXCIpXG5cbmRmJG1ldGhvZCA8LSBmYWN0b3IoZGYkc3BlY2llcywgbGV2ZWxzID0gYyhcIkNoaW5zdHJhcFwiLFwiR2VudG9vXCIpKVxuZGYkeSA8LSBkZiRmbGlwcGVyX2xlbmd0aF9tbVxuXG5leHBfY2kgPC0gdC50ZXN0KHkgfiBtZXRob2QsIGRhdGEgPSBkZiwgY29uZi5sZXZlbCA9IDAuODApJGNvbmYuaW50XG5cbnggPC0gLnJlc3VsdFxuaWYgKCFpcy5udW1lcmljKHgpIHx8IGxlbmd0aCh4KSAhPSAyTCB8fCBhbnkoIWlzLmZpbml0ZSh4KSkpXG5mYWlsKFwiUHJpbnQgYSAyLW51bWJlciBudW1lcmljIHZlY3RvcjogYyhsb3dlciwgdXBwZXIpLlwiKVxuXG5pZiAobWF4KGFicyh4IC0gZXhwX2NpKSkgPCAxZS02KVxucGFzcyhcIuKchSBDb3JyZWN0IDgwJSBXZWxjaCBDSSBmb3IgQ2hpbnN0cmFwIOKIkiBHZW50b28gKGZsaXBwZXIgbGVuZ3RoKS5cIilcbmVsc2VcbmZhaWwoXCJOb3QgcXVpdGUg4oCUIGNoZWNrIHNwZWNpZXMgZmlsdGVyLCBmYWN0b3Igb3JkZXIsIGFuZCBjb25mLmxldmVsID0gMC44MC5cIilcbn0pIn0=
 </script>
 </div>
 </section>
