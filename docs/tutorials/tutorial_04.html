@@ -315,7 +315,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InEx
 </section>
 <section id="q2-one-sample-z-confidence-interval" class="level2">
 <h2 class="anchored" data-anchor-id="q2-one-sample-z-confidence-interval">Q2 — One Sample Z Confidence Interval</h2>
-<p>mtcars is a dataset that contains information about 32 automobiles (1973–74 models). This dataset is imported and used for this question. Use mtcars’s mpg column as a sample. Assume the population SD is known: σ = 6 mpg. Construct a 95% CI for the true mean mpg when <span class="math inline">\(\alpha = 0.05\)</span>. Give output in the form of a vector c(lower, upper).</p>
+<p>The penguins dataset contains measurements for 3 penguin species from the Palmer Archipelago. Use body_mass_g (grams). Assume the population SD is known: σ = 450 g. Construct a 90% Z-interval for the true mean body mass. Print c(lower, upper).</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Info">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -346,7 +346,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InEx
 
 </div>
 <script type="webr-7-contents">
-eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibXRjYXJzX2RhdGEgPC0gZGF0YXNldHM6Om10Y2Fyc1xuaGVhZChtdGNhcnNfZGF0YVssIGMoXCJtcGdcIixcImN5bFwiLFwiaHBcIildLCAxMCkifQ==
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaWYgKCFyZXF1aXJlTmFtZXNwYWNlKFwicGFsbWVycGVuZ3VpbnNcIiwgcXVpZXRseSA9IFRSVUUpKSB3ZWJyOjppbnN0YWxsKFwicGFsbWVycGVuZ3VpbnNcIilcbmxpYnJhcnkocGFsbWVycGVuZ3VpbnMpXG5kZiA8LSBuYS5vbWl0KHBhbG1lcnBlbmd1aW5zOjpwZW5ndWluc1ssIGMoXCJzcGVjaWVzXCIsXCJpc2xhbmRcIixcInNleFwiLFwiYm9keV9tYXNzX2dcIildKVxuaGVhZChkZiwgMTApXG5zdW1tYXJ5KGRmJGJvZHlfbWFzc19nKSJ9
 </script>
 </div>
 </div>
@@ -367,38 +367,44 @@ eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibXRjYXJz
 \]</span></p>
 </div>
 </div>
-<div class="cell" data-exercise="q2_z_ci_mpg" data-exercise.lines="1">
+<div class="cell" data-exercise="q2_z_ci_penguins" data-exercise.lines="4">
 <div>
 <div id="webr-8" class="exercise-cell">
 
 </div>
 <script type="webr-8-contents">
-eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxMl96X2NpX21wZyIsImV4ZXJjaXNlLmxpbmVzIjoxfSwiY29kZSI6ImRhdGEoXCJtdGNhcnNcIilcbnhiYXIgPC0gXG5uIDwtIFxueiA8LSAifQ==
+eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxMl96X2NpX3Blbmd1aW5zIiwiZXhlcmNpc2UubGluZXMiOjR9LCJjb2RlIjoiaWYgKCFyZXF1aXJlTmFtZXNwYWNlKFwicGFsbWVycGVuZ3VpbnNcIiwgcXVpZXRseSA9IFRSVUUpKSB3ZWJyOjppbnN0YWxsKFwicGFsbWVycGVuZ3VpbnNcIilcbmxpYnJhcnkocGFsbWVycGVuZ3VpbnMpXG54IDwtIG5hLm9taXQocGFsbWVycGVuZ3VpbnM6OnBlbmd1aW5zJGJvZHlfbWFzc19nKVxueGJhciA8LVxubiA8LVxueiA8LVxuc2lnbWEgPC0gNDUwIn0=
 </script>
 </div>
 </div>
-<div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="q2_z_ci_mpg">
-<p>Compute the sample center and size from mpg, pair with the known σ and your Z critical value from Q1. Output c(lower, upper).</p>
+<div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="q2_z_ci_penguins">
+<p>Compute the sample mean, pair with the known σ and your Z critical value. Output c(lower, upper).</p>
 </div>
-<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q2_z_ci_mpg">
-<div class="cell" data-exercise="q2_z_ci_mpg" data-solution="true">
-<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q2_z_ci_mpg">
-<code id="interpolate-10" class="solution-code d-none">data("mtcars")
-xbar &lt;- mean(mtcars$mpg)
-n &lt;- length(mtcars$mpg)
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q2_z_ci_penguins">
+<div class="cell" data-exercise="q2_z_ci_penguins" data-solution="true">
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q2_z_ci_penguins">
+<code id="interpolate-10" class="solution-code d-none">if (!requireNamespace("palmerpenguins", quietly = TRUE)) webr::install("palmerpenguins")
+library(palmerpenguins)
+x &lt;- na.omit(palmerpenguins::penguins$body_mass_g)
+xbar &lt;- mean(x)
+n &lt;- length(x)
 z &lt;- qnorm(0.975)
-xbar + c(-1,1)*z*6/sqrt(n)</code>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-11-1"><a href="#interpolate-11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">"mtcars"</span>)</span>
-<span id="interpolate-11-2"><a href="#interpolate-11-2" aria-hidden="true" tabindex="-1"></a>xbar <span class="ot">&lt;-</span> <span class="fu">mean</span>(mtcars<span class="sc">$</span>mpg)</span>
-<span id="interpolate-11-3"><a href="#interpolate-11-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(mtcars<span class="sc">$</span>mpg)</span>
-<span id="interpolate-11-4"><a href="#interpolate-11-4" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>)</span>
-<span id="interpolate-11-5"><a href="#interpolate-11-5" aria-hidden="true" tabindex="-1"></a>xbar <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span>z<span class="sc">*</span><span class="dv">6</span><span class="sc">/</span><span class="fu">sqrt</span>(n)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+sigma &lt;- 450
+xbar + c(-1,1) * z * sigma / sqrt(n)</code>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-11-1"><a href="#interpolate-11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"palmerpenguins"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) webr<span class="sc">::</span><span class="fu">install</span>(<span class="st">"palmerpenguins"</span>)</span>
+<span id="interpolate-11-2"><a href="#interpolate-11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="interpolate-11-3"><a href="#interpolate-11-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(palmerpenguins<span class="sc">::</span>penguins<span class="sc">$</span>body_mass_g)</span>
+<span id="interpolate-11-4"><a href="#interpolate-11-4" aria-hidden="true" tabindex="-1"></a>xbar <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="interpolate-11-5"><a href="#interpolate-11-5" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(x)</span>
+<span id="interpolate-11-6"><a href="#interpolate-11-6" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>)</span>
+<span id="interpolate-11-7"><a href="#interpolate-11-7" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="dv">450</span></span>
+<span id="interpolate-11-8"><a href="#interpolate-11-8" aria-hidden="true" tabindex="-1"></a>xbar <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>) <span class="sc">*</span> z <span class="sc">*</span> sigma <span class="sc">/</span> <span class="fu">sqrt</span>(n)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
-<div class="cell" data-exercise="q2_z_ci_mpg" data-check="true">
-<script type="exercise-check-q2_z_ci_mpg-contents">
-eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InEyX3pfY2lfbXBnIn0sImNvZGUiOiJncmFkZXRoaXM6OmdyYWRlX3RoaXMoe1xueGJhciA8LSBtZWFuKGRhdGFzZXRzOjptdGNhcnMkbXBnKVxubiA8LSBsZW5ndGgoZGF0YXNldHM6Om10Y2FycyRtcGcpXG56IDwtIHFub3JtKDAuOTc1KVxuZXhwIDwtIHhiYXIgKyBjKC0xLDEpKnoqNi9zcXJ0KG4pXG54IDwtIC5yZXN1bHRcbm9rIDwtIGlzLm51bWVyaWMoeCkgJiYgbGVuZ3RoKHgpPT0yTCAmJiBhbGwoaXMuZmluaXRlKHgpKVxuaWYgKCFvaykgZmFpbChcIlByaW50IGEgbnVtZXJpYyB2ZWN0b3IgYyhsb3dlciwgdXBwZXIpLlwiKVxuaWYgKG1heChhYnMoeCAtIGV4cCkpIDwgMWUtNikgcGFzcyhcIuKchSBDb3JyZWN0IDk1JSBaLWludGVydmFsLlwiKVxuZWxzZSBmYWlsKFwiUmVjaGVjayBjZW50ZXIsIHNhbXBsZSBzaXplLCBhbmQgbWFyZ2luIHdpdGgga25vd24gz4MuXCIpXG59KSJ9
+<div class="cell" data-exercise="q2_z_ci_penguins" data-check="true">
+<script type="exercise-check-q2_z_ci_penguins-contents">
+eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InEyX3pfY2lfcGVuZ3VpbnMifSwiY29kZSI6ImdyYWRldGhpczo6Z3JhZGVfdGhpcyh7XG5pZiAoIXJlcXVpcmVOYW1lc3BhY2UoXCJwYWxtZXJwZW5ndWluc1wiLCBxdWlldGx5ID0gVFJVRSkpIHdlYnI6Omluc3RhbGwoXCJwYWxtZXJwZW5ndWluc1wiKVxubGlicmFyeShwYWxtZXJwZW5ndWlucylcbnggPC0gbmEub21pdChwYWxtZXJwZW5ndWluczo6cGVuZ3VpbnMkYm9keV9tYXNzX2cpXG54YmFyIDwtIG1lYW4oeCk7IG4gPC0gbGVuZ3RoKHgpOyB6IDwtIHFub3JtKDAuOTUpOyBzaWdtYSA8LSA0NTBcbmV4cCA8LSB4YmFyICsgYygtMSwxKSAqIHogKiBzaWdtYSAvIHNxcnQobilcblxueHJlcyA8LSAucmVzdWx0XG5vayA8LSBpcy5udW1lcmljKHhyZXMpICYmIGxlbmd0aCh4cmVzKT09MkwgJiYgYWxsKGlzLmZpbml0ZSh4cmVzKSlcbmlmICghb2spIGZhaWwoXCJQcmludCBhIG51bWVyaWMgdmVjdG9yIGMobG93ZXIsIHVwcGVyKS5cIilcbmlmIChtYXgoYWJzKHhyZXMgLSBleHApKSA8IDFlLTYpIHBhc3MoXCLinIUgQ29ycmVjdCA5MCUgWi1pbnRlcnZhbCBmb3IgcGVuZ3VpbiBib2R5IG1hc3MuXCIpXG5lbHNlIGZhaWwoXCJSZWNoZWNrIG1lYW4sIG4sIHoqLCBhbmQgdGhlIGtub3duIM+DLlwiKVxufSkifQ==
 </script>
 </div>
 </section>
@@ -897,7 +903,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE5
 </section>
 <section id="q10---one-sample-ci-for-a-proportion-99-practice" class="level2">
 <h2 class="anchored" data-anchor-id="q10---one-sample-ci-for-a-proportion-99-practice">Q10 - One-Sample CI for a Proportion (99% Practice)</h2>
-<p>Consider mtcars again. Build and print 99% CI for the proportion of cars with mpg ≥ 25.</p>
+<p>HairEyeColor is a built-in contingency table of Hair × Eye × Gender of Statistics students with counts. Treat each person as a trial and estimate the true proportion with Brown eyes. Construct a 95% Z-interval for the population proportion p.&nbsp;Print c(lower, upper).</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Info">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -931,42 +937,44 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE5
 
 </div>
 <script type="webr-55-contents">
-eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibXQgPC0gZGF0YXNldHM6Om10Y2Fyc1xubXQkaGlfbXBnIDwtIGFzLmludGVnZXIobXQkbXBnID49IDI1KVxuaGVhZChtdFssIGMoXCJtcGdcIixcImhpX21wZ1wiKV0sIDEwKSJ9
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0gYXMuZGF0YS5mcmFtZShkYXRhc2V0czo6SGFpckV5ZUNvbG9yKVxuZXllX2NvdW50cyA8LSBhZ2dyZWdhdGUoRnJlcSB+IEV5ZSwgZGF0YSA9IGRmLCBzdW0pXG5leWVfY291bnRzXG5zdW0oZXllX2NvdW50cyRGcmVxKSAgIyB0b3RhbCBuIn0=
 </script>
 </div>
 </div>
 </div>
 </div>
-<div class="cell" data-exercise="q10_p_ci_highmpg">
+<div class="cell" data-exercise="q10_z_ci_browneyes" data-exercise.lines="3">
 <div>
 <div id="webr-56" class="exercise-cell">
 
 </div>
 <script type="webr-56-contents">
-eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoicTEwX3BfY2lfaGlnaG1wZyJ9LCJjb2RlIjoieSA8LSBhcy5pbnRlZ2VyKGRhdGFzZXRzOjptdGNhcnMkbXBnID49IDI1KVxucGhhdCA8LSBtZWFuKHkpOyDvvL/vvL8gOyB6IDwtIO+8v++8v1xuc2UgPC0g77y/77y/XG7vvL/vvL8gKyBjKC0xLDEpIO+8v++8vyJ9
+eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxMTBfel9jaV9icm93bmV5ZXMiLCJleGVyY2lzZS5saW5lcyI6M30sImNvZGUiOiJkZiA8LSBhcy5kYXRhLmZyYW1lKGRhdGFzZXRzOjpIYWlyRXllQ29sb3IpXG5uIDwtIHN1bShkZiTvvL/vvL8pXG5waGF0IDwtIHN1bShkZiRGcmVxW2RmJO+8v++8vyA9PSBcIkJyb3duXCJdKSAvIO+8v++8v1xueiA8LSJ9
 </script>
 </div>
 </div>
-<div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="q10_p_ci_highmpg">
-<p>Build the 0/1 indicator, get p^, pick <span class="math inline">\(z^∗\)</span> for 99%, and form the Wald interval.</p>
+<div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="q10_z_ci_browneyes">
+<p>Use z &lt;- qnorm(0.975) for 95%.</p>
 </div>
-<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q10_p_ci_highmpg">
-<div class="cell" data-exercise="q10_p_ci_highmpg" data-solution="true">
-<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q10_p_ci_highmpg">
-<code id="interpolate-58" class="solution-code d-none">y &lt;- as.integer(datasets::mtcars$mpg &gt;= 25)
-phat &lt;- mean(y); n &lt;- length(y); z &lt;- qnorm(0.995)
-se &lt;- sqrt(phat*(1-phat)/n)
-phat + c(-1,1)*z*se</code>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-59-1"><a href="#interpolate-59-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(datasets<span class="sc">::</span>mtcars<span class="sc">$</span>mpg <span class="sc">&gt;=</span> <span class="dv">25</span>)</span>
-<span id="interpolate-59-2"><a href="#interpolate-59-2" aria-hidden="true" tabindex="-1"></a>phat <span class="ot">&lt;-</span> <span class="fu">mean</span>(y); n <span class="ot">&lt;-</span> <span class="fu">length</span>(y); z <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.995</span>)</span>
-<span id="interpolate-59-3"><a href="#interpolate-59-3" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(phat<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>phat)<span class="sc">/</span>n)</span>
-<span id="interpolate-59-4"><a href="#interpolate-59-4" aria-hidden="true" tabindex="-1"></a>phat <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span>z<span class="sc">*</span>se</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q10_z_ci_browneyes">
+<div class="cell" data-exercise="q10_z_ci_browneyes" data-solution="true">
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q10_z_ci_browneyes">
+<code id="interpolate-58" class="solution-code d-none">df &lt;- as.data.frame(datasets::HairEyeColor)
+n &lt;- sum(df$Freq)
+phat &lt;- sum(df$Freq[df$Eye == "Brown"]) / n
+z &lt;- qnorm(0.975)
+phat + c(-1,1) * z * sqrt(phat*(1-phat)/n)</code>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-59-1"><a href="#interpolate-59-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(datasets<span class="sc">::</span>HairEyeColor)</span>
+<span id="interpolate-59-2"><a href="#interpolate-59-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">sum</span>(df<span class="sc">$</span>Freq)</span>
+<span id="interpolate-59-3"><a href="#interpolate-59-3" aria-hidden="true" tabindex="-1"></a>phat <span class="ot">&lt;-</span> <span class="fu">sum</span>(df<span class="sc">$</span>Freq[df<span class="sc">$</span>Eye <span class="sc">==</span> <span class="st">"Brown"</span>]) <span class="sc">/</span> n</span>
+<span id="interpolate-59-4"><a href="#interpolate-59-4" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>)</span>
+<span id="interpolate-59-5"><a href="#interpolate-59-5" aria-hidden="true" tabindex="-1"></a>phat <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>) <span class="sc">*</span> z <span class="sc">*</span> <span class="fu">sqrt</span>(phat<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>phat)<span class="sc">/</span>n)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
-<div class="cell" data-exercise="q10_p_ci_highmpg" data-check="true">
-<script type="exercise-check-q10_p_ci_highmpg-contents">
-eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InExMF9wX2NpX2hpZ2htcGcifSwiY29kZSI6ImdyYWRldGhpczo6Z3JhZGVfdGhpcyh7XG55IDwtIGFzLmludGVnZXIoZGF0YXNldHM6Om10Y2FycyRtcGcgPj0gMjUpXG5waGF0IDwtIG1lYW4oeSk7IG4gPC0gbGVuZ3RoKHkpOyB6IDwtIHFub3JtKDAuOTk1KVxuc2UgPC0gc3FydChwaGF0KigxLXBoYXQpL24pXG5leHAgPC0gcGhhdCArIGMoLTEsMSkqeipzZVxuciA8LSAucmVzdWx0XG5vayA8LSBpcy5udW1lcmljKHIpICYmIGxlbmd0aChyKT09MkwgJiYgYWxsKGlzLmZpbml0ZShyKSlcbmlmICghb2spIGZhaWwoXCJQcmludCBhIG51bWVyaWMgdmVjdG9yIGMobG93ZXIsIHVwcGVyKS5cIilcbmlmIChtYXgoYWJzKHIgLSBleHApKSA8IDFlLTYpIHBhc3MoXCLinIUgQ29ycmVjdCA5OSUgQ0kgZm9yIHAuXCIpXG5lbHNlIGZhaWwoXCJDaGVjayB0d28tc2lkZWQgOTklICh6IGF0IDAuOTk1KSBhbmQgdGhlIFNFIGZvcm11bGEuXCIpXG59KSJ9
+<div class="cell" data-exercise="q10_z_ci_browneyes" data-check="true">
+<script type="exercise-check-q10_z_ci_browneyes-contents">
+eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InExMF96X2NpX2Jyb3duZXllcyJ9LCJjb2RlIjoiZ3JhZGV0aGlzOjpncmFkZV90aGlzKHtcbmRmIDwtIGFzLmRhdGEuZnJhbWUoZGF0YXNldHM6OkhhaXJFeWVDb2xvcilcbm4gPC0gc3VtKGRmJEZyZXEpXG5waGF0IDwtIHN1bShkZiRGcmVxW2RmJEV5ZT09XCJCcm93blwiXSkgLyBuXG56IDwtIHFub3JtKDAuOTc1KVxuZXhwIDwtIHBoYXQgKyBjKC0xLDEpKnoqc3FydChwaGF0KigxLXBoYXQpL24pXG5cbnggPC0gLnJlc3VsdFxub2sgPC0gaXMubnVtZXJpYyh4KSAmJiBsZW5ndGgoeCk9PTJMICYmIGFsbChpcy5maW5pdGUoeCkpXG5pZiAoIW9rKSBmYWlsKFwiUHJpbnQgYSBudW1lcmljIHZlY3RvciBjKGxvd2VyLCB1cHBlcikuXCIpXG5pZiAobWF4KGFicyh4IC0gZXhwKSkgPCAxZS02KSBwYXNzKFwi4pyFIENvcnJlY3QgOTUlIFotaW50ZXJ2YWwgZm9yIHRoZSBCcm93bi1leWUgcHJvcG9ydGlvbi5cIilcbmVsc2UgZmFpbChcIlJlY2hlY2sgbiwgcGhhdCwgYW5kIHRoZSBaIG1hcmdpbiBmb3IgYSBwcm9wb3J0aW9uLlwiKVxufSkifQ==
 </script>
 </div>
 
