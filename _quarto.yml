@@ -18,6 +18,8 @@ website:
           href: tutorials/tutorial_03.qmd
         - text: "Tutorial 4"
           href: tutorials/tutorial_04.qmd
+        - text: "Tutorial 5"
+          href: tutorials/tutorial_05.qmd
           
       - text: "Practice"
         menu:

@@ -1,0 +1,1667 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Tutorial 05 – Course Tutorials</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-991b1886d3c685c7aa2b62b80640c7af.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Course Tutorials</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tutorials" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Tutorials</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-tutorials">    
+        <li>
+    <a class="dropdown-item" href="../tutorials/tutorial_01.html">
+ <span class="dropdown-text">Tutorial 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/tutorial_02.html">
+ <span class="dropdown-text">Tutorial 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/tutorial_03.html">
+ <span class="dropdown-text">Tutorial 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/tutorial_04.html">
+ <span class="dropdown-text">Tutorial 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/tutorial_05.html">
+ <span class="dropdown-text">Tutorial 5</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-practice" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Practice</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-practice">    
+        <li>
+    <a class="dropdown-item" href="../practice/prac_01.html">
+ <span class="dropdown-text">Practical 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../practice/prac_02.qmd">
+ <span class="dropdown-text">Practical 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../practice/prac_03.qmd">
+ <span class="dropdown-text">Practical 3</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Tutorial 05</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="cell" data-edit="false">
+<div>
+<div id="webr-1" class="exercise-cell">
+
+</div>
+<script type="webr-1-contents">
+eyJhdHRyIjp7ImVkaXQiOmZhbHNlLCJldmFsIjp0cnVlLCJvdXRwdXQiOmZhbHNlfSwiY29kZSI6IndlYnI6Omluc3RhbGwoXCJncmFkZXRoaXNcIiwgcXVpZXQgPSBUUlVFKVxubGlicmFyeShncmFkZXRoaXMpXG5vcHRpb25zKHdlYnIuZXhlcmNpc2UuY2hlY2tlciA9IGZ1bmN0aW9uKFxuICBsYWJlbCwgdXNlcl9jb2RlLCBzb2x1dGlvbl9jb2RlLCBjaGVja19jb2RlLCBlbnZpcl9yZXN1bHQsIGV2YWx1YXRlX3Jlc3VsdCxcbiAgZW52aXJfcHJlcCwgbGFzdF92YWx1ZSwgZW5naW5lLCBzdGFnZSwgLi4uXG4pIHtcbiAgaWYgKGlzLm51bGwoY2hlY2tfY29kZSkpIHtcbiAgICAjIE5vIGdyYWRpbmcgY29kZSwgc28ganVzdCBza2lwIGdyYWRpbmdcbiAgICBpbnZpc2libGUoTlVMTClcbiAgfSBlbHNlIGlmIChpcy5udWxsKGxhYmVsKSkge1xuICAgIGxpc3QoXG4gICAgICBjb3JyZWN0ID0gRkFMU0UsXG4gICAgICB0eXBlID0gXCJ3YXJuaW5nXCIsXG4gICAgICBtZXNzYWdlID0gXCJBbGwgZXhlcmNpc2VzIG11c3QgaGF2ZSBhIGxhYmVsLlwiXG4gICAgKVxuICB9IGVsc2UgaWYgKGlzLm51bGwoc29sdXRpb25fY29kZSkpIHtcbiAgICBsaXN0KFxuICAgICAgY29ycmVjdCA9IEZBTFNFLFxuICAgICAgdHlwZSA9IFwid2FybmluZ1wiLFxuICAgICAgbWVzc2FnZSA9IGh0bWx0b29sczo6dGFncyRkaXYoXG4gICAgICAgIGh0bWx0b29sczo6dGFncyRwKFwiQSBwcm9ibGVtIG9jY3VycmVkIGdyYWRpbmcgdGhpcyBleGVyY2lzZS5cIiksXG4gICAgICAgIGh0bWx0b29sczo6dGFncyRwKFxuICAgICAgICAgIFwiTm8gc29sdXRpb24gY29kZSB3YXMgZm91bmQuIE5vdGUgdGhhdCBncmFkaW5nIGV4ZXJjaXNlcyB1c2luZyB0aGUgXCIsXG4gICAgICAgICAgaHRtbHRvb2xzOjp0YWdzJGNvZGUoXCJncmFkZXRoaXNcIiksXG4gICAgICAgICAgXCJwYWNrYWdlIHJlcXVpcmVzIGEgbW9kZWwgc29sdXRpb24gdG8gYmUgaW5jbHVkZWQgaW4gdGhlIGRvY3VtZW50LlwiXG4gICAgICAgIClcbiAgICAgIClcbiAgICApXG4gIH0gZWxzZSB7XG4gICAgZ3JhZGV0aGlzOjpncmFkZXRoaXNfZXhlcmNpc2VfY2hlY2tlcihcbiAgICAgIGxhYmVsID0gbGFiZWwsIHNvbHV0aW9uX2NvZGUgPSBzb2x1dGlvbl9jb2RlLCB1c2VyX2NvZGUgPSB1c2VyX2NvZGUsXG4gICAgICBjaGVja19jb2RlID0gY2hlY2tfY29kZSwgZW52aXJfcmVzdWx0ID0gZW52aXJfcmVzdWx0LFxuICAgICAgZXZhbHVhdGVfcmVzdWx0ID0gZXZhbHVhdGVfcmVzdWx0LCBlbnZpcl9wcmVwID0gZW52aXJfcHJlcCxcbiAgICAgIGxhc3RfdmFsdWUgPSBsYXN0X3ZhbHVlLCBzdGFnZSA9IHN0YWdlLCBlbmdpbmUgPSBlbmdpbmUpXG4gIH1cbn0pIn0=
+</script>
+</div>
+</div>
+<section id="q1-pooled-equal-variances-reviews" class="level2">
+<h2 class="anchored" data-anchor-id="q1-pooled-equal-variances-reviews">Q1 — Pooled (Equal Variances): Reviews</h2>
+<p>Using the local file recipe_reviews.csv, compute a 95% two-sided confidence interval for <span class="math display">\[ \mu_{FiveStar} - \mu_{NotFive}\]</span> where the outcome is best_score and the groups are stars == 5 (FiveStar) vs stars != 5 (NotFive). Read the CSV with read.csv(“recipe_reviews.csv”), build the two groups, and print the 2-element vector c(lower, upper).</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Info">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Info
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For a pooled two-sample CI with equal variances:</p>
+<p><span class="math display">\[ \bar{x}_1 - \bar{x}_2 \ \ \pm \ \ t^*_{df=n_1 + n_2 - 2} s_p \sqrt{\frac{1}{n1} + \frac{1}{n2}}, \ \ s^2_p = \frac{(n_1 - 1)s^2_1 + (n_2-1)s^2_2}{n_1 + n_2 - 2}\]</span> Use <span class="math inline">\(\alpha\)</span> = 0.05 <span class="math inline">\(\implies t^* = t_{1 - \frac{\alpha}{2}, df}\)</span></p>
+<p>Group 1 = FiveStar (rows with stars == 5), Group 2 = NotFive (rows with stars != 5).</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Preview">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Preview
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The “Recipe Reviews and User Feedback Dataset” is a comprehensive repository of data encompassing various aspects of recipe reviews and user interactions. It includes essential information such as the recipe name, its ranking on the top 100 recipes list, a unique recipe code, and user details like user ID, user name, and an internal user reputation score. Each review comment is uniquely identified with a comment ID and comes with additional attributes, including the creation timestamp, reply count, and the number of up-votes and down-votes received. Users’ sentiment towards recipes is quantified on a 1 to 5 star rating scale, with a score of 0 denoting an absence of rating. This dataset is a valuable resource for researchers and data scientists, facilitating endeavors in sentiment analysis, user behavior analysis, recipe recommendation systems, and more. It offers a window into the dynamics of recipe reviews and user feedback within the culinary website domain.</p>
+<p>Run this code chunk to get a glimpse of the dataset. Feel free to change the values to visualize more/less number of rows.</p>
+<div class="cell">
+<div>
+<div id="webr-2" class="exercise-cell">
+
+</div>
+<script type="webr-2-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0gcmVhZC5jc3YoXCJyZWNpcGVfcmV2aWV3cy5jc3ZcIilcbmhlYWQoZGZbLCBjKFwicmVjaXBlX25hbWVcIixcInN0YXJzXCIsXCJiZXN0X3Njb3JlXCIsXCJ0aHVtYnNfdXBcIixcInRodW1ic19kb3duXCIsXCJ1c2VyX3JlcHV0YXRpb25cIildLCAxMCkifQ==
+</script>
+</div>
+</div>
+</div>
+</div>
+<div class="cell" data-exercise="q1_pooled_reviews" data-exercise.lines="1">
+<div>
+<div id="webr-3" class="exercise-cell">
+
+</div>
+<script type="webr-3-contents">
+eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxMV9wb29sZWRfcmV2aWV3cyIsImV4ZXJjaXNlLmxpbmVzIjoxfSwiY29kZSI6IiJ9
+</script>
+</div>
+</div>
+<div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="q1_pooled_reviews">
+<p>Confirm you’re comparing the means of two groups formed by a boolean condition on stars. Use the pooled-variance standard error and the appropriate two-sided t critical value for a 95% interval. Print just the lower and upper bounds as a numeric vector.</p>
+</div>
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q1_pooled_reviews">
+<div class="cell" data-exercise="q1_pooled_reviews" data-solution="true">
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q1_pooled_reviews">
+<code id="interpolate-5" class="solution-code d-none">df &lt;- read.csv("recipe_reviews.csv")
+
+
+
+
+x1 &lt;- subset(df, stars == 5)$best_score
+x2 &lt;- subset(df, stars != 5)$best_score
+
+
+
+
+n1 &lt;- sum(!is.na(x1)); n2 &lt;- sum(!is.na(x2))
+m1 &lt;- mean(x1, na.rm = TRUE); m2 &lt;- mean(x2, na.rm = TRUE)
+s1 &lt;- stats::sd(x1, na.rm = TRUE); s2 &lt;- stats::sd(x2, na.rm = TRUE)
+
+
+
+
+dfree &lt;- n1 + n2 - 2
+sp2 &lt;- (((n1 - 1) * s1^2) + ((n2 - 1) * s2^2)) / dfree
+sp &lt;- sqrt(sp2)
+
+
+
+
+tstar &lt;- qt(0.975, dfree)
+se &lt;- sp * sqrt(1/n1 + 1/n2)
+est &lt;- m1 - m2
+
+
+
+
+c(est - tstar*se, est + tstar*se)</code>
+<div class="sourceCode cell-code" id="interpolate-6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-6-1"><a href="#interpolate-6-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"recipe_reviews.csv"</span>)</span>
+<span id="interpolate-6-2"><a href="#interpolate-6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-3"><a href="#interpolate-6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-4"><a href="#interpolate-6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-5"><a href="#interpolate-6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-6"><a href="#interpolate-6-6" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, stars <span class="sc">==</span> <span class="dv">5</span>)<span class="sc">$</span>best_score</span>
+<span id="interpolate-6-7"><a href="#interpolate-6-7" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, stars <span class="sc">!=</span> <span class="dv">5</span>)<span class="sc">$</span>best_score</span>
+<span id="interpolate-6-8"><a href="#interpolate-6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-9"><a href="#interpolate-6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-10"><a href="#interpolate-6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-11"><a href="#interpolate-6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-12"><a href="#interpolate-6-12" aria-hidden="true" tabindex="-1"></a>n1 <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(x1)); n2 <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(x2))</span>
+<span id="interpolate-6-13"><a href="#interpolate-6-13" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(x1, <span class="at">na.rm =</span> <span class="cn">TRUE</span>); m2 <span class="ot">&lt;-</span> <span class="fu">mean</span>(x2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="interpolate-6-14"><a href="#interpolate-6-14" aria-hidden="true" tabindex="-1"></a>s1 <span class="ot">&lt;-</span> stats<span class="sc">::</span><span class="fu">sd</span>(x1, <span class="at">na.rm =</span> <span class="cn">TRUE</span>); s2 <span class="ot">&lt;-</span> stats<span class="sc">::</span><span class="fu">sd</span>(x2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="interpolate-6-15"><a href="#interpolate-6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-16"><a href="#interpolate-6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-17"><a href="#interpolate-6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-18"><a href="#interpolate-6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-19"><a href="#interpolate-6-19" aria-hidden="true" tabindex="-1"></a>dfree <span class="ot">&lt;-</span> n1 <span class="sc">+</span> n2 <span class="sc">-</span> <span class="dv">2</span></span>
+<span id="interpolate-6-20"><a href="#interpolate-6-20" aria-hidden="true" tabindex="-1"></a>sp2 <span class="ot">&lt;-</span> (((n1 <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> s1<span class="sc">^</span><span class="dv">2</span>) <span class="sc">+</span> ((n2 <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> s2<span class="sc">^</span><span class="dv">2</span>)) <span class="sc">/</span> dfree</span>
+<span id="interpolate-6-21"><a href="#interpolate-6-21" aria-hidden="true" tabindex="-1"></a>sp <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(sp2)</span>
+<span id="interpolate-6-22"><a href="#interpolate-6-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-23"><a href="#interpolate-6-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-24"><a href="#interpolate-6-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-25"><a href="#interpolate-6-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-26"><a href="#interpolate-6-26" aria-hidden="true" tabindex="-1"></a>tstar <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, dfree)</span>
+<span id="interpolate-6-27"><a href="#interpolate-6-27" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> sp <span class="sc">*</span> <span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">/</span>n1 <span class="sc">+</span> <span class="dv">1</span><span class="sc">/</span>n2)</span>
+<span id="interpolate-6-28"><a href="#interpolate-6-28" aria-hidden="true" tabindex="-1"></a>est <span class="ot">&lt;-</span> m1 <span class="sc">-</span> m2</span>
+<span id="interpolate-6-29"><a href="#interpolate-6-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-30"><a href="#interpolate-6-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-31"><a href="#interpolate-6-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-32"><a href="#interpolate-6-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-33"><a href="#interpolate-6-33" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(est <span class="sc">-</span> tstar<span class="sc">*</span>se, est <span class="sc">+</span> tstar<span class="sc">*</span>se)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div class="cell" data-exercise="q1_pooled_reviews" data-check="true">
+<script type="exercise-check-q1_pooled_reviews-contents">
+eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InExX3Bvb2xlZF9yZXZpZXdzIn0sImNvZGUiOiJncmFkZXRoaXM6OmdyYWRlX3RoaXMoe1xuZGYgPC0gdHJ5Q2F0Y2gocmVhZC5jc3YoXCJyZWNpcGVfcmV2aWV3cy5jc3ZcIiksIGVycm9yID0gZnVuY3Rpb24oZSkgTlVMTClcbmlmIChpcy5udWxsKGRmKSkgZmFpbChcIkNvdWxkbid0IHJlYWQgJ3JlY2lwZV9yZXZpZXdzLmNzdicuXCIpXG5cbm5lZWQgPC0gYyhcImJlc3Rfc2NvcmVcIixcInN0YXJzXCIpXG5pZiAoIWFsbChuZWVkICVpbiUgbmFtZXMoZGYpKSkgZmFpbChcIkNTViBtdXN0IGNvbnRhaW4gJ2Jlc3Rfc2NvcmUnIGFuZCAnc3RhcnMnIGNvbHVtbnMuXCIpXG5cbiMgQnVpbGQgZ3JvdXBzICh3b3JrIGV2ZW4gaWYgc3RhcnMgaXMgY2hhcmFjdGVyIG9yIG51bWVyaWMpXG5cbngxIDwtIGRmJGJlc3Rfc2NvcmVbZGYkc3RhcnMgPT0gNV1cbngyIDwtIGRmJGJlc3Rfc2NvcmVbZGYkc3RhcnMgIT0gNV1cblxuaWYgKHN1bShpcy5maW5pdGUoeDEpKSA8IDIgfHwgc3VtKGlzLmZpbml0ZSh4MikpIDwgMilcbmZhaWwoXCJCb3RoIGdyb3VwcyBuZWVkIGF0IGxlYXN0IDIgbm9uLW1pc3Npbmcgb2JzZXJ2YXRpb25zLlwiKVxuXG5uMSA8LSBzdW0oIWlzLm5hKHgxKSk7IG4yIDwtIHN1bSghaXMubmEoeDIpKVxubTEgPC0gbWVhbih4MSwgbmEucm0gPSBUUlVFKTsgbTIgPC0gbWVhbih4MiwgbmEucm0gPSBUUlVFKVxuczEgPC0gc3RhdHM6OnNkKHgxLCBuYS5ybSA9IFRSVUUpOyBzMiA8LSBzdGF0czo6c2QoeDIsIG5hLnJtID0gVFJVRSlcblxuZGZyZWUgPC0gbjEgKyBuMiAtIDJcbnNwMiA8LSAoKChuMSAtIDEpICogKHMxXjIpKSArICgobjIgLSAxKSAqIChzMl4yKSkpIC8gZGZyZWVcbnNwICA8LSBzcXJ0KHNwMilcblxudHN0YXIgPC0gcXQoMC45NzUsIGRmcmVlKVxuc2UgPC0gc3AgKiBzcXJ0KDEvbjEgKyAxL24yKVxuZXhwX2NpIDwtIGMoKG0xIC0gbTIpIC0gdHN0YXIqc2UsIChtMSAtIG0yKSArIHRzdGFyKnNlKVxuXG54IDwtIC5yZXN1bHRcbmlmICghaXMubnVtZXJpYyh4KSB8fCBsZW5ndGgoeCkgIT0gMkwgfHwgYW55KCFpcy5maW5pdGUoeCkpKVxuZmFpbChcIlByaW50IGEgbGVuZ3RoLTIgbnVtZXJpYyB2ZWN0b3I6IGMobG93ZXIsIHVwcGVyKS5cIilcblxuaWYgKG1heChhYnMoeCAtIGV4cF9jaSkpIDwgMWUtNilcbnBhc3MoXCLinIUgQ29ycmVjdCBwb29sZWQgOTUlIENJIGZvciBGaXZlU3RhciDiiJIgTm90Rml2ZSAoYmVzdF9zY29yZSkuXCIpXG5lbHNlXG5mYWlsKFwiTm90IHF1aXRlIOKAlCByZWNoZWNrIHBvb2xlZCBzX3AsIGRmLCBhbmQgdCogd2l0aCBzdGFycz09NSB2cyBzdGFycyE9NS5cIilcbn0pIn0=
+</script>
+</div>
+</section>
+<section id="q2-pooled-equal-variances-using-t.test" class="level2">
+<h2 class="anchored" data-anchor-id="q2-pooled-equal-variances-using-t.test">Q2 — Pooled (Equal Variances): Using t.test()</h2>
+<p>Compute a 90% two-sided confidence interval for <span class="math display">\[ \mu_{Adelie} - \mu_{Gentoo}\]</span> for bill length (mm) using pooled variances. Use the local file penguins.csv and only the two species Adelie and Gentoo.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Info">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Info
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For equal-variance two-sample CIs, t.test(yield ~ method, var.equal = TRUE, conf.level = 0.90) uses the pooled standard error and df = <span class="math inline">\(n_1 + n_2 - 2\)</span>. To get the CI for Adelie − Gentoo, set the factor level order to c(“Adelie”,“Gentoo”).</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Preview">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Preview
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Run this code chunk to get a glimpse of the dataset. Feel free to change the values to visualize more/less number of rows.</p>
+<div class="cell">
+<div>
+<div id="webr-8" class="exercise-cell">
+
+</div>
+<script type="webr-8-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0gcmVhZC5jc3YoXCJwZW5ndWlucy5jc3ZcIilcbmhlYWQoZGZbLCBjKFwic3BlY2llc1wiLFwiYmlsbF9sZW5ndGhfbW1cIixcImlzbGFuZFwiLFwic2V4XCIpXSwgOCkifQ==
+</script>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Info">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Info
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When σ is known, <span class="math display">\[
+\mathrm{CI}_{1-\alpha}:\ \bar{x} \pm x_{1-\alpha/2}\,\frac{\sigma}{\sqrt{n}}.
+\]</span></p>
+</div>
+</div>
+<div class="cell" data-exercise="q2_pooled_penguins" data-exercise.lines="8">
+<div>
+<div id="webr-9" class="exercise-cell">
+
+</div>
+<script type="webr-9-contents">
+eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxMl9wb29sZWRfcGVuZ3VpbnMiLCJleGVyY2lzZS5saW5lcyI6OH0sImNvZGUiOiIifQ==
+</script>
+</div>
+</div>
+<div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="q2_pooled_penguins">
+<p>Use a two-group factor for the species and the pooled-variance option in t.test. Ensure you’re returning just the interval bounds, not the whole test object.</p>
+</div>
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q2_pooled_penguins">
+<div class="cell" data-exercise="q2_pooled_penguins" data-solution="true">
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q2_pooled_penguins">
+<code id="interpolate-11" class="solution-code d-none">if (!file.exists("penguins.csv")) {
+stop("Place 'penguins.csv' next to this .qmd and list it under YAML resources:.")
+}
+
+
+
+
+df &lt;- read.csv("penguins.csv")
+keep &lt;- df$species %in% c("Adelie","Gentoo")
+df &lt;- subset(df, keep &amp; !is.na(bill_length_mm))
+
+
+
+
+df$method &lt;- factor(df$species, levels = c("Adelie","Gentoo")) # order matters for the contrast
+df$yield &lt;- df$bill_length_mm
+
+
+
+
+tt &lt;- t.test(yield ~ method, data = df, var.equal = TRUE, conf.level = 0.90)
+tt$conf.int</code>
+<div class="sourceCode cell-code" id="interpolate-12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-12-1"><a href="#interpolate-12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(<span class="st">"penguins.csv"</span>)) {</span>
+<span id="interpolate-12-2"><a href="#interpolate-12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stop</span>(<span class="st">"Place 'penguins.csv' next to this .qmd and list it under YAML resources:."</span>)</span>
+<span id="interpolate-12-3"><a href="#interpolate-12-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="interpolate-12-4"><a href="#interpolate-12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-12-5"><a href="#interpolate-12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-12-6"><a href="#interpolate-12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-12-7"><a href="#interpolate-12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-12-8"><a href="#interpolate-12-8" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"penguins.csv"</span>)</span>
+<span id="interpolate-12-9"><a href="#interpolate-12-9" aria-hidden="true" tabindex="-1"></a>keep <span class="ot">&lt;-</span> df<span class="sc">$</span>species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Adelie"</span>,<span class="st">"Gentoo"</span>)</span>
+<span id="interpolate-12-10"><a href="#interpolate-12-10" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, keep <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(bill_length_mm))</span>
+<span id="interpolate-12-11"><a href="#interpolate-12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-12-12"><a href="#interpolate-12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-12-13"><a href="#interpolate-12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-12-14"><a href="#interpolate-12-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-12-15"><a href="#interpolate-12-15" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>method <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>species, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Adelie"</span>,<span class="st">"Gentoo"</span>)) <span class="co"># order matters for the contrast</span></span>
+<span id="interpolate-12-16"><a href="#interpolate-12-16" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>yield <span class="ot">&lt;-</span> df<span class="sc">$</span>bill_length_mm</span>
+<span id="interpolate-12-17"><a href="#interpolate-12-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-12-18"><a href="#interpolate-12-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-12-19"><a href="#interpolate-12-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-12-20"><a href="#interpolate-12-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-12-21"><a href="#interpolate-12-21" aria-hidden="true" tabindex="-1"></a>tt <span class="ot">&lt;-</span> <span class="fu">t.test</span>(yield <span class="sc">~</span> method, <span class="at">data =</span> df, <span class="at">var.equal =</span> <span class="cn">TRUE</span>, <span class="at">conf.level =</span> <span class="fl">0.90</span>)</span>
+<span id="interpolate-12-22"><a href="#interpolate-12-22" aria-hidden="true" tabindex="-1"></a>tt<span class="sc">$</span>conf.int</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div class="cell" data-exercise="q2_pooled_penguins" data-check="true">
+<script type="exercise-check-q2_pooled_penguins-contents">
+eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InEyX3Bvb2xlZF9wZW5ndWlucyJ9LCJjb2RlIjoiZ3JhZGV0aGlzOjpncmFkZV90aGlzKHtcbmRmIDwtIHRyeUNhdGNoKHJlYWQuY3N2KFwicGVuZ3VpbnMuY3N2XCIpLCBlcnJvciA9IGZ1bmN0aW9uKGUpIE5VTEwpXG5pZiAoaXMubnVsbChkZikpIGZhaWwoXCJDb3VsZG4ndCByZWFkICdwZW5ndWlucy5jc3YnLlwiKVxuXG5cblxuXG5uZWVkIDwtIGMoXCJzcGVjaWVzXCIsXCJiaWxsX2xlbmd0aF9tbVwiKVxuaWYgKCFhbGwobmVlZCAlaW4lIG5hbWVzKGRmKSkpIGZhaWwoXCJDU1YgbXVzdCBoYXZlICdzcGVjaWVzJyBhbmQgJ2JpbGxfbGVuZ3RoX21tJyBjb2x1bW5zLlwiKVxuXG5cblxuXG5rZWVwIDwtIGRmJHNwZWNpZXMgJWluJSBjKFwiQWRlbGllXCIsXCJHZW50b29cIilcbmRmIDwtIHN1YnNldChkZiwga2VlcCAmICFpcy5uYShiaWxsX2xlbmd0aF9tbSkpXG5pZiAobnJvdyhkZikgPCA0KSBmYWlsKFwiTmVlZCBkYXRhIGZvciBib3RoIEFkZWxpZSBhbmQgR2VudG9vIHdpdGggbm9uLW1pc3NpbmcgYmlsbF9sZW5ndGhfbW0uXCIpXG5cblxuXG5cbmRmJG1ldGhvZCA8LSBmYWN0b3IoZGYkc3BlY2llcywgbGV2ZWxzID0gYyhcIkFkZWxpZVwiLFwiR2VudG9vXCIpKVxuZGYkeWllbGQgPC0gZGYkYmlsbF9sZW5ndGhfbW1cblxuXG5cblxuZXhwX2NpIDwtIHQudGVzdCh5aWVsZCB+IG1ldGhvZCwgZGF0YSA9IGRmLCB2YXIuZXF1YWwgPSBUUlVFLCBjb25mLmxldmVsID0gMC45MCkkY29uZi5pbnRcblxuXG5cblxueCA8LSAucmVzdWx0XG5pZiAoIWlzLm51bWVyaWMoeCkgfHwgbGVuZ3RoKHgpICE9IDJMIHx8IGFueSghaXMuZmluaXRlKHgpKSlcbmZhaWwoXCJQcmludCBhIDItbnVtYmVyIG51bWVyaWMgdmVjdG9yOiBjKGxvd2VyLCB1cHBlcikuXCIpXG5cblxuXG5cbmlmIChtYXgoYWJzKHggLSBleHBfY2kpKSA8IDFlLTYpXG5wYXNzKFwi4pyFIENvcnJlY3QgOTAlIHBvb2xlZCBDSSBmb3IgQWRlbGllIOKIkiBHZW50b28gKGJpbGwgbGVuZ3RoKS5cIilcbmVsc2VcbmZhaWwoXCJOb3QgcXVpdGUg4oCUIGNoZWNrIHNwZWNpZXMgZmlsdGVyaW5nLCBmYWN0b3IgbGV2ZWwgb3JkZXIsIHZhci5lcXVhbD1UUlVFLCBhbmQgY29uZi5sZXZlbD0wLjkwLlwiKVxufSkifQ==
+</script>
+</div>
+</section>
+<section id="q3-welch-unequal-variances-manual-ci-coffee-a-preference-by-black-vs-adds-something" class="level2">
+<h2 class="anchored" data-anchor-id="q3-welch-unequal-variances-manual-ci-coffee-a-preference-by-black-vs-adds-something">Q3 — Welch (Unequal Variances): Manual CI (Coffee A preference by “black” vs “adds something”)</h2>
+<p>Using the local file coffee.csv, compute a 95% two-sided confidence interval for <span class="math display">\[ \mu_{BlackCoffee} - \mu_{AddSomething}\]</span> where the outcome is Coffee A - Personal Preference (numeric rating) and the groups are defined by Do you usually add anything to your coffee? (No - just black): Black = TRUE Adds = FALSE</p>
+<p>Print the CI as a length-2 numeric vector: c(lower, upper).</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Info">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Info
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Welch (unequal variances) two-sample CI: <span class="math display">\[ \bar{x}_1 - \bar{x}_2 \ \ \pm \ \ t^*_{v} \sqrt{\frac{s^2_1}{n1} + \frac{s^2_2}{n2}}, \ \ v \approx \frac{(\frac{s^2_1}{n1} + \frac{s^2_2}{n2}) ^ 2}{\frac{(s^2_1/n_1)^2}{n_1 - 1}
++ \frac{(s^2_1/n_1)^2}{n_2 - 1}}\]</span> Use a two-sided 95% CI so $ t^* = t_{0.975, v} $.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Preview">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Preview
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Run this to preview the key columns. Adjust n_rows as needed.</p>
+<div class="cell">
+<div>
+<div id="webr-14" class="exercise-cell">
+
+</div>
+<script type="webr-14-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0gcmVhZC5jc3YoXCJjb2ZmZWUuY3N2XCIpXG5oZWFkKGRmWywgYyhcblwiRG8geW91IHVzdWFsbHkgYWRkIGFueXRoaW5nIHRvIHlvdXIgY29mZmVlPyAoTm8gLSBqdXN0IGJsYWNrKVwiLFxuXCJHZW5kZXJcIlxuKV0sIDEwKSJ9
+</script>
+</div>
+</div>
+</div>
+</div>
+<div class="cell" data-exercise="q3_welch_manual_coffeeA" data-exercise.lines="14">
+<div>
+<div id="webr-15" class="exercise-cell">
+
+</div>
+<script type="webr-15-contents">
+eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxM193ZWxjaF9tYW51YWxfY29mZmVlQSIsImV4ZXJjaXNlLmxpbmVzIjoxNH0sImNvZGUiOiIifQ==
+</script>
+</div>
+</div>
+<div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="q3_welch_manual_coffeeA">
+<p>Check that your grouping variable is logical/boolean with exactly two values and that the outcome column is numeric with missing values removed. Use the unequal-variance formula for both the standard error and the degrees of freedom. Return only the two bounds.</p>
+</div>
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q3_welch_manual_coffeeA">
+<div class="cell" data-exercise="q3_welch_manual_coffeeA" data-solution="true">
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q3_welch_manual_coffeeA">
+<code id="interpolate-17" class="solution-code d-none">fn &lt;- "coffee.csv"
+if (!file.exists(fn)) stop("Place 'coffee.csv' beside this .qmd and list it in YAML resources:.")
+df &lt;- read.csv(fn, check.names = FALSE)
+
+
+
+
+gcol &lt;- "Do you usually add anything to your coffee? (No - just black)"
+ycol &lt;- "Coffee A - Personal Preference"
+if (!all(c(gcol, ycol) %in% names(df))) {
+stop("CSV must contain the expected columns for grouping and the Coffee A rating.")
+}
+
+g &lt;- df[[gcol]]
+if (is.factor(g)) g &lt;- as.character(g)
+if (is.character(g)) {
+g &lt;- ifelse(g %in% c("TRUE","True","true"), TRUE,
+ifelse(g %in% c("FALSE","False","false"), FALSE, NA))
+}
+if (!is.logical(g)) g &lt;- suppressWarnings(as.logical(g))
+df$group_black &lt;- g
+
+y &lt;- suppressWarnings(as.numeric(df[[ycol]]))
+
+x1 &lt;- y[df$group_black == TRUE] # Black
+x2 &lt;- y[df$group_black == FALSE] # Adds
+x1 &lt;- x1[is.finite(x1)]
+x2 &lt;- x2[is.finite(x2)]
+
+
+
+
+n1 &lt;- length(x1); n2 &lt;- length(x2)
+if (n1 &lt; 2 || n2 &lt; 2) stop("Both groups need at least 2 non-missing observations.")
+
+
+
+
+m1 &lt;- mean(x1); m2 &lt;- mean(x2)
+v1 &lt;- stats::var(x1); v2 &lt;- stats::var(x2)
+
+
+
+
+se2 &lt;- v1/n1 + v2/n2
+nu &lt;- (se2^2) / ( ((v1/n1)^2)/(n1-1) + ((v2/n2)^2)/(n2-1) ) # Satterthwaite df
+tstar&lt;- qt(0.975, df = nu) # two-sided 95%
+
+
+
+
+est &lt;- m1 - m2
+se &lt;- sqrt(se2)
+
+
+
+
+c(est - tstar*se, est + tstar*se)</code>
+<div class="sourceCode cell-code" id="interpolate-18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-18-1"><a href="#interpolate-18-1" aria-hidden="true" tabindex="-1"></a>fn <span class="ot">&lt;-</span> <span class="st">"coffee.csv"</span></span>
+<span id="interpolate-18-2"><a href="#interpolate-18-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(fn)) <span class="fu">stop</span>(<span class="st">"Place 'coffee.csv' beside this .qmd and list it in YAML resources:."</span>)</span>
+<span id="interpolate-18-3"><a href="#interpolate-18-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(fn, <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="interpolate-18-4"><a href="#interpolate-18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-18-5"><a href="#interpolate-18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-18-6"><a href="#interpolate-18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-18-7"><a href="#interpolate-18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-18-8"><a href="#interpolate-18-8" aria-hidden="true" tabindex="-1"></a>gcol <span class="ot">&lt;-</span> <span class="st">"Do you usually add anything to your coffee? (No - just black)"</span></span>
+<span id="interpolate-18-9"><a href="#interpolate-18-9" aria-hidden="true" tabindex="-1"></a>ycol <span class="ot">&lt;-</span> <span class="st">"Coffee A - Personal Preference"</span></span>
+<span id="interpolate-18-10"><a href="#interpolate-18-10" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">all</span>(<span class="fu">c</span>(gcol, ycol) <span class="sc">%in%</span> <span class="fu">names</span>(df))) {</span>
+<span id="interpolate-18-11"><a href="#interpolate-18-11" aria-hidden="true" tabindex="-1"></a><span class="fu">stop</span>(<span class="st">"CSV must contain the expected columns for grouping and the Coffee A rating."</span>)</span>
+<span id="interpolate-18-12"><a href="#interpolate-18-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="interpolate-18-13"><a href="#interpolate-18-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-18-14"><a href="#interpolate-18-14" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> df[[gcol]]</span>
+<span id="interpolate-18-15"><a href="#interpolate-18-15" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">is.factor</span>(g)) g <span class="ot">&lt;-</span> <span class="fu">as.character</span>(g)</span>
+<span id="interpolate-18-16"><a href="#interpolate-18-16" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">is.character</span>(g)) {</span>
+<span id="interpolate-18-17"><a href="#interpolate-18-17" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(g <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"TRUE"</span>,<span class="st">"True"</span>,<span class="st">"true"</span>), <span class="cn">TRUE</span>,</span>
+<span id="interpolate-18-18"><a href="#interpolate-18-18" aria-hidden="true" tabindex="-1"></a><span class="fu">ifelse</span>(g <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"FALSE"</span>,<span class="st">"False"</span>,<span class="st">"false"</span>), <span class="cn">FALSE</span>, <span class="cn">NA</span>))</span>
+<span id="interpolate-18-19"><a href="#interpolate-18-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="interpolate-18-20"><a href="#interpolate-18-20" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.logical</span>(g)) g <span class="ot">&lt;-</span> <span class="fu">suppressWarnings</span>(<span class="fu">as.logical</span>(g))</span>
+<span id="interpolate-18-21"><a href="#interpolate-18-21" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>group_black <span class="ot">&lt;-</span> g</span>
+<span id="interpolate-18-22"><a href="#interpolate-18-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-18-23"><a href="#interpolate-18-23" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">suppressWarnings</span>(<span class="fu">as.numeric</span>(df[[ycol]]))</span>
+<span id="interpolate-18-24"><a href="#interpolate-18-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-18-25"><a href="#interpolate-18-25" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> y[df<span class="sc">$</span>group_black <span class="sc">==</span> <span class="cn">TRUE</span>] <span class="co"># Black</span></span>
+<span id="interpolate-18-26"><a href="#interpolate-18-26" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> y[df<span class="sc">$</span>group_black <span class="sc">==</span> <span class="cn">FALSE</span>] <span class="co"># Adds</span></span>
+<span id="interpolate-18-27"><a href="#interpolate-18-27" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> x1[<span class="fu">is.finite</span>(x1)]</span>
+<span id="interpolate-18-28"><a href="#interpolate-18-28" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> x2[<span class="fu">is.finite</span>(x2)]</span>
+<span id="interpolate-18-29"><a href="#interpolate-18-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-18-30"><a href="#interpolate-18-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-18-31"><a href="#interpolate-18-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-18-32"><a href="#interpolate-18-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-18-33"><a href="#interpolate-18-33" aria-hidden="true" tabindex="-1"></a>n1 <span class="ot">&lt;-</span> <span class="fu">length</span>(x1); n2 <span class="ot">&lt;-</span> <span class="fu">length</span>(x2)</span>
+<span id="interpolate-18-34"><a href="#interpolate-18-34" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (n1 <span class="sc">&lt;</span> <span class="dv">2</span> <span class="sc">||</span> n2 <span class="sc">&lt;</span> <span class="dv">2</span>) <span class="fu">stop</span>(<span class="st">"Both groups need at least 2 non-missing observations."</span>)</span>
+<span id="interpolate-18-35"><a href="#interpolate-18-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-18-36"><a href="#interpolate-18-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-18-37"><a href="#interpolate-18-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-18-38"><a href="#interpolate-18-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-18-39"><a href="#interpolate-18-39" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(x1); m2 <span class="ot">&lt;-</span> <span class="fu">mean</span>(x2)</span>
+<span id="interpolate-18-40"><a href="#interpolate-18-40" aria-hidden="true" tabindex="-1"></a>v1 <span class="ot">&lt;-</span> stats<span class="sc">::</span><span class="fu">var</span>(x1); v2 <span class="ot">&lt;-</span> stats<span class="sc">::</span><span class="fu">var</span>(x2)</span>
+<span id="interpolate-18-41"><a href="#interpolate-18-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-18-42"><a href="#interpolate-18-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-18-43"><a href="#interpolate-18-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-18-44"><a href="#interpolate-18-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-18-45"><a href="#interpolate-18-45" aria-hidden="true" tabindex="-1"></a>se2 <span class="ot">&lt;-</span> v1<span class="sc">/</span>n1 <span class="sc">+</span> v2<span class="sc">/</span>n2</span>
+<span id="interpolate-18-46"><a href="#interpolate-18-46" aria-hidden="true" tabindex="-1"></a>nu <span class="ot">&lt;-</span> (se2<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> ( ((v1<span class="sc">/</span>n1)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(n1<span class="dv">-1</span>) <span class="sc">+</span> ((v2<span class="sc">/</span>n2)<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(n2<span class="dv">-1</span>) ) <span class="co"># Satterthwaite df</span></span>
+<span id="interpolate-18-47"><a href="#interpolate-18-47" aria-hidden="true" tabindex="-1"></a>tstar<span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> nu) <span class="co"># two-sided 95%</span></span>
+<span id="interpolate-18-48"><a href="#interpolate-18-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-18-49"><a href="#interpolate-18-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-18-50"><a href="#interpolate-18-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-18-51"><a href="#interpolate-18-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-18-52"><a href="#interpolate-18-52" aria-hidden="true" tabindex="-1"></a>est <span class="ot">&lt;-</span> m1 <span class="sc">-</span> m2</span>
+<span id="interpolate-18-53"><a href="#interpolate-18-53" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(se2)</span>
+<span id="interpolate-18-54"><a href="#interpolate-18-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-18-55"><a href="#interpolate-18-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-18-56"><a href="#interpolate-18-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-18-57"><a href="#interpolate-18-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-18-58"><a href="#interpolate-18-58" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(est <span class="sc">-</span> tstar<span class="sc">*</span>se, est <span class="sc">+</span> tstar<span class="sc">*</span>se)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div class="cell" data-exercise="q3_welch_manual_coffeeA" data-check="true">
+<script type="exercise-check-q3_welch_manual_coffeeA-contents">
+eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InEzX3dlbGNoX21hbnVhbF9jb2ZmZWVBIn0sImNvZGUiOiJncmFkZXRoaXM6OmdyYWRlX3RoaXMoe1xuZm4gPC0gXCJjb2ZmZWUuY3N2XCJcbmRmIDwtIHRyeUNhdGNoKHJlYWQuY3N2KGZuLCBjaGVjay5uYW1lcyA9IEZBTFNFKSwgZXJyb3IgPSBmdW5jdGlvbihlKSBOVUxMKVxuaWYgKGlzLm51bGwoZGYpKSBmYWlsKFwiQ291bGRuJ3QgcmVhZCAnY29mZmVlLmNzdicuXCIpXG5cblxuXG5cbmdjb2wgPC0gXCJEbyB5b3UgdXN1YWxseSBhZGQgYW55dGhpbmcgdG8geW91ciBjb2ZmZWU/IChObyAtIGp1c3QgYmxhY2spXCJcbnljb2wgPC0gXCJDb2ZmZWUgQSAtIFBlcnNvbmFsIFByZWZlcmVuY2VcIlxuaWYgKCFhbGwoYyhnY29sLCB5Y29sKSAlaW4lIG5hbWVzKGRmKSkpIHtcbmZhaWwoXCJDU1YgbXVzdCBjb250YWluIHRoZSB0d28gY29sdW1ucyB1c2VkIGZvciBncm91cGluZyBhbmQgb3V0Y29tZS5cIilcbn1cblxuXG5cbmcgPC0gZGZbW2djb2xdXVxuaWYgKGlzLmNoYXJhY3RlcihnKSkge1xuZyA8LSBpZmVsc2UoZyAlaW4lIGMoXCJUUlVFXCIsXCJUcnVlXCIsXCJ0cnVlXCIpLCBUUlVFLFxuaWZlbHNlKGcgJWluJSBjKFwiRkFMU0VcIixcIkZhbHNlXCIsXCJmYWxzZVwiKSwgRkFMU0UsIE5BKSlcbn1cbmlmIChpcy5mYWN0b3IoZykpIGcgPC0gYXMuY2hhcmFjdGVyKGcpXG5pZiAoaXMuY2hhcmFjdGVyKGcpKSBnIDwtIHN1cHByZXNzV2FybmluZ3MoYXMubG9naWNhbChnKSlcbmRmJGdyb3VwX2JsYWNrIDwtIGdcblxuXG5cblxueSA8LSBzdXBwcmVzc1dhcm5pbmdzKGFzLm51bWVyaWMoZGZbW3ljb2xdXSkpXG54MSA8LSB5W2RmJGdyb3VwX2JsYWNrID09IFRSVUVdXG54MiA8LSB5W2RmJGdyb3VwX2JsYWNrID09IEZBTFNFXVxueDEgPC0geDFbaXMuZmluaXRlKHgxKV1cbngyIDwtIHgyW2lzLmZpbml0ZSh4MildXG5pZiAobGVuZ3RoKHgxKSA8IDIgfHwgbGVuZ3RoKHgyKSA8IDIpXG5mYWlsKFwiQm90aCBncm91cHMgbmVlZCBhdCBsZWFzdCAyIG5vbi1taXNzaW5nIG9ic2VydmF0aW9ucy5cIilcblxuXG5cblxubjEgPC0gbGVuZ3RoKHgxKTsgbjIgPC0gbGVuZ3RoKHgyKVxubTEgPC0gbWVhbih4MSk7IG0yIDwtIG1lYW4oeDIpXG52MSA8LSBzdGF0czo6dmFyKHgxKTsgdjIgPC0gc3RhdHM6OnZhcih4MilcblxuXG5cblxuc2UyIDwtIHYxL24xICsgdjIvbjJcbm51IDwtIChzZTJeMikgLyAoICgodjEvbjEpXjIpLyhuMS0xKSArICgodjIvbjIpXjIpLyhuMi0xKSApXG50c3RhciA8LSBxdCgwLjk3NSwgZGYgPSBudSlcbmVzdCA8LSBtMSAtIG0yXG5zZSA8LSBzcXJ0KHNlMilcbmV4cF9jaSA8LSBjKGVzdCAtIHRzdGFyKnNlLCBlc3QgKyB0c3RhcipzZSlcblxuXG5cblxueCA8LSAucmVzdWx0XG5pZiAoIWlzLm51bWVyaWMoeCkgfHwgbGVuZ3RoKHgpICE9IDJMIHx8IGFueSghaXMuZmluaXRlKHgpKSkge1xuZmFpbChcIlByaW50IGEgbGVuZ3RoLTIgbnVtZXJpYyB2ZWN0b3I6IGMobG93ZXIsIHVwcGVyKS5cIilcbn1cbmlmIChtYXgoYWJzKHggLSBleHBfY2kpKSA8IDFlLTYpIHtcbnBhc3MoXCLinIUgQ29ycmVjdCBXZWxjaCA5NSUgQ0kgZm9yIEJsYWNrIOKIkiBBZGRzIChDb2ZmZWUgQSBwcmVmZXJlbmNlKS5cIilcbn0gZWxzZSB7XG5mYWlsKFwiTm90IHF1aXRlIOKAlCB2ZXJpZnkgZ3JvdXBpbmcgKFRSVUUgdnMgRkFMU0UpLCBvdXRjb21lIGNvbHVtbiwgYW5kIFdlbGNoIGRmLlwiKVxufVxufSkifQ==
+</script>
+</div>
+</section>
+<section id="q4-welch-unequal-variances-using-t.test" class="level2">
+<h2 class="anchored" data-anchor-id="q4-welch-unequal-variances-using-t.test">Q4 — Welch (Unequal Variances): Using t.test()</h2>
+<p>Compute an 80% two-sided confidence interval for <span class="math display">\[ \mu_{Chinstrap} - \mu_{Gentoo}\]</span> for flipper_length_mm using Welch’s unequal-variance method (the default in t.test). Use the local file penguins.csv and only the species Chinstrap and Gentoo. Print only the 2-number CI vector.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Info">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Info
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>t.test(y ~ g, conf.level = 0.80) uses Welch by default (var.equal = FALSE). To obtain Chinstrap − Gentoo, set the factor level order to c(“Chinstrap”,“Gentoo”).</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Preview">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Preview
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Run this code chunk to get a glimpse of the dataset. Feel free to change the values to visualize more/less number of rows.</p>
+<div class="cell">
+<div>
+<div id="webr-20" class="exercise-cell">
+
+</div>
+<script type="webr-20-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0gcmVhZC5jc3YoXCJwZW5ndWlucy5jc3ZcIilcbmhlYWQoZGZbLCBjKFwic3BlY2llc1wiLFwiYmlsbF9sZW5ndGhfbW1cIixcImlzbGFuZFwiLFwic2V4XCIpXSwgOCkifQ==
+</script>
+</div>
+</div>
+</div>
+</div>
+<div class="cell" data-exercise="q4_welch_ttest_penguins" data-exercise.lines="8">
+<div>
+<div id="webr-21" class="exercise-cell">
+
+</div>
+<script type="webr-21-contents">
+eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxNF93ZWxjaF90dGVzdF9wZW5ndWlucyIsImV4ZXJjaXNlLmxpbmVzIjo4fSwiY29kZSI6IiJ9
+</script>
+</div>
+</div>
+<div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="q4_welch_ttest_penguins">
+<p>Ensure you keep exactly two species and set their order to match the contrast. Return just the two CI bounds from the test result.</p>
+</div>
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q4_welch_ttest_penguins">
+<div class="cell" data-exercise="q4_welch_ttest_penguins" data-solution="true">
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q4_welch_ttest_penguins">
+<code id="interpolate-23" class="solution-code d-none">if (!file.exists("penguins.csv")) {
+stop("Place 'penguins.csv' next to this .qmd and list it under YAML resources:.")
+}
+df &lt;- read.csv("penguins.csv")
+
+
+
+
+keep &lt;- df$species %in% c("Chinstrap","Gentoo")
+df &lt;- subset(df, keep &amp; !is.na(flipper_length_mm))
+
+
+
+
+df$method &lt;- factor(df$species, levels = c("Chinstrap","Gentoo"))
+df$y &lt;- df$flipper_length_mm
+
+
+
+
+tt &lt;- t.test(y ~ method, data = df, conf.level = 0.80) # Welch by default
+tt$conf.int</code>
+<div class="sourceCode cell-code" id="interpolate-24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-24-1"><a href="#interpolate-24-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(<span class="st">"penguins.csv"</span>)) {</span>
+<span id="interpolate-24-2"><a href="#interpolate-24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">stop</span>(<span class="st">"Place 'penguins.csv' next to this .qmd and list it under YAML resources:."</span>)</span>
+<span id="interpolate-24-3"><a href="#interpolate-24-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="interpolate-24-4"><a href="#interpolate-24-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"penguins.csv"</span>)</span>
+<span id="interpolate-24-5"><a href="#interpolate-24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-24-6"><a href="#interpolate-24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-24-7"><a href="#interpolate-24-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-24-8"><a href="#interpolate-24-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-24-9"><a href="#interpolate-24-9" aria-hidden="true" tabindex="-1"></a>keep <span class="ot">&lt;-</span> df<span class="sc">$</span>species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span>,<span class="st">"Gentoo"</span>)</span>
+<span id="interpolate-24-10"><a href="#interpolate-24-10" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, keep <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(flipper_length_mm))</span>
+<span id="interpolate-24-11"><a href="#interpolate-24-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-24-12"><a href="#interpolate-24-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-24-13"><a href="#interpolate-24-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-24-14"><a href="#interpolate-24-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-24-15"><a href="#interpolate-24-15" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>method <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>species, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span>,<span class="st">"Gentoo"</span>))</span>
+<span id="interpolate-24-16"><a href="#interpolate-24-16" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>y <span class="ot">&lt;-</span> df<span class="sc">$</span>flipper_length_mm</span>
+<span id="interpolate-24-17"><a href="#interpolate-24-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-24-18"><a href="#interpolate-24-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-24-19"><a href="#interpolate-24-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-24-20"><a href="#interpolate-24-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-24-21"><a href="#interpolate-24-21" aria-hidden="true" tabindex="-1"></a>tt <span class="ot">&lt;-</span> <span class="fu">t.test</span>(y <span class="sc">~</span> method, <span class="at">data =</span> df, <span class="at">conf.level =</span> <span class="fl">0.80</span>) <span class="co"># Welch by default</span></span>
+<span id="interpolate-24-22"><a href="#interpolate-24-22" aria-hidden="true" tabindex="-1"></a>tt<span class="sc">$</span>conf.int</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div class="cell" data-exercise="q4_welch_ttest_penguins" data-check="true">
+<script type="exercise-check-q4_welch_ttest_penguins-contents">
+eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE0X3dlbGNoX3R0ZXN0X3Blbmd1aW5zIn0sImNvZGUiOiJncmFkZXRoaXM6OmdyYWRlX3RoaXMoe1xuZGYgPC0gdHJ5Q2F0Y2gocmVhZC5jc3YoXCJwZW5ndWlucy5jc3ZcIiksIGVycm9yID0gZnVuY3Rpb24oZSkgTlVMTClcbmlmIChpcy5udWxsKGRmKSkgZmFpbChcIkNvdWxkbid0IHJlYWQgJ3Blbmd1aW5zLmNzdicuXCIpXG5uZWVkIDwtIGMoXCJzcGVjaWVzXCIsXCJmbGlwcGVyX2xlbmd0aF9tbVwiKVxuaWYgKCFhbGwobmVlZCAlaW4lIG5hbWVzKGRmKSkpIGZhaWwoXCJDU1YgbXVzdCBoYXZlICdzcGVjaWVzJyBhbmQgJ2ZsaXBwZXJfbGVuZ3RoX21tJyBjb2x1bW5zLlwiKVxuXG5cblxuXG5rZWVwIDwtIGRmJHNwZWNpZXMgJWluJSBjKFwiQ2hpbnN0cmFwXCIsXCJHZW50b29cIilcbmRmIDwtIHN1YnNldChkZiwga2VlcCAmICFpcy5uYShmbGlwcGVyX2xlbmd0aF9tbSkpXG5pZiAobnJvdyhkZikgPCA0KSBmYWlsKFwiTmVlZCBkYXRhIGZvciBib3RoIENoaW5zdHJhcCBhbmQgR2VudG9vIHdpdGggbm9uLW1pc3NpbmcgZmxpcHBlcl9sZW5ndGhfbW0uXCIpXG5cblxuXG5cbmRmJG1ldGhvZCA8LSBmYWN0b3IoZGYkc3BlY2llcywgbGV2ZWxzID0gYyhcIkNoaW5zdHJhcFwiLFwiR2VudG9vXCIpKVxuZGYkeSA8LSBkZiRmbGlwcGVyX2xlbmd0aF9tbVxuXG5cblxuXG5leHBfY2kgPC0gdC50ZXN0KHkgfiBtZXRob2QsIGRhdGEgPSBkZiwgY29uZi5sZXZlbCA9IDAuODApJGNvbmYuaW50XG5cblxuXG5cbnggPC0gLnJlc3VsdFxuaWYgKCFpcy5udW1lcmljKHgpIHx8IGxlbmd0aCh4KSAhPSAyTCB8fCBhbnkoIWlzLmZpbml0ZSh4KSkpXG5mYWlsKFwiUHJpbnQgYSAyLW51bWJlciBudW1lcmljIHZlY3RvcjogYyhsb3dlciwgdXBwZXIpLlwiKVxuXG5cblxuXG5pZiAobWF4KGFicyh4IC0gZXhwX2NpKSkgPCAxZS02KVxucGFzcyhcIuKchSBDb3JyZWN0IDgwJSBXZWxjaCBDSSBmb3IgQ2hpbnN0cmFwIOKIkiBHZW50b28gKGZsaXBwZXIgbGVuZ3RoKS5cIilcbmVsc2VcbmZhaWwoXCJOb3QgcXVpdGUg4oCUIGNoZWNrIHNwZWNpZXMgZmlsdGVyLCBmYWN0b3Igb3JkZXIsIGFuZCBjb25mLmxldmVsID0gMC44MC5cIilcbn0pIn0=
+</script>
+</div>
+</section>
+<section id="q5-one-sample-ci-for-μ" class="level2">
+<h2 class="anchored" data-anchor-id="q5-one-sample-ci-for-μ">Q5 — One sample CI for μ</h2>
+<p>The dataset used here is river lengths, which gives the lengths (in miles) of 141 “major” rivers in North America, as compiled by the US Geological Survey. Assume river lengths (miles) have known population SD σ = 300. Build a 95% CI for the true mean river length using rivers whe <span class="math inline">\(\alpha = 0.05\)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Preview">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Preview
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Run this code chunk to get a glimpse of the dataset. Feel free to change the values to visualize more/less number of rows.</p>
+<div class="cell">
+<div>
+<div id="webr-26" class="exercise-cell">
+
+</div>
+<script type="webr-26-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoicml2ZXJzX2RhdGEgPC0gZGF0YS5mcmFtZShsZW5ndGhfbWlsZXMgPSBhcy5udW1lcmljKGRhdGFzZXRzOjpyaXZlcnMpKVxuaGVhZChyaXZlcnNfZGF0YSwgMTApIn0=
+</script>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Info">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Info
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When σ is unknown, use the t distribution with degrees of freedom n − 1.</p>
+</div>
+</div>
+<div class="cell" data-exercise="q5_zstar_95" data-exercise.lines="1">
+<div>
+<div id="webr-27" class="exercise-cell">
+
+</div>
+<script type="webr-27-contents">
+eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxNV96c3Rhcl85NSIsImV4ZXJjaXNlLmxpbmVzIjoxfSwiY29kZSI6InJpdmVyc19kYXRhIDwtIGRhdGEuZnJhbWUobGVuZ3RoX21pbGVzID0gYXMubnVtZXJpYyhkYXRhc2V0czo6cml2ZXJzKSkifQ==
+</script>
+</div>
+</div>
+<div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="q5_zstar_95">
+<p>Find n from the length_miles vector and compute the two-sided 95% z critical value. Then combine it using the formula you have already used in previous questions.</p>
+</div>
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q5_zstar_95">
+<div class="cell" data-exercise="q5_zstar_95" data-solution="true">
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q5_zstar_95">
+<code id="interpolate-29" class="solution-code d-none">rivers_data &lt;- data.frame(length_miles = as.numeric(datasets::rivers))
+x &lt;- rivers_data$length_miles
+xbar &lt;- mean(x); n &lt;- length(x); z &lt;- qnorm(0.975); sigma &lt;- 300
+xbar + c(-1,1)zsigma/sqrt(n)</code>
+<div class="sourceCode cell-code" id="interpolate-30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-30-1"><a href="#interpolate-30-1" aria-hidden="true" tabindex="-1"></a>rivers_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">length_miles =</span> <span class="fu">as.numeric</span>(datasets<span class="sc">::</span>rivers))</span>
+<span id="interpolate-30-2"><a href="#interpolate-30-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> rivers_data<span class="sc">$</span>length_miles</span>
+<span id="interpolate-30-3"><a href="#interpolate-30-3" aria-hidden="true" tabindex="-1"></a>xbar <span class="ot">&lt;-</span> <span class="fu">mean</span>(x); n <span class="ot">&lt;-</span> <span class="fu">length</span>(x); z <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>); sigma <span class="ot">&lt;-</span> <span class="dv">300</span></span>
+<span id="interpolate-30-4"><a href="#interpolate-30-4" aria-hidden="true" tabindex="-1"></a>xbar <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)zsigma<span class="sc">/</span><span class="fu">sqrt</span>(n)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div class="cell" data-exercise="q5_zstar_95" data-check="true">
+<script type="exercise-check-q5_zstar_95-contents">
+eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE1X3pzdGFyXzk1In0sImNvZGUiOiJncmFkZXRoaXM6OmdyYWRlX3RoaXMoe1xueCA8LSBhcy5udW1lcmljKGRhdGFzZXRzOjpyaXZlcnMpXG54YmFyIDwtIG1lYW4oeCk7IG4gPC0gbGVuZ3RoKHgpOyB6IDwtIHFub3JtKDAuOTc1KTsgc2lnbWEgPC0gMzAwXG5leHAgPC0geGJhciArIGMoLTEsMSkqeipzaWdtYS9zcXJ0KG4pXG54cmVzIDwtIC5yZXN1bHRcbm9rIDwtIGlzLm51bWVyaWMoeHJlcykgJiYgbGVuZ3RoKHhyZXMpPT0yTCAmJiBhbGwoaXMuZmluaXRlKHhyZXMpKVxuaWYgKCFvaykgZmFpbChcIlByaW50IGEgbnVtZXJpYyB2ZWN0b3IgYyhsb3dlciwgdXBwZXIpLlwiKVxuaWYgKG1heChhYnMoeHJlcyAtIGV4cCkpIDwgMWUtNikgcGFzcyhcIuKchSBDb3JyZWN0IDk1JSBaLWludGVydmFsIHdpdGggz4Mga25vd24uXCIpXG5lbHNlIGZhaWwoXCJSZWNoZWNrIHjMhCwgbiwgeiosIGFuZCDPgyA9IDMwMC5cIilcbn0pIn0=
+</script>
+</div>
+</section>
+<section id="q6-one-sample-ci-for-μ" class="level2">
+<h2 class="anchored" data-anchor-id="q6-one-sample-ci-for-μ">Q6 — One-Sample CI for μ</h2>
+<p>Using airquality$Ozone (ignore missing), construct and print 90% CI for the true mean ozone level (ppb). Assume normality is reasonable.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Preview">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Preview
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div>
+<div id="webr-32" class="exercise-cell">
+
+</div>
+<script type="webr-32-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiYXEgPC0gZGF0YXNldHM6OmFpcnF1YWxpdHlcbm96IDwtIG5hLm9taXQoYXEkT3pvbmUpXG5oZWFkKG96LCAxMCkifQ==
+</script>
+</div>
+</div>
+</div>
+</div>
+<div class="cell" data-exercise="q6_t_ci_ozone">
+<div>
+<div id="webr-33" class="exercise-cell">
+
+</div>
+<script type="webr-33-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoicTZfdF9jaV9vem9uZSJ9LCJjb2RlIjoidyA8LSBvelxueGJhciA8LSBtZWFuKHcpOyBzIDwtIO+8v++8vyA7IG4gPC0gbGVuZ3RoKHcpXG50c3RhciA8LSDvvL/vvL8gXG54YmFyICsgYygtMSwxKSp0c3RhciAqIHMvc3FydChuKSJ9
+</script>
+</div>
+</div>
+<div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="q6_t_ci_ozone">
+<p>Two-sided 90% → <span class="math inline">\(t^*\)</span> at 0.95 with df = n−1; use s for the SD.</p>
+</div>
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q6_t_ci_ozone">
+<div class="cell" data-exercise="q6_t_ci_ozone" data-solution="true">
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q6_t_ci_ozone">
+<code id="interpolate-35" class="solution-code d-none">w &lt;- oz
+xbar &lt;- mean(w); s &lt;- sd(w); n &lt;- length(w)
+tstar &lt;- qt(0.95, df = n - 1) # two-sided 90%
+xbar + c(-1,1)tstar * s/sqrt(n)</code>
+<div class="sourceCode cell-code" id="interpolate-36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-36-1"><a href="#interpolate-36-1" aria-hidden="true" tabindex="-1"></a>w <span class="ot">&lt;-</span> oz</span>
+<span id="interpolate-36-2"><a href="#interpolate-36-2" aria-hidden="true" tabindex="-1"></a>xbar <span class="ot">&lt;-</span> <span class="fu">mean</span>(w); s <span class="ot">&lt;-</span> <span class="fu">sd</span>(w); n <span class="ot">&lt;-</span> <span class="fu">length</span>(w)</span>
+<span id="interpolate-36-3"><a href="#interpolate-36-3" aria-hidden="true" tabindex="-1"></a>tstar <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="fl">0.95</span>, <span class="at">df =</span> n <span class="sc">-</span> <span class="dv">1</span>) <span class="co"># two-sided 90%</span></span>
+<span id="interpolate-36-4"><a href="#interpolate-36-4" aria-hidden="true" tabindex="-1"></a>xbar <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)tstar <span class="sc">*</span> s<span class="sc">/</span><span class="fu">sqrt</span>(n)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div class="cell" data-exercise="q6_t_ci_ozone" data-check="true">
+<script type="exercise-check-q6_t_ci_ozone-contents">
+eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE2X3RfY2lfb3pvbmUifSwiY29kZSI6ImdyYWRldGhpczo6Z3JhZGVfdGhpcyh7XG53IDwtIG5hLm9taXQoZGF0YXNldHM6OmFpcnF1YWxpdHkkT3pvbmUpXG54YmFyIDwtIG1lYW4odyk7IHMgPC0gc2Qodyk7IG4gPC0gbGVuZ3RoKHcpXG50c3RhciA8LSBxdCgwLjk1LCBkZiA9IG4gLSAxKVxuZXhwIDwtIHhiYXIgKyBjKC0xLDEpKnRzdGFyKnMvc3FydChuKVxuciA8LSAucmVzdWx0XG5vayA8LSBpcy5udW1lcmljKHIpICYmIGxlbmd0aChyKT09MkwgJiYgYWxsKGlzLmZpbml0ZShyKSlcbmlmICghb2spIGZhaWwoXCJQcmludCBhIG51bWVyaWMgdmVjdG9yIGMobG93ZXIsIHVwcGVyKS5cIilcbmlmIChtYXgoYWJzKHIgLSBleHApKSA8IDFlLTYpIHBhc3MoXCLinIUgQ29ycmVjdCA5MCUgdC1pbnRlcnZhbC5cIilcbmVsc2UgZmFpbChcIkNoZWNrIHQqIGF0IDAuOTUgYW5kIHlvdXIgcywgbi5cIilcbn0pIn0=
+</script>
+</div>
+</section>
+<section id="q7-one-sample-ci-for-a-proportion-wald" class="level2">
+<h2 class="anchored" data-anchor-id="q7-one-sample-ci-for-a-proportion-wald">Q7 — One-Sample CI for a Proportion (Wald)</h2>
+<p>In mtcars, am is transmission (0 = automatic, 1 = manual). Build and print c(lower, upper) for the 95% CI on the proportion of manual cars.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Info">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Info
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For a single proportion with sample $ p n$ trials (Wald CI):</p>
+<p><span class="math display">\[
+\mathrm{CI}_{1-\alpha}:\ \hat{p} \pm z_{1-\alpha/2}\,\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}.
+\]</span></p>
+<p>Rule: Ensure <span class="math inline">\(n\hat{p}\)</span> and <span class="math inline">\(n(1 - \hat{p})\)</span> are not too small</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Preview">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Preview
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div>
+<div id="webr-38" class="exercise-cell">
+
+</div>
+<script type="webr-38-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibXQgPC0gZGF0YXNldHM6Om10Y2Fyc1xuaGVhZChtdFssIGMoXCJhbVwiLFwibXBnXCIsXCJjeWxcIildLCAxMCkifQ==
+</script>
+</div>
+</div>
+</div>
+</div>
+<div class="cell" data-exercise="q7_p_ci_manual">
+<div>
+<div id="webr-39" class="exercise-cell">
+
+</div>
+<script type="webr-39-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoicTdfcF9jaV9tYW51YWwifSwiY29kZSI6InkgPC0gZGF0YXNldHM6Om10Y2FycyRhbSAjIDEgPSBtYW51YWxcbnBoYXQgPC0g77y/77y/IDsgbiA8LSBsZW5ndGgoeSk7IHogPC0gX19cbnNlIDwtIHNxcnQoIF9fIClcbnBoYXQgKyBjKC0xLDEpKnoqc2UifQ==
+</script>
+</div>
+</div>
+<div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="q7_p_ci_manual">
+<p>Treat am as 0/1; compute <span class="math inline">\(\hat{p}\)</span>, then use two-sided <span class="math inline">\(z^∗\)</span> and the proportion SE.</p>
+</div>
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q7_p_ci_manual">
+<div class="cell" data-exercise="q7_p_ci_manual" data-solution="true">
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q7_p_ci_manual">
+<code id="interpolate-41" class="solution-code d-none">y &lt;- datasets::mtcars$am # 1 = manual
+phat &lt;- mean(y); n &lt;- length(y); z &lt;- qnorm(0.975)
+se &lt;- sqrt(phat*(1-phat)/n)
+phat + c(-1,1)*z*se</code>
+<div class="sourceCode cell-code" id="interpolate-42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-42-1"><a href="#interpolate-42-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> datasets<span class="sc">::</span>mtcars<span class="sc">$</span>am <span class="co"># 1 = manual</span></span>
+<span id="interpolate-42-2"><a href="#interpolate-42-2" aria-hidden="true" tabindex="-1"></a>phat <span class="ot">&lt;-</span> <span class="fu">mean</span>(y); n <span class="ot">&lt;-</span> <span class="fu">length</span>(y); z <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>)</span>
+<span id="interpolate-42-3"><a href="#interpolate-42-3" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(phat<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>phat)<span class="sc">/</span>n)</span>
+<span id="interpolate-42-4"><a href="#interpolate-42-4" aria-hidden="true" tabindex="-1"></a>phat <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span>z<span class="sc">*</span>se</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div class="cell" data-exercise="q7_p_ci_manual" data-check="true">
+<script type="exercise-check-q7_p_ci_manual-contents">
+eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE3X3BfY2lfbWFudWFsIn0sImNvZGUiOiJncmFkZXRoaXM6OmdyYWRlX3RoaXMoe1xueSA8LSBkYXRhc2V0czo6bXRjYXJzJGFtXG5waGF0IDwtIG1lYW4oeSk7IG4gPC0gbGVuZ3RoKHkpOyB6IDwtIHFub3JtKDAuOTc1KVxuc2UgPC0gc3FydChwaGF0KigxLXBoYXQpL24pXG5leHAgPC0gcGhhdCArIGMoLTEsMSkqeipzZVxuciA8LSAucmVzdWx0XG5vayA8LSBpcy5udW1lcmljKHIpICYmIGxlbmd0aChyKT09MkwgJiYgYWxsKGlzLmZpbml0ZShyKSlcbmlmICghb2spIGZhaWwoXCJQcmludCBhIG51bWVyaWMgdmVjdG9yIGMobG93ZXIsIHVwcGVyKS5cIilcbmlmIChtYXgoYWJzKHIgLSBleHApKSA8IDFlLTYpIHBhc3MoXCLinIUgQ29ycmVjdCA5NSUgV2FsZCBDSSBmb3IgcC5cIilcbmVsc2UgZmFpbChcIlJlY29tcHV0ZSBwzIIsIG4sIHoqLCBhbmQgU0UgPSBzcXJ0KHDMgigx4oiScMyCKS9uKS5cIilcbn0pIn0=
+</script>
+</div>
+</section>
+<section id="q8---one-sample-ci-for-a-variance-σ²" class="level2">
+<h2 class="anchored" data-anchor-id="q8---one-sample-ci-for-a-variance-σ²">Q8 - One-Sample CI for a Variance (σ²)</h2>
+<p>Using PlantGrowth$weight, print c(lower, upper) for 95% CI on σ^2. (Assume normality.)</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Info">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Info
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For normal data, the variance CI uses the chi-square distribution with df=n−1:</p>
+<p><span class="math display">\[
+\left(\frac{(n-1)s^2}{\chi^2_{1-\alpha/2,\;n-1}},\; \frac{(n-1)s^2}{\chi^2_{\alpha/2,\;n-1}}\right),\qquad s^2=\text{sample variance}.
+\]</span></p>
+<p>For 95%, the cutoffs are at 0.025 and 0.975.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Preview">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Preview
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div>
+<div id="webr-44" class="exercise-cell">
+
+</div>
+<script type="webr-44-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibXQgPC0gZGF0YXNldHM6Om10Y2Fyc1xuaGVhZChtdFssIGMoXCJhbVwiLFwibXBnXCIsXCJjeWxcIildLCAxMCkifQ==
+</script>
+</div>
+</div>
+</div>
+</div>
+<div class="cell" data-exercise="q8_var_ci_pg">
+<div>
+<div id="webr-45" class="exercise-cell">
+
+</div>
+<script type="webr-45-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoicThfdmFyX2NpX3BnIn0sImNvZGUiOiJ4IDwtIGRhdGFzZXRzOjpQbGFudEdyb3d0aCR3ZWlnaHRcbm4gPC0gbGVuZ3RoKHgpOyBkZiA8LSDvvL/vvL8gOyBzMiA8LSB2YXIoeClcbmNoaV9sbyA8LSDvvL/vvL8gKO+8v++8vywgZGYgPSBkZikgXG5jaGlfaGkgPC0g77y/77y/ICgwLjAyNSwg77y/77y/KVxuYyhkZiAqIHMyL2NoaV9sbywgZGYqczIvY2hpX2hpKSJ9
+</script>
+</div>
+</div>
+<div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="q8_var_ci_pg">
+<p>Use <span class="math inline">\(s^2\)</span>, df = n−1, and chi-square quantiles at 0.975 and 0.025 (note the order).</p>
+</div>
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q8_var_ci_pg">
+<div class="cell" data-exercise="q8_var_ci_pg" data-solution="true">
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q8_var_ci_pg">
+<code id="interpolate-47" class="solution-code d-none">x &lt;- datasets::PlantGrowth$weight
+n &lt;- length(x); df &lt;- n - 1; s2 &lt;- var(x)
+chi_lo &lt;- qchisq(0.975, df = df) # upper-tail cutoff
+chi_hi &lt;- qchisq(0.025, df = df) # lower-tail cutoff
+c(df * s2/chi_lo, df*s2/chi_hi)</code>
+<div class="sourceCode cell-code" id="interpolate-48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-48-1"><a href="#interpolate-48-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> datasets<span class="sc">::</span>PlantGrowth<span class="sc">$</span>weight</span>
+<span id="interpolate-48-2"><a href="#interpolate-48-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(x); df <span class="ot">&lt;-</span> n <span class="sc">-</span> <span class="dv">1</span>; s2 <span class="ot">&lt;-</span> <span class="fu">var</span>(x)</span>
+<span id="interpolate-48-3"><a href="#interpolate-48-3" aria-hidden="true" tabindex="-1"></a>chi_lo <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="fl">0.975</span>, <span class="at">df =</span> df) <span class="co"># upper-tail cutoff</span></span>
+<span id="interpolate-48-4"><a href="#interpolate-48-4" aria-hidden="true" tabindex="-1"></a>chi_hi <span class="ot">&lt;-</span> <span class="fu">qchisq</span>(<span class="fl">0.025</span>, <span class="at">df =</span> df) <span class="co"># lower-tail cutoff</span></span>
+<span id="interpolate-48-5"><a href="#interpolate-48-5" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(df <span class="sc">*</span> s2<span class="sc">/</span>chi_lo, df<span class="sc">*</span>s2<span class="sc">/</span>chi_hi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div class="cell" data-exercise="q8_var_ci_pg" data-check="true">
+<script type="exercise-check-q8_var_ci_pg-contents">
+eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE4X3Zhcl9jaV9wZyJ9LCJjb2RlIjoiZ3JhZGV0aGlzOjpncmFkZV90aGlzKHtcbnggPC0gZGF0YXNldHM6OlBsYW50R3Jvd3RoJHdlaWdodFxubiA8LSBsZW5ndGgoeCk7IGRmIDwtIG4gLSAxOyBzMiA8LSB2YXIoeClcbmNoaV9sbyA8LSBxY2hpc3EoMC45NzUsIGRmID0gZGYpXG5jaGlfaGkgPC0gcWNoaXNxKDAuMDI1LCBkZiA9IGRmKVxuZXhwIDwtIGMoZGYqczIvY2hpX2xvLCBkZipzMi9jaGlfaGkpXG5yIDwtIC5yZXN1bHRcbm9rIDwtIGlzLm51bWVyaWMocikgJiYgbGVuZ3RoKHIpPT0yTCAmJiBhbGwoaXMuZmluaXRlKHIpKVxuaWYgKCFvaykgZmFpbChcIlByaW50IGEgbnVtZXJpYyB2ZWN0b3IgYyhsb3dlciwgdXBwZXIpLlwiKVxuaWYgKG1heChhYnMociAtIGV4cCkpIDwgMWUtNikgcGFzcyhcIuKchSBDb3JyZWN0IDk1JSBDSSBmb3Igz4PCsi5cIilcbmVsc2UgZmFpbChcIkNoZWNrIGRmPW7iiJIxIGFuZCBjaGktc3F1YXJlIGN1dG9mZnMgKDAuMDI1ICYgMC45NzUpLlwiKVxufSkifQ==
+</script>
+</div>
+</section>
+<section id="q9---sample-size-for-mean-ci-σ-known" class="level2">
+<h2 class="anchored" data-anchor-id="q9---sample-size-for-mean-ci-σ-known">Q9 - Sample Size for Mean CI (σ known)</h2>
+<p>We want a 95% Z-interval for the true mean mpg (from mtcars) with margin of error at most E = 1 mpg, assuming σ = 6 mpg known. Compute and print the minimum n required (round up).</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Info">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Info
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For known σ, the margin of error and required n are:</p>
+<p><span class="math display">\[
+E = z_{1-\alpha/2}\,\frac{\sigma}{\sqrt{n}}
+\;\Rightarrow\;
+n = \left(\frac{z_{1-\alpha/2}\,\sigma}{E}\right)^{2},\qquad \text{use }\lceil n\rceil.
+\]</span></p>
+<p>For 95%, <span class="math inline">\(z^*\)</span> = <span class="math inline">\(\phi^{-1}\)</span> (0.975).</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Preview">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Preview
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div>
+<div id="webr-50" class="exercise-cell">
+
+</div>
+<script type="webr-50-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaGVhZChkYXRhc2V0czo6bXRjYXJzWywgXCJtcGdcIiwgZHJvcCA9IEZBTFNFXSwgMTApIn0=
+</script>
+</div>
+</div>
+</div>
+</div>
+<div class="cell" data-exercise="q9_n_for_margin">
+<div>
+<div id="webr-51" class="exercise-cell">
+
+</div>
+<script type="webr-51-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoicTlfbl9mb3JfbWFyZ2luIn0sImNvZGUiOiJ6IDwtIO+8v++8vyA7IHNpZ21hIDwtIDY7IEUgPC0g77y/77y/XG7vvL/vvL8gKCh6KnNpZ21hL0UpXjIpIn0=
+</script>
+</div>
+</div>
+<div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="q9_n_for_margin">
+<p>Solve for n using your chosen E, known σ, and two-sided <span class="math inline">\(z^∗\)</span>.</p>
+</div>
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q9_n_for_margin">
+<div class="cell" data-exercise="q9_n_for_margin" data-solution="true">
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q9_n_for_margin">
+<code id="interpolate-53" class="solution-code d-none">
+z &lt;- qnorm(0.975); sigma &lt;- 6; E &lt;- 1
+ceiling((z*sigma/E)^2)</code>
+<div class="sourceCode cell-code" id="interpolate-54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-54-1"><a href="#interpolate-54-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-54-2"><a href="#interpolate-54-2" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>); sigma <span class="ot">&lt;-</span> <span class="dv">6</span>; E <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="interpolate-54-3"><a href="#interpolate-54-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ceiling</span>((z<span class="sc">*</span>sigma<span class="sc">/</span>E)<span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div class="cell" data-exercise="q9_n_for_margin" data-check="true">
+<script type="exercise-check-q9_n_for_margin-contents">
+eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE5X25fZm9yX21hcmdpbiJ9LCJjb2RlIjoiZ3JhZGV0aGlzOjpncmFkZV90aGlzKHtcbnogPC0gcW5vcm0oMC45NzUpOyBzaWdtYSA8LSA2OyBFIDwtIDFcbmV4cCA8LSBjZWlsaW5nKCh6KnNpZ21hL0UpXjIpXG5yIDwtIC5yZXN1bHRcbmlmICghaXMubnVtZXJpYyhyKSB8fCBsZW5ndGgocikhPTFMIHx8ICFpcy5maW5pdGUocikpIGZhaWwoXCJQcmludCBhIHNpbmdsZSBudW1lcmljIHZhbHVlLlwiKVxuaWYgKGFicyhyIC0gZXhwKSA8IDFlLTEyKSBwYXNzKFwi4pyFIENvcnJlY3QgcmVxdWlyZWQgc2FtcGxlIHNpemUuXCIpXG5lbHNlIGZhaWwoXCJSZWFycmFuZ2UgRSA9IHrPgy/iiJpuIGFuZCByb3VuZCB1cC5cIilcbn0pIn0=
+</script>
+</div>
+</section>
+<section id="q10---one-sample-ci-for-a-proportion-99-practice" class="level2">
+<h2 class="anchored" data-anchor-id="q10---one-sample-ci-for-a-proportion-99-practice">Q10 - One-Sample CI for a Proportion (99% Practice)</h2>
+<p>Consider mtcars again. Build and print 99% CI for the proportion of cars with mpg ≥ 25.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Info">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Info
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Two-sided 1−α CI for a proportion:</p>
+<p><span class="math display">\[
+\mathrm{CI}_{1-\alpha}:\ \hat{p} \pm z_{1-\alpha/2}\,\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}.
+\]</span></p>
+<p>For 99%, use <span class="math inline">\(z^* = \phi^{-1}\)</span>(0.995).</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Preview">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Preview
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div>
+<div id="webr-56" class="exercise-cell">
+
+</div>
+<script type="webr-56-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoibXQgPC0gZGF0YXNldHM6Om10Y2Fyc1xubXQkaGlfbXBnIDwtIGFzLmludGVnZXIobXQkbXBnID49IDI1KVxuaGVhZChtdFssIGMoXCJtcGdcIixcImhpX21wZ1wiKV0sIDEwKSJ9
+</script>
+</div>
+</div>
+</div>
+</div>
+<div class="cell" data-exercise="q10_p_ci_highmpg">
+<div>
+<div id="webr-57" class="exercise-cell">
+
+</div>
+<script type="webr-57-contents">
+eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoicTEwX3BfY2lfaGlnaG1wZyJ9LCJjb2RlIjoieSA8LSBhcy5pbnRlZ2VyKGRhdGFzZXRzOjptdGNhcnMkbXBnID49IDI1KVxucGhhdCA8LSBtZWFuKHkpOyDvvL/vvL8gOyB6IDwtIO+8v++8v1xuc2UgPC0g77y/77y/XG7vvL/vvL8gKyBjKC0xLDEpIO+8v++8vyJ9
+</script>
+</div>
+</div>
+<div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="q10_p_ci_highmpg">
+<p>Build the 0/1 indicator, get p^, pick <span class="math inline">\(z^∗\)</span> for 99%, and form the Wald interval.</p>
+</div>
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q10_p_ci_highmpg">
+<div class="cell" data-exercise="q10_p_ci_highmpg" data-solution="true">
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q10_p_ci_highmpg">
+<code id="interpolate-59" class="solution-code d-none">y &lt;- as.integer(datasets::mtcars$mpg &gt;= 25)
+phat &lt;- mean(y); n &lt;- length(y); z &lt;- qnorm(0.995)
+se &lt;- sqrt(phat*(1-phat)/n)
+phat + c(-1,1)*z*se</code>
+<div class="sourceCode cell-code" id="interpolate-60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-60-1"><a href="#interpolate-60-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(datasets<span class="sc">::</span>mtcars<span class="sc">$</span>mpg <span class="sc">&gt;=</span> <span class="dv">25</span>)</span>
+<span id="interpolate-60-2"><a href="#interpolate-60-2" aria-hidden="true" tabindex="-1"></a>phat <span class="ot">&lt;-</span> <span class="fu">mean</span>(y); n <span class="ot">&lt;-</span> <span class="fu">length</span>(y); z <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.995</span>)</span>
+<span id="interpolate-60-3"><a href="#interpolate-60-3" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(phat<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>phat)<span class="sc">/</span>n)</span>
+<span id="interpolate-60-4"><a href="#interpolate-60-4" aria-hidden="true" tabindex="-1"></a>phat <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span>z<span class="sc">*</span>se</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div class="cell" data-exercise="q10_p_ci_highmpg" data-check="true">
+<script type="exercise-check-q10_p_ci_highmpg-contents">
+eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InExMF9wX2NpX2hpZ2htcGcifSwiY29kZSI6ImdyYWRldGhpczo6Z3JhZGVfdGhpcyh7XG55IDwtIGFzLmludGVnZXIoZGF0YXNldHM6Om10Y2FycyRtcGcgPj0gMjUpXG5waGF0IDwtIG1lYW4oeSk7IG4gPC0gbGVuZ3RoKHkpOyB6IDwtIHFub3JtKDAuOTk1KVxuc2UgPC0gc3FydChwaGF0KigxLXBoYXQpL24pXG5leHAgPC0gcGhhdCArIGMoLTEsMSkqeipzZVxuciA8LSAucmVzdWx0XG5vayA8LSBpcy5udW1lcmljKHIpICYmIGxlbmd0aChyKT09MkwgJiYgYWxsKGlzLmZpbml0ZShyKSlcbmlmICghb2spIGZhaWwoXCJQcmludCBhIG51bWVyaWMgdmVjdG9yIGMobG93ZXIsIHVwcGVyKS5cIilcbmlmIChtYXgoYWJzKHIgLSBleHApKSA8IDFlLTYpIHBhc3MoXCLinIUgQ29ycmVjdCA5OSUgQ0kgZm9yIHAuXCIpXG5lbHNlIGZhaWwoXCJDaGVjayB0d28tc2lkZWQgOTklICh6IGF0IDAuOTk1KSBhbmQgdGhlIFNFIGZvcm11bGEuXCIpXG59KSJ9
+</script>
+</div>
+
+
+<script type="webr-data">
+eyJvcHRpb25zIjp7ImJhc2VVcmwiOiJodHRwczovL3dlYnIuci13YXNtLm9yZy92MC41LjQvIn0sInBhY2thZ2VzIjp7InBrZ3MiOlsiZXZhbHVhdGUiLCJrbml0ciIsImh0bWx0b29scyJdLCJyZXBvcyI6W119LCJyZW5kZXJfZGYiOiJkZWZhdWx0In0=
+</script>
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3siY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC01NyIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgLy8gV2FpdCBmb3Igb3V0cHV0IHRvIGJlIHdyaXR0ZW4gdG8gdGhlIERPTSwgdGhlbiB0cmlnZ2VyIHdpZGdldCByZW5kZXJpbmdcbiAgYXdhaXQgX3dlYnJfdmFsdWVfNTc7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici01NyIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzU3ID0ge1xuICBjb25zdCB7IFdlYlJFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItNTctY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICAvLyBEZWZhdWx0IGV4ZXJjaXNlIGNvbmZpZ3VyYXRpb25cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oXG4gICAge1xuICAgICAgaWQ6IFwid2Vici01Ny1jb250ZW50c1wiLFxuICAgICAgZW52aXI6IGBleGVyY2lzZS1lbnYtJHtibG9jay5hdHRyLmV4ZXJjaXNlfWAsXG4gICAgICBlcnJvcjogZmFsc2UsXG4gICAgICBjYXB0aW9uOiAnRXhlcmNpc2UnLFxuICAgIH0sXG4gICAgYmxvY2suYXR0clxuICApO1xuXG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxudmlld29mIF93ZWJyX3ZhbHVlXzU3ID0gd2ViUk9qcy5wcm9jZXNzKF93ZWJyX2VkaXRvcl81Nywge30pO1xuX3dlYnJfZmVlZGJhY2tfNTcgPSB7XG4gIGNvbnN0IHsgV2ViUkdyYWRlciB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3QgZW1wdHlGZWVkYmFjayA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2RpdicpO1xuXG4gIGNvbnN0IGdyYWRlciA9IG5ldyBXZWJSR3JhZGVyKF93ZWJyX3ZhbHVlXzU3LmV2YWx1YXRvcik7XG4gIGNvbnN0IGZlZWRiYWNrID0gYXdhaXQgZ3JhZGVyLmdyYWRlRXhlcmNpc2UoKTtcbiAgaWYgKCFmZWVkYmFjaykgcmV0dXJuIGVtcHR5RmVlZGJhY2s7XG4gIHJldHVybiBmZWVkYmFjaztcbn1cbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC01NiIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgLy8gV2FpdCBmb3Igb3V0cHV0IHRvIGJlIHdyaXR0ZW4gdG8gdGhlIERPTSwgdGhlbiB0cmlnZ2VyIHdpZGdldCByZW5kZXJpbmdcbiAgYXdhaXQgX3dlYnJfdmFsdWVfNTY7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici01NiIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzU2ID0ge1xuICBjb25zdCB7IFdlYlJFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItNTYtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7IGlkOiBgd2Vici01Ni1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fd2Vicl92YWx1ZV81NiA9IHdlYlJPanMucHJvY2Vzcyhfd2Vicl9lZGl0b3JfNTYsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC01MSIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgLy8gV2FpdCBmb3Igb3V0cHV0IHRvIGJlIHdyaXR0ZW4gdG8gdGhlIERPTSwgdGhlbiB0cmlnZ2VyIHdpZGdldCByZW5kZXJpbmdcbiAgYXdhaXQgX3dlYnJfdmFsdWVfNTE7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici01MSIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzUxID0ge1xuICBjb25zdCB7IFdlYlJFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItNTEtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICAvLyBEZWZhdWx0IGV4ZXJjaXNlIGNvbmZpZ3VyYXRpb25cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oXG4gICAge1xuICAgICAgaWQ6IFwid2Vici01MS1jb250ZW50c1wiLFxuICAgICAgZW52aXI6IGBleGVyY2lzZS1lbnYtJHtibG9jay5hdHRyLmV4ZXJjaXNlfWAsXG4gICAgICBlcnJvcjogZmFsc2UsXG4gICAgICBjYXB0aW9uOiAnRXhlcmNpc2UnLFxuICAgIH0sXG4gICAgYmxvY2suYXR0clxuICApO1xuXG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxudmlld29mIF93ZWJyX3ZhbHVlXzUxID0gd2ViUk9qcy5wcm9jZXNzKF93ZWJyX2VkaXRvcl81MSwge30pO1xuX3dlYnJfZmVlZGJhY2tfNTEgPSB7XG4gIGNvbnN0IHsgV2ViUkdyYWRlciB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3QgZW1wdHlGZWVkYmFjayA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2RpdicpO1xuXG4gIGNvbnN0IGdyYWRlciA9IG5ldyBXZWJSR3JhZGVyKF93ZWJyX3ZhbHVlXzUxLmV2YWx1YXRvcik7XG4gIGNvbnN0IGZlZWRiYWNrID0gYXdhaXQgZ3JhZGVyLmdyYWRlRXhlcmNpc2UoKTtcbiAgaWYgKCFmZWVkYmFjaykgcmV0dXJuIGVtcHR5RmVlZGJhY2s7XG4gIHJldHVybiBmZWVkYmFjaztcbn1cbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC01MCIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgLy8gV2FpdCBmb3Igb3V0cHV0IHRvIGJlIHdyaXR0ZW4gdG8gdGhlIERPTSwgdGhlbiB0cmlnZ2VyIHdpZGdldCByZW5kZXJpbmdcbiAgYXdhaXQgX3dlYnJfdmFsdWVfNTA7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici01MCIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzUwID0ge1xuICBjb25zdCB7IFdlYlJFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItNTAtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7IGlkOiBgd2Vici01MC1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fd2Vicl92YWx1ZV81MCA9IHdlYlJPanMucHJvY2Vzcyhfd2Vicl9lZGl0b3JfNTAsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC00NSIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgLy8gV2FpdCBmb3Igb3V0cHV0IHRvIGJlIHdyaXR0ZW4gdG8gdGhlIERPTSwgdGhlbiB0cmlnZ2VyIHdpZGdldCByZW5kZXJpbmdcbiAgYXdhaXQgX3dlYnJfdmFsdWVfNDU7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici00NSIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzQ1ID0ge1xuICBjb25zdCB7IFdlYlJFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItNDUtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICAvLyBEZWZhdWx0IGV4ZXJjaXNlIGNvbmZpZ3VyYXRpb25cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oXG4gICAge1xuICAgICAgaWQ6IFwid2Vici00NS1jb250ZW50c1wiLFxuICAgICAgZW52aXI6IGBleGVyY2lzZS1lbnYtJHtibG9jay5hdHRyLmV4ZXJjaXNlfWAsXG4gICAgICBlcnJvcjogZmFsc2UsXG4gICAgICBjYXB0aW9uOiAnRXhlcmNpc2UnLFxuICAgIH0sXG4gICAgYmxvY2suYXR0clxuICApO1xuXG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxudmlld29mIF93ZWJyX3ZhbHVlXzQ1ID0gd2ViUk9qcy5wcm9jZXNzKF93ZWJyX2VkaXRvcl80NSwge30pO1xuX3dlYnJfZmVlZGJhY2tfNDUgPSB7XG4gIGNvbnN0IHsgV2ViUkdyYWRlciB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3QgZW1wdHlGZWVkYmFjayA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2RpdicpO1xuXG4gIGNvbnN0IGdyYWRlciA9IG5ldyBXZWJSR3JhZGVyKF93ZWJyX3ZhbHVlXzQ1LmV2YWx1YXRvcik7XG4gIGNvbnN0IGZlZWRiYWNrID0gYXdhaXQgZ3JhZGVyLmdyYWRlRXhlcmNpc2UoKTtcbiAgaWYgKCFmZWVkYmFjaykgcmV0dXJuIGVtcHR5RmVlZGJhY2s7XG4gIHJldHVybiBmZWVkYmFjaztcbn1cbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC00NCIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgLy8gV2FpdCBmb3Igb3V0cHV0IHRvIGJlIHdyaXR0ZW4gdG8gdGhlIERPTSwgdGhlbiB0cmlnZ2VyIHdpZGdldCByZW5kZXJpbmdcbiAgYXdhaXQgX3dlYnJfdmFsdWVfNDQ7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici00NCIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzQ0ID0ge1xuICBjb25zdCB7IFdlYlJFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItNDQtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7IGlkOiBgd2Vici00NC1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fd2Vicl92YWx1ZV80NCA9IHdlYlJPanMucHJvY2Vzcyhfd2Vicl9lZGl0b3JfNDQsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC0zOSIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgLy8gV2FpdCBmb3Igb3V0cHV0IHRvIGJlIHdyaXR0ZW4gdG8gdGhlIERPTSwgdGhlbiB0cmlnZ2VyIHdpZGdldCByZW5kZXJpbmdcbiAgYXdhaXQgX3dlYnJfdmFsdWVfMzk7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici0zOSIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzM5ID0ge1xuICBjb25zdCB7IFdlYlJFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItMzktY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICAvLyBEZWZhdWx0IGV4ZXJjaXNlIGNvbmZpZ3VyYXRpb25cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oXG4gICAge1xuICAgICAgaWQ6IFwid2Vici0zOS1jb250ZW50c1wiLFxuICAgICAgZW52aXI6IGBleGVyY2lzZS1lbnYtJHtibG9jay5hdHRyLmV4ZXJjaXNlfWAsXG4gICAgICBlcnJvcjogZmFsc2UsXG4gICAgICBjYXB0aW9uOiAnRXhlcmNpc2UnLFxuICAgIH0sXG4gICAgYmxvY2suYXR0clxuICApO1xuXG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxudmlld29mIF93ZWJyX3ZhbHVlXzM5ID0gd2ViUk9qcy5wcm9jZXNzKF93ZWJyX2VkaXRvcl8zOSwge30pO1xuX3dlYnJfZmVlZGJhY2tfMzkgPSB7XG4gIGNvbnN0IHsgV2ViUkdyYWRlciB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3QgZW1wdHlGZWVkYmFjayA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2RpdicpO1xuXG4gIGNvbnN0IGdyYWRlciA9IG5ldyBXZWJSR3JhZGVyKF93ZWJyX3ZhbHVlXzM5LmV2YWx1YXRvcik7XG4gIGNvbnN0IGZlZWRiYWNrID0gYXdhaXQgZ3JhZGVyLmdyYWRlRXhlcmNpc2UoKTtcbiAgaWYgKCFmZWVkYmFjaykgcmV0dXJuIGVtcHR5RmVlZGJhY2s7XG4gIHJldHVybiBmZWVkYmFjaztcbn1cbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC0zOCIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgLy8gV2FpdCBmb3Igb3V0cHV0IHRvIGJlIHdyaXR0ZW4gdG8gdGhlIERPTSwgdGhlbiB0cmlnZ2VyIHdpZGdldCByZW5kZXJpbmdcbiAgYXdhaXQgX3dlYnJfdmFsdWVfMzg7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici0zOCIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzM4ID0ge1xuICBjb25zdCB7IFdlYlJFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItMzgtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7IGlkOiBgd2Vici0zOC1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fd2Vicl92YWx1ZV8zOCA9IHdlYlJPanMucHJvY2Vzcyhfd2Vicl9lZGl0b3JfMzgsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC0zMyIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgLy8gV2FpdCBmb3Igb3V0cHV0IHRvIGJlIHdyaXR0ZW4gdG8gdGhlIERPTSwgdGhlbiB0cmlnZ2VyIHdpZGdldCByZW5kZXJpbmdcbiAgYXdhaXQgX3dlYnJfdmFsdWVfMzM7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici0zMyIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzMzID0ge1xuICBjb25zdCB7IFdlYlJFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItMzMtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICAvLyBEZWZhdWx0IGV4ZXJjaXNlIGNvbmZpZ3VyYXRpb25cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oXG4gICAge1xuICAgICAgaWQ6IFwid2Vici0zMy1jb250ZW50c1wiLFxuICAgICAgZW52aXI6IGBleGVyY2lzZS1lbnYtJHtibG9jay5hdHRyLmV4ZXJjaXNlfWAsXG4gICAgICBlcnJvcjogZmFsc2UsXG4gICAgICBjYXB0aW9uOiAnRXhlcmNpc2UnLFxuICAgIH0sXG4gICAgYmxvY2suYXR0clxuICApO1xuXG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxudmlld29mIF93ZWJyX3ZhbHVlXzMzID0gd2ViUk9qcy5wcm9jZXNzKF93ZWJyX2VkaXRvcl8zMywge30pO1xuX3dlYnJfZmVlZGJhY2tfMzMgPSB7XG4gIGNvbnN0IHsgV2ViUkdyYWRlciB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3QgZW1wdHlGZWVkYmFjayA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2RpdicpO1xuXG4gIGNvbnN0IGdyYWRlciA9IG5ldyBXZWJSR3JhZGVyKF93ZWJyX3ZhbHVlXzMzLmV2YWx1YXRvcik7XG4gIGNvbnN0IGZlZWRiYWNrID0gYXdhaXQgZ3JhZGVyLmdyYWRlRXhlcmNpc2UoKTtcbiAgaWYgKCFmZWVkYmFjaykgcmV0dXJuIGVtcHR5RmVlZGJhY2s7XG4gIHJldHVybiBmZWVkYmFjaztcbn1cbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC0zMiIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgLy8gV2FpdCBmb3Igb3V0cHV0IHRvIGJlIHdyaXR0ZW4gdG8gdGhlIERPTSwgdGhlbiB0cmlnZ2VyIHdpZGdldCByZW5kZXJpbmdcbiAgYXdhaXQgX3dlYnJfdmFsdWVfMzI7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici0zMiIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzMyID0ge1xuICBjb25zdCB7IFdlYlJFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItMzItY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7IGlkOiBgd2Vici0zMi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fd2Vicl92YWx1ZV8zMiA9IHdlYlJPanMucHJvY2Vzcyhfd2Vicl9lZGl0b3JfMzIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC0yNyIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgLy8gV2FpdCBmb3Igb3V0cHV0IHRvIGJlIHdyaXR0ZW4gdG8gdGhlIERPTSwgdGhlbiB0cmlnZ2VyIHdpZGdldCByZW5kZXJpbmdcbiAgYXdhaXQgX3dlYnJfdmFsdWVfMjc7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici0yNyIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzI3ID0ge1xuICBjb25zdCB7IFdlYlJFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItMjctY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICAvLyBEZWZhdWx0IGV4ZXJjaXNlIGNvbmZpZ3VyYXRpb25cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oXG4gICAge1xuICAgICAgaWQ6IFwid2Vici0yNy1jb250ZW50c1wiLFxuICAgICAgZW52aXI6IGBleGVyY2lzZS1lbnYtJHtibG9jay5hdHRyLmV4ZXJjaXNlfWAsXG4gICAgICBlcnJvcjogZmFsc2UsXG4gICAgICBjYXB0aW9uOiAnRXhlcmNpc2UnLFxuICAgIH0sXG4gICAgYmxvY2suYXR0clxuICApO1xuXG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxudmlld29mIF93ZWJyX3ZhbHVlXzI3ID0gd2ViUk9qcy5wcm9jZXNzKF93ZWJyX2VkaXRvcl8yNywge30pO1xuX3dlYnJfZmVlZGJhY2tfMjcgPSB7XG4gIGNvbnN0IHsgV2ViUkdyYWRlciB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3QgZW1wdHlGZWVkYmFjayA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2RpdicpO1xuXG4gIGNvbnN0IGdyYWRlciA9IG5ldyBXZWJSR3JhZGVyKF93ZWJyX3ZhbHVlXzI3LmV2YWx1YXRvcik7XG4gIGNvbnN0IGZlZWRiYWNrID0gYXdhaXQgZ3JhZGVyLmdyYWRlRXhlcmNpc2UoKTtcbiAgaWYgKCFmZWVkYmFjaykgcmV0dXJuIGVtcHR5RmVlZGJhY2s7XG4gIHJldHVybiBmZWVkYmFjaztcbn1cbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC0yNiIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgLy8gV2FpdCBmb3Igb3V0cHV0IHRvIGJlIHdyaXR0ZW4gdG8gdGhlIERPTSwgdGhlbiB0cmlnZ2VyIHdpZGdldCByZW5kZXJpbmdcbiAgYXdhaXQgX3dlYnJfdmFsdWVfMjY7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici0yNiIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzI2ID0ge1xuICBjb25zdCB7IFdlYlJFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItMjYtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7IGlkOiBgd2Vici0yNi1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fd2Vicl92YWx1ZV8yNiA9IHdlYlJPanMucHJvY2Vzcyhfd2Vicl9lZGl0b3JfMjYsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC0yMSIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgLy8gV2FpdCBmb3Igb3V0cHV0IHRvIGJlIHdyaXR0ZW4gdG8gdGhlIERPTSwgdGhlbiB0cmlnZ2VyIHdpZGdldCByZW5kZXJpbmdcbiAgYXdhaXQgX3dlYnJfdmFsdWVfMjE7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici0yMSIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzIxID0ge1xuICBjb25zdCB7IFdlYlJFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItMjEtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICAvLyBEZWZhdWx0IGV4ZXJjaXNlIGNvbmZpZ3VyYXRpb25cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oXG4gICAge1xuICAgICAgaWQ6IFwid2Vici0yMS1jb250ZW50c1wiLFxuICAgICAgZW52aXI6IGBleGVyY2lzZS1lbnYtJHtibG9jay5hdHRyLmV4ZXJjaXNlfWAsXG4gICAgICBlcnJvcjogZmFsc2UsXG4gICAgICBjYXB0aW9uOiAnRXhlcmNpc2UnLFxuICAgIH0sXG4gICAgYmxvY2suYXR0clxuICApO1xuXG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxudmlld29mIF93ZWJyX3ZhbHVlXzIxID0gd2ViUk9qcy5wcm9jZXNzKF93ZWJyX2VkaXRvcl8yMSwge30pO1xuX3dlYnJfZmVlZGJhY2tfMjEgPSB7XG4gIGNvbnN0IHsgV2ViUkdyYWRlciB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3QgZW1wdHlGZWVkYmFjayA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2RpdicpO1xuXG4gIGNvbnN0IGdyYWRlciA9IG5ldyBXZWJSR3JhZGVyKF93ZWJyX3ZhbHVlXzIxLmV2YWx1YXRvcik7XG4gIGNvbnN0IGZlZWRiYWNrID0gYXdhaXQgZ3JhZGVyLmdyYWRlRXhlcmNpc2UoKTtcbiAgaWYgKCFmZWVkYmFjaykgcmV0dXJuIGVtcHR5RmVlZGJhY2s7XG4gIHJldHVybiBmZWVkYmFjaztcbn1cbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC0yMCIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgLy8gV2FpdCBmb3Igb3V0cHV0IHRvIGJlIHdyaXR0ZW4gdG8gdGhlIERPTSwgdGhlbiB0cmlnZ2VyIHdpZGdldCByZW5kZXJpbmdcbiAgYXdhaXQgX3dlYnJfdmFsdWVfMjA7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici0yMCIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzIwID0ge1xuICBjb25zdCB7IFdlYlJFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItMjAtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7IGlkOiBgd2Vici0yMC1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fd2Vicl92YWx1ZV8yMCA9IHdlYlJPanMucHJvY2Vzcyhfd2Vicl9lZGl0b3JfMjAsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC0xNSIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgLy8gV2FpdCBmb3Igb3V0cHV0IHRvIGJlIHdyaXR0ZW4gdG8gdGhlIERPTSwgdGhlbiB0cmlnZ2VyIHdpZGdldCByZW5kZXJpbmdcbiAgYXdhaXQgX3dlYnJfdmFsdWVfMTU7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici0xNSIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzE1ID0ge1xuICBjb25zdCB7IFdlYlJFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItMTUtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICAvLyBEZWZhdWx0IGV4ZXJjaXNlIGNvbmZpZ3VyYXRpb25cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oXG4gICAge1xuICAgICAgaWQ6IFwid2Vici0xNS1jb250ZW50c1wiLFxuICAgICAgZW52aXI6IGBleGVyY2lzZS1lbnYtJHtibG9jay5hdHRyLmV4ZXJjaXNlfWAsXG4gICAgICBlcnJvcjogZmFsc2UsXG4gICAgICBjYXB0aW9uOiAnRXhlcmNpc2UnLFxuICAgIH0sXG4gICAgYmxvY2suYXR0clxuICApO1xuXG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxudmlld29mIF93ZWJyX3ZhbHVlXzE1ID0gd2ViUk9qcy5wcm9jZXNzKF93ZWJyX2VkaXRvcl8xNSwge30pO1xuX3dlYnJfZmVlZGJhY2tfMTUgPSB7XG4gIGNvbnN0IHsgV2ViUkdyYWRlciB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3QgZW1wdHlGZWVkYmFjayA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2RpdicpO1xuXG4gIGNvbnN0IGdyYWRlciA9IG5ldyBXZWJSR3JhZGVyKF93ZWJyX3ZhbHVlXzE1LmV2YWx1YXRvcik7XG4gIGNvbnN0IGZlZWRiYWNrID0gYXdhaXQgZ3JhZGVyLmdyYWRlRXhlcmNpc2UoKTtcbiAgaWYgKCFmZWVkYmFjaykgcmV0dXJuIGVtcHR5RmVlZGJhY2s7XG4gIHJldHVybiBmZWVkYmFjaztcbn1cbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC0xNCIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgLy8gV2FpdCBmb3Igb3V0cHV0IHRvIGJlIHdyaXR0ZW4gdG8gdGhlIERPTSwgdGhlbiB0cmlnZ2VyIHdpZGdldCByZW5kZXJpbmdcbiAgYXdhaXQgX3dlYnJfdmFsdWVfMTQ7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici0xNCIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzE0ID0ge1xuICBjb25zdCB7IFdlYlJFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItMTQtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7IGlkOiBgd2Vici0xNC1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fd2Vicl92YWx1ZV8xNCA9IHdlYlJPanMucHJvY2Vzcyhfd2Vicl9lZGl0b3JfMTQsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC05IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoie1xuICAvLyBXYWl0IGZvciBvdXRwdXQgdG8gYmUgd3JpdHRlbiB0byB0aGUgRE9NLCB0aGVuIHRyaWdnZXIgd2lkZ2V0IHJlbmRlcmluZ1xuICBhd2FpdCBfd2Vicl92YWx1ZV85O1xuICBpZiAod2luZG93LkhUTUxXaWRnZXRzKSB7XG4gICAgd2luZG93LkhUTUxXaWRnZXRzLnN0YXRpY1JlbmRlcigpO1xuICB9XG4gIGlmICh3aW5kb3cuUGFnZWRUYWJsZURvYykge1xuICAgIHdpbmRvdy5QYWdlZFRhYmxlRG9jLmluaXRBbGwoKTtcbiAgfVxufVxuIn0seyJjZWxsTmFtZSI6IndlYnItOSIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzkgPSB7XG4gIGNvbnN0IHsgV2ViUkV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwid2Vici05LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgLy8gRGVmYXVsdCBleGVyY2lzZSBjb25maWd1cmF0aW9uXG4gIGNvbnN0IG9wdGlvbnMgPSBPYmplY3QuYXNzaWduKFxuICAgIHtcbiAgICAgIGlkOiBcIndlYnItOS1jb250ZW50c1wiLFxuICAgICAgZW52aXI6IGBleGVyY2lzZS1lbnYtJHtibG9jay5hdHRyLmV4ZXJjaXNlfWAsXG4gICAgICBlcnJvcjogZmFsc2UsXG4gICAgICBjYXB0aW9uOiAnRXhlcmNpc2UnLFxuICAgIH0sXG4gICAgYmxvY2suYXR0clxuICApO1xuXG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxudmlld29mIF93ZWJyX3ZhbHVlXzkgPSB3ZWJST2pzLnByb2Nlc3MoX3dlYnJfZWRpdG9yXzksIHt9KTtcbl93ZWJyX2ZlZWRiYWNrXzkgPSB7XG4gIGNvbnN0IHsgV2ViUkdyYWRlciB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3QgZW1wdHlGZWVkYmFjayA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2RpdicpO1xuXG4gIGNvbnN0IGdyYWRlciA9IG5ldyBXZWJSR3JhZGVyKF93ZWJyX3ZhbHVlXzkuZXZhbHVhdG9yKTtcbiAgY29uc3QgZmVlZGJhY2sgPSBhd2FpdCBncmFkZXIuZ3JhZGVFeGVyY2lzZSgpO1xuICBpZiAoIWZlZWRiYWNrKSByZXR1cm4gZW1wdHlGZWVkYmFjaztcbiAgcmV0dXJuIGZlZWRiYWNrO1xufVxuIn0seyJjZWxsTmFtZSI6IndlYnItd2lkZ2V0LTgiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJ7XG4gIC8vIFdhaXQgZm9yIG91dHB1dCB0byBiZSB3cml0dGVuIHRvIHRoZSBET00sIHRoZW4gdHJpZ2dlciB3aWRnZXQgcmVuZGVyaW5nXG4gIGF3YWl0IF93ZWJyX3ZhbHVlXzg7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici04IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfd2Vicl9lZGl0b3JfOCA9IHtcbiAgY29uc3QgeyBXZWJSRXhlcmNpc2VFZGl0b3IsIGI2NERlY29kZSB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJ3ZWJyLTgtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7IGlkOiBgd2Vici04LWNvbnRlbnRzYCB9LCBibG9jay5hdHRyKTtcbiAgY29uc3QgZWRpdG9yID0gbmV3IFdlYlJFeGVyY2lzZUVkaXRvcih3ZWJST2pzLndlYlJQcm9taXNlLCBibG9jay5jb2RlLCBvcHRpb25zKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl93ZWJyX3ZhbHVlXzggPSB3ZWJST2pzLnByb2Nlc3MoX3dlYnJfZWRpdG9yXzgsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC0zIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoie1xuICAvLyBXYWl0IGZvciBvdXRwdXQgdG8gYmUgd3JpdHRlbiB0byB0aGUgRE9NLCB0aGVuIHRyaWdnZXIgd2lkZ2V0IHJlbmRlcmluZ1xuICBhd2FpdCBfd2Vicl92YWx1ZV8zO1xuICBpZiAod2luZG93LkhUTUxXaWRnZXRzKSB7XG4gICAgd2luZG93LkhUTUxXaWRnZXRzLnN0YXRpY1JlbmRlcigpO1xuICB9XG4gIGlmICh3aW5kb3cuUGFnZWRUYWJsZURvYykge1xuICAgIHdpbmRvdy5QYWdlZFRhYmxlRG9jLmluaXRBbGwoKTtcbiAgfVxufVxuIn0seyJjZWxsTmFtZSI6IndlYnItMyIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzMgPSB7XG4gIGNvbnN0IHsgV2ViUkV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwid2Vici0zLWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgLy8gRGVmYXVsdCBleGVyY2lzZSBjb25maWd1cmF0aW9uXG4gIGNvbnN0IG9wdGlvbnMgPSBPYmplY3QuYXNzaWduKFxuICAgIHtcbiAgICAgIGlkOiBcIndlYnItMy1jb250ZW50c1wiLFxuICAgICAgZW52aXI6IGBleGVyY2lzZS1lbnYtJHtibG9jay5hdHRyLmV4ZXJjaXNlfWAsXG4gICAgICBlcnJvcjogZmFsc2UsXG4gICAgICBjYXB0aW9uOiAnRXhlcmNpc2UnLFxuICAgIH0sXG4gICAgYmxvY2suYXR0clxuICApO1xuXG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxudmlld29mIF93ZWJyX3ZhbHVlXzMgPSB3ZWJST2pzLnByb2Nlc3MoX3dlYnJfZWRpdG9yXzMsIHt9KTtcbl93ZWJyX2ZlZWRiYWNrXzMgPSB7XG4gIGNvbnN0IHsgV2ViUkdyYWRlciB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3QgZW1wdHlGZWVkYmFjayA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2RpdicpO1xuXG4gIGNvbnN0IGdyYWRlciA9IG5ldyBXZWJSR3JhZGVyKF93ZWJyX3ZhbHVlXzMuZXZhbHVhdG9yKTtcbiAgY29uc3QgZmVlZGJhY2sgPSBhd2FpdCBncmFkZXIuZ3JhZGVFeGVyY2lzZSgpO1xuICBpZiAoIWZlZWRiYWNrKSByZXR1cm4gZW1wdHlGZWVkYmFjaztcbiAgcmV0dXJuIGZlZWRiYWNrO1xufVxuIn0seyJjZWxsTmFtZSI6IndlYnItd2lkZ2V0LTIiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJ7XG4gIC8vIFdhaXQgZm9yIG91dHB1dCB0byBiZSB3cml0dGVuIHRvIHRoZSBET00sIHRoZW4gdHJpZ2dlciB3aWRnZXQgcmVuZGVyaW5nXG4gIGF3YWl0IF93ZWJyX3ZhbHVlXzI7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici0yIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfd2Vicl9lZGl0b3JfMiA9IHtcbiAgY29uc3QgeyBXZWJSRXhlcmNpc2VFZGl0b3IsIGI2NERlY29kZSB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJ3ZWJyLTItY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7IGlkOiBgd2Vici0yLWNvbnRlbnRzYCB9LCBibG9jay5hdHRyKTtcbiAgY29uc3QgZWRpdG9yID0gbmV3IFdlYlJFeGVyY2lzZUVkaXRvcih3ZWJST2pzLndlYlJQcm9taXNlLCBibG9jay5jb2RlLCBvcHRpb25zKTtcblxuICByZXR1cm4gZWRpdG9yLmNvbnRhaW5lcjtcbn1cbl93ZWJyX3ZhbHVlXzIgPSB3ZWJST2pzLnByb2Nlc3MoX3dlYnJfZWRpdG9yXzIsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC0xIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoie1xuICAvLyBXYWl0IGZvciBvdXRwdXQgdG8gYmUgd3JpdHRlbiB0byB0aGUgRE9NLCB0aGVuIHRyaWdnZXIgd2lkZ2V0IHJlbmRlcmluZ1xuICBhd2FpdCBfd2Vicl92YWx1ZV8xO1xuICBpZiAod2luZG93LkhUTUxXaWRnZXRzKSB7XG4gICAgd2luZG93LkhUTUxXaWRnZXRzLnN0YXRpY1JlbmRlcigpO1xuICB9XG4gIGlmICh3aW5kb3cuUGFnZWRUYWJsZURvYykge1xuICAgIHdpbmRvdy5QYWdlZFRhYmxlRG9jLmluaXRBbGwoKTtcbiAgfVxufVxuIn0seyJjZWxsTmFtZSI6IndlYnItMSIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJfd2Vicl92YWx1ZV8xID0ge1xuICBjb25zdCB7IGhpZ2hsaWdodFIsIGI2NERlY29kZSB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJ3ZWJyLTEtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICAvLyBEZWZhdWx0IGV2YWx1YXRpb24gY29uZmlndXJhdGlvblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7XG4gICAgaWQ6IFwid2Vici0xLWNvbnRlbnRzXCIsXG4gICAgZWNobzogdHJ1ZSxcbiAgICBvdXRwdXQ6IHRydWVcbiAgfSwgYmxvY2suYXR0cik7XG5cbiAgLy8gRXZhbHVhdGUgdGhlIHByb3ZpZGVkIFIgY29kZVxuICBjb25zdCByZXN1bHQgPSB3ZWJST2pzLnByb2Nlc3Moe2NvZGU6IGJsb2NrLmNvZGUsIG9wdGlvbnN9LCB7fSk7XG5cbiAgLy8gRWFybHkgeWllbGQgd2hpbGUgd2Ugd2FpdCBmb3IgdGhlIGZpcnN0IGV2YWx1YXRpb24gYW5kIHJlbmRlclxuICBpZiAob3B0aW9ucy5vdXRwdXQgJiYgIShcIjFcIiBpbiB3ZWJST2pzLnJlbmRlcmVkT2pzKSkge1xuICAgIGNvbnN0IGNvbnRhaW5lciA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIik7XG4gICAgY29uc3Qgc3Bpbm5lciA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJkaXZcIik7XG5cbiAgICBpZiAob3B0aW9ucy5lY2hvKSB7XG4gICAgICAvLyBTaG93IG91dHB1dCBhcyBoaWdobGlnaHRlZCBzb3VyY2VcbiAgICAgIGNvbnN0IHByZUVsZW0gPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KFwicHJlXCIpO1xuICAgICAgY29udGFpbmVyLmNsYXNzTmFtZSA9IFwic291cmNlQ29kZVwiO1xuICAgICAgcHJlRWxlbS5jbGFzc05hbWUgPSBcInNvdXJjZUNvZGUgclwiO1xuICAgICAgcHJlRWxlbS5hcHBlbmRDaGlsZChoaWdobGlnaHRSKGJsb2NrLmNvZGUpKTtcbiAgICAgIHNwaW5uZXIuY2xhc3NOYW1lID0gXCJzcGlubmVyLWdyb3cgc3Bpbm5lci1ncm93LXNtIG0tMiBwb3NpdGlvbi1hYnNvbHV0ZSB0b3AtMCBlbmQtMFwiO1xuICAgICAgcHJlRWxlbS5hcHBlbmRDaGlsZChzcGlubmVyKTtcbiAgICAgIGNvbnRhaW5lci5hcHBlbmRDaGlsZChwcmVFbGVtKTtcbiAgICB9IGVsc2Uge1xuICAgICAgc3Bpbm5lci5jbGFzc05hbWUgPSBcInNwaW5uZXItYm9yZGVyIHNwaW5uZXItYm9yZGVyLXNtXCI7XG4gICAgICBjb250YWluZXIuYXBwZW5kQ2hpbGQoc3Bpbm5lcik7XG4gICAgfVxuXG4gICAgeWllbGQgY29udGFpbmVyO1xuICB9XG5cbiAgd2ViUk9qcy5yZW5kZXJlZE9qc1tcIjFcIl0gPSB0cnVlO1xuICB5aWVsZCBhd2FpdCByZXN1bHQ7XG59XG4ifSx7ImNlbGxOYW1lIjoiaW50ZXJwb2xhdGUtNSIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgY29uc3QgeyBpbnRlcnBvbGF0ZSB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3QgYmxvY2tfaWQgPSBcIjVcIjtcbiAgY29uc3QgbGFuZ3VhZ2UgPSBcIm5vbmVcIjtcbiAgY29uc3QgZGVmX21hcCA9IHtcbn07XG4gIGNvbnN0IGVsZW0gPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChgaW50ZXJwb2xhdGUtJHtibG9ja19pZH1gKTtcblxuICAvLyBTdG9yZSBvcmlnaW5hbCB0ZW1wbGF0ZWQgSFRNTCBmb3IgcmVmZXJlbmNlIGluIGZ1dHVyZSByZWFjdGl2ZSB1cGRhdGVzXG4gIGlmICghZWxlbS5vcmlnSFRNTCkgZWxlbS5vcmlnSFRNTCA9IGVsZW0uaW5uZXJIVE1MO1xuXG4gIC8vIEludGVycG9sYXRlIHJlYWN0aXZlIE9KUyB2YXJpYWJsZXMgaW50byBlc3RhYmxpc2hlZCBIVE1MIGVsZW1lbnRcbiAgZWxlbS5pbm5lckhUTUwgPSBlbGVtLm9yaWdIVE1MO1xuICBPYmplY3Qua2V5cyhkZWZfbWFwKS5mb3JFYWNoKChkZWYpID0+XG4gICAgaW50ZXJwb2xhdGUoZWxlbSwgXCIke1wiICsgZGVmICsgXCJ9XCIsIGRlZl9tYXBbZGVmXSwgbGFuZ3VhZ2UpXG4gICk7XG59XG4ifSx7ImNlbGxOYW1lIjoiaW50ZXJwb2xhdGUtNiIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgY29uc3QgeyBpbnRlcnBvbGF0ZSB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3QgYmxvY2tfaWQgPSBcIjZcIjtcbiAgY29uc3QgbGFuZ3VhZ2UgPSBcInJcIjtcbiAgY29uc3QgZGVmX21hcCA9IHtcbn07XG4gIGNvbnN0IGVsZW0gPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChgaW50ZXJwb2xhdGUtJHtibG9ja19pZH1gKTtcblxuICAvLyBTdG9yZSBvcmlnaW5hbCB0ZW1wbGF0ZWQgSFRNTCBmb3IgcmVmZXJlbmNlIGluIGZ1dHVyZSByZWFjdGl2ZSB1cGRhdGVzXG4gIGlmICghZWxlbS5vcmlnSFRNTCkgZWxlbS5vcmlnSFRNTCA9IGVsZW0uaW5uZXJIVE1MO1xuXG4gIC8vIEludGVycG9sYXRlIHJlYWN0aXZlIE9KUyB2YXJpYWJsZXMgaW50byBlc3RhYmxpc2hlZCBIVE1MIGVsZW1lbnRcbiAgZWxlbS5pbm5lckhUTUwgPSBlbGVtLm9yaWdIVE1MO1xuICBPYmplY3Qua2V5cyhkZWZfbWFwKS5mb3JFYWNoKChkZWYpID0+XG4gICAgaW50ZXJwb2xhdGUoZWxlbSwgXCIke1wiICsgZGVmICsgXCJ9XCIsIGRlZl9tYXBbZGVmXSwgbGFuZ3VhZ2UpXG4gICk7XG59XG4ifSx7ImNlbGxOYW1lIjoiaW50ZXJwb2xhdGUtMTEiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJ7XG4gIGNvbnN0IHsgaW50ZXJwb2xhdGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG4gIGNvbnN0IGJsb2NrX2lkID0gXCIxMVwiO1xuICBjb25zdCBsYW5ndWFnZSA9IFwibm9uZVwiO1xuICBjb25zdCBkZWZfbWFwID0ge1xufTtcbiAgY29uc3QgZWxlbSA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKGBpbnRlcnBvbGF0ZS0ke2Jsb2NrX2lkfWApO1xuXG4gIC8vIFN0b3JlIG9yaWdpbmFsIHRlbXBsYXRlZCBIVE1MIGZvciByZWZlcmVuY2UgaW4gZnV0dXJlIHJlYWN0aXZlIHVwZGF0ZXNcbiAgaWYgKCFlbGVtLm9yaWdIVE1MKSBlbGVtLm9yaWdIVE1MID0gZWxlbS5pbm5lckhUTUw7XG5cbiAgLy8gSW50ZXJwb2xhdGUgcmVhY3RpdmUgT0pTIHZhcmlhYmxlcyBpbnRvIGVzdGFibGlzaGVkIEhUTUwgZWxlbWVudFxuICBlbGVtLmlubmVySFRNTCA9IGVsZW0ub3JpZ0hUTUw7XG4gIE9iamVjdC5rZXlzKGRlZl9tYXApLmZvckVhY2goKGRlZikgPT5cbiAgICBpbnRlcnBvbGF0ZShlbGVtLCBcIiR7XCIgKyBkZWYgKyBcIn1cIiwgZGVmX21hcFtkZWZdLCBsYW5ndWFnZSlcbiAgKTtcbn1cbiJ9LHsiY2VsbE5hbWUiOiJpbnRlcnBvbGF0ZS0xMiIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgY29uc3QgeyBpbnRlcnBvbGF0ZSB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3QgYmxvY2tfaWQgPSBcIjEyXCI7XG4gIGNvbnN0IGxhbmd1YWdlID0gXCJyXCI7XG4gIGNvbnN0IGRlZl9tYXAgPSB7XG59O1xuICBjb25zdCBlbGVtID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoYGludGVycG9sYXRlLSR7YmxvY2tfaWR9YCk7XG5cbiAgLy8gU3RvcmUgb3JpZ2luYWwgdGVtcGxhdGVkIEhUTUwgZm9yIHJlZmVyZW5jZSBpbiBmdXR1cmUgcmVhY3RpdmUgdXBkYXRlc1xuICBpZiAoIWVsZW0ub3JpZ0hUTUwpIGVsZW0ub3JpZ0hUTUwgPSBlbGVtLmlubmVySFRNTDtcblxuICAvLyBJbnRlcnBvbGF0ZSByZWFjdGl2ZSBPSlMgdmFyaWFibGVzIGludG8gZXN0YWJsaXNoZWQgSFRNTCBlbGVtZW50XG4gIGVsZW0uaW5uZXJIVE1MID0gZWxlbS5vcmlnSFRNTDtcbiAgT2JqZWN0LmtleXMoZGVmX21hcCkuZm9yRWFjaCgoZGVmKSA9PlxuICAgIGludGVycG9sYXRlKGVsZW0sIFwiJHtcIiArIGRlZiArIFwifVwiLCBkZWZfbWFwW2RlZl0sIGxhbmd1YWdlKVxuICApO1xufVxuIn0seyJjZWxsTmFtZSI6ImludGVycG9sYXRlLTE3IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoie1xuICBjb25zdCB7IGludGVycG9sYXRlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBibG9ja19pZCA9IFwiMTdcIjtcbiAgY29uc3QgbGFuZ3VhZ2UgPSBcIm5vbmVcIjtcbiAgY29uc3QgZGVmX21hcCA9IHtcbn07XG4gIGNvbnN0IGVsZW0gPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChgaW50ZXJwb2xhdGUtJHtibG9ja19pZH1gKTtcblxuICAvLyBTdG9yZSBvcmlnaW5hbCB0ZW1wbGF0ZWQgSFRNTCBmb3IgcmVmZXJlbmNlIGluIGZ1dHVyZSByZWFjdGl2ZSB1cGRhdGVzXG4gIGlmICghZWxlbS5vcmlnSFRNTCkgZWxlbS5vcmlnSFRNTCA9IGVsZW0uaW5uZXJIVE1MO1xuXG4gIC8vIEludGVycG9sYXRlIHJlYWN0aXZlIE9KUyB2YXJpYWJsZXMgaW50byBlc3RhYmxpc2hlZCBIVE1MIGVsZW1lbnRcbiAgZWxlbS5pbm5lckhUTUwgPSBlbGVtLm9yaWdIVE1MO1xuICBPYmplY3Qua2V5cyhkZWZfbWFwKS5mb3JFYWNoKChkZWYpID0+XG4gICAgaW50ZXJwb2xhdGUoZWxlbSwgXCIke1wiICsgZGVmICsgXCJ9XCIsIGRlZl9tYXBbZGVmXSwgbGFuZ3VhZ2UpXG4gICk7XG59XG4ifSx7ImNlbGxOYW1lIjoiaW50ZXJwb2xhdGUtMTgiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJ7XG4gIGNvbnN0IHsgaW50ZXJwb2xhdGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG4gIGNvbnN0IGJsb2NrX2lkID0gXCIxOFwiO1xuICBjb25zdCBsYW5ndWFnZSA9IFwiclwiO1xuICBjb25zdCBkZWZfbWFwID0ge1xufTtcbiAgY29uc3QgZWxlbSA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKGBpbnRlcnBvbGF0ZS0ke2Jsb2NrX2lkfWApO1xuXG4gIC8vIFN0b3JlIG9yaWdpbmFsIHRlbXBsYXRlZCBIVE1MIGZvciByZWZlcmVuY2UgaW4gZnV0dXJlIHJlYWN0aXZlIHVwZGF0ZXNcbiAgaWYgKCFlbGVtLm9yaWdIVE1MKSBlbGVtLm9yaWdIVE1MID0gZWxlbS5pbm5lckhUTUw7XG5cbiAgLy8gSW50ZXJwb2xhdGUgcmVhY3RpdmUgT0pTIHZhcmlhYmxlcyBpbnRvIGVzdGFibGlzaGVkIEhUTUwgZWxlbWVudFxuICBlbGVtLmlubmVySFRNTCA9IGVsZW0ub3JpZ0hUTUw7XG4gIE9iamVjdC5rZXlzKGRlZl9tYXApLmZvckVhY2goKGRlZikgPT5cbiAgICBpbnRlcnBvbGF0ZShlbGVtLCBcIiR7XCIgKyBkZWYgKyBcIn1cIiwgZGVmX21hcFtkZWZdLCBsYW5ndWFnZSlcbiAgKTtcbn1cbiJ9LHsiY2VsbE5hbWUiOiJpbnRlcnBvbGF0ZS0yMyIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgY29uc3QgeyBpbnRlcnBvbGF0ZSB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3QgYmxvY2tfaWQgPSBcIjIzXCI7XG4gIGNvbnN0IGxhbmd1YWdlID0gXCJub25lXCI7XG4gIGNvbnN0IGRlZl9tYXAgPSB7XG59O1xuICBjb25zdCBlbGVtID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoYGludGVycG9sYXRlLSR7YmxvY2tfaWR9YCk7XG5cbiAgLy8gU3RvcmUgb3JpZ2luYWwgdGVtcGxhdGVkIEhUTUwgZm9yIHJlZmVyZW5jZSBpbiBmdXR1cmUgcmVhY3RpdmUgdXBkYXRlc1xuICBpZiAoIWVsZW0ub3JpZ0hUTUwpIGVsZW0ub3JpZ0hUTUwgPSBlbGVtLmlubmVySFRNTDtcblxuICAvLyBJbnRlcnBvbGF0ZSByZWFjdGl2ZSBPSlMgdmFyaWFibGVzIGludG8gZXN0YWJsaXNoZWQgSFRNTCBlbGVtZW50XG4gIGVsZW0uaW5uZXJIVE1MID0gZWxlbS5vcmlnSFRNTDtcbiAgT2JqZWN0LmtleXMoZGVmX21hcCkuZm9yRWFjaCgoZGVmKSA9PlxuICAgIGludGVycG9sYXRlKGVsZW0sIFwiJHtcIiArIGRlZiArIFwifVwiLCBkZWZfbWFwW2RlZl0sIGxhbmd1YWdlKVxuICApO1xufVxuIn0seyJjZWxsTmFtZSI6ImludGVycG9sYXRlLTI0IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoie1xuICBjb25zdCB7IGludGVycG9sYXRlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBibG9ja19pZCA9IFwiMjRcIjtcbiAgY29uc3QgbGFuZ3VhZ2UgPSBcInJcIjtcbiAgY29uc3QgZGVmX21hcCA9IHtcbn07XG4gIGNvbnN0IGVsZW0gPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChgaW50ZXJwb2xhdGUtJHtibG9ja19pZH1gKTtcblxuICAvLyBTdG9yZSBvcmlnaW5hbCB0ZW1wbGF0ZWQgSFRNTCBmb3IgcmVmZXJlbmNlIGluIGZ1dHVyZSByZWFjdGl2ZSB1cGRhdGVzXG4gIGlmICghZWxlbS5vcmlnSFRNTCkgZWxlbS5vcmlnSFRNTCA9IGVsZW0uaW5uZXJIVE1MO1xuXG4gIC8vIEludGVycG9sYXRlIHJlYWN0aXZlIE9KUyB2YXJpYWJsZXMgaW50byBlc3RhYmxpc2hlZCBIVE1MIGVsZW1lbnRcbiAgZWxlbS5pbm5lckhUTUwgPSBlbGVtLm9yaWdIVE1MO1xuICBPYmplY3Qua2V5cyhkZWZfbWFwKS5mb3JFYWNoKChkZWYpID0+XG4gICAgaW50ZXJwb2xhdGUoZWxlbSwgXCIke1wiICsgZGVmICsgXCJ9XCIsIGRlZl9tYXBbZGVmXSwgbGFuZ3VhZ2UpXG4gICk7XG59XG4ifSx7ImNlbGxOYW1lIjoiaW50ZXJwb2xhdGUtMjkiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJ7XG4gIGNvbnN0IHsgaW50ZXJwb2xhdGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG4gIGNvbnN0IGJsb2NrX2lkID0gXCIyOVwiO1xuICBjb25zdCBsYW5ndWFnZSA9IFwibm9uZVwiO1xuICBjb25zdCBkZWZfbWFwID0ge1xufTtcbiAgY29uc3QgZWxlbSA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKGBpbnRlcnBvbGF0ZS0ke2Jsb2NrX2lkfWApO1xuXG4gIC8vIFN0b3JlIG9yaWdpbmFsIHRlbXBsYXRlZCBIVE1MIGZvciByZWZlcmVuY2UgaW4gZnV0dXJlIHJlYWN0aXZlIHVwZGF0ZXNcbiAgaWYgKCFlbGVtLm9yaWdIVE1MKSBlbGVtLm9yaWdIVE1MID0gZWxlbS5pbm5lckhUTUw7XG5cbiAgLy8gSW50ZXJwb2xhdGUgcmVhY3RpdmUgT0pTIHZhcmlhYmxlcyBpbnRvIGVzdGFibGlzaGVkIEhUTUwgZWxlbWVudFxuICBlbGVtLmlubmVySFRNTCA9IGVsZW0ub3JpZ0hUTUw7XG4gIE9iamVjdC5rZXlzKGRlZl9tYXApLmZvckVhY2goKGRlZikgPT5cbiAgICBpbnRlcnBvbGF0ZShlbGVtLCBcIiR7XCIgKyBkZWYgKyBcIn1cIiwgZGVmX21hcFtkZWZdLCBsYW5ndWFnZSlcbiAgKTtcbn1cbiJ9LHsiY2VsbE5hbWUiOiJpbnRlcnBvbGF0ZS0zMCIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgY29uc3QgeyBpbnRlcnBvbGF0ZSB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3QgYmxvY2tfaWQgPSBcIjMwXCI7XG4gIGNvbnN0IGxhbmd1YWdlID0gXCJyXCI7XG4gIGNvbnN0IGRlZl9tYXAgPSB7XG59O1xuICBjb25zdCBlbGVtID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoYGludGVycG9sYXRlLSR7YmxvY2tfaWR9YCk7XG5cbiAgLy8gU3RvcmUgb3JpZ2luYWwgdGVtcGxhdGVkIEhUTUwgZm9yIHJlZmVyZW5jZSBpbiBmdXR1cmUgcmVhY3RpdmUgdXBkYXRlc1xuICBpZiAoIWVsZW0ub3JpZ0hUTUwpIGVsZW0ub3JpZ0hUTUwgPSBlbGVtLmlubmVySFRNTDtcblxuICAvLyBJbnRlcnBvbGF0ZSByZWFjdGl2ZSBPSlMgdmFyaWFibGVzIGludG8gZXN0YWJsaXNoZWQgSFRNTCBlbGVtZW50XG4gIGVsZW0uaW5uZXJIVE1MID0gZWxlbS5vcmlnSFRNTDtcbiAgT2JqZWN0LmtleXMoZGVmX21hcCkuZm9yRWFjaCgoZGVmKSA9PlxuICAgIGludGVycG9sYXRlKGVsZW0sIFwiJHtcIiArIGRlZiArIFwifVwiLCBkZWZfbWFwW2RlZl0sIGxhbmd1YWdlKVxuICApO1xufVxuIn0seyJjZWxsTmFtZSI6ImludGVycG9sYXRlLTM1IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoie1xuICBjb25zdCB7IGludGVycG9sYXRlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBibG9ja19pZCA9IFwiMzVcIjtcbiAgY29uc3QgbGFuZ3VhZ2UgPSBcIm5vbmVcIjtcbiAgY29uc3QgZGVmX21hcCA9IHtcbn07XG4gIGNvbnN0IGVsZW0gPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChgaW50ZXJwb2xhdGUtJHtibG9ja19pZH1gKTtcblxuICAvLyBTdG9yZSBvcmlnaW5hbCB0ZW1wbGF0ZWQgSFRNTCBmb3IgcmVmZXJlbmNlIGluIGZ1dHVyZSByZWFjdGl2ZSB1cGRhdGVzXG4gIGlmICghZWxlbS5vcmlnSFRNTCkgZWxlbS5vcmlnSFRNTCA9IGVsZW0uaW5uZXJIVE1MO1xuXG4gIC8vIEludGVycG9sYXRlIHJlYWN0aXZlIE9KUyB2YXJpYWJsZXMgaW50byBlc3RhYmxpc2hlZCBIVE1MIGVsZW1lbnRcbiAgZWxlbS5pbm5lckhUTUwgPSBlbGVtLm9yaWdIVE1MO1xuICBPYmplY3Qua2V5cyhkZWZfbWFwKS5mb3JFYWNoKChkZWYpID0+XG4gICAgaW50ZXJwb2xhdGUoZWxlbSwgXCIke1wiICsgZGVmICsgXCJ9XCIsIGRlZl9tYXBbZGVmXSwgbGFuZ3VhZ2UpXG4gICk7XG59XG4ifSx7ImNlbGxOYW1lIjoiaW50ZXJwb2xhdGUtMzYiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJ7XG4gIGNvbnN0IHsgaW50ZXJwb2xhdGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG4gIGNvbnN0IGJsb2NrX2lkID0gXCIzNlwiO1xuICBjb25zdCBsYW5ndWFnZSA9IFwiclwiO1xuICBjb25zdCBkZWZfbWFwID0ge1xufTtcbiAgY29uc3QgZWxlbSA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKGBpbnRlcnBvbGF0ZS0ke2Jsb2NrX2lkfWApO1xuXG4gIC8vIFN0b3JlIG9yaWdpbmFsIHRlbXBsYXRlZCBIVE1MIGZvciByZWZlcmVuY2UgaW4gZnV0dXJlIHJlYWN0aXZlIHVwZGF0ZXNcbiAgaWYgKCFlbGVtLm9yaWdIVE1MKSBlbGVtLm9yaWdIVE1MID0gZWxlbS5pbm5lckhUTUw7XG5cbiAgLy8gSW50ZXJwb2xhdGUgcmVhY3RpdmUgT0pTIHZhcmlhYmxlcyBpbnRvIGVzdGFibGlzaGVkIEhUTUwgZWxlbWVudFxuICBlbGVtLmlubmVySFRNTCA9IGVsZW0ub3JpZ0hUTUw7XG4gIE9iamVjdC5rZXlzKGRlZl9tYXApLmZvckVhY2goKGRlZikgPT5cbiAgICBpbnRlcnBvbGF0ZShlbGVtLCBcIiR7XCIgKyBkZWYgKyBcIn1cIiwgZGVmX21hcFtkZWZdLCBsYW5ndWFnZSlcbiAgKTtcbn1cbiJ9LHsiY2VsbE5hbWUiOiJpbnRlcnBvbGF0ZS00MSIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgY29uc3QgeyBpbnRlcnBvbGF0ZSB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3QgYmxvY2tfaWQgPSBcIjQxXCI7XG4gIGNvbnN0IGxhbmd1YWdlID0gXCJub25lXCI7XG4gIGNvbnN0IGRlZl9tYXAgPSB7XG59O1xuICBjb25zdCBlbGVtID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoYGludGVycG9sYXRlLSR7YmxvY2tfaWR9YCk7XG5cbiAgLy8gU3RvcmUgb3JpZ2luYWwgdGVtcGxhdGVkIEhUTUwgZm9yIHJlZmVyZW5jZSBpbiBmdXR1cmUgcmVhY3RpdmUgdXBkYXRlc1xuICBpZiAoIWVsZW0ub3JpZ0hUTUwpIGVsZW0ub3JpZ0hUTUwgPSBlbGVtLmlubmVySFRNTDtcblxuICAvLyBJbnRlcnBvbGF0ZSByZWFjdGl2ZSBPSlMgdmFyaWFibGVzIGludG8gZXN0YWJsaXNoZWQgSFRNTCBlbGVtZW50XG4gIGVsZW0uaW5uZXJIVE1MID0gZWxlbS5vcmlnSFRNTDtcbiAgT2JqZWN0LmtleXMoZGVmX21hcCkuZm9yRWFjaCgoZGVmKSA9PlxuICAgIGludGVycG9sYXRlKGVsZW0sIFwiJHtcIiArIGRlZiArIFwifVwiLCBkZWZfbWFwW2RlZl0sIGxhbmd1YWdlKVxuICApO1xufVxuIn0seyJjZWxsTmFtZSI6ImludGVycG9sYXRlLTQyIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoie1xuICBjb25zdCB7IGludGVycG9sYXRlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBibG9ja19pZCA9IFwiNDJcIjtcbiAgY29uc3QgbGFuZ3VhZ2UgPSBcInJcIjtcbiAgY29uc3QgZGVmX21hcCA9IHtcbn07XG4gIGNvbnN0IGVsZW0gPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChgaW50ZXJwb2xhdGUtJHtibG9ja19pZH1gKTtcblxuICAvLyBTdG9yZSBvcmlnaW5hbCB0ZW1wbGF0ZWQgSFRNTCBmb3IgcmVmZXJlbmNlIGluIGZ1dHVyZSByZWFjdGl2ZSB1cGRhdGVzXG4gIGlmICghZWxlbS5vcmlnSFRNTCkgZWxlbS5vcmlnSFRNTCA9IGVsZW0uaW5uZXJIVE1MO1xuXG4gIC8vIEludGVycG9sYXRlIHJlYWN0aXZlIE9KUyB2YXJpYWJsZXMgaW50byBlc3RhYmxpc2hlZCBIVE1MIGVsZW1lbnRcbiAgZWxlbS5pbm5lckhUTUwgPSBlbGVtLm9yaWdIVE1MO1xuICBPYmplY3Qua2V5cyhkZWZfbWFwKS5mb3JFYWNoKChkZWYpID0+XG4gICAgaW50ZXJwb2xhdGUoZWxlbSwgXCIke1wiICsgZGVmICsgXCJ9XCIsIGRlZl9tYXBbZGVmXSwgbGFuZ3VhZ2UpXG4gICk7XG59XG4ifSx7ImNlbGxOYW1lIjoiaW50ZXJwb2xhdGUtNDciLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJ7XG4gIGNvbnN0IHsgaW50ZXJwb2xhdGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG4gIGNvbnN0IGJsb2NrX2lkID0gXCI0N1wiO1xuICBjb25zdCBsYW5ndWFnZSA9IFwibm9uZVwiO1xuICBjb25zdCBkZWZfbWFwID0ge1xufTtcbiAgY29uc3QgZWxlbSA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKGBpbnRlcnBvbGF0ZS0ke2Jsb2NrX2lkfWApO1xuXG4gIC8vIFN0b3JlIG9yaWdpbmFsIHRlbXBsYXRlZCBIVE1MIGZvciByZWZlcmVuY2UgaW4gZnV0dXJlIHJlYWN0aXZlIHVwZGF0ZXNcbiAgaWYgKCFlbGVtLm9yaWdIVE1MKSBlbGVtLm9yaWdIVE1MID0gZWxlbS5pbm5lckhUTUw7XG5cbiAgLy8gSW50ZXJwb2xhdGUgcmVhY3RpdmUgT0pTIHZhcmlhYmxlcyBpbnRvIGVzdGFibGlzaGVkIEhUTUwgZWxlbWVudFxuICBlbGVtLmlubmVySFRNTCA9IGVsZW0ub3JpZ0hUTUw7XG4gIE9iamVjdC5rZXlzKGRlZl9tYXApLmZvckVhY2goKGRlZikgPT5cbiAgICBpbnRlcnBvbGF0ZShlbGVtLCBcIiR7XCIgKyBkZWYgKyBcIn1cIiwgZGVmX21hcFtkZWZdLCBsYW5ndWFnZSlcbiAgKTtcbn1cbiJ9LHsiY2VsbE5hbWUiOiJpbnRlcnBvbGF0ZS00OCIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgY29uc3QgeyBpbnRlcnBvbGF0ZSB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3QgYmxvY2tfaWQgPSBcIjQ4XCI7XG4gIGNvbnN0IGxhbmd1YWdlID0gXCJyXCI7XG4gIGNvbnN0IGRlZl9tYXAgPSB7XG59O1xuICBjb25zdCBlbGVtID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoYGludGVycG9sYXRlLSR7YmxvY2tfaWR9YCk7XG5cbiAgLy8gU3RvcmUgb3JpZ2luYWwgdGVtcGxhdGVkIEhUTUwgZm9yIHJlZmVyZW5jZSBpbiBmdXR1cmUgcmVhY3RpdmUgdXBkYXRlc1xuICBpZiAoIWVsZW0ub3JpZ0hUTUwpIGVsZW0ub3JpZ0hUTUwgPSBlbGVtLmlubmVySFRNTDtcblxuICAvLyBJbnRlcnBvbGF0ZSByZWFjdGl2ZSBPSlMgdmFyaWFibGVzIGludG8gZXN0YWJsaXNoZWQgSFRNTCBlbGVtZW50XG4gIGVsZW0uaW5uZXJIVE1MID0gZWxlbS5vcmlnSFRNTDtcbiAgT2JqZWN0LmtleXMoZGVmX21hcCkuZm9yRWFjaCgoZGVmKSA9PlxuICAgIGludGVycG9sYXRlKGVsZW0sIFwiJHtcIiArIGRlZiArIFwifVwiLCBkZWZfbWFwW2RlZl0sIGxhbmd1YWdlKVxuICApO1xufVxuIn0seyJjZWxsTmFtZSI6ImludGVycG9sYXRlLTUzIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoie1xuICBjb25zdCB7IGludGVycG9sYXRlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBibG9ja19pZCA9IFwiNTNcIjtcbiAgY29uc3QgbGFuZ3VhZ2UgPSBcIm5vbmVcIjtcbiAgY29uc3QgZGVmX21hcCA9IHtcbn07XG4gIGNvbnN0IGVsZW0gPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChgaW50ZXJwb2xhdGUtJHtibG9ja19pZH1gKTtcblxuICAvLyBTdG9yZSBvcmlnaW5hbCB0ZW1wbGF0ZWQgSFRNTCBmb3IgcmVmZXJlbmNlIGluIGZ1dHVyZSByZWFjdGl2ZSB1cGRhdGVzXG4gIGlmICghZWxlbS5vcmlnSFRNTCkgZWxlbS5vcmlnSFRNTCA9IGVsZW0uaW5uZXJIVE1MO1xuXG4gIC8vIEludGVycG9sYXRlIHJlYWN0aXZlIE9KUyB2YXJpYWJsZXMgaW50byBlc3RhYmxpc2hlZCBIVE1MIGVsZW1lbnRcbiAgZWxlbS5pbm5lckhUTUwgPSBlbGVtLm9yaWdIVE1MO1xuICBPYmplY3Qua2V5cyhkZWZfbWFwKS5mb3JFYWNoKChkZWYpID0+XG4gICAgaW50ZXJwb2xhdGUoZWxlbSwgXCIke1wiICsgZGVmICsgXCJ9XCIsIGRlZl9tYXBbZGVmXSwgbGFuZ3VhZ2UpXG4gICk7XG59XG4ifSx7ImNlbGxOYW1lIjoiaW50ZXJwb2xhdGUtNTQiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJ7XG4gIGNvbnN0IHsgaW50ZXJwb2xhdGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG4gIGNvbnN0IGJsb2NrX2lkID0gXCI1NFwiO1xuICBjb25zdCBsYW5ndWFnZSA9IFwiclwiO1xuICBjb25zdCBkZWZfbWFwID0ge1xufTtcbiAgY29uc3QgZWxlbSA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKGBpbnRlcnBvbGF0ZS0ke2Jsb2NrX2lkfWApO1xuXG4gIC8vIFN0b3JlIG9yaWdpbmFsIHRlbXBsYXRlZCBIVE1MIGZvciByZWZlcmVuY2UgaW4gZnV0dXJlIHJlYWN0aXZlIHVwZGF0ZXNcbiAgaWYgKCFlbGVtLm9yaWdIVE1MKSBlbGVtLm9yaWdIVE1MID0gZWxlbS5pbm5lckhUTUw7XG5cbiAgLy8gSW50ZXJwb2xhdGUgcmVhY3RpdmUgT0pTIHZhcmlhYmxlcyBpbnRvIGVzdGFibGlzaGVkIEhUTUwgZWxlbWVudFxuICBlbGVtLmlubmVySFRNTCA9IGVsZW0ub3JpZ0hUTUw7XG4gIE9iamVjdC5rZXlzKGRlZl9tYXApLmZvckVhY2goKGRlZikgPT5cbiAgICBpbnRlcnBvbGF0ZShlbGVtLCBcIiR7XCIgKyBkZWYgKyBcIn1cIiwgZGVmX21hcFtkZWZdLCBsYW5ndWFnZSlcbiAgKTtcbn1cbiJ9LHsiY2VsbE5hbWUiOiJpbnRlcnBvbGF0ZS01OSIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgY29uc3QgeyBpbnRlcnBvbGF0ZSB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3QgYmxvY2tfaWQgPSBcIjU5XCI7XG4gIGNvbnN0IGxhbmd1YWdlID0gXCJub25lXCI7XG4gIGNvbnN0IGRlZl9tYXAgPSB7XG59O1xuICBjb25zdCBlbGVtID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoYGludGVycG9sYXRlLSR7YmxvY2tfaWR9YCk7XG5cbiAgLy8gU3RvcmUgb3JpZ2luYWwgdGVtcGxhdGVkIEhUTUwgZm9yIHJlZmVyZW5jZSBpbiBmdXR1cmUgcmVhY3RpdmUgdXBkYXRlc1xuICBpZiAoIWVsZW0ub3JpZ0hUTUwpIGVsZW0ub3JpZ0hUTUwgPSBlbGVtLmlubmVySFRNTDtcblxuICAvLyBJbnRlcnBvbGF0ZSByZWFjdGl2ZSBPSlMgdmFyaWFibGVzIGludG8gZXN0YWJsaXNoZWQgSFRNTCBlbGVtZW50XG4gIGVsZW0uaW5uZXJIVE1MID0gZWxlbS5vcmlnSFRNTDtcbiAgT2JqZWN0LmtleXMoZGVmX21hcCkuZm9yRWFjaCgoZGVmKSA9PlxuICAgIGludGVycG9sYXRlKGVsZW0sIFwiJHtcIiArIGRlZiArIFwifVwiLCBkZWZfbWFwW2RlZl0sIGxhbmd1YWdlKVxuICApO1xufVxuIn0seyJjZWxsTmFtZSI6ImludGVycG9sYXRlLTYwIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoie1xuICBjb25zdCB7IGludGVycG9sYXRlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBibG9ja19pZCA9IFwiNjBcIjtcbiAgY29uc3QgbGFuZ3VhZ2UgPSBcInJcIjtcbiAgY29uc3QgZGVmX21hcCA9IHtcbn07XG4gIGNvbnN0IGVsZW0gPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChgaW50ZXJwb2xhdGUtJHtibG9ja19pZH1gKTtcblxuICAvLyBTdG9yZSBvcmlnaW5hbCB0ZW1wbGF0ZWQgSFRNTCBmb3IgcmVmZXJlbmNlIGluIGZ1dHVyZSByZWFjdGl2ZSB1cGRhdGVzXG4gIGlmICghZWxlbS5vcmlnSFRNTCkgZWxlbS5vcmlnSFRNTCA9IGVsZW0uaW5uZXJIVE1MO1xuXG4gIC8vIEludGVycG9sYXRlIHJlYWN0aXZlIE9KUyB2YXJpYWJsZXMgaW50byBlc3RhYmxpc2hlZCBIVE1MIGVsZW1lbnRcbiAgZWxlbS5pbm5lckhUTUwgPSBlbGVtLm9yaWdIVE1MO1xuICBPYmplY3Qua2V5cyhkZWZfbWFwKS5mb3JFYWNoKChkZWYpID0+XG4gICAgaW50ZXJwb2xhdGUoZWxlbSwgXCIke1wiICsgZGVmICsgXCJ9XCIsIGRlZl9tYXBbZGVmXSwgbGFuZ3VhZ2UpXG4gICk7XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici1wcmVsdWRlIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoid2ViUk9qcyA9IHtcbiAgY29uc3QgeyBXZWJSLCBDaGFubmVsVHlwZSB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZS5XZWJSO1xuICBjb25zdCB7XG4gICAgV2ViUkV2YWx1YXRvcixcbiAgICBXZWJSRW52aXJvbm1lbnRNYW5hZ2VyLFxuICAgIHNldHVwUixcbiAgICBiNjREZWNvZGUsXG4gICAgY29sbGFwc2VQYXRoXG4gIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHN0YXR1c0NvbnRhaW5lciA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKFwiZXhlcmNpc2UtbG9hZGluZy1zdGF0dXNcIik7XG4gIGNvbnN0IGluZGljYXRvckNvbnRhaW5lciA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKFwiZXhlcmNpc2UtbG9hZGluZy1pbmRpY2F0b3JcIik7XG4gIGluZGljYXRvckNvbnRhaW5lci5jbGFzc0xpc3QucmVtb3ZlKFwiZC1ub25lXCIpO1xuXG4gIGxldCBzdGF0dXNUZXh0ID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImRpdlwiKVxuICBzdGF0dXNUZXh0LmNsYXNzTGlzdCA9IFwiZXhlcmNpc2UtbG9hZGluZy1kZXRhaWxzXCI7XG4gIHN0YXR1c1RleHQgPSBzdGF0dXNDb250YWluZXIuYXBwZW5kQ2hpbGQoc3RhdHVzVGV4dCk7XG4gIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgSW5pdGlhbGlzZWA7XG5cbiAgLy8gSG9pc3QgaW5kaWNhdG9yIG91dCBmcm9tIGZpbmFsIHNsaWRlIHdoZW4gcnVubmluZyB1bmRlciByZXZlYWxcbiAgY29uc3QgcmV2ZWFsU3RhdHVzID0gZG9jdW1lbnQucXVlcnlTZWxlY3RvcihcIi5yZXZlYWwgLmV4ZXJjaXNlLWxvYWRpbmctaW5kaWNhdG9yXCIpO1xuICBpZiAocmV2ZWFsU3RhdHVzKSB7XG4gICAgcmV2ZWFsU3RhdHVzLnJlbW92ZSgpO1xuICAgIGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCIucmV2ZWFsID4gLnNsaWRlc1wiKS5hcHBlbmRDaGlsZChyZXZlYWxTdGF0dXMpO1xuICB9XG5cbiAgLy8gTWFrZSBhbnkgcmV2ZWFsIHNsaWRlcyB3aXRoIGxpdmUgY2VsbHMgc2Nyb2xsYWJsZVxuICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKFwiLnJldmVhbCAuZXhlcmNpc2UtY2VsbFwiKS5mb3JFYWNoKChlbCkgPT4ge1xuICAgIGVsLmNsb3Nlc3QoJ3NlY3Rpb24uc2xpZGUnKS5jbGFzc0xpc3QuYWRkKFwic2Nyb2xsYWJsZVwiKTtcbiAgfSlcblxuICAvLyB3ZWJSIHN1cHBsZW1lbnRhbCBkYXRhIGFuZCBvcHRpb25zXG4gIGNvbnN0IGRhdGFDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItZGF0YVxcXCJdYCkudGV4dENvbnRlbnQ7XG4gIGNvbnN0IGRhdGEgPSBKU09OLnBhcnNlKGI2NERlY29kZShkYXRhQ29udGVudCkpO1xuXG4gIC8vIEdyYWIgbGlzdCBvZiByZXNvdXJjZXMgdG8gYmUgZG93bmxvYWRlZFxuICBjb25zdCBmaWxlc0NvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwidmZzLWZpbGVcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBmaWxlcyA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKGZpbGVzQ29udGVudCkpO1xuXG4gIC8vIFVzZSBQb3N0TWVzc2FnZSBjaGFubmVsIGZvciBhc3luYyBjb21tdW5pY2F0aW9uXG4gIC8vIFdlIGRvIG5vdCBleHBlY3QgdG8gdGFrZSBuZXN0ZWQgcHJvbXB0IGlucHV0IGluIFF1YXJ0byBMaXZlIGNlbGxzXG4gIGRhdGEub3B0aW9ucy5jaGFubmVsVHlwZSA9IENoYW5uZWxUeXBlLlBvc3RNZXNzYWdlO1xuXG4gIC8vIEluaXRpYWxpc2Ugd2ViUiBhbmQgc2V0dXAgZm9yIFIgY29kZSBldmFsdWF0aW9uXG4gIGxldCB3ZWJSUHJvbWlzZSA9IChhc3luYyAod2ViUikgPT4ge1xuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgd2ViUmA7XG4gICAgYXdhaXQgd2ViUi5pbml0KCk7XG5cbiAgICAvLyBJbnN0YWxsIHByb3ZpZGVkIGxpc3Qgb2YgcGFja2FnZXNcbiAgICAvLyBFbnN1cmUgd2ViUiBkZWZhdWx0IHJlcG8gaXMgaW5jbHVkZWRcbiAgICBkYXRhLnBhY2thZ2VzLnJlcG9zLnB1c2goXCJodHRwczovL3JlcG8uci13YXNtLm9yZ1wiKVxuICAgIGF3YWl0IGRhdGEucGFja2FnZXMucGtncy5tYXAoKHBrZykgPT4gKCkgPT4ge1xuICAgICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiAke3BrZ31gO1xuICAgICAgcmV0dXJuIHdlYlIuZXZhbFJWb2lkKGBcbiAgICAgICAgd2Vicjo6aW5zdGFsbChwa2csIHJlcG9zID0gcmVwb3MpXG4gICAgICAgIGxpYnJhcnkocGtnLCBjaGFyYWN0ZXIub25seSA9IFRSVUUpXG4gICAgICBgLCB7IGVudjoge1xuICAgICAgICBwa2c6IHBrZyxcbiAgICAgICAgcmVwb3M6IGRhdGEucGFja2FnZXMucmVwb3MsXG4gICAgICB9fSk7XG4gICAgfSkucmVkdWNlKChjdXIsIG5leHQpID0+IGN1ci50aGVuKG5leHQpLCBQcm9taXNlLnJlc29sdmUoKSk7XG5cbiAgICAvLyBEb3dubG9hZCBhbmQgaW5zdGFsbCByZXNvdXJjZXNcbiAgICBhd2FpdCBmaWxlcy5tYXAoKGZpbGUpID0+IGFzeW5jICgpID0+IHtcbiAgICAgIGNvbnN0IG5hbWUgPSBmaWxlLnN1YnN0cmluZyhmaWxlLmxhc3RJbmRleE9mKCcvJykgKyAxKTtcbiAgICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgcmVzb3VyY2U6ICR7bmFtZX1gO1xuICAgICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBmZXRjaChmaWxlKTtcbiAgICAgIGlmICghcmVzcG9uc2Uub2spIHtcbiAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBDYW4ndCBkb3dubG9hZCBcXGAke2ZpbGV9XFxgLiBFcnJvciAke3Jlc3BvbnNlLnN0YXR1c306IFwiJHtyZXNwb25zZS5zdGF0dXNUZXh0fVwiLmApO1xuICAgICAgfVxuICAgICAgY29uc3QgZGF0YSA9IGF3YWl0IHJlc3BvbnNlLmFycmF5QnVmZmVyKCk7XG5cbiAgICAgIC8vIFN0b3JlIFVSTHMgaW4gdGhlIGN3ZCB3aXRob3V0IGFueSBzdWJkaXJlY3Rvcnkgc3RydWN0dXJlXG4gICAgICBpZiAoZmlsZS5pbmNsdWRlcyhcIjovL1wiKSkge1xuICAgICAgICBmaWxlID0gbmFtZTtcbiAgICAgIH1cblxuICAgICAgLy8gQ29sbGFwc2UgaGlnaGVyIGRpcmVjdG9yeSBzdHJ1Y3R1cmVcbiAgICAgIGZpbGUgPSBjb2xsYXBzZVBhdGgoZmlsZSk7XG5cbiAgICAgIC8vIENyZWF0ZSBkaXJlY3RvcnkgdHJlZSwgaWdub3JpbmcgXCJkaXJlY3RvcnkgZXhpc3RzXCIgVkZTIGVycm9yc1xuICAgICAgY29uc3QgcGFydHMgPSBmaWxlLnNwbGl0KCcvJykuc2xpY2UoMCwgLTEpO1xuICAgICAgbGV0IHBhdGggPSAnJztcbiAgICAgIHdoaWxlIChwYXJ0cy5sZW5ndGggPiAwKSB7XG4gICAgICAgIHBhdGggKz0gcGFydHMuc2hpZnQoKSArICcvJztcbiAgICAgICAgY29uc3QgYW5hbHlzaXMgPSBhd2FpdCB3ZWJSLkZTLmFuYWx5emVQYXRoKHBhdGgpO1xuICAgICAgICBpZiAoIWFuYWx5c2lzLmV4aXN0cykge1xuICAgICAgICAgIHRyeSB7XG4gICAgICAgICAgICBhd2FpdCB3ZWJSLkZTLm1rZGlyKHBhdGgpO1xuICAgICAgICAgIH0gY2F0Y2ggKGUpIHtcbiAgICAgICAgICAgIHRocm93IG5ldyBFcnJvcihgRmlsZXN5c3RlbSBFcnJvcjogXCIke2UubWVzc2FnZX1cIi5gKTtcbiAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgIH1cblxuICAgICAgLy8gV3JpdGUgdGhpcyBmaWxlIHRvIHRoZSBWRlNcbiAgICAgIHJldHVybiBhd2FpdCB3ZWJSLkZTLndyaXRlRmlsZShmaWxlLCBuZXcgVWludDhBcnJheShkYXRhKSk7XG4gICAgfSkucmVkdWNlKChjdXIsIG5leHQpID0+IGN1ci50aGVuKG5leHQpLCBQcm9taXNlLnJlc29sdmUoKSk7XG5cbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYEluc3RhbGxpbmcgd2ViUiBzaGltc2A7XG4gICAgYXdhaXQgd2ViUi5ldmFsUlZvaWQoYHdlYnI6OnNoaW1faW5zdGFsbCgpYCk7XG5cbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYFdlYlIgZW52aXJvbm1lbnQgc2V0dXBgO1xuICAgIGF3YWl0IHNldHVwUih3ZWJSLCBkYXRhKTtcblxuICAgIHN0YXR1c1RleHQucmVtb3ZlKCk7XG4gICAgaWYgKHN0YXR1c0NvbnRhaW5lci5jaGlsZHJlbi5sZW5ndGggPT0gMCkge1xuICAgICAgc3RhdHVzQ29udGFpbmVyLnBhcmVudE5vZGUucmVtb3ZlKCk7XG4gICAgfVxuICAgIHJldHVybiB3ZWJSO1xuICB9KShuZXcgV2ViUihkYXRhLm9wdGlvbnMpKTtcblxuICAvLyBLZWVwIHRyYWNrIG9mIGluaXRpYWwgT0pTIGJsb2NrIHJlbmRlclxuICBjb25zdCByZW5kZXJlZE9qcyA9IHt9O1xuXG4gIGNvbnN0IHByb2Nlc3MgPSBhc3luYyAoY29udGV4dCwgaW5wdXRzKSA9PiB7XG4gICAgY29uc3Qgd2ViUiA9IGF3YWl0IHdlYlJQcm9taXNlO1xuICAgIGNvbnN0IGV2YWx1YXRvciA9IG5ldyBXZWJSRXZhbHVhdG9yKHdlYlIsIGNvbnRleHQpXG4gICAgYXdhaXQgZXZhbHVhdG9yLnByb2Nlc3MoaW5wdXRzKTtcbiAgICByZXR1cm4gZXZhbHVhdG9yLmNvbnRhaW5lcjtcbiAgfVxuXG4gIHJldHVybiB7XG4gICAgcHJvY2VzcyxcbiAgICB3ZWJSUHJvbWlzZSxcbiAgICByZW5kZXJlZE9qcyxcbiAgfTtcbn1cbiJ9XX0=
+</script>
+<div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
+<div id="exercise-loading-status" class="d-flex gap-2">
+
+</div>
+<div class="spinner-grow spinner-grow-sm">
+
+</div>
+</div>
+<script type="vfs-file">
+WyJyZWNpcGVfcmV2aWV3cy5jc3YiLCJwZW5ndWlucy5jc3YiLCJjb2ZmZWUuY3N2Il0=
+</script>
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../tutorials";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

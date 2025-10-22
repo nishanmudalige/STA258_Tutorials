@@ -1,0 +1,972 @@
+---
+title: "Tutorial 05"
+format: live-html
+engine: knitr
+resources:
+  - recipe_reviews.csv
+  - penguins.csv
+  - coffee.csv
+---
+
+```{r echo=FALSE}
+# Setup knitr for handling {webr} and {pyodide} blocks
+# TODO: With quarto-dev/quarto-cli#10169, we can implement this in a filter
+
+# We'll handle `include: false` in Lua, always include cell in knitr output
+knitr::opts_hooks$set(include = function(options) {
+  if (options$engine == "webr" || options$engine == "pyodide") {
+    options$include <- TRUE
+  }
+  options
+})
+
+# Passthrough engine for webr
+knitr::knit_engines$set(webr = function(options) {
+  knitr:::one_string(c(
+    "```{webr}",
+    options$yaml.code,
+    options$code,
+    "```"
+  ))
+})
+
+# Passthrough engine for pyodide
+knitr::knit_engines$set(pyodide = function(options) {
+  knitr:::one_string(c(
+    "```{pyodide}",
+    options$yaml.code,
+    options$code,
+    "```"
+  ))
+})
+```
+
+```{webr}
+#| edit: false
+#| output: false
+webr::install("gradethis", quiet = TRUE)
+library(gradethis)
+options(webr.exercise.checker = function(
+  label, user_code, solution_code, check_code, envir_result, evaluate_result,
+  envir_prep, last_value, engine, stage, ...
+) {
+  if (is.null(check_code)) {
+    # No grading code, so just skip grading
+    invisible(NULL)
+  } else if (is.null(label)) {
+    list(
+      correct = FALSE,
+      type = "warning",
+      message = "All exercises must have a label."
+    )
+  } else if (is.null(solution_code)) {
+    list(
+      correct = FALSE,
+      type = "warning",
+      message = htmltools::tags$div(
+        htmltools::tags$p("A problem occurred grading this exercise."),
+        htmltools::tags$p(
+          "No solution code was found. Note that grading exercises using the ",
+          htmltools::tags$code("gradethis"),
+          "package requires a model solution to be included in the document."
+        )
+      )
+    )
+  } else {
+    gradethis::gradethis_exercise_checker(
+      label = label, solution_code = solution_code, user_code = user_code,
+      check_code = check_code, envir_result = envir_result,
+      evaluate_result = evaluate_result, envir_prep = envir_prep,
+      last_value = last_value, stage = stage, engine = engine)
+  }
+})
+```
+
+
+
+## Q1 — Pooled (Equal Variances): Reviews
+
+Using the local file recipe_reviews.csv, compute a 95% two-sided confidence 
+interval for $$ \mu_{FiveStar} - \mu_{NotFive}$$ where the outcome is best_score and the groups are stars == 5 (FiveStar) vs stars != 5 (NotFive).
+Read the CSV with read.csv("recipe_reviews.csv"), build the two groups, and print the 2-element vector c(lower, upper).
+
+::: {.callout-note title="Info"}
+For a pooled two-sample CI with equal variances:
+
+$$ \bar{x}_1 - \bar{x}_2 \ \ \pm \ \ t^*_{df=n_1 + n_2 - 2} s_p \sqrt{\frac{1}{n1} + \frac{1}{n2}}, \ \ s^2_p = \frac{(n_1 - 1)s^2_1 + (n_2-1)s^2_2}{n_1 + n_2 - 2}$$
+Use $\alpha$ = 0.05 $\implies t^* = t_{1 - \frac{\alpha}{2}, df}$
+
+Group 1 = FiveStar (rows with stars == 5), Group 2 = NotFive (rows with stars != 5).
+:::
+
+::: {.callout-note title="Preview"}
+The "Recipe Reviews and User Feedback Dataset" is a comprehensive repository of data encompassing various aspects of recipe reviews and user interactions. It includes essential information such as the recipe name, its ranking on the top 100 recipes list, a unique recipe code, and user details like user ID, user name, and an internal user reputation score. Each review comment is uniquely identified with a comment ID and comes with additional attributes, including the creation timestamp, reply count, and the number of up-votes and down-votes received. Users' sentiment towards recipes is quantified on a 1 to 5 star rating scale, with a score of 0 denoting an absence of rating. This dataset is a valuable resource for researchers and data scientists, facilitating endeavors in sentiment analysis, user behavior analysis, recipe recommendation systems, and more. It offers a window into the dynamics of recipe reviews and user feedback within the culinary website domain.
+
+Run this code chunk to get a glimpse of the dataset. Feel free to change the values to visualize more/less number of rows. 
+```{webr}
+#| echo: true
+df <- read.csv("recipe_reviews.csv")
+head(df[, c("recipe_name","stars","best_score","thumbs_up","thumbs_down","user_reputation")], 10)
+```
+:::
+
+
+```{webr}
+#| exercise: q1_pooled_reviews
+#| exercise.lines: 1
+#| echo: false
+
+```
+
+::: {.hint exercise="q1_pooled_reviews"}
+Confirm you’re comparing the means of two groups formed by a boolean condition on stars. Use the pooled-variance standard error and the appropriate two-sided t critical value for a 95% interval. Print just the lower and upper bounds as a numeric vector.
+:::
+
+::: {.solution exercise="q1_pooled_reviews"}
+```{webr}
+#| exercise: q1_pooled_reviews
+#| solution: true
+df <- read.csv("recipe_reviews.csv")
+
+
+
+
+x1 <- subset(df, stars == 5)$best_score
+x2 <- subset(df, stars != 5)$best_score
+
+
+
+
+n1 <- sum(!is.na(x1)); n2 <- sum(!is.na(x2))
+m1 <- mean(x1, na.rm = TRUE); m2 <- mean(x2, na.rm = TRUE)
+s1 <- stats::sd(x1, na.rm = TRUE); s2 <- stats::sd(x2, na.rm = TRUE)
+
+
+
+
+dfree <- n1 + n2 - 2
+sp2 <- (((n1 - 1) * s1^2) + ((n2 - 1) * s2^2)) / dfree
+sp <- sqrt(sp2)
+
+
+
+
+tstar <- qt(0.975, dfree)
+se <- sp * sqrt(1/n1 + 1/n2)
+est <- m1 - m2
+
+
+
+
+c(est - tstar*se, est + tstar*se)
+
+```
+:::
+
+```{webr}
+#| exercise: q1_pooled_reviews
+#| check: true
+gradethis::grade_this({
+df <- tryCatch(read.csv("recipe_reviews.csv"), error = function(e) NULL)
+if (is.null(df)) fail("Couldn't read 'recipe_reviews.csv'.")
+
+need <- c("best_score","stars")
+if (!all(need %in% names(df))) fail("CSV must contain 'best_score' and 'stars' columns.")
+
+# Build groups (work even if stars is character or numeric)
+
+x1 <- df$best_score[df$stars == 5]
+x2 <- df$best_score[df$stars != 5]
+
+if (sum(is.finite(x1)) < 2 || sum(is.finite(x2)) < 2)
+fail("Both groups need at least 2 non-missing observations.")
+
+n1 <- sum(!is.na(x1)); n2 <- sum(!is.na(x2))
+m1 <- mean(x1, na.rm = TRUE); m2 <- mean(x2, na.rm = TRUE)
+s1 <- stats::sd(x1, na.rm = TRUE); s2 <- stats::sd(x2, na.rm = TRUE)
+
+dfree <- n1 + n2 - 2
+sp2 <- (((n1 - 1) * (s1^2)) + ((n2 - 1) * (s2^2))) / dfree
+sp  <- sqrt(sp2)
+
+tstar <- qt(0.975, dfree)
+se <- sp * sqrt(1/n1 + 1/n2)
+exp_ci <- c((m1 - m2) - tstar*se, (m1 - m2) + tstar*se)
+
+x <- .result
+if (!is.numeric(x) || length(x) != 2L || any(!is.finite(x)))
+fail("Print a length-2 numeric vector: c(lower, upper).")
+
+if (max(abs(x - exp_ci)) < 1e-6)
+pass("✅ Correct pooled 95% CI for FiveStar − NotFive (best_score).")
+else
+fail("Not quite — recheck pooled s_p, df, and t* with stars==5 vs stars!=5.")
+})
+
+```
+
+## Q2 — Pooled (Equal Variances): Using t.test()
+
+Compute a 90% two-sided confidence interval for $$ \mu_{Adelie} - \mu_{Gentoo}$$
+for bill length (mm) using pooled variances. Use the local file penguins.csv 
+and only the two species Adelie and Gentoo.
+
+::: {.callout-note title="Info"}
+For equal-variance two-sample CIs, t.test(yield ~ method, var.equal = TRUE, conf.level = 0.90) uses the pooled standard error and df = $n_1 + n_2 - 2$. To get the CI for Adelie − Gentoo, set the factor level order to c("Adelie","Gentoo").
+:::
+
+::: {.callout-note title="Preview"}
+Run this code chunk to get a glimpse of the dataset. Feel free to change the values to visualize more/less number of rows. 
+```{webr}
+#| echo: true
+df <- read.csv("penguins.csv")
+head(df[, c("species","bill_length_mm","island","sex")], 8)
+```
+:::
+::: {.callout-note title="Info"}
+When σ is known,
+$$
+\mathrm{CI}_{1-\alpha}:\ \bar{x} \pm x_{1-\alpha/2}\,\frac{\sigma}{\sqrt{n}}.
+$$
+:::
+
+```{webr}
+#| exercise: q2_pooled_penguins
+#| exercise.lines: 8
+#| echo: false
+```
+
+::: {.hint exercise="q2_pooled_penguins"}
+Use a two-group factor for the species and the pooled-variance option in t.test. Ensure you’re returning just the interval bounds, not the whole test object.
+:::
+
+::: {.solution exercise="q2_pooled_penguins"}
+```{webr}
+#| exercise: q2_pooled_penguins
+#| solution: true
+if (!file.exists("penguins.csv")) {
+stop("Place 'penguins.csv' next to this .qmd and list it under YAML resources:.")
+}
+
+
+
+
+df <- read.csv("penguins.csv")
+keep <- df$species %in% c("Adelie","Gentoo")
+df <- subset(df, keep & !is.na(bill_length_mm))
+
+
+
+
+df$method <- factor(df$species, levels = c("Adelie","Gentoo")) # order matters for the contrast
+df$yield <- df$bill_length_mm
+
+
+
+
+tt <- t.test(yield ~ method, data = df, var.equal = TRUE, conf.level = 0.90)
+tt$conf.int
+```
+:::
+
+```{webr}
+#| exercise: q2_pooled_penguins
+#| check: true
+gradethis::grade_this({
+df <- tryCatch(read.csv("penguins.csv"), error = function(e) NULL)
+if (is.null(df)) fail("Couldn't read 'penguins.csv'.")
+
+
+
+
+need <- c("species","bill_length_mm")
+if (!all(need %in% names(df))) fail("CSV must have 'species' and 'bill_length_mm' columns.")
+
+
+
+
+keep <- df$species %in% c("Adelie","Gentoo")
+df <- subset(df, keep & !is.na(bill_length_mm))
+if (nrow(df) < 4) fail("Need data for both Adelie and Gentoo with non-missing bill_length_mm.")
+
+
+
+
+df$method <- factor(df$species, levels = c("Adelie","Gentoo"))
+df$yield <- df$bill_length_mm
+
+
+
+
+exp_ci <- t.test(yield ~ method, data = df, var.equal = TRUE, conf.level = 0.90)$conf.int
+
+
+
+
+x <- .result
+if (!is.numeric(x) || length(x) != 2L || any(!is.finite(x)))
+fail("Print a 2-number numeric vector: c(lower, upper).")
+
+
+
+
+if (max(abs(x - exp_ci)) < 1e-6)
+pass("✅ Correct 90% pooled CI for Adelie − Gentoo (bill length).")
+else
+fail("Not quite — check species filtering, factor level order, var.equal=TRUE, and conf.level=0.90.")
+})
+
+```
+
+
+## Q3 — Welch (Unequal Variances): Manual CI (Coffee A preference by “black” vs “adds something”)
+
+Using the local file coffee.csv, compute a 95% two-sided confidence interval for
+$$ \mu_{BlackCoffee} - \mu_{AddSomething}$$
+where the outcome is Coffee A - Personal Preference (numeric rating) and the groups are defined by Do you usually add anything to your coffee? (No - just black):
+Black = TRUE
+Adds = FALSE
+
+Print the CI as a length-2 numeric vector: c(lower, upper).
+
+::: {.callout-note title="Info"}
+Welch (unequal variances) two-sample CI:
+$$ \bar{x}_1 - \bar{x}_2 \ \ \pm \ \ t^*_{v} \sqrt{\frac{s^2_1}{n1} + \frac{s^2_2}{n2}}, \ \ v \approx \frac{(\frac{s^2_1}{n1} + \frac{s^2_2}{n2}) ^ 2}{\frac{(s^2_1/n_1)^2}{n_1 - 1} 
++ \frac{(s^2_1/n_1)^2}{n_2 - 1}}$$
+Use a two-sided 95% CI so $ t^* = t_{0.975, v} $.
+:::
+
+::: {.callout-note title="Preview"}
+Run this to preview the key columns. Adjust n_rows as needed.
+```{webr}
+#| echo: true
+df <- read.csv("coffee.csv")
+head(df, 10)
+```
+:::
+
+
+```{webr}
+#| exercise: q3_welch_manual_coffeeA
+#| exercise.lines: 14
+#| echo: false
+
+```
+
+::: {.hint exercise="q3_welch_manual_coffeeA"}
+Check that your grouping variable is logical/boolean with exactly two values and that the outcome column is numeric with missing values removed. Use the unequal-variance formula for both the standard error and the degrees of freedom. Return only the two bounds.
+:::
+
+::: {.solution exercise="q3_welch_manual_coffeeA"}
+```{webr}
+#| exercise: q3_welch_manual_coffeeA
+#| solution: true
+fn <- "coffee.csv"
+if (!file.exists(fn)) stop("Place 'coffee.csv' beside this .qmd and list it in YAML resources:.")
+df <- read.csv(fn, check.names = FALSE)
+
+
+
+
+gcol <- "Do you usually add anything to your coffee? (No - just black)"
+ycol <- "Coffee A - Personal Preference"
+if (!all(c(gcol, ycol) %in% names(df))) {
+stop("CSV must contain the expected columns for grouping and the Coffee A rating.")
+}
+
+g <- df[[gcol]]
+if (is.factor(g)) g <- as.character(g)
+if (is.character(g)) {
+g <- ifelse(g %in% c("TRUE","True","true"), TRUE,
+ifelse(g %in% c("FALSE","False","false"), FALSE, NA))
+}
+if (!is.logical(g)) g <- suppressWarnings(as.logical(g))
+df$group_black <- g
+
+y <- suppressWarnings(as.numeric(df[[ycol]]))
+
+x1 <- y[df$group_black == TRUE] # Black
+x2 <- y[df$group_black == FALSE] # Adds
+x1 <- x1[is.finite(x1)]
+x2 <- x2[is.finite(x2)]
+
+
+
+
+n1 <- length(x1); n2 <- length(x2)
+if (n1 < 2 || n2 < 2) stop("Both groups need at least 2 non-missing observations.")
+
+
+
+
+m1 <- mean(x1); m2 <- mean(x2)
+v1 <- stats::var(x1); v2 <- stats::var(x2)
+
+
+
+
+se2 <- v1/n1 + v2/n2
+nu <- (se2^2) / ( ((v1/n1)^2)/(n1-1) + ((v2/n2)^2)/(n2-1) ) # Satterthwaite df
+tstar<- qt(0.975, df = nu) # two-sided 95%
+
+
+
+
+est <- m1 - m2
+se <- sqrt(se2)
+
+
+
+
+c(est - tstar*se, est + tstar*se)
+```
+:::
+
+```{webr}
+#| exercise: q3_welch_manual_coffeeA
+#| check: true
+gradethis::grade_this({
+fn <- "coffee.csv"
+df <- tryCatch(read.csv(fn, check.names = FALSE), error = function(e) NULL)
+if (is.null(df)) fail("Couldn't read 'coffee.csv'.")
+
+
+
+
+gcol <- "Do you usually add anything to your coffee? (No - just black)"
+ycol <- "Coffee A - Personal Preference"
+if (!all(c(gcol, ycol) %in% names(df))) {
+fail("CSV must contain the two columns used for grouping and outcome.")
+}
+
+
+
+g <- df[[gcol]]
+if (is.character(g)) {
+g <- ifelse(g %in% c("TRUE","True","true"), TRUE,
+ifelse(g %in% c("FALSE","False","false"), FALSE, NA))
+}
+if (is.factor(g)) g <- as.character(g)
+if (is.character(g)) g <- suppressWarnings(as.logical(g))
+df$group_black <- g
+
+
+
+
+y <- suppressWarnings(as.numeric(df[[ycol]]))
+x1 <- y[df$group_black == TRUE]
+x2 <- y[df$group_black == FALSE]
+x1 <- x1[is.finite(x1)]
+x2 <- x2[is.finite(x2)]
+if (length(x1) < 2 || length(x2) < 2)
+fail("Both groups need at least 2 non-missing observations.")
+
+
+
+
+n1 <- length(x1); n2 <- length(x2)
+m1 <- mean(x1); m2 <- mean(x2)
+v1 <- stats::var(x1); v2 <- stats::var(x2)
+
+
+
+
+se2 <- v1/n1 + v2/n2
+nu <- (se2^2) / ( ((v1/n1)^2)/(n1-1) + ((v2/n2)^2)/(n2-1) )
+tstar <- qt(0.975, df = nu)
+est <- m1 - m2
+se <- sqrt(se2)
+exp_ci <- c(est - tstar*se, est + tstar*se)
+
+
+
+
+x <- .result
+if (!is.numeric(x) || length(x) != 2L || any(!is.finite(x))) {
+fail("Print a length-2 numeric vector: c(lower, upper).")
+}
+if (max(abs(x - exp_ci)) < 1e-6) {
+pass("✅ Correct Welch 95% CI for Black − Adds (Coffee A preference).")
+} else {
+fail("Not quite — verify grouping (TRUE vs FALSE), outcome column, and Welch df.")
+}
+})
+```
+
+
+
+
+## Q4 — Welch (Unequal Variances): Using t.test()
+
+Compute an 80% two-sided confidence interval for $$ \mu_{Chinstrap} - \mu_{Gentoo}$$
+for flipper_length_mm using Welch’s unequal-variance method (the default in t.test). Use the local file penguins.csv and only the species Chinstrap and Gentoo. Print only the 2-number CI vector.
+
+::: {.callout-note title="Info"}
+t.test(y ~ g, conf.level = 0.80) uses Welch by default (var.equal = FALSE). To obtain Chinstrap − Gentoo, set the factor level order to c("Chinstrap","Gentoo").
+
+
+:::
+
+::: {.callout-note title="Preview"}
+Run this code chunk to get a glimpse of the dataset. Feel free to change the values to visualize more/less number of rows. 
+```{webr}
+#| echo: true
+df <- read.csv("penguins.csv")
+head(df[, c("species","bill_length_mm","island","sex")], 8)
+```
+:::
+
+```{webr}
+#| exercise: q4_welch_ttest_penguins
+#| exercise.lines: 8
+#| echo: false
+```
+
+::: {.hint exercise="q4_welch_ttest_penguins"}
+Ensure you keep exactly two species and set their order to match the contrast. Return just the two CI bounds from the test result.
+:::
+
+::: {.solution exercise="q4_welch_ttest_penguins"}
+```{webr}
+#| exercise: q4_welch_ttest_penguins
+#| solution: true
+if (!file.exists("penguins.csv")) {
+stop("Place 'penguins.csv' next to this .qmd and list it under YAML resources:.")
+}
+df <- read.csv("penguins.csv")
+
+
+
+
+keep <- df$species %in% c("Chinstrap","Gentoo")
+df <- subset(df, keep & !is.na(flipper_length_mm))
+
+
+
+
+df$method <- factor(df$species, levels = c("Chinstrap","Gentoo"))
+df$y <- df$flipper_length_mm
+
+
+
+
+tt <- t.test(y ~ method, data = df, conf.level = 0.80) # Welch by default
+tt$conf.int
+```
+:::
+
+```{webr}
+#| exercise: q4_welch_ttest_penguins
+#| check: true
+gradethis::grade_this({
+df <- tryCatch(read.csv("penguins.csv"), error = function(e) NULL)
+if (is.null(df)) fail("Couldn't read 'penguins.csv'.")
+need <- c("species","flipper_length_mm")
+if (!all(need %in% names(df))) fail("CSV must have 'species' and 'flipper_length_mm' columns.")
+
+
+
+
+keep <- df$species %in% c("Chinstrap","Gentoo")
+df <- subset(df, keep & !is.na(flipper_length_mm))
+if (nrow(df) < 4) fail("Need data for both Chinstrap and Gentoo with non-missing flipper_length_mm.")
+
+
+
+
+df$method <- factor(df$species, levels = c("Chinstrap","Gentoo"))
+df$y <- df$flipper_length_mm
+
+
+
+
+exp_ci <- t.test(y ~ method, data = df, conf.level = 0.80)$conf.int
+
+
+
+
+x <- .result
+if (!is.numeric(x) || length(x) != 2L || any(!is.finite(x)))
+fail("Print a 2-number numeric vector: c(lower, upper).")
+
+
+
+
+if (max(abs(x - exp_ci)) < 1e-6)
+pass("✅ Correct 80% Welch CI for Chinstrap − Gentoo (flipper length).")
+else
+fail("Not quite — check species filter, factor order, and conf.level = 0.80.")
+})
+```
+
+## Q5 — One sample CI for μ
+
+The dataset used here is river lengths, which gives the lengths (in miles) of 141 “major” rivers in North America, as compiled by the US Geological Survey. Assume river lengths (miles) have known population SD σ = 300. Build a 95% CI for the true mean river length using rivers whe $\alpha = 0.05$.
+
+::: {.callout-note title="Preview"}
+Run this code chunk to get a glimpse of the dataset. Feel free to change the values to visualize more/less number of rows. 
+```{webr}
+#| echo: true
+rivers_data <- data.frame(length_miles = as.numeric(datasets::rivers))
+head(rivers_data, 10)
+
+```
+:::
+
+
+::: {.callout-note title="Info"}
+When σ is unknown, use the t distribution with degrees of freedom n − 1.
+:::
+
+
+```{webr}
+#| exercise: q5_zstar_95
+#| exercise.lines: 1
+#| echo: false
+rivers_data <- data.frame(length_miles = as.numeric(datasets::rivers))
+
+
+```
+
+::: {.hint exercise="q5_zstar_95"}
+Find n from the length_miles vector and compute the two-sided 95% z critical value. Then combine it using the formula you have already used in previous questions.
+:::
+
+::: {.solution exercise="q5_zstar_95"}
+```{webr}
+#| exercise: q5_zstar_95
+#| solution: true
+rivers_data <- data.frame(length_miles = as.numeric(datasets::rivers))
+x <- rivers_data$length_miles
+xbar <- mean(x); n <- length(x); z <- qnorm(0.975); sigma <- 300
+xbar + c(-1,1)zsigma/sqrt(n)
+
+```
+:::
+
+```{webr}
+#| exercise: q5_zstar_95
+#| check: true
+gradethis::grade_this({
+x <- as.numeric(datasets::rivers)
+xbar <- mean(x); n <- length(x); z <- qnorm(0.975); sigma <- 300
+exp <- xbar + c(-1,1)*z*sigma/sqrt(n)
+xres <- .result
+ok <- is.numeric(xres) && length(xres)==2L && all(is.finite(xres))
+if (!ok) fail("Print a numeric vector c(lower, upper).")
+if (max(abs(xres - exp)) < 1e-6) pass("✅ Correct 95% Z-interval with σ known.")
+else fail("Recheck x̄, n, z*, and σ = 300.")
+})
+
+
+
+```
+
+
+## Q6 — One-Sample CI for μ 
+
+Using airquality$Ozone (ignore missing), construct and print 90% CI for the true
+mean ozone level (ppb). Assume normality is reasonable.
+
+
+::: {.callout-note title="Preview"}
+```{webr}
+#| echo: true
+aq <- datasets::airquality
+oz <- na.omit(aq$Ozone)
+head(oz, 10)
+```
+:::
+
+```{webr}
+#| exercise: q6_t_ci_ozone
+w <- oz
+xbar <- mean(w); s <- ＿＿ ; n <- length(w)
+tstar <- ＿＿ 
+xbar + c(-1,1)*tstar * s/sqrt(n)
+```
+
+::: {.hint exercise="q6_t_ci_ozone"}
+Two-sided 90% → $t^*$
+at 0.95 with df = n−1; use s for the SD.
+:::
+
+::: {.solution exercise="q6_t_ci_ozone"}
+```{webr}
+#| exercise: q6_t_ci_ozone
+#| solution: true
+w <- oz
+xbar <- mean(w); s <- sd(w); n <- length(w)
+tstar <- qt(0.95, df = n - 1) # two-sided 90%
+xbar + c(-1,1)tstar * s/sqrt(n)
+```
+:::
+
+```{webr}
+#| exercise: q6_t_ci_ozone
+#| check: true
+gradethis::grade_this({
+w <- na.omit(datasets::airquality$Ozone)
+xbar <- mean(w); s <- sd(w); n <- length(w)
+tstar <- qt(0.95, df = n - 1)
+exp <- xbar + c(-1,1)*tstar*s/sqrt(n)
+r <- .result
+ok <- is.numeric(r) && length(r)==2L && all(is.finite(r))
+if (!ok) fail("Print a numeric vector c(lower, upper).")
+if (max(abs(r - exp)) < 1e-6) pass("✅ Correct 90% t-interval.")
+else fail("Check t* at 0.95 and your s, n.")
+})
+```
+
+## Q7 — One-Sample CI for a Proportion (Wald)
+
+In mtcars, am is transmission (0 = automatic, 1 = manual). Build and print
+c(lower, upper) for the 95% CI on the proportion of manual cars.
+
+::: {.callout-note title="Info"}
+For a single proportion with sample $ \cap p n$ trials (Wald CI):
+
+$$
+\mathrm{CI}_{1-\alpha}:\ \hat{p} \pm z_{1-\alpha/2}\,\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}.
+$$
+
+Rule: Ensure $n\hat{p}$ and $n(1 - \hat{p})$ are not too small
+:::
+
+::: {.callout-note title="Preview"}
+```{webr}
+#| echo: true
+mt <- datasets::mtcars
+head(mt[, c("am","mpg","cyl")], 10)
+```
+:::
+
+```{webr}
+#| exercise: q7_p_ci_manual
+y <- datasets::mtcars$am # 1 = manual
+phat <- ＿＿ ; n <- length(y); z <- __
+se <- sqrt( __ )
+phat + c(-1,1)*z*se
+```
+
+::: {.hint exercise="q7_p_ci_manual"}
+Treat am as 0/1; compute $\hat{p}$, then use two-sided $z^∗$ and the proportion SE.
+:::
+
+::: {.solution exercise="q7_p_ci_manual"}
+```{webr}
+#| exercise: q7_p_ci_manual
+#| solution: true
+y <- datasets::mtcars$am # 1 = manual
+phat <- mean(y); n <- length(y); z <- qnorm(0.975)
+se <- sqrt(phat*(1-phat)/n)
+phat + c(-1,1)*z*se
+```
+:::
+
+```{webr}
+#| exercise: q7_p_ci_manual
+#| check: true
+gradethis::grade_this({
+y <- datasets::mtcars$am
+phat <- mean(y); n <- length(y); z <- qnorm(0.975)
+se <- sqrt(phat*(1-phat)/n)
+exp <- phat + c(-1,1)*z*se
+r <- .result
+ok <- is.numeric(r) && length(r)==2L && all(is.finite(r))
+if (!ok) fail("Print a numeric vector c(lower, upper).")
+if (max(abs(r - exp)) < 1e-6) pass("✅ Correct 95% Wald CI for p.")
+else fail("Recompute p̂, n, z*, and SE = sqrt(p̂(1−p̂)/n).")
+})
+```
+
+
+## Q8 - One-Sample CI for a Variance (σ²)
+
+Using PlantGrowth$weight, print c(lower, upper) for 95% CI on σ^2. (Assume normality.)
+
+::: {.callout-note title="Info"}
+For normal data, the variance CI uses the chi-square distribution with df=n−1:
+
+$$
+\left(\frac{(n-1)s^2}{\chi^2_{1-\alpha/2,\;n-1}},\; \frac{(n-1)s^2}{\chi^2_{\alpha/2,\;n-1}}\right),\qquad s^2=\text{sample variance}.
+$$
+
+
+For 95%, the cutoffs are at 0.025 and 0.975.
+:::
+
+::: {.callout-note title="Preview"}
+```{webr}
+#| echo: true
+mt <- datasets::mtcars
+head(mt[, c("am","mpg","cyl")], 10)
+```
+:::
+
+
+```{webr}
+#| exercise: q8_var_ci_pg
+x <- datasets::PlantGrowth$weight
+n <- length(x); df <- ＿＿ ; s2 <- var(x)
+chi_lo <- ＿＿ (＿＿, df = df) 
+chi_hi <- ＿＿ (0.025, ＿＿)
+c(df * s2/chi_lo, df*s2/chi_hi)
+```
+
+::: {.hint exercise="q8_var_ci_pg"}
+Use $s^2$, df = n−1, and chi-square quantiles at 0.975 and 0.025 (note the order).
+:::
+
+::: {.solution exercise="q8_var_ci_pg"}
+```{webr}
+#| exercise: q8_var_ci_pg
+#| solution: true
+x <- datasets::PlantGrowth$weight
+n <- length(x); df <- n - 1; s2 <- var(x)
+chi_lo <- qchisq(0.975, df = df) # upper-tail cutoff
+chi_hi <- qchisq(0.025, df = df) # lower-tail cutoff
+c(df * s2/chi_lo, df*s2/chi_hi)
+```
+:::
+
+```{webr}
+#| exercise: q8_var_ci_pg
+#| check: true
+gradethis::grade_this({
+x <- datasets::PlantGrowth$weight
+n <- length(x); df <- n - 1; s2 <- var(x)
+chi_lo <- qchisq(0.975, df = df)
+chi_hi <- qchisq(0.025, df = df)
+exp <- c(df*s2/chi_lo, df*s2/chi_hi)
+r <- .result
+ok <- is.numeric(r) && length(r)==2L && all(is.finite(r))
+if (!ok) fail("Print a numeric vector c(lower, upper).")
+if (max(abs(r - exp)) < 1e-6) pass("✅ Correct 95% CI for σ².")
+else fail("Check df=n−1 and chi-square cutoffs (0.025 & 0.975).")
+})
+```
+
+
+## Q9 - Sample Size for Mean CI (σ known)
+
+We want a 95% Z-interval for the true mean mpg (from mtcars) with margin of error at most E = 1 mpg, assuming σ = 6 mpg known. Compute and print the minimum n required (round up).
+
+::: {.callout-note title="Info"}
+For known σ, the margin of error and required n are:
+
+$$
+E = z_{1-\alpha/2}\,\frac{\sigma}{\sqrt{n}}
+\;\Rightarrow\;
+n = \left(\frac{z_{1-\alpha/2}\,\sigma}{E}\right)^{2},\qquad \text{use }\lceil n\rceil.
+$$
+
+
+For 95%, $z^*$ = $\phi^{-1}$ (0.975).
+:::
+
+::: {.callout-note title="Preview"}
+```{webr}
+#| echo: true
+head(datasets::mtcars[, "mpg", drop = FALSE], 10)
+```
+:::
+
+
+```{webr}
+#| exercise: q9_n_for_margin
+z <- ＿＿ ; sigma <- 6; E <- ＿＿
+＿＿ ((z*sigma/E)^2)
+
+```
+
+::: {.hint exercise="q9_n_for_margin"}
+Solve for n using your chosen E, known σ, and two-sided $z^∗$.
+:::
+
+::: {.solution exercise="q9_n_for_margin"}
+```{webr}
+#| exercise: q9_n_for_margin
+#| solution: true
+
+z <- qnorm(0.975); sigma <- 6; E <- 1
+ceiling((z*sigma/E)^2)
+```
+:::
+
+```{webr}
+#| exercise: q9_n_for_margin
+#| check: true
+gradethis::grade_this({
+z <- qnorm(0.975); sigma <- 6; E <- 1
+exp <- ceiling((z*sigma/E)^2)
+r <- .result
+if (!is.numeric(r) || length(r)!=1L || !is.finite(r)) fail("Print a single numeric value.")
+if (abs(r - exp) < 1e-12) pass("✅ Correct required sample size.")
+else fail("Rearrange E = zσ/√n and round up.")
+})
+```
+
+## Q10 - One-Sample CI for a Proportion (99% Practice)
+
+Consider mtcars again. Build and print 99% CI for the proportion of cars with mpg ≥ 25.
+
+::: {.callout-note title="Info"}
+Two-sided 1−α CI for a proportion:
+
+$$
+\mathrm{CI}_{1-\alpha}:\ \hat{p} \pm z_{1-\alpha/2}\,\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}.
+$$
+
+
+For 99%, use $z^* = \phi^{-1}$(0.995).
+:::
+
+::: {.callout-note title="Preview"}
+```{webr}
+#| echo: true
+mt <- datasets::mtcars
+mt$hi_mpg <- as.integer(mt$mpg >= 25)
+head(mt[, c("mpg","hi_mpg")], 10)
+```
+:::
+
+
+```{webr}
+#| exercise: q10_p_ci_highmpg
+y <- as.integer(datasets::mtcars$mpg >= 25)
+phat <- mean(y); ＿＿ ; z <- ＿＿
+se <- ＿＿
+＿＿ + c(-1,1) ＿＿
+```
+
+::: {.hint exercise="q10_p_ci_highmpg"}
+Build the 0/1 indicator, get p^, pick $z^∗$ for 99%, and form the Wald interval.
+:::
+
+::: {.solution exercise="q10_p_ci_highmpg"}
+```{webr}
+#| exercise: q10_p_ci_highmpg
+#| solution: true
+y <- as.integer(datasets::mtcars$mpg >= 25)
+phat <- mean(y); n <- length(y); z <- qnorm(0.995)
+se <- sqrt(phat*(1-phat)/n)
+phat + c(-1,1)*z*se
+```
+:::
+
+```{webr}
+#| exercise: q10_p_ci_highmpg
+#| check: true
+gradethis::grade_this({
+y <- as.integer(datasets::mtcars$mpg >= 25)
+phat <- mean(y); n <- length(y); z <- qnorm(0.995)
+se <- sqrt(phat*(1-phat)/n)
+exp <- phat + c(-1,1)*z*se
+r <- .result
+ok <- is.numeric(r) && length(r)==2L && all(is.finite(r))
+if (!ok) fail("Print a numeric vector c(lower, upper).")
+if (max(abs(r - exp)) < 1e-6) pass("✅ Correct 99% CI for p.")
+else fail("Check two-sided 99% (z at 0.995) and the SE formula.")
+})
+```
