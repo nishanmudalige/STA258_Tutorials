@@ -41,8 +41,26 @@ head(df[, c("recipe_name","stars","best_score","thumbs_up","thumbs_down","user_r
 
 ```{webr}
 #| exercise: q1_pooled_reviews
-#| exercise.lines: 1
+#| exercise.lines: 10
 #| echo: false
+df <- read.csv("recipe_reviews.csv")
+
+x1 <- subset(df, stars == 5)$＿＿ #segregate the dataset based on best_scores
+x2 <- subset(df, stars != 5)$＿＿
+
+n1 <- sum(!is.na(x1)); n2 <- sum(!is.na(x2))
+m1 <- ＿＿(x1, na.rm = TRUE) #compute mean of x1,x2
+m2 <- ＿＿(x2, na.rm = TRUE)
+s1 <- ＿＿(x1, na.rm = TRUE)
+s2 <- ＿＿(x2, na.rm = TRUE) #compute standard deviation of x1,x2
+
+dfree <- ＿＿ #insert degrees of freedom
+sp2 <- ＿＿ #calculate $s^2_p$
+sp <- sqrt(sp2)
+
+tstar <- ＿＿ #find critical value
+se <- ＿＿ #compute the standard error using formula given above
+
 
 ```
 
@@ -56,35 +74,20 @@ Confirm you’re comparing the means of two groups formed by a boolean condition
 #| solution: true
 df <- read.csv("recipe_reviews.csv")
 
-
-
-
 x1 <- subset(df, stars == 5)$best_score
 x2 <- subset(df, stars != 5)$best_score
-
-
-
 
 n1 <- sum(!is.na(x1)); n2 <- sum(!is.na(x2))
 m1 <- mean(x1, na.rm = TRUE); m2 <- mean(x2, na.rm = TRUE)
 s1 <- stats::sd(x1, na.rm = TRUE); s2 <- stats::sd(x2, na.rm = TRUE)
 
-
-
-
 dfree <- n1 + n2 - 2
 sp2 <- (((n1 - 1) * s1^2) + ((n2 - 1) * s2^2)) / dfree
 sp <- sqrt(sp2)
 
-
-
-
 tstar <- qt(0.975, dfree)
 se <- sp * sqrt(1/n1 + 1/n2)
 est <- m1 - m2
-
-
-
 
 c(est - tstar*se, est + tstar*se)
 
@@ -162,6 +165,18 @@ $$
 #| exercise: q2_pooled_penguins
 #| exercise.lines: 8
 #| echo: false
+
+df <- read.csv("penguins.csv")
+keep <- df$species %in% c("＿＿","＿＿") #filter based on species needed
+df <- subset(df, keep & !is.na(＿＿)) 
+
+
+df$method <- factor(df$＿＿, levels = c("＿＿","＿＿")) # order matters for the contrast
+df$yield <- df$bill_length_mm
+
+
+tt <- t.test(＿＿ ~ ＿＿, data = df, var.equal = TRUE, conf.level = ＿＿)
+tt$conf.int
 ```
 
 ::: {.hint exercise="q2_pooled_penguins"}
@@ -172,25 +187,12 @@ Use a two-group factor for the species and the pooled-variance option in t.test.
 ```{webr}
 #| exercise: q2_pooled_penguins
 #| solution: true
-if (!file.exists("penguins.csv")) {
-stop("Place 'penguins.csv' next to this .qmd and list it under YAML resources:.")
-}
-
-
-
-
 df <- read.csv("penguins.csv")
 keep <- df$species %in% c("Adelie","Gentoo")
 df <- subset(df, keep & !is.na(bill_length_mm))
 
-
-
-
 df$method <- factor(df$species, levels = c("Adelie","Gentoo")) # order matters for the contrast
 df$yield <- df$bill_length_mm
-
-
-
 
 tt <- t.test(yield ~ method, data = df, var.equal = TRUE, conf.level = 0.90)
 tt$conf.int
@@ -247,184 +249,8 @@ fail("Not quite — check species filtering, factor level order, var.equal=TRUE,
 ```
 
 
-## Q3 — Welch (Unequal Variances): Manual CI (Coffee A preference by “black” vs “adds something”)
 
-Using the local file coffee.csv, compute a 95% two-sided confidence interval for
-$$ \mu_{BlackCoffee} - \mu_{AddSomething}$$
-where the outcome is Coffee A - Personal Preference (numeric rating) and the groups are defined by Do you usually add anything to your coffee? (No - just black):
-Black = TRUE
-Adds = FALSE
-
-Print the CI as a length-2 numeric vector: c(lower, upper).
-
-::: {.callout-note title="Info"}
-Welch (unequal variances) two-sample CI:
-$$ \bar{x}_1 - \bar{x}_2 \ \ \pm \ \ t^*_{v} \sqrt{\frac{s^2_1}{n1} + \frac{s^2_2}{n2}}, \ \ v \approx \frac{(\frac{s^2_1}{n1} + \frac{s^2_2}{n2}) ^ 2}{\frac{(s^2_1/n_1)^2}{n_1 - 1} 
-+ \frac{(s^2_1/n_1)^2}{n_2 - 1}}$$
-Use a two-sided 95% CI so $ t^* = t_{0.975, v} $.
-:::
-
-::: {.callout-note title="Preview"}
-Run this to preview the key columns. Adjust n_rows as needed.
-```{webr}
-#| echo: true
-df <- read.csv("coffee.csv")
-head(df, 10)
-```
-:::
-
-
-```{webr}
-#| exercise: q3_welch_manual_coffeeA
-#| exercise.lines: 14
-#| echo: false
-
-```
-
-::: {.hint exercise="q3_welch_manual_coffeeA"}
-Check that your grouping variable is logical/boolean with exactly two values and that the outcome column is numeric with missing values removed. Use the unequal-variance formula for both the standard error and the degrees of freedom. Return only the two bounds.
-:::
-
-::: {.solution exercise="q3_welch_manual_coffeeA"}
-```{webr}
-#| exercise: q3_welch_manual_coffeeA
-#| solution: true
-fn <- "coffee.csv"
-if (!file.exists(fn)) stop("Place 'coffee.csv' beside this .qmd and list it in YAML resources:.")
-df <- read.csv(fn, check.names = FALSE)
-
-
-
-
-gcol <- "Do you usually add anything to your coffee? (No - just black)"
-ycol <- "Coffee A - Personal Preference"
-if (!all(c(gcol, ycol) %in% names(df))) {
-stop("CSV must contain the expected columns for grouping and the Coffee A rating.")
-}
-
-g <- df[[gcol]]
-if (is.factor(g)) g <- as.character(g)
-if (is.character(g)) {
-g <- ifelse(g %in% c("TRUE","True","true"), TRUE,
-ifelse(g %in% c("FALSE","False","false"), FALSE, NA))
-}
-if (!is.logical(g)) g <- suppressWarnings(as.logical(g))
-df$group_black <- g
-
-y <- suppressWarnings(as.numeric(df[[ycol]]))
-
-x1 <- y[df$group_black == TRUE] # Black
-x2 <- y[df$group_black == FALSE] # Adds
-x1 <- x1[is.finite(x1)]
-x2 <- x2[is.finite(x2)]
-
-
-
-
-n1 <- length(x1); n2 <- length(x2)
-if (n1 < 2 || n2 < 2) stop("Both groups need at least 2 non-missing observations.")
-
-
-
-
-m1 <- mean(x1); m2 <- mean(x2)
-v1 <- stats::var(x1); v2 <- stats::var(x2)
-
-
-
-
-se2 <- v1/n1 + v2/n2
-nu <- (se2^2) / ( ((v1/n1)^2)/(n1-1) + ((v2/n2)^2)/(n2-1) ) # Satterthwaite df
-tstar<- qt(0.975, df = nu) # two-sided 95%
-
-
-
-
-est <- m1 - m2
-se <- sqrt(se2)
-
-
-
-
-c(est - tstar*se, est + tstar*se)
-```
-:::
-
-```{webr}
-#| exercise: q3_welch_manual_coffeeA
-#| check: true
-gradethis::grade_this({
-fn <- "coffee.csv"
-df <- tryCatch(read.csv(fn, check.names = FALSE), error = function(e) NULL)
-if (is.null(df)) fail("Couldn't read 'coffee.csv'.")
-
-
-
-
-gcol <- "Do you usually add anything to your coffee? (No - just black)"
-ycol <- "Coffee A - Personal Preference"
-if (!all(c(gcol, ycol) %in% names(df))) {
-fail("CSV must contain the two columns used for grouping and outcome.")
-}
-
-
-
-g <- df[[gcol]]
-if (is.character(g)) {
-g <- ifelse(g %in% c("TRUE","True","true"), TRUE,
-ifelse(g %in% c("FALSE","False","false"), FALSE, NA))
-}
-if (is.factor(g)) g <- as.character(g)
-if (is.character(g)) g <- suppressWarnings(as.logical(g))
-df$group_black <- g
-
-
-
-
-y <- suppressWarnings(as.numeric(df[[ycol]]))
-x1 <- y[df$group_black == TRUE]
-x2 <- y[df$group_black == FALSE]
-x1 <- x1[is.finite(x1)]
-x2 <- x2[is.finite(x2)]
-if (length(x1) < 2 || length(x2) < 2)
-fail("Both groups need at least 2 non-missing observations.")
-
-
-
-
-n1 <- length(x1); n2 <- length(x2)
-m1 <- mean(x1); m2 <- mean(x2)
-v1 <- stats::var(x1); v2 <- stats::var(x2)
-
-
-
-
-se2 <- v1/n1 + v2/n2
-nu <- (se2^2) / ( ((v1/n1)^2)/(n1-1) + ((v2/n2)^2)/(n2-1) )
-tstar <- qt(0.975, df = nu)
-est <- m1 - m2
-se <- sqrt(se2)
-exp_ci <- c(est - tstar*se, est + tstar*se)
-
-
-
-
-x <- .result
-if (!is.numeric(x) || length(x) != 2L || any(!is.finite(x))) {
-fail("Print a length-2 numeric vector: c(lower, upper).")
-}
-if (max(abs(x - exp_ci)) < 1e-6) {
-pass("✅ Correct Welch 95% CI for Black − Adds (Coffee A preference).")
-} else {
-fail("Not quite — verify grouping (TRUE vs FALSE), outcome column, and Welch df.")
-}
-})
-```
-
-
-
-
-## Q4 — Welch (Unequal Variances): Using t.test()
+## Q3 — Welch (Unequal Variances): Using t.test()
 
 Compute an 80% two-sided confidence interval for $$ \mu_{Chinstrap} - \mu_{Gentoo}$$
 for flipper_length_mm using Welch’s unequal-variance method (the default in t.test). Use the local file penguins.csv and only the species Chinstrap and Gentoo. Print only the 2-number CI vector.
@@ -448,6 +274,16 @@ head(df[, c("species","bill_length_mm","island","sex")], 8)
 #| exercise: q4_welch_ttest_penguins
 #| exercise.lines: 8
 #| echo: false
+df <- read.csv("penguins.csv")
+
+keep <- #filter based on species needed here
+df <- subset(df, keep & !is.na(＿＿))
+
+df$method <- factor(df$＿＿, levels = c("＿＿","＿＿"))
+df$yield <- ＿＿
+
+tt <- t.test(＿＿ ~ ＿＿, data = df, conf.level = ＿＿) # Welch by default
+
 ```
 
 ::: {.hint exercise="q4_welch_ttest_penguins"}
@@ -458,25 +294,14 @@ Ensure you keep exactly two species and set their order to match the contrast. R
 ```{webr}
 #| exercise: q4_welch_ttest_penguins
 #| solution: true
-if (!file.exists("penguins.csv")) {
-stop("Place 'penguins.csv' next to this .qmd and list it under YAML resources:.")
-}
+
 df <- read.csv("penguins.csv")
-
-
-
 
 keep <- df$species %in% c("Chinstrap","Gentoo")
 df <- subset(df, keep & !is.na(flipper_length_mm))
 
-
-
-
 df$method <- factor(df$species, levels = c("Chinstrap","Gentoo"))
 df$y <- df$flipper_length_mm
-
-
-
 
 tt <- t.test(y ~ method, data = df, conf.level = 0.80) # Welch by default
 tt$conf.int
@@ -492,33 +317,18 @@ if (is.null(df)) fail("Couldn't read 'penguins.csv'.")
 need <- c("species","flipper_length_mm")
 if (!all(need %in% names(df))) fail("CSV must have 'species' and 'flipper_length_mm' columns.")
 
-
-
-
 keep <- df$species %in% c("Chinstrap","Gentoo")
 df <- subset(df, keep & !is.na(flipper_length_mm))
 if (nrow(df) < 4) fail("Need data for both Chinstrap and Gentoo with non-missing flipper_length_mm.")
 
-
-
-
 df$method <- factor(df$species, levels = c("Chinstrap","Gentoo"))
 df$y <- df$flipper_length_mm
 
-
-
-
 exp_ci <- t.test(y ~ method, data = df, conf.level = 0.80)$conf.int
-
-
-
 
 x <- .result
 if (!is.numeric(x) || length(x) != 2L || any(!is.finite(x)))
 fail("Print a 2-number numeric vector: c(lower, upper).")
-
-
-
 
 if (max(abs(x - exp_ci)) < 1e-6)
 pass("✅ Correct 80% Welch CI for Chinstrap − Gentoo (flipper length).")
@@ -527,374 +337,441 @@ fail("Not quite — check species filter, factor order, and conf.level = 0.80.")
 })
 ```
 
-## Q5 — One sample CI for μ
+## Q4 — Two-Sample CI for a Difference of Proportions
 
-The dataset used here is river lengths, which gives the lengths (in miles) of 141 “major” rivers in North America, as compiled by the US Geological Survey. Assume river lengths (miles) have known population SD σ = 300. Build a 95% CI for the true mean river length using rivers whe $\alpha = 0.05$.
+In recipe_reviews.csv, compare the proportion of reviews where thumbs_up > thumbs_down between FiveStar (stars == 5) and NotFive (stars != 5). Compute a 95% two-sided CI for $$p_{FiveStar} - p_{NotFive}$$. Print c(lower, uppper).
 
 ::: {.callout-note title="Preview"}
 Run this code chunk to get a glimpse of the dataset. Feel free to change the values to visualize more/less number of rows. 
 ```{webr}
 #| echo: true
-rivers_data <- data.frame(length_miles = as.numeric(datasets::rivers))
-head(rivers_data, 10)
+df <- read.csv("recipe_reviews.csv")
+head(df[, c("stars","thumbs_up","thumbs_down","best_score")], 10)
 
 ```
 :::
 
 
 ::: {.callout-note title="Info"}
-When σ is unknown, use the t distribution with degrees of freedom n − 1.
+CI for difference of proportions: 
+$$
+\mathrm{CI}_{1-\alpha}:\ \hat{p_1} - \hat{p_2} \pm z_{1-\alpha/2} * \sqrt{\frac{\hat{p_1}(1-\hat{p_1})}{n_1} + \frac{\hat{p_2}(1-\hat{p_2})}{n_2}}.
+$$
 :::
 
 
 ```{webr}
-#| exercise: q5_zstar_95
-#| exercise.lines: 1
+#| exercise: q11_wald_2prop_reviews
+#| exercise.lines: 10
 #| echo: false
-rivers_data <- data.frame(length_miles = as.numeric(datasets::rivers))
-
-
-```
-
-::: {.hint exercise="q5_zstar_95"}
-Find n from the length_miles vector and compute the two-sided 95% z critical value. Then combine it using the formula you have already used in previous questions.
-:::
-
-::: {.solution exercise="q5_zstar_95"}
-```{webr}
-#| exercise: q5_zstar_95
-#| solution: true
-rivers_data <- data.frame(length_miles = as.numeric(datasets::rivers))
-x <- rivers_data$length_miles
-xbar <- mean(x); n <- length(x); z <- qnorm(0.975); sigma <- 300
-xbar + c(-1,1)zsigma/sqrt(n)
-
-```
-:::
-
-```{webr}
-#| exercise: q5_zstar_95
-#| check: true
-gradethis::grade_this({
-x <- as.numeric(datasets::rivers)
-xbar <- mean(x); n <- length(x); z <- qnorm(0.975); sigma <- 300
-exp <- xbar + c(-1,1)*z*sigma/sqrt(n)
-xres <- .result
-ok <- is.numeric(xres) && length(xres)==2L && all(is.finite(xres))
-if (!ok) fail("Print a numeric vector c(lower, upper).")
-if (max(abs(xres - exp)) < 1e-6) pass("✅ Correct 95% Z-interval with σ known.")
-else fail("Recheck x̄, n, z*, and σ = 300.")
-})
-
-
-
-```
-
-
-## Q6 — One-Sample CI for μ 
-
-Using airquality$Ozone (ignore missing), construct and print 90% CI for the true
-mean ozone level (ppb). Assume normality is reasonable.
-
-
-::: {.callout-note title="Preview"}
-```{webr}
-#| echo: true
-aq <- datasets::airquality
-oz <- na.omit(aq$Ozone)
-head(oz, 10)
-```
-:::
-
-```{webr}
-#| exercise: q6_t_ci_ozone
-w <- oz
-xbar <- mean(w); s <- ＿＿ ; n <- length(w)
-tstar <- ＿＿ 
-xbar + c(-1,1)*tstar * s/sqrt(n)
-```
-
-::: {.hint exercise="q6_t_ci_ozone"}
-Two-sided 90% → $t^*$
-at 0.95 with df = n−1; use s for the SD.
-:::
-
-::: {.solution exercise="q6_t_ci_ozone"}
-```{webr}
-#| exercise: q6_t_ci_ozone
-#| solution: true
-w <- oz
-xbar <- mean(w); s <- sd(w); n <- length(w)
-tstar <- qt(0.95, df = n - 1) # two-sided 90%
-xbar + c(-1,1)tstar * s/sqrt(n)
-```
-:::
-
-```{webr}
-#| exercise: q6_t_ci_ozone
-#| check: true
-gradethis::grade_this({
-w <- na.omit(datasets::airquality$Ozone)
-xbar <- mean(w); s <- sd(w); n <- length(w)
-tstar <- qt(0.95, df = n - 1)
-exp <- xbar + c(-1,1)*tstar*s/sqrt(n)
-r <- .result
-ok <- is.numeric(r) && length(r)==2L && all(is.finite(r))
-if (!ok) fail("Print a numeric vector c(lower, upper).")
-if (max(abs(r - exp)) < 1e-6) pass("✅ Correct 90% t-interval.")
-else fail("Check t* at 0.95 and your s, n.")
-})
-```
-
-## Q7 — One-Sample CI for a Proportion (Wald)
-
-In mtcars, am is transmission (0 = automatic, 1 = manual). Build and print
-c(lower, upper) for the 95% CI on the proportion of manual cars.
-
-::: {.callout-note title="Info"}
-For a single proportion with sample $ \cap p n$ trials (Wald CI):
-
-$$
-\mathrm{CI}_{1-\alpha}:\ \hat{p} \pm z_{1-\alpha/2}\,\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}.
-$$
-
-Rule: Ensure $n\hat{p}$ and $n(1 - \hat{p})$ are not too small
-:::
-
-::: {.callout-note title="Preview"}
-```{webr}
-#| echo: true
-mt <- datasets::mtcars
-head(mt[, c("am","mpg","cyl")], 10)
-```
-:::
-
-```{webr}
-#| exercise: q7_p_ci_manual
-y <- datasets::mtcars$am # 1 = manual
-phat <- ＿＿ ; n <- length(y); z <- __
-se <- sqrt( __ )
-phat + c(-1,1)*z*se
-```
-
-::: {.hint exercise="q7_p_ci_manual"}
-Treat am as 0/1; compute $\hat{p}$, then use two-sided $z^∗$ and the proportion SE.
-:::
-
-::: {.solution exercise="q7_p_ci_manual"}
-```{webr}
-#| exercise: q7_p_ci_manual
-#| solution: true
-y <- datasets::mtcars$am # 1 = manual
-phat <- mean(y); n <- length(y); z <- qnorm(0.975)
-se <- sqrt(phat*(1-phat)/n)
-phat + c(-1,1)*z*se
-```
-:::
-
-```{webr}
-#| exercise: q7_p_ci_manual
-#| check: true
-gradethis::grade_this({
-y <- datasets::mtcars$am
-phat <- mean(y); n <- length(y); z <- qnorm(0.975)
-se <- sqrt(phat*(1-phat)/n)
-exp <- phat + c(-1,1)*z*se
-r <- .result
-ok <- is.numeric(r) && length(r)==2L && all(is.finite(r))
-if (!ok) fail("Print a numeric vector c(lower, upper).")
-if (max(abs(r - exp)) < 1e-6) pass("✅ Correct 95% Wald CI for p.")
-else fail("Recompute p̂, n, z*, and SE = sqrt(p̂(1−p̂)/n).")
-})
-```
-
-
-## Q8 - One-Sample CI for a Variance (σ²)
-
-Using PlantGrowth$weight, print c(lower, upper) for 95% CI on σ^2. (Assume normality.)
-
-::: {.callout-note title="Info"}
-For normal data, the variance CI uses the chi-square distribution with df=n−1:
-
-$$
-\left(\frac{(n-1)s^2}{\chi^2_{1-\alpha/2,\;n-1}},\; \frac{(n-1)s^2}{\chi^2_{\alpha/2,\;n-1}}\right),\qquad s^2=\text{sample variance}.
-$$
-
-
-For 95%, the cutoffs are at 0.025 and 0.975.
-:::
-
-::: {.callout-note title="Preview"}
-```{webr}
-#| echo: true
-mt <- datasets::mtcars
-head(mt[, c("am","mpg","cyl")], 10)
-```
-:::
-
-
-```{webr}
-#| exercise: q8_var_ci_pg
-x <- datasets::PlantGrowth$weight
-n <- length(x); df <- ＿＿ ; s2 <- var(x)
-chi_lo <- ＿＿ (＿＿, df = df) 
-chi_hi <- ＿＿ (0.025, ＿＿)
-c(df * s2/chi_lo, df*s2/chi_hi)
-```
-
-::: {.hint exercise="q8_var_ci_pg"}
-Use $s^2$, df = n−1, and chi-square quantiles at 0.975 and 0.025 (note the order).
-:::
-
-::: {.solution exercise="q8_var_ci_pg"}
-```{webr}
-#| exercise: q8_var_ci_pg
-#| solution: true
-x <- datasets::PlantGrowth$weight
-n <- length(x); df <- n - 1; s2 <- var(x)
-chi_lo <- qchisq(0.975, df = df) # upper-tail cutoff
-chi_hi <- qchisq(0.025, df = df) # lower-tail cutoff
-c(df * s2/chi_lo, df*s2/chi_hi)
-```
-:::
-
-```{webr}
-#| exercise: q8_var_ci_pg
-#| check: true
-gradethis::grade_this({
-x <- datasets::PlantGrowth$weight
-n <- length(x); df <- n - 1; s2 <- var(x)
-chi_lo <- qchisq(0.975, df = df)
-chi_hi <- qchisq(0.025, df = df)
-exp <- c(df*s2/chi_lo, df*s2/chi_hi)
-r <- .result
-ok <- is.numeric(r) && length(r)==2L && all(is.finite(r))
-if (!ok) fail("Print a numeric vector c(lower, upper).")
-if (max(abs(r - exp)) < 1e-6) pass("✅ Correct 95% CI for σ².")
-else fail("Check df=n−1 and chi-square cutoffs (0.025 & 0.975).")
-})
-```
-
-
-## Q9 - Sample Size for Mean CI (σ known)
-
-We want a 95% Z-interval for the true mean mpg (from mtcars) with margin of error at most E = 1 mpg, assuming σ = 6 mpg known. Compute and print the minimum n required (round up).
-
-::: {.callout-note title="Info"}
-For known σ, the margin of error and required n are:
-
-$$
-E = z_{1-\alpha/2}\,\frac{\sigma}{\sqrt{n}}
-\;\Rightarrow\;
-n = \left(\frac{z_{1-\alpha/2}\,\sigma}{E}\right)^{2},\qquad \text{use }\lceil n\rceil.
-$$
-
-
-For 95%, $z^*$ = $\phi^{-1}$ (0.975).
-:::
-
-::: {.callout-note title="Preview"}
-```{webr}
-#| echo: true
-head(datasets::mtcars[, "mpg", drop = FALSE], 10)
-```
-:::
-
-
-```{webr}
-#| exercise: q9_n_for_margin
-z <- ＿＿ ; sigma <- 6; E <- ＿＿
-＿＿ ((z*sigma/E)^2)
-
-```
-
-::: {.hint exercise="q9_n_for_margin"}
-Solve for n using your chosen E, known σ, and two-sided $z^∗$.
-:::
-
-::: {.solution exercise="q9_n_for_margin"}
-```{webr}
-#| exercise: q9_n_for_margin
-#| solution: true
-
-z <- qnorm(0.975); sigma <- 6; E <- 1
-ceiling((z*sigma/E)^2)
-```
-:::
-
-```{webr}
-#| exercise: q9_n_for_margin
-#| check: true
-gradethis::grade_this({
-z <- qnorm(0.975); sigma <- 6; E <- 1
-exp <- ceiling((z*sigma/E)^2)
-r <- .result
-if (!is.numeric(r) || length(r)!=1L || !is.finite(r)) fail("Print a single numeric value.")
-if (abs(r - exp) < 1e-12) pass("✅ Correct required sample size.")
-else fail("Rearrange E = zσ/√n and round up.")
-})
-```
-
-## Q10 - One-Sample CI for a Proportion (99% Practice)
-
-Consider mtcars again. Build and print 99% CI for the proportion of cars with mpg ≥ 25.
-
-::: {.callout-note title="Info"}
-Two-sided 1−α CI for a proportion:
-
-$$
-\mathrm{CI}_{1-\alpha}:\ \hat{p} \pm z_{1-\alpha/2}\,\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}.
-$$
-
-
-For 99%, use $z^* = \phi^{-1}$(0.995).
-:::
-
-::: {.callout-note title="Preview"}
-```{webr}
-#| echo: true
-mt <- datasets::mtcars
-mt$hi_mpg <- as.integer(mt$mpg >= 25)
-head(mt[, c("mpg","hi_mpg")], 10)
-```
-:::
-
-
-```{webr}
-#| exercise: q10_p_ci_highmpg
-y <- as.integer(datasets::mtcars$mpg >= 25)
-phat <- mean(y); ＿＿ ; z <- ＿＿
+df <- read.csv("＿＿")
+g1 <- subset(df, stars == 5) #segregating the dataset
+g2 <- subset(df, stars != 5)
+
+count1 <- as.integer(g1$thumbs_up > g1$thumbs_down) #helps in making 0/1 success. 
+#Makes all thumbs_up values 1 and thumbs_down values 0. 
+count2 <- as.integer(g2$thumbs_up > g2$thumbs_down)
+
+n1 <- sum( is.finite ( ＿＿ ) ); n2 <- sum( is.finite ( ＿＿ ) ) #is.finite helps to 
+#filter only usable rows
+p1 <- mean( ＿＿ , na.rm = TRUE)
+p2 <- mean( ＿＿ , na.rm = TRUE)
 se <- ＿＿
-＿＿ + c(-1,1) ＿＿
+z <- ＿＿ 
+
+
+
+
 ```
 
-::: {.hint exercise="q10_p_ci_highmpg"}
-Build the 0/1 indicator, get p^, pick $z^∗$ for 99%, and form the Wald interval.
+::: {.hint exercise="q11_wald_2prop_reviews"}
+Compute $$\hat{p}$$ per group, then compute their SE and z* at 0.975.
 :::
 
-::: {.solution exercise="q10_p_ci_highmpg"}
+::: {.solution exercise="q11_wald_2prop_reviews"}
 ```{webr}
-#| exercise: q10_p_ci_highmpg
+#| exercise: q11_wald_2prop_reviews
 #| solution: true
-y <- as.integer(datasets::mtcars$mpg >= 25)
-phat <- mean(y); n <- length(y); z <- qnorm(0.995)
-se <- sqrt(phat*(1-phat)/n)
-phat + c(-1,1)*z*se
+df <- read.csv("recipe_reviews.csv")
+g1 <- subset(df, stars == 5) #segregating the dataset
+g2 <- subset(df, stars != 5)
+count1 <- as.integer(g1$thumbs_up > g1$thumbs_down)
+count2 <- as.integer(g2$thumbs_up > g2$thumbs_down)
+n1 <- sum(is.finite(count1)); n2 <- sum(is.finite(count2))
+p1 <- mean(count1, na.rm = TRUE); p2 <- mean(count2, na.rm = TRUE)
+se <- sqrt(p1*(1-p1)/n1 + p2*(1-p2)/n2)
+z <- qnorm(0.975); 
+(p1 - p2) + c(-1,1)*z*se
+
+
 ```
 :::
 
 ```{webr}
-#| exercise: q10_p_ci_highmpg
+#| exercise: q11_wald_2prop_reviews
 #| check: true
 gradethis::grade_this({
-y <- as.integer(datasets::mtcars$mpg >= 25)
-phat <- mean(y); n <- length(y); z <- qnorm(0.995)
-se <- sqrt(phat*(1-phat)/n)
-exp <- phat + c(-1,1)*z*se
+df <- tryCatch(read.csv("recipe_reviews.csv"), error = function(e) NULL)
+if (is.null(df)) fail("Couldn't read 'recipe_reviews.csv'.")
+g1 <- subset(df, stars == 5)
+g2 <- subset(df, stars != 5)
+y1 <- as.integer(g1$thumbs_up > g1$thumbs_down)
+y2 <- as.integer(g2$thumbs_up > g2$thumbs_down)
+n1 <- sum(is.finite(y1)); n2 <- sum(is.finite(y2))
+if (min(n1, n2) < 2) fail("Both groups need at least 2 finite rows.")
+p1 <- mean(y1, na.rm = TRUE); p2 <- mean(y2, na.rm = TRUE)
+se <- sqrt(p1*(1-p1)/n1 + p2*(1-p2)/n2)
+z <- qnorm(0.975); est <- p1 - p2
+exp <- est + c(-1,1)*z*se
+x <- .result
+ok <- is.numeric(x) && length(x)==2L && all(is.finite(x))
+if (!ok) fail("Print c(lower, upper).")
+if (max(abs(x - exp)) < 1e-6) pass("✅ Correct 95% Wald CI for p_FiveStar − p_NotFive.")
+else fail("Recheck successes, n1/n2, and z*.")
+})
+
+
+
+```
+
+
+
+
+
+## Q5 — Two-Sample CI for a Difference of Proportions using prop.test
+
+In penguins.csv, compare the male proportion between Chinstrap and Gentoo. Compute an evidence-only CI (no hypothesis interpretation needed) for $p_{Chinstrap} - p_{Gentoo}$ at 90% and print c(lower upper).
+
+
+::: {.callout-note title="Preview"}
+```{webr}
+#| echo: true
+df <- read.csv("penguins.csv")
+head(df[, c("species","sex","island")], 10)
+
+```
+:::
+
+
+::: {.callout-note title="Info"}
+
+The prop.test() function in R performs tests of proportions, allowing for the comparison of proportions across groups or against specific values. Here is an example according to this question. here’s a super simple one-sample prop.test using penguins.csv. It asks: among Gentoo penguins, what fraction are male? It prints the estimate and a 95% CI. Run the code to see!
+```{webr}
+#| echo: true
+
+# One-sample prop.test example: proportion of males within Gentoo
+
+df <- read.csv("penguins.csv")
+
+g <- subset(df, species == "Gentoo" & !is.na(sex))
+x <- sum(g$sex == "male")   # number of "successes"
+n <- nrow(g)                # total trials
+
+prop.test(x = x, n = n, conf.level = 0.95, correct = FALSE)
+
+```
+:::
+
+```{webr}
+#| exercise: q12_prop_test_penguins
+#| exercise.lines: 10
+#| echo: false
+df <- read.csv("penguins.csv")
+df <- subset(df, species %in% c("＿＿","＿＿") & !is.na(sex)) #filtering based 
+#on the species we need and removing NA rows
+x1 <- sum(df$species=="Chinstrap" & df$sex=="＿＿")
+n1 <- ＿＿
+x2 <- sum(df$species=="Gentoo" & df$sex=="＿＿")
+n2 <- ＿＿
+prop.test(x = c( ＿＿ , ＿＿ ), n = c( ＿＿ , ＿＿ ), conf.level = ＿＿ , correct = FALSE)$conf.int
+
+```
+
+::: {.hint exercise="q12_prop_test_penguins"}
+Filter to two species, count “male” in each, and feed (x1,n1),(x2,n2) to prop.test.
+:::
+
+::: {.solution exercise="q12_prop_test_penguins"}
+```{webr}
+#| exercise: q12_prop_test_penguins
+#| solution: true
+df <- read.csv("penguins.csv")
+df <- subset(df, species %in% c("Chinstrap","Gentoo") & !is.na(sex))
+x1 <- sum(df$species=="Chinstrap" & df$sex=="male")
+n1 <- sum(df$species=="Chinstrap")
+x2 <- sum(df$species=="Gentoo" & df$sex=="male")
+n2 <- sum(df$species=="Gentoo")
+prop.test(x = c(x1, x2), n = c(n1, n2), conf.level = 0.90, correct = FALSE)$conf.int
+
+```
+:::
+
+```{webr}
+#| exercise: q12_prop_test_penguins
+#| check: true
+gradethis::grade_this({
+df <- tryCatch(read.csv("penguins.csv"), error=function(e) NULL)
+if (is.null(df)) fail("Couldn't read 'penguins.csv'.")
+df <- subset(df, species %in% c("Chinstrap","Gentoo") & !is.na(sex))
+x1 <- sum(df$species=="Chinstrap" & df$sex=="male"); n1 <- sum(df$species=="Chinstrap")
+x2 <- sum(df$species=="Gentoo" & df$sex=="male");    n2 <- sum(df$species=="Gentoo")
+exp <- prop.test(x=c(x1,x2), n=c(n1,n2), conf.level=0.90, correct=FALSE)$conf.int
+x <- .result
+ok <- is.numeric(x) && length(x)==2L && all(is.finite(x))
+if (!ok) fail("Print c(lower, upper).")
+if (max(abs(x - exp)) < 1e-6) pass("✅ Correct 90% CI for p_Chinstrap − p_Gentoo.")
+else fail("Check species filter, male counts, and conf.level=0.90.")
+})
+
+```
+
+## Q6 — Two-Sample CI for a Difference of Proportions (island=Biscoe)
+
+Using penguins.csv, compare the proportion of penguins on Biscoe island between Adelie and Gentoo. Compute a 95% two-sided CI for $p_{Adelie} - p_{Gentoo}$ and print c(lower upper).
+
+
+::: {.callout-note title="Preview"}
+```{webr}
+#| echo: true
+df <- read.csv("penguins.csv")
+head(df[, c("species","sex","island")], 10)
+
+```
+:::
+
+
+```{webr}
+#| exercise: q5_diff_prop_biscoe
+#| exercise.lines: 6
+#| echo: false
+df <- read.csv("penguins.csv")
+sub <- subset(df, species %in% c("＿＿","＿＿") & !is.na(＿＿)) #filter based on species
+
+x1 <- sum(sub$species=="＿＿" & sub$＿＿=="＿＿") #add additional filter for island
+n1 <- sum(sub$species=="Adelie")
+x2 <- sum(sub$species=="＿＿" & sub$＿＿=="＿＿")
+n2 <- sum(sub$species=="Gentoo")
+
+prop.test(x=c(＿＿, ＿＿), n=c(＿＿,＿＿), conf.level=＿＿, correct=FALSE)$conf.int
+
+```
+
+::: {.hint exercise="q5_diff_prop_biscoe"}
+Count “Biscoe” within each species to get x1, x2. Use totals for n1, n2, then prop.test(...)$conf.int. Order your counts as (Adelie, Gentoo) to get Adelie − Gentoo.
+:::
+
+::: {.solution exercise="q5_diff_prop_biscoe"}
+```{webr}
+#| exercise: q5_diff_prop_biscoe
+#| solution: true
+df <- read.csv("penguins.csv")
+sub <- subset(df, species %in% c("Adelie","Gentoo") & !is.na(island))
+x1 <- sum(sub$species=="Adelie" & sub$island=="Biscoe"); n1 <- sum(sub$species=="Adelie")
+x2 <- sum(sub$species=="Gentoo" & sub$island=="Biscoe"); n2 <- sum(sub$species=="Gentoo")
+prop.test(x=c(x1,x2), n=c(n1,n2), conf.level=0.95, correct=FALSE)$conf.int
+
+
+```
+:::
+
+```{webr}
+#| exercise: q5_diff_prop_biscoe
+#| check: true
+gradethis::grade_this({
+df <- tryCatch(read.csv("penguins.csv"), error=function(e) NULL)
+if (is.null(df)) fail("Couldn't read 'penguins.csv'.")
+sub <- subset(df, species %in% c("Adelie","Gentoo") & !is.na(island))
+x1 <- sum(sub$species=="Adelie" & sub$island=="Biscoe"); n1 <- sum(sub$species=="Adelie")
+x2 <- sum(sub$species=="Gentoo" & sub$island=="Biscoe"); n2 <- sum(sub$species=="Gentoo")
+exp <- prop.test(x=c(x1,x2), n=c(n1,n2), conf.level=0.95, correct=FALSE)$conf.int
 r <- .result
 ok <- is.numeric(r) && length(r)==2L && all(is.finite(r))
 if (!ok) fail("Print a numeric vector c(lower, upper).")
-if (max(abs(r - exp)) < 1e-6) pass("✅ Correct 99% CI for p.")
-else fail("Check two-sided 99% (z at 0.995) and the SE formula.")
+if (max(abs(r - exp)) < 1e-6) pass("✅ Correct 95% CI for p_Adelie − p_Gentoo (Biscoe).")
+else fail("Recheck counts, totals, order (Adelie first), and conf.level=0.95.")
 })
+
+
 ```
+
+## Q7 — Two-Sample CI for a Ratio of Variances (manual F-based)
+
+Using recipe_reviews.csv, compare the variance of best_score for FiveStar vs NotFive. Build a 95% CI for $\sigma^2_{FiveStar} / \sigma^2_{NotFive}$ and print c(lower, upper).
+
+::: {.callout-note title="Preview"}
+Here is a glimpse of the dataset:
+```{webr}
+#| echo: true
+df <- read.csv("recipe_reviews.csv")
+head(df[, c("stars","best_score")], 10)
+
+```
+:::
+
+::: {.callout-note title="Info"}
+Taking group 1 as FiveStar here, with $s_1^2$ and $s_2^2$ as sample variances, here is the CI:
+$$
+\text{CI}_{1-\alpha}\!\left(\frac{\sigma_1^2}{\sigma_2^2}\right)
+=
+\left(
+\frac{{s_1^2}/{s_2^2}}{F_{1-\alpha/2,\,df_1,\,df_2}},
+\;
+\frac{{s_1^2}/{s_2^2}}{F_{\alpha/2,\,df_1,\,df_2}}
+\right),
+\qquad df_1=n_1-1,\; df_2=n_2-1.
+$$
+
+:::
+
+
+```{webr}
+#| exercise: q7_ratio_var_reviews
+#| exercise.lines: 12
+#| echo: false
+df <- read.csv("recipe_reviews.csv")
+x1 <- subset(df, stars == 5)$＿＿
+x2 <- subset(df, stars != 5)$＿＿
+x1 <- x1[is.finite(x1)] #only keep usable rows
+x2 <- x2[is.finite(x2)]
+n1 <- length(＿＿); n2 <- length(＿＿)
+s1 <- stats::＿＿(x1); s2 <- stats::＿＿(x2) #computing variance of both vectors x1,x2
+df1 <- ＿＿; df2 <- ＿＿
+ratio <- s1/s2
+F_lo <- ＿＿
+F_hi <- ＿＿
+
+
+```
+
+::: {.hint exercise="q7_ratio_var_reviews"}
+Use FiveStar as numerator. Compute  $s_1^2$ and $s_2^2$ and divide by the F cutoffs (0.975 and 0.025).
+:::
+
+::: {.solution exercise="q7_ratio_var_reviews"}
+```{webr}
+#| exercise: q7_ratio_var_reviews
+#| solution: true
+df <- read.csv("recipe_reviews.csv")
+x1 <- subset(df, stars == 5)$best_score
+x2 <- subset(df, stars != 5)$best_score
+x1 <- x1[is.finite(x1)]
+x2 <- x2[is.finite(x2)]
+n1 <- length(x1)
+n2 <- length(x2)
+s1 <- stats::var(x1)
+s2 <- stats::var(x2)
+df1 <- n1 - 1
+df2 <- n2 - 1
+ratio <- s1/s2
+F_lo <- qf(0.975, df1, df2)
+F_hi <- qf(0.025, df1, df2)
+c(ratio/F_lo, ratio/F_hi)
+
+```
+:::
+
+```{webr}
+#| exercise: q7_ratio_var_reviews
+#| check: true
+gradethis::grade_this({
+df <- tryCatch(read.csv("recipe_reviews.csv"), error=function(e) NULL)
+if (is.null(df)) fail("Couldn't read 'recipe_reviews.csv'.")
+x1 <- subset(df, stars == 5)$best_score
+x2 <- subset(df, stars != 5)$best_score
+x1 <- x1[is.finite(x1)]; x2 <- x2[is.finite(x2)]
+if (min(length(x1), length(x2)) < 3) fail("Each group needs at least 3 finite rows.")
+s1 <- stats::var(x1); s2 <- stats::var(x2)
+df1 <- length(x1)-1; df2 <- length(x2)-1
+ratio <- s1/s2
+F_lo <- qf(0.975, df1, df2); F_hi <- qf(0.025, df1, df2)
+exp <- c(ratio/F_lo, ratio/F_hi)
+x <- .result
+ok <- is.numeric(x) && length(x)==2L && all(is.finite(x))
+if (!ok) fail("Print c(lower, upper).")
+if (max(abs(x - exp)) < 1e-6) pass("✅ Correct 95% CI for σ²_FiveStar / σ²_NotFive.")
+else fail("Check df and F quantiles (0.975, 0.025).")
+})
+
+```
+
+
+## Q8 - Two-Sample CI for a Ratio of Variances using var.test
+
+In penguins.csv, compare variance of bill_length_mm between Adelie (group 1) and Gentoo (group 2). Compute an 80% CI for $\sigma^2_{Adelie} / \sigma^2_{Gentoo}$ using var.test and print the two bounds.
+
+::: {.callout-note title="Info"}
+Here is an example to demonstrate how var.test works. We are taking the recipe reviews dataset to showcase the usage. Run the code to view results.
+```{webr}
+#thumbs_up variance: FiveStar vs NotFive (95% CI)
+df <- read.csv("recipe_reviews.csv")
+
+x1 <- df$thumbs_up[df$stars == 5]
+x2 <- df$thumbs_up[df$stars != 5]
+x1 <- x1[is.finite(x1)]; x2 <- x2[is.finite(x2)]
+
+vt <- var.test(x1, x2, conf.level = 0.95)
+
+vt$estimate   # s_FiveStar^2 / s_NotFive^2
+vt$conf.int   # 95% CI for σ_FiveStar^2 / σ_NotFive^2
+
+```
+:::
+
+::: {.callout-note title="Preview"}
+```{webr}
+#| echo: true
+df <- read.csv("penguins.csv")
+head(df[, c("species","bill_length_mm")], 10)
+
+```
+:::
+
+
+```{webr}
+#| exercise: q8_var_test_penguins
+#| exercise.lines: 8
+#| echo: false
+df <- read.csv("penguins.csv")
+df <- subset(df, species %in% c( "＿＿" , "＿＿" ) & !is.na(＿＿))
+x <- df$＿＿[df$＿＿=="Adelie"]
+y <- df$＿＿[df$＿＿=="Gentoo"]
+var.test(＿＿)$conf.int
+
+```
+
+::: {.hint exercise="q8_var_test_penguins"}
+Filter to Adelie and Gentoo, remove NAs, then feed the two numeric vectors to var.test.
+:::
+
+::: {.solution exercise="q8_var_test_penguins"}
+```{webr}
+#| exercise: q8_var_test_penguins
+#| solution: true
+df <- read.csv("penguins.csv")
+df <- subset(df, species %in% c("Adelie","Gentoo") & !is.na(bill_length_mm))
+x <- df$bill_length_mm[df$species=="Adelie"]
+y <- df$bill_length_mm[df$species=="Gentoo"]
+var.test(x, y, conf.level = 0.80)$conf.int
+
+```
+:::
+
+```{webr}
+#| exercise: q8_var_test_penguins
+#| check: true
+gradethis::grade_this({
+df <- tryCatch(read.csv("penguins.csv"), error=function(e) NULL)
+if (is.null(df)) fail("Couldn't read 'penguins.csv'.")
+df <- subset(df, species %in% c("Adelie","Gentoo") & !is.na(bill_length_mm))
+x <- df$bill_length_mm[df$species=="Adelie"]
+y <- df$bill_length_mm[df$species=="Gentoo"]
+exp <- var.test(x, y, conf.level = 0.80)$conf.int
+z <- .result
+ok <- is.numeric(z) && length(z)==2L && all(is.finite(z))
+if (!ok) fail("Print c(lower, upper).")
+if (max(abs(z - exp)) < 1e-6) pass("✅ Correct 80% CI for σ²_Adelie / σ²_Gentoo.")
+else fail("Confirm vector order (Adelie first) and conf.level=0.80.")
+})
+
+```
+
