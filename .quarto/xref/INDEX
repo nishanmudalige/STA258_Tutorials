@@ -28,5 +28,8 @@
   },
   "tutorials/tutorial_05.qmd": {
     "tutorial_05.html": "bc1b096a"
+  },
+  "tutorials/tut1.qmd": {
+    "tut1.html": "be1c9e01"
   }
 }
