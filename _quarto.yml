@@ -30,6 +30,8 @@ website:
         - text: "Practical 3"
           href: practice/prac_03.qmd
 format:
+  html:
+    css: nav-fix.css
   live-html:
     toc: false
 

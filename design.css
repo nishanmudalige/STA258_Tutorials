@@ -1,0 +1,18 @@
+/* Keep the navbar/dropdown above all page content */
+.header, .navbar, .navbar .dropdown-menu, .headroom {
+  position: relative;
+  z-index: 2000 !important;
+}
+
+/* Don’t let the dropdown be clipped */
+.navbar .dropdown-menu {
+  overflow: visible !important;
+}
+
+/* Some themes/wrappers add overflow that clips the menu; undo it */
+#quarto-content, main.content, .page-columns, .content {
+  overflow: visible !important;
+}
+
+/* If you added transforms anywhere on the header, they create a new stacking context */
+.headroom { transform: none; }

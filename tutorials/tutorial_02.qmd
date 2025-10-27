@@ -50,13 +50,19 @@ The five-number summary (Min, Q1, Median, Q3, Max) + IQR quickly reveals center 
 The five-number summary (Min, Q1, Median, Q3, Max) quickly shows center and spread. The IQR = Q3 − Q1 is robust to outliers and underlies boxplot fences (Q1 − 1.5·IQR, Q3 + 1.5·IQR). You’ll use base R functions that compute these directly for a numeric
 :::
 
+::: {.callout-note title="Preview"}
+Run the code below to see a preview of the dataset.
+```{webr}
+#| echo: true
+air_data <- datasets::airquality
+head(air_data, 10)
+```
+:::
+
 ```{webr}
 #| exercise: ex_ozone_fivenum
 #| exercise.lines: 4
 #| echo: false
-# On the first line, print five-number summary for airquality$Ozone.
-
-# On the next line, return the IQR for that same vector.
 
 ```
 
@@ -101,6 +107,15 @@ Compute Mean, Variance and Standard Deviation of airquality dataset's Temp colum
 Mean, variance, and standard deviation summarize center and spread. Variance and SD are in squared and original units respectively. Real-world data often has NAs; make sure your summary ignores them appropriately.
 :::
 
+::: {.callout-note title="Preview"}
+Run the code below to see a preview of the dataset.
+```{webr}
+#| echo: true
+air_data <- datasets::airquality
+head(air_data, 10)
+```
+:::
+
 ```{webr}
 #| exercise: ex_temp_stats
 #| exercise.lines: 4
@@ -141,6 +156,15 @@ gradethis::grade_this({
 ## Q3 — Grouped summary by Month
 
 Compute the mean Ozone by Month using base R. Return a named numeric vector (names are months).
+
+::: {.callout-note title="Preview"}
+Run the code below to see a preview of the dataset.
+```{webr}
+#| echo: true
+air_data <- datasets::airquality
+head(air_data, 10)
+```
+:::
 
 ```{webr}
 #| exercise: ex_group_month
@@ -193,9 +217,9 @@ gradethis::grade_this({
 
 ```
 
-## Q4 — ggplot Boxplot ordered by median
+## Q4 — ggplot Boxplot ordered by median (ChickWeight)
 
-Now, we are moving on to the mtcars dataset that gives details about various cars' specifications. Return a ggplot object that boxplots mpg (miles per gallon) by cyl (number of engine cylinders), with cyl reordered by the median mpg. Fill in the missing blanks with the correct answer.
+Now, we are moving on to the ChickWeight dataset which has data from an experiment on the effect of diet on early growth of chicks. Return a ggplot object that boxplots weight by Diet, with Diet reordered by the median weight. Fill in the blanks.
 
 ::: {.callout-note title="Info"}
 You can reorder categories by a statistic (like the median) right inside aes() to make comparisons meaningful. In ggplot2, this is commonly done with reorder() (or forcats helpers). The layer for boxplots is geom_boxplot().
@@ -205,16 +229,17 @@ You can reorder categories by a statistic (like the median) right inside aes() t
 #| exercise: ex_box_reorder
 #| exercise.lines: 8
 #| echo: false
+library(ggplot2)
 # Return a ggplot object that boxplots mpg by cyl, with cyl reordered by the median mpg.
-ggplot2:: ＿ ( ＿ ,
-  ggplot2::aes(x = reorder(factor( ＿ ), ＿ , FUN = median), y = ＿ )
-) + ggplot2:: ＿ () #Boxplot command in ggplot
+＿ ( ＿ , aes(x = reorder(factor( ＿ ), ＿ , FUN = median), y = ＿ )
+) + ＿ () #Boxplot command in ggplot
 
 
 ```
 
 ::: {.hint exercise="ex_box_reorder"}
-Build a boxplot mapping the cyl to x and mpg to y; reorder x by the median of y within aes(...).
+Map Diet to x and weight to y; reorder x by median(weight) inside aes(...).
+Use geom_boxplot() for the layer.
 :::
 
 ::: {.solution exercise="ex_box_reorder"}
@@ -222,223 +247,162 @@ Build a boxplot mapping the cyl to x and mpg to y; reorder x by the median of y 
 #| exercise: ex_box_reorder
 #| solution: true
 ggplot2::ggplot(
-  mtcars,
-  ggplot2::aes(x = reorder(factor(cyl), mpg, FUN = median), y = mpg)
-) + 
-  ggplot2::geom_boxplot()
+ChickWeight,
+ggplot2::aes(x = reorder(factor(Diet), weight, FUN = median), y = weight)
+) +
+ggplot2::geom_boxplot()
 ```
 :::
 
 ```{webr}
 #| exercise: ex_box_reorder
 #| check: true
+
 gradethis::grade_this({
-  if (!requireNamespace("ggplot2", quietly=TRUE)) fail("Load **ggplot2**.")
+  if (!requireNamespace("ggplot2", quietly = TRUE)) fail("Load ggplot2.")
   p <- .result
-  ok <- inherits(p, "ggplot") && any(vapply(p$layers, \(L) inherits(L$geom,"GeomBoxplot"), logical(1)))
-  if (!ok) fail("Return a ggplot with `geom_boxplot()` and x reordered by median mpg.")
-  pass("✅ Boxplot created.")
+
+  is_box <- inherits(p, "ggplot") &&
+    any(vapply(p$layers, function(L) inherits(L$geom, "GeomBoxplot"), logical(1)))
+  if (!is_box) fail("Return a ggplot with geom_boxplot().")
+
+  mx <- deparse(p$mapping$x)
+  my <- deparse(p$mapping$y)
+
+  # Accept reorder(...) or forcats::fct_reorder(...); require factor(Diet) and weight
+  pat_x <- "^~\\s*(reorder|forcats::fct_reorder)\\s*\\(\\s*factor\\s*\\(\\s*Diet\\s*\\)\\s*,\\s*weight\\b"
+  x_ok  <- grepl(pat_x, mx, perl = TRUE)
+  y_ok  <- grepl("^~\\s*weight\\s*$", my, perl = TRUE)
+
+  if (!(x_ok && y_ok))
+    fail("Map x = reorder(factor(Diet), weight, FUN = median) (or forcats::fct_reorder) and y = weight.")
+
+  pass("✅ Boxplot created and Diet reordered by median weight.")
 })
 
 ```
 
 ## Q5 — Histogram with Tukey fences
 
-Show a histogram of mtcars\$mpg and add vertical lines at Q1, Q3, and the Tukey fences Q1−1.5·IQR, Q3+1.5·IQR
+Show a histogram of ChickWeight$weight and add vertical lines at Q1, Q3, and the Tukey fences Q1−1.5·IQR, Q3+1.5·IQR
 
 ::: {.callout-note title="Info"}
-Tukey fences are statistical boundaries, used to identify potential outliers in a dataset. Data points falling outside these fences are considered outliers.
+Tukey fences are statistical boundaries, used to identify potential outliers in a dataset. Data points falling outside these fences are considered outliers. Q1 − 1.5·IQR and Q3 + 1.5·IQR are Tukey fences!
+:::
+
+::: {.callout-note title="Preview"}
+Here is a preview of the dataset:
+```{webr}
+#| echo: true
+head(ChickWeight[, c("weight","Time","Diet")], 8)
+```
 :::
 
 ```{webr}
 #| setup: true
-#| exercise: ex_mpg_hist_fences
+#| exercise: ex_weight_hist_fences
 #| echo: false
 ensure_pkgs <- function(pkgs){
-  miss <- pkgs[!vapply(pkgs, requireNamespace, logical(1), quietly = TRUE)]
-  if (length(miss)) webr::install(miss)
-  invisible(lapply(pkgs, function(p) library(p, character.only = TRUE)))
+miss <- pkgs[!vapply(pkgs, requireNamespace, logical(1), quietly = TRUE)]
+if (length(miss)) webr::install(miss)
+invisible(lapply(pkgs, function(p) library(p, character.only = TRUE)))
 }
-ensure_pkgs(c("skimr","ggplot2"))
-df <- ggplot2::msleep
+ensure_pkgs(c("ggplot2"))
 
 ```
 
 ```{webr}
-#| exercise: ex_mpg_hist_fences
+#| exercise: ex_weight_hist_fences
 #| exercise.lines: 14
 #| echo: false
 # Return a ggplot object that draws the histogram.
-
-qs <- quantile(mtcars$mpg, ＿ )
-lo <- qs[1] - 1.5*diff(qs); hi <- ＿
-ggplot2::ggplot( ＿ , ggplot2::aes(mpg)) +
-  ggplot2::geom_histogram(bins = 12) +
-  ggplot2::geom_vline(xintercept = c(qs[1], ＿ , lo, hi))
+library(ggplot2)
+qs <- quantile(ChickWeight$weight, c(＿, ＿) )
+lo <- qs[1] - 1.5*diff(qs)
+hi <- ＿
+ggplot( ＿ , ggplot2::aes(weight)) +
+geom_histogram(bins = 12) +
+geom_vline(xintercept = c(qs[1], ＿ , lo, hi))
 
 ```
 
-::: {.hint exercise="ex_mpg_hist_fences"}
+::: {.hint exercise="ex_weight_hist_fences"}
 geom_vline is used to add vertical lines in the plot at certain positions.
 :::
 
-::: {.solution exercise="ex_mpg_hist_fences"}
+::: {.solution exercise="ex_weight_hist_fences"}
 ```{webr}
-#| exercise: ex_mpg_hist_fences
+#| exercise: ex_weight_hist_fences
 #| solution: true
-qs <- quantile(mtcars$mpg, c(.25,.75))
-lo <- qs[1] - 1.5*diff(qs); hi <- qs[2] + 1.5*diff(qs)
-ggplot2::ggplot(mtcars, ggplot2::aes(mpg)) +
-  ggplot2::geom_histogram(bins = 12) +
-  ggplot2::geom_vline(xintercept = c(qs[1], qs[2], lo, hi))
+library(ggplot2)
+qs <- quantile(ChickWeight$weight, c(.25,.75))
+lo <- qs[1] - 1.5*diff(qs)
+hi <- qs[2] + 1.5*diff(qs)
+ggplot(ChickWeight, ggplot2::aes(weight)) +
+geom_histogram(bins = 12) +
+geom_vline(xintercept = c(qs[1], qs[2], lo, hi))
+
 ```
 :::
 
 ```{webr}
-#| exercise: ex_mpg_hist_fences
-#| check: truef
-gradethis::grade_this({
-  e <- .envir_result; qs <- get0("qs", e); lo <- get0("lo", e); hi <- get0("hi", e)
-  if (is.null(qs) || is.null(lo) || is.null(hi) || length(qs) < 2) fail("Define qs, lo, hi.")
-  r <- as.numeric(quantile(mtcars$mpg, c(.25,.75))); ok <- function(a,b) abs(as.numeric(a)-b) < 1e-8
-  if (ok(qs[1], r[1]) && ok(qs[2], r[2]) &&
-      ok(lo, r[1] - 1.5*diff(r)) && ok(hi, r[2] + 1.5*diff(r))) pass("✅ Correct.")
-  else fail("❌ Incorrect.")
-})
-```
-
-## Q6 — ChickWeight (Day 21): grouped summary
-
-::: {.callout-note title="Info"}
-**ChickWeight** tracks chick body weight over time under different diets.  
-Filter to **Time == 21** (final day), then group by **Diet**, summarising a row count and two key stats.
-:::
-
-```{webr}
-#| exercise: ex_chickweight
-#| exercise.lines: 10
-#| echo: false
-# One pipeline: filter Time==21 then summarise by Diet
-```
-
-::: {.hint exercise="ex_chickweight"}
-Filter for the focal day (Time == 21), group_by(Diet), then summarise() a count and two numeric summaries; drop grouping in the output.
-:::
-
-::: {.solution exercise="ex_chickweight"}
-```{webr}
-#| exercise: ex_chickweight
-#| solution: true
-ChickWeight |>
-  dplyr::filter(Time == 21) |>
-  dplyr::group_by(Diet) |>
-  dplyr::summarise(
-    n           = dplyr::n(),
-    weight_mean = mean(weight),
-    weight_sd   = sd(weight),
-    .groups = "drop"
-  )
-```
-:::
-
-```{webr}
-#| exercise: ex_chickweight
+#| exercise: ex_weight_hist_fences
 #| check: true
 gradethis::grade_this({
-  if (!requireNamespace("dplyr", quietly = TRUE)) fail("Load **dplyr**.")
-  x <- .result
-  need <- c("Diet","n","weight_mean","weight_sd")
-  if (!is.data.frame(x) || !all(need %in% names(x)))
-    fail("Return a data frame with Diet, n, weight_mean, weight_sd for Time == 21.")
-  pass("✅ Grouped Day 21 summary OK.")
+e <- .envir_result
+qs <- get0("qs", e); lo <- get0("lo", e); hi <- get0("hi", e)
+if (is.null(qs) || is.null(lo) || is.null(hi) || length(qs) < 2)
+fail("Define `qs`, `lo`, and `hi` as shown.")
+r <- as.numeric(quantile(ChickWeight$weight, c(.25,.75)))
+ok <- function(a,b) abs(as.numeric(a)-b) < 1e-8
+if (ok(qs[1], r[1]) && ok(qs[2], r[2]) &&
+ok(lo, r[1] - 1.5*diff(r)) && ok(hi, r[2] + 1.5*diff(r))) pass("✅ Correct Tukey fences.")
+else fail("❌ Recheck quartiles and fence formulas.")
 })
+
 ```
 
-## Q7 — ggplot histogram with Tukey fences
 
-::: {.callout-note title="Info"}
-A histogram shows distribution shape; overlaying Q1/Q3 and Tukey fences makes unusual values visible. Compute quartiles/fences from the Day 21 subset of ChickWeight and add vertical reference lines.
-:::
+## Q6 — Histogram of Weight (ggplot2)
 
-```{webr}
-#| exercise: ex_chickweight_hist_iqr
-#| exercise.lines: 14
-#| echo: false
-# Return a ggplot object (no variable) for ChickWeight at Time == 21
-```
-
-::: {.hint exercise="ex_chickweight_hist_iqr"}
-Subset to the target day inside both the data and the quartile calculations; draw geom_histogram(bins = 20) and then add multiple geom_vline()s at Q1, Q3, and the Tukey bounds.
-:::
-
-::: {.solution exercise="ex_chickweight_hist_iqr"}
-```{webr}
-#| exercise: ex_chickweight_hist_iqr
-#| solution: true
-ggplot2::ggplot(
-  subset(ChickWeight, Time == 21),
-  ggplot2::aes(weight)
-) +
-  ggplot2::geom_histogram(bins = 20) +
-  ggplot2::geom_vline(
-    xintercept = c(
-      as.numeric(quantile(subset(ChickWeight, Time == 21)$weight, 0.25)),
-      as.numeric(quantile(subset(ChickWeight, Time == 21)$weight, 0.75)),
-      {
-        qs <- quantile(subset(ChickWeight, Time == 21)$weight, c(.25, .75))
-        lo <- qs[1] - 1.5 * diff(qs)
-        hi <- qs[2] + 1.5 * diff(qs)
-        c(lo, hi)
-      }
-    )
-  ) 
-```
-:::
-
-```{webr}
-#| exercise: ex_chickweight_hist_iqr
-#| check: true
-gradethis::grade_this({
-  if (!requireNamespace("ggplot2", quietly=TRUE)) fail("Load **ggplot2**.")
-  p <- .result
-  has_hist  <- inherits(p, "ggplot") && any(vapply(p$layers, \(L) inherits(L$geom,"GeomBar"),   logical(1)))
-  has_vline <- inherits(p, "ggplot") && any(vapply(p$layers, \(L) inherits(L$geom,"GeomVline"), logical(1)))
-  if (!(has_hist && has_vline)) fail("Use `geom_histogram(bins=20)` and add vlines for Q1/Q3 & Tukey bounds (Time == 21).")
-  pass("✅ Histogram with IQR fences for ChickWeight Day 21.")
-})
-```
-
-## Q8 — Histogram of mpg (ggplot2)
-
-Make a histogram with \~12 bins. Store in p_hist.
+Make a histogram with ~12 bins. Store in p_hist.
 
 ::: {.callout-note title="Info"}
 Use the built-in mtcars dataset. Plot the distribution of mpg as a histogram with about 12 bins and assign the plot to`p_hist. Return a ggplot object (no printing required).
+:::
+
+::: {.callout-note title="Preview"}
+Here is a preview of the dataset:
+```{webr}
+#| echo: true
+head(ChickWeight[, c("weight","Time","Diet")], 8)
+```
 :::
 
 ```{webr}
 #| exercise: ex_hist
 #| exercise.lines: 5
 #| echo: false
-p_hist <- NULL
+library(ggplot2)
+p_hist <- ＿(ChickWeight, aes(＿)) +
+＿(bins = ＿)
+p_hist
 ```
 
 
 ::: {.hint exercise="ex_hist"}
 
-Create a ggplot using mtcars with mpg mapped on x.
-
-Add a histogram layer and choose ~12 bins.
-
-Save the plot object in p_hist.
+Create a ggplot using ChickWeight with weight mapped on x.
+Add a histogram layer with ~12 bins.
+Assign the plot object to p_hist.
 :::
 
 ::: {.solution exercise="ex_hist"}
 ```{webr}
 #| exercise: ex_hist
 #| solution: true
-p_hist <- ggplot2::ggplot(mtcars, ggplot2::aes(mpg)) +
-  ggplot2::geom_histogram(bins = 12)
+p_hist <- ggplot2::ggplot(ChickWeight, ggplot2::aes(weight)) +
+ggplot2::geom_histogram(bins = 12)
 p_hist
 ``` 
 :::
@@ -447,38 +411,48 @@ p_hist
 #| exercise: ex_hist
 #| check: true
 gradethis::grade_this({
-  if (!requireNamespace("ggplot2", quietly = TRUE)) fail("Load **ggplot2**.")
-  e <- get0(".envir_result", ifnotfound = parent.frame())
-  if (!exists("p_hist", envir = e)) fail("Create `p_hist`.")
-  p <- get("p_hist", envir = e)
-  if (!inherits(p, "ggplot")) fail("Should be a ggplot object.")
-  ok <- any(vapply(p$layers, function(L) inherits(L$geom, "GeomBar"), logical(1)))
-  if (!ok) fail("Use `geom_histogram()`.")
-  pass("✅ Histogram done.")
+if (!requireNamespace("ggplot2", quietly = TRUE)) fail("Load **ggplot2**.")
+e <- get0(".envir_result", ifnotfound = parent.frame())
+if (!exists("p_hist", envir = e)) fail("Create `p_hist`.")
+p <- get("p_hist", envir = e)
+if (!inherits(p, "ggplot")) fail("Should be a ggplot object.")
+has_hist <- any(vapply(p$layers, function(L) inherits(L$geom, "GeomBar"), logical(1)))
+if (!has_hist) fail("Use `geom_histogram()`.")
+
+# light mapping sanity
+
+if (!identical(as.character(p$mapping$x), "~weight")) fail("Map `weight` to x.")
+pass("✅ Histogram done.")
 })
+
 ```
 
-## Q9 — Boxplot of mpg by cyl (ggplot2)
+## Q7 — Boxplot of weight by Diet (ggplot2)
+
+Make a boxplot of weight grouped by Diet (treat Diet as categorical). Store the plot in p_box
 
 ::: {.callout-note title="Info"}
-Use the built-in **mtcars** dataset. Make a **boxplot** of **mpg** grouped by the number of cylinders (**cyl**, treated as a categorical variable). Store the plot object in **`p_box`**. Return a **ggplot** object.
+Here is a preview of the dataset:
+```{webr}
+#| echo: true
+head(ChickWeight[, c("weight","Diet","Time")], 8)  
+```
 :::
 
 ```{webr}
 #| exercise: ex_box
 #| exercise.lines: 5
 #| echo: false
-p_box <- NULL
+library(ggplot2)
+p_box <- ggplot(＿, aes(x = factor(＿), y = ＿)) +
+  ＿()
+p_box
 ```
 
 ::: {.hint exercise="ex_box"}
-
-Build a ggplot from mtcars.
-
-Map cyl (as a factor) to the x-axis and mpg to y.
-
+Build a ggplot from ChickWeight.
+Map factor(Diet) to x and weight to y.
 Add a boxplot layer.
-
 Assign the result to p_box.
 ::: 
 
@@ -486,8 +460,8 @@ Assign the result to p_box.
 ```{webr}
 #| exercise: ex_box
 #| solution: true
-p_box <- ggplot2::ggplot(mtcars, ggplot2::aes(x = factor(cyl), y = mpg)) +
-  ggplot2::geom_boxplot()
+p_box <- ggplot2::ggplot(ChickWeight, ggplot2::aes(x = factor(Diet), y = weight)) +
+ggplot2::geom_boxplot()
 p_box
 ```
 :::
@@ -496,39 +470,47 @@ p_box
 #| exercise: ex_box
 #| check: true
 gradethis::grade_this({
-  if (!requireNamespace("ggplot2", quietly = TRUE)) fail("Load **ggplot2**.")
-  e <- get0(".envir_result", ifnotfound = parent.frame())
-  if (!exists("p_box", envir = e)) fail("Create `p_box`.")
-  p <- get("p_box", envir = e)
-  has_geom <- any(vapply(p$layers, function(L) inherits(L$geom, "GeomBoxplot"), logical(1)))
-  if (!inherits(p, "ggplot") || !has_geom) fail("Use `geom_boxplot()`.")
-  pass("✅ Boxplot good.")
+if (!requireNamespace("ggplot2", quietly = TRUE)) fail("Load **ggplot2**.")
+e <- get0(".envir_result", ifnotfound = parent.frame())
+if (!exists("p_box", envir = e)) fail("Create `p_box`.")
+p <- get("p_box", envir = e)
+if (!inherits(p, "ggplot")) fail("Return a ggplot.")
+has_geom <- any(vapply(p$layers, function(L) inherits(L$geom, "GeomBoxplot"), logical(1)))
+if (!has_geom) fail("Use `geom_boxplot()`.")
+mx <- deparse(p$mapping$x); my <- deparse(p$mapping$y)
+if (!grepl("factor\(Diet\)", mx)) fail("Map `factor(Diet)` to x.")
+if (!grepl("^~?weight$", my)) fail("Map `weight` to y.")
+pass("✅ Boxplot good.")
 })
+
 ```
 
-## Q10 — Scatter with smoother: wt vs mpg (ggplot2)
+## Q8 — Scatter with smoother: Time vs weight (ggplot2)
 
-Store in p_scatter.
+Build a scatterplot from ChickWeight mapping Time → x and weight → y. Store in p_scatter. 
 
-::: {.callout-note title="Info"}
-Use the built-in **mtcars** dataset. Make a scatter plot of **wt** (x) vs **mpg** (y) and add a smoother. Store the plot in **`p_scatter`**. Return a **ggplot** object.
+::: {.callout-note title="Preview"}
+```{webr}
+#| echo: true
+head(ChickWeight[, c("Time","weight","Diet")], 8)
+```
 :::
+
 
 ```{webr}
 #| exercise: ex_scatter
 #| exercise.lines: 6
 #| echo: false
-p_scatter <- NULL
+library(ggplot2)
+p_scatter <- ggplot(＿, aes(＿, ＿)) + #order matters
+geom_point() + #used for scatterplots
+geom_smooth(se = FALSE)
+p_scatter
 ```
 
 ::: {.hint exercise="ex_scatter"}
-
-Build a ggplot from mtcars mapping wt to x and mpg to y.
-
-Add points.
-
-Add a smooth curve (hide the ribbon/SE band).
-
+Build a ggplot from ChickWeight mapping Time → x and weight → y.
+Add points, then a smoother (hide the SE ribbon).
 Assign the final plot to p_scatter.
 :::
 
@@ -536,9 +518,10 @@ Assign the final plot to p_scatter.
 ```{webr}
 #| exercise: ex_scatter
 #| solution: true
-p_scatter <- ggplot2::ggplot(mtcars, ggplot2::aes(wt, mpg)) +
-  ggplot2::geom_point() +
-  ggplot2::geom_smooth(se = FALSE)
+p_scatter <- ggplot2::ggplot(ChickWeight, ggplot2::aes(Time, weight)) +
+ggplot2::geom_point() +
+ggplot2::geom_smooth(se = FALSE)
+p_scatter
 
 ```
 :::
@@ -547,104 +530,16 @@ p_scatter <- ggplot2::ggplot(mtcars, ggplot2::aes(wt, mpg)) +
 #| exercise: ex_scatter
 #| check: true
 gradethis::grade_this({
-  if (!requireNamespace("ggplot2", quietly = TRUE)) fail("Load **ggplot2**.")
-  e <- get0(".envir_result", ifnotfound = parent.frame())
-  if (!exists("p_scatter", envir = e)) fail("Create `p_scatter`.")
-  p <- get("p_scatter", envir = e)
-  pts <- any(vapply(p$layers, function(L) inherits(L$geom, "GeomPoint"), logical(1)))
-  sm  <- any(vapply(p$layers, function(L) inherits(L$geom, "GeomSmooth"), logical(1)))
-  if (!(pts && sm)) fail("Include both points and a smoother.")
-  pass("✅ Scatter + smooth OK.")
-})
-```
-
-## Q11 — Descriptive stats & NA trap
-
-Compute mean Sepal.Length by Species (no tidyverse yet). Store as mean_sl_by_species with columns Species and mean_SL.
-
-::: {.callout-note title="Info"}
-Use the **iris.csv** file created in setup (same columns as the built-in `iris`).  
-Read it into an object (e.g., `df`), then compute the **mean Sepal.Length by Species** using **base R** only.  
-Store the result in **`mean_sl_by_species`** with columns **`Species`** and **`mean_SL`**.  
-Be robust to potential missing values.
-:::
-
-```{webr}
-#| setup: true
-# Prep a CSV the grader expects
-write.csv(iris, "iris.csv", row.names = FALSE)
-```
-
-```{webr}
-#| setup: true
-#| exercise: ex_aggregate_iris
-write.csv(iris, "iris.csv", row.names = FALSE)
-```
-
-```{webr}
-#| exercise: ex_aggregate_iris
-#| exercise.lines: 4
-#| echo: false
-mean_sl_by_species <- NULL
-```
-
-::: {.hint exercise="ex_aggregate_iris"}
-Read the CSV you wrote in setup: df <- read.csv("iris.csv").
-
-Use base aggregate() with a formula interface to group by Species.
-
-Make the mean robust to NAs (think na.rm = TRUE).
-
-Rename the second column to mean_SL.
-:::
-
-::: {.solution exercise="ex_aggregate_iris"}
-```{webr}
-#| exercise: ex_aggregate_iris
-#| solution: true
-df <- read.csv("iris.csv")
-mean_sl_by_species <- aggregate(
-  Sepal.Length ~ Species,
-  data = df,
-  FUN = function(x) mean(x, na.rm = TRUE)
-)
-names(mean_sl_by_species)[2] <- "mean_SL"
-
-```
-:::
-
-```{webr}
-#| exercise: ex_aggregate_iris
-#| check: true
-gradethis::grade_this({
-  # Look in the exercise result environment (important!)
-  e <- get0(".envir_result", ifnotfound = parent.frame())
-  if (!exists("mean_sl_by_species", envir = e)) fail("Create `mean_sl_by_species`.")
-  x <- get("mean_sl_by_species", envir = e)
-
-  if (!is.data.frame(x)) fail("`mean_sl_by_species` should be a data frame.")
-  if (!identical(names(x), c("Species", "mean_SL")))
-    fail("Rename columns to `Species` and `mean_SL`.")
-
-  # Recompute expected result from iris.csv (NA-robust)
-  df <- tryCatch(read.csv("iris.csv"), error = \(err) NULL)
-  if (is.null(df)) fail("Couldn't read `iris.csv`.")
-  expected <- aggregate(
-    Sepal.Length ~ Species,
-    data = df,
-    FUN = function(v) mean(v, na.rm = TRUE)
-  )
-  names(expected)[2] <- "mean_SL"
-
-  # Compare after sorting by Species to avoid order issues
-  xs <- x[order(as.character(x$Species)), , drop = FALSE]
-  es <- expected[order(as.character(expected$Species)), , drop = FALSE]
-
-  same_species <- identical(as.character(xs$Species), as.character(es$Species))
-  same_vals <- isTRUE(all.equal(xs$mean_SL, es$mean_SL, tolerance = 1e-8))
-  if (!(same_species && same_vals))
-    fail("Values don’t match the NA-robust group means from `iris.csv`.")
-
-  pass("✅ Means by species computed (base R, NA-robust).")
+if (!requireNamespace("ggplot2", quietly = TRUE)) fail("Load ggplot2.")
+e <- get0(".envir_result", ifnotfound = parent.frame())
+if (!exists("p_scatter", envir = e)) fail("Create p_scatter.")
+p <- get("p_scatter", envir = e)
+if (!inherits(p, "ggplot")) fail("Return a ggplot.")
+pts <- any(vapply(p$layers, function(L) inherits(L$geom, "GeomPoint"), logical(1)))
+sm <- any(vapply(p$layers, function(L) inherits(L$geom, "GeomSmooth"), logical(1)))
+if (!(pts && sm)) fail("Include both points and a smoother.")
+mx <- deparse(p$mapping$x); my <- deparse(p$mapping$y)
+if (!grepl("^~?Time$", mx) || !grepl("^~?weight$", my)) fail("Map Time to x and weight to y.")
+pass("✅ Scatter + smooth OK.")
 })
 ```

@@ -2,7 +2,6 @@
 title: "Tutorial 01"
 format: live-html
 engine: knitr
-# prevent any project filters from interfering
 sidebar:
   style: docked
   contents:
