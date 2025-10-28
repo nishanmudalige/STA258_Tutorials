@@ -155,7 +155,7 @@ Use exactly one of these numeric columns and nothing else:
 len or dose
 
 ::: {.decor-img}
-![](./svgs/toothgrowth.svg){alt="" aria-hidden="true"}
+![](./svgs/toothgrowth.svg){alt="" aria-hidden="true" width="40%" fig-align="center"}
 :::
 ::: {.callout-note title="Preview"}
 Find a preview of the ToothGrowth dataset here:
@@ -385,7 +385,7 @@ pass("OK")
 Load iris.csv into a dataframe named df.
 
 ::: {.decor-img}
-![](./svgs/iris.svg){alt="" aria-hidden="true"}
+![](./svgs/iris.svg){alt="" aria-hidden="true" width="40%" fig-align="center"}
 :::
 
 ```{webr}

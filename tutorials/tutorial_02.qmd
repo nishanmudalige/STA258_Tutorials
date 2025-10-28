@@ -94,7 +94,7 @@ Mean, variance, and standard deviation summarize center and spread. Variance and
 :::
 
 ::: {.decor-img}
-![](./svgs/air_quality.jpg){alt="" aria-hidden="true"}
+![](./svgs/air_quality.jpg){alt="" aria-hidden="true" width="40%" fig-align="center"}
 :::
 
 ::: {.callout-note title="Preview"}
@@ -212,7 +212,7 @@ gradethis::grade_this({
 Now, we are moving on to the ChickWeight dataset which has data from an experiment on the effect of diet on early growth of chicks. Return a ggplot object that boxplots weight by Diet, with Diet reordered by the median weight. Fill in the blanks.
 
 ::: {.decor-img}
-![](./svgs/chick_weight.jpg){alt="" aria-hidden="true"}
+![](./svgs/chick_weight.jpg){alt="" aria-hidden="true" width="40%" fig-align="center"}
 :::
 
 ::: {.callout-note title="Info"}
