@@ -29,10 +29,14 @@ website:
       
 format:
   html:
-      theme: 
-        light: lux
-        dark: cyborg
-      css: design.css
+    theme: 
+      light: lux
+      dark: cyborg
+    css: design.css
   live-html:
+    theme: 
+      light: lux
+      dark: cyborg
+    css: design.css
     toc: false
 
