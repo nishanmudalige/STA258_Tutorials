@@ -286,11 +286,7 @@ window._ojs.runtime.interpretFromScriptTags();
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-<<<<<<< HEAD
         var filterRegex = new RegExp("https:\/\/nishanmudalige\.github\.io\/STA258_Tutorials\/index\.html");
-=======
-        var filterRegex = new RegExp("index\.qmd");
->>>>>>> 7d0059ca6c392e124412a8c89ecbcfef96581583
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
