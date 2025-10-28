@@ -19,7 +19,7 @@ interval for $$ \mu_{FiveStar} - \mu_{NotFive}$$ where the outcome is best_score
 Read the CSV with read.csv("recipe_reviews.csv"), build the two groups, and print the 2-element vector c(lower, upper).
 
 ::: {.decor-img}
-![](./food_review.jpg){alt="" aria-hidden="true"}
+![](./svgs/food_review.svg){alt="" aria-hidden="true"}
 :::
 
 ::: {.callout-note title="Info"}
@@ -157,7 +157,7 @@ for bill length (mm) using pooled variances. Use the local file penguins.csv
 and only the two species Adelie and Gentoo.
 
 ::: {.decor-img}
-![](./penguin_species.jpg){alt="" aria-hidden="true"}
+![](./svgs/penguin_species.jpg){alt="" aria-hidden="true"}
 :::
 
 ::: {.callout-note title="Info"}
