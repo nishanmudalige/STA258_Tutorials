@@ -154,6 +154,9 @@ gradethis::grade_this({
 Use exactly one of these numeric columns and nothing else:
 len or dose
 
+::: {.decor-img}
+![](./toothgrowth.jpg){alt="" aria-hidden="true"}
+:::
 ::: {.callout-note title="Preview"}
 Find a preview of the ToothGrowth dataset here:
 ```{webr}
@@ -380,6 +383,10 @@ pass("OK")
 ## Q8 — Load a CSV as a DataFrame
 
 Load iris.csv into a dataframe named df.
+
+::: {.decor-img}
+![](./iris.jpg){alt="" aria-hidden="true"}
+:::
 
 ```{webr}
 # Q9 SETUP — create iris.csv inside the webR filesystem

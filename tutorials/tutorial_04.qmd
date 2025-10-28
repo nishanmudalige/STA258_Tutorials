@@ -270,6 +270,10 @@ else fail("Check df and make sure it's two-sided 95%.")
 
 The dataset used here is river lengths, which gives the lengths (in miles) of 141 “major” rivers in North America, as compiled by the US Geological Survey. Assume river lengths (miles) have known population SD σ = 300. Build a 95% CI for the true mean river length using rivers whe $\alpha = 0.05$.
 
+::: {.decor-img}
+![](./river.jpg){alt="" aria-hidden="true"}
+:::
+
 ::: {.callout-note title="Preview"}
 Run this code chunk to get a glimpse of the dataset. Feel free to change the values to visualize more/less number of rows. 
 ```{webr}
@@ -393,6 +397,10 @@ else fail("Check t* at 0.95 and your s, n.")
 
 In the UCBAdmissions dataset, Admit status for a student is "Admitted" or "Rejected". Build and print c(lower, upper) for the 95% CI on the overall admission proportion.
 
+::: {.decor-img}
+![](./admissions.jpg){alt="" aria-hidden="true"}
+:::
+
 ::: {.callout-note title="Info"}
 For a single proportion:
 
@@ -468,6 +476,10 @@ else fail("Recompute p̂, n, z*, and SE = sqrt(p̂(1−p̂)/n).")
 
 Using PlantGrowth$weight, print c(lower, upper) for 95% CI on σ^2. (Assume normality.)
 
+::: {.decor-img}
+![](./plant_growth.jpg){alt="" aria-hidden="true"}
+:::
+
 ::: {.callout-note title="Info"}
 For normal data, the variance CI uses the chi-square distribution with df=n−1:
 
@@ -533,6 +545,10 @@ else fail("Check df=n−1 and chi-square cutoffs (0.025 & 0.975).")
 ## Q9 - One-Sample CI for a Proportion (99% Practice)
 
 HairEyeColor is a built-in contingency table of Hair × Eye × Gender of Statistics students with counts. Treat each person as a trial and estimate the true proportion with Brown eyes. Construct a 95% Z-interval for the population proportion p. Print c(lower, upper).
+
+::: {.decor-img}
+![](./hair_eye_color.jpg){alt="" aria-hidden="true"}
+:::
 
 ::: {.callout-note title="Info"}
 Two-sided 1−α CI for a proportion:
