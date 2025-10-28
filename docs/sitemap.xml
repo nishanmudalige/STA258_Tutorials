@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://nishanmudalige.github.io/STA258_Tutorials/tutorials/tutorial_05.html</loc>
-    <lastmod>2025-10-28T06:53:37.523Z</lastmod>
+    <lastmod>2025-10-28T07:39:09.858Z</lastmod>
   </url>
   <url>
     <loc>https://nishanmudalige.github.io/STA258_Tutorials/tutorials/tutorial_03.html</loc>
@@ -13,35 +13,31 @@
     <lastmod>2025-10-28T05:20:37.807Z</lastmod>
   </url>
   <url>
+    <loc>https://nishanmudalige.github.io/STA258_Tutorials/tutorials/index.html</loc>
+    <lastmod>2025-09-10T03:46:47.116Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nishanmudalige.github.io/STA258_Tutorials/practice/index.html</loc>
+    <lastmod>2025-10-01T15:17:49.183Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nishanmudalige.github.io/STA258_Tutorials/index.html</loc>
+    <lastmod>2025-09-17T04:15:22.280Z</lastmod>
+  </url>
+  <url>
     <loc>https://nishanmudalige.github.io/STA258_Tutorials/practice/prac_01.html</loc>
     <lastmod>2025-10-08T13:39:51.362Z</lastmod>
   </url>
   <url>
-    <loc>./index.qmd/tutorials/tutorial_05.html</loc>
-    <lastmod>2025-10-28T07:39:09.858Z</lastmod>
+    <loc>https://nishanmudalige.github.io/STA258_Tutorials/tutorials/tut1.html</loc>
+    <lastmod>2025-09-07T22:21:50.862Z</lastmod>
   </url>
   <url>
-    <loc>./index.qmd/tutorials/tutorial_02.html</loc>
+    <loc>https://nishanmudalige.github.io/STA258_Tutorials/tutorials/tutorial_02.html</loc>
     <lastmod>2025-10-28T05:20:37.811Z</lastmod>
   </url>
   <url>
-    <loc>./index.qmd/tutorials/tutorial_01.html</loc>
-    <lastmod>2025-10-28T05:20:37.807Z</lastmod>
-  </url>
-  <url>
-    <loc>./index.qmd/tutorials/tutorial_03.html</loc>
-    <lastmod>2025-10-28T05:20:37.815Z</lastmod>
-  </url>
-  <url>
-    <loc>./index.qmd/index.html</loc>
-    <lastmod>2025-09-17T04:15:22.280Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nishanmudalige.github.io/STA258_Tutorials/index.html/tutorials/tutorial_05.html</loc>
-    <lastmod>2025-10-28T07:39:09.858Z</lastmod>
-  </url>
-  <url>
-    <loc>https://nishanmudalige.github.io/STA258_Tutorials/index.html/tutorials/tutorial_03.html</loc>
-    <lastmod>2025-10-28T05:20:37.815Z</lastmod>
+    <loc>https://nishanmudalige.github.io/STA258_Tutorials/tutorials/tutorial_04.html</loc>
+    <lastmod>2025-10-28T05:20:37.818Z</lastmod>
   </url>
 </urlset>
