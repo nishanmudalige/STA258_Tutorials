@@ -1163,8 +1163,11 @@ gradethis::grade_this({
 
 ## Q11 — Overview with Skimr
 
-The question below has a dataframe df created from the dataset ggplot2::msleep that contains data about mammal sleep traits. Make a skim summary of df and store it in ms_skim. Print it to see your result!
+The question below has a dataframe df created from the dataset msleep that contains data about mammal sleep traits. Make a skim summary of df and store it in ms_skim. Print it to see your result!
 
+::: {.decor-img}
+![](./sleep.jpg){alt="" aria-hidden="true"}
+:::
 
 ::: {.callout-note title="Info"}
 Info : skimr is an R package that provides summary statistics a user can quickly skim to understand their data.
