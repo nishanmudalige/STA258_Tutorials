@@ -1,18 +1,20 @@
-/* Keep the navbar/dropdown above all page content */
-.header, .navbar, .navbar .dropdown-menu, .headroom {
-  position: relative;
-  z-index: 2000 !important;
+/* ---- Minimal, safe navbar/dropdown fix ---- */
+
+/* Put the nav above page content without creating extra stacking contexts */
+.navbar {
+  position: relative;        /* keep it simple */
+  z-index: 1060;             /* above typical content */
 }
 
-/* Don’t let the dropdown be clipped */
+/* Ensure the menu renders on top */
 .navbar .dropdown-menu {
-  overflow: visible !important;
+  z-index: 1070;             /* above the navbar container */
 }
 
-/* Some themes/wrappers add overflow that clips the menu; undo it */
+/* Prevent page wrappers from covering the menu */
 #quarto-content, main.content, .page-columns, .content {
-  overflow: visible !important;
+  overflow: visible;          /* allow dropdown to extend */
 }
 
-/* If you added transforms anywhere on the header, they create a new stacking context */
-.headroom { transform: none; }
+/* Do NOT set position on .header or .headroom. Do NOT add transforms. */
+/* Remove any other z-index/position rules you had for .header/.headroom. */
