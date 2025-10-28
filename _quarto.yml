@@ -4,11 +4,11 @@ project:
 
 website:
   title: "Course Tutorials"
-  site-url: https://nishanmudalige.github.io/STA258_Tutorials/
+  site-url: https://nishanmudalige.github.io/STA258_Tutorials/index.html
   navbar:
     left:
       - text: "Home"
-        href: https://nishanmudalige.github.io/STA258_Tutorials/
+        href: https://nishanmudalige.github.io/STA258_Tutorials/index.html
       - text: "Tutorials"
         menu:
         - text: "Tutorial 1"

@@ -1,8 +1,3 @@
-.body {
-  padding: 0;
-  margin: 0;
-}
-
 /* Keep the navbar/dropdown above all page content */
 .header, .navbar, .navbar .dropdown-menu, .headroom {
   position: relative;
