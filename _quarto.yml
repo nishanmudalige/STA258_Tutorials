@@ -6,6 +6,7 @@ website:
   title: "Course Tutorials"
   site-url: https://nishanmudalige.github.io/STA258_Tutorials/
   navbar:
+    pinned: true
     left:
       - text: "Home"
         href: https://nishanmudalige.github.io/STA258_Tutorials/
