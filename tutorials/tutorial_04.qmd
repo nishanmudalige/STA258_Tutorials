@@ -141,7 +141,7 @@ else fail("Recheck mean, n, z*, and the known σ.")
 PlantGrowth is a dataset that contains results from an experiment to compare yields (as measured by dried weight of plants) obtained under a control and two different treatment conditions. Print the 95% two-sided t* using PlantGrowth's weight column when $\alpha = 0.05$. 
 
 ::: {.decor-img}
-![](./plant_growth.jpg){alt="" aria-hidden="true"}
+![](./svgs/plant_growth.jpg){alt="" aria-hidden="true"}
 :::
 
 ::: {.callout-note title="Preview"}
@@ -271,7 +271,7 @@ else fail("Check df and make sure it's two-sided 95%.")
 The dataset used here is river lengths, which gives the lengths (in miles) of 141 “major” rivers in North America, as compiled by the US Geological Survey. Assume river lengths (miles) have known population SD σ = 300. Build a 95% CI for the true mean river length using rivers whe $\alpha = 0.05$.
 
 ::: {.decor-img}
-![](./river.jpg){alt="" aria-hidden="true"}
+![](./svgs/river.jpg){alt="" aria-hidden="true"}
 :::
 
 ::: {.callout-note title="Preview"}
@@ -547,7 +547,7 @@ else fail("Check df=n−1 and chi-square cutoffs (0.025 & 0.975).")
 HairEyeColor is a built-in contingency table of Hair × Eye × Gender of Statistics students with counts. Treat each person as a trial and estimate the true proportion with Brown eyes. Construct a 95% Z-interval for the population proportion p. Print c(lower, upper).
 
 ::: {.decor-img}
-![](./hair_eye_color.jpg){alt="" aria-hidden="true"}
+![](./svgs/hair_eye_color.jpg){alt="" aria-hidden="true"}
 :::
 
 ::: {.callout-note title="Info"}

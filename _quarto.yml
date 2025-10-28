@@ -28,8 +28,11 @@ website:
           href: practice/prac_01.qmd
       
 format:
+  html:
+      theme: 
+        light: lux
+        dark: cyborg
+      css: design.css
   live-html:
-    theme: Lux
-    css: design.css
     toc: false
 

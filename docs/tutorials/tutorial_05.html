@@ -74,7 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-bb49951d50c4a7e8d052f44ae1610a34.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-991b1886d3c685c7aa2b62b80640c7af.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -137,7 +137,6 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="../design.css">
 </head>
 
 <body class="nav-fixed fullcontent quarto-light">
@@ -202,6 +201,7 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -247,7 +247,7 @@ eyJhdHRyIjp7ImVkaXQiOmZhbHNlLCJldmFsIjp0cnVlLCJvdXRwdXQiOmZhbHNlfSwiY29kZSI6Indl
 <h2 class="anchored" data-anchor-id="q1-pooled-equal-variances-reviews">Q1 — Pooled (Equal Variances): Reviews</h2>
 <p>Using the local file recipe_reviews.csv, compute a 95% two-sided confidence interval for <span class="math display">\[ \mu_{FiveStar} - \mu_{NotFive}\]</span> where the outcome is best_score and the groups are stars == 5 (FiveStar) vs stars != 5 (NotFive). Read the CSV with read.csv(“recipe_reviews.csv”), build the two groups, and print the 2-element vector c(lower, upper).</p>
 <div class="decor-img">
-<p><img src="./food_review.jpg" class="img-fluid" alt="" aria-hidden="true"></p>
+<p><img src="./svgs/food_review.svg" class="img-fluid" alt="" aria-hidden="true"></p>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title="Info">
 <div class="callout-header d-flex align-content-center">
@@ -353,7 +353,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InEx
 <h2 class="anchored" data-anchor-id="q2-pooled-equal-variances-using-t.test">Q2 — Pooled (Equal Variances): Using t.test()</h2>
 <p>Compute a 90% two-sided confidence interval for <span class="math display">\[ \mu_{Adelie} - \mu_{Gentoo}\]</span> for bill length (mm) using pooled variances. Use the local file penguins.csv and only the two species Adelie and Gentoo.</p>
 <div class="decor-img">
-<p><img src="./penguin_species.jpg" class="img-fluid" alt="" aria-hidden="true"></p>
+<p><img src="./svgs/penguin_species.jpg" class="img-fluid" alt="" aria-hidden="true"></p>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title="Info">
 <div class="callout-header d-flex align-content-center">
