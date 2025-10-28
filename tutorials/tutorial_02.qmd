@@ -107,6 +107,10 @@ Compute Mean, Variance and Standard Deviation of airquality dataset's Temp colum
 Mean, variance, and standard deviation summarize center and spread. Variance and SD are in squared and original units respectively. Real-world data often has NAs; make sure your summary ignores them appropriately.
 :::
 
+::: {.decor-img}
+![](./air_quality.jpg){alt="" aria-hidden="true"}
+:::
+
 ::: {.callout-note title="Preview"}
 Run the code below to see a preview of the dataset.
 ```{webr}
@@ -220,6 +224,10 @@ gradethis::grade_this({
 ## Q4 — ggplot Boxplot ordered by median (ChickWeight)
 
 Now, we are moving on to the ChickWeight dataset which has data from an experiment on the effect of diet on early growth of chicks. Return a ggplot object that boxplots weight by Diet, with Diet reordered by the median weight. Fill in the blanks.
+
+::: {.decor-img}
+![](./chick_weight.jpg){alt="" aria-hidden="true"}
+:::
 
 ::: {.callout-note title="Info"}
 You can reorder categories by a statistic (like the median) right inside aes() to make comparisons meaningful. In ggplot2, this is commonly done with reorder() (or forcats helpers). The layer for boxplots is geom_boxplot().

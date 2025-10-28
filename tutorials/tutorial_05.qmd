@@ -39,6 +39,16 @@ Run this code chunk to get a glimpse of the dataset. Feel free to change the val
 #| echo: true
 df <- read.csv("recipe_reviews.csv")
 head(df[, c("recipe_name","stars","best_score","thumbs_up","thumbs_down","user_reputation")], 10)
+df2 <- subset(df, is.finite(best_score) & is.finite(stars))
+df2$group <- ifelse(df2$stars == 5, "FiveStar", "NotFive")
+set.seed(258)
+grp_idx <- split(seq_len(nrow(df2)), df2$group)
+idx <- unlist(lapply(grp_idx, function(i) sample(i, min(200, length(i)))))
+df3 <- df2[idx, ]
+ylim <- quantile(df3$best_score, c(.01,.99), na.rm = TRUE)
+par(mar = c(4,4,1,1))
+boxplot(best_score ~ group, data = df3, notch = FALSE, outline = FALSE, ylim = ylim,
+ylab = "best_score", xlab = "Group")
 ```
 :::
 
@@ -160,6 +170,14 @@ Run this code chunk to get a glimpse of the dataset. Feel free to change the val
 #| echo: true
 df <- read.csv("penguins.csv")
 head(df[, c("species","bill_length_mm","island","sex")], 8)
+df2 <- subset(df, species %in% c("Adelie","Gentoo") & is.finite(bill_length_mm))
+set.seed(258)
+grp_idx <- split(seq_len(nrow(df2)), df2$species)
+idx <- unlist(lapply(grp_idx, function(i) sample(i, min(120, length(i)))))
+df3 <- df2[idx, ]
+par(mar = c(4,4,1,1))
+boxplot(bill_length_mm ~ species, data = df3, notch = FALSE, outline = FALSE,
+ylab = "bill_length_mm", xlab = "Species")
 ```
 :::
 ::: {.callout-note title="Info"}
@@ -275,6 +293,14 @@ Run this code chunk to get a glimpse of the dataset. Feel free to change the val
 #| echo: true
 df <- read.csv("penguins.csv")
 head(df[, c("species","bill_length_mm","island","sex")], 8)
+df2 <- subset(df, species %in% c("Chinstrap","Gentoo") & is.finite(flipper_length_mm))
+set.seed(258)
+grp_idx <- split(seq_len(nrow(df2)), df2$species)
+idx <- unlist(lapply(grp_idx, function(i) sample(i, min(120, length(i)))))
+df3 <- df2[idx, ]
+par(mar = c(4,4,1,1))
+boxplot(flipper_length_mm ~ species, data = df3, notch = FALSE, outline = FALSE,
+ylab = "flipper_length_mm", xlab = "Species")
 ```
 :::
 
@@ -355,7 +381,16 @@ Run this code chunk to get a glimpse of the dataset. Feel free to change the val
 #| echo: true
 df <- read.csv("recipe_reviews.csv")
 head(df[, c("stars","thumbs_up","thumbs_down","best_score")], 10)
-
+df2 <- subset(df, is.finite(thumbs_up) & is.finite(thumbs_down) & is.finite(stars))
+df2$group <- ifelse(df2$stars == 5, "FiveStar", "NotFive")
+df2$success <- as.integer(df2$thumbs_up > df2$thumbs_down)
+set.seed(258)
+grp_idx <- split(seq_len(nrow(df2)), df2$group)
+idx <- unlist(lapply(grp_idx, function(i) sample(i, min(400, length(i)))))
+df3 <- df2[idx, ]
+p <- tapply(df3$success, df3$group, function(x) mean(x, na.rm = TRUE))
+par(mar = c(4,4,1,1))
+barplot(p, ylim = c(0,1), ylab = "Proportion (thumbs_up > thumbs_down)", xlab = "Group")
 ```
 :::
 
@@ -456,6 +491,14 @@ In penguins.csv, compare the male proportion between Chinstrap and Gentoo. Compu
 #| echo: true
 df <- read.csv("penguins.csv")
 head(df[, c("species","sex","island")], 10)
+df2 <- subset(df, species %in% c("Chinstrap","Gentoo") & !is.na(sex))
+set.seed(258)
+grp_idx <- split(seq_len(nrow(df2)), df2$species)
+idx <- unlist(lapply(grp_idx, function(i) sample(i, min(200, length(i)))))
+df3 <- df2[idx, ]
+p <- with(df3, tapply(sex == "male", species, function(x) mean(x, na.rm = TRUE)))
+par(mar = c(4,4,1,1))
+barplot(p, ylim = c(0,1), ylab = "Proportion male", xlab = "Species")
 
 ```
 :::
@@ -543,6 +586,14 @@ Using penguins.csv, compare the proportion of penguins on Biscoe island between 
 #| echo: true
 df <- read.csv("penguins.csv")
 head(df[, c("species","sex","island")], 10)
+df2 <- subset(df, species %in% c("Adelie","Gentoo") & !is.na(island))
+set.seed(258)
+grp_idx <- split(seq_len(nrow(df2)), df2$species)
+idx <- unlist(lapply(grp_idx, function(i) sample(i, min(200, length(i)))))
+df3 <- df2[idx, ]
+p <- with(df3, tapply(island == "Biscoe", species, function(x) mean(x, na.rm = TRUE)))
+par(mar = c(4,4,1,1))
+barplot(p, ylim = c(0,1), ylab = 'Proportion on "Biscoe"', xlab = "Species")
 
 ```
 :::
@@ -612,6 +663,16 @@ Here is a glimpse of the dataset:
 #| echo: true
 df <- read.csv("recipe_reviews.csv")
 head(df[, c("stars","best_score")], 10)
+df2 <- subset(df, is.finite(best_score) & is.finite(stars))
+df2$group <- ifelse(df2$stars == 5, "FiveStar", "NotFive")
+set.seed(258)
+grp_idx <- split(seq_len(nrow(df2)), df2$group)
+idx <- unlist(lapply(grp_idx, function(i) sample(i, min(200, length(i)))))
+df3 <- df2[idx, ]
+ylim <- quantile(df3$best_score, c(.01, .99), na.rm = TRUE)
+par(mar = c(4,4,1,1))
+boxplot(best_score ~ group, data = df3, notch = FALSE, outline = FALSE, ylim = ylim,
+ylab = "best_score", xlab = "Group")
 
 ```
 :::
@@ -730,6 +791,14 @@ vt$conf.int   # 95% CI for σ_FiveStar^2 / σ_NotFive^2
 #| echo: true
 df <- read.csv("penguins.csv")
 head(df[, c("species","bill_length_mm")], 10)
+df2 <- subset(df, species %in% c("Adelie","Gentoo") & is.finite(bill_length_mm))
+set.seed(258)
+grp_idx <- split(seq_len(nrow(df2)), df2$species)
+idx <- unlist(lapply(grp_idx, function(i) sample(i, min(120, length(i)))))
+df3 <- df2[idx, ]
+par(mar = c(4,4,1,1))
+boxplot(bill_length_mm ~ species, data = df3, notch = FALSE, outline = FALSE,
+ylab = "bill_length_mm", xlab = "Species")
 
 ```
 :::

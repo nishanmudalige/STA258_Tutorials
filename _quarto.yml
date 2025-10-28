@@ -4,10 +4,11 @@ project:
 
 website:
   title: "Course Tutorials"
+  site-url: https://nishanmudalige.github.io/STA258_Tutorials/
   navbar:
     left:
       - text: "Home"
-        href: index.qmd
+        href: https://nishanmudalige.github.io/STA258_Tutorials/
       - text: "Tutorials"
         menu:
         - text: "Tutorial 1"
@@ -25,13 +26,12 @@ website:
         menu:
         - text: "Practical 1"
           href: practice/prac_01.qmd
-        - text: "Practical 2"
-          href: practice/prac_02.qmd
-        - text: "Practical 3"
-          href: practice/prac_03.qmd
+      
 format:
   html:
+    theme: cosmo
     css: design.css
+    title-block-banner: true
   live-html:
     toc: false
 

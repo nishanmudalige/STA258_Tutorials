@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.24">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -67,15 +67,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-ff63373b1067ca6f91cf1456aa1f00a2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-991b1886d3c685c7aa2b62b80640c7af.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -122,7 +121,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+      if (mathElements[i].tagName == "SPAN") {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -147,8 +146,6 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Course Tutorials</span>
     </a>
@@ -160,7 +157,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
+    <a class="nav-link" href="https://nishanmudalige.github.io/STA258_Tutorials/"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -198,14 +195,6 @@ window.Quarto = {
         <li>
     <a class="dropdown-item" href="../practice/prac_01.html">
  <span class="dropdown-text">Practical 1</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../practice/prac_02.qmd">
- <span class="dropdown-text">Practical 2</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../practice/prac_03.qmd">
- <span class="dropdown-text">Practical 3</span></a>
   </li>  
     </ul>
   </li>
@@ -265,7 +254,7 @@ eyJhdHRyIjp7ImVkaXQiOmZhbHNlLCJldmFsIjp0cnVlLCJvdXRwdXQiOmZhbHNlfSwiY29kZSI6Indl
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Info
+Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -280,7 +269,7 @@ eyJhdHRyIjp7ImVkaXQiOmZhbHNlLCJldmFsIjp0cnVlLCJvdXRwdXQiOmZhbHNlfSwiY29kZSI6Indl
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Preview
+Preview
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -292,7 +281,7 @@ eyJhdHRyIjp7ImVkaXQiOmZhbHNlLCJldmFsIjp0cnVlLCJvdXRwdXQiOmZhbHNlfSwiY29kZSI6Indl
 
 </div>
 <script type="webr-2-contents">
-eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0gcmVhZC5jc3YoXCJyZWNpcGVfcmV2aWV3cy5jc3ZcIilcbmhlYWQoZGZbLCBjKFwicmVjaXBlX25hbWVcIixcInN0YXJzXCIsXCJiZXN0X3Njb3JlXCIsXCJ0aHVtYnNfdXBcIixcInRodW1ic19kb3duXCIsXCJ1c2VyX3JlcHV0YXRpb25cIildLCAxMCkifQ==
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0gcmVhZC5jc3YoXCJyZWNpcGVfcmV2aWV3cy5jc3ZcIilcbmhlYWQoZGZbLCBjKFwicmVjaXBlX25hbWVcIixcInN0YXJzXCIsXCJiZXN0X3Njb3JlXCIsXCJ0aHVtYnNfdXBcIixcInRodW1ic19kb3duXCIsXCJ1c2VyX3JlcHV0YXRpb25cIildLCAxMClcbmRmMiA8LSBzdWJzZXQoZGYsIGlzLmZpbml0ZShiZXN0X3Njb3JlKSAmIGlzLmZpbml0ZShzdGFycykpXG5kZjIkZ3JvdXAgPC0gaWZlbHNlKGRmMiRzdGFycyA9PSA1LCBcIkZpdmVTdGFyXCIsIFwiTm90Rml2ZVwiKVxuc2V0LnNlZWQoMjU4KVxuZ3JwX2lkeCA8LSBzcGxpdChzZXFfbGVuKG5yb3coZGYyKSksIGRmMiRncm91cClcbmlkeCA8LSB1bmxpc3QobGFwcGx5KGdycF9pZHgsIGZ1bmN0aW9uKGkpIHNhbXBsZShpLCBtaW4oMjAwLCBsZW5ndGgoaSkpKSkpXG5kZjMgPC0gZGYyW2lkeCwgXVxueWxpbSA8LSBxdWFudGlsZShkZjMkYmVzdF9zY29yZSwgYyguMDEsLjk5KSwgbmEucm0gPSBUUlVFKVxucGFyKG1hciA9IGMoNCw0LDEsMSkpXG5ib3hwbG90KGJlc3Rfc2NvcmUgfiBncm91cCwgZGF0YSA9IGRmMywgbm90Y2ggPSBGQUxTRSwgb3V0bGluZSA9IEZBTFNFLCB5bGltID0geWxpbSxcbnlsYWIgPSBcImJlc3Rfc2NvcmVcIiwgeGxhYiA9IFwiR3JvdXBcIikifQ==
 </script>
 </div>
 </div>
@@ -332,7 +321,7 @@ se &lt;- sp * sqrt(1/n1 + 1/n2)
 est &lt;- m1 - m2
 
 c(est - tstar*se, est + tstar*se)</code>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-6-1"><a href="#interpolate-6-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"recipe_reviews.csv"</span>)</span>
+<div class="sourceCode cell-code" id="interpolate-6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-6-1"><a href="#interpolate-6-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"recipe_reviews.csv"</span>)</span>
 <span id="interpolate-6-2"><a href="#interpolate-6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-6-3"><a href="#interpolate-6-3" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, stars <span class="sc">==</span> <span class="dv">5</span>)<span class="sc">$</span>best_score</span>
 <span id="interpolate-6-4"><a href="#interpolate-6-4" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, stars <span class="sc">!=</span> <span class="dv">5</span>)<span class="sc">$</span>best_score</span>
@@ -349,7 +338,7 @@ c(est - tstar*se, est + tstar*se)</code>
 <span id="interpolate-6-15"><a href="#interpolate-6-15" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> sp <span class="sc">*</span> <span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">/</span>n1 <span class="sc">+</span> <span class="dv">1</span><span class="sc">/</span>n2)</span>
 <span id="interpolate-6-16"><a href="#interpolate-6-16" aria-hidden="true" tabindex="-1"></a>est <span class="ot">&lt;-</span> m1 <span class="sc">-</span> m2</span>
 <span id="interpolate-6-17"><a href="#interpolate-6-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-6-18"><a href="#interpolate-6-18" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(est <span class="sc">-</span> tstar<span class="sc">*</span>se, est <span class="sc">+</span> tstar<span class="sc">*</span>se)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="interpolate-6-18"><a href="#interpolate-6-18" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(est <span class="sc">-</span> tstar<span class="sc">*</span>se, est <span class="sc">+</span> tstar<span class="sc">*</span>se)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -371,7 +360,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InEx
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Info
+Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -384,7 +373,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InEx
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Preview
+Preview
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -395,7 +384,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InEx
 
 </div>
 <script type="webr-8-contents">
-eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0gcmVhZC5jc3YoXCJwZW5ndWlucy5jc3ZcIilcbmhlYWQoZGZbLCBjKFwic3BlY2llc1wiLFwiYmlsbF9sZW5ndGhfbW1cIixcImlzbGFuZFwiLFwic2V4XCIpXSwgOCkifQ==
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0gcmVhZC5jc3YoXCJwZW5ndWlucy5jc3ZcIilcbmhlYWQoZGZbLCBjKFwic3BlY2llc1wiLFwiYmlsbF9sZW5ndGhfbW1cIixcImlzbGFuZFwiLFwic2V4XCIpXSwgOClcbmRmMiA8LSBzdWJzZXQoZGYsIHNwZWNpZXMgJWluJSBjKFwiQWRlbGllXCIsXCJHZW50b29cIikgJiBpcy5maW5pdGUoYmlsbF9sZW5ndGhfbW0pKVxuc2V0LnNlZWQoMjU4KVxuZ3JwX2lkeCA8LSBzcGxpdChzZXFfbGVuKG5yb3coZGYyKSksIGRmMiRzcGVjaWVzKVxuaWR4IDwtIHVubGlzdChsYXBwbHkoZ3JwX2lkeCwgZnVuY3Rpb24oaSkgc2FtcGxlKGksIG1pbigxMjAsIGxlbmd0aChpKSkpKSlcbmRmMyA8LSBkZjJbaWR4LCBdXG5wYXIobWFyID0gYyg0LDQsMSwxKSlcbmJveHBsb3QoYmlsbF9sZW5ndGhfbW0gfiBzcGVjaWVzLCBkYXRhID0gZGYzLCBub3RjaCA9IEZBTFNFLCBvdXRsaW5lID0gRkFMU0UsXG55bGFiID0gXCJiaWxsX2xlbmd0aF9tbVwiLCB4bGFiID0gXCJTcGVjaWVzXCIpIn0=
 </script>
 </div>
 </div>
@@ -407,7 +396,7 @@ eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0g
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Info
+Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -441,7 +430,7 @@ df$yield &lt;- df$bill_length_mm
 
 tt &lt;- t.test(yield ~ method, data = df, var.equal = TRUE, conf.level = 0.90)
 tt$conf.int</code>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-12-1"><a href="#interpolate-12-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"penguins.csv"</span>)</span>
+<div class="sourceCode cell-code" id="interpolate-12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-12-1"><a href="#interpolate-12-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"penguins.csv"</span>)</span>
 <span id="interpolate-12-2"><a href="#interpolate-12-2" aria-hidden="true" tabindex="-1"></a>keep <span class="ot">&lt;-</span> df<span class="sc">$</span>species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Adelie"</span>,<span class="st">"Gentoo"</span>)</span>
 <span id="interpolate-12-3"><a href="#interpolate-12-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, keep <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(bill_length_mm))</span>
 <span id="interpolate-12-4"><a href="#interpolate-12-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -449,7 +438,7 @@ tt$conf.int</code>
 <span id="interpolate-12-6"><a href="#interpolate-12-6" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>yield <span class="ot">&lt;-</span> df<span class="sc">$</span>bill_length_mm</span>
 <span id="interpolate-12-7"><a href="#interpolate-12-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-12-8"><a href="#interpolate-12-8" aria-hidden="true" tabindex="-1"></a>tt <span class="ot">&lt;-</span> <span class="fu">t.test</span>(yield <span class="sc">~</span> method, <span class="at">data =</span> df, <span class="at">var.equal =</span> <span class="cn">TRUE</span>, <span class="at">conf.level =</span> <span class="fl">0.90</span>)</span>
-<span id="interpolate-12-9"><a href="#interpolate-12-9" aria-hidden="true" tabindex="-1"></a>tt<span class="sc">$</span>conf.int</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="interpolate-12-9"><a href="#interpolate-12-9" aria-hidden="true" tabindex="-1"></a>tt<span class="sc">$</span>conf.int</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -468,7 +457,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InEy
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Info
+Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -481,7 +470,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InEy
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Preview
+Preview
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -492,7 +481,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InEy
 
 </div>
 <script type="webr-14-contents">
-eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0gcmVhZC5jc3YoXCJwZW5ndWlucy5jc3ZcIilcbmhlYWQoZGZbLCBjKFwic3BlY2llc1wiLFwiYmlsbF9sZW5ndGhfbW1cIixcImlzbGFuZFwiLFwic2V4XCIpXSwgOCkifQ==
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0gcmVhZC5jc3YoXCJwZW5ndWlucy5jc3ZcIilcbmhlYWQoZGZbLCBjKFwic3BlY2llc1wiLFwiYmlsbF9sZW5ndGhfbW1cIixcImlzbGFuZFwiLFwic2V4XCIpXSwgOClcbmRmMiA8LSBzdWJzZXQoZGYsIHNwZWNpZXMgJWluJSBjKFwiQ2hpbnN0cmFwXCIsXCJHZW50b29cIikgJiBpcy5maW5pdGUoZmxpcHBlcl9sZW5ndGhfbW0pKVxuc2V0LnNlZWQoMjU4KVxuZ3JwX2lkeCA8LSBzcGxpdChzZXFfbGVuKG5yb3coZGYyKSksIGRmMiRzcGVjaWVzKVxuaWR4IDwtIHVubGlzdChsYXBwbHkoZ3JwX2lkeCwgZnVuY3Rpb24oaSkgc2FtcGxlKGksIG1pbigxMjAsIGxlbmd0aChpKSkpKSlcbmRmMyA8LSBkZjJbaWR4LCBdXG5wYXIobWFyID0gYyg0LDQsMSwxKSlcbmJveHBsb3QoZmxpcHBlcl9sZW5ndGhfbW0gfiBzcGVjaWVzLCBkYXRhID0gZGYzLCBub3RjaCA9IEZBTFNFLCBvdXRsaW5lID0gRkFMU0UsXG55bGFiID0gXCJmbGlwcGVyX2xlbmd0aF9tbVwiLCB4bGFiID0gXCJTcGVjaWVzXCIpIn0=
 </script>
 </div>
 </div>
@@ -525,7 +514,7 @@ df$y &lt;- df$flipper_length_mm
 
 tt &lt;- t.test(y ~ method, data = df, conf.level = 0.80) # Welch by default
 tt$conf.int</code>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-18-1"><a href="#interpolate-18-1" aria-hidden="true" tabindex="-1"></a></span>
+<div class="sourceCode cell-code" id="interpolate-18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-18-1"><a href="#interpolate-18-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-18-2"><a href="#interpolate-18-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"penguins.csv"</span>)</span>
 <span id="interpolate-18-3"><a href="#interpolate-18-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-18-4"><a href="#interpolate-18-4" aria-hidden="true" tabindex="-1"></a>keep <span class="ot">&lt;-</span> df<span class="sc">$</span>species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span>,<span class="st">"Gentoo"</span>)</span>
@@ -535,7 +524,7 @@ tt$conf.int</code>
 <span id="interpolate-18-8"><a href="#interpolate-18-8" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>y <span class="ot">&lt;-</span> df<span class="sc">$</span>flipper_length_mm</span>
 <span id="interpolate-18-9"><a href="#interpolate-18-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-18-10"><a href="#interpolate-18-10" aria-hidden="true" tabindex="-1"></a>tt <span class="ot">&lt;-</span> <span class="fu">t.test</span>(y <span class="sc">~</span> method, <span class="at">data =</span> df, <span class="at">conf.level =</span> <span class="fl">0.80</span>) <span class="co"># Welch by default</span></span>
-<span id="interpolate-18-11"><a href="#interpolate-18-11" aria-hidden="true" tabindex="-1"></a>tt<span class="sc">$</span>conf.int</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="interpolate-18-11"><a href="#interpolate-18-11" aria-hidden="true" tabindex="-1"></a>tt<span class="sc">$</span>conf.int</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -554,7 +543,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE0
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Preview
+Preview
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -565,7 +554,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE0
 
 </div>
 <script type="webr-20-contents">
-eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0gcmVhZC5jc3YoXCJyZWNpcGVfcmV2aWV3cy5jc3ZcIilcbmhlYWQoZGZbLCBjKFwic3RhcnNcIixcInRodW1ic191cFwiLFwidGh1bWJzX2Rvd25cIixcImJlc3Rfc2NvcmVcIildLCAxMCkifQ==
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0gcmVhZC5jc3YoXCJyZWNpcGVfcmV2aWV3cy5jc3ZcIilcbmhlYWQoZGZbLCBjKFwic3RhcnNcIixcInRodW1ic191cFwiLFwidGh1bWJzX2Rvd25cIixcImJlc3Rfc2NvcmVcIildLCAxMClcbmRmMiA8LSBzdWJzZXQoZGYsIGlzLmZpbml0ZSh0aHVtYnNfdXApICYgaXMuZmluaXRlKHRodW1ic19kb3duKSAmIGlzLmZpbml0ZShzdGFycykpXG5kZjIkZ3JvdXAgPC0gaWZlbHNlKGRmMiRzdGFycyA9PSA1LCBcIkZpdmVTdGFyXCIsIFwiTm90Rml2ZVwiKVxuZGYyJHN1Y2Nlc3MgPC0gYXMuaW50ZWdlcihkZjIkdGh1bWJzX3VwID4gZGYyJHRodW1ic19kb3duKVxuc2V0LnNlZWQoMjU4KVxuZ3JwX2lkeCA8LSBzcGxpdChzZXFfbGVuKG5yb3coZGYyKSksIGRmMiRncm91cClcbmlkeCA8LSB1bmxpc3QobGFwcGx5KGdycF9pZHgsIGZ1bmN0aW9uKGkpIHNhbXBsZShpLCBtaW4oNDAwLCBsZW5ndGgoaSkpKSkpXG5kZjMgPC0gZGYyW2lkeCwgXVxucCA8LSB0YXBwbHkoZGYzJHN1Y2Nlc3MsIGRmMyRncm91cCwgZnVuY3Rpb24oeCkgbWVhbih4LCBuYS5ybSA9IFRSVUUpKVxucGFyKG1hciA9IGMoNCw0LDEsMSkpXG5iYXJwbG90KHAsIHlsaW0gPSBjKDAsMSksIHlsYWIgPSBcIlByb3BvcnRpb24gKHRodW1ic191cCA+IHRodW1ic19kb3duKVwiLCB4bGFiID0gXCJHcm91cFwiKSJ9
 </script>
 </div>
 </div>
@@ -577,7 +566,7 @@ eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0g
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Info
+Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -612,7 +601,7 @@ p1 &lt;- mean(count1, na.rm = TRUE); p2 &lt;- mean(count2, na.rm = TRUE)
 se &lt;- sqrt(p1*(1-p1)/n1 + p2*(1-p2)/n2)
 z &lt;- qnorm(0.975); 
 (p1 - p2) + c(-1,1)*z*se</code>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-24-1"><a href="#interpolate-24-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"recipe_reviews.csv"</span>)</span>
+<div class="sourceCode cell-code" id="interpolate-24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-24-1"><a href="#interpolate-24-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"recipe_reviews.csv"</span>)</span>
 <span id="interpolate-24-2"><a href="#interpolate-24-2" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, stars <span class="sc">==</span> <span class="dv">5</span>) <span class="co">#segregating the dataset</span></span>
 <span id="interpolate-24-3"><a href="#interpolate-24-3" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, stars <span class="sc">!=</span> <span class="dv">5</span>)</span>
 <span id="interpolate-24-4"><a href="#interpolate-24-4" aria-hidden="true" tabindex="-1"></a>count1 <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(g1<span class="sc">$</span>thumbs_up <span class="sc">&gt;</span> g1<span class="sc">$</span>thumbs_down)</span>
@@ -621,7 +610,7 @@ z &lt;- qnorm(0.975);
 <span id="interpolate-24-7"><a href="#interpolate-24-7" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(count1, <span class="at">na.rm =</span> <span class="cn">TRUE</span>); p2 <span class="ot">&lt;-</span> <span class="fu">mean</span>(count2, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
 <span id="interpolate-24-8"><a href="#interpolate-24-8" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(p1<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>p1)<span class="sc">/</span>n1 <span class="sc">+</span> p2<span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span>p2)<span class="sc">/</span>n2)</span>
 <span id="interpolate-24-9"><a href="#interpolate-24-9" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>); </span>
-<span id="interpolate-24-10"><a href="#interpolate-24-10" aria-hidden="true" tabindex="-1"></a>(p1 <span class="sc">-</span> p2) <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span>z<span class="sc">*</span>se</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="interpolate-24-10"><a href="#interpolate-24-10" aria-hidden="true" tabindex="-1"></a>(p1 <span class="sc">-</span> p2) <span class="sc">+</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>)<span class="sc">*</span>z<span class="sc">*</span>se</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -640,7 +629,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InEx
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Preview
+Preview
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -650,7 +639,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InEx
 
 </div>
 <script type="webr-26-contents">
-eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0gcmVhZC5jc3YoXCJwZW5ndWlucy5jc3ZcIilcbmhlYWQoZGZbLCBjKFwic3BlY2llc1wiLFwic2V4XCIsXCJpc2xhbmRcIildLCAxMCkifQ==
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0gcmVhZC5jc3YoXCJwZW5ndWlucy5jc3ZcIilcbmhlYWQoZGZbLCBjKFwic3BlY2llc1wiLFwic2V4XCIsXCJpc2xhbmRcIildLCAxMClcbmRmMiA8LSBzdWJzZXQoZGYsIHNwZWNpZXMgJWluJSBjKFwiQ2hpbnN0cmFwXCIsXCJHZW50b29cIikgJiAhaXMubmEoc2V4KSlcbnNldC5zZWVkKDI1OClcbmdycF9pZHggPC0gc3BsaXQoc2VxX2xlbihucm93KGRmMikpLCBkZjIkc3BlY2llcylcbmlkeCA8LSB1bmxpc3QobGFwcGx5KGdycF9pZHgsIGZ1bmN0aW9uKGkpIHNhbXBsZShpLCBtaW4oMjAwLCBsZW5ndGgoaSkpKSkpXG5kZjMgPC0gZGYyW2lkeCwgXVxucCA8LSB3aXRoKGRmMywgdGFwcGx5KHNleCA9PSBcIm1hbGVcIiwgc3BlY2llcywgZnVuY3Rpb24oeCkgbWVhbih4LCBuYS5ybSA9IFRSVUUpKSlcbnBhcihtYXIgPSBjKDQsNCwxLDEpKVxuYmFycGxvdChwLCB5bGltID0gYygwLDEpLCB5bGFiID0gXCJQcm9wb3J0aW9uIG1hbGVcIiwgeGxhYiA9IFwiU3BlY2llc1wiKSJ9
 </script>
 </div>
 </div>
@@ -662,7 +651,7 @@ eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0g
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Info
+Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -702,13 +691,13 @@ n1 &lt;- sum(df$species=="Chinstrap")
 x2 &lt;- sum(df$species=="Gentoo" &amp; df$sex=="male")
 n2 &lt;- sum(df$species=="Gentoo")
 prop.test(x = c(x1, x2), n = c(n1, n2), conf.level = 0.90, correct = FALSE)$conf.int</code>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-31-1"><a href="#interpolate-31-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"penguins.csv"</span>)</span>
+<div class="sourceCode cell-code" id="interpolate-31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-31-1"><a href="#interpolate-31-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"penguins.csv"</span>)</span>
 <span id="interpolate-31-2"><a href="#interpolate-31-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Chinstrap"</span>,<span class="st">"Gentoo"</span>) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(sex))</span>
 <span id="interpolate-31-3"><a href="#interpolate-31-3" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">sum</span>(df<span class="sc">$</span>species<span class="sc">==</span><span class="st">"Chinstrap"</span> <span class="sc">&amp;</span> df<span class="sc">$</span>sex<span class="sc">==</span><span class="st">"male"</span>)</span>
 <span id="interpolate-31-4"><a href="#interpolate-31-4" aria-hidden="true" tabindex="-1"></a>n1 <span class="ot">&lt;-</span> <span class="fu">sum</span>(df<span class="sc">$</span>species<span class="sc">==</span><span class="st">"Chinstrap"</span>)</span>
 <span id="interpolate-31-5"><a href="#interpolate-31-5" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">sum</span>(df<span class="sc">$</span>species<span class="sc">==</span><span class="st">"Gentoo"</span> <span class="sc">&amp;</span> df<span class="sc">$</span>sex<span class="sc">==</span><span class="st">"male"</span>)</span>
 <span id="interpolate-31-6"><a href="#interpolate-31-6" aria-hidden="true" tabindex="-1"></a>n2 <span class="ot">&lt;-</span> <span class="fu">sum</span>(df<span class="sc">$</span>species<span class="sc">==</span><span class="st">"Gentoo"</span>)</span>
-<span id="interpolate-31-7"><a href="#interpolate-31-7" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="at">x =</span> <span class="fu">c</span>(x1, x2), <span class="at">n =</span> <span class="fu">c</span>(n1, n2), <span class="at">conf.level =</span> <span class="fl">0.90</span>, <span class="at">correct =</span> <span class="cn">FALSE</span>)<span class="sc">$</span>conf.int</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="interpolate-31-7"><a href="#interpolate-31-7" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="at">x =</span> <span class="fu">c</span>(x1, x2), <span class="at">n =</span> <span class="fu">c</span>(n1, n2), <span class="at">conf.level =</span> <span class="fl">0.90</span>, <span class="at">correct =</span> <span class="cn">FALSE</span>)<span class="sc">$</span>conf.int</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -727,7 +716,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InEx
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Preview
+Preview
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -737,7 +726,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InEx
 
 </div>
 <script type="webr-33-contents">
-eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0gcmVhZC5jc3YoXCJwZW5ndWlucy5jc3ZcIilcbmhlYWQoZGZbLCBjKFwic3BlY2llc1wiLFwic2V4XCIsXCJpc2xhbmRcIildLCAxMCkifQ==
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0gcmVhZC5jc3YoXCJwZW5ndWlucy5jc3ZcIilcbmhlYWQoZGZbLCBjKFwic3BlY2llc1wiLFwic2V4XCIsXCJpc2xhbmRcIildLCAxMClcbmRmMiA8LSBzdWJzZXQoZGYsIHNwZWNpZXMgJWluJSBjKFwiQWRlbGllXCIsXCJHZW50b29cIikgJiAhaXMubmEoaXNsYW5kKSlcbnNldC5zZWVkKDI1OClcbmdycF9pZHggPC0gc3BsaXQoc2VxX2xlbihucm93KGRmMikpLCBkZjIkc3BlY2llcylcbmlkeCA8LSB1bmxpc3QobGFwcGx5KGdycF9pZHgsIGZ1bmN0aW9uKGkpIHNhbXBsZShpLCBtaW4oMjAwLCBsZW5ndGgoaSkpKSkpXG5kZjMgPC0gZGYyW2lkeCwgXVxucCA8LSB3aXRoKGRmMywgdGFwcGx5KGlzbGFuZCA9PSBcIkJpc2NvZVwiLCBzcGVjaWVzLCBmdW5jdGlvbih4KSBtZWFuKHgsIG5hLnJtID0gVFJVRSkpKVxucGFyKG1hciA9IGMoNCw0LDEsMSkpXG5iYXJwbG90KHAsIHlsaW0gPSBjKDAsMSksIHlsYWIgPSAnUHJvcG9ydGlvbiBvbiBcIkJpc2NvZVwiJywgeGxhYiA9IFwiU3BlY2llc1wiKSJ9
 </script>
 </div>
 </div>
@@ -764,11 +753,11 @@ sub &lt;- subset(df, species %in% c("Adelie","Gentoo") &amp; !is.na(island))
 x1 &lt;- sum(sub$species=="Adelie" &amp; sub$island=="Biscoe"); n1 &lt;- sum(sub$species=="Adelie")
 x2 &lt;- sum(sub$species=="Gentoo" &amp; sub$island=="Biscoe"); n2 &lt;- sum(sub$species=="Gentoo")
 prop.test(x=c(x1,x2), n=c(n1,n2), conf.level=0.95, correct=FALSE)$conf.int</code>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-37-1"><a href="#interpolate-37-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"penguins.csv"</span>)</span>
+<div class="sourceCode cell-code" id="interpolate-37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-37-1"><a href="#interpolate-37-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"penguins.csv"</span>)</span>
 <span id="interpolate-37-2"><a href="#interpolate-37-2" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Adelie"</span>,<span class="st">"Gentoo"</span>) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(island))</span>
 <span id="interpolate-37-3"><a href="#interpolate-37-3" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">sum</span>(sub<span class="sc">$</span>species<span class="sc">==</span><span class="st">"Adelie"</span> <span class="sc">&amp;</span> sub<span class="sc">$</span>island<span class="sc">==</span><span class="st">"Biscoe"</span>); n1 <span class="ot">&lt;-</span> <span class="fu">sum</span>(sub<span class="sc">$</span>species<span class="sc">==</span><span class="st">"Adelie"</span>)</span>
 <span id="interpolate-37-4"><a href="#interpolate-37-4" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">sum</span>(sub<span class="sc">$</span>species<span class="sc">==</span><span class="st">"Gentoo"</span> <span class="sc">&amp;</span> sub<span class="sc">$</span>island<span class="sc">==</span><span class="st">"Biscoe"</span>); n2 <span class="ot">&lt;-</span> <span class="fu">sum</span>(sub<span class="sc">$</span>species<span class="sc">==</span><span class="st">"Gentoo"</span>)</span>
-<span id="interpolate-37-5"><a href="#interpolate-37-5" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="at">x=</span><span class="fu">c</span>(x1,x2), <span class="at">n=</span><span class="fu">c</span>(n1,n2), <span class="at">conf.level=</span><span class="fl">0.95</span>, <span class="at">correct=</span><span class="cn">FALSE</span>)<span class="sc">$</span>conf.int</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="interpolate-37-5"><a href="#interpolate-37-5" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="at">x=</span><span class="fu">c</span>(x1,x2), <span class="at">n=</span><span class="fu">c</span>(n1,n2), <span class="at">conf.level=</span><span class="fl">0.95</span>, <span class="at">correct=</span><span class="cn">FALSE</span>)<span class="sc">$</span>conf.int</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -787,7 +776,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE1
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Preview
+Preview
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -798,7 +787,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE1
 
 </div>
 <script type="webr-39-contents">
-eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0gcmVhZC5jc3YoXCJyZWNpcGVfcmV2aWV3cy5jc3ZcIilcbmhlYWQoZGZbLCBjKFwic3RhcnNcIixcImJlc3Rfc2NvcmVcIildLCAxMCkifQ==
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0gcmVhZC5jc3YoXCJyZWNpcGVfcmV2aWV3cy5jc3ZcIilcbmhlYWQoZGZbLCBjKFwic3RhcnNcIixcImJlc3Rfc2NvcmVcIildLCAxMClcbmRmMiA8LSBzdWJzZXQoZGYsIGlzLmZpbml0ZShiZXN0X3Njb3JlKSAmIGlzLmZpbml0ZShzdGFycykpXG5kZjIkZ3JvdXAgPC0gaWZlbHNlKGRmMiRzdGFycyA9PSA1LCBcIkZpdmVTdGFyXCIsIFwiTm90Rml2ZVwiKVxuc2V0LnNlZWQoMjU4KVxuZ3JwX2lkeCA8LSBzcGxpdChzZXFfbGVuKG5yb3coZGYyKSksIGRmMiRncm91cClcbmlkeCA8LSB1bmxpc3QobGFwcGx5KGdycF9pZHgsIGZ1bmN0aW9uKGkpIHNhbXBsZShpLCBtaW4oMjAwLCBsZW5ndGgoaSkpKSkpXG5kZjMgPC0gZGYyW2lkeCwgXVxueWxpbSA8LSBxdWFudGlsZShkZjMkYmVzdF9zY29yZSwgYyguMDEsIC45OSksIG5hLnJtID0gVFJVRSlcbnBhcihtYXIgPSBjKDQsNCwxLDEpKVxuYm94cGxvdChiZXN0X3Njb3JlIH4gZ3JvdXAsIGRhdGEgPSBkZjMsIG5vdGNoID0gRkFMU0UsIG91dGxpbmUgPSBGQUxTRSwgeWxpbSA9IHlsaW0sXG55bGFiID0gXCJiZXN0X3Njb3JlXCIsIHhsYWIgPSBcIkdyb3VwXCIpIn0=
 </script>
 </div>
 </div>
@@ -810,7 +799,7 @@ eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0g
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Info
+Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -857,7 +846,7 @@ ratio &lt;- s1/s2
 F_lo &lt;- qf(0.975, df1, df2)
 F_hi &lt;- qf(0.025, df1, df2)
 c(ratio/F_lo, ratio/F_hi)</code>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-43-1"><a href="#interpolate-43-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"recipe_reviews.csv"</span>)</span>
+<div class="sourceCode cell-code" id="interpolate-43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-43-1"><a href="#interpolate-43-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"recipe_reviews.csv"</span>)</span>
 <span id="interpolate-43-2"><a href="#interpolate-43-2" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, stars <span class="sc">==</span> <span class="dv">5</span>)<span class="sc">$</span>best_score</span>
 <span id="interpolate-43-3"><a href="#interpolate-43-3" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, stars <span class="sc">!=</span> <span class="dv">5</span>)<span class="sc">$</span>best_score</span>
 <span id="interpolate-43-4"><a href="#interpolate-43-4" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> x1[<span class="fu">is.finite</span>(x1)]</span>
@@ -871,7 +860,7 @@ c(ratio/F_lo, ratio/F_hi)</code>
 <span id="interpolate-43-12"><a href="#interpolate-43-12" aria-hidden="true" tabindex="-1"></a>ratio <span class="ot">&lt;-</span> s1<span class="sc">/</span>s2</span>
 <span id="interpolate-43-13"><a href="#interpolate-43-13" aria-hidden="true" tabindex="-1"></a>F_lo <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="fl">0.975</span>, df1, df2)</span>
 <span id="interpolate-43-14"><a href="#interpolate-43-14" aria-hidden="true" tabindex="-1"></a>F_hi <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="fl">0.025</span>, df1, df2)</span>
-<span id="interpolate-43-15"><a href="#interpolate-43-15" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(ratio<span class="sc">/</span>F_lo, ratio<span class="sc">/</span>F_hi)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="interpolate-43-15"><a href="#interpolate-43-15" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(ratio<span class="sc">/</span>F_lo, ratio<span class="sc">/</span>F_hi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -890,7 +879,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE3
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Info
+Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -913,7 +902,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiI3RodW1ic191cCB2YXJpYW5j
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Preview
+Preview
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -923,7 +912,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiI3RodW1ic191cCB2YXJpYW5j
 
 </div>
 <script type="webr-46-contents">
-eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0gcmVhZC5jc3YoXCJwZW5ndWlucy5jc3ZcIilcbmhlYWQoZGZbLCBjKFwic3BlY2llc1wiLFwiYmlsbF9sZW5ndGhfbW1cIildLCAxMCkifQ==
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0gcmVhZC5jc3YoXCJwZW5ndWlucy5jc3ZcIilcbmhlYWQoZGZbLCBjKFwic3BlY2llc1wiLFwiYmlsbF9sZW5ndGhfbW1cIildLCAxMClcbmRmMiA8LSBzdWJzZXQoZGYsIHNwZWNpZXMgJWluJSBjKFwiQWRlbGllXCIsXCJHZW50b29cIikgJiBpcy5maW5pdGUoYmlsbF9sZW5ndGhfbW0pKVxuc2V0LnNlZWQoMjU4KVxuZ3JwX2lkeCA8LSBzcGxpdChzZXFfbGVuKG5yb3coZGYyKSksIGRmMiRzcGVjaWVzKVxuaWR4IDwtIHVubGlzdChsYXBwbHkoZ3JwX2lkeCwgZnVuY3Rpb24oaSkgc2FtcGxlKGksIG1pbigxMjAsIGxlbmd0aChpKSkpKSlcbmRmMyA8LSBkZjJbaWR4LCBdXG5wYXIobWFyID0gYyg0LDQsMSwxKSlcbmJveHBsb3QoYmlsbF9sZW5ndGhfbW0gfiBzcGVjaWVzLCBkYXRhID0gZGYzLCBub3RjaCA9IEZBTFNFLCBvdXRsaW5lID0gRkFMU0UsXG55bGFiID0gXCJiaWxsX2xlbmd0aF9tbVwiLCB4bGFiID0gXCJTcGVjaWVzXCIpIn0=
 </script>
 </div>
 </div>
@@ -950,11 +939,11 @@ df &lt;- subset(df, species %in% c("Adelie","Gentoo") &amp; !is.na(bill_length_m
 x &lt;- df$bill_length_mm[df$species=="Adelie"]
 y &lt;- df$bill_length_mm[df$species=="Gentoo"]
 var.test(x, y, conf.level = 0.80)$conf.int</code>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-50-1"><a href="#interpolate-50-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"penguins.csv"</span>)</span>
+<div class="sourceCode cell-code" id="interpolate-50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-50-1"><a href="#interpolate-50-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"penguins.csv"</span>)</span>
 <span id="interpolate-50-2"><a href="#interpolate-50-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, species <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Adelie"</span>,<span class="st">"Gentoo"</span>) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(bill_length_mm))</span>
 <span id="interpolate-50-3"><a href="#interpolate-50-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> df<span class="sc">$</span>bill_length_mm[df<span class="sc">$</span>species<span class="sc">==</span><span class="st">"Adelie"</span>]</span>
 <span id="interpolate-50-4"><a href="#interpolate-50-4" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> df<span class="sc">$</span>bill_length_mm[df<span class="sc">$</span>species<span class="sc">==</span><span class="st">"Gentoo"</span>]</span>
-<span id="interpolate-50-5"><a href="#interpolate-50-5" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(x, y, <span class="at">conf.level =</span> <span class="fl">0.80</span>)<span class="sc">$</span>conf.int</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="interpolate-50-5"><a href="#interpolate-50-5" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(x, y, <span class="at">conf.level =</span> <span class="fl">0.80</span>)<span class="sc">$</span>conf.int</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1047,14 +1036,13 @@ window._ojs.runtime.interpretFromScriptTags();
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
         }
-      }
-      return codeEl.innerText;
+        return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -1069,7 +1057,7 @@ window._ojs.runtime.interpretFromScriptTags();
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/nishanmudalige\.github\.io\/STA258_Tutorials\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

@@ -149,10 +149,22 @@ gradethis::grade_this({
 
 ```
 
-## Q4 — Draw a histogram from `cars` (type the full call) {#q3}
+## Q4 — Draw a histogram from ToothGrowth (type the full call)
 
-Use **exactly one** of these numeric columns and nothing else:\
-dist **or** speed
+Use exactly one of these numeric columns and nothing else:
+len or dose
+
+::: {.decor-img}
+![](./toothgrowth.jpg){alt="" aria-hidden="true"}
+:::
+::: {.callout-note title="Preview"}
+Find a preview of the ToothGrowth dataset here:
+```{webr}
+#| echo: true
+head(ToothGrowth, 8)
+
+```
+:::
 
 ```{webr}
 #| exercise: ex_hist_exact
@@ -163,7 +175,7 @@ dist **or** speed
 ```{webr}
 #| exercise: ex_hist_exact
 #| solution: true
-hist(cars$dist)
+hist(ToothGrowth$len)
 ```
 :::
 
@@ -171,47 +183,48 @@ hist(cars$dist)
 #| exercise: ex_hist_exact
 #| check: true
 gradethis::grade_this({
-  # Grab what they typed (keep it robust)
-  code <- .user_code
-  lines <- strsplit(code, "\n", fixed = TRUE)[[1]]
-  # strip comments per-line, then trim and drop empties
-  lines <- sub("#.*$", "", lines)
-  trim  <- function(s) sub("^\\s+|\\s+$", "", s)
-  lines <- trim(lines)
-  lines <- lines[nzchar(lines)]
+code <- .user_code
+lines <- strsplit(paste(code, collapse = "\n"), "\n", fixed = TRUE)[[1]]
+lines <- sub("#.*$", "", lines)
+trim <- function(s) sub("^[[:space:]]+|[[:space:]]+$", "", s)
+lines <- trim(lines); lines <- lines[nzchar(lines)]
 
-  if (length(lines) == 0) {
-    fail("Type your answer, it cant be empty.")
-  }
-  if (length(lines) > 1) {
-    fail("Enter exactly **one** command.")
-  }
+if (length(lines) == 0) fail("Type your answer; it can't be empty.")
+if (length(lines) > 1)  fail("Enter exactly one command.")
 
-  one <- lines[1]
-  # Did it actually draw a histogram?
-  if (!inherits(.result, "histogram")) {
-    fail("Your code should draw a histogram.")
-  }
+one <- lines[1]
+if (!inherits(.result, "histogram")) fail("Your code should draw a histogram.")
 
-  # Normalize spaces for exact-match check
-  normalized <- gsub("\\s+", "", one)
+expr <- try(parse(text = one)[[1]], silent = TRUE)
+if (inherits(expr, "try-error")) fail("Your code must be a single valid R expression.")
+if (!(is.call(expr) && identical(as.character(expr[[1]]), "hist"))) fail("Use hist(...).")
 
-  if (normalized %in% c("hist(cars$dist)", "hist(cars$speed)")) {
-    pass("✅ Correct!")
-  } else if (grepl("^hist\\s*\\(\\s*cars\\s*\\)\\s*$", one)) {
-    fail("`hist(cars)` won’t work—choose a numeric column: hist(cars$dist) or hist(cars$speed).")
-  } else if (grepl("^hist\\s*\\(", one)) {
-    fail("For this question, type exactly `hist(cars$dist)` or `hist(cars$speed)` (and nothing else).")
-  } else {
-    fail("Use `hist(...)` with a column from `cars`.")
-  }
+args <- as.list(expr)[-1]
+if (length(args) != 1L) fail("Pass exactly one argument to hist().")
+
+arg_txt <- paste0(deparse(args[[1]]), collapse = "")
+allowed <- c("ToothGrowth$len","ToothGrowth$dose")
+
+if (arg_txt %in% allowed) pass("OK")
+else if (arg_txt == "ToothGrowth") fail("hist(ToothGrowth) won’t work—choose len or dose.")
+else fail("Type exactly hist(ToothGrowth$len) or hist(ToothGrowth$dose).")
 })
+
 ```
 
-## Q5 — Draw a boxplot from `cars` (type the full call) {#q4}
+## Q5 — Draw a boxplot from ToothGrowth (type the full call)
 
-Use **exactly one** of these numeric columns and nothing else:\
-dist **or** speed
+Use exactly one of these numeric columns and nothing else:
+len or dose
+
+::: {.callout-note title="Preview"}
+Find a preview of the ToothGrowth dataset here:
+```{webr}
+#| echo: true
+head(ToothGrowth, 8)
+
+```
+:::
 
 ```{webr}
 #| exercise: ex_boxplot_exact
@@ -222,7 +235,7 @@ dist **or** speed
 ```{webr}
 #| exercise: ex_boxplot_exact
 #| solution: true
-boxplot(cars$dist)
+boxplot(ToothGrowth$len)
 ```
 :::
 
@@ -230,59 +243,43 @@ boxplot(cars$dist)
 #| exercise: ex_boxplot_exact
 #| check: true
 gradethis::grade_this({
-  code <- .user_code
+code <- .user_code
+lines <- strsplit(paste(code, collapse = "\n"), "\n", fixed = TRUE)[[1]]
+lines <- sub("#.*$", "", lines)
+trim <- function(s) sub("^[[:space:]]+|[[:space:]]+$", "", s)
+lines <- trim(lines); lines <- lines[nzchar(lines)]
 
-  # Normalize to a single, comment-free line
-  lines <- strsplit(code, "\n", fixed = TRUE)[[1]]
-  lines <- sub("#.*$", "", lines)              # strip end-of-line comments
-  trim  <- function(s) sub("^\\s+|\\s+$", "", s)
-  lines <- trim(lines)
-  lines <- lines[nzchar(lines)]
+if (length(lines) == 0) fail("Type your answer; it can't be empty.")
+if (length(lines) > 1)  fail("Enter exactly one command.")
 
-  if (length(lines) == 0) {
-    fail("Type your answer, it can't be empty.")
-  }
-  if (length(lines) > 1) {
-    fail("Enter exactly **one** command.")
-  }
+one <- lines[1]
 
-  one <- lines[1]
+expr <- try(parse(text = one)[[1]], silent = TRUE)
+if (inherits(expr, "try-error")) fail("Your code must be a single valid R expression.")
+if (!(is.call(expr) && identical(as.character(expr[[1]]), "boxplot"))) fail("Use boxplot(...).")
 
-  # Parse safely (don't rely on .result for plots)
-  expr <- try(parse(text = one)[[1]], silent = TRUE)
-  if (inherits(expr, "try-error")) {
-    fail("Your code must be a single valid R expression.")
-  }
+args <- as.list(expr)[-1]
+if (length(args) != 1L) fail("Pass exactly one argument to boxplot().")
 
-  # Must be a call to boxplot(...)
-  if (!(is.call(expr) && identical(as.character(expr[[1]]), "boxplot"))) {
-    fail("Use `boxplot(...)`.")
-  }
+arg_txt <- paste0(deparse(args[[1]]), collapse = "")
+allowed <- c("ToothGrowth$len","ToothGrowth$dose")
 
-  # Be strict: exactly one argument, and it must be cars$dist or cars$speed
-  # (students can add spaces; we check the parsed argument)
-  n_args <- length(as.list(expr)) - 1L
-  if (n_args != 1L) {
-    fail("For this question, pass exactly **one** argument to `boxplot()`.")
-  }
-
-  arg <- as.list(expr)[[2]]
-  arg_txt <- paste0(deparse(arg), collapse = "")
-  allowed <- c("cars$dist", "cars$speed")
-
-  if (arg_txt %in% allowed) {
-    pass("✅ Correct!")
-  } else if (grepl("^cars\\s*$", arg_txt)) {
-    fail("`boxplot(cars)` won’t work—choose a numeric column: `boxplot(cars$dist)` or `boxplot(cars$speed)`.")
-  } else {
-    fail("For this question, type exactly `boxplot(cars$dist)` or `boxplot(cars$speed)` (and nothing else).")
-  }
+if (arg_txt %in% allowed) {
+if (!(is.list(.result) && !is.null(.result$stats))) pass("OK (note: base boxplot())") else pass("OK")
+} else if (arg_txt == "ToothGrowth") {
+fail("boxplot(ToothGrowth) won’t work—choose len or dose.")
+} else {
+fail("Type exactly boxplot(ToothGrowth$len) or boxplot(ToothGrowth$dose).")
+}
 })
+
+
+
 ```
 
 ## Q6 — Add a color to the histogram
 
-Re-draw a histogram of **cars\$dist** and set **any** bar color using the `col=` argument.
+Re-draw a histogram of ToothGrowth$len and set any bar color using the col= argument.
 
 ```{webr}
 #| exercise: ex_hist_col
@@ -290,14 +287,15 @@ Re-draw a histogram of **cars\$dist** and set **any** bar color using the `col=`
 ```
 
 ::: {.hint exercise="ex_hist_col"}
-Example: hist(cars\$dist, col = "steelblue")
+add col as an additional argument here and give it a color of your choice. 
 :::
 
-::: {.solution exercise="ex _hist_col"}
+::: {.solution exercise="ex_hist_col"}
 ```{webr}
 #| exercise: ex_hist_col
 #| solution: true
-hist(cars$dist, col = "steelblue")
+hist(ToothGrowth$len, col = "steelblue")
+
 ```
 :::
 
@@ -305,22 +303,29 @@ hist(cars$dist, col = "steelblue")
 #| exercise: ex_hist_col
 #| check: true
 gradethis::grade_this({
-  line <- paste(.user_code, collapse = "\n")
-  msgs <- c()
+line <- paste(.user_code, collapse = "\n")
+if (!inherits(.result, "histogram")) fail("Use hist(...) on ToothGrowth$len.")
 
-  if (!inherits(.result, "histogram")) fail("Use `hist(...)` to draw a histogram of `cars$dist`.")
-  msgs <- c(msgs, "✅ drew a histogram.")
+expr <- try(parse(text = line)[[1]], silent = TRUE)
+if (inherits(expr, "try-error")) fail("Your code must be a single valid R expression.")
+if (!(is.call(expr) && identical(as.character(expr[[1]]), "hist"))) fail("Call hist(...).")
 
-  if (!grepl("hist\\s*\\(\\s*cars\\s*\\$\\s*dist", line)) msgs <- c(msgs, "❌ use `cars$dist`.") else msgs <- c(msgs, "✅ used `cars$dist`.")
-  if (!grepl("col\\s*=", line)) msgs <- c(msgs, "❌ add a color with `col = ...`.") else msgs <- c(msgs, "✅ specified a color (`col = ...`).")
+args <- as.list(expr)[-1]
+arg1_txt <- paste0(deparse(args[[1]]), collapse = "")
+if (arg1_txt != "ToothGrowth$len") fail("Use ToothGrowth$len as the data argument.")
 
-  if (all(grepl("^✅", msgs))) pass(paste(msgs, collapse = "\n")) else fail(paste(msgs, collapse = "\n"))
+has_col <- any(names(args) == "col")
+if (!has_col) fail("Add a color with col = ...")
+
+pass("OK")
 })
+
+
 ```
 
 ## Q7 — Boxplot (make it horizontal)
 
-Draw a boxplot of **cars\$speed** and make it **horizontal** using the `horizontal = TRUE` argument.
+Draw a boxplot of ToothGrowth$dose and make it horizontal using horizontal = TRUE as an argument.
 
 ```{webr}
 #| exercise: ex_box_h
@@ -328,14 +333,14 @@ Draw a boxplot of **cars\$speed** and make it **horizontal** using the `horizont
 ```
 
 ::: {.hint exercise="ex_box_h"}
-Example: boxplot(cars\$speed, horizontal = TRUE)
+add horizontal as an argument just like col from the previous question
 :::
 
 ::: {.solution exercise="ex_box_h"}
 ```{webr}
 #| exercise: ex_box_h
 #| solution: true
-boxplot(cars$speed, horizontal = TRUE)
+boxplot(ToothGrowth$dose, horizontal = TRUE)
 ```
 :::
 
@@ -343,47 +348,45 @@ boxplot(cars$speed, horizontal = TRUE)
 #| exercise: ex_box_h
 #| check: true
 gradethis::grade_this({
-  line <- gsub("\\s+", " ", paste(.user_code, collapse = " "))
-  msgs <- c()
+line <- paste(.user_code, collapse = "\n")
 
-  # Did they call boxplot?
-  if (!grepl("\\bboxplot\\s*\\(", line)) {
-    fail("Use `boxplot(...)` to draw a boxplot.")
-  } else {
-    msgs <- c(msgs, "✅ called `boxplot(...)`.")
-  }
+expr <- try(parse(text = line)[[1]], silent = TRUE)
+if (inherits(expr, "try-error")) fail("Your code must be a single valid R expression.")
+if (!(is.call(expr) && identical(as.character(expr[[1]]), "boxplot"))) fail("Use boxplot(...).")
 
-  # Correct data column?
-  if (!grepl("boxplot\\s*\\(\\s*cars\\s*\\$\\s*speed", line)) {
-    msgs <- c(msgs, "❌ use `cars$speed`.")
-  } else {
-    msgs <- c(msgs, "✅ used `cars$speed`.")
-  }
+args <- as.list(expr)[-1]
+if (length(args) < 1L) fail("Pass ToothGrowth$dose to boxplot().")
 
-  # Horizontal = TRUE (accept T/TRUE, any spacing)
-  if (!grepl("horizontal\\s*=\\s*(TRUE|T)\\b", line)) {
-    msgs <- c(msgs, "❌ add `horizontal = TRUE`.")
-  } else {
-    msgs <- c(msgs, "✅ made it horizontal.")
-  }
+arg1_txt <- paste0(deparse(args[[1]]), collapse = "")
+if (arg1_txt != "ToothGrowth$dose") fail("Use ToothGrowth$dose as the data argument.")
 
-  # Structural sanity check on result (base boxplot returns a list with $stats)
-  if (!(is.list(.result) && !is.null(.result$stats))) {
-    msgs <- c(msgs, "⚠️ sanity check: result doesn’t look like a base boxplot object; ensure you used base `boxplot()`.")
-  }
+arg_names <- names(args)
+if (is.null(arg_names)) arg_names <- rep("", length(args))
+idx <- which(arg_names == "horizontal")
+horiz_ok <- FALSE
+if (length(idx) > 0) {
+hval <- args[[idx[1]]]
+horiz_ok <- isTRUE(eval(hval))
+}
+if (!horiz_ok) fail("Add horizontal = TRUE.")
 
-  if (all(grepl("^✅", msgs))) {
-    pass(paste(msgs, collapse = "\n"))
-  } else {
-    fail(paste(msgs, collapse = "\n"))
-  }
+if (!(is.list(.result) && !is.null(.result$stats))) {
+pass("OK (note: ensure you're using base boxplot())")
+} else {
+pass("OK")
+}
 })
+
 ```
 
 
 ## Q8 — Load a CSV as a DataFrame
 
 Load iris.csv into a dataframe named df.
+
+::: {.decor-img}
+![](./iris.jpg){alt="" aria-hidden="true"}
+:::
 
 ```{webr}
 # Q9 SETUP — create iris.csv inside the webR filesystem
