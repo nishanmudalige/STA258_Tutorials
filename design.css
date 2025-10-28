@@ -1,23 +1,23 @@
-/* Kill the bad rule: remove .navbar .dropdown-menu from this group */
-.header, .navbar, .headroom {
-  position: relative;        /* fine for header */
-  z-index: 1040;             /* sane, not absurd */
+.body {
+  padding: 0;
+  margin: 0;
 }
 
-/* Restore Bootstrap behavior for the menu */
+/* Keep the navbar/dropdown above all page content */
+.header, .navbar, .navbar .dropdown-menu, .headroom {
+  position: relative;
+  z-index: 2000 !important;
+}
+
+/* Don’t let the dropdown be clipped */
 .navbar .dropdown-menu {
-  position: absolute;        /* REQUIRED for dropdowns */
-  inset: auto;               /* neutralize any inherited offsets */
   overflow: visible !important;
 }
 
-/* Don’t clip the menu */
-#quarto-content,
-main.content,
-.page-columns,
-.content {
+/* Some themes/wrappers add overflow that clips the menu; undo it */
+#quarto-content, main.content, .page-columns, .content {
   overflow: visible !important;
 }
 
-/* Avoid new stacking context from transforms */
+/* If you added transforms anywhere on the header, they create a new stacking context */
 .headroom { transform: none; }
