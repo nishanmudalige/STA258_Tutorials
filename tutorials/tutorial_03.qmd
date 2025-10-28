@@ -1163,8 +1163,11 @@ gradethis::grade_this({
 
 ## Q11 — Overview with Skimr
 
-The question below has a dataframe df created from the dataset ggplot2::msleep that contains data about mammal sleep traits. Make a skim summary of df and store it in ms_skim. Print it to see your result!
+The question below has a dataframe df created from the dataset msleep that contains data about mammal sleep traits. Make a skim summary of df and store it in ms_skim. Print it to see your result!
 
+::: {.decor-img}
+![](./sleep.jpg){alt="" aria-hidden="true"}
+:::
 
 ::: {.callout-note title="Info"}
 Info : skimr is an R package that provides summary statistics a user can quickly skim to understand their data.
@@ -1292,76 +1295,7 @@ gradethis::grade_this({
 ```
 
 
-## Q13 — Boxplot with ggplot
-
-Make a boxplot of sleep_total by vore (i.e. mammal's diet) and flip the coords so categories read top-to-bottom, by replacing the ＿＿ with the correct answer. Save the plot to p_box. Fill the boxplot with any color of your choice!
-
-
-::: {.callout-note title="Info"}
-Info : ggplot refers to the ggplot2 package in R, a powerful tool for creating statistical graphics.
-:::
-
-
-```{webr}
-
-#| setup: true
-#| exercise: ms_box
-#| echo: false
-ensure_pkgs <- function(pkgs){ miss <- pkgs[!vapply(pkgs, requireNamespace, logical(1), quietly = TRUE)]
-  if (length(miss)) webr::install(miss)
-  invisible(lapply(pkgs, function(p) library(p, character.only = TRUE))) }
-ensure_pkgs(c("ggplot2","dplyr"))
-df <- ggplot2::msleep %>% dplyr::filter(!is.na(vore))
-
-```
-
-```{webr}
-#| exercise: ms_box
-#| exercise.lines: 5
-#| echo: false
-p_box <- ＿＿ ::ggplot(df, ggplot2::aes(x = ＿＿ , y = sleep_total)) +
-  ggplot2:: ＿＿ (fill = " ＿＿ ", color = "black") +
-  ggplot2::＿＿() #for flipping coordinates
-p_box 
-
-
-```
-
-::: {.hint exercise="ms_box"}
-Look up how to make boxplots with ggplot.
-:::
-
-::: {.solution exercise="ms_box"}
-```{webr}
-#| exercise: ms_box
-#| solution: true
-p_box <- ggplot2::ggplot(df, ggplot2::aes(x = vore, y = sleep_total)) +
-  ggplot2::geom_boxplot() +
-  ggplot2::coord_flip()
-p_box
-
-```
-:::
-
-```{webr}
-#| exercise: ms_hist
-#| check: true
-gradethis::grade_this({
-  if (!exists("p_hist", envir=.envir_result)) fail("Create `p_hist` as a ggplot object.")
-  p <- get("p_hist", envir=.envir_result)
-  ok <- inherits(p, "ggplot")
-  if (!ok) fail("`p_hist` must be a ggplot object.")
-  code <- paste(.user_code, collapse="\n")
-  if (!grepl("geom_histogram\\s*\\(", code)) fail("Add `geom_histogram(...)`.")
-  if (!grepl("binwidth\\s*=\\s*1", code)) fail("Set `binwidth = 1`.")
-  pass("✅ Histogram with binwidth 1 detected.")
-})
-
-
-```
-
-
-## Q14 — Scatterplot with ggplot
+## Q13 — Scatterplot with ggplot
 
 Make a scatterplot of bodywt (x) vs sleep_total (y), $log_{10}$ scale on x, with a smooth trend (Read info to understand what these terms mean), by replacing the ＿＿ with the correct answer. Save the plot to p_scatter. Fill the scatterplot with any color of your choice!
 
@@ -1436,7 +1370,7 @@ gradethis::grade_this({
 
 ```
 
-## Q15 — Mean and Standard Deviation
+## Q14 — Mean and Standard Deviation
 
 Compute the population mean and standard deviation of sleep_total. Save them in mu and sigma. Note that x is the vector containing sleep data pulled from the dataset. 
 
@@ -1508,7 +1442,7 @@ gradethis::grade_this({
 
 
 
-## Q16 — Sample Mean and Sample Standard Deviation
+## Q15 — Sample Mean and Sample Standard Deviation
 
 B = 200 samples of size n = 10 with replacement from x are stored in means_10.
 Compute the following:
@@ -1615,7 +1549,7 @@ gradethis::grade_this({
 
 ```
 
-## Q17 — Visualizing the Distribution
+## Q16 — Visualizing the Distribution
 
 Make a histogram of means_n10 (binwidth = 0.5), and add a vertical dashed red line at the population mean mu. Save the plot in plot_clt and print it. Fill the plot with any color of your choice!
 
