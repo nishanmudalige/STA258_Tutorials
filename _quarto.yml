@@ -28,7 +28,8 @@ website:
           href: practice/prac_01.qmd
       
 format:
-  html:
+  live-html:
     theme: Lux
     css: design.css
+    toc: false
 
