@@ -29,8 +29,6 @@ website:
       
 format:
   html:
-    css: design.css
-  live-html:
     theme: Lux
-    toc: false
+    css: design.css
 
