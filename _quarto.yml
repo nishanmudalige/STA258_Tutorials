@@ -31,7 +31,7 @@ website:
           href: practice/prac_03.qmd
 format:
   html:
-    css: nav-fix.css
+    css: design.css
   live-html:
     toc: false
 

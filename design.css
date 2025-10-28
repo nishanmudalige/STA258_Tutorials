@@ -16,11 +16,3 @@
 
 /* If you added transforms anywhere on the header, they create a new stacking context */
 .headroom { transform: none; }
-
-.decor-img img {
-  display:block;
-  width:50%;
-  height:50%;
-  border-radius: 500px;
-  object-fit: contain;
-}
