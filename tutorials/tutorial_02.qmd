@@ -28,20 +28,6 @@ sidebar:
 {{< include ../_extensions/r-wasm/live/_knitr.qmd >}} 
 {{< include ../_extensions/r-wasm/live/_gradethis.qmd >}}
 
-```{webr}
-#| setup: true
-#| echo: false
-# Small helper to (optionally) install ggplot2 when a ggplot exercise runs in webR
-ensure_pkgs <- function(pkgs){
-  miss <- pkgs[!vapply(pkgs, requireNamespace, logical(1), quietly = TRUE)]
-  if (length(miss)) webr::install(miss)
-  invisible(lapply(pkgs, function(p) library(p, character.only = TRUE)))
-}
-# Ensure built-in datasets are available (they ship with R)
-data("airquality")  # columns: Ozone, Solar.R, Wind, Temp, Month, Day
-data("mtcars")      # columns incl. mpg, wt, cyl, etc.
-```
-
 ## Q1 — Five-number summary {#q1}
 
 The five-number summary (Min, Q1, Median, Q3, Max) + IQR quickly reveals center and spread. Return a five number summary for the dataset airquality's Ozone column. Further, return the IQR.
