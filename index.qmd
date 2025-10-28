@@ -1,6 +1,7 @@
 ---
 title: "STA258 Course Tutorials"
 format: live-html
+css: tutorials/home.css
 engine: knitr
 title-block-banner: "tutorials/svgs/home_page.jpg"
 title-block-banner-color: "#00000080"                 
