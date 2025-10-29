@@ -275,7 +275,7 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "STA258 Course Tutorials",
+    "title": "STA258: Statistics with Applied Probability\n\nTutorials",
     "section": "",
     "text": "Welcome to STA258 tutorials!"
   },
@@ -319,14 +319,14 @@
     "href": "tutorials/tut1.html",
     "title": "WebR-enabled code cell",
     "section": "",
-    "text": "This is a webr-enabled code cell in a Quarto HTML document.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+    "text": "This is a webr-enabled code cell in a Quarto HTML document."
   },
   {
     "objectID": "tutorials/tut1.html#demo",
     "href": "tutorials/tut1.html#demo",
     "title": "WebR-enabled code cell",
     "section": "",
-    "text": "This is a webr-enabled code cell in a Quarto HTML document.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+    "text": "This is a webr-enabled code cell in a Quarto HTML document."
   },
   {
     "objectID": "tutorials/tutorial_02.html#q1",

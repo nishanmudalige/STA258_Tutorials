@@ -1,5 +1,17 @@
 /* ---- Minimal, safe navbar/dropdown fix ---- */
 
+
+/*
+.quarto-title-banner {
+  height: 100px;
+}
+*/
+
+
+div.main-container {
+  max-width: 1600px !important;
+}
+
 /* Put the nav above page content without creating extra stacking contexts */
 .navbar {
   position: relative;        /* keep it simple */

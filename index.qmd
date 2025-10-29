@@ -1,13 +1,25 @@
 ---
-title: "STA258 Course Tutorials"
-format: live-html
+title: |
+  | STA258: Statistics with Applied Probability
+  |
+  | Tutorials
+# format: live-html
+format: 
+  html:
+    page-layout: full
 css: tutorials/home.css
 engine: knitr
-title-block-banner: "tutorials/svgs/home_page.jpg"
-title-block-banner-color: "#00000080"                 
-title-block-banner-height: 360px
+# title-block-banner: "tutorials/svgs/home_page.jpg"
+# title-block-banner-color: "#00000080"
+title-block-banner: "#000000"
+# title-block-banner: true
+# title-block-banner-height: 100px
 ---
 
+
+::: {.cover-img}
+![](./tutorials/svgs/STA258_no_bg.png){alt="" aria-hidden="true" width="52%" fig-align="center"}
+:::
 
 Welcome to STA258 tutorials! 
 
