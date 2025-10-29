@@ -5,7 +5,7 @@ title: |
   | Tutorials
 # format: live-html
 format: 
-  html:
+  live-html:
     page-layout: full
 css: tutorials/home.css
 engine: knitr
