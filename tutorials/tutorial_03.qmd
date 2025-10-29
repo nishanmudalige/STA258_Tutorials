@@ -1192,7 +1192,9 @@ df <- ggplot2::msleep
 #| exercise: ms_skim
 #| exercise.lines: 2
 #| echo: false
-df <- ggplot2::msleep
+library(ggplot2)
+library(skimr)
+df <- msleep
 ms_skim <- 
 ms_skim
 
@@ -1206,8 +1208,10 @@ Use the skim function from skimr.
 ```{webr}
 #| exercise: ms_skim
 #| solution: true
-df <- ggplot2::msleep
-ms_skim <- skimr::skim(df)
+library(ggplot2)
+library(skimr)
+df <- msleep
+ms_skim <- skim(df)
 ms_skim
 
 ```
@@ -1217,7 +1221,7 @@ ms_skim
 #| exercise: ms_skim
 #| check: true
 gradethis::grade_this({
-  if (!exists("ms_skim", envir=.envir_result)) fail("Assign `ms_skim <- skimr::skim(df)` and print it.")
+  if (!exists("ms_skim", envir=.envir_result)) fail("Assign `ms_skim <- skim(df)` and print it.")
   x <- get("ms_skim", envir=.envir_result)
   ok <- inherits(x, "skim_df") || ("skim_type" %in% names(x))
   if (ok) pass("✅ skim summary detected.")
@@ -1257,7 +1261,8 @@ df <- ggplot2::msleep
 #| exercise: ms_hist
 #| exercise.lines: 4
 #| echo: false
-p_hist <- ggplot2:: ＿＿ (df, ggplot2::aes( ＿＿ )) + ggplot2:: ＿＿ (binwidth = ＿＿ , fill=" ＿＿ ", color="black") 
+library(ggplot2)
+p_hist <- ＿＿ (df, aes( ＿＿ )) + ＿＿ (binwidth = ＿＿ , fill=" ＿＿ ", color="black") 
 p_hist
 
 ```
@@ -1270,8 +1275,9 @@ Look up how to make plots with ggplot.
 ```{webr}
 #| exercise: ms_hist
 #| solution: true
-p_hist <- ggplot2::ggplot(df, ggplot2::aes(sleep_total)) +
-  ggplot2::geom_histogram(binwidth = 1)
+library(ggplot2)
+p_hist <- ggplot(df, aes(sleep_total)) +
+  geom_histogram(binwidth = 1)
 p_hist
 
 ```
@@ -1329,10 +1335,11 @@ df <- ggplot2::msleep
 #| exercise: ms_scatter
 #| exercise.lines: 6
 #| echo: false
-p_scatter <- ggplot2:: ＿＿ (df, ggplot2::aes(x= ＿＿ , y = ＿＿ ,  color=" ＿＿ ")) +
-  ggplot2:: ＿＿ () +
-  ggplot2::scale_x_log10() +
-  ggplot2::geom_smooth(se = FALSE)
+library(ggplot2)
+p_scatter <- ＿＿ (df, aes(x= ＿＿ , y = ＿＿ ,  color=" ＿＿ ")) +
+   ＿＿ () +
+  scale_x_log10() +
+  geom_smooth(se = FALSE)
 p_scatter
 
 ```
@@ -1345,10 +1352,11 @@ Look up how to make scatterplots with ggplot.
 ```{webr}
 #| exercise: ms_scatter
 #| solution: true
-p_scatter <- ggplot2::ggplot(df, ggplot2::aes(bodywt, sleep_total)) +
-  ggplot2::geom_point() +
-  ggplot2::scale_x_log10() +
-  ggplot2::geom_smooth(se = FALSE)
+library(ggplot2)
+p_scatter <- ggplot(df, aes(bodywt, sleep_total)) +
+  geom_point() +
+  scale_x_log10() +
+  geom_smooth(se = FALSE)
 p_scatter
 
 ```
@@ -1591,15 +1599,15 @@ if (!exists("means_n10", inherits = FALSE)) {
 #| exercise: clt_plot_n10
 #| exercise.lines: 8
 #| echo: false
-
+library(ggplot2)
 means_n10 <- replicate(B, mean(sample(x, n, replace = TRUE)))
 
-p_clt_n10 <- ggplot2:: ＿＿ (data.frame(m = means_n10), ggplot2::aes(m)) +
-  ggplot2:: ＿＿ (binwidth = ＿＿ , fill = " ＿＿ " , color = "white") +
-  ggplot2:: ＿＿ (xintercept = ＿＿ , linetype = 2, color = "red") +
-  ggplot2::labs(x = "sample mean (n=10)", y = "count",
+p_clt_n10 <- ＿＿ (data.frame(m = means_n10), aes(m)) +
+  ＿＿ (binwidth = ＿＿ , fill = " ＿＿ " , color = "white") +
+   ＿＿ (xintercept = ＿＿ , linetype = 2, color = "red") +
+  labs(x = "sample mean (n=10)", y = "count",
                 title = "Sampling distribution of the mean (n = 10)") +
-  ggplot2::theme_minimal()
+  =theme_minimal()
 p_clt_n10
 
 
@@ -1613,12 +1621,13 @@ Refer to previous exercises for learning how to plot a histogram. To draw a vert
 ```{webr}
 #| exercise: clt_plot_n10
 #| solution: true
-p_clt_n10 <- ggplot2::ggplot(data.frame(m = means_n10), ggplot2::aes(m)) +
-  ggplot2::geom_histogram(binwidth = 0.5, fill = "grey80", color = "white") +
-  ggplot2::geom_vline(xintercept = mu, linetype = 2, color = "red") +
-  ggplot2::labs(x = "sample mean (n=10)", y = "count",
+library(ggplot2)
+p_clt_n10 <- ggplot(data.frame(m = means_n10), aes(m)) +
+  geom_histogram(binwidth = 0.5, fill = "grey80", color = "white") +
+  geom_vline(xintercept = mu, linetype = 2, color = "red") +
+  labs(x = "sample mean (n=10)", y = "count",
                 title = "Sampling distribution of the mean (n = 10)") +
-  ggplot2::theme_minimal()
+  theme_minimal()
 p_clt_n10
 
 ```

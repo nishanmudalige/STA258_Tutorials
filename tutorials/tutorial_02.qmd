@@ -240,11 +240,12 @@ Use geom_boxplot() for the layer.
 ```{webr}
 #| exercise: ex_box_reorder
 #| solution: true
-ggplot2::ggplot(
+library(ggplot2)
+ggplot(
 ChickWeight,
-ggplot2::aes(x = reorder(factor(Diet), weight, FUN = median), y = weight)
+aes(x = reorder(factor(Diet), weight, FUN = median), y = weight)
 ) +
-ggplot2::geom_boxplot()
+geom_boxplot()
 ```
 :::
 
@@ -314,7 +315,7 @@ library(ggplot2)
 qs <- quantile(ChickWeight$weight, c(＿, ＿) )
 lo <- qs[1] - 1.5*diff(qs)
 hi <- ＿
-ggplot( ＿ , ggplot2::aes(weight)) +
+ggplot( ＿ , aes(weight)) +
 geom_histogram(bins = 12) +
 geom_vline(xintercept = c(qs[1], ＿ , lo, hi))
 
@@ -332,7 +333,7 @@ library(ggplot2)
 qs <- quantile(ChickWeight$weight, c(.25,.75))
 lo <- qs[1] - 1.5*diff(qs)
 hi <- qs[2] + 1.5*diff(qs)
-ggplot(ChickWeight, ggplot2::aes(weight)) +
+ggplot(ChickWeight, aes(weight)) +
 geom_histogram(bins = 12) +
 geom_vline(xintercept = c(qs[1], qs[2], lo, hi))
 
@@ -395,8 +396,9 @@ Assign the plot object to p_hist.
 ```{webr}
 #| exercise: ex_hist
 #| solution: true
-p_hist <- ggplot2::ggplot(ChickWeight, ggplot2::aes(weight)) +
-ggplot2::geom_histogram(bins = 12)
+library(ggplot2)
+p_hist <- ggplot(ChickWeight, aes(weight)) +
+geom_histogram(bins = 12)
 p_hist
 ``` 
 :::
@@ -454,8 +456,9 @@ Assign the result to p_box.
 ```{webr}
 #| exercise: ex_box
 #| solution: true
-p_box <- ggplot2::ggplot(ChickWeight, ggplot2::aes(x = factor(Diet), y = weight)) +
-ggplot2::geom_boxplot()
+library(ggplot2)
+p_box <- ggplot(ChickWeight, aes(x = factor(Diet), y = weight)) +
+geom_boxplot()
 p_box
 ```
 :::
@@ -512,9 +515,10 @@ Assign the final plot to p_scatter.
 ```{webr}
 #| exercise: ex_scatter
 #| solution: true
-p_scatter <- ggplot2::ggplot(ChickWeight, ggplot2::aes(Time, weight)) +
-ggplot2::geom_point() +
-ggplot2::geom_smooth(se = FALSE)
+library(ggplot2)
+p_scatter <- ggplot(ChickWeight, aes(Time, weight)) +
+geom_point() +
+geom_smooth(se = FALSE)
 p_scatter
 
 ```
