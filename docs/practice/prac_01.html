@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -66,18 +66,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ef56b68f8fa1e9d2ba328e99e439f80.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b651517ce65839d647a86e2780455cfb.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-3b7f4aff7acac744aa1d596ce5db2ede.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-a9957ab5e8b7c67643b7e2e6b5c1e54e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-3b7f4aff7acac744aa1d596ce5db2ede.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-26827f95213357c060b998e0666f8ebe.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-de0ed3b9a49d5daa615839eefb10c6a7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-26827f95213357c060b998e0666f8ebe.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -124,7 +125,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -312,6 +313,8 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Course Tutorials</span>
     </a>
@@ -416,7 +419,7 @@ eyJhdHRyIjp7ImVkaXQiOmZhbHNlLCJldmFsIjp0cnVlLCJvdXRwdXQiOmZhbHNlfSwiY29kZSI6Indl
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Q1 _ Pythagorean Triples
+<span class="screen-reader-only">Note</span>Q1 _ Pythagorean Triples
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -451,9 +454,9 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJl
 <code id="interpolate-4" class="solution-code d-none">a &lt;- 5
 b &lt;- 12
 c &lt;- 13</code>
-<div class="sourceCode cell-code" id="interpolate-5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-5-1"><a href="#interpolate-5-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-5-1"><a href="#interpolate-5-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">5</span></span>
 <span id="interpolate-5-2"><a href="#interpolate-5-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">12</span></span>
-<span id="interpolate-5-3"><a href="#interpolate-5-3" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">13</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="interpolate-5-3"><a href="#interpolate-5-3" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">13</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -471,7 +474,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6ImV4
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Info
+<span class="screen-reader-only">Note</span>Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -495,7 +498,7 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJl
 <div class="cell" data-exercise="ex_vec_mult5" data-solution="true">
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="ex_vec_mult5">
 <code id="interpolate-9" class="solution-code d-none">my_vec &lt;-seq(5, 100, by = 5)</code>
-<div class="sourceCode cell-code" id="interpolate-10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-10-1"><a href="#interpolate-10-1" aria-hidden="true" tabindex="-1"></a>my_vec <span class="ot">&lt;-</span><span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">100</span>, <span class="at">by =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-10-1"><a href="#interpolate-10-1" aria-hidden="true" tabindex="-1"></a>my_vec <span class="ot">&lt;-</span><span class="fu">seq</span>(<span class="dv">5</span>, <span class="dv">100</span>, <span class="at">by =</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -514,7 +517,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6ImV4
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Info
+<span class="screen-reader-only">Note</span>Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -538,7 +541,7 @@ eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiZXhfaGlzdF9sb2cxMCJ9
 <div class="cell" data-exercise="ex_hist_log10" data-solution="true">
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="ex_hist_log10">
 <code id="interpolate-14" class="solution-code d-none">hist(log10(cars$dist), breaks = 10)</code>
-<div class="sourceCode cell-code" id="interpolate-15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-15-1"><a href="#interpolate-15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">log10</span>(cars<span class="sc">$</span>dist), <span class="at">breaks =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-15-1"><a href="#interpolate-15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">log10</span>(cars<span class="sc">$</span>dist), <span class="at">breaks =</span> <span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -569,7 +572,7 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJl
 <div class="cell" data-exercise="ex_mean" data-solution="true">
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="ex_mean">
 <code id="interpolate-19" class="solution-code d-none">avg_val &lt;- mean(c(2, 4, 6, 8, 10))</code>
-<div class="sourceCode cell-code" id="interpolate-20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-20-1"><a href="#interpolate-20-1" aria-hidden="true" tabindex="-1"></a>avg_val <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-20-1"><a href="#interpolate-20-1" aria-hidden="true" tabindex="-1"></a>avg_val <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">10</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -599,7 +602,7 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJl
 <div class="cell" data-exercise="ex_evens_seq" data-solution="true">
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="ex_evens_seq">
 <code id="interpolate-24" class="solution-code d-none">evens_20_60 &lt;- seq(20, 60, by = 2)</code>
-<div class="sourceCode cell-code" id="interpolate-25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-25-1"><a href="#interpolate-25-1" aria-hidden="true" tabindex="-1"></a>evens_20_60 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">20</span>, <span class="dv">60</span>, <span class="at">by =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-25-1"><a href="#interpolate-25-1" aria-hidden="true" tabindex="-1"></a>evens_20_60 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">20</span>, <span class="dv">60</span>, <span class="at">by =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -636,14 +639,14 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJl
     quot = if (b == 0) NA_real_ else a / b
   )
 }</code>
-<div class="sourceCode cell-code" id="interpolate-30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-30-1"><a href="#interpolate-30-1" aria-hidden="true" tabindex="-1"></a>mini_calc <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-30-1"><a href="#interpolate-30-1" aria-hidden="true" tabindex="-1"></a>mini_calc <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
 <span id="interpolate-30-2"><a href="#interpolate-30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(</span>
 <span id="interpolate-30-3"><a href="#interpolate-30-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">sum  =</span> a <span class="sc">+</span> b,</span>
 <span id="interpolate-30-4"><a href="#interpolate-30-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">diff =</span> a <span class="sc">-</span> b,</span>
 <span id="interpolate-30-5"><a href="#interpolate-30-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">prod =</span> a <span class="sc">*</span> b,</span>
 <span id="interpolate-30-6"><a href="#interpolate-30-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">quot =</span> <span class="cf">if</span> (b <span class="sc">==</span> <span class="dv">0</span>) <span class="cn">NA_real_</span> <span class="cf">else</span> a <span class="sc">/</span> b</span>
 <span id="interpolate-30-7"><a href="#interpolate-30-7" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="interpolate-30-8"><a href="#interpolate-30-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="interpolate-30-8"><a href="#interpolate-30-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -749,13 +752,14 @@ window._ojs.runtime.interpretFromScriptTags();
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

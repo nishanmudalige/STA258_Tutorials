@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -66,18 +66,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ef56b68f8fa1e9d2ba328e99e439f80.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b651517ce65839d647a86e2780455cfb.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-3b7f4aff7acac744aa1d596ce5db2ede.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-a9957ab5e8b7c67643b7e2e6b5c1e54e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-3b7f4aff7acac744aa1d596ce5db2ede.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-26827f95213357c060b998e0666f8ebe.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-de0ed3b9a49d5daa615839eefb10c6a7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-26827f95213357c060b998e0666f8ebe.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -124,7 +125,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -312,6 +313,8 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Course Tutorials</span>
     </a>
@@ -419,7 +422,7 @@ eyJhdHRyIjp7ImVkaXQiOmZhbHNlLCJldmFsIjp0cnVlLCJvdXRwdXQiOmZhbHNlfSwiY29kZSI6Indl
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Info
+<span class="screen-reader-only">Note</span>Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -432,7 +435,7 @@ Info
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Info
+<span class="screen-reader-only">Note</span>Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -465,7 +468,7 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJu
 <div class="cell" data-exercise="norm_left" data-solution="true">
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="norm_left">
 <code id="interpolate-4" class="solution-code d-none">pnorm(1.25)</code>
-<div class="sourceCode cell-code" id="interpolate-5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-5-1"><a href="#interpolate-5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="fl">1.25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-5-1"><a href="#interpolate-5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="fl">1.25</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -484,7 +487,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6Im5v
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Info
+<span class="screen-reader-only">Note</span>Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -497,7 +500,7 @@ Info
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Info
+<span class="screen-reader-only">Note</span>Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -530,7 +533,7 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJu
 <div class="cell" data-exercise="norm_right" data-solution="true">
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="norm_right">
 <code id="interpolate-9" class="solution-code d-none">1 - pnorm(1.25)</code>
-<div class="sourceCode cell-code" id="interpolate-10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-10-1"><a href="#interpolate-10-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fl">1.25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-10-1"><a href="#interpolate-10-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fl">1.25</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -549,7 +552,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6Im5v
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Info
+<span class="screen-reader-only">Note</span>Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -562,7 +565,7 @@ Info
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Info
+<span class="screen-reader-only">Note</span>Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -595,7 +598,7 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJu
 <div class="cell" data-exercise="norm_two_sided" data-solution="true">
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="norm_two_sided">
 <code id="interpolate-14" class="solution-code d-none">p_two &lt;- 2 * (1 - pnorm(1.25))</code>
-<div class="sourceCode cell-code" id="interpolate-15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-15-1"><a href="#interpolate-15-1" aria-hidden="true" tabindex="-1"></a>p_two <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fl">1.25</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-15-1"><a href="#interpolate-15-1" aria-hidden="true" tabindex="-1"></a>p_two <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fl">1.25</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -614,7 +617,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6Im5v
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Info
+<span class="screen-reader-only">Note</span>Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -647,7 +650,7 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJx
 <div class="cell" data-exercise="qnorm" data-solution="true">
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="qnorm">
 <code id="interpolate-19" class="solution-code d-none">qnorm(0.975)</code>
-<div class="sourceCode cell-code" id="interpolate-20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-20-1"><a href="#interpolate-20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.975</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-20-1"><a href="#interpolate-20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.975</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -666,7 +669,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InFu
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Info
+<span class="screen-reader-only">Note</span>Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -699,7 +702,7 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJ0
 <div class="cell" data-exercise="t_right" data-solution="true">
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="t_right">
 <code id="interpolate-24" class="solution-code d-none">1 - pt(1.5, df = 10)</code>
-<div class="sourceCode cell-code" id="interpolate-25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-25-1"><a href="#interpolate-25-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pt</span>(<span class="fl">1.5</span>, <span class="at">df =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-25-1"><a href="#interpolate-25-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pt</span>(<span class="fl">1.5</span>, <span class="at">df =</span> <span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -718,7 +721,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InRf
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Info
+<span class="screen-reader-only">Note</span>Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -751,7 +754,7 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJ0
 <div class="cell" data-exercise="t_q" data-solution="true">
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="t_q">
 <code id="interpolate-29" class="solution-code d-none">qt(0.975, df = 10)</code>
-<div class="sourceCode cell-code" id="interpolate-30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-30-1"><a href="#interpolate-30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-30-1"><a href="#interpolate-30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="at">df =</span> <span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -770,7 +773,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InRf
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Info
+<span class="screen-reader-only">Note</span>Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -803,7 +806,7 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJj
 <div class="cell" data-exercise="chi_right" data-solution="true">
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="chi_right">
 <code id="interpolate-34" class="solution-code d-none">1 - pchisq(15, df = 8)</code>
-<div class="sourceCode cell-code" id="interpolate-35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-35-1"><a href="#interpolate-35-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pchisq</span>(<span class="dv">15</span>, <span class="at">df =</span> <span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-35-1"><a href="#interpolate-35-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pchisq</span>(<span class="dv">15</span>, <span class="at">df =</span> <span class="dv">8</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -822,7 +825,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6ImNo
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Info
+<span class="screen-reader-only">Note</span>Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -855,7 +858,7 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJj
 <div class="cell" data-exercise="chi_q" data-solution="true">
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="chi_q">
 <code id="interpolate-39" class="solution-code d-none">qchisq(0.95, df = 10)</code>
-<div class="sourceCode cell-code" id="interpolate-40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-40-1"><a href="#interpolate-40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qchisq</span>(<span class="fl">0.95</span>, <span class="at">df =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-40-1"><a href="#interpolate-40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qchisq</span>(<span class="fl">0.95</span>, <span class="at">df =</span> <span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -874,7 +877,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6ImNo
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Info
+<span class="screen-reader-only">Note</span>Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -907,7 +910,7 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJm
 <div class="cell" data-exercise="f_right" data-solution="true">
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="f_right">
 <code id="interpolate-44" class="solution-code d-none">1 - pf(3, df1=5, df2=12)</code>
-<div class="sourceCode cell-code" id="interpolate-45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-45-1"><a href="#interpolate-45-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pf</span>(<span class="dv">3</span>, <span class="at">df1=</span><span class="dv">5</span>, <span class="at">df2=</span><span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-45-1"><a href="#interpolate-45-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="fu">pf</span>(<span class="dv">3</span>, <span class="at">df1=</span><span class="dv">5</span>, <span class="at">df2=</span><span class="dv">12</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -926,7 +929,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6ImZf
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Info
+<span class="screen-reader-only">Note</span>Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -959,7 +962,7 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJm
 <div class="cell" data-exercise="f_q" data-solution="true">
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="f_q">
 <code id="interpolate-49" class="solution-code d-none">qf(0.95, df1=3, df2=20)</code>
-<div class="sourceCode cell-code" id="interpolate-50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-50-1"><a href="#interpolate-50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qf</span>(<span class="fl">0.95</span>, <span class="at">df1=</span><span class="dv">3</span>, <span class="at">df2=</span><span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-50-1"><a href="#interpolate-50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qf</span>(<span class="fl">0.95</span>, <span class="at">df1=</span><span class="dv">3</span>, <span class="at">df2=</span><span class="dv">20</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -985,7 +988,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6ImZf
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Info
+<span class="screen-reader-only">Note</span>Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1003,7 +1006,7 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJt
 
 </div>
 <script type="webr-53-contents">
-eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJtc19za2ltIiwiZXhlcmNpc2UubGluZXMiOjJ9LCJjb2RlIjoiZGYgPC0gZ2dwbG90Mjo6bXNsZWVwXG5tc19za2ltIDwtIFxubXNfc2tpbSJ9
+eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJtc19za2ltIiwiZXhlcmNpc2UubGluZXMiOjJ9LCJjb2RlIjoibGlicmFyeShnZ3Bsb3QyKVxubGlicmFyeShza2ltcilcbmRmIDwtIG1zbGVlcFxubXNfc2tpbSA8LSBcbm1zX3NraW0ifQ==
 </script>
 </div>
 </div>
@@ -1013,18 +1016,22 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJt
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="ms_skim">
 <div class="cell" data-exercise="ms_skim" data-solution="true">
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="ms_skim">
-<code id="interpolate-55" class="solution-code d-none">df &lt;- ggplot2::msleep
-ms_skim &lt;- skimr::skim(df)
+<code id="interpolate-55" class="solution-code d-none">library(ggplot2)
+library(skimr)
+df &lt;- msleep
+ms_skim &lt;- skim(df)
 ms_skim</code>
-<div class="sourceCode cell-code" id="interpolate-56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-56-1"><a href="#interpolate-56-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span>msleep</span>
-<span id="interpolate-56-2"><a href="#interpolate-56-2" aria-hidden="true" tabindex="-1"></a>ms_skim <span class="ot">&lt;-</span> skimr<span class="sc">::</span><span class="fu">skim</span>(df)</span>
-<span id="interpolate-56-3"><a href="#interpolate-56-3" aria-hidden="true" tabindex="-1"></a>ms_skim</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-56-1"><a href="#interpolate-56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="interpolate-56-2"><a href="#interpolate-56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="interpolate-56-3"><a href="#interpolate-56-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> msleep</span>
+<span id="interpolate-56-4"><a href="#interpolate-56-4" aria-hidden="true" tabindex="-1"></a>ms_skim <span class="ot">&lt;-</span> <span class="fu">skim</span>(df)</span>
+<span id="interpolate-56-5"><a href="#interpolate-56-5" aria-hidden="true" tabindex="-1"></a>ms_skim</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
 <div class="cell" data-exercise="ms_skim" data-check="true">
 <script type="exercise-check-ms_skim-contents">
-eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6Im1zX3NraW0ifSwiY29kZSI6ImdyYWRldGhpczo6Z3JhZGVfdGhpcyh7XG4gIGlmICghZXhpc3RzKFwibXNfc2tpbVwiLCBlbnZpcj0uZW52aXJfcmVzdWx0KSkgZmFpbChcIkFzc2lnbiBgbXNfc2tpbSA8LSBza2ltcjo6c2tpbShkZilgIGFuZCBwcmludCBpdC5cIilcbiAgeCA8LSBnZXQoXCJtc19za2ltXCIsIGVudmlyPS5lbnZpcl9yZXN1bHQpXG4gIG9rIDwtIGluaGVyaXRzKHgsIFwic2tpbV9kZlwiKSB8fCAoXCJza2ltX3R5cGVcIiAlaW4lIG5hbWVzKHgpKVxuICBpZiAob2spIHBhc3MoXCLinIUgc2tpbSBzdW1tYXJ5IGRldGVjdGVkLlwiKVxuICBlbHNlIGZhaWwoXCJTb21ldGhpbmcgaXMgbm90IHF1aXRlIHJpZ2h0IGhlcmUuXCIpXG59KSJ9
+eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6Im1zX3NraW0ifSwiY29kZSI6ImdyYWRldGhpczo6Z3JhZGVfdGhpcyh7XG4gIGlmICghZXhpc3RzKFwibXNfc2tpbVwiLCBlbnZpcj0uZW52aXJfcmVzdWx0KSkgZmFpbChcIkFzc2lnbiBgbXNfc2tpbSA8LSBza2ltKGRmKWAgYW5kIHByaW50IGl0LlwiKVxuICB4IDwtIGdldChcIm1zX3NraW1cIiwgZW52aXI9LmVudmlyX3Jlc3VsdClcbiAgb2sgPC0gaW5oZXJpdHMoeCwgXCJza2ltX2RmXCIpIHx8IChcInNraW1fdHlwZVwiICVpbiUgbmFtZXMoeCkpXG4gIGlmIChvaykgcGFzcyhcIuKchSBza2ltIHN1bW1hcnkgZGV0ZWN0ZWQuXCIpXG4gIGVsc2UgZmFpbChcIlNvbWV0aGluZyBpcyBub3QgcXVpdGUgcmlnaHQgaGVyZS5cIilcbn0pIn0=
 </script>
 </div>
 </section>
@@ -1037,7 +1044,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6Im1z
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Info
+<span class="screen-reader-only">Note</span>Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1055,7 +1062,7 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJt
 
 </div>
 <script type="webr-59-contents">
-eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJtc19oaXN0IiwiZXhlcmNpc2UubGluZXMiOjR9LCJjb2RlIjoicF9oaXN0IDwtIGdncGxvdDI6OiDvvL/vvL8gKGRmLCBnZ3Bsb3QyOjphZXMoIO+8v++8vyApKSArIGdncGxvdDI6OiDvvL/vvL8gKGJpbndpZHRoID0g77y/77y/ICwgZmlsbD1cIiDvvL/vvL8gXCIsIGNvbG9yPVwiYmxhY2tcIikgXG5wX2hpc3QifQ==
+eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJtc19oaXN0IiwiZXhlcmNpc2UubGluZXMiOjR9LCJjb2RlIjoibGlicmFyeShnZ3Bsb3QyKVxucF9oaXN0IDwtIO+8v++8vyAoZGYsIGFlcygg77y/77y/ICkpICsg77y/77y/IChiaW53aWR0aCA9IO+8v++8vyAsIGZpbGw9XCIg77y/77y/IFwiLCBjb2xvcj1cImJsYWNrXCIpIFxucF9oaXN0In0=
 </script>
 </div>
 </div>
@@ -1065,12 +1072,14 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJt
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="ms_hist">
 <div class="cell" data-exercise="ms_hist" data-solution="true">
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="ms_hist">
-<code id="interpolate-61" class="solution-code d-none">p_hist &lt;- ggplot2::ggplot(df, ggplot2::aes(sleep_total)) +
-  ggplot2::geom_histogram(binwidth = 1)
+<code id="interpolate-61" class="solution-code d-none">library(ggplot2)
+p_hist &lt;- ggplot(df, aes(sleep_total)) +
+  geom_histogram(binwidth = 1)
 p_hist</code>
-<div class="sourceCode cell-code" id="interpolate-62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-62-1"><a href="#interpolate-62-1" aria-hidden="true" tabindex="-1"></a>p_hist <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(df, ggplot2<span class="sc">::</span><span class="fu">aes</span>(sleep_total)) <span class="sc">+</span></span>
-<span id="interpolate-62-2"><a href="#interpolate-62-2" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>)</span>
-<span id="interpolate-62-3"><a href="#interpolate-62-3" aria-hidden="true" tabindex="-1"></a>p_hist</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-62-1"><a href="#interpolate-62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="interpolate-62-2"><a href="#interpolate-62-2" aria-hidden="true" tabindex="-1"></a>p_hist <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(sleep_total)) <span class="sc">+</span></span>
+<span id="interpolate-62-3"><a href="#interpolate-62-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>)</span>
+<span id="interpolate-62-4"><a href="#interpolate-62-4" aria-hidden="true" tabindex="-1"></a>p_hist</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -1089,7 +1098,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6Im1z
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Info
+<span class="screen-reader-only">Note</span>Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1102,7 +1111,7 @@ Info
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Info
+<span class="screen-reader-only">Note</span>Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1123,7 +1132,7 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJt
 
 </div>
 <script type="webr-65-contents">
-eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJtc19zY2F0dGVyIiwiZXhlcmNpc2UubGluZXMiOjZ9LCJjb2RlIjoicF9zY2F0dGVyIDwtIGdncGxvdDI6OiDvvL/vvL8gKGRmLCBnZ3Bsb3QyOjphZXMoeD0g77y/77y/ICwgeSA9IO+8v++8vyAsICBjb2xvcj1cIiDvvL/vvL8gXCIpKSArXG4gIGdncGxvdDI6OiDvvL/vvL8gKCkgK1xuICBnZ3Bsb3QyOjpzY2FsZV94X2xvZzEwKCkgK1xuICBnZ3Bsb3QyOjpnZW9tX3Ntb290aChzZSA9IEZBTFNFKVxucF9zY2F0dGVyIn0=
+eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJtc19zY2F0dGVyIiwiZXhlcmNpc2UubGluZXMiOjZ9LCJjb2RlIjoibGlicmFyeShnZ3Bsb3QyKVxucF9zY2F0dGVyIDwtIO+8v++8vyAoZGYsIGFlcyh4PSDvvL/vvL8gLCB5ID0g77y/77y/ICwgIGNvbG9yPVwiIO+8v++8vyBcIikpICtcbiAgIO+8v++8vyAoKSArXG4gIHNjYWxlX3hfbG9nMTAoKSArXG4gIGdlb21fc21vb3RoKHNlID0gRkFMU0UpXG5wX3NjYXR0ZXIifQ==
 </script>
 </div>
 </div>
@@ -1133,16 +1142,18 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJt
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="ms_scatter">
 <div class="cell" data-exercise="ms_scatter" data-solution="true">
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="ms_scatter">
-<code id="interpolate-67" class="solution-code d-none">p_scatter &lt;- ggplot2::ggplot(df, ggplot2::aes(bodywt, sleep_total)) +
-  ggplot2::geom_point() +
-  ggplot2::scale_x_log10() +
-  ggplot2::geom_smooth(se = FALSE)
+<code id="interpolate-67" class="solution-code d-none">library(ggplot2)
+p_scatter &lt;- ggplot(df, aes(bodywt, sleep_total)) +
+  geom_point() +
+  scale_x_log10() +
+  geom_smooth(se = FALSE)
 p_scatter</code>
-<div class="sourceCode cell-code" id="interpolate-68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-68-1"><a href="#interpolate-68-1" aria-hidden="true" tabindex="-1"></a>p_scatter <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(df, ggplot2<span class="sc">::</span><span class="fu">aes</span>(bodywt, sleep_total)) <span class="sc">+</span></span>
-<span id="interpolate-68-2"><a href="#interpolate-68-2" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="interpolate-68-3"><a href="#interpolate-68-3" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
-<span id="interpolate-68-4"><a href="#interpolate-68-4" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>)</span>
-<span id="interpolate-68-5"><a href="#interpolate-68-5" aria-hidden="true" tabindex="-1"></a>p_scatter</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-68-1"><a href="#interpolate-68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="interpolate-68-2"><a href="#interpolate-68-2" aria-hidden="true" tabindex="-1"></a>p_scatter <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(bodywt, sleep_total)) <span class="sc">+</span></span>
+<span id="interpolate-68-3"><a href="#interpolate-68-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="interpolate-68-4"><a href="#interpolate-68-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
+<span id="interpolate-68-5"><a href="#interpolate-68-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">se =</span> <span class="cn">FALSE</span>)</span>
+<span id="interpolate-68-6"><a href="#interpolate-68-6" aria-hidden="true" tabindex="-1"></a>p_scatter</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -1161,7 +1172,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6Im1z
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Info
+<span class="screen-reader-only">Note</span>Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1191,8 +1202,8 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJj
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="clt_baseline">
 <code id="interpolate-73" class="solution-code d-none">mu &lt;- mean(x)
 sigma &lt;- sd(x)</code>
-<div class="sourceCode cell-code" id="interpolate-74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-74-1"><a href="#interpolate-74-1" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
-<span id="interpolate-74-2"><a href="#interpolate-74-2" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-74-1"><a href="#interpolate-74-1" aria-hidden="true" tabindex="-1"></a>mu <span class="ot">&lt;-</span> <span class="fu">mean</span>(x)</span>
+<span id="interpolate-74-2"><a href="#interpolate-74-2" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="fu">sd</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -1231,11 +1242,11 @@ m_10  &lt;- mean(means_n10)
 m_10
 s_10    &lt;- sd(means_n10)
 s_10</code>
-<div class="sourceCode cell-code" id="interpolate-80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-80-1"><a href="#interpolate-80-1" aria-hidden="true" tabindex="-1"></a>means_n10 <span class="ot">&lt;-</span> <span class="fu">replicate</span>(B, <span class="fu">mean</span>(<span class="fu">sample</span>(x, n, <span class="at">replace =</span> <span class="cn">TRUE</span>)))</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-80-1"><a href="#interpolate-80-1" aria-hidden="true" tabindex="-1"></a>means_n10 <span class="ot">&lt;-</span> <span class="fu">replicate</span>(B, <span class="fu">mean</span>(<span class="fu">sample</span>(x, n, <span class="at">replace =</span> <span class="cn">TRUE</span>)))</span>
 <span id="interpolate-80-2"><a href="#interpolate-80-2" aria-hidden="true" tabindex="-1"></a>m_10  <span class="ot">&lt;-</span> <span class="fu">mean</span>(means_n10)</span>
 <span id="interpolate-80-3"><a href="#interpolate-80-3" aria-hidden="true" tabindex="-1"></a>m_10</span>
 <span id="interpolate-80-4"><a href="#interpolate-80-4" aria-hidden="true" tabindex="-1"></a>s_10    <span class="ot">&lt;-</span> <span class="fu">sd</span>(means_n10)</span>
-<span id="interpolate-80-5"><a href="#interpolate-80-5" aria-hidden="true" tabindex="-1"></a>s_10</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="interpolate-80-5"><a href="#interpolate-80-5" aria-hidden="true" tabindex="-1"></a>s_10</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -1254,7 +1265,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6ImNs
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Info
+<span class="screen-reader-only">Note</span>Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1272,7 +1283,7 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJj
 
 </div>
 <script type="webr-83-contents">
-eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJjbHRfcGxvdF9uMTAiLCJleGVyY2lzZS5saW5lcyI6OH0sImNvZGUiOiJcbm1lYW5zX24xMCA8LSByZXBsaWNhdGUoQiwgbWVhbihzYW1wbGUoeCwgbiwgcmVwbGFjZSA9IFRSVUUpKSlcblxucF9jbHRfbjEwIDwtIGdncGxvdDI6OiDvvL/vvL8gKGRhdGEuZnJhbWUobSA9IG1lYW5zX24xMCksIGdncGxvdDI6OmFlcyhtKSkgK1xuICBnZ3Bsb3QyOjog77y/77y/IChiaW53aWR0aCA9IO+8v++8vyAsIGZpbGwgPSBcIiDvvL/vvL8gXCIgLCBjb2xvciA9IFwid2hpdGVcIikgK1xuICBnZ3Bsb3QyOjog77y/77y/ICh4aW50ZXJjZXB0ID0g77y/77y/ICwgbGluZXR5cGUgPSAyLCBjb2xvciA9IFwicmVkXCIpICtcbiAgZ2dwbG90Mjo6bGFicyh4ID0gXCJzYW1wbGUgbWVhbiAobj0xMClcIiwgeSA9IFwiY291bnRcIixcbiAgICAgICAgICAgICAgICB0aXRsZSA9IFwiU2FtcGxpbmcgZGlzdHJpYnV0aW9uIG9mIHRoZSBtZWFuIChuID0gMTApXCIpICtcbiAgZ2dwbG90Mjo6dGhlbWVfbWluaW1hbCgpXG5wX2NsdF9uMTAifQ==
+eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJjbHRfcGxvdF9uMTAiLCJleGVyY2lzZS5saW5lcyI6OH0sImNvZGUiOiJsaWJyYXJ5KGdncGxvdDIpXG5tZWFuc19uMTAgPC0gcmVwbGljYXRlKEIsIG1lYW4oc2FtcGxlKHgsIG4sIHJlcGxhY2UgPSBUUlVFKSkpXG5cbnBfY2x0X24xMCA8LSDvvL/vvL8gKGRhdGEuZnJhbWUobSA9IG1lYW5zX24xMCksIGFlcyhtKSkgK1xuICDvvL/vvL8gKGJpbndpZHRoID0g77y/77y/ICwgZmlsbCA9IFwiIO+8v++8vyBcIiAsIGNvbG9yID0gXCJ3aGl0ZVwiKSArXG4gICDvvL/vvL8gKHhpbnRlcmNlcHQgPSDvvL/vvL8gLCBsaW5ldHlwZSA9IDIsIGNvbG9yID0gXCJyZWRcIikgK1xuICBsYWJzKHggPSBcInNhbXBsZSBtZWFuIChuPTEwKVwiLCB5ID0gXCJjb3VudFwiLFxuICAgICAgICAgICAgICAgIHRpdGxlID0gXCJTYW1wbGluZyBkaXN0cmlidXRpb24gb2YgdGhlIG1lYW4gKG4gPSAxMClcIikgK1xuICA9dGhlbWVfbWluaW1hbCgpXG5wX2NsdF9uMTAifQ==
 </script>
 </div>
 </div>
@@ -1282,20 +1293,22 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJj
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="clt_plot_n10">
 <div class="cell" data-exercise="clt_plot_n10" data-solution="true">
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="clt_plot_n10">
-<code id="interpolate-85" class="solution-code d-none">p_clt_n10 &lt;- ggplot2::ggplot(data.frame(m = means_n10), ggplot2::aes(m)) +
-  ggplot2::geom_histogram(binwidth = 0.5, fill = "grey80", color = "white") +
-  ggplot2::geom_vline(xintercept = mu, linetype = 2, color = "red") +
-  ggplot2::labs(x = "sample mean (n=10)", y = "count",
+<code id="interpolate-85" class="solution-code d-none">library(ggplot2)
+p_clt_n10 &lt;- ggplot(data.frame(m = means_n10), aes(m)) +
+  geom_histogram(binwidth = 0.5, fill = "grey80", color = "white") +
+  geom_vline(xintercept = mu, linetype = 2, color = "red") +
+  labs(x = "sample mean (n=10)", y = "count",
                 title = "Sampling distribution of the mean (n = 10)") +
-  ggplot2::theme_minimal()
+  theme_minimal()
 p_clt_n10</code>
-<div class="sourceCode cell-code" id="interpolate-86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-86-1"><a href="#interpolate-86-1" aria-hidden="true" tabindex="-1"></a>p_clt_n10 <span class="ot">&lt;-</span> ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">m =</span> means_n10), ggplot2<span class="sc">::</span><span class="fu">aes</span>(m)) <span class="sc">+</span></span>
-<span id="interpolate-86-2"><a href="#interpolate-86-2" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.5</span>, <span class="at">fill =</span> <span class="st">"grey80"</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
-<span id="interpolate-86-3"><a href="#interpolate-86-3" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_vline</span>(<span class="at">xintercept =</span> mu, <span class="at">linetype =</span> <span class="dv">2</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
-<span id="interpolate-86-4"><a href="#interpolate-86-4" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"sample mean (n=10)"</span>, <span class="at">y =</span> <span class="st">"count"</span>,</span>
-<span id="interpolate-86-5"><a href="#interpolate-86-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">title =</span> <span class="st">"Sampling distribution of the mean (n = 10)"</span>) <span class="sc">+</span></span>
-<span id="interpolate-86-6"><a href="#interpolate-86-6" aria-hidden="true" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">theme_minimal</span>()</span>
-<span id="interpolate-86-7"><a href="#interpolate-86-7" aria-hidden="true" tabindex="-1"></a>p_clt_n10</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-86-1"><a href="#interpolate-86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="interpolate-86-2"><a href="#interpolate-86-2" aria-hidden="true" tabindex="-1"></a>p_clt_n10 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">m =</span> means_n10), <span class="fu">aes</span>(m)) <span class="sc">+</span></span>
+<span id="interpolate-86-3"><a href="#interpolate-86-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.5</span>, <span class="at">fill =</span> <span class="st">"grey80"</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="interpolate-86-4"><a href="#interpolate-86-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> mu, <span class="at">linetype =</span> <span class="dv">2</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="interpolate-86-5"><a href="#interpolate-86-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"sample mean (n=10)"</span>, <span class="at">y =</span> <span class="st">"count"</span>,</span>
+<span id="interpolate-86-6"><a href="#interpolate-86-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">title =</span> <span class="st">"Sampling distribution of the mean (n = 10)"</span>) <span class="sc">+</span></span>
+<span id="interpolate-86-7"><a href="#interpolate-86-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="interpolate-86-8"><a href="#interpolate-86-8" aria-hidden="true" tabindex="-1"></a>p_clt_n10</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -1401,13 +1414,14 @@ window._ojs.runtime.interpretFromScriptTags();
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
