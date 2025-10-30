@@ -18,7 +18,7 @@ title-block-banner: "#000000"
 
 
 ::: {.cover-img}
-![](./tutorials/images/STA258_no_bg.png){alt="" aria-hidden="true" width="52%" fig-align="center"}
+![](./tutorials/images/STA258_no_bg.png){alt="" aria-hidden="true" width="43%" fig-align="center"}
 :::
 
 <h1 style="text-align: center; color: #FF2C21;"> Under Construction </h1>
