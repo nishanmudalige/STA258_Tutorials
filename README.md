@@ -1,4 +1,4 @@
-# STA258_Tutorial
+# STA258 Tutorials
 
 Visit [https://nishanmudalige.github.io/STA258_Tutorials/](https://nishanmudalige.github.io/STA258_Tutorials/) to access the tutorials.
 
