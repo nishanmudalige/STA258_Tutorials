@@ -9,7 +9,7 @@ format:
     page-layout: full
 css: tutorials/home.css
 engine: knitr
-# title-block-banner: "tutorials/svgs/home_page.jpg"
+# title-block-banner: "tutorials/images/home_page.jpg"
 # title-block-banner-color: "#00000080"
 title-block-banner: "#000000"
 # title-block-banner: true
@@ -18,8 +18,12 @@ title-block-banner: "#000000"
 
 
 ::: {.cover-img}
-![](./tutorials/svgs/STA258_no_bg.png){alt="" aria-hidden="true" width="52%" fig-align="center"}
+![](./tutorials/images/STA258_no_bg.png){alt="" aria-hidden="true" width="52%" fig-align="center"}
 :::
+
+<h1 style="text-align: center; color: #FF2C21;"> Under Construction </h1>
+
+---
 
 Welcome to STA258 tutorials! 
 
