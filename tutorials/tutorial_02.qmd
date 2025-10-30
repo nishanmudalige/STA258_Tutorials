@@ -93,9 +93,12 @@ Compute Mean, Variance and Standard Deviation of airquality dataset's Temp colum
 Mean, variance, and standard deviation summarize center and spread. Variance and SD are in squared and original units respectively. Real-world data often has NAs; make sure your summary ignores them appropriately.
 :::
 
-::: {.decor-img}
-![](./svgs/air_quality.jpg){alt="" aria-hidden="true" width="40%" fig-align="center"}
-:::
+
+<figure style="text-align:center">
+  <img src="./images/air_quality.jpg" style="width:40%">
+  <figcaption>Photo by <a href="https://unsplash.com/@timwitzdam?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Tim Witzdam</a> on <a href="https://unsplash.com/photos/plant-next-to-a-device-displaying-readings-NH4RJjtDaNk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+      </figcaption>
+</figure>
 
 ::: {.callout-note title="Preview"}
 Run the code below to see a preview of the dataset.
@@ -211,9 +214,12 @@ gradethis::grade_this({
 
 Now, we are moving on to the ChickWeight dataset which has data from an experiment on the effect of diet on early growth of chicks. Return a ggplot object that boxplots weight by Diet, with Diet reordered by the median weight. Fill in the blanks.
 
-::: {.decor-img}
-![](./svgs/chick_weight.jpg){alt="" aria-hidden="true" width="40%" fig-align="center"}
-:::
+
+<figure style="text-align:center">
+  <img src="./images/chick_weight.jpg" style="width:40%">
+  <figcaption>Photo by <a href="https://unsplash.com/@karim_manjra?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Karim MANJRA</a> on <a href="https://unsplash.com/photos/two-yellow-chicks-on-ground-hQV3s7J6eM4?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+      </figcaption>
+</figure>
 
 ::: {.callout-note title="Info"}
 You can reorder categories by a statistic (like the median) right inside aes() to make comparisons meaningful. In ggplot2, this is commonly done with reorder() (or forcats helpers). The layer for boxplots is geom_boxplot().

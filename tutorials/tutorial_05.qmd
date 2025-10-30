@@ -18,9 +18,12 @@ Using the local file recipe_reviews.csv, compute a 95% two-sided confidence
 interval for $$ \mu_{FiveStar} - \mu_{NotFive}$$ where the outcome is best_score and the groups are stars == 5 (FiveStar) vs stars != 5 (NotFive).
 Read the CSV with read.csv("recipe_reviews.csv"), build the two groups, and print the 2-element vector c(lower, upper).
 
-::: {.decor-img}
-![](./svgs/food_review.svg){alt="" aria-hidden="true" width="40%" fig-align="center"}
-:::
+
+<figure style="text-align:center">
+  <img src="./images/food_review.jpg" style="width:40%">
+  <figcaption>Photo by <a href="https://unsplash.com/@withmazar?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Maximus Mazar</a> on <a href="https://unsplash.com/photos/a-white-plate-topped-with-a-salad-on-top-of-a-table-gCT7s8QlTHs?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+      </figcaption>
+</figure>
 
 ::: {.callout-note title="Info"}
 For a pooled two-sample CI with equal variances:
@@ -156,9 +159,12 @@ Compute a 90% two-sided confidence interval for $$ \mu_{Adelie} - \mu_{Gentoo}$$
 for bill length (mm) using pooled variances. Use the local file penguins.csv 
 and only the two species Adelie and Gentoo.
 
-::: {.decor-img}
-![](./svgs/penguin_species.jpg){alt="" aria-hidden="true" width="40%" fig-align="center"}
-:::
+
+<figure style="text-align:center">
+  <img src="./images/penguin_species.jpg" style="width:40%">
+  <figcaption>Photo by <a href="https://unsplash.com/@niceguy1966?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Adam Tarshis</a> on <a href="https://unsplash.com/photos/a-couple-of-penguins-walking-on-sand-5hIWiJiZUpM?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+      </figcaption>
+</figure>
 
 ::: {.callout-note title="Info"}
 For equal-variance two-sample CIs, t.test(yield ~ method, var.equal = TRUE, conf.level = 0.90) uses the pooled standard error and df = $n_1 + n_2 - 2$. To get the CI for Adelie − Gentoo, set the factor level order to c("Adelie","Gentoo").

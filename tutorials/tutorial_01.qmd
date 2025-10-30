@@ -154,9 +154,12 @@ gradethis::grade_this({
 Use exactly one of these numeric columns and nothing else:
 len or dose
 
-::: {.decor-img}
-![](./svgs/toothgrowth.svg){alt="" aria-hidden="true" width="40%" fig-align="center"}
-:::
+<figure style="text-align:center">
+  <img src="./images/toothgrowth.jpg" style="width:40%">
+  <figcaption> Photo by <a href="https://unsplash.com/@thehumbleco?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">The Humble Co.</a> on <a href="https://unsplash.com/photos/blue-and-white-toothbrush-in-clear-glass-jar-cADflhZzgyo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  </figcaption>
+</figure>
+
 ::: {.callout-note title="Preview"}
 Find a preview of the ToothGrowth dataset here:
 ```{webr}
@@ -384,9 +387,11 @@ pass("OK")
 
 Load iris.csv into a dataframe named df.
 
-::: {.decor-img}
-![](./svgs/iris.svg){alt="" aria-hidden="true" width="40%" fig-align="center"}
-:::
+<figure style="text-align:center">
+  <img src="./images/iris.jpg" style="width:40%">
+  <figcaption> Photo by <a href="https://unsplash.com/@andsmall?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Andrew Small</a> on <a href="https://unsplash.com/photos/selective-focus-photography-of-pink-petaled-flower-EfhCUc_fjrU?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  </figcaption>
+</figure>
 
 ```{webr}
 # Q9 SETUP — create iris.csv inside the webR filesystem
