@@ -1165,9 +1165,11 @@ gradethis::grade_this({
 
 The question below has a dataframe df created from the dataset msleep that contains data about mammal sleep traits. Make a skim summary of df and store it in ms_skim. Print it to see your result!
 
-::: {.decor-img}
-![](./svgs/sleep.svg){alt="" aria-hidden="true" width="40%" fig-align="center"}
-:::
+<figure style="text-align:center">
+  <img src="./images/sleep.jpg" style="width:40%">
+  <figcaption>Photo by <a href="https://unsplash.com/@mpho_mojapelo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Mpho Mojapelo</a> on <a href="https://unsplash.com/photos/pink-bell-alarm-clock-showing-210-I84vGUYGUtQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+      </figcaption>
+</figure>
 
 ::: {.callout-note title="Info"}
 Info : skimr is an R package that provides summary statistics a user can quickly skim to understand their data.

@@ -140,9 +140,12 @@ else fail("Recheck mean, n, z*, and the known σ.")
 
 PlantGrowth is a dataset that contains results from an experiment to compare yields (as measured by dried weight of plants) obtained under a control and two different treatment conditions. Print the 95% two-sided t* using PlantGrowth's weight column when $\alpha = 0.05$. 
 
-::: {.decor-img}
-![](./svgs/plant_growth.jpg){alt="" aria-hidden="true" width="40%" fig-align="center"}
-:::
+
+<figure style="text-align:center">
+  <img src="./images/plant_growth.jpg" style="width:40%">
+  <figcaption>Photo by <a href="https://unsplash.com/@arnold_nagy?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Nagy Arnold</a> on <a href="https://unsplash.com/photos/green-leafed-bonsai-tree-against-black-background-X_IvVDuHvDQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+      </figcaption>
+</figure>
 
 ::: {.callout-note title="Preview"}
 Run this code chunk to get a glimpse of the dataset. Feel free to change the values to visualize more/less number of rows. 
@@ -270,9 +273,12 @@ else fail("Check df and make sure it's two-sided 95%.")
 
 The dataset used here is river lengths, which gives the lengths (in miles) of 141 “major” rivers in North America, as compiled by the US Geological Survey. Assume river lengths (miles) have known population SD σ = 300. Build a 95% CI for the true mean river length using rivers whe $\alpha = 0.05$.
 
-::: {.decor-img}
-![](./svgs/river.jpg){alt="" aria-hidden="true" width="40%" fig-align="center"}
-:::
+
+<figure style="text-align:center">
+  <img src="./images/river.jpg" style="width:40%">
+  <figcaption>Photo by <a href="https://unsplash.com/@kazuend?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">kazuend</a> on <a href="https://unsplash.com/photos/body-river-surrounded-by-dress-cCthPLHmrzI?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+      </figcaption>
+</figure>
 
 ::: {.callout-note title="Preview"}
 Run this code chunk to get a glimpse of the dataset. Feel free to change the values to visualize more/less number of rows. 
@@ -339,9 +345,11 @@ else fail("Recheck x̄, n, z*, and σ = 300.")
 Using airquality$Ozone (ignore missing), construct and print 90% CI for the true
 mean ozone level (ppb). Assume normality is reasonable.
 
-::: {.decor-img}
-![](./svgs/air_quality.jpg){alt="" aria-hidden="true" width="40%" fig-align="center"}
-:::
+<figure style="text-align:center">
+  <img src="./images/air_quality.jpg" style="width:40%">
+  <figcaption>Photo by <a href="https://unsplash.com/@timwitzdam?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Tim Witzdam</a> on <a href="https://unsplash.com/photos/plant-next-to-a-device-displaying-readings-NH4RJjtDaNk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+      </figcaption>
+</figure>
 
 
 ::: {.callout-note title="Preview"}
@@ -397,9 +405,12 @@ else fail("Check t* at 0.95 and your s, n.")
 
 In the UCBAdmissions dataset, Admit status for a student is "Admitted" or "Rejected". Build and print c(lower, upper) for the 95% CI on the overall admission proportion.
 
-::: {.decor-img}
-![](./svgs/admissions.jpg){alt="" aria-hidden="true" width="40%" fig-align="center"}
-:::
+
+<figure style="text-align:center">
+  <img src="./images/admissions.jpg" style="width:40%">
+  <figcaption>Photo by <a href="https://unsplash.com/@mattragland?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Matt Ragland</a> on <a href="https://unsplash.com/photos/flat-lay-photography-of-blue-backpack-beside-book-and-silver-macbook-02z1I7gv4ao?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+      </figcaption>
+</figure>
 
 ::: {.callout-note title="Info"}
 For a single proportion:
@@ -476,10 +487,6 @@ else fail("Recompute p̂, n, z*, and SE = sqrt(p̂(1−p̂)/n).")
 
 Using PlantGrowth$weight, print c(lower, upper) for 95% CI on σ^2. (Assume normality.)
 
-::: {.decor-img}
-![](./svgs/plant_growth.jpg){alt="" aria-hidden="true" width="40%" fig-align="center"}
-:::
-
 ::: {.callout-note title="Info"}
 For normal data, the variance CI uses the chi-square distribution with df=n−1:
 
@@ -547,7 +554,7 @@ else fail("Check df=n−1 and chi-square cutoffs (0.025 & 0.975).")
 HairEyeColor is a built-in contingency table of Hair × Eye × Gender of Statistics students with counts. Treat each person as a trial and estimate the true proportion with Brown eyes. Construct a 95% Z-interval for the population proportion p. Print c(lower, upper).
 
 ::: {.decor-img}
-![](./svgs/hair_eye_color.jpg){alt="" aria-hidden="true" width="40%" fig-align="center"}
+![](./images/hair_eye_color.jpg){alt="" aria-hidden="true" width="40%" fig-align="center"}
 :::
 
 ::: {.callout-note title="Info"}

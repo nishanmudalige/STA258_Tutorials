@@ -31,8 +31,8 @@ website:
 format:
   live-html:
     theme: 
-      light: lux
-      dark: cyborg
+      light: flatly
+      dark: darkly
     css: design.css
     toc: false
 
