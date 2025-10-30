@@ -37,15 +37,15 @@ Visit [https://nishanmudalige.github.io/STA258_Tutorials/](https://nishanmudalig
   - One sample confidence intervals on the mean ✔️
     - sigma known ✔️
     - sigma unknown ✔️
-  - One sample confidence intervals on a proportion
-  - One sample confidence intervals on a variance
-  - Sample size calculation when sigma is known
+  - One sample confidence intervals on a proportion ✔️
+  - One sample confidence intervals on a variance ✔️
+  - Sample size calculation when sigma is known ✔️
 - Week 6 (Tutorial 5) ✅
-  - Two sample confidence intervals on a difference of means
-    - Variances assumed equal (pooled)
-    - Variances assumed different (Welch)
-  - Two sample confidence intervals on a difference of proportions
-  - Two sample confidence intervals on a ratio of variances
+  - Two sample confidence intervals on a difference of means ✔️
+    - Variances assumed equal (pooled) ✔️
+    - Variances assumed different (Welch) ✔️
+  - Two sample confidence intervals on a difference of proportions ✔️
+  - Two sample confidence intervals on a ratio of variances ✔️
 - Week 7 (Tutorial 6) 🚧
   - One sample hypothesis tests on the mean
     - sigma known
