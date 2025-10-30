@@ -2,15 +2,15 @@
 
 ## To Do:
 
-- Complete Tutorials 1 - 5
-- Test Tutorials 1 - 5
-- Get design elements working
-  - Quarto specific elements
-    -  Light and dark themes
-    -  Image and caption centering
-  - `.css` specific elements
-    - Page width
-    - Dropdown/navbar to overcome quarto limitations 
+- Complete Tutorials 1 - 5 ✅✅
+- Test Tutorials 1 - 5 ✅✅
+- Get design elements working ✅✅
+  - Quarto specific elements ✅
+    -  Light and dark themes ✅
+    -  Image and caption centering ✅
+  - `.css` specific elements ✅
+    - Page width ✅
+    - Dropdown/navbar to overcome quarto limitations ✅
 
 
 ## High level outline
