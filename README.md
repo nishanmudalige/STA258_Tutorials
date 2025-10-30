@@ -2,9 +2,15 @@
 
 ## To Do:
 
-- Complete Tutorial 1 + make a section of additional problems to expand on tutorial content
-- Add a `.csv` file upload (with a link to the raw version of the file) and add questions where students use R commands on the file
-- Move q2 to the end and add sub questions to aid students
+- Complete Tutorials 1 - 5
+- Test Tutorials 1 - 5
+- Get design elements working
+  - Quarto specific elements
+    -  Light and dark themes
+    -  Image and caption centering
+  - `.css` specific elements
+    - Page width
+    - Dropdown/navbar to overcome quarto limitations 
 
 
 ## High level outline
