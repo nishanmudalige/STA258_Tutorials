@@ -1,6 +1,6 @@
 # STA258_Tutorial
 
-Visit [https://nishanmudalige.github.io/STA258/](https://nishanmudalige.github.io/STA258) to view the e-book.
+Visit [https://nishanmudalige.github.io/STA258_Tutorials/](https://nishanmudalige.github.io/STA258_Tutorials/) to access the tutorials.
 
 ---
 
