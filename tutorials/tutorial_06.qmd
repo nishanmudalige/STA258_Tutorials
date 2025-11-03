@@ -1,0 +1,12 @@
+---
+title: "Tutorial 05"
+format: live-html
+engine: knitr
+resources:
+  - recipe_reviews.csv
+  - penguins.csv
+  - coffee.csv
+---
+
+{{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
+{{< include ../_extensions/r-wasm/live/_gradethis.qmd >}}
