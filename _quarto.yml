@@ -22,6 +22,8 @@ website:
           href: tutorials/tutorial_04.qmd
         - text: "Tutorial 5"
           href: tutorials/tutorial_05.qmd
+        - text: "Tutorial 6"
+          href: tutorials/tutorial_06.qmd
           
       - text: "Practice"
         menu:
