@@ -30,7 +30,7 @@ Remember: R calculates area to the left unlike probability tables.
 This is the graphical representation of the question:
 ```{r, echo=FALSE} 
 # Left-tail shading for z = 1.28 under N(0,1) in base R
-z <- 1.28
+z <- 1.25
 
 curve(dnorm(x), from = -4, to = 4, n = 1000,
       xlab = "z", ylab = "Density",

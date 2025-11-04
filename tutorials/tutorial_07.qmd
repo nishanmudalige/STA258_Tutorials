@@ -1,5 +1,859 @@
 ---
-title: "tutorial_07"
-format: html
+title: "Tutorial 07"
+format: live-html
+engine: knitr
+resources:
+  - marvel.csv
+  - pokemon.csv
+  - spotify-rankings.csv
 ---
+
+{{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
+{{< include ../_extensions/r-wasm/live/_gradethis.qmd >}}
+
+
+## Q1 — Pooled two-sample t-test (MCU audience score)
+
+For this question, we use the Marvel Movies Comparison dataset called marvel.csv. Compare audience % score between Avengers and Spider-Man movies. 
+
+We test
+
+H₀: $\mu_{avengers}$ - $\mu_{spiderman}$  = 0 vs
+
+H₁: $\mu_{avengers}$ - $\mu_{spiderman}$ ≠ 0
+
+using a pooled t-test (var.equal=TRUE). Print only the p-value.
+
+<figure style="text-align:center">
+  <img src="./images/world_cup_2014.jpg" style="width:40%">
+  <figcaption>Photo by <a href="https://unsplash.com/@camyogi_2019?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">CamYogi</a> on <a href="https://unsplash.com/photos/amerian-football-team-NwZpT4LKwDQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+      </figcaption>
+</figure>
+
+::: {.callout-note title="Info"}
+This is a two sample hypothesis test on difference of means with equal variances. In that situation, we will use a t.test approach you have seen in previous tutorials.
+:::
+
+::: {.callout-note title="Preview"}
+Run this code chunk to get a glimpse of the dataset. Feel free to change the values to visualize more/less number of rows. 
+```{webr}
+#| echo: true
+df <- read.csv("marvel.csv")
+head(df [, c("film", "audience...score")], 10)
+
+```
+:::
+
+
+
+```{webr}
+#| exercise: q1_mcu_pooled_audience
+#| exercise.lines: 8
+#| echo: false
+df <- read.csv("marvel.csv")
+df <- subset(df, category %in% c("Avengers","Spider-Man")) #isolating the 2 categories
+df$aud <- suppressWarnings(as.numeric(df[["audience % score"]])) #isolating the scores column
+df <- subset(df, is.finite(aud)) #only keeps numeric rows
+df$grp <- factor(df$category, levels = c("Avengers","Spider-Man"))
+t.test(aud ~ grp, data = df, var.equal = __)$__ #remember what to print
+
+```
+
+::: {.hint exercise="q1_mcu_pooled_audience"}
+Use var.equal=TRUE and return only the p-value.
+:::
+
+::: {.solution exercise="q1_mcu_pooled_audience"}
+```{webr}
+#| exercise: q1_mcu_pooled_audience
+#| solution: true
+df <- read.csv("marvel.csv")
+df <- subset(df, category %in% c("Avengers","Spider-Man"))
+df$aud <- suppressWarnings(as.numeric(df[["audience % score"]]))
+df <- subset(df, is.finite(aud))
+df$grp <- factor(df$category, levels = c("Avengers","Spider-Man"))
+t.test(aud ~ grp, data = df, var.equal = TRUE)$p.value
+
+```
+:::
+
+```{webr}
+#| exercise: q1_mcu_pooled_audience
+#| check: true
+gradethis::grade_this({
+df <- read.csv("marvel.csv")
+df$aud <- suppressWarnings(as.numeric(df[["audience % score"]]))
+df <- subset(df, category %in% c("Avengers","Spider-Man") & is.finite(aud))
+df$grp <- factor(df$category, levels=c("Avengers","Spider-Man"))
+exp <- t.test(aud~grp, data=df, var.equal=TRUE)$p.value
+x <- .result; ok <- is.numeric(x) && length(x)==1L && is.finite(x)
+if(!ok) fail("Print one numeric p-value.")
+if(abs(x-exp)<1e-12) pass("Correct pooled t-test p-value.")
+else fail("Recheck groups and var.equal=TRUE.")
+})
+
+
+```
+
+
+## Q2 — One-sample z-test on SPI (σ known, using BSDA)
+
+For this question, we again use the 2014 Soccer World Cup Tournament Predictions dataset. We want to test whether the average Soccer Power Index (spi) for all teams equals 70 when the population standard deviation is known to be 12. This time we will use the z.test() function from the BSDA package to run the test in a single line, and you will just fill in the key arguments.
+
+::: {.callout-note title="Info"}
+Base R does not have a built-in one-sample z-test. The BSDA package provides z.test() which does: compute the z statistic, use the normal distribution, and give the p-value. We are using it here only to shorten the code; the logic is the same as in Q1.
+:::
+
+::: {.callout-note title="Preview"}
+
+```{webr}
+#| echo: true
+df <- read.csv("world_cup_predictions.csv")
+
+head(df[, c("country","group","spi")], 10)
+
+par(mfrow = c(1,2))
+hist(df$spi, main = "Histogram of SPI", xlab = "spi")
+boxplot(df$spi, main = "Boxplot of SPI", ylab = "spi")
+par(mfrow = c(1,1))
+```
+:::
+
+```{webr}
+#| exercise: q2_spi_z_bsda
+#| exercise.lines: 8
+#| echo: false
+
+df <- read.csv("world_cup_predictions.csv")
+x <- df$spi
+
+library(BSDA)
+
+out <- z.test(x,
+mu = ＿＿,       # hypothesized mean
+sigma.x = ＿＿,  # known population SD
+alternative = "two.sided")
+
+out$p.value
+```
+
+::: {.hint exercise="q2_spi_z_bsda"}
+Use the same hypotheses as before (test against 70) and the same known σ (12). Keep the test two-sided.
+:::
+
+::: {.solution exercise="q2_spi_z_bsda"}
+```{webr}
+#| exercise: q2_spi_z_bsda
+#| solution: true
+
+df <- read.csv("world_cup_predictions.csv")
+x <- df$spi
+
+library(BSDA)
+
+out <- BSDA::z.test(x,
+mu = 70,
+sigma.x = 12,
+alternative = "two.sided")
+
+out$p.value
+
+```
+:::
+
+
+```{webr}
+#| exercise: q2_spi_z_bsda
+#| check: true
+gradethis::grade_this({
+df <- tryCatch(read.csv("world_cup_predictions.csv"), error = function(e) NULL)
+if (is.null(df)) fail("Couldn't read 'world_cup_predictions.csv'. Make sure the file is available.")
+if (!"spi" %in% names(df)) fail("The CSV must contain a 'spi' column.")
+x <- df$spi
+
+suppressMessages(library(BSDA))
+exp_out <- BSDA::z.test(x,
+mu = 70,
+sigma.x = 12,
+alternative = "two.sided")
+exp_p <- exp_out$p.value
+
+res <- .result
+if (!is.numeric(res) || length(res) != 1L) {
+fail("Print a single numeric p-value from the test output.")
+}
+
+if (is.finite(res) && abs(res - exp_p) < 1e-6) {
+pass("Correct p-value for the BSDA z-test with μ = 70 and σ = 12.")
+} else {
+fail("Not quite — check that you used mu = 70, sigma.x = 12, and alternative = 'two.sided'.")
+}
+})
+```
+
+## Q3 — One-sample test on SPI (σ unknown)
+
+Now test the same hypothesis,
+
+H₀: μ = 70
+
+H₁: μ ≠ 70
+
+but now do not assume the population standard deviation is known. Use the sample SD, form the t statistic, and get the two-sided p-value from the t distribution.
+
+::: {.callout-note title="Info"}
+When σ is unknown, we use the sample SD to standardize and compare to a t distribution with n − 1 degrees of freedom.
+:::
+::: {.callout-note title="Preview"}
+Run this code chunk to get a glimpse of the dataset. Feel free to change the values to visualize more/less number of rows. 
+```{webr}
+#| echo: true
+df <- read.csv("world_cup_predictions.csv")
+x <- df$spi
+
+par(mfrow = c(1,2))
+qqnorm(x, main = "Q-Q plot of SPI"); qqline(x)
+hist(x, main = "Histogram of SPI", xlab = "spi")
+par(mfrow = c(1,1))
+```
+:::
+
+::: {.callout-note title="Info"}
+For a one-sample test with unknown σ, use
+\( t = \dfrac{\bar{x} - \mu_0}{s / \sqrt{n}} \)
+with \(df = n - 1\), and a two-sided p-value
+\( p = 2 \times (1 - F_t(|t|)) \).
+:::
+
+```{webr}
+#| exercise: q2_spi_ttest_unknown_sigma
+#| exercise.lines: 10
+#| echo: false
+
+df <- read.csv("world_cup_predictions.csv")
+spi_col <- df$spi # numeric SPI data
+
+mu_0 <- ＿＿ # hypothesized mean (70)
+n <- sum(!is.na(spi_col)) # sample size
+xbar <- ＿＿(spi_col, na.rm = TRUE) # sample mean
+s <- ＿＿(spi_col, na.rm = TRUE) # sample standard deviation
+
+dfree <- n - 1
+
+t_stat <- (xbar - mu_0) / (s / sqrt(n))
+
+p_two <- 2 * (1 - pt(abs(t_stat), df = dfree))
+
+c(t = t_stat, df = dfree, p_value = p_two)
+```
+
+::: {.hint exercise="q2_spi_ttest_unknown_sigma"}
+Use the SPI column, test against 70, compute mean and sd, then use the t formula and a two-sided p-value from pt().
+:::
+
+::: {.solution exercise="q2_spi_ttest_unknown_sigma"}
+```{webr}
+#| exercise: q2_spi_ttest_unknown_sigma
+#| solution: true
+df <- read.csv("world_cup_predictions.csv")
+spi_col <- df$spi
+
+mu_0 <- 70
+n <- sum(!is.na(spi_col))
+xbar <- mean(spi_col, na.rm = TRUE)
+s <- sd(spi_col, na.rm = TRUE)
+
+dfree <- n - 1
+t_stat <- (xbar - mu_0) / (s / sqrt(n))
+p_two <- 2 * (1 - pt(abs(t_stat), df = dfree))
+
+c(t = t_stat, df = dfree, p_value = p_two)
+```
+:::
+
+```{webr}
+#| exercise: q2_spi_ttest_unknown_sigma
+#| check: true
+gradethis::grade_this({
+df <- tryCatch(read.csv("world_cup_predictions.csv"), error = function(e) NULL)
+if (is.null(df)) fail("Couldn't read 'world_cup_predictions.csv'.")
+if (!"spi" %in% names(df)) fail("Need a 'spi' column.")
+
+x <- df$spi
+mu_0 <- 70
+n <- sum(!is.na(x))
+xbar <- mean(x, na.rm = TRUE)
+s <- sd(x, na.rm = TRUE)
+dfree <- n - 1
+
+exp_t <- (xbar - mu_0) / (s / sqrt(n))
+exp_p <- 2 * (1 - pt(abs(exp_t), df = dfree))
+
+res <- .result
+if (!is.numeric(res) || length(res) != 3L) fail("Return c(t = ..., df = ..., p_value = ...).")
+if (any(!is.finite(res))) fail("Values must be finite.")
+
+t_user <- unname(res[1])
+df_user <- unname(res[2])
+p_user <- unname(res[3])
+
+if (abs(t_user - exp_t) < 1e-6 &&
+abs(df_user - dfree) < 1e-6 &&
+abs(p_user - exp_p) < 1e-6) {
+pass("Correct manual one-sample t-test.")
+} else {
+fail("Something is off — check mean, sd, df = n - 1, and the two-sided p-value using pt().")
+}
+})
+```
+
+
+
+## Q4 — One-sample t-test on SPI (σ unknown, built-in)
+
+For this question, we again use the 2014 Soccer World Cup Tournament Predictions dataset. We want to test whether the average Soccer Power Index (spi) for all teams equals 70, but we will let R do the one-sample t-test for us using the built-in t.test() function. This is the “practical” version of Q3.
+
+::: {.callout-note title="Info"}
+When the population standard deviation is not given, we use a one-sample t-test:
+t.test(x, mu = μ₀, alternative = "two.sided")
+R will estimate the standard deviation, use df = n − 1, and return the p-value.
+:::
+
+```{webr}
+#| exercise: q4_spi_t_builtin
+#| exercise.lines: 8
+#| echo: false
+
+df <- read.csv("world_cup_predictions.csv")
+x <- df$spi
+
+out <- t.test(＿＿,
+mu = ＿＿,
+alternative = "two.sided")
+
+out$p.value
+```
+
+::: {.hint exercise="q4_spi_t_builtin"}
+Use the SPI column from the data, test it against 70, and keep the test two-sided.
+:::
+
+::: {.solution exercise="q4_spi_t_builtin"}
+```{webr}
+#| exercise: q4_spi_t_builtin
+#| solution: true
+
+df <- read.csv("world_cup_predictions.csv")
+x <- df$spi
+out <- t.test(x, mu = 70, alternative = "two.sided")
+out$p.value
+```
+:::
+
+```{webr}
+#| exercise: q4_spi_t_builtin
+#| check: true
+gradethis::grade_this({
+df <- tryCatch(read.csv("world_cup_predictions.csv"), error = function(e) NULL)
+if (is.null(df)) fail("Couldn't read 'world_cup_predictions.csv'.")
+if (!"spi" %in% names(df)) fail("The CSV must contain a 'spi' column.")
+x <- df$spi
+
+exp_out <- t.test(x, mu = 70, alternative = "two.sided")
+exp_p <- exp_out$p.value
+
+res <- .result
+if (!is.numeric(res) || length(res) != 1L) {
+fail("Print a single numeric p-value from the t-test.")
+}
+
+if (abs(res - exp_p) < 1e-6) {
+pass("Correct p-value for the one-sample t-test on SPI.")
+} else {
+fail("Not quite — check that you used mu = 70 and alternative = 'two.sided'.")
+}
+})
+```
+
+## Q4 — Two-Sample CI for a Difference of Proportions
+
+In recipe_reviews.csv, compare the proportion of reviews where thumbs_up > thumbs_down between FiveStar (stars == 5) and NotFive (stars != 5). Compute a 95% two-sided CI for $$p_{FiveStar} - p_{NotFive}$$. Print c(lower, uppper).
+
+::: {.callout-note title="Preview"}
+Run this code chunk to get a glimpse of the dataset. Feel free to change the values to visualize more/less number of rows. 
+```{webr}
+#| echo: true
+df <- read.csv("recipe_reviews.csv")
+head(df[, c("stars","thumbs_up","thumbs_down","best_score")], 10)
+df2 <- subset(df, is.finite(thumbs_up) & is.finite(thumbs_down) & is.finite(stars))
+df2$group <- ifelse(df2$stars == 5, "FiveStar", "NotFive")
+df2$success <- as.integer(df2$thumbs_up > df2$thumbs_down)
+set.seed(258)
+grp_idx <- split(seq_len(nrow(df2)), df2$group)
+idx <- unlist(lapply(grp_idx, function(i) sample(i, min(400, length(i)))))
+df3 <- df2[idx, ]
+p <- tapply(df3$success, df3$group, function(x) mean(x, na.rm = TRUE))
+par(mar = c(4,4,1,1))
+barplot(p, ylim = c(0,1), ylab = "Proportion (thumbs_up > thumbs_down)", xlab = "Group")
+```
+:::
+
+
+::: {.callout-note title="Info"}
+CI for difference of proportions: 
+$$
+\mathrm{CI}_{1-\alpha}:\ \hat{p_1} - \hat{p_2} \pm z_{1-\alpha/2} * \sqrt{\frac{\hat{p_1}(1-\hat{p_1})}{n_1} + \frac{\hat{p_2}(1-\hat{p_2})}{n_2}}.
+$$
+:::
+
+
+```{webr}
+#| exercise: q11_wald_2prop_reviews
+#| exercise.lines: 10
+#| echo: false
+df <- read.csv("＿＿")
+g1 <- subset(df, stars == 5) #segregating the dataset
+g2 <- subset(df, stars != 5)
+
+count1 <- as.integer(g1$thumbs_up > g1$thumbs_down) #helps in making 0/1 success. 
+#Makes all thumbs_up values 1 and thumbs_down values 0. 
+count2 <- as.integer(g2$thumbs_up > g2$thumbs_down)
+
+n1 <- sum( is.finite ( ＿＿ ) ); n2 <- sum( is.finite ( ＿＿ ) ) #is.finite helps to 
+#filter only usable rows
+p1 <- mean( ＿＿ , na.rm = TRUE)
+p2 <- mean( ＿＿ , na.rm = TRUE)
+se <- ＿＿
+z <- ＿＿ 
+
+
+
+
+```
+
+::: {.hint exercise="q11_wald_2prop_reviews"}
+Compute $$\hat{p}$$ per group, then compute their SE and z* at 0.975.
+:::
+
+::: {.solution exercise="q11_wald_2prop_reviews"}
+```{webr}
+#| exercise: q11_wald_2prop_reviews
+#| solution: true
+df <- read.csv("recipe_reviews.csv")
+g1 <- subset(df, stars == 5) #segregating the dataset
+g2 <- subset(df, stars != 5)
+count1 <- as.integer(g1$thumbs_up > g1$thumbs_down)
+count2 <- as.integer(g2$thumbs_up > g2$thumbs_down)
+n1 <- sum(is.finite(count1)); n2 <- sum(is.finite(count2))
+p1 <- mean(count1, na.rm = TRUE); p2 <- mean(count2, na.rm = TRUE)
+se <- sqrt(p1*(1-p1)/n1 + p2*(1-p2)/n2)
+z <- qnorm(0.975); 
+(p1 - p2) + c(-1,1)*z*se
+
+
+```
+:::
+
+```{webr}
+#| exercise: q11_wald_2prop_reviews
+#| check: true
+gradethis::grade_this({
+df <- tryCatch(read.csv("recipe_reviews.csv"), error = function(e) NULL)
+if (is.null(df)) fail("Couldn't read 'recipe_reviews.csv'.")
+g1 <- subset(df, stars == 5)
+g2 <- subset(df, stars != 5)
+y1 <- as.integer(g1$thumbs_up > g1$thumbs_down)
+y2 <- as.integer(g2$thumbs_up > g2$thumbs_down)
+n1 <- sum(is.finite(y1)); n2 <- sum(is.finite(y2))
+if (min(n1, n2) < 2) fail("Both groups need at least 2 finite rows.")
+p1 <- mean(y1, na.rm = TRUE); p2 <- mean(y2, na.rm = TRUE)
+se <- sqrt(p1*(1-p1)/n1 + p2*(1-p2)/n2)
+z <- qnorm(0.975); est <- p1 - p2
+exp <- est + c(-1,1)*z*se
+x <- .result
+ok <- is.numeric(x) && length(x)==2L && all(is.finite(x))
+if (!ok) fail("Print c(lower, upper).")
+if (max(abs(x - exp)) < 1e-6) pass("✅ Correct 95% Wald CI for p_FiveStar − p_NotFive.")
+else fail("Recheck successes, n1/n2, and z*.")
+})
+
+
+
+```
+
+
+
+
+
+## Q5 — Two-Sample CI for a Difference of Proportions using prop.test
+
+In penguins.csv, compare the male proportion between Chinstrap and Gentoo. Compute an evidence-only CI (no hypothesis interpretation needed) for $p_{Chinstrap} - p_{Gentoo}$ at 90% and print c(lower upper).
+
+
+::: {.callout-note title="Preview"}
+```{webr}
+#| echo: true
+df <- read.csv("penguins.csv")
+head(df[, c("species","sex","island")], 10)
+df2 <- subset(df, species %in% c("Chinstrap","Gentoo") & !is.na(sex))
+set.seed(258)
+grp_idx <- split(seq_len(nrow(df2)), df2$species)
+idx <- unlist(lapply(grp_idx, function(i) sample(i, min(200, length(i)))))
+df3 <- df2[idx, ]
+p <- with(df3, tapply(sex == "male", species, function(x) mean(x, na.rm = TRUE)))
+par(mar = c(4,4,1,1))
+barplot(p, ylim = c(0,1), ylab = "Proportion male", xlab = "Species")
+
+```
+:::
+
+
+::: {.callout-note title="Info"}
+
+The prop.test() function in R performs tests of proportions, allowing for the comparison of proportions across groups or against specific values. Here is an example according to this question. here’s a super simple one-sample prop.test using penguins.csv. It asks: among Gentoo penguins, what fraction are male? It prints the estimate and a 95% CI. Run the code to see!
+```{webr}
+#| echo: true
+
+# One-sample prop.test example: proportion of males within Gentoo
+
+df <- read.csv("penguins.csv")
+
+g <- subset(df, species == "Gentoo" & !is.na(sex))
+x <- sum(g$sex == "male")   # number of "successes"
+n <- nrow(g)                # total trials
+
+prop.test(x = x, n = n, conf.level = 0.95, correct = FALSE)
+
+```
+:::
+
+```{webr}
+#| exercise: q12_prop_test_penguins
+#| exercise.lines: 10
+#| echo: false
+df <- read.csv("penguins.csv")
+df <- subset(df, species %in% c("＿＿","＿＿") & !is.na(sex)) #filtering based 
+#on the species we need and removing NA rows
+x1 <- sum(df$species=="Chinstrap" & df$sex=="＿＿")
+n1 <- ＿＿
+x2 <- sum(df$species=="Gentoo" & df$sex=="＿＿")
+n2 <- ＿＿
+prop.test(x = c( ＿＿ , ＿＿ ), n = c( ＿＿ , ＿＿ ), conf.level = ＿＿ , correct = FALSE)$conf.int
+
+```
+
+::: {.hint exercise="q12_prop_test_penguins"}
+Filter to two species, count “male” in each, and feed (x1,n1),(x2,n2) to prop.test.
+:::
+
+::: {.solution exercise="q12_prop_test_penguins"}
+```{webr}
+#| exercise: q12_prop_test_penguins
+#| solution: true
+df <- read.csv("penguins.csv")
+df <- subset(df, species %in% c("Chinstrap","Gentoo") & !is.na(sex))
+x1 <- sum(df$species=="Chinstrap" & df$sex=="male")
+n1 <- sum(df$species=="Chinstrap")
+x2 <- sum(df$species=="Gentoo" & df$sex=="male")
+n2 <- sum(df$species=="Gentoo")
+prop.test(x = c(x1, x2), n = c(n1, n2), conf.level = 0.90, correct = FALSE)$conf.int
+
+```
+:::
+
+```{webr}
+#| exercise: q12_prop_test_penguins
+#| check: true
+gradethis::grade_this({
+df <- tryCatch(read.csv("penguins.csv"), error=function(e) NULL)
+if (is.null(df)) fail("Couldn't read 'penguins.csv'.")
+df <- subset(df, species %in% c("Chinstrap","Gentoo") & !is.na(sex))
+x1 <- sum(df$species=="Chinstrap" & df$sex=="male"); n1 <- sum(df$species=="Chinstrap")
+x2 <- sum(df$species=="Gentoo" & df$sex=="male");    n2 <- sum(df$species=="Gentoo")
+exp <- prop.test(x=c(x1,x2), n=c(n1,n2), conf.level=0.90, correct=FALSE)$conf.int
+x <- .result
+ok <- is.numeric(x) && length(x)==2L && all(is.finite(x))
+if (!ok) fail("Print c(lower, upper).")
+if (max(abs(x - exp)) < 1e-6) pass("✅ Correct 90% CI for p_Chinstrap − p_Gentoo.")
+else fail("Check species filter, male counts, and conf.level=0.90.")
+})
+
+```
+
+## Q6 — Two-Sample CI for a Difference of Proportions (island=Biscoe)
+
+Using penguins.csv, compare the proportion of penguins on Biscoe island between Adelie and Gentoo. Compute a 95% two-sided CI for $p_{Adelie} - p_{Gentoo}$ and print c(lower upper).
+
+
+::: {.callout-note title="Preview"}
+```{webr}
+#| echo: true
+df <- read.csv("penguins.csv")
+head(df[, c("species","sex","island")], 10)
+df2 <- subset(df, species %in% c("Adelie","Gentoo") & !is.na(island))
+set.seed(258)
+grp_idx <- split(seq_len(nrow(df2)), df2$species)
+idx <- unlist(lapply(grp_idx, function(i) sample(i, min(200, length(i)))))
+df3 <- df2[idx, ]
+p <- with(df3, tapply(island == "Biscoe", species, function(x) mean(x, na.rm = TRUE)))
+par(mar = c(4,4,1,1))
+barplot(p, ylim = c(0,1), ylab = 'Proportion on "Biscoe"', xlab = "Species")
+
+```
+:::
+
+
+```{webr}
+#| exercise: q5_diff_prop_biscoe
+#| exercise.lines: 6
+#| echo: false
+df <- read.csv("penguins.csv")
+sub <- subset(df, species %in% c("＿＿","＿＿") & !is.na(＿＿)) #filter based on species
+
+x1 <- sum(sub$species=="＿＿" & sub$＿＿=="＿＿") #add additional filter for island
+n1 <- sum(sub$species=="Adelie")
+x2 <- sum(sub$species=="＿＿" & sub$＿＿=="＿＿")
+n2 <- sum(sub$species=="Gentoo")
+
+prop.test(x=c(＿＿, ＿＿), n=c(＿＿,＿＿), conf.level=＿＿, correct=FALSE)$conf.int
+
+```
+
+::: {.hint exercise="q5_diff_prop_biscoe"}
+Count “Biscoe” within each species to get x1, x2. Use totals for n1, n2, then prop.test(...)$conf.int. Order your counts as (Adelie, Gentoo) to get Adelie − Gentoo.
+:::
+
+::: {.solution exercise="q5_diff_prop_biscoe"}
+```{webr}
+#| exercise: q5_diff_prop_biscoe
+#| solution: true
+df <- read.csv("penguins.csv")
+sub <- subset(df, species %in% c("Adelie","Gentoo") & !is.na(island))
+x1 <- sum(sub$species=="Adelie" & sub$island=="Biscoe"); n1 <- sum(sub$species=="Adelie")
+x2 <- sum(sub$species=="Gentoo" & sub$island=="Biscoe"); n2 <- sum(sub$species=="Gentoo")
+prop.test(x=c(x1,x2), n=c(n1,n2), conf.level=0.95, correct=FALSE)$conf.int
+
+
+```
+:::
+
+```{webr}
+#| exercise: q5_diff_prop_biscoe
+#| check: true
+gradethis::grade_this({
+df <- tryCatch(read.csv("penguins.csv"), error=function(e) NULL)
+if (is.null(df)) fail("Couldn't read 'penguins.csv'.")
+sub <- subset(df, species %in% c("Adelie","Gentoo") & !is.na(island))
+x1 <- sum(sub$species=="Adelie" & sub$island=="Biscoe"); n1 <- sum(sub$species=="Adelie")
+x2 <- sum(sub$species=="Gentoo" & sub$island=="Biscoe"); n2 <- sum(sub$species=="Gentoo")
+exp <- prop.test(x=c(x1,x2), n=c(n1,n2), conf.level=0.95, correct=FALSE)$conf.int
+r <- .result
+ok <- is.numeric(r) && length(r)==2L && all(is.finite(r))
+if (!ok) fail("Print a numeric vector c(lower, upper).")
+if (max(abs(r - exp)) < 1e-6) pass("✅ Correct 95% CI for p_Adelie − p_Gentoo (Biscoe).")
+else fail("Recheck counts, totals, order (Adelie first), and conf.level=0.95.")
+})
+
+
+```
+
+## Q7 — Two-Sample CI for a Ratio of Variances (manual F-based)
+
+Using recipe_reviews.csv, compare the variance of best_score for FiveStar vs NotFive. Build a 95% CI for $\sigma^2_{FiveStar} / \sigma^2_{NotFive}$ and print c(lower, upper).
+
+::: {.callout-note title="Preview"}
+Here is a glimpse of the dataset:
+```{webr}
+#| echo: true
+df <- read.csv("recipe_reviews.csv")
+head(df[, c("stars","best_score")], 10)
+df2 <- subset(df, is.finite(best_score) & is.finite(stars))
+df2$group <- ifelse(df2$stars == 5, "FiveStar", "NotFive")
+set.seed(258)
+grp_idx <- split(seq_len(nrow(df2)), df2$group)
+idx <- unlist(lapply(grp_idx, function(i) sample(i, min(200, length(i)))))
+df3 <- df2[idx, ]
+ylim <- quantile(df3$best_score, c(.01, .99), na.rm = TRUE)
+par(mar = c(4,4,1,1))
+boxplot(best_score ~ group, data = df3, notch = FALSE, outline = FALSE, ylim = ylim,
+ylab = "best_score", xlab = "Group")
+
+```
+:::
+
+::: {.callout-note title="Info"}
+Taking group 1 as FiveStar here, with $s_1^2$ and $s_2^2$ as sample variances, here is the CI:
+$$
+\text{CI}_{1-\alpha}\!\left(\frac{\sigma_1^2}{\sigma_2^2}\right)
+=
+\left(
+\frac{{s_1^2}/{s_2^2}}{F_{1-\alpha/2,\,df_1,\,df_2}},
+\;
+\frac{{s_1^2}/{s_2^2}}{F_{\alpha/2,\,df_1,\,df_2}}
+\right),
+\qquad df_1=n_1-1,\; df_2=n_2-1.
+$$
+
+:::
+
+
+```{webr}
+#| exercise: q7_ratio_var_reviews
+#| exercise.lines: 12
+#| echo: false
+df <- read.csv("recipe_reviews.csv")
+x1 <- subset(df, stars == 5)$＿＿
+x2 <- subset(df, stars != 5)$＿＿
+x1 <- x1[is.finite(x1)] #only keep usable rows
+x2 <- x2[is.finite(x2)]
+n1 <- length(＿＿); n2 <- length(＿＿)
+s1 <- stats::＿＿(x1); s2 <- stats::＿＿(x2) #computing variance of both vectors x1,x2
+df1 <- ＿＿; df2 <- ＿＿
+ratio <- s1/s2
+F_lo <- ＿＿
+F_hi <- ＿＿
+
+
+```
+
+::: {.hint exercise="q7_ratio_var_reviews"}
+Use FiveStar as numerator. Compute  $s_1^2$ and $s_2^2$ and divide by the F cutoffs (0.975 and 0.025).
+:::
+
+::: {.solution exercise="q7_ratio_var_reviews"}
+```{webr}
+#| exercise: q7_ratio_var_reviews
+#| solution: true
+df <- read.csv("recipe_reviews.csv")
+x1 <- subset(df, stars == 5)$best_score
+x2 <- subset(df, stars != 5)$best_score
+x1 <- x1[is.finite(x1)]
+x2 <- x2[is.finite(x2)]
+n1 <- length(x1)
+n2 <- length(x2)
+s1 <- stats::var(x1)
+s2 <- stats::var(x2)
+df1 <- n1 - 1
+df2 <- n2 - 1
+ratio <- s1/s2
+F_lo <- qf(0.975, df1, df2)
+F_hi <- qf(0.025, df1, df2)
+c(ratio/F_lo, ratio/F_hi)
+
+```
+:::
+
+```{webr}
+#| exercise: q7_ratio_var_reviews
+#| check: true
+gradethis::grade_this({
+df <- tryCatch(read.csv("recipe_reviews.csv"), error=function(e) NULL)
+if (is.null(df)) fail("Couldn't read 'recipe_reviews.csv'.")
+x1 <- subset(df, stars == 5)$best_score
+x2 <- subset(df, stars != 5)$best_score
+x1 <- x1[is.finite(x1)]; x2 <- x2[is.finite(x2)]
+if (min(length(x1), length(x2)) < 3) fail("Each group needs at least 3 finite rows.")
+s1 <- stats::var(x1); s2 <- stats::var(x2)
+df1 <- length(x1)-1; df2 <- length(x2)-1
+ratio <- s1/s2
+F_lo <- qf(0.975, df1, df2); F_hi <- qf(0.025, df1, df2)
+exp <- c(ratio/F_lo, ratio/F_hi)
+x <- .result
+ok <- is.numeric(x) && length(x)==2L && all(is.finite(x))
+if (!ok) fail("Print c(lower, upper).")
+if (max(abs(x - exp)) < 1e-6) pass("✅ Correct 95% CI for σ²_FiveStar / σ²_NotFive.")
+else fail("Check df and F quantiles (0.975, 0.025).")
+})
+
+```
+
+
+## Q8 - Two-Sample CI for a Ratio of Variances using var.test
+
+In penguins.csv, compare variance of bill_length_mm between Adelie (group 1) and Gentoo (group 2). Compute an 80% CI for $\sigma^2_{Adelie} / \sigma^2_{Gentoo}$ using var.test and print the two bounds.
+
+::: {.callout-note title="Info"}
+Here is an example to demonstrate how var.test works. We are taking the recipe reviews dataset to showcase the usage. Run the code to view results.
+```{webr}
+#thumbs_up variance: FiveStar vs NotFive (95% CI)
+df <- read.csv("recipe_reviews.csv")
+
+x1 <- df$thumbs_up[df$stars == 5]
+x2 <- df$thumbs_up[df$stars != 5]
+x1 <- x1[is.finite(x1)]; x2 <- x2[is.finite(x2)]
+
+vt <- var.test(x1, x2, conf.level = 0.95)
+
+vt$estimate   # s_FiveStar^2 / s_NotFive^2
+vt$conf.int   # 95% CI for σ_FiveStar^2 / σ_NotFive^2
+
+```
+:::
+
+::: {.callout-note title="Preview"}
+```{webr}
+#| echo: true
+df <- read.csv("penguins.csv")
+head(df[, c("species","bill_length_mm")], 10)
+df2 <- subset(df, species %in% c("Adelie","Gentoo") & is.finite(bill_length_mm))
+set.seed(258)
+grp_idx <- split(seq_len(nrow(df2)), df2$species)
+idx <- unlist(lapply(grp_idx, function(i) sample(i, min(120, length(i)))))
+df3 <- df2[idx, ]
+par(mar = c(4,4,1,1))
+boxplot(bill_length_mm ~ species, data = df3, notch = FALSE, outline = FALSE,
+ylab = "bill_length_mm", xlab = "Species")
+
+```
+:::
+
+
+```{webr}
+#| exercise: q8_var_test_penguins
+#| exercise.lines: 8
+#| echo: false
+df <- read.csv("penguins.csv")
+df <- subset(df, species %in% c( "＿＿" , "＿＿" ) & !is.na(＿＿))
+x <- df$＿＿[df$＿＿=="Adelie"]
+y <- df$＿＿[df$＿＿=="Gentoo"]
+var.test(＿＿)$conf.int
+
+```
+
+::: {.hint exercise="q8_var_test_penguins"}
+Filter to Adelie and Gentoo, remove NAs, then feed the two numeric vectors to var.test.
+:::
+
+::: {.solution exercise="q8_var_test_penguins"}
+```{webr}
+#| exercise: q8_var_test_penguins
+#| solution: true
+df <- read.csv("penguins.csv")
+df <- subset(df, species %in% c("Adelie","Gentoo") & !is.na(bill_length_mm))
+x <- df$bill_length_mm[df$species=="Adelie"]
+y <- df$bill_length_mm[df$species=="Gentoo"]
+var.test(x, y, conf.level = 0.80)$conf.int
+
+```
+:::
+
+```{webr}
+#| exercise: q8_var_test_penguins
+#| check: true
+gradethis::grade_this({
+df <- tryCatch(read.csv("penguins.csv"), error=function(e) NULL)
+if (is.null(df)) fail("Couldn't read 'penguins.csv'.")
+df <- subset(df, species %in% c("Adelie","Gentoo") & !is.na(bill_length_mm))
+x <- df$bill_length_mm[df$species=="Adelie"]
+y <- df$bill_length_mm[df$species=="Gentoo"]
+exp <- var.test(x, y, conf.level = 0.80)$conf.int
+z <- .result
+ok <- is.numeric(z) && length(z)==2L && all(is.finite(z))
+if (!ok) fail("Print c(lower, upper).")
+if (max(abs(z - exp)) < 1e-6) pass("✅ Correct 80% CI for σ²_Adelie / σ²_Gentoo.")
+else fail("Confirm vector order (Adelie first) and conf.level=0.80.")
+})
+
+```
+
 
