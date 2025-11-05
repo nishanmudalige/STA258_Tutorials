@@ -4,6 +4,8 @@ format: live-html
 engine: knitr
 resources:
   - world_cup_predictions.csv
+  - spotify-2024.csv
+  - vgsales.csv
 ---
 
 {{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
@@ -56,11 +58,11 @@ par(mfrow = c(1,1))
 #| echo: false
 df <- read.csv("world_cup_predictions.csv", stringsAsFactors = FALSE, check.names = FALSE)
 spi_col <- df$spi #column vector for spi  
-mu_0 <- __ #enter hypothesized mean
-sigma <- __
+mu_0 <- ＿＿ #enter hypothesized mean
+sigma <- ＿＿
 n <- sum(!is.na(spi_col)) #total number of teams
 xbar <-
-z <- __ #calculate z-critical value
+z <- ＿＿z-critical value
 p_two <- #calculate 2-sided p-value 
 
 c(z = z, p_value = p_two)
@@ -228,6 +230,7 @@ par(mfrow = c(1,2))
 qqnorm(x, main = "Q-Q plot of SPI"); qqline(x)
 hist(x, main = "Histogram of SPI", xlab = "spi")
 par(mfrow = c(1,1))
+
 ```
 :::
 
@@ -388,483 +391,764 @@ fail("Not quite — check that you used mu = 70 and alternative = 'two.sided'.")
 })
 ```
 
-## Q4 — Two-Sample CI for a Difference of Proportions
+## Q5 — One-sample t-test on Track Score (σ unknown, manual, large n)
 
-In recipe_reviews.csv, compare the proportion of reviews where thumbs_up > thumbs_down between FiveStar (stars == 5) and NotFive (stars != 5). Compute a 95% two-sided CI for $$p_{FiveStar} - p_{NotFive}$$. Print c(lower, uppper).
+For this question, use the large music dataset. We want to test whether the average track score in this dataset equals 45.
+
+H₀: μ = 45
+H₁: μ ≠ 45
+
+We will compute the test statistic and the p-value manually.
+
+<figure style="text-align:center">
+  <img src="./images/music.jpg" style="width:40%">
+  <figcaption>Photo by <a href="https://unsplash.com/@sickhews?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Wes Hicks</a> on <a href="https://unsplash.com/photos/several-guitars-beside-of-side-table-MEL-jJnm7RQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+      </figcaption>
+</figure>
+
+::: {.callout-note title="Info"}
+One-sample t (σ unknown):
+
+$t=\frac{\bar{x} - \mu_0}{s/\sqrt{n}}$, with df = n-1, and two-sided p-value
+$p = 2 \times(1 - F_t(|t|)).$
+:::
+
 
 ::: {.callout-note title="Preview"}
 Run this code chunk to get a glimpse of the dataset. Feel free to change the values to visualize more/less number of rows. 
 ```{webr}
 #| echo: true
-df <- read.csv("recipe_reviews.csv")
-head(df[, c("stars","thumbs_up","thumbs_down","best_score")], 10)
-df2 <- subset(df, is.finite(thumbs_up) & is.finite(thumbs_down) & is.finite(stars))
-df2$group <- ifelse(df2$stars == 5, "FiveStar", "NotFive")
-df2$success <- as.integer(df2$thumbs_up > df2$thumbs_down)
-set.seed(258)
-grp_idx <- split(seq_len(nrow(df2)), df2$group)
-idx <- unlist(lapply(grp_idx, function(i) sample(i, min(400, length(i)))))
-df3 <- df2[idx, ]
-p <- tapply(df3$success, df3$group, function(x) mean(x, na.rm = TRUE))
-par(mar = c(4,4,1,1))
-barplot(p, ylim = c(0,1), ylab = "Proportion (thumbs_up > thumbs_down)", xlab = "Group")
+df <- read.csv("spotify-2024.csv")
+
+look at the columns
+
+names(df)
+
+quick peek at Track.Score
+
+summary(df$Track.Score)
+
+par(mfrow = c(1,2))
+hist(df$Track.Score, main = "Histogram of Track Score", xlab = "Track.Score")
+boxplot(df$Track.Score, main = "Boxplot of Track Score", ylab = "Track.Score")
+par(mfrow = c(1,1))
 ```
 :::
 
 
-::: {.callout-note title="Info"}
-CI for difference of proportions: 
-$$
-\mathrm{CI}_{1-\alpha}:\ \hat{p_1} - \hat{p_2} \pm z_{1-\alpha/2} * \sqrt{\frac{\hat{p_1}(1-\hat{p_1})}{n_1} + \frac{\hat{p_2}(1-\hat{p_2})}{n_2}}.
-$$
-:::
-
 
 ```{webr}
-#| exercise: q11_wald_2prop_reviews
-#| exercise.lines: 10
+#| exercise: q5_trackscore_t_manual
+#| exercise.lines: 14
 #| echo: false
-df <- read.csv("＿＿")
-g1 <- subset(df, stars == 5) #segregating the dataset
-g2 <- subset(df, stars != 5)
+df <- read.csv("spotify-2024.csv")
 
-count1 <- as.integer(g1$thumbs_up > g1$thumbs_down) #helps in making 0/1 success. 
-#Makes all thumbs_up values 1 and thumbs_down values 0. 
-count2 <- as.integer(g2$thumbs_up > g2$thumbs_down)
+numeric variable
 
-n1 <- sum( is.finite ( ＿＿ ) ); n2 <- sum( is.finite ( ＿＿ ) ) #is.finite helps to 
-#filter only usable rows
-p1 <- mean( ＿＿ , na.rm = TRUE)
-p2 <- mean( ＿＿ , na.rm = TRUE)
-se <- ＿＿
-z <- ＿＿ 
+x <- df$Track.Score
 
+mu_0 <- ＿＿ # 45
+x <- x[is.finite(x)] # drop NAs
+n <- length(x)
+xbar <- ＿＿(x) # mean
+s <- ＿＿(x) # sample sd
 
+dfree <- n - 1
 
+t_stat <- (xbar - mu_0) / (s / sqrt(n))
 
+p_two <- 2 * (1 - pt(abs(t_stat), df = dfree))
+
+c(t = t_stat, df = dfree, p_value = p_two)
 ```
 
-::: {.hint exercise="q11_wald_2prop_reviews"}
-Compute $$\hat{p}$$ per group, then compute their SE and z* at 0.975.
+::: {.hint exercise="q5_trackscore_t_manual"}
+Use Track.Score as x, test against 45, and use mean() and sd() before plugging into the t formula. Make it two-sided.
 :::
 
-::: {.solution exercise="q11_wald_2prop_reviews"}
+::: {.solution exercise="q5_trackscore_t_manual"}
 ```{webr}
-#| exercise: q11_wald_2prop_reviews
+#| exercise: q5_trackscore_t_manual
 #| solution: true
-df <- read.csv("recipe_reviews.csv")
-g1 <- subset(df, stars == 5) #segregating the dataset
-g2 <- subset(df, stars != 5)
-count1 <- as.integer(g1$thumbs_up > g1$thumbs_down)
-count2 <- as.integer(g2$thumbs_up > g2$thumbs_down)
-n1 <- sum(is.finite(count1)); n2 <- sum(is.finite(count2))
-p1 <- mean(count1, na.rm = TRUE); p2 <- mean(count2, na.rm = TRUE)
-se <- sqrt(p1*(1-p1)/n1 + p2*(1-p2)/n2)
-z <- qnorm(0.975); 
-(p1 - p2) + c(-1,1)*z*se
 
+df <- read.csv("spotify-2024.csv")
+x <- df$Track.Score
+x <- x[is.finite(x)]
+
+mu_0 <- 45
+n <- length(x)
+xbar <- mean(x)
+s <- sd(x)
+
+dfree <- n - 1
+t_stat <- (xbar - mu_0) / (s / sqrt(n))
+p_two <- 2 * (1 - pt(abs(t_stat), df = dfree))
+
+c(t = t_stat, df = dfree, p_value = p_two)
 
 ```
 :::
 
 ```{webr}
-#| exercise: q11_wald_2prop_reviews
+#| exercise: q5_trackscore_t_manual
 #| check: true
 gradethis::grade_this({
-df <- tryCatch(read.csv("recipe_reviews.csv"), error = function(e) NULL)
-if (is.null(df)) fail("Couldn't read 'recipe_reviews.csv'.")
-g1 <- subset(df, stars == 5)
-g2 <- subset(df, stars != 5)
-y1 <- as.integer(g1$thumbs_up > g1$thumbs_down)
-y2 <- as.integer(g2$thumbs_up > g2$thumbs_down)
-n1 <- sum(is.finite(y1)); n2 <- sum(is.finite(y2))
-if (min(n1, n2) < 2) fail("Both groups need at least 2 finite rows.")
-p1 <- mean(y1, na.rm = TRUE); p2 <- mean(y2, na.rm = TRUE)
-se <- sqrt(p1*(1-p1)/n1 + p2*(1-p2)/n2)
-z <- qnorm(0.975); est <- p1 - p2
-exp <- est + c(-1,1)*z*se
-x <- .result
-ok <- is.numeric(x) && length(x)==2L && all(is.finite(x))
-if (!ok) fail("Print c(lower, upper).")
-if (max(abs(x - exp)) < 1e-6) pass("✅ Correct 95% Wald CI for p_FiveStar − p_NotFive.")
-else fail("Recheck successes, n1/n2, and z*.")
-})
+df <- tryCatch(read.csv("spotify-2024.csv"), error = function(e) NULL)
+if (is.null(df)) fail("Couldn't read 'spotify-2024.csv'.")
+if (!"Track.Score" %in% names(df)) fail("The CSV must contain a 'Track.Score' column.")
 
+x <- df$Track.Score
+x <- x[is.finite(x)]
 
+mu_0 <- 45
+n <- length(x)
+xbar <- mean(x)
+s <- sd(x)
+dfree <- n - 1
 
-```
+exp_t <- (xbar - mu_0) / (s / sqrt(n))
+exp_p <- 2 * (1 - pt(abs(exp_t), df = dfree))
 
+res <- .result
+if (!is.numeric(res) || length(res) != 3L) {
+fail("Return c(t = ..., df = ..., p_value = ...).")
+}
 
+t_user <- unname(res[1])
+df_user <- unname(res[2])
+p_user <- unname(res[3])
 
-
-
-## Q5 — Two-Sample CI for a Difference of Proportions using prop.test
-
-In penguins.csv, compare the male proportion between Chinstrap and Gentoo. Compute an evidence-only CI (no hypothesis interpretation needed) for $p_{Chinstrap} - p_{Gentoo}$ at 90% and print c(lower upper).
-
-
-::: {.callout-note title="Preview"}
-```{webr}
-#| echo: true
-df <- read.csv("penguins.csv")
-head(df[, c("species","sex","island")], 10)
-df2 <- subset(df, species %in% c("Chinstrap","Gentoo") & !is.na(sex))
-set.seed(258)
-grp_idx <- split(seq_len(nrow(df2)), df2$species)
-idx <- unlist(lapply(grp_idx, function(i) sample(i, min(200, length(i)))))
-df3 <- df2[idx, ]
-p <- with(df3, tapply(sex == "male", species, function(x) mean(x, na.rm = TRUE)))
-par(mar = c(4,4,1,1))
-barplot(p, ylim = c(0,1), ylab = "Proportion male", xlab = "Species")
-
-```
-:::
-
-
-::: {.callout-note title="Info"}
-
-The prop.test() function in R performs tests of proportions, allowing for the comparison of proportions across groups or against specific values. Here is an example according to this question. here’s a super simple one-sample prop.test using penguins.csv. It asks: among Gentoo penguins, what fraction are male? It prints the estimate and a 95% CI. Run the code to see!
-```{webr}
-#| echo: true
-
-# One-sample prop.test example: proportion of males within Gentoo
-
-df <- read.csv("penguins.csv")
-
-g <- subset(df, species == "Gentoo" & !is.na(sex))
-x <- sum(g$sex == "male")   # number of "successes"
-n <- nrow(g)                # total trials
-
-prop.test(x = x, n = n, conf.level = 0.95, correct = FALSE)
-
-```
-:::
-
-```{webr}
-#| exercise: q12_prop_test_penguins
-#| exercise.lines: 10
-#| echo: false
-df <- read.csv("penguins.csv")
-df <- subset(df, species %in% c("＿＿","＿＿") & !is.na(sex)) #filtering based 
-#on the species we need and removing NA rows
-x1 <- sum(df$species=="Chinstrap" & df$sex=="＿＿")
-n1 <- ＿＿
-x2 <- sum(df$species=="Gentoo" & df$sex=="＿＿")
-n2 <- ＿＿
-prop.test(x = c( ＿＿ , ＿＿ ), n = c( ＿＿ , ＿＿ ), conf.level = ＿＿ , correct = FALSE)$conf.int
-
-```
-
-::: {.hint exercise="q12_prop_test_penguins"}
-Filter to two species, count “male” in each, and feed (x1,n1),(x2,n2) to prop.test.
-:::
-
-::: {.solution exercise="q12_prop_test_penguins"}
-```{webr}
-#| exercise: q12_prop_test_penguins
-#| solution: true
-df <- read.csv("penguins.csv")
-df <- subset(df, species %in% c("Chinstrap","Gentoo") & !is.na(sex))
-x1 <- sum(df$species=="Chinstrap" & df$sex=="male")
-n1 <- sum(df$species=="Chinstrap")
-x2 <- sum(df$species=="Gentoo" & df$sex=="male")
-n2 <- sum(df$species=="Gentoo")
-prop.test(x = c(x1, x2), n = c(n1, n2), conf.level = 0.90, correct = FALSE)$conf.int
-
-```
-:::
-
-```{webr}
-#| exercise: q12_prop_test_penguins
-#| check: true
-gradethis::grade_this({
-df <- tryCatch(read.csv("penguins.csv"), error=function(e) NULL)
-if (is.null(df)) fail("Couldn't read 'penguins.csv'.")
-df <- subset(df, species %in% c("Chinstrap","Gentoo") & !is.na(sex))
-x1 <- sum(df$species=="Chinstrap" & df$sex=="male"); n1 <- sum(df$species=="Chinstrap")
-x2 <- sum(df$species=="Gentoo" & df$sex=="male");    n2 <- sum(df$species=="Gentoo")
-exp <- prop.test(x=c(x1,x2), n=c(n1,n2), conf.level=0.90, correct=FALSE)$conf.int
-x <- .result
-ok <- is.numeric(x) && length(x)==2L && all(is.finite(x))
-if (!ok) fail("Print c(lower, upper).")
-if (max(abs(x - exp)) < 1e-6) pass("✅ Correct 90% CI for p_Chinstrap − p_Gentoo.")
-else fail("Check species filter, male counts, and conf.level=0.90.")
+if (abs(t_user - exp_t) < 1e-6 &&
+abs(df_user - dfree) < 1e-6 &&
+abs(p_user - exp_p) < 1e-6) {
+pass("Correct manual one-sample t-test for Track.Score.")
+} else {
+fail("Check mean, sd, df = n - 1, and the two-sided p-value.")
+}
 })
 
 ```
 
-## Q6 — Two-Sample CI for a Difference of Proportions (island=Biscoe)
+## Q6 — One-sample t-test on Track Score (σ unknown, built-in)
 
-Using penguins.csv, compare the proportion of penguins on Biscoe island between Adelie and Gentoo. Compute a 95% two-sided CI for $p_{Adelie} - p_{Gentoo}$ and print c(lower upper).
+Now run the same hypothesis test using R’s built-in t.test() on the same column.
 
-
-::: {.callout-note title="Preview"}
-```{webr}
-#| echo: true
-df <- read.csv("penguins.csv")
-head(df[, c("species","sex","island")], 10)
-df2 <- subset(df, species %in% c("Adelie","Gentoo") & !is.na(island))
-set.seed(258)
-grp_idx <- split(seq_len(nrow(df2)), df2$species)
-idx <- unlist(lapply(grp_idx, function(i) sample(i, min(200, length(i)))))
-df3 <- df2[idx, ]
-p <- with(df3, tapply(island == "Biscoe", species, function(x) mean(x, na.rm = TRUE)))
-par(mar = c(4,4,1,1))
-barplot(p, ylim = c(0,1), ylab = 'Proportion on "Biscoe"', xlab = "Species")
-
-```
-:::
-
-
-```{webr}
-#| exercise: q5_diff_prop_biscoe
-#| exercise.lines: 6
-#| echo: false
-df <- read.csv("penguins.csv")
-sub <- subset(df, species %in% c("＿＿","＿＿") & !is.na(＿＿)) #filter based on species
-
-x1 <- sum(sub$species=="＿＿" & sub$＿＿=="＿＿") #add additional filter for island
-n1 <- sum(sub$species=="Adelie")
-x2 <- sum(sub$species=="＿＿" & sub$＿＿=="＿＿")
-n2 <- sum(sub$species=="Gentoo")
-
-prop.test(x=c(＿＿, ＿＿), n=c(＿＿,＿＿), conf.level=＿＿, correct=FALSE)$conf.int
-
-```
-
-::: {.hint exercise="q5_diff_prop_biscoe"}
-Count “Biscoe” within each species to get x1, x2. Use totals for n1, n2, then prop.test(...)$conf.int. Order your counts as (Adelie, Gentoo) to get Adelie − Gentoo.
-:::
-
-::: {.solution exercise="q5_diff_prop_biscoe"}
-```{webr}
-#| exercise: q5_diff_prop_biscoe
-#| solution: true
-df <- read.csv("penguins.csv")
-sub <- subset(df, species %in% c("Adelie","Gentoo") & !is.na(island))
-x1 <- sum(sub$species=="Adelie" & sub$island=="Biscoe"); n1 <- sum(sub$species=="Adelie")
-x2 <- sum(sub$species=="Gentoo" & sub$island=="Biscoe"); n2 <- sum(sub$species=="Gentoo")
-prop.test(x=c(x1,x2), n=c(n1,n2), conf.level=0.95, correct=FALSE)$conf.int
-
-
-```
-:::
-
-```{webr}
-#| exercise: q5_diff_prop_biscoe
-#| check: true
-gradethis::grade_this({
-df <- tryCatch(read.csv("penguins.csv"), error=function(e) NULL)
-if (is.null(df)) fail("Couldn't read 'penguins.csv'.")
-sub <- subset(df, species %in% c("Adelie","Gentoo") & !is.na(island))
-x1 <- sum(sub$species=="Adelie" & sub$island=="Biscoe"); n1 <- sum(sub$species=="Adelie")
-x2 <- sum(sub$species=="Gentoo" & sub$island=="Biscoe"); n2 <- sum(sub$species=="Gentoo")
-exp <- prop.test(x=c(x1,x2), n=c(n1,n2), conf.level=0.95, correct=FALSE)$conf.int
-r <- .result
-ok <- is.numeric(r) && length(r)==2L && all(is.finite(r))
-if (!ok) fail("Print a numeric vector c(lower, upper).")
-if (max(abs(r - exp)) < 1e-6) pass("✅ Correct 95% CI for p_Adelie − p_Gentoo (Biscoe).")
-else fail("Recheck counts, totals, order (Adelie first), and conf.level=0.95.")
-})
-
-
-```
-
-## Q7 — Two-Sample CI for a Ratio of Variances (manual F-based)
-
-Using recipe_reviews.csv, compare the variance of best_score for FiveStar vs NotFive. Build a 95% CI for $\sigma^2_{FiveStar} / \sigma^2_{NotFive}$ and print c(lower, upper).
-
-::: {.callout-note title="Preview"}
-Here is a glimpse of the dataset:
-```{webr}
-#| echo: true
-df <- read.csv("recipe_reviews.csv")
-head(df[, c("stars","best_score")], 10)
-df2 <- subset(df, is.finite(best_score) & is.finite(stars))
-df2$group <- ifelse(df2$stars == 5, "FiveStar", "NotFive")
-set.seed(258)
-grp_idx <- split(seq_len(nrow(df2)), df2$group)
-idx <- unlist(lapply(grp_idx, function(i) sample(i, min(200, length(i)))))
-df3 <- df2[idx, ]
-ylim <- quantile(df3$best_score, c(.01, .99), na.rm = TRUE)
-par(mar = c(4,4,1,1))
-boxplot(best_score ~ group, data = df3, notch = FALSE, outline = FALSE, ylim = ylim,
-ylab = "best_score", xlab = "Group")
-
-```
-:::
+H₀: μ = 45
+H₁: μ ≠ 45
 
 ::: {.callout-note title="Info"}
-Taking group 1 as FiveStar here, with $s_1^2$ and $s_2^2$ as sample variances, here is the CI:
-$$
-\text{CI}_{1-\alpha}\!\left(\frac{\sigma_1^2}{\sigma_2^2}\right)
-=
-\left(
-\frac{{s_1^2}/{s_2^2}}{F_{1-\alpha/2,\,df_1,\,df_2}},
-\;
-\frac{{s_1^2}/{s_2^2}}{F_{\alpha/2,\,df_1,\,df_2}}
-\right),
-\qquad df_1=n_1-1,\; df_2=n_2-1.
-$$
-
-:::
-
-
-```{webr}
-#| exercise: q7_ratio_var_reviews
-#| exercise.lines: 12
-#| echo: false
-df <- read.csv("recipe_reviews.csv")
-x1 <- subset(df, stars == 5)$＿＿
-x2 <- subset(df, stars != 5)$＿＿
-x1 <- x1[is.finite(x1)] #only keep usable rows
-x2 <- x2[is.finite(x2)]
-n1 <- length(＿＿); n2 <- length(＿＿)
-s1 <- stats::＿＿(x1); s2 <- stats::＿＿(x2) #computing variance of both vectors x1,x2
-df1 <- ＿＿; df2 <- ＿＿
-ratio <- s1/s2
-F_lo <- ＿＿
-F_hi <- ＿＿
-
-
-```
-
-::: {.hint exercise="q7_ratio_var_reviews"}
-Use FiveStar as numerator. Compute  $s_1^2$ and $s_2^2$ and divide by the F cutoffs (0.975 and 0.025).
-:::
-
-::: {.solution exercise="q7_ratio_var_reviews"}
-```{webr}
-#| exercise: q7_ratio_var_reviews
-#| solution: true
-df <- read.csv("recipe_reviews.csv")
-x1 <- subset(df, stars == 5)$best_score
-x2 <- subset(df, stars != 5)$best_score
-x1 <- x1[is.finite(x1)]
-x2 <- x2[is.finite(x2)]
-n1 <- length(x1)
-n2 <- length(x2)
-s1 <- stats::var(x1)
-s2 <- stats::var(x2)
-df1 <- n1 - 1
-df2 <- n2 - 1
-ratio <- s1/s2
-F_lo <- qf(0.975, df1, df2)
-F_hi <- qf(0.025, df1, df2)
-c(ratio/F_lo, ratio/F_hi)
-
-```
-:::
-
-```{webr}
-#| exercise: q7_ratio_var_reviews
-#| check: true
-gradethis::grade_this({
-df <- tryCatch(read.csv("recipe_reviews.csv"), error=function(e) NULL)
-if (is.null(df)) fail("Couldn't read 'recipe_reviews.csv'.")
-x1 <- subset(df, stars == 5)$best_score
-x2 <- subset(df, stars != 5)$best_score
-x1 <- x1[is.finite(x1)]; x2 <- x2[is.finite(x2)]
-if (min(length(x1), length(x2)) < 3) fail("Each group needs at least 3 finite rows.")
-s1 <- stats::var(x1); s2 <- stats::var(x2)
-df1 <- length(x1)-1; df2 <- length(x2)-1
-ratio <- s1/s2
-F_lo <- qf(0.975, df1, df2); F_hi <- qf(0.025, df1, df2)
-exp <- c(ratio/F_lo, ratio/F_hi)
-x <- .result
-ok <- is.numeric(x) && length(x)==2L && all(is.finite(x))
-if (!ok) fail("Print c(lower, upper).")
-if (max(abs(x - exp)) < 1e-6) pass("✅ Correct 95% CI for σ²_FiveStar / σ²_NotFive.")
-else fail("Check df and F quantiles (0.975, 0.025).")
-})
-
-```
-
-
-## Q8 - Two-Sample CI for a Ratio of Variances using var.test
-
-In penguins.csv, compare variance of bill_length_mm between Adelie (group 1) and Gentoo (group 2). Compute an 80% CI for $\sigma^2_{Adelie} / \sigma^2_{Gentoo}$ using var.test and print the two bounds.
-
-::: {.callout-note title="Info"}
-Here is an example to demonstrate how var.test works. We are taking the recipe reviews dataset to showcase the usage. Run the code to view results.
-```{webr}
-#thumbs_up variance: FiveStar vs NotFive (95% CI)
-df <- read.csv("recipe_reviews.csv")
-
-x1 <- df$thumbs_up[df$stars == 5]
-x2 <- df$thumbs_up[df$stars != 5]
-x1 <- x1[is.finite(x1)]; x2 <- x2[is.finite(x2)]
-
-vt <- var.test(x1, x2, conf.level = 0.95)
-
-vt$estimate   # s_FiveStar^2 / s_NotFive^2
-vt$conf.int   # 95% CI for σ_FiveStar^2 / σ_NotFive^2
-
-```
+t.test(x, mu = 45, alternative = "two.sided") will estimate the SD, use df = n − 1, and give the p-value.
 :::
 
 ::: {.callout-note title="Preview"}
+
 ```{webr}
 #| echo: true
-df <- read.csv("penguins.csv")
-head(df[, c("species","bill_length_mm")], 10)
-df2 <- subset(df, species %in% c("Adelie","Gentoo") & is.finite(bill_length_mm))
-set.seed(258)
-grp_idx <- split(seq_len(nrow(df2)), df2$species)
-idx <- unlist(lapply(grp_idx, function(i) sample(i, min(120, length(i)))))
-df3 <- df2[idx, ]
-par(mar = c(4,4,1,1))
-boxplot(bill_length_mm ~ species, data = df3, notch = FALSE, outline = FALSE,
-ylab = "bill_length_mm", xlab = "Species")
-
+df <- read.csv("spotify-2024.csv")
+summary(df$Track.Score)
 ```
 :::
 
-
 ```{webr}
-#| exercise: q8_var_test_penguins
+#| exercise: q6_trackscore_t_builtin
 #| exercise.lines: 8
 #| echo: false
-df <- read.csv("penguins.csv")
-df <- subset(df, species %in% c( "＿＿" , "＿＿" ) & !is.na(＿＿))
-x <- df$＿＿[df$＿＿=="Adelie"]
-y <- df$＿＿[df$＿＿=="Gentoo"]
-var.test(＿＿)$conf.int
+
+df <- read.csv("spotify-2024.csv")
+x <- df$Track.Score
+
+out <- t.test(＿＿,
+mu = ＿＿,
+alternative = "two.sided")
+
+out$p.value
 
 ```
 
-::: {.hint exercise="q8_var_test_penguins"}
-Filter to Adelie and Gentoo, remove NAs, then feed the two numeric vectors to var.test.
+::: {.hint exercise="q6_trackscore_t_builtin"}
+Use the Track.Score column and test it against 45, two-sided.
 :::
 
-::: {.solution exercise="q8_var_test_penguins"}
+::: {.solution exercise="q6_trackscore_t_builtin"}
 ```{webr}
-#| exercise: q8_var_test_penguins
+#| exercise: q6_trackscore_t_builtin
 #| solution: true
-df <- read.csv("penguins.csv")
-df <- subset(df, species %in% c("Adelie","Gentoo") & !is.na(bill_length_mm))
-x <- df$bill_length_mm[df$species=="Adelie"]
-y <- df$bill_length_mm[df$species=="Gentoo"]
-var.test(x, y, conf.level = 0.80)$conf.int
+
+df <- read.csv("spotify-2024.csv")
+x <- df$Track.Score
+
+out <- t.test(x,
+mu = 45,
+alternative = "two.sided")
+
+out$p.value
 
 ```
 :::
 
 ```{webr}
-#| exercise: q8_var_test_penguins
+#| exercise: q6_trackscore_t_builtin
 #| check: true
 gradethis::grade_this({
-df <- tryCatch(read.csv("penguins.csv"), error=function(e) NULL)
-if (is.null(df)) fail("Couldn't read 'penguins.csv'.")
-df <- subset(df, species %in% c("Adelie","Gentoo") & !is.na(bill_length_mm))
-x <- df$bill_length_mm[df$species=="Adelie"]
-y <- df$bill_length_mm[df$species=="Gentoo"]
-exp <- var.test(x, y, conf.level = 0.80)$conf.int
-z <- .result
-ok <- is.numeric(z) && length(z)==2L && all(is.finite(z))
-if (!ok) fail("Print c(lower, upper).")
-if (max(abs(z - exp)) < 1e-6) pass("✅ Correct 80% CI for σ²_Adelie / σ²_Gentoo.")
-else fail("Confirm vector order (Adelie first) and conf.level=0.80.")
+df <- tryCatch(read.csv("spotify-2024.csv"), error = function(e) NULL)
+if (is.null(df)) fail("Couldn't read 'spotify-2024.csv'.")
+if (!"Track.Score" %in% names(df)) fail("The CSV must contain a 'Track.Score' column.")
+x <- df$Track.Score
+
+exp_out <- t.test(x, mu = 45, alternative = "two.sided")
+exp_p <- exp_out$p.value
+
+res <- .result
+if (!is.numeric(res) || length(res) != 1L) {
+fail("Print a single numeric p-value from t.test().")
+}
+
+if (is.finite(res) && abs(res - exp_p) < 1e-6) {
+pass("Correct p-value for the built-in one-sample t-test on Track.Score.")
+} else {
+fail("Not quite — check mu = 45 and alternative = 'two.sided'.")
+}
+})
+
+```
+
+## Q7 — One-sample test on a proportion (base R `prop.test()`)
+
+We use the video game sales dataset. Let’s test whether **30% of the listed games were published by Nintendo**.
+
+Hypotheses:
+
+$(H_0: p = 0.045)$
+$(H_1: p \neq 0.045)$
+
+We will form a success/failure variable: “Publisher is Nintendo” = success.
+
+<figure style="text-align:center">
+  <img src="./images/videogames.jpg" style="width:40%">
+  <figcaption>Photo by <a href="https://unsplash.com/@jeshoots?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">JESHOOTS.COM</a> on <a href="https://unsplash.com/photos/two-people-playing-sony-ps4-game-console-eCktzGjC-iU?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+      </figcaption>
+</figure>
+
+::: {.callout-note title="Info"}
+For a one-sample test on a proportion with counts (x) out of (n), use
+`prop.test(x, n, p = p0, alternative = "two.sided")`.
+This uses a chi-square test with 1 degree of freedom.
+:::
+
+::: {.callout-note title="Preview"}
+
+```{webr}
+#| echo: true
+vg <- read.csv("vgsales.csv")
+
+head(vg[, c("Name","Platform","Publisher")], 10)
+
+table(vg$Publisher)[1:10]   # peek at some publishers
+mean(vg$Publisher == "Nintendo", na.rm = TRUE)
+```
+
+:::
+
+```{webr}
+#| exercise: q7_vgs_prop_base
+#| exercise.lines: 10
+#| echo: false
+
+vg <- read.csv("vgsales.csv")
+
+# successes = rows where Publisher == "Nintendo"
+x <- sum(vg$Publisher == "Nintendo", na.rm = TRUE)
+
+# total trials
+n <- sum(!is.na(vg$Publisher))
+
+out <- prop.test(x = x,
+                 n = n,
+                 p = ＿＿,              # use 0.045
+                 alternative = "two.sided")
+
+# print p-value
+out$p.value
+```
+
+::: {.hint exercise="q7_vgs_prop_base"}
+Count how many rows have Publisher == "Nintendo", test against 0.045, and keep it two-sided.
+:::
+
+::: {.solution exercise="q7_vgs_prop_base"}
+
+```{webr}
+#| exercise: q7_vgs_prop_base
+#| solution: true
+
+vg <- read.csv("vgsales.csv")
+
+x <- sum(vg$Publisher == "Nintendo", na.rm = TRUE)
+n <- sum(!is.na(vg$Publisher))
+
+out <- prop.test(x = x,
+                 n = n,
+                 p = 0.045,
+                 alternative = "two.sided")
+
+out$p.value
+```
+
+:::
+
+```{webr}
+#| exercise: q7_vgs_prop_base
+#| check: true
+gradethis::grade_this({
+  vg <- tryCatch(read.csv("vgsales.csv"), error = function(e) NULL)
+  if (is.null(vg)) fail("Couldn't read 'vgsales.csv'.")
+  if (!"Publisher" %in% names(vg)) fail("The CSV must contain a 'Publisher' column.")
+
+  x <- sum(vg$Publisher == "Nintendo", na.rm = TRUE)
+  n <- sum(!is.na(vg$Publisher))
+
+  exp_out <- prop.test(x = x, n = n, p = 0.045, alternative = "two.sided")
+  exp_p <- exp_out$p.value
+
+  res <- .result
+  if (!is.numeric(res) || length(res) != 1L) {
+    fail("Print a single numeric p-value.")
+  }
+
+  if (abs(res - exp_p) < 1e-6) {
+    pass("Correct p-value for the one-sample proportion test.")
+  } else {
+    fail("Check x, n, and p = 0.045.")
+  }
+})
+```
+
+---
+
+## Q8 — From chi-square to z (follow-up on the same test)
+
+`prop.test()` reports a chi-square statistic with 1 df. For a 1-df test, (\chi^2 = z^2). Let’s extract that chi-square value and take the square root.
+
+We use the **same dataset and the same hypothesis** as Q7.
+
+::: {.callout-note title="Info"}
+If a one-sample proportion test gives (\chi^2) with 1 df, then
+( z = \sqrt{\chi^2} ) (keep the sign if you need direction).
+:::
+
+```{webr}
+#| exercise: q8_vgs_prop_chisq_to_z
+#| exercise.lines: 10
+#| echo: false
+
+vg <- read.csv("vgsales.csv")
+
+x <- sum(vg$Publisher == "Nintendo", na.rm = TRUE)
+n <- sum(!is.na(vg$Publisher))
+
+out <- prop.test(x = x,
+                 n = n,
+                 p = 0.045,
+                 alternative = "two.sided")
+
+chisq_val <- out$statistic   # chi-square with 1 df
+z_val <- sqrt(chisq_val)     # corresponding z magnitude
+
+c(chisq = chisq_val, z_from_chisq = z_val)
+```
+
+::: {.hint exercise="q8_vgs_prop_chisq_to_z"}
+Re-run the same `prop.test()` as Q7 and take `sqrt()` of the test statistic.
+:::
+
+::: {.solution exercise="q8_vgs_prop_chisq_to_z"}
+
+```{webr}
+#| exercise: q8_vgs_prop_chisq_to_z
+#| solution: true
+
+vg <- read.csv("vgsales.csv")
+
+x <- sum(vg$Publisher == "Nintendo", na.rm = TRUE)
+n <- sum(!is.na(vg$Publisher))
+
+out <- prop.test(x = x,
+                 n = n,
+                 p = 0.045,
+                 alternative = "two.sided")
+
+chisq_val <- out$statistic
+z_val <- sqrt(chisq_val)
+
+c(chisq = chisq_val, z_from_chisq = z_val)
+```
+
+:::
+
+```{webr}
+#| exercise: q8_vgs_prop_chisq_to_z
+#| check: true
+gradethis::grade_this({
+  vg <- tryCatch(read.csv("vgsales.csv"), error = function(e) NULL)
+  if (is.null(vg)) fail("Couldn't read 'vgsales.csv'.")
+  x <- sum(vg$Publisher == "Nintendo", na.rm = TRUE)
+  n <- sum(!is.na(vg$Publisher))
+
+  exp_out <- prop.test(x = x, n = n, p = 0.045, alternative = "two.sided")
+  exp_chisq <- as.numeric(exp_out$statistic)
+  exp_z <- sqrt(exp_chisq)
+
+  res <- .result
+  if (!is.numeric(res) || length(res) != 2L) {
+    fail("Return c(chisq = ..., z_from_chisq = ...).")
+  }
+
+  if (abs(res[1] - exp_chisq) < 1e-6 && abs(res[2] - exp_z) < 1e-6) {
+    pass("Correctly extracted chi-square and its square root.")
+  } else {
+    fail("Check that you ran the same prop.test and used sqrt() on the statistic.")
+  }
+})
+```
+
+## Q9 — One-sample proportion using prop_test()
+
+Now repeat the same test but we use a function that gives the z statistic directly in 1 line.
+
+Hypotheses:
+
+$(H_0: p = 0.045)$
+$(H_1: p \neq 0.045)$
+
+::: {.callout-note title="Info"}
+`rstatix::prop_test()` can test a single proportion vs a hypothesized value and returns a z statistic and p-value. We’ll test against 0.045.
+:::
+
+```{webr}
+#| exercise: q9_vgs_prop_rstatix
+#| exercise.lines: 14
+#| echo: false
+
+vg <- read.csv("vgsales.csv")
+x <- sum(vg$Publisher == "Nintendo", na.rm = TRUE)
+n <- sum(!is.na(vg$Publisher))
+p0 <- __
+library(rstatix)
+res <- prop_test(
+x = __,
+n = __,
+p = __,
+alternative = "two.sided"
+)
+z_val <- as.numeric(res$statistic[1])
+p_val <- as.numeric(res$p[1])
+p_hat <- x / n
+
+c(p_hat = p_hat,
+z = z_val,
+p_value = p_val)
+```
+
+::: {.hint exercise="q9_vgs_prop_rstatix"}
+Same hypothesis as Q7–Q8, just give x, n, and p = 0.045.
+:::
+
+::: {.solution exercise="q9_vgs_prop_rstatix"}
+
+```{webr}
+#| exercise: q9_vgs_prop_rstatix
+#| solution: true
+
+vg <- read.csv("vgsales.csv")
+x <- sum(vg$Publisher == "Nintendo", na.rm = TRUE)
+n <- sum(!is.na(vg$Publisher))
+p0 <- 0.045
+
+library(rstatix)
+res <- rstatix::prop_test(
+x = x,
+n = n,
+p = p0,
+alternative = "two.sided"
+)
+
+z_val <- as.numeric(res$statistic[1])
+p_val <- as.numeric(res$p[1])
+p_hat <- x / n
+
+c(p_hat = p_hat,
+z = z_val,
+p_value = p_val)
+
+```
+
+:::
+
+```{webr}
+#| exercise: q9_vgs_prop_rstatix
+#| check: true
+gradethis::grade_this({
+vg <- tryCatch(read.csv("vgsales.csv"), error = function(e) NULL)
+if (is.null(vg)) fail("Couldn't read 'vgsales.csv'.")
+if (!"Publisher" %in% names(vg)) fail("CSV must contain 'Publisher'.")
+
+x <- sum(vg$Publisher == "Nintendo", na.rm = TRUE)
+n <- sum(!is.na(vg$Publisher))
+p0 <- 0.045
+
+if (!requireNamespace("rstatix", quietly = TRUE)) {
+fail("The rstatix package is not available.")
+}
+
+exp_res <- rstatix::prop_test(
+x = x,
+n = n,
+p = p0,
+alternative = "two.sided"
+)
+
+exp_z <- exp_res$statistic[1]
+exp_p <- exp_res$p[1]
+exp_p_hat <- x / n
+
+r <- .result
+if (!is.numeric(r) || !all(c("p_hat","z","p_value") %in% names(r))) {
+fail("Return c(p_hat=..., z=..., p_value=...).")
+}
+
+if (max(abs(r["p_hat"] - exp_p_hat),
+abs(r["z"] - exp_z),
+abs(r["p_value"] - exp_p)) < 1e-6) {
+pass("Correct: you extracted z and p from rstatix::prop_test().")
+} else {
+fail("Recheck p-hat = x/n, z = statistic, and p_value = p.")
+}
+})
+
+
+```
+
+
+---
+
+## Q10 — Get a signed Z from prop.test()
+
+We use the same hypothesis as Q7–Q8:
+
+Hypotheses:
+
+$(H_0: p = 0.045)$
+$(H_1: p \neq 0.045)$
+
+prop.test() gives us a chi-square with 1 df. For 1 df, $\chi^2 = Z^2$
+. Q8 took the square root and got the magnitude. Here we will also:
+
+1) Get $\hat{p}$ from the data
+2) Compare $\hat{p}$ to $p_0$
+3) Give the Z a sign based on that
+
+::: {.callout-note title="Info"}
+`rstatix::prop_test()` can test a single proportion vs a hypothesized value and returns a z statistic and p-value. We’ll test against 0.045.
+:::
+
+```{webr}
+#| exercise: q9_vgs_prop_rstatix
+#| exercise.lines: 12
+#| echo: false
+
+vg <- read.csv("vgsales.csv")
+x <- sum(vg$Publisher == "Nintendo", na.rm = TRUE)
+n <- sum(!is.na(vg$Publisher))
+
+p0 <- 0.045
+
+out <- prop.test(x = x, n = n, p = p0, alternative = "two.sided")
+
+chisq_val <- as.numeric(out$statistic) #chi sq from prop.test
+
+z_mag <- __ #magnitude of z
+
+p_hat <- __
+sign_z <- ifelse(p_hat - p0 >= 0, 1, -1) #figure out the sign
+
+z_signed <- __
+
+p_two <- out$p.value #two sided p value. this should match prop.test
+
+c(
+  p_hat   = as.numeric(p_hat),
+  z       = as.numeric(z_signed),
+  p_value = as.numeric(p_two)
+)
+
+```
+
+::: {.hint exercise="q9_vgs_prop_rstatix"}
+Use the same prop.test() call as Q7, then:
+
+sqrt(out$statistic) for |z|
+
+make it negative if p_hat < p0
+:::
+
+::: {.solution exercise="q9_vgs_prop_rstatix"}
+
+```{webr}
+#| exercise: q9_vgs_prop_rstatix
+#| solution: true
+vg <- read.csv("vgsales.csv")
+
+x <- sum(vg$Publisher == "Nintendo", na.rm = TRUE)
+n <- sum(!is.na(vg$Publisher))
+
+p0 <- 0.045
+
+out <- prop.test(x = x, n = n, p = p0, alternative = "two.sided")
+
+chisq_val <- as.numeric(out$statistic)
+z_mag <- sqrt(chisq_val)
+
+p_hat <- x / n
+sign_z <- ifelse(p_hat - p0 >= 0, 1, -1)
+z_signed <- sign_z * z_mag
+
+p_two <- out$p.value
+
+c(
+  p_hat   = as.numeric(p_hat),
+  z       = as.numeric(z_signed),
+  p_value = as.numeric(p_two)
+)
+```
+
+:::
+
+```{webr}
+#| exercise: q9_vgs_prop_rstatix
+#| check: true
+gradethis::grade_this({
+vg <- tryCatch(read.csv("vgsales.csv"), error = function(e) NULL)
+if (is.null(vg)) fail("Couldn't read 'vgsales.csv'.")
+if (!"Publisher" %in% names(vg)) fail("CSV must contain 'Publisher'.")
+
+x <- sum(vg$Publisher == "Nintendo", na.rm = TRUE)
+n <- sum(!is.na(vg$Publisher))
+p0 <- 0.045
+
+exp_out <- prop.test(x = x, n = n, p = p0, alternative = "two.sided")
+exp_p <- exp_out$p.value
+exp_chisq <- as.numeric(exp_out$statistic)
+exp_z_mag <- sqrt(exp_chisq)
+p_hat <- x / n
+sign_z <- ifelse(p_hat - p0 >= 0, 1, -1)
+exp_z_signed <- sign_z * exp_z_mag
+
+res <- .result
+if (!is.numeric(res)) fail("Return c(p_hat=..., z=..., p_value=...).")
+if (!all(c("p_hat","z","p_value") %in% names(res))) fail("Name your output p_hat, z, and p_value.")
+
+if (abs(res["p_value"] - exp_p) < 1e-6 &&
+abs(res["z"] - exp_z_signed) < 1e-6 &&
+abs(res["p_hat"] - p_hat) < 1e-6) {
+pass("Correct: derived signed z and p-value from prop.test().")
+} else {
+fail("Recheck: run the same prop.test, take sqrt(statistic), and set the sign from p̂ − p0.")
+}
+})
+```
+
+## Q11 — One-sample hypothesis test on the variance (σ² known under H₀)
+
+We want to test whether the variance of Track.Score is equal to a target value. Suppose a platform claims that Track.Score has variance $\sigma_0^2 = 100$ (i.e. SD=10) We will test:
+
+$(H_0: \sigma^2 = 100)$ vs
+$(H_1: \sigma^2 \neq 100)$
+
+This is a chi-square based variance test.
+
+
+::: {.callout-note title="Info"}
+For a one sample variance test $$\chi^2 = \frac{(n - 1)s^2}{\sigma_0^2} \sim \chi^2_{\,n - 1} \quad \text{under } H_0.$$ EnvStats::varTest() does this for you and gives the p-value.
+:::
+
+::: {.callout-note title="Preview"}
+```{webr}
+#| echo: true
+df <- read.csv("spotify-2024.csv")
+summary(df$Track.Score)
+hist(df$Track.Score, main = "Histogram of Track.Score", xlab = "Track.Score")
+```
+:::
+
+```{webr}
+#| exercise: q10_trackscore_var_envstats
+#| exercise.lines: 8
+#| echo: false
+
+df <- read.csv("spotify-2024.csv")
+x <- df$Track.Score
+
+library(EnvStats)
+
+out <- EnvStats::varTest(x,
+sigma.squared = ＿＿,   # 100
+alternative   = "two.sided")
+
+out$p.value
+
+
+```
+
+::: {.hint exercise="q10_trackscore_var_envstatss"}
+Use the Track.Score column, test against 100, two-sided.
+:::
+
+::: {.solution exercise="q10_trackscore_var_envstats"}
+
+```{webr}
+#| exercise: q10_trackscore_var_envstats
+#| solution: true
+
+df <- read.csv("spotify-2024.csv")
+x <- df$Track.Score
+
+library(EnvStats)
+
+out <- EnvStats::varTest(x,
+sigma.squared = 100,
+alternative   = "two.sided")
+
+out$p.value
+
+```
+
+:::
+
+```{webr}
+#| exercise: q10_trackscore_var_envstats
+#| check: true
+gradethis::grade_this({
+df <- tryCatch(read.csv("spotify-2024.csv"), error = function(e) NULL)
+if (is.null(df)) fail("Couldn't read 'spotify-2024.csv'.")
+if (!"Track.Score" %in% names(df)) fail("Need a 'Track.Score' column.")
+
+x <- df$Track.Score
+
+ok <- requireNamespace("EnvStats", quietly = TRUE)
+if (!ok) fail("The EnvStats package is not available in this environment.")
+
+exp_out <- EnvStats::varTest(x,
+sigma.squared = 100,
+alternative   = "two.sided")
+exp_p <- exp_out$p.value
+
+res <- .result
+if (!is.numeric(res) || length(res) != 1L) fail("Print a single numeric p-value.")
+if (abs(res - exp_p) < 1e-6) {
+pass("Correct variance test with EnvStats::varTest().")
+} else {
+fail("Check sigma.squared = 100 and alternative = 'two.sided'.")
+}
 })
 
 ```
