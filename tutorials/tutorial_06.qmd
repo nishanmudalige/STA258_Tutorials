@@ -400,6 +400,12 @@ H₁: μ ≠ 45
 
 We will compute the test statistic and the p-value manually.
 
+<figure style="text-align:center">
+  <img src="./images/music.jpg" style="width:40%">
+  <figcaption>Photo by <a href="https://unsplash.com/@sickhews?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Wes Hicks</a> on <a href="https://unsplash.com/photos/several-guitars-beside-of-side-table-MEL-jJnm7RQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+      </figcaption>
+</figure>
+
 ::: {.callout-note title="Info"}
 One-sample t (σ unknown):
 
@@ -617,6 +623,12 @@ $(H_1: p \neq 0.045)$
 
 We will form a success/failure variable: “Publisher is Nintendo” = success.
 
+<figure style="text-align:center">
+  <img src="./images/videogames.jpg" style="width:40%">
+  <figcaption>Photo by <a href="https://unsplash.com/@jeshoots?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">JESHOOTS.COM</a> on <a href="https://unsplash.com/photos/two-people-playing-sony-ps4-game-console-eCktzGjC-iU?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+      </figcaption>
+</figure>
+
 ::: {.callout-note title="Info"}
 For a one-sample test on a proportion with counts (x) out of (n), use
 `prop.test(x, n, p = p0, alternative = "two.sided")`.
@@ -799,13 +811,141 @@ gradethis::grade_this({
 })
 ```
 
+## Q9 — One-sample proportion using prop_test()
+
+Now repeat the same test but we use a function that gives the z statistic directly in 1 line.
+
+Hypotheses:
+
+$(H_0: p = 0.045)$
+$(H_1: p \neq 0.045)$
+
+::: {.callout-note title="Info"}
+`rstatix::prop_test()` can test a single proportion vs a hypothesized value and returns a z statistic and p-value. We’ll test against 0.045.
+:::
+
+```{webr}
+#| exercise: q9_vgs_prop_rstatix
+#| exercise.lines: 14
+#| echo: false
+
+vg <- read.csv("vgsales.csv")
+x <- sum(vg$Publisher == "Nintendo", na.rm = TRUE)
+n <- sum(!is.na(vg$Publisher))
+p0 <- __
+library(rstatix)
+res <- prop_test(
+x = __,
+n = __,
+p = __,
+alternative = "two.sided"
+)
+z_val <- as.numeric(res$statistic[1])
+p_val <- as.numeric(res$p[1])
+p_hat <- x / n
+
+c(p_hat = p_hat,
+z = z_val,
+p_value = p_val)
+```
+
+::: {.hint exercise="q9_vgs_prop_rstatix"}
+Same hypothesis as Q7–Q8, just give x, n, and p = 0.045.
+:::
+
+::: {.solution exercise="q9_vgs_prop_rstatix"}
+
+```{webr}
+#| exercise: q9_vgs_prop_rstatix
+#| solution: true
+
+vg <- read.csv("vgsales.csv")
+x <- sum(vg$Publisher == "Nintendo", na.rm = TRUE)
+n <- sum(!is.na(vg$Publisher))
+p0 <- 0.045
+
+library(rstatix)
+res <- rstatix::prop_test(
+x = x,
+n = n,
+p = p0,
+alternative = "two.sided"
+)
+
+z_val <- as.numeric(res$statistic[1])
+p_val <- as.numeric(res$p[1])
+p_hat <- x / n
+
+c(p_hat = p_hat,
+z = z_val,
+p_value = p_val)
+
+```
+
+:::
+
+```{webr}
+#| exercise: q9_vgs_prop_rstatix
+#| check: true
+gradethis::grade_this({
+vg <- tryCatch(read.csv("vgsales.csv"), error = function(e) NULL)
+if (is.null(vg)) fail("Couldn't read 'vgsales.csv'.")
+if (!"Publisher" %in% names(vg)) fail("CSV must contain 'Publisher'.")
+
+x <- sum(vg$Publisher == "Nintendo", na.rm = TRUE)
+n <- sum(!is.na(vg$Publisher))
+p0 <- 0.045
+
+if (!requireNamespace("rstatix", quietly = TRUE)) {
+fail("The rstatix package is not available.")
+}
+
+exp_res <- rstatix::prop_test(
+x = x,
+n = n,
+p = p0,
+alternative = "two.sided"
+)
+
+exp_z <- exp_res$statistic[1]
+exp_p <- exp_res$p[1]
+exp_p_hat <- x / n
+
+r <- .result
+if (!is.numeric(r) || !all(c("p_hat","z","p_value") %in% names(r))) {
+fail("Return c(p_hat=..., z=..., p_value=...).")
+}
+
+if (max(abs(r["p_hat"] - exp_p_hat),
+abs(r["z"] - exp_z),
+abs(r["p_value"] - exp_p)) < 1e-6) {
+pass("Correct: you extracted z and p from rstatix::prop_test().")
+} else {
+fail("Recheck p-hat = x/n, z = statistic, and p_value = p.")
+}
+})
+
+
+```
+
+
 ---
 
-## Q9 — One-sample proportion using `prop_test()` (rstatix)
+## Q10 — Get a signed Z from prop.test()
 
-Now we repeat the same test — “is the proportion of Nintendo-published games 30%?” — but use the `prop_test()` function from the **rstatix** package, which gives the **z** statistic directly.
+We use the same hypothesis as Q7–Q8:
 
-We’ll create a logical column and then test it.
+Hypotheses:
+
+$(H_0: p = 0.045)$
+$(H_1: p \neq 0.045)$
+
+prop.test() gives us a chi-square with 1 df. For 1 df, $\chi^2 = Z^2$
+. Q8 took the square root and got the magnitude. Here we will also:
+
+1) Get $\hat{p}$ from the data
+2) Compare $\hat{p}$ to $p_0$
+3) Give the Z a sign based on that
 
 ::: {.callout-note title="Info"}
 `rstatix::prop_test()` can test a single proportion vs a hypothesized value and returns a z statistic and p-value. We’ll test against 0.045.
@@ -816,21 +956,39 @@ We’ll create a logical column and then test it.
 #| exercise.lines: 12
 #| echo: false
 
-library(rstatix)
-
 vg <- read.csv("vgsales.csv")
+x <- sum(vg$Publisher == "Nintendo", na.rm = TRUE)
+n <- sum(!is.na(vg$Publisher))
 
-vg$is_nintendo <- vg$Publisher == "Nintendo"
+p0 <- 0.045
 
-out <- prop_test(data = vg,
-                 formula = is_nintendo ~ 1,
-                 p = ＿＿)     # 0.045
+out <- prop.test(x = x, n = n, p = p0, alternative = "two.sided")
 
-out
+chisq_val <- as.numeric(out$statistic) #chi sq from prop.test
+
+z_mag <- __ #magnitude of z
+
+p_hat <- __
+sign_z <- ifelse(p_hat - p0 >= 0, 1, -1) #figure out the sign
+
+z_signed <- __
+
+p_two <- out$p.value #two sided p value. this should match prop.test
+
+c(
+  p_hat   = as.numeric(p_hat),
+  z       = as.numeric(z_signed),
+  p_value = as.numeric(p_two)
+)
+
 ```
 
 ::: {.hint exercise="q9_vgs_prop_rstatix"}
-Use the logical column `is_nintendo` and test it against 0.045.
+Use the same prop.test() call as Q7, then:
+
+sqrt(out$statistic) for |z|
+
+make it negative if p_hat < p0
 :::
 
 ::: {.solution exercise="q9_vgs_prop_rstatix"}
@@ -838,17 +996,29 @@ Use the logical column `is_nintendo` and test it against 0.045.
 ```{webr}
 #| exercise: q9_vgs_prop_rstatix
 #| solution: true
-
-library(rstatix)
-
 vg <- read.csv("vgsales.csv")
-vg$is_nintendo <- vg$Publisher == "Nintendo"
 
-out <- rstatix::prop_test(data = vg,
-                          formula = is_nintendo ~ 1,
-                          p = 0.045)
+x <- sum(vg$Publisher == "Nintendo", na.rm = TRUE)
+n <- sum(!is.na(vg$Publisher))
 
-out
+p0 <- 0.045
+
+out <- prop.test(x = x, n = n, p = p0, alternative = "two.sided")
+
+chisq_val <- as.numeric(out$statistic)
+z_mag <- sqrt(chisq_val)
+
+p_hat <- x / n
+sign_z <- ifelse(p_hat - p0 >= 0, 1, -1)
+z_signed <- sign_z * z_mag
+
+p_two <- out$p.value
+
+c(
+  p_hat   = as.numeric(p_hat),
+  z       = as.numeric(z_signed),
+  p_value = as.numeric(p_two)
+)
 ```
 
 :::
@@ -857,26 +1027,129 @@ out
 #| exercise: q9_vgs_prop_rstatix
 #| check: true
 gradethis::grade_this({
-  vg <- tryCatch(read.csv("vgsales.csv"), error = function(e) NULL)
-  if (is.null(vg)) fail("Couldn't read 'vgsales.csv'.")
-  if (!"Publisher" %in% names(vg)) fail("CSV must contain 'Publisher'.")
+vg <- tryCatch(read.csv("vgsales.csv"), error = function(e) NULL)
+if (is.null(vg)) fail("Couldn't read 'vgsales.csv'.")
+if (!"Publisher" %in% names(vg)) fail("CSV must contain 'Publisher'.")
 
-  suppressMessages(library(rstatix))
+x <- sum(vg$Publisher == "Nintendo", na.rm = TRUE)
+n <- sum(!is.na(vg$Publisher))
+p0 <- 0.045
 
-  vg$is_nintendo <- vg$Publisher == "Nintendo"
+exp_out <- prop.test(x = x, n = n, p = p0, alternative = "two.sided")
+exp_p <- exp_out$p.value
+exp_chisq <- as.numeric(exp_out$statistic)
+exp_z_mag <- sqrt(exp_chisq)
+p_hat <- x / n
+sign_z <- ifelse(p_hat - p0 >= 0, 1, -1)
+exp_z_signed <- sign_z * exp_z_mag
 
-  exp_out <- rstatix::prop_test(data = vg,
-                                formula = is_nintendo ~ 1,
-                                p = 0.045)
+res <- .result
+if (!is.numeric(res)) fail("Return c(p_hat=..., z=..., p_value=...).")
+if (!all(c("p_hat","z","p_value") %in% names(res))) fail("Name your output p_hat, z, and p_value.")
 
-  res <- .result
-  # We can't perfectly predict object shape students print, so check that they ran rstatix::prop_test
-  # by checking for a data.frame-like result with expected columns.
-  if (is.data.frame(res) && all(c("statistic","p") %in% names(res))) {
-    pass("Looks like the correct rstatix::prop_test output.")
-  } else {
-    fail("Make sure you used rstatix::prop_test(...) on is_nintendo ~ 1 with p = 0.045.")
-  }
+if (abs(res["p_value"] - exp_p) < 1e-6 &&
+abs(res["z"] - exp_z_signed) < 1e-6 &&
+abs(res["p_hat"] - p_hat) < 1e-6) {
+pass("Correct: derived signed z and p-value from prop.test().")
+} else {
+fail("Recheck: run the same prop.test, take sqrt(statistic), and set the sign from p̂ − p0.")
+}
 })
+```
+
+## Q11 — One-sample hypothesis test on the variance (σ² known under H₀)
+
+We want to test whether the variance of Track.Score is equal to a target value. Suppose a platform claims that Track.Score has variance $\sigma_0^2 = 100$ (i.e. SD=10) We will test:
+
+$(H_0: \sigma^2 = 100)$ vs
+$(H_1: \sigma^2 \neq 100)$
+
+This is a chi-square based variance test.
+
+
+::: {.callout-note title="Info"}
+For a one sample variance test $$\chi^2 = \frac{(n - 1)s^2}{\sigma_0^2} \sim \chi^2_{\,n - 1} \quad \text{under } H_0.$$ EnvStats::varTest() does this for you and gives the p-value.
+:::
+
+::: {.callout-note title="Preview"}
+```{webr}
+#| echo: true
+df <- read.csv("spotify-2024.csv")
+summary(df$Track.Score)
+hist(df$Track.Score, main = "Histogram of Track.Score", xlab = "Track.Score")
+```
+:::
+
+```{webr}
+#| exercise: q10_trackscore_var_envstats
+#| exercise.lines: 8
+#| echo: false
+
+df <- read.csv("spotify-2024.csv")
+x <- df$Track.Score
+
+library(EnvStats)
+
+out <- EnvStats::varTest(x,
+sigma.squared = ＿＿,   # 100
+alternative   = "two.sided")
+
+out$p.value
+
+
+```
+
+::: {.hint exercise="q10_trackscore_var_envstatss"}
+Use the Track.Score column, test against 100, two-sided.
+:::
+
+::: {.solution exercise="q10_trackscore_var_envstats"}
+
+```{webr}
+#| exercise: q10_trackscore_var_envstats
+#| solution: true
+
+df <- read.csv("spotify-2024.csv")
+x <- df$Track.Score
+
+library(EnvStats)
+
+out <- EnvStats::varTest(x,
+sigma.squared = 100,
+alternative   = "two.sided")
+
+out$p.value
+
+```
+
+:::
+
+```{webr}
+#| exercise: q10_trackscore_var_envstats
+#| check: true
+gradethis::grade_this({
+df <- tryCatch(read.csv("spotify-2024.csv"), error = function(e) NULL)
+if (is.null(df)) fail("Couldn't read 'spotify-2024.csv'.")
+if (!"Track.Score" %in% names(df)) fail("Need a 'Track.Score' column.")
+
+x <- df$Track.Score
+
+ok <- requireNamespace("EnvStats", quietly = TRUE)
+if (!ok) fail("The EnvStats package is not available in this environment.")
+
+exp_out <- EnvStats::varTest(x,
+sigma.squared = 100,
+alternative   = "two.sided")
+exp_p <- exp_out$p.value
+
+res <- .result
+if (!is.numeric(res) || length(res) != 1L) fail("Print a single numeric p-value.")
+if (abs(res - exp_p) < 1e-6) {
+pass("Correct variance test with EnvStats::varTest().")
+} else {
+fail("Check sigma.squared = 100 and alternative = 'two.sided'.")
+}
+})
+
 ```
 
