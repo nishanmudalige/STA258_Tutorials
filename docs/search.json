@@ -1,5 +1,6 @@
 [
   {
+<<<<<<< HEAD
     "objectID": "tutorials/tutorial_05.html#q1-pooled-equal-variances-reviews",
     "href": "tutorials/tutorial_05.html#q1-pooled-equal-variances-reviews",
     "title": "Tutorial 05",
@@ -166,6 +167,69 @@
     "title": "Tutorial 03",
     "section": "Q16 — Visualizing the Distribution",
     "text": "Q16 — Visualizing the Distribution\nMake a histogram of means_n10 (binwidth = 0.5), and add a vertical dashed red line at the population mean mu. Save the plot in plot_clt and print it. Fill the plot with any color of your choice!\n\n\n\n\n\n\nInfo\n\n\n\nNotice the distribution of the sample mean here and see if\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRefer to previous exercises for learning how to plot a histogram. To draw a vertical line at a certain intercept, use the ggplot command- geom_vline .\n\n\n\n\nlibrary(ggplot2)\np_clt_n10 &lt;- ggplot(data.frame(m = means_n10), aes(m)) +\n  geom_histogram(binwidth = 0.5, fill = \"grey80\", color = \"white\") +\n  geom_vline(xintercept = mu, linetype = 2, color = \"red\") +\n  labs(x = \"sample mean (n=10)\", y = \"count\",\n                title = \"Sampling distribution of the mean (n = 10)\") +\n  theme_minimal()\np_clt_n10\nlibrary(ggplot2)\np_clt_n10 &lt;- ggplot(data.frame(m = means_n10), aes(m)) +\n  geom_histogram(binwidth = 0.5, fill = \"grey80\", color = \"white\") +\n  geom_vline(xintercept = mu, linetype = 2, color = \"red\") +\n  labs(x = \"sample mean (n=10)\", y = \"count\",\n                title = \"Sampling distribution of the mean (n = 10)\") +\n  theme_minimal()\np_clt_n10"
+=======
+    "objectID": "practice/index.html",
+    "href": "practice/index.html",
+    "title": "STA258 Course Tutorials",
+    "section": "",
+    "text": "Welcome !"
+  },
+  {
+    "objectID": "tutorials/tutorial_02.html#q1",
+    "href": "tutorials/tutorial_02.html#q1",
+    "title": "Tutorial 02",
+    "section": "Q1 — Five-number summary",
+    "text": "Q1 — Five-number summary\nThe five-number summary (Min, Q1, Median, Q3, Max) + IQR quickly reveals center and spread. Return a five number summary for the dataset airquality’s Ozone column. Further, return the IQR.\n\n\n\n\n\n\nNoteInfo\n\n\n\nThe five-number summary (Min, Q1, Median, Q3, Max) quickly shows center and spread. The IQR = Q3 − Q1 is robust to outliers and underlies boxplot fences (Q1 − 1.5·IQR, Q3 + 1.5·IQR). You’ll use base R functions that compute these directly for a numeric\n\n\n\n\n\n\n\n\nNotePreview\n\n\n\nRun the code below to see a preview of the dataset.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCall the base function that prints the five key stats, then on the next line return the robust spread of that same column; remember missing values.\n\n\n\n\nsummary(airquality$Ozone)\nIQR(airquality$Ozone, na.rm = TRUE)\nsummary(airquality$Ozone)\nIQR(airquality$Ozone, na.rm = TRUE)"
+  },
+  {
+    "objectID": "tutorials/tutorial_02.html#q2",
+    "href": "tutorials/tutorial_02.html#q2",
+    "title": "Tutorial 02",
+    "section": "Q2 — Mean, variance, and sd",
+    "text": "Q2 — Mean, variance, and sd\nCompute Mean, Variance and Standard Deviation of airquality dataset’s Temp column.\n\n\n\n\n\n\nNoteInfo\n\n\n\nMean, variance, and standard deviation summarize center and spread. Variance and SD are in squared and original units respectively. Real-world data often has NAs; make sure your summary ignores them appropriately.\n\n\n\n\n\nPhoto by Tim Witzdam on Unsplash\n\n\n\n\n\n\n\n\nNotePreview\n\n\n\nRun the code below to see a preview of the dataset.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nConstruct a single named vector with three entries; each entry calls the corresponding base summary function with missing-value handling.\n\n\n\n\nc(\n  mean = mean(airquality$Temp, na.rm = TRUE),\n  var  = var(airquality$Temp,  na.rm = TRUE),\n  sd   = sd(airquality$Temp,   na.rm = TRUE)\n)\nc(\n  mean = mean(airquality$Temp, na.rm = TRUE),\n  var  = var(airquality$Temp,  na.rm = TRUE),\n  sd   = sd(airquality$Temp,   na.rm = TRUE)\n)"
+  },
+  {
+    "objectID": "tutorials/tutorial_02.html#q3-grouped-summary-by-month",
+    "href": "tutorials/tutorial_02.html#q3-grouped-summary-by-month",
+    "title": "Tutorial 02",
+    "section": "Q3 — Grouped summary by Month",
+    "text": "Q3 — Grouped summary by Month\nCompute the mean Ozone by Month using base R. Return a named numeric vector (names are months).\n\n\n\n\n\n\nNotePreview\n\n\n\nRun the code below to see a preview of the dataset.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLearn about the function tapply().\n\n\n\n\ntapply(airquality$Ozone, airquality$Month, mean, na.rm = TRUE)\ntapply(airquality$Ozone, airquality$Month, mean, na.rm = TRUE)"
+  },
+  {
+    "objectID": "tutorials/tutorial_02.html#q4-ggplot-boxplot-ordered-by-median-chickweight",
+    "href": "tutorials/tutorial_02.html#q4-ggplot-boxplot-ordered-by-median-chickweight",
+    "title": "Tutorial 02",
+    "section": "Q4 — ggplot Boxplot ordered by median (ChickWeight)",
+    "text": "Q4 — ggplot Boxplot ordered by median (ChickWeight)\nNow, we are moving on to the ChickWeight dataset which has data from an experiment on the effect of diet on early growth of chicks. Return a ggplot object that boxplots weight by Diet, with Diet reordered by the median weight. Fill in the blanks.\n\n\n\nPhoto by Karim MANJRA on Unsplash\n\n\n\n\n\n\n\n\nNoteInfo\n\n\n\nYou can reorder categories by a statistic (like the median) right inside aes() to make comparisons meaningful. In ggplot2, this is commonly done with reorder() (or forcats helpers). The layer for boxplots is geom_boxplot().\n\n\n\n\n\n\n\n\n\n\n\nMap Diet to x and weight to y; reorder x by median(weight) inside aes(…). Use geom_boxplot() for the layer.\n\n\n\n\nlibrary(ggplot2)\nggplot(\nChickWeight,\naes(x = reorder(factor(Diet), weight, FUN = median), y = weight)\n) +\ngeom_boxplot()\nlibrary(ggplot2)\nggplot(\nChickWeight,\naes(x = reorder(factor(Diet), weight, FUN = median), y = weight)\n) +\ngeom_boxplot()"
+  },
+  {
+    "objectID": "tutorials/tutorial_02.html#q5-histogram-with-tukey-fences",
+    "href": "tutorials/tutorial_02.html#q5-histogram-with-tukey-fences",
+    "title": "Tutorial 02",
+    "section": "Q5 — Histogram with Tukey fences",
+    "text": "Q5 — Histogram with Tukey fences\nShow a histogram of ChickWeight$weight and add vertical lines at Q1, Q3, and the Tukey fences Q1−1.5·IQR, Q3+1.5·IQR\n\n\n\n\n\n\nNoteInfo\n\n\n\nTukey fences are statistical boundaries, used to identify potential outliers in a dataset. Data points falling outside these fences are considered outliers. Q1 − 1.5·IQR and Q3 + 1.5·IQR are Tukey fences!\n\n\n\n\n\n\n\n\nNotePreview\n\n\n\nHere is a preview of the dataset:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngeom_vline is used to add vertical lines in the plot at certain positions.\n\n\n\n\nlibrary(ggplot2)\nqs &lt;- quantile(ChickWeight$weight, c(.25,.75))\nlo &lt;- qs[1] - 1.5*diff(qs)\nhi &lt;- qs[2] + 1.5*diff(qs)\nggplot(ChickWeight, aes(weight)) +\ngeom_histogram(bins = 12) +\ngeom_vline(xintercept = c(qs[1], qs[2], lo, hi))\nlibrary(ggplot2)\nqs &lt;- quantile(ChickWeight$weight, c(.25,.75))\nlo &lt;- qs[1] - 1.5*diff(qs)\nhi &lt;- qs[2] + 1.5*diff(qs)\nggplot(ChickWeight, aes(weight)) +\ngeom_histogram(bins = 12) +\ngeom_vline(xintercept = c(qs[1], qs[2], lo, hi))"
+  },
+  {
+    "objectID": "tutorials/tutorial_02.html#q6-histogram-of-weight-ggplot2",
+    "href": "tutorials/tutorial_02.html#q6-histogram-of-weight-ggplot2",
+    "title": "Tutorial 02",
+    "section": "Q6 — Histogram of Weight (ggplot2)",
+    "text": "Q6 — Histogram of Weight (ggplot2)\nMake a histogram with ~12 bins. Store in p_hist.\n\n\n\n\n\n\nNoteInfo\n\n\n\nUse the built-in mtcars dataset. Plot the distribution of mpg as a histogram with about 12 bins and assign the plot to`p_hist. Return a ggplot object (no printing required).\n\n\n\n\n\n\n\n\nNotePreview\n\n\n\nHere is a preview of the dataset:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCreate a ggplot using ChickWeight with weight mapped on x. Add a histogram layer with ~12 bins. Assign the plot object to p_hist.\n\n\n\n\nlibrary(ggplot2)\np_hist &lt;- ggplot(ChickWeight, aes(weight)) +\ngeom_histogram(bins = 12)\np_hist\nlibrary(ggplot2)\np_hist &lt;- ggplot(ChickWeight, aes(weight)) +\ngeom_histogram(bins = 12)\np_hist"
+  },
+  {
+    "objectID": "tutorials/tutorial_02.html#q7-boxplot-of-weight-by-diet-ggplot2",
+    "href": "tutorials/tutorial_02.html#q7-boxplot-of-weight-by-diet-ggplot2",
+    "title": "Tutorial 02",
+    "section": "Q7 — Boxplot of weight by Diet (ggplot2)",
+    "text": "Q7 — Boxplot of weight by Diet (ggplot2)\nMake a boxplot of weight grouped by Diet (treat Diet as categorical). Store the plot in p_box\n\n\n\n\n\n\nNoteInfo\n\n\n\nHere is a preview of the dataset:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBuild a ggplot from ChickWeight. Map factor(Diet) to x and weight to y. Add a boxplot layer. Assign the result to p_box.\n\n\n\n\nlibrary(ggplot2)\np_box &lt;- ggplot(ChickWeight, aes(x = factor(Diet), y = weight)) +\ngeom_boxplot()\np_box\nlibrary(ggplot2)\np_box &lt;- ggplot(ChickWeight, aes(x = factor(Diet), y = weight)) +\ngeom_boxplot()\np_box"
+  },
+  {
+    "objectID": "tutorials/tutorial_02.html#q8-scatter-with-smoother-time-vs-weight-ggplot2",
+    "href": "tutorials/tutorial_02.html#q8-scatter-with-smoother-time-vs-weight-ggplot2",
+    "title": "Tutorial 02",
+    "section": "Q8 — Scatter with smoother: Time vs weight (ggplot2)",
+    "text": "Q8 — Scatter with smoother: Time vs weight (ggplot2)\nBuild a scatterplot from ChickWeight mapping Time → x and weight → y. Store in p_scatter.\n\n\n\n\n\n\nNotePreview\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBuild a ggplot from ChickWeight mapping Time → x and weight → y. Add points, then a smoother (hide the SE ribbon). Assign the final plot to p_scatter.\n\n\n\n\nlibrary(ggplot2)\np_scatter &lt;- ggplot(ChickWeight, aes(Time, weight)) +\ngeom_point() +\ngeom_smooth(se = FALSE)\np_scatter\nlibrary(ggplot2)\np_scatter &lt;- ggplot(ChickWeight, aes(Time, weight)) +\ngeom_point() +\ngeom_smooth(se = FALSE)\np_scatter"
+>>>>>>> c994fad85f43a18919fc23f990d8422ea69fab62
   },
   {
     "objectID": "tutorials/tutorial_01.html#q1",
@@ -193,14 +257,22 @@
     "href": "tutorials/tutorial_01.html#q4-draw-a-histogram-from-toothgrowth-type-the-full-call",
     "title": "Tutorial 01",
     "section": "Q4 — Draw a histogram from ToothGrowth (type the full call)",
+<<<<<<< HEAD
     "text": "Q4 — Draw a histogram from ToothGrowth (type the full call)\nUse exactly one of these numeric columns and nothing else: len or dose\n\n\n\nPhoto by The Humble Co. on Unsplash\n\n\n\n\n\n\n\n\nPreview\n\n\n\nFind a preview of the ToothGrowth dataset here:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nhist(ToothGrowth$len)\nhist(ToothGrowth$len)"
+=======
+    "text": "Q4 — Draw a histogram from ToothGrowth (type the full call)\nUse exactly one of these numeric columns and nothing else: len or dose\n\n\n\nPhoto by The Humble Co. on Unsplash\n\n\n\n\n\n\n\n\nNotePreview\n\n\n\nFind a preview of the ToothGrowth dataset here:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nhist(ToothGrowth$len)\nhist(ToothGrowth$len)"
+>>>>>>> c994fad85f43a18919fc23f990d8422ea69fab62
   },
   {
     "objectID": "tutorials/tutorial_01.html#q5-draw-a-boxplot-from-toothgrowth-type-the-full-call",
     "href": "tutorials/tutorial_01.html#q5-draw-a-boxplot-from-toothgrowth-type-the-full-call",
     "title": "Tutorial 01",
     "section": "Q5 — Draw a boxplot from ToothGrowth (type the full call)",
+<<<<<<< HEAD
     "text": "Q5 — Draw a boxplot from ToothGrowth (type the full call)\nUse exactly one of these numeric columns and nothing else: len or dose\n\n\n\n\n\n\nPreview\n\n\n\nFind a preview of the ToothGrowth dataset here:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nboxplot(ToothGrowth$len)\nboxplot(ToothGrowth$len)"
+=======
+    "text": "Q5 — Draw a boxplot from ToothGrowth (type the full call)\nUse exactly one of these numeric columns and nothing else: len or dose\n\n\n\n\n\n\nNotePreview\n\n\n\nFind a preview of the ToothGrowth dataset here:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nboxplot(ToothGrowth$len)\nboxplot(ToothGrowth$len)"
+>>>>>>> c994fad85f43a18919fc23f990d8422ea69fab62
   },
   {
     "objectID": "tutorials/tutorial_01.html#q6-add-a-color-to-the-histogram",
@@ -256,6 +328,7 @@
     "href": "tutorials/tutorial_01.html#q2",
     "title": "Tutorial 01",
     "section": "Q13 — Write a function using division",
+<<<<<<< HEAD
     "text": "Q13 — Write a function using division\nDefine a function called divide_nums that takes two arguments (a and b) and returns the results of:\n\na / b\nb / a\n\nBoth results should be stored in separate variables before being returned.\n\n\n\n\n\n\nInfo\n\n\n\nRemember: in R, division by zero (1/0) will return Inf rather than an error.\n\n\n\n\n\n\n\n\nInfo\n\n\n\nIn R, lists are written with list(a, b, c). Each element can be anything: a number, a string, or even another list.\n\n\n\n\n\n\n\n\n\n\n\nStart with: res1 &lt;- a / b res2 &lt;- b / a list(res1, res2)\n\n\n\n\ndivide_nums &lt;- function(a, b) {\n  res1 &lt;- a / b\n  res2 &lt;- b / a\n  list(res1, res2)\n}\ndivide_nums &lt;- function(a, b) {\n  res1 &lt;- a / b\n  res2 &lt;- b / a\n  list(res1, res2)\n}"
   },
   {
@@ -271,6 +344,156 @@
     "title": "STA258 Course Tutorials",
     "section": "",
     "text": "Welcome !"
+=======
+    "text": "Q13 — Write a function using division\nDefine a function called divide_nums that takes two arguments (a and b) and returns the results of:\n\na / b\nb / a\n\nBoth results should be stored in separate variables before being returned.\n\n\n\n\n\n\nNoteInfo\n\n\n\nRemember: in R, division by zero (1/0) will return Inf rather than an error.\n\n\n\n\n\n\n\n\nNoteInfo\n\n\n\nIn R, lists are written with list(a, b, c). Each element can be anything: a number, a string, or even another list.\n\n\n\n\n\n\n\n\n\n\n\nStart with: res1 &lt;- a / b res2 &lt;- b / a list(res1, res2)\n\n\n\n\ndivide_nums &lt;- function(a, b) {\n  res1 &lt;- a / b\n  res2 &lt;- b / a\n  list(res1, res2)\n}\ndivide_nums &lt;- function(a, b) {\n  res1 &lt;- a / b\n  res2 &lt;- b / a\n  list(res1, res2)\n}"
+  },
+  {
+    "objectID": "tutorials/tutorial_05.html#q1-pooled-equal-variances-reviews",
+    "href": "tutorials/tutorial_05.html#q1-pooled-equal-variances-reviews",
+    "title": "Tutorial 05",
+    "section": "Q1 — Pooled (Equal Variances): Reviews",
+    "text": "Q1 — Pooled (Equal Variances): Reviews\nUsing the local file recipe_reviews.csv, compute a 95% two-sided confidence interval for \\[ \\mu_{FiveStar} - \\mu_{NotFive}\\] where the outcome is best_score and the groups are stars == 5 (FiveStar) vs stars != 5 (NotFive). Read the CSV with read.csv(“recipe_reviews.csv”), build the two groups, and print the 2-element vector c(lower, upper).\n\n\n\nPhoto by Maximus Mazar on Unsplash\n\n\n\n\n\n\n\n\nNoteInfo\n\n\n\nFor a pooled two-sample CI with equal variances:\n\\[ \\bar{x}_1 - \\bar{x}_2 \\ \\ \\pm \\ \\ t^*_{df=n_1 + n_2 - 2} s_p \\sqrt{\\frac{1}{n1} + \\frac{1}{n2}}, \\ \\ s^2_p = \\frac{(n_1 - 1)s^2_1 + (n_2-1)s^2_2}{n_1 + n_2 - 2}\\] Use \\(\\alpha\\) = 0.05 \\(\\implies t^* = t_{1 - \\frac{\\alpha}{2}, df}\\)\nGroup 1 = FiveStar (rows with stars == 5), Group 2 = NotFive (rows with stars != 5).\n\n\n\n\n\n\n\n\nNotePreview\n\n\n\nThe “Recipe Reviews and User Feedback Dataset” is a comprehensive repository of data encompassing various aspects of recipe reviews and user interactions. It includes essential information such as the recipe name, its ranking on the top 100 recipes list, a unique recipe code, and user details like user ID, user name, and an internal user reputation score. Each review comment is uniquely identified with a comment ID and comes with additional attributes, including the creation timestamp, reply count, and the number of up-votes and down-votes received. Users’ sentiment towards recipes is quantified on a 1 to 5 star rating scale, with a score of 0 denoting an absence of rating. This dataset is a valuable resource for researchers and data scientists, facilitating endeavors in sentiment analysis, user behavior analysis, recipe recommendation systems, and more. It offers a window into the dynamics of recipe reviews and user feedback within the culinary website domain.\nRun this code chunk to get a glimpse of the dataset. Feel free to change the values to visualize more/less number of rows.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nConfirm you’re comparing the means of two groups formed by a boolean condition on stars. Use the pooled-variance standard error and the appropriate two-sided t critical value for a 95% interval. Print just the lower and upper bounds as a numeric vector.\n\n\n\n\ndf &lt;- read.csv(\"recipe_reviews.csv\")\n\nx1 &lt;- subset(df, stars == 5)$best_score\nx2 &lt;- subset(df, stars != 5)$best_score\n\nn1 &lt;- sum(!is.na(x1)); n2 &lt;- sum(!is.na(x2))\nm1 &lt;- mean(x1, na.rm = TRUE); m2 &lt;- mean(x2, na.rm = TRUE)\ns1 &lt;- stats::sd(x1, na.rm = TRUE); s2 &lt;- stats::sd(x2, na.rm = TRUE)\n\ndfree &lt;- n1 + n2 - 2\nsp2 &lt;- (((n1 - 1) * s1^2) + ((n2 - 1) * s2^2)) / dfree\nsp &lt;- sqrt(sp2)\n\ntstar &lt;- qt(0.975, dfree)\nse &lt;- sp * sqrt(1/n1 + 1/n2)\nest &lt;- m1 - m2\n\nc(est - tstar*se, est + tstar*se)\ndf &lt;- read.csv(\"recipe_reviews.csv\")\n\nx1 &lt;- subset(df, stars == 5)$best_score\nx2 &lt;- subset(df, stars != 5)$best_score\n\nn1 &lt;- sum(!is.na(x1)); n2 &lt;- sum(!is.na(x2))\nm1 &lt;- mean(x1, na.rm = TRUE); m2 &lt;- mean(x2, na.rm = TRUE)\ns1 &lt;- stats::sd(x1, na.rm = TRUE); s2 &lt;- stats::sd(x2, na.rm = TRUE)\n\ndfree &lt;- n1 + n2 - 2\nsp2 &lt;- (((n1 - 1) * s1^2) + ((n2 - 1) * s2^2)) / dfree\nsp &lt;- sqrt(sp2)\n\ntstar &lt;- qt(0.975, dfree)\nse &lt;- sp * sqrt(1/n1 + 1/n2)\nest &lt;- m1 - m2\n\nc(est - tstar*se, est + tstar*se)"
+  },
+  {
+    "objectID": "tutorials/tutorial_05.html#q2-pooled-equal-variances-using-t.test",
+    "href": "tutorials/tutorial_05.html#q2-pooled-equal-variances-using-t.test",
+    "title": "Tutorial 05",
+    "section": "Q2 — Pooled (Equal Variances): Using t.test()",
+    "text": "Q2 — Pooled (Equal Variances): Using t.test()\nCompute a 90% two-sided confidence interval for \\[ \\mu_{Adelie} - \\mu_{Gentoo}\\] for bill length (mm) using pooled variances. Use the local file penguins.csv and only the two species Adelie and Gentoo.\n\n\n\nPhoto by Adam Tarshis on Unsplash\n\n\n\n\n\n\n\n\nNoteInfo\n\n\n\nFor equal-variance two-sample CIs, t.test(yield ~ method, var.equal = TRUE, conf.level = 0.90) uses the pooled standard error and df = \\(n_1 + n_2 - 2\\). To get the CI for Adelie − Gentoo, set the factor level order to c(“Adelie”,“Gentoo”).\n\n\n\n\n\n\n\n\nNotePreview\n\n\n\nRun this code chunk to get a glimpse of the dataset. Feel free to change the values to visualize more/less number of rows.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteInfo\n\n\n\nWhen σ is known, \\[\n\\mathrm{CI}_{1-\\alpha}:\\ \\bar{x} \\pm x_{1-\\alpha/2}\\,\\frac{\\sigma}{\\sqrt{n}}.\n\\]\n\n\n\n\n\n\n\n\n\n\n\nUse a two-group factor for the species and the pooled-variance option in t.test. Ensure you’re returning just the interval bounds, not the whole test object.\n\n\n\n\ndf &lt;- read.csv(\"penguins.csv\")\nkeep &lt;- df$species %in% c(\"Adelie\",\"Gentoo\")\ndf &lt;- subset(df, keep & !is.na(bill_length_mm))\n\ndf$method &lt;- factor(df$species, levels = c(\"Adelie\",\"Gentoo\")) # order matters for the contrast\ndf$yield &lt;- df$bill_length_mm\n\ntt &lt;- t.test(yield ~ method, data = df, var.equal = TRUE, conf.level = 0.90)\ntt$conf.int\ndf &lt;- read.csv(\"penguins.csv\")\nkeep &lt;- df$species %in% c(\"Adelie\",\"Gentoo\")\ndf &lt;- subset(df, keep & !is.na(bill_length_mm))\n\ndf$method &lt;- factor(df$species, levels = c(\"Adelie\",\"Gentoo\")) # order matters for the contrast\ndf$yield &lt;- df$bill_length_mm\n\ntt &lt;- t.test(yield ~ method, data = df, var.equal = TRUE, conf.level = 0.90)\ntt$conf.int"
+  },
+  {
+    "objectID": "tutorials/tutorial_05.html#q3-welch-unequal-variances-using-t.test",
+    "href": "tutorials/tutorial_05.html#q3-welch-unequal-variances-using-t.test",
+    "title": "Tutorial 05",
+    "section": "Q3 — Welch (Unequal Variances): Using t.test()",
+    "text": "Q3 — Welch (Unequal Variances): Using t.test()\nCompute an 80% two-sided confidence interval for \\[ \\mu_{Chinstrap} - \\mu_{Gentoo}\\] for flipper_length_mm using Welch’s unequal-variance method (the default in t.test). Use the local file penguins.csv and only the species Chinstrap and Gentoo. Print only the 2-number CI vector.\n\n\n\n\n\n\nNoteInfo\n\n\n\nt.test(y ~ g, conf.level = 0.80) uses Welch by default (var.equal = FALSE). To obtain Chinstrap − Gentoo, set the factor level order to c(“Chinstrap”,“Gentoo”).\n\n\n\n\n\n\n\n\nNotePreview\n\n\n\nRun this code chunk to get a glimpse of the dataset. Feel free to change the values to visualize more/less number of rows.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEnsure you keep exactly two species and set their order to match the contrast. Return just the two CI bounds from the test result.\n\n\n\n\n\ndf &lt;- read.csv(\"penguins.csv\")\n\nkeep &lt;- df$species %in% c(\"Chinstrap\",\"Gentoo\")\ndf &lt;- subset(df, keep & !is.na(flipper_length_mm))\n\ndf$method &lt;- factor(df$species, levels = c(\"Chinstrap\",\"Gentoo\"))\ndf$y &lt;- df$flipper_length_mm\n\ntt &lt;- t.test(y ~ method, data = df, conf.level = 0.80) # Welch by default\ntt$conf.int\n\ndf &lt;- read.csv(\"penguins.csv\")\n\nkeep &lt;- df$species %in% c(\"Chinstrap\",\"Gentoo\")\ndf &lt;- subset(df, keep & !is.na(flipper_length_mm))\n\ndf$method &lt;- factor(df$species, levels = c(\"Chinstrap\",\"Gentoo\"))\ndf$y &lt;- df$flipper_length_mm\n\ntt &lt;- t.test(y ~ method, data = df, conf.level = 0.80) # Welch by default\ntt$conf.int"
+  },
+  {
+    "objectID": "tutorials/tutorial_05.html#q4-two-sample-ci-for-a-difference-of-proportions",
+    "href": "tutorials/tutorial_05.html#q4-two-sample-ci-for-a-difference-of-proportions",
+    "title": "Tutorial 05",
+    "section": "Q4 — Two-Sample CI for a Difference of Proportions",
+    "text": "Q4 — Two-Sample CI for a Difference of Proportions\nIn recipe_reviews.csv, compare the proportion of reviews where thumbs_up &gt; thumbs_down between FiveStar (stars == 5) and NotFive (stars != 5). Compute a 95% two-sided CI for \\[p_{FiveStar} - p_{NotFive}\\]. Print c(lower, uppper).\n\n\n\n\n\n\nNotePreview\n\n\n\nRun this code chunk to get a glimpse of the dataset. Feel free to change the values to visualize more/less number of rows.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteInfo\n\n\n\nCI for difference of proportions: \\[\n\\mathrm{CI}_{1-\\alpha}:\\ \\hat{p_1} - \\hat{p_2} \\pm z_{1-\\alpha/2} * \\sqrt{\\frac{\\hat{p_1}(1-\\hat{p_1})}{n_1} + \\frac{\\hat{p_2}(1-\\hat{p_2})}{n_2}}.\n\\]\n\n\n\n\n\n\n\n\n\n\n\nCompute \\[\\hat{p}\\] per group, then compute their SE and z* at 0.975.\n\n\n\n\ndf &lt;- read.csv(\"recipe_reviews.csv\")\ng1 &lt;- subset(df, stars == 5) #segregating the dataset\ng2 &lt;- subset(df, stars != 5)\ncount1 &lt;- as.integer(g1$thumbs_up &gt; g1$thumbs_down)\ncount2 &lt;- as.integer(g2$thumbs_up &gt; g2$thumbs_down)\nn1 &lt;- sum(is.finite(count1)); n2 &lt;- sum(is.finite(count2))\np1 &lt;- mean(count1, na.rm = TRUE); p2 &lt;- mean(count2, na.rm = TRUE)\nse &lt;- sqrt(p1*(1-p1)/n1 + p2*(1-p2)/n2)\nz &lt;- qnorm(0.975); \n(p1 - p2) + c(-1,1)*z*se\ndf &lt;- read.csv(\"recipe_reviews.csv\")\ng1 &lt;- subset(df, stars == 5) #segregating the dataset\ng2 &lt;- subset(df, stars != 5)\ncount1 &lt;- as.integer(g1$thumbs_up &gt; g1$thumbs_down)\ncount2 &lt;- as.integer(g2$thumbs_up &gt; g2$thumbs_down)\nn1 &lt;- sum(is.finite(count1)); n2 &lt;- sum(is.finite(count2))\np1 &lt;- mean(count1, na.rm = TRUE); p2 &lt;- mean(count2, na.rm = TRUE)\nse &lt;- sqrt(p1*(1-p1)/n1 + p2*(1-p2)/n2)\nz &lt;- qnorm(0.975); \n(p1 - p2) + c(-1,1)*z*se"
+  },
+  {
+    "objectID": "tutorials/tutorial_05.html#q5-two-sample-ci-for-a-difference-of-proportions-using-prop.test",
+    "href": "tutorials/tutorial_05.html#q5-two-sample-ci-for-a-difference-of-proportions-using-prop.test",
+    "title": "Tutorial 05",
+    "section": "Q5 — Two-Sample CI for a Difference of Proportions using prop.test",
+    "text": "Q5 — Two-Sample CI for a Difference of Proportions using prop.test\nIn penguins.csv, compare the male proportion between Chinstrap and Gentoo. Compute an evidence-only CI (no hypothesis interpretation needed) for \\(p_{Chinstrap} - p_{Gentoo}\\) at 90% and print c(lower upper).\n\n\n\n\n\n\nNotePreview\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteInfo\n\n\n\nThe prop.test() function in R performs tests of proportions, allowing for the comparison of proportions across groups or against specific values. Here is an example according to this question. here’s a super simple one-sample prop.test using penguins.csv. It asks: among Gentoo penguins, what fraction are male? It prints the estimate and a 95% CI. Run the code to see!\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFilter to two species, count “male” in each, and feed (x1,n1),(x2,n2) to prop.test.\n\n\n\n\ndf &lt;- read.csv(\"penguins.csv\")\ndf &lt;- subset(df, species %in% c(\"Chinstrap\",\"Gentoo\") & !is.na(sex))\nx1 &lt;- sum(df$species==\"Chinstrap\" & df$sex==\"male\")\nn1 &lt;- sum(df$species==\"Chinstrap\")\nx2 &lt;- sum(df$species==\"Gentoo\" & df$sex==\"male\")\nn2 &lt;- sum(df$species==\"Gentoo\")\nprop.test(x = c(x1, x2), n = c(n1, n2), conf.level = 0.90, correct = FALSE)$conf.int\ndf &lt;- read.csv(\"penguins.csv\")\ndf &lt;- subset(df, species %in% c(\"Chinstrap\",\"Gentoo\") & !is.na(sex))\nx1 &lt;- sum(df$species==\"Chinstrap\" & df$sex==\"male\")\nn1 &lt;- sum(df$species==\"Chinstrap\")\nx2 &lt;- sum(df$species==\"Gentoo\" & df$sex==\"male\")\nn2 &lt;- sum(df$species==\"Gentoo\")\nprop.test(x = c(x1, x2), n = c(n1, n2), conf.level = 0.90, correct = FALSE)$conf.int"
+  },
+  {
+    "objectID": "tutorials/tutorial_05.html#q6-two-sample-ci-for-a-difference-of-proportions-islandbiscoe",
+    "href": "tutorials/tutorial_05.html#q6-two-sample-ci-for-a-difference-of-proportions-islandbiscoe",
+    "title": "Tutorial 05",
+    "section": "Q6 — Two-Sample CI for a Difference of Proportions (island=Biscoe)",
+    "text": "Q6 — Two-Sample CI for a Difference of Proportions (island=Biscoe)\nUsing penguins.csv, compare the proportion of penguins on Biscoe island between Adelie and Gentoo. Compute a 95% two-sided CI for \\(p_{Adelie} - p_{Gentoo}\\) and print c(lower upper).\n\n\n\n\n\n\nNotePreview\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCount “Biscoe” within each species to get x1, x2. Use totals for n1, n2, then prop.test(…)$conf.int. Order your counts as (Adelie, Gentoo) to get Adelie − Gentoo.\n\n\n\n\ndf &lt;- read.csv(\"penguins.csv\")\nsub &lt;- subset(df, species %in% c(\"Adelie\",\"Gentoo\") & !is.na(island))\nx1 &lt;- sum(sub$species==\"Adelie\" & sub$island==\"Biscoe\"); n1 &lt;- sum(sub$species==\"Adelie\")\nx2 &lt;- sum(sub$species==\"Gentoo\" & sub$island==\"Biscoe\"); n2 &lt;- sum(sub$species==\"Gentoo\")\nprop.test(x=c(x1,x2), n=c(n1,n2), conf.level=0.95, correct=FALSE)$conf.int\ndf &lt;- read.csv(\"penguins.csv\")\nsub &lt;- subset(df, species %in% c(\"Adelie\",\"Gentoo\") & !is.na(island))\nx1 &lt;- sum(sub$species==\"Adelie\" & sub$island==\"Biscoe\"); n1 &lt;- sum(sub$species==\"Adelie\")\nx2 &lt;- sum(sub$species==\"Gentoo\" & sub$island==\"Biscoe\"); n2 &lt;- sum(sub$species==\"Gentoo\")\nprop.test(x=c(x1,x2), n=c(n1,n2), conf.level=0.95, correct=FALSE)$conf.int"
+  },
+  {
+    "objectID": "tutorials/tutorial_05.html#q7-two-sample-ci-for-a-ratio-of-variances-manual-f-based",
+    "href": "tutorials/tutorial_05.html#q7-two-sample-ci-for-a-ratio-of-variances-manual-f-based",
+    "title": "Tutorial 05",
+    "section": "Q7 — Two-Sample CI for a Ratio of Variances (manual F-based)",
+    "text": "Q7 — Two-Sample CI for a Ratio of Variances (manual F-based)\nUsing recipe_reviews.csv, compare the variance of best_score for FiveStar vs NotFive. Build a 95% CI for \\(\\sigma^2_{FiveStar} / \\sigma^2_{NotFive}\\) and print c(lower, upper).\n\n\n\n\n\n\nNotePreview\n\n\n\nHere is a glimpse of the dataset:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteInfo\n\n\n\nTaking group 1 as FiveStar here, with \\(s_1^2\\) and \\(s_2^2\\) as sample variances, here is the CI: \\[\n\\text{CI}_{1-\\alpha}\\!\\left(\\frac{\\sigma_1^2}{\\sigma_2^2}\\right)\n=\n\\left(\n\\frac{{s_1^2}/{s_2^2}}{F_{1-\\alpha/2,\\,df_1,\\,df_2}},\n\\;\n\\frac{{s_1^2}/{s_2^2}}{F_{\\alpha/2,\\,df_1,\\,df_2}}\n\\right),\n\\qquad df_1=n_1-1,\\; df_2=n_2-1.\n\\]\n\n\n\n\n\n\n\n\n\n\n\nUse FiveStar as numerator. Compute \\(s_1^2\\) and \\(s_2^2\\) and divide by the F cutoffs (0.975 and 0.025).\n\n\n\n\ndf &lt;- read.csv(\"recipe_reviews.csv\")\nx1 &lt;- subset(df, stars == 5)$best_score\nx2 &lt;- subset(df, stars != 5)$best_score\nx1 &lt;- x1[is.finite(x1)]\nx2 &lt;- x2[is.finite(x2)]\nn1 &lt;- length(x1)\nn2 &lt;- length(x2)\ns1 &lt;- stats::var(x1)\ns2 &lt;- stats::var(x2)\ndf1 &lt;- n1 - 1\ndf2 &lt;- n2 - 1\nratio &lt;- s1/s2\nF_lo &lt;- qf(0.975, df1, df2)\nF_hi &lt;- qf(0.025, df1, df2)\nc(ratio/F_lo, ratio/F_hi)\ndf &lt;- read.csv(\"recipe_reviews.csv\")\nx1 &lt;- subset(df, stars == 5)$best_score\nx2 &lt;- subset(df, stars != 5)$best_score\nx1 &lt;- x1[is.finite(x1)]\nx2 &lt;- x2[is.finite(x2)]\nn1 &lt;- length(x1)\nn2 &lt;- length(x2)\ns1 &lt;- stats::var(x1)\ns2 &lt;- stats::var(x2)\ndf1 &lt;- n1 - 1\ndf2 &lt;- n2 - 1\nratio &lt;- s1/s2\nF_lo &lt;- qf(0.975, df1, df2)\nF_hi &lt;- qf(0.025, df1, df2)\nc(ratio/F_lo, ratio/F_hi)"
+  },
+  {
+    "objectID": "tutorials/tutorial_05.html#q8---two-sample-ci-for-a-ratio-of-variances-using-var.test",
+    "href": "tutorials/tutorial_05.html#q8---two-sample-ci-for-a-ratio-of-variances-using-var.test",
+    "title": "Tutorial 05",
+    "section": "Q8 - Two-Sample CI for a Ratio of Variances using var.test",
+    "text": "Q8 - Two-Sample CI for a Ratio of Variances using var.test\nIn penguins.csv, compare variance of bill_length_mm between Adelie (group 1) and Gentoo (group 2). Compute an 80% CI for \\(\\sigma^2_{Adelie} / \\sigma^2_{Gentoo}\\) using var.test and print the two bounds.\n\n\n\n\n\n\nNoteInfo\n\n\n\nHere is an example to demonstrate how var.test works. We are taking the recipe reviews dataset to showcase the usage. Run the code to view results.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNotePreview\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFilter to Adelie and Gentoo, remove NAs, then feed the two numeric vectors to var.test.\n\n\n\n\ndf &lt;- read.csv(\"penguins.csv\")\ndf &lt;- subset(df, species %in% c(\"Adelie\",\"Gentoo\") & !is.na(bill_length_mm))\nx &lt;- df$bill_length_mm[df$species==\"Adelie\"]\ny &lt;- df$bill_length_mm[df$species==\"Gentoo\"]\nvar.test(x, y, conf.level = 0.80)$conf.int\ndf &lt;- read.csv(\"penguins.csv\")\ndf &lt;- subset(df, species %in% c(\"Adelie\",\"Gentoo\") & !is.na(bill_length_mm))\nx &lt;- df$bill_length_mm[df$species==\"Adelie\"]\ny &lt;- df$bill_length_mm[df$species==\"Gentoo\"]\nvar.test(x, y, conf.level = 0.80)$conf.int"
+  },
+  {
+    "objectID": "tutorials/tutorial_06.html#q1-one-sample-hypothesis-test-on-the-mean-σ-known",
+    "href": "tutorials/tutorial_06.html#q1-one-sample-hypothesis-test-on-the-mean-σ-known",
+    "title": "Tutorial 06",
+    "section": "Q1 — One Sample Hypothesis Test on the Mean (σ known)",
+    "text": "Q1 — One Sample Hypothesis Test on the Mean (σ known)\nFor this question, we use the 2014 Soccer World Cup Tournament Predictions dataset. Test whether the average Soccer Power Index (spi) for a team equals 70 when the population standard deviation is known to be σ = 12.\nWe test\nH₀: μ = 70\nH₁: μ ≠ 70\nUse a two-sided z-test with σ known.\n\n\n\nPhoto by CamYogi on Unsplash\n\n\n\n\n\n\n\n\nNoteInfo\n\n\n\nThis is a one-sample test on a single numeric variable where the population standard deviation is assumed to be known. In that situation, we use a z-based procedure and compare the sample mean to the hypothesized value.\n\n\n\n\n\n\n\n\nNotePreview\n\n\n\nRun this code chunk to get a glimpse of the dataset. Feel free to change the values to visualize more/less number of rows.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nConfirm you’re comparing the means of two groups formed by a boolean condition on stars. Use the pooled-variance standard error and the appropriate two-sided t critical value for a 95% interval. Print just the lower and upper bounds as a numeric vector.\n\n\n\n\ndf &lt;- read.csv(\"world_cup_predictions.csv\", stringsAsFactors = FALSE, check.names = FALSE)\nspi_col &lt;- df$spi\nmu_0 &lt;- 70\nsigma &lt;- 12\nn &lt;- sum(!is.na(spi_col)) #total number of teams\nxbar &lt;- mean(spi_col, na.rm=TRUE)\nz &lt;- (xbar - mu_0) / (sigma / sqrt(n)) \np_two &lt;- 2 * (1 - pnorm(abs(z)))\n\nc(z = z, p_value = p_two)\ndf &lt;- read.csv(\"world_cup_predictions.csv\", stringsAsFactors = FALSE, check.names = FALSE)\nspi_col &lt;- df$spi\nmu_0 &lt;- 70\nsigma &lt;- 12\nn &lt;- sum(!is.na(spi_col)) #total number of teams\nxbar &lt;- mean(spi_col, na.rm=TRUE)\nz &lt;- (xbar - mu_0) / (sigma / sqrt(n)) \np_two &lt;- 2 * (1 - pnorm(abs(z)))\n\nc(z = z, p_value = p_two)"
+  },
+  {
+    "objectID": "tutorials/tutorial_06.html#q2-one-sample-z-test-on-spi-σ-known-using-bsda",
+    "href": "tutorials/tutorial_06.html#q2-one-sample-z-test-on-spi-σ-known-using-bsda",
+    "title": "Tutorial 06",
+    "section": "Q2 — One-sample z-test on SPI (σ known, using BSDA)",
+    "text": "Q2 — One-sample z-test on SPI (σ known, using BSDA)\nFor this question, we again use the 2014 Soccer World Cup Tournament Predictions dataset. We want to test whether the average Soccer Power Index (spi) for all teams equals 70 when the population standard deviation is known to be 12. This time we will use the z.test() function from the BSDA package to run the test in a single line, and you will just fill in the key arguments.\n\n\n\n\n\n\nNoteInfo\n\n\n\nBase R does not have a built-in one-sample z-test. The BSDA package provides z.test() which does: compute the z statistic, use the normal distribution, and give the p-value. We are using it here only to shorten the code; the logic is the same as in Q1.\n\n\n\n\n\n\n\n\nNotePreview\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUse the same hypotheses as before (test against 70) and the same known σ (12). Keep the test two-sided.\n\n\n\n\n\ndf &lt;- read.csv(\"world_cup_predictions.csv\")\nx &lt;- df$spi\n\nlibrary(BSDA)\n\nout &lt;- BSDA::z.test(x,\nmu = 70,\nsigma.x = 12,\nalternative = \"two.sided\")\n\nout$p.value\n\ndf &lt;- read.csv(\"world_cup_predictions.csv\")\nx &lt;- df$spi\n\nlibrary(BSDA)\n\nout &lt;- BSDA::z.test(x,\nmu = 70,\nsigma.x = 12,\nalternative = \"two.sided\")\n\nout$p.value"
+  },
+  {
+    "objectID": "tutorials/tutorial_06.html#q3-one-sample-test-on-spi-σ-unknown",
+    "href": "tutorials/tutorial_06.html#q3-one-sample-test-on-spi-σ-unknown",
+    "title": "Tutorial 06",
+    "section": "Q3 — One-sample test on SPI (σ unknown)",
+    "text": "Q3 — One-sample test on SPI (σ unknown)\nNow test the same hypothesis,\nH₀: μ = 70\nH₁: μ ≠ 70\nbut now do not assume the population standard deviation is known. Use the sample SD, form the t statistic, and get the two-sided p-value from the t distribution.\n\n\n\n\n\n\nNoteInfo\n\n\n\nWhen σ is unknown, we use the sample SD to standardize and compare to a t distribution with n − 1 degrees of freedom.\n\n\n\n\n\n\n\n\nNotePreview\n\n\n\nRun this code chunk to get a glimpse of the dataset. Feel free to change the values to visualize more/less number of rows.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteInfo\n\n\n\nFor a one-sample test with unknown σ, use ( t = ) with (df = n - 1), and a two-sided p-value ( p = 2 (1 - F_t(|t|)) ).\n\n\n\n\n\n\n\n\n\n\n\nUse the SPI column, test against 70, compute mean and sd, then use the t formula and a two-sided p-value from pt().\n\n\n\n\ndf &lt;- read.csv(\"world_cup_predictions.csv\")\nspi_col &lt;- df$spi\n\nmu_0 &lt;- 70\nn &lt;- sum(!is.na(spi_col))\nxbar &lt;- mean(spi_col, na.rm = TRUE)\ns &lt;- sd(spi_col, na.rm = TRUE)\n\ndfree &lt;- n - 1\nt_stat &lt;- (xbar - mu_0) / (s / sqrt(n))\np_two &lt;- 2 * (1 - pt(abs(t_stat), df = dfree))\n\nc(t = t_stat, df = dfree, p_value = p_two)\ndf &lt;- read.csv(\"world_cup_predictions.csv\")\nspi_col &lt;- df$spi\n\nmu_0 &lt;- 70\nn &lt;- sum(!is.na(spi_col))\nxbar &lt;- mean(spi_col, na.rm = TRUE)\ns &lt;- sd(spi_col, na.rm = TRUE)\n\ndfree &lt;- n - 1\nt_stat &lt;- (xbar - mu_0) / (s / sqrt(n))\np_two &lt;- 2 * (1 - pt(abs(t_stat), df = dfree))\n\nc(t = t_stat, df = dfree, p_value = p_two)"
+  },
+  {
+    "objectID": "tutorials/tutorial_06.html#q4-one-sample-t-test-on-spi-σ-unknown-built-in",
+    "href": "tutorials/tutorial_06.html#q4-one-sample-t-test-on-spi-σ-unknown-built-in",
+    "title": "Tutorial 06",
+    "section": "Q4 — One-sample t-test on SPI (σ unknown, built-in)",
+    "text": "Q4 — One-sample t-test on SPI (σ unknown, built-in)\nFor this question, we again use the 2014 Soccer World Cup Tournament Predictions dataset. We want to test whether the average Soccer Power Index (spi) for all teams equals 70, but we will let R do the one-sample t-test for us using the built-in t.test() function. This is the “practical” version of Q3.\n\n\n\n\n\n\nNoteInfo\n\n\n\nWhen the population standard deviation is not given, we use a one-sample t-test: t.test(x, mu = μ₀, alternative = “two.sided”) R will estimate the standard deviation, use df = n − 1, and return the p-value.\n\n\n\n\n\n\n\n\n\n\n\nUse the SPI column from the data, test it against 70, and keep the test two-sided.\n\n\n\n\n\ndf &lt;- read.csv(\"world_cup_predictions.csv\")\nx &lt;- df$spi\nout &lt;- t.test(x, mu = 70, alternative = \"two.sided\")\nout$p.value\n\ndf &lt;- read.csv(\"world_cup_predictions.csv\")\nx &lt;- df$spi\nout &lt;- t.test(x, mu = 70, alternative = \"two.sided\")\nout$p.value"
+  },
+  {
+    "objectID": "tutorials/tutorial_06.html#q5-one-sample-t-test-on-track-score-σ-unknown-manual-large-n",
+    "href": "tutorials/tutorial_06.html#q5-one-sample-t-test-on-track-score-σ-unknown-manual-large-n",
+    "title": "Tutorial 06",
+    "section": "Q5 — One-sample t-test on Track Score (σ unknown, manual, large n)",
+    "text": "Q5 — One-sample t-test on Track Score (σ unknown, manual, large n)\nFor this question, use the large music dataset. We want to test whether the average track score in this dataset equals 45.\nH₀: μ = 45 H₁: μ ≠ 45\nWe will compute the test statistic and the p-value manually.\n\n\n\nPhoto by Wes Hicks on Unsplash\n\n\n\n\n\n\n\n\nNoteInfo\n\n\n\nOne-sample t (σ unknown):\n\\(t=\\frac{\\bar{x} - \\mu_0}{s/\\sqrt{n}}\\), with df = n-1, and two-sided p-value \\(p = 2 \\times(1 - F_t(|t|)).\\)\n\n\n\n\n\n\n\n\nNotePreview\n\n\n\nRun this code chunk to get a glimpse of the dataset. Feel free to change the values to visualize more/less number of rows.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUse Track.Score as x, test against 45, and use mean() and sd() before plugging into the t formula. Make it two-sided.\n\n\n\n\n\ndf &lt;- read.csv(\"spotify-2024.csv\")\nx &lt;- df$Track.Score\nx &lt;- x[is.finite(x)]\n\nmu_0 &lt;- 45\nn &lt;- length(x)\nxbar &lt;- mean(x)\ns &lt;- sd(x)\n\ndfree &lt;- n - 1\nt_stat &lt;- (xbar - mu_0) / (s / sqrt(n))\np_two &lt;- 2 * (1 - pt(abs(t_stat), df = dfree))\n\nc(t = t_stat, df = dfree, p_value = p_two)\n\ndf &lt;- read.csv(\"spotify-2024.csv\")\nx &lt;- df$Track.Score\nx &lt;- x[is.finite(x)]\n\nmu_0 &lt;- 45\nn &lt;- length(x)\nxbar &lt;- mean(x)\ns &lt;- sd(x)\n\ndfree &lt;- n - 1\nt_stat &lt;- (xbar - mu_0) / (s / sqrt(n))\np_two &lt;- 2 * (1 - pt(abs(t_stat), df = dfree))\n\nc(t = t_stat, df = dfree, p_value = p_two)"
+  },
+  {
+    "objectID": "tutorials/tutorial_06.html#q6-one-sample-t-test-on-track-score-σ-unknown-built-in",
+    "href": "tutorials/tutorial_06.html#q6-one-sample-t-test-on-track-score-σ-unknown-built-in",
+    "title": "Tutorial 06",
+    "section": "Q6 — One-sample t-test on Track Score (σ unknown, built-in)",
+    "text": "Q6 — One-sample t-test on Track Score (σ unknown, built-in)\nNow run the same hypothesis test using R’s built-in t.test() on the same column.\nH₀: μ = 45 H₁: μ ≠ 45\n\n\n\n\n\n\nNoteInfo\n\n\n\nt.test(x, mu = 45, alternative = “two.sided”) will estimate the SD, use df = n − 1, and give the p-value.\n\n\n\n\n\n\n\n\nNotePreview\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUse the Track.Score column and test it against 45, two-sided.\n\n\n\n\n\ndf &lt;- read.csv(\"spotify-2024.csv\")\nx &lt;- df$Track.Score\n\nout &lt;- t.test(x,\nmu = 45,\nalternative = \"two.sided\")\n\nout$p.value\n\ndf &lt;- read.csv(\"spotify-2024.csv\")\nx &lt;- df$Track.Score\n\nout &lt;- t.test(x,\nmu = 45,\nalternative = \"two.sided\")\n\nout$p.value"
+  },
+  {
+    "objectID": "tutorials/tutorial_06.html#q7-one-sample-test-on-a-proportion-base-r-prop.test",
+    "href": "tutorials/tutorial_06.html#q7-one-sample-test-on-a-proportion-base-r-prop.test",
+    "title": "Tutorial 06",
+    "section": "Q7 — One-sample test on a proportion (base R prop.test())",
+    "text": "Q7 — One-sample test on a proportion (base R prop.test())\nWe use the video game sales dataset. Let’s test whether 30% of the listed games were published by Nintendo.\nHypotheses:\n\\((H_0: p = 0.045)\\) \\((H_1: p \\neq 0.045)\\)\nWe will form a success/failure variable: “Publisher is Nintendo” = success.\n\n\n\nPhoto by JESHOOTS.COM on Unsplash\n\n\n\n\n\n\n\n\nNoteInfo\n\n\n\nFor a one-sample test on a proportion with counts (x) out of (n), use prop.test(x, n, p = p0, alternative = \"two.sided\"). This uses a chi-square test with 1 degree of freedom.\n\n\n\n\n\n\n\n\nNotePreview\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCount how many rows have Publisher == “Nintendo”, test against 0.045, and keep it two-sided.\n\n\n\n\n\nvg &lt;- read.csv(\"vgsales.csv\")\n\nx &lt;- sum(vg$Publisher == \"Nintendo\", na.rm = TRUE)\nn &lt;- sum(!is.na(vg$Publisher))\n\nout &lt;- prop.test(x = x,\n                 n = n,\n                 p = 0.045,\n                 alternative = \"two.sided\")\n\nout$p.value\n\nvg &lt;- read.csv(\"vgsales.csv\")\n\nx &lt;- sum(vg$Publisher == \"Nintendo\", na.rm = TRUE)\nn &lt;- sum(!is.na(vg$Publisher))\n\nout &lt;- prop.test(x = x,\n                 n = n,\n                 p = 0.045,\n                 alternative = \"two.sided\")\n\nout$p.value"
+  },
+  {
+    "objectID": "tutorials/tutorial_06.html#q8-from-chi-square-to-z-follow-up-on-the-same-test",
+    "href": "tutorials/tutorial_06.html#q8-from-chi-square-to-z-follow-up-on-the-same-test",
+    "title": "Tutorial 06",
+    "section": "Q8 — From chi-square to z (follow-up on the same test)",
+    "text": "Q8 — From chi-square to z (follow-up on the same test)\nprop.test() reports a chi-square statistic with 1 df. For a 1-df test, (^2 = z^2). Let’s extract that chi-square value and take the square root.\nWe use the same dataset and the same hypothesis as Q7.\n\n\n\n\n\n\nNoteInfo\n\n\n\nIf a one-sample proportion test gives (^2) with 1 df, then ( z = ) (keep the sign if you need direction).\n\n\n\n\n\n\n\n\n\n\n\nRe-run the same prop.test() as Q7 and take sqrt() of the test statistic.\n\n\n\n\n\nvg &lt;- read.csv(\"vgsales.csv\")\n\nx &lt;- sum(vg$Publisher == \"Nintendo\", na.rm = TRUE)\nn &lt;- sum(!is.na(vg$Publisher))\n\nout &lt;- prop.test(x = x,\n                 n = n,\n                 p = 0.045,\n                 alternative = \"two.sided\")\n\nchisq_val &lt;- out$statistic\nz_val &lt;- sqrt(chisq_val)\n\nc(chisq = chisq_val, z_from_chisq = z_val)\n\nvg &lt;- read.csv(\"vgsales.csv\")\n\nx &lt;- sum(vg$Publisher == \"Nintendo\", na.rm = TRUE)\nn &lt;- sum(!is.na(vg$Publisher))\n\nout &lt;- prop.test(x = x,\n                 n = n,\n                 p = 0.045,\n                 alternative = \"two.sided\")\n\nchisq_val &lt;- out$statistic\nz_val &lt;- sqrt(chisq_val)\n\nc(chisq = chisq_val, z_from_chisq = z_val)"
+  },
+  {
+    "objectID": "tutorials/tutorial_06.html#q9-one-sample-proportion-using-prop_test",
+    "href": "tutorials/tutorial_06.html#q9-one-sample-proportion-using-prop_test",
+    "title": "Tutorial 06",
+    "section": "Q9 — One-sample proportion using prop_test()",
+    "text": "Q9 — One-sample proportion using prop_test()\nNow repeat the same test but we use a function that gives the z statistic directly in 1 line.\nHypotheses:\n\\((H_0: p = 0.045)\\) \\((H_1: p \\neq 0.045)\\)\n\n\n\n\n\n\nNoteInfo\n\n\n\nrstatix::prop_test() can test a single proportion vs a hypothesized value and returns a z statistic and p-value. We’ll test against 0.045.\n\n\n\n\n\n\n\n\n\n\n\nSame hypothesis as Q7–Q8, just give x, n, and p = 0.045.\n\n\n\n\n\nvg &lt;- read.csv(\"vgsales.csv\")\nx &lt;- sum(vg$Publisher == \"Nintendo\", na.rm = TRUE)\nn &lt;- sum(!is.na(vg$Publisher))\np0 &lt;- 0.045\n\nlibrary(rstatix)\nres &lt;- rstatix::prop_test(\nx = x,\nn = n,\np = p0,\nalternative = \"two.sided\"\n)\n\nz_val &lt;- as.numeric(res$statistic[1])\np_val &lt;- as.numeric(res$p[1])\np_hat &lt;- x / n\n\nc(p_hat = p_hat,\nz = z_val,\np_value = p_val)\n\nvg &lt;- read.csv(\"vgsales.csv\")\nx &lt;- sum(vg$Publisher == \"Nintendo\", na.rm = TRUE)\nn &lt;- sum(!is.na(vg$Publisher))\np0 &lt;- 0.045\n\nlibrary(rstatix)\nres &lt;- rstatix::prop_test(\nx = x,\nn = n,\np = p0,\nalternative = \"two.sided\"\n)\n\nz_val &lt;- as.numeric(res$statistic[1])\np_val &lt;- as.numeric(res$p[1])\np_hat &lt;- x / n\n\nc(p_hat = p_hat,\nz = z_val,\np_value = p_val)"
+  },
+  {
+    "objectID": "tutorials/tutorial_06.html#q10-get-a-signed-z-from-prop.test",
+    "href": "tutorials/tutorial_06.html#q10-get-a-signed-z-from-prop.test",
+    "title": "Tutorial 06",
+    "section": "Q10 — Get a signed Z from prop.test()",
+    "text": "Q10 — Get a signed Z from prop.test()\nWe use the same hypothesis as Q7–Q8:\nHypotheses:\n\\((H_0: p = 0.045)\\) \\((H_1: p \\neq 0.045)\\)\nprop.test() gives us a chi-square with 1 df. For 1 df, \\(\\chi^2 = Z^2\\) . Q8 took the square root and got the magnitude. Here we will also:\n\nGet \\(\\hat{p}\\) from the data\nCompare \\(\\hat{p}\\) to \\(p_0\\)\nGive the Z a sign based on that\n\n\n\n\n\n\n\nNoteInfo\n\n\n\nrstatix::prop_test() can test a single proportion vs a hypothesized value and returns a z statistic and p-value. We’ll test against 0.045.\n\n\n\n\n\n\n\n\n\n\n\nUse the same prop.test() call as Q7, then:\nsqrt(out$statistic) for |z|\nmake it negative if p_hat &lt; p0\n\n\n\n\nvg &lt;- read.csv(\"vgsales.csv\")\n\nx &lt;- sum(vg$Publisher == \"Nintendo\", na.rm = TRUE)\nn &lt;- sum(!is.na(vg$Publisher))\n\np0 &lt;- 0.045\n\nout &lt;- prop.test(x = x, n = n, p = p0, alternative = \"two.sided\")\n\nchisq_val &lt;- as.numeric(out$statistic)\nz_mag &lt;- sqrt(chisq_val)\n\np_hat &lt;- x / n\nsign_z &lt;- ifelse(p_hat - p0 &gt;= 0, 1, -1)\nz_signed &lt;- sign_z * z_mag\n\np_two &lt;- out$p.value\n\nc(\n  p_hat   = as.numeric(p_hat),\n  z       = as.numeric(z_signed),\n  p_value = as.numeric(p_two)\n)\nvg &lt;- read.csv(\"vgsales.csv\")\n\nx &lt;- sum(vg$Publisher == \"Nintendo\", na.rm = TRUE)\nn &lt;- sum(!is.na(vg$Publisher))\n\np0 &lt;- 0.045\n\nout &lt;- prop.test(x = x, n = n, p = p0, alternative = \"two.sided\")\n\nchisq_val &lt;- as.numeric(out$statistic)\nz_mag &lt;- sqrt(chisq_val)\n\np_hat &lt;- x / n\nsign_z &lt;- ifelse(p_hat - p0 &gt;= 0, 1, -1)\nz_signed &lt;- sign_z * z_mag\n\np_two &lt;- out$p.value\n\nc(\n  p_hat   = as.numeric(p_hat),\n  z       = as.numeric(z_signed),\n  p_value = as.numeric(p_two)\n)"
+  },
+  {
+    "objectID": "tutorials/tutorial_06.html#q11-one-sample-hypothesis-test-on-the-variance-σ²-known-under-h₀",
+    "href": "tutorials/tutorial_06.html#q11-one-sample-hypothesis-test-on-the-variance-σ²-known-under-h₀",
+    "title": "Tutorial 06",
+    "section": "Q11 — One-sample hypothesis test on the variance (σ² known under H₀)",
+    "text": "Q11 — One-sample hypothesis test on the variance (σ² known under H₀)\nWe want to test whether the variance of Track.Score is equal to a target value. Suppose a platform claims that Track.Score has variance \\(\\sigma_0^2 = 100\\) (i.e. SD=10) We will test:\n\\((H_0: \\sigma^2 = 100)\\) vs \\((H_1: \\sigma^2 \\neq 100)\\)\nThis is a chi-square based variance test.\n\n\n\n\n\n\nNoteInfo\n\n\n\nFor a one sample variance test \\[\\chi^2 = \\frac{(n - 1)s^2}{\\sigma_0^2} \\sim \\chi^2_{\\,n - 1} \\quad \\text{under } H_0.\\] EnvStats::varTest() does this for you and gives the p-value.\n\n\n\n\n\n\n\n\nNotePreview\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUse the Track.Score column, test against 100, two-sided.\n\n\n\n\n\ndf &lt;- read.csv(\"spotify-2024.csv\")\nx &lt;- df$Track.Score\n\nlibrary(EnvStats)\n\nout &lt;- EnvStats::varTest(x,\nsigma.squared = 100,\nalternative   = \"two.sided\")\n\nout$p.value\n\ndf &lt;- read.csv(\"spotify-2024.csv\")\nx &lt;- df$Track.Score\n\nlibrary(EnvStats)\n\nout &lt;- EnvStats::varTest(x,\nsigma.squared = 100,\nalternative   = \"two.sided\")\n\nout$p.value"
+  },
+  {
+    "objectID": "tutorials/tut1.html",
+    "href": "tutorials/tut1.html",
+    "title": "WebR-enabled code cell",
+    "section": "",
+    "text": "This is a webr-enabled code cell in a Quarto HTML document.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+  },
+  {
+    "objectID": "tutorials/tut1.html#demo",
+    "href": "tutorials/tut1.html#demo",
+    "title": "WebR-enabled code cell",
+    "section": "",
+    "text": "This is a webr-enabled code cell in a Quarto HTML document.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page."
+>>>>>>> c994fad85f43a18919fc23f990d8422ea69fab62
   },
   {
     "objectID": "index.html",
@@ -280,18 +503,274 @@
     "text": "Under Construction\n\n\nWelcome to STA258 tutorials!"
   },
   {
+<<<<<<< HEAD
+=======
+    "objectID": "tutorials/index.html",
+    "href": "tutorials/index.html",
+    "title": "STA258 Course Tutorials",
+    "section": "",
+    "text": "Welcome !"
+  },
+  {
+    "objectID": "tutorials/tutorial_07.html#q1-pooled-two-sample-t-test-mcu-audience-score",
+    "href": "tutorials/tutorial_07.html#q1-pooled-two-sample-t-test-mcu-audience-score",
+    "title": "Tutorial 07",
+    "section": "Q1 — Pooled two-sample t-test (MCU audience score)",
+    "text": "Q1 — Pooled two-sample t-test (MCU audience score)\nFor this question, we use the Marvel Movies Comparison dataset called marvel.csv. Compare audience % score between Avengers and Spider-Man movies.\nWe test\nH₀: \\(\\mu_{avengers}\\) - \\(\\mu_{spiderman}\\) = 0 vs\nH₁: \\(\\mu_{avengers}\\) - \\(\\mu_{spiderman}\\) ≠ 0\nusing a pooled t-test (var.equal=TRUE). Print only the p-value.\n\n\n\nPhoto by CamYogi on Unsplash\n\n\n\n\n\n\n\n\nNoteInfo\n\n\n\nThis is a two sample hypothesis test on difference of means with equal variances. In that situation, we will use a t.test approach you have seen in previous tutorials.\n\n\n\n\n\n\n\n\nNotePreview\n\n\n\nRun this code chunk to get a glimpse of the dataset. Feel free to change the values to visualize more/less number of rows.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUse var.equal=TRUE and return only the p-value.\n\n\n\n\ndf &lt;- read.csv(\"marvel.csv\")\ndf &lt;- subset(df, category %in% c(\"Avengers\",\"Spider-Man\"))\ndf$aud &lt;- suppressWarnings(as.numeric(df[[\"audience % score\"]]))\ndf &lt;- subset(df, is.finite(aud))\ndf$grp &lt;- factor(df$category, levels = c(\"Avengers\",\"Spider-Man\"))\nt.test(aud ~ grp, data = df, var.equal = TRUE)$p.value\ndf &lt;- read.csv(\"marvel.csv\")\ndf &lt;- subset(df, category %in% c(\"Avengers\",\"Spider-Man\"))\ndf$aud &lt;- suppressWarnings(as.numeric(df[[\"audience % score\"]]))\ndf &lt;- subset(df, is.finite(aud))\ndf$grp &lt;- factor(df$category, levels = c(\"Avengers\",\"Spider-Man\"))\nt.test(aud ~ grp, data = df, var.equal = TRUE)$p.value"
+  },
+  {
+    "objectID": "tutorials/tutorial_07.html#q2-one-sample-z-test-on-spi-σ-known-using-bsda",
+    "href": "tutorials/tutorial_07.html#q2-one-sample-z-test-on-spi-σ-known-using-bsda",
+    "title": "Tutorial 07",
+    "section": "Q2 — One-sample z-test on SPI (σ known, using BSDA)",
+    "text": "Q2 — One-sample z-test on SPI (σ known, using BSDA)\nFor this question, we again use the 2014 Soccer World Cup Tournament Predictions dataset. We want to test whether the average Soccer Power Index (spi) for all teams equals 70 when the population standard deviation is known to be 12. This time we will use the z.test() function from the BSDA package to run the test in a single line, and you will just fill in the key arguments.\n\n\n\n\n\n\nNoteInfo\n\n\n\nBase R does not have a built-in one-sample z-test. The BSDA package provides z.test() which does: compute the z statistic, use the normal distribution, and give the p-value. We are using it here only to shorten the code; the logic is the same as in Q1.\n\n\n\n\n\n\n\n\nNotePreview\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUse the same hypotheses as before (test against 70) and the same known σ (12). Keep the test two-sided.\n\n\n\n\n\ndf &lt;- read.csv(\"world_cup_predictions.csv\")\nx &lt;- df$spi\n\nlibrary(BSDA)\n\nout &lt;- BSDA::z.test(x,\nmu = 70,\nsigma.x = 12,\nalternative = \"two.sided\")\n\nout$p.value\n\ndf &lt;- read.csv(\"world_cup_predictions.csv\")\nx &lt;- df$spi\n\nlibrary(BSDA)\n\nout &lt;- BSDA::z.test(x,\nmu = 70,\nsigma.x = 12,\nalternative = \"two.sided\")\n\nout$p.value"
+  },
+  {
+    "objectID": "tutorials/tutorial_07.html#q3-one-sample-test-on-spi-σ-unknown",
+    "href": "tutorials/tutorial_07.html#q3-one-sample-test-on-spi-σ-unknown",
+    "title": "Tutorial 07",
+    "section": "Q3 — One-sample test on SPI (σ unknown)",
+    "text": "Q3 — One-sample test on SPI (σ unknown)\nNow test the same hypothesis,\nH₀: μ = 70\nH₁: μ ≠ 70\nbut now do not assume the population standard deviation is known. Use the sample SD, form the t statistic, and get the two-sided p-value from the t distribution.\n\n\n\n\n\n\nNoteInfo\n\n\n\nWhen σ is unknown, we use the sample SD to standardize and compare to a t distribution with n − 1 degrees of freedom.\n\n\n\n\n\n\n\n\nNotePreview\n\n\n\nRun this code chunk to get a glimpse of the dataset. Feel free to change the values to visualize more/less number of rows.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteInfo\n\n\n\nFor a one-sample test with unknown σ, use ( t = ) with (df = n - 1), and a two-sided p-value ( p = 2 (1 - F_t(|t|)) ).\n\n\n\n\n\n\n\n\n\n\n\nUse the SPI column, test against 70, compute mean and sd, then use the t formula and a two-sided p-value from pt().\n\n\n\n\ndf &lt;- read.csv(\"world_cup_predictions.csv\")\nspi_col &lt;- df$spi\n\nmu_0 &lt;- 70\nn &lt;- sum(!is.na(spi_col))\nxbar &lt;- mean(spi_col, na.rm = TRUE)\ns &lt;- sd(spi_col, na.rm = TRUE)\n\ndfree &lt;- n - 1\nt_stat &lt;- (xbar - mu_0) / (s / sqrt(n))\np_two &lt;- 2 * (1 - pt(abs(t_stat), df = dfree))\n\nc(t = t_stat, df = dfree, p_value = p_two)\ndf &lt;- read.csv(\"world_cup_predictions.csv\")\nspi_col &lt;- df$spi\n\nmu_0 &lt;- 70\nn &lt;- sum(!is.na(spi_col))\nxbar &lt;- mean(spi_col, na.rm = TRUE)\ns &lt;- sd(spi_col, na.rm = TRUE)\n\ndfree &lt;- n - 1\nt_stat &lt;- (xbar - mu_0) / (s / sqrt(n))\np_two &lt;- 2 * (1 - pt(abs(t_stat), df = dfree))\n\nc(t = t_stat, df = dfree, p_value = p_two)"
+  },
+  {
+    "objectID": "tutorials/tutorial_07.html#q4-one-sample-t-test-on-spi-σ-unknown-built-in",
+    "href": "tutorials/tutorial_07.html#q4-one-sample-t-test-on-spi-σ-unknown-built-in",
+    "title": "Tutorial 07",
+    "section": "Q4 — One-sample t-test on SPI (σ unknown, built-in)",
+    "text": "Q4 — One-sample t-test on SPI (σ unknown, built-in)\nFor this question, we again use the 2014 Soccer World Cup Tournament Predictions dataset. We want to test whether the average Soccer Power Index (spi) for all teams equals 70, but we will let R do the one-sample t-test for us using the built-in t.test() function. This is the “practical” version of Q3.\n\n\n\n\n\n\nNoteInfo\n\n\n\nWhen the population standard deviation is not given, we use a one-sample t-test: t.test(x, mu = μ₀, alternative = “two.sided”) R will estimate the standard deviation, use df = n − 1, and return the p-value.\n\n\n\n\n\n\n\n\n\n\n\nUse the SPI column from the data, test it against 70, and keep the test two-sided.\n\n\n\n\n\ndf &lt;- read.csv(\"world_cup_predictions.csv\")\nx &lt;- df$spi\nout &lt;- t.test(x, mu = 70, alternative = \"two.sided\")\nout$p.value\n\ndf &lt;- read.csv(\"world_cup_predictions.csv\")\nx &lt;- df$spi\nout &lt;- t.test(x, mu = 70, alternative = \"two.sided\")\nout$p.value"
+  },
+  {
+    "objectID": "tutorials/tutorial_07.html#q4-two-sample-ci-for-a-difference-of-proportions",
+    "href": "tutorials/tutorial_07.html#q4-two-sample-ci-for-a-difference-of-proportions",
+    "title": "Tutorial 07",
+    "section": "Q4 — Two-Sample CI for a Difference of Proportions",
+    "text": "Q4 — Two-Sample CI for a Difference of Proportions\nIn recipe_reviews.csv, compare the proportion of reviews where thumbs_up &gt; thumbs_down between FiveStar (stars == 5) and NotFive (stars != 5). Compute a 95% two-sided CI for \\[p_{FiveStar} - p_{NotFive}\\]. Print c(lower, uppper).\n\n\n\n\n\n\nNotePreview\n\n\n\nRun this code chunk to get a glimpse of the dataset. Feel free to change the values to visualize more/less number of rows.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteInfo\n\n\n\nCI for difference of proportions: \\[\n\\mathrm{CI}_{1-\\alpha}:\\ \\hat{p_1} - \\hat{p_2} \\pm z_{1-\\alpha/2} * \\sqrt{\\frac{\\hat{p_1}(1-\\hat{p_1})}{n_1} + \\frac{\\hat{p_2}(1-\\hat{p_2})}{n_2}}.\n\\]\n\n\n\n\n\n\n\n\n\n\n\nCompute \\[\\hat{p}\\] per group, then compute their SE and z* at 0.975.\n\n\n\n\ndf &lt;- read.csv(\"recipe_reviews.csv\")\ng1 &lt;- subset(df, stars == 5) #segregating the dataset\ng2 &lt;- subset(df, stars != 5)\ncount1 &lt;- as.integer(g1$thumbs_up &gt; g1$thumbs_down)\ncount2 &lt;- as.integer(g2$thumbs_up &gt; g2$thumbs_down)\nn1 &lt;- sum(is.finite(count1)); n2 &lt;- sum(is.finite(count2))\np1 &lt;- mean(count1, na.rm = TRUE); p2 &lt;- mean(count2, na.rm = TRUE)\nse &lt;- sqrt(p1*(1-p1)/n1 + p2*(1-p2)/n2)\nz &lt;- qnorm(0.975); \n(p1 - p2) + c(-1,1)*z*se\ndf &lt;- read.csv(\"recipe_reviews.csv\")\ng1 &lt;- subset(df, stars == 5) #segregating the dataset\ng2 &lt;- subset(df, stars != 5)\ncount1 &lt;- as.integer(g1$thumbs_up &gt; g1$thumbs_down)\ncount2 &lt;- as.integer(g2$thumbs_up &gt; g2$thumbs_down)\nn1 &lt;- sum(is.finite(count1)); n2 &lt;- sum(is.finite(count2))\np1 &lt;- mean(count1, na.rm = TRUE); p2 &lt;- mean(count2, na.rm = TRUE)\nse &lt;- sqrt(p1*(1-p1)/n1 + p2*(1-p2)/n2)\nz &lt;- qnorm(0.975); \n(p1 - p2) + c(-1,1)*z*se"
+  },
+  {
+    "objectID": "tutorials/tutorial_07.html#q5-two-sample-ci-for-a-difference-of-proportions-using-prop.test",
+    "href": "tutorials/tutorial_07.html#q5-two-sample-ci-for-a-difference-of-proportions-using-prop.test",
+    "title": "Tutorial 07",
+    "section": "Q5 — Two-Sample CI for a Difference of Proportions using prop.test",
+    "text": "Q5 — Two-Sample CI for a Difference of Proportions using prop.test\nIn penguins.csv, compare the male proportion between Chinstrap and Gentoo. Compute an evidence-only CI (no hypothesis interpretation needed) for \\(p_{Chinstrap} - p_{Gentoo}\\) at 90% and print c(lower upper).\n\n\n\n\n\n\nNotePreview\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteInfo\n\n\n\nThe prop.test() function in R performs tests of proportions, allowing for the comparison of proportions across groups or against specific values. Here is an example according to this question. here’s a super simple one-sample prop.test using penguins.csv. It asks: among Gentoo penguins, what fraction are male? It prints the estimate and a 95% CI. Run the code to see!\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFilter to two species, count “male” in each, and feed (x1,n1),(x2,n2) to prop.test.\n\n\n\n\ndf &lt;- read.csv(\"penguins.csv\")\ndf &lt;- subset(df, species %in% c(\"Chinstrap\",\"Gentoo\") & !is.na(sex))\nx1 &lt;- sum(df$species==\"Chinstrap\" & df$sex==\"male\")\nn1 &lt;- sum(df$species==\"Chinstrap\")\nx2 &lt;- sum(df$species==\"Gentoo\" & df$sex==\"male\")\nn2 &lt;- sum(df$species==\"Gentoo\")\nprop.test(x = c(x1, x2), n = c(n1, n2), conf.level = 0.90, correct = FALSE)$conf.int\ndf &lt;- read.csv(\"penguins.csv\")\ndf &lt;- subset(df, species %in% c(\"Chinstrap\",\"Gentoo\") & !is.na(sex))\nx1 &lt;- sum(df$species==\"Chinstrap\" & df$sex==\"male\")\nn1 &lt;- sum(df$species==\"Chinstrap\")\nx2 &lt;- sum(df$species==\"Gentoo\" & df$sex==\"male\")\nn2 &lt;- sum(df$species==\"Gentoo\")\nprop.test(x = c(x1, x2), n = c(n1, n2), conf.level = 0.90, correct = FALSE)$conf.int"
+  },
+  {
+    "objectID": "tutorials/tutorial_07.html#q6-two-sample-ci-for-a-difference-of-proportions-islandbiscoe",
+    "href": "tutorials/tutorial_07.html#q6-two-sample-ci-for-a-difference-of-proportions-islandbiscoe",
+    "title": "Tutorial 07",
+    "section": "Q6 — Two-Sample CI for a Difference of Proportions (island=Biscoe)",
+    "text": "Q6 — Two-Sample CI for a Difference of Proportions (island=Biscoe)\nUsing penguins.csv, compare the proportion of penguins on Biscoe island between Adelie and Gentoo. Compute a 95% two-sided CI for \\(p_{Adelie} - p_{Gentoo}\\) and print c(lower upper).\n\n\n\n\n\n\nNotePreview\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCount “Biscoe” within each species to get x1, x2. Use totals for n1, n2, then prop.test(…)$conf.int. Order your counts as (Adelie, Gentoo) to get Adelie − Gentoo.\n\n\n\n\ndf &lt;- read.csv(\"penguins.csv\")\nsub &lt;- subset(df, species %in% c(\"Adelie\",\"Gentoo\") & !is.na(island))\nx1 &lt;- sum(sub$species==\"Adelie\" & sub$island==\"Biscoe\"); n1 &lt;- sum(sub$species==\"Adelie\")\nx2 &lt;- sum(sub$species==\"Gentoo\" & sub$island==\"Biscoe\"); n2 &lt;- sum(sub$species==\"Gentoo\")\nprop.test(x=c(x1,x2), n=c(n1,n2), conf.level=0.95, correct=FALSE)$conf.int\ndf &lt;- read.csv(\"penguins.csv\")\nsub &lt;- subset(df, species %in% c(\"Adelie\",\"Gentoo\") & !is.na(island))\nx1 &lt;- sum(sub$species==\"Adelie\" & sub$island==\"Biscoe\"); n1 &lt;- sum(sub$species==\"Adelie\")\nx2 &lt;- sum(sub$species==\"Gentoo\" & sub$island==\"Biscoe\"); n2 &lt;- sum(sub$species==\"Gentoo\")\nprop.test(x=c(x1,x2), n=c(n1,n2), conf.level=0.95, correct=FALSE)$conf.int"
+  },
+  {
+    "objectID": "tutorials/tutorial_07.html#q7-two-sample-ci-for-a-ratio-of-variances-manual-f-based",
+    "href": "tutorials/tutorial_07.html#q7-two-sample-ci-for-a-ratio-of-variances-manual-f-based",
+    "title": "Tutorial 07",
+    "section": "Q7 — Two-Sample CI for a Ratio of Variances (manual F-based)",
+    "text": "Q7 — Two-Sample CI for a Ratio of Variances (manual F-based)\nUsing recipe_reviews.csv, compare the variance of best_score for FiveStar vs NotFive. Build a 95% CI for \\(\\sigma^2_{FiveStar} / \\sigma^2_{NotFive}\\) and print c(lower, upper).\n\n\n\n\n\n\nNotePreview\n\n\n\nHere is a glimpse of the dataset:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteInfo\n\n\n\nTaking group 1 as FiveStar here, with \\(s_1^2\\) and \\(s_2^2\\) as sample variances, here is the CI: \\[\n\\text{CI}_{1-\\alpha}\\!\\left(\\frac{\\sigma_1^2}{\\sigma_2^2}\\right)\n=\n\\left(\n\\frac{{s_1^2}/{s_2^2}}{F_{1-\\alpha/2,\\,df_1,\\,df_2}},\n\\;\n\\frac{{s_1^2}/{s_2^2}}{F_{\\alpha/2,\\,df_1,\\,df_2}}\n\\right),\n\\qquad df_1=n_1-1,\\; df_2=n_2-1.\n\\]\n\n\n\n\n\n\n\n\n\n\n\nUse FiveStar as numerator. Compute \\(s_1^2\\) and \\(s_2^2\\) and divide by the F cutoffs (0.975 and 0.025).\n\n\n\n\ndf &lt;- read.csv(\"recipe_reviews.csv\")\nx1 &lt;- subset(df, stars == 5)$best_score\nx2 &lt;- subset(df, stars != 5)$best_score\nx1 &lt;- x1[is.finite(x1)]\nx2 &lt;- x2[is.finite(x2)]\nn1 &lt;- length(x1)\nn2 &lt;- length(x2)\ns1 &lt;- stats::var(x1)\ns2 &lt;- stats::var(x2)\ndf1 &lt;- n1 - 1\ndf2 &lt;- n2 - 1\nratio &lt;- s1/s2\nF_lo &lt;- qf(0.975, df1, df2)\nF_hi &lt;- qf(0.025, df1, df2)\nc(ratio/F_lo, ratio/F_hi)\ndf &lt;- read.csv(\"recipe_reviews.csv\")\nx1 &lt;- subset(df, stars == 5)$best_score\nx2 &lt;- subset(df, stars != 5)$best_score\nx1 &lt;- x1[is.finite(x1)]\nx2 &lt;- x2[is.finite(x2)]\nn1 &lt;- length(x1)\nn2 &lt;- length(x2)\ns1 &lt;- stats::var(x1)\ns2 &lt;- stats::var(x2)\ndf1 &lt;- n1 - 1\ndf2 &lt;- n2 - 1\nratio &lt;- s1/s2\nF_lo &lt;- qf(0.975, df1, df2)\nF_hi &lt;- qf(0.025, df1, df2)\nc(ratio/F_lo, ratio/F_hi)"
+  },
+  {
+    "objectID": "tutorials/tutorial_07.html#q8---two-sample-ci-for-a-ratio-of-variances-using-var.test",
+    "href": "tutorials/tutorial_07.html#q8---two-sample-ci-for-a-ratio-of-variances-using-var.test",
+    "title": "Tutorial 07",
+    "section": "Q8 - Two-Sample CI for a Ratio of Variances using var.test",
+    "text": "Q8 - Two-Sample CI for a Ratio of Variances using var.test\nIn penguins.csv, compare variance of bill_length_mm between Adelie (group 1) and Gentoo (group 2). Compute an 80% CI for \\(\\sigma^2_{Adelie} / \\sigma^2_{Gentoo}\\) using var.test and print the two bounds.\n\n\n\n\n\n\nNoteInfo\n\n\n\nHere is an example to demonstrate how var.test works. We are taking the recipe reviews dataset to showcase the usage. Run the code to view results.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNotePreview\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFilter to Adelie and Gentoo, remove NAs, then feed the two numeric vectors to var.test.\n\n\n\n\ndf &lt;- read.csv(\"penguins.csv\")\ndf &lt;- subset(df, species %in% c(\"Adelie\",\"Gentoo\") & !is.na(bill_length_mm))\nx &lt;- df$bill_length_mm[df$species==\"Adelie\"]\ny &lt;- df$bill_length_mm[df$species==\"Gentoo\"]\nvar.test(x, y, conf.level = 0.80)$conf.int\ndf &lt;- read.csv(\"penguins.csv\")\ndf &lt;- subset(df, species %in% c(\"Adelie\",\"Gentoo\") & !is.na(bill_length_mm))\nx &lt;- df$bill_length_mm[df$species==\"Adelie\"]\ny &lt;- df$bill_length_mm[df$species==\"Gentoo\"]\nvar.test(x, y, conf.level = 0.80)$conf.int"
+  },
+  {
+    "objectID": "tutorials/tutorial_04.html#q1-z-critical-value",
+    "href": "tutorials/tutorial_04.html#q1-z-critical-value",
+    "title": "Tutorial 04",
+    "section": "Q1 — Z Critical Value",
+    "text": "Q1 — Z Critical Value\nPrint the 95% 2-sided \\(Z^*\\) critical value when \\(\\alpha = 0.05\\).\n\n\n\n\n\n\nNoteInfo\n\n\n\nRemember: Critical values represent points on a distribution which play an important role in both confidence intervals and hypothesis testing. They are the cutoffs on a reference distribution that set the width of confidence intervals.\n\n\n\n\n\n\n\n\n\n\n\nUse qnorm.\n\n\n\n\nqnorm(0.975)\nqnorm(0.975)"
+  },
+  {
+    "objectID": "tutorials/tutorial_04.html#q2-one-sample-z-confidence-interval",
+    "href": "tutorials/tutorial_04.html#q2-one-sample-z-confidence-interval",
+    "title": "Tutorial 04",
+    "section": "Q2 — One Sample Z Confidence Interval",
+    "text": "Q2 — One Sample Z Confidence Interval\nThe penguins dataset contains measurements for 3 penguin species from the Palmer Archipelago. Use body_mass_g (grams). Assume the population SD is known: σ = 450 g. Construct a 90% Z-interval for the true mean body mass. Print c(lower, upper).\n\n\n\n\n\n\nNoteInfo\n\n\n\nWhen σ is known, the margin of error uses the standard normal critical value.\n\n\n\n\n\n\n\n\nNotePreview\n\n\n\nRun this code chunk to get a glimpse of the dataset. Feel free to change the values to visualize more/less number of rows.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteInfo\n\n\n\nWhen σ is known, \\[\n\\mathrm{CI}_{1-\\alpha}:\\ \\bar{x} \\pm x_{1-\\alpha/2}\\,\\frac{\\sigma}{\\sqrt{n}}.\n\\]\n\n\n\n\n\n\n\n\n\n\n\nCompute the sample mean, pair with the known σ and your Z critical value. Output c(lower, upper).\n\n\n\n\nif (!requireNamespace(\"palmerpenguins\", quietly = TRUE)) webr::install(\"palmerpenguins\")\nlibrary(palmerpenguins)\nx &lt;- na.omit(palmerpenguins::penguins$body_mass_g)\nxbar &lt;- mean(x)\nn &lt;- length(x)\nz &lt;- qnorm(0.95) # 90% two-sided\nsigma &lt;- 450\nxbar + c(-1,1) * z * sigma / sqrt(n)\nif (!requireNamespace(\"palmerpenguins\", quietly = TRUE)) webr::install(\"palmerpenguins\")\nlibrary(palmerpenguins)\nx &lt;- na.omit(palmerpenguins::penguins$body_mass_g)\nxbar &lt;- mean(x)\nn &lt;- length(x)\nz &lt;- qnorm(0.95) # 90% two-sided\nsigma &lt;- 450\nxbar + c(-1,1) * z * sigma / sqrt(n)"
+  },
+  {
+    "objectID": "tutorials/tutorial_04.html#q3-t-critical-value",
+    "href": "tutorials/tutorial_04.html#q3-t-critical-value",
+    "title": "Tutorial 04",
+    "section": "Q3 — T Critical Value",
+    "text": "Q3 — T Critical Value\nPlantGrowth is a dataset that contains results from an experiment to compare yields (as measured by dried weight of plants) obtained under a control and two different treatment conditions. Print the 95% two-sided t* using PlantGrowth’s weight column when \\(\\alpha = 0.05\\).\n\n\n\nPhoto by Nagy Arnold on Unsplash\n\n\n\n\n\n\n\n\nNotePreview\n\n\n\nRun this code chunk to get a glimpse of the dataset. Feel free to change the values to visualize more/less number of rows.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFind n from the weights vector and print the two-sided 95% t critical value using df = n − 1. Refer to the previous tutorial for a hint about the R command used to print t quantiles.\n\n\n\n\ndata(\"PlantGrowth\")\nn &lt;- length(PlantGrowth$weight)\nqt(0.975, df = n - 1)\ndata(\"PlantGrowth\")\nn &lt;- length(PlantGrowth$weight)\nqt(0.975, df = n - 1)"
+  },
+  {
+    "objectID": "tutorials/tutorial_04.html#q4-one-sample-confidence-interval-for-μ-σ-unknown",
+    "href": "tutorials/tutorial_04.html#q4-one-sample-confidence-interval-for-μ-σ-unknown",
+    "title": "Tutorial 04",
+    "section": "Q4 — One-Sample Confidence Interval for μ (σ Unknown)",
+    "text": "Q4 — One-Sample Confidence Interval for μ (σ Unknown)\nUsing PlantGrowth$weight (σ unknown), construct a 95% CI for the true mean plant weight. Give your output as a vector of the form c(lower, upper).\n\n\n\n\n\n\nNotePreview\n\n\n\nRun this code chunk to get a glimpse of the dataset. Feel free to change the values to visualize more/less number of rows.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteInfo\n\n\n\nWhen σ is unknown, replace with the sample SD s and use the t distribution:\n\\[\n\\mathrm{CI}_{1-\\alpha}:\\ \\bar{x} \\pm t_{1-\\alpha/2,\\;n-1}\\,\\frac{s}{\\sqrt{n}},\\ \\text{df}=n-1.\n\\]\n\n\n\n\n\n\n\n\n\n\n\nForm “center ± margin of error”: center is the sample mean; margin uses the t critical value with df = n−1, the sample SD, and √n. Output c(lower, upper).\n\n\n\n\ndata(\"PlantGrowth\")\nxbar &lt;- mean(PlantGrowth$weight); \nsd &lt;- sd(PlantGrowth$weight); \nn &lt;- length(PlantGrowth$weight)\ncritical_value &lt;- qt(0.975, df = n - 1)\nxbar + c(-1,1)*critical_value*sd/sqrt(n)\ndata(\"PlantGrowth\")\nxbar &lt;- mean(PlantGrowth$weight); \nsd &lt;- sd(PlantGrowth$weight); \nn &lt;- length(PlantGrowth$weight)\ncritical_value &lt;- qt(0.975, df = n - 1)\nxbar + c(-1,1)*critical_value*sd/sqrt(n)"
+  },
+  {
+    "objectID": "tutorials/tutorial_04.html#q5-one-sample-ci-for-μ",
+    "href": "tutorials/tutorial_04.html#q5-one-sample-ci-for-μ",
+    "title": "Tutorial 04",
+    "section": "Q5 — One sample CI for μ",
+    "text": "Q5 — One sample CI for μ\nThe dataset used here is river lengths, which gives the lengths (in miles) of 141 “major” rivers in North America, as compiled by the US Geological Survey. Assume river lengths (miles) have known population SD σ = 300. Build a 95% CI for the true mean river length using rivers whe \\(\\alpha = 0.05\\).\n\n\n\nPhoto by kazuend on Unsplash\n\n\n\n\n\n\n\n\nNotePreview\n\n\n\nRun this code chunk to get a glimpse of the dataset. Feel free to change the values to visualize more/less number of rows.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteInfo\n\n\n\nWhen σ is unknown, use the t distribution with degrees of freedom n − 1.\n\n\n\n\n\n\n\n\n\n\n\nFind n from the length_miles vector and compute the two-sided 95% z critical value. Then combine it using the formula you have already used in previous questions.\n\n\n\n\nrivers_data &lt;- data.frame(length_miles = as.numeric(datasets::rivers))\nx &lt;- rivers_data$length_miles\nxbar &lt;- mean(x); n &lt;- length(x); z &lt;- qnorm(0.975); sigma &lt;- 300\nxbar + c(-1,1) * z * sigma / sqrt(n)\nrivers_data &lt;- data.frame(length_miles = as.numeric(datasets::rivers))\nx &lt;- rivers_data$length_miles\nxbar &lt;- mean(x); n &lt;- length(x); z &lt;- qnorm(0.975); sigma &lt;- 300\nxbar + c(-1,1) * z * sigma / sqrt(n)"
+  },
+  {
+    "objectID": "tutorials/tutorial_04.html#q6-one-sample-ci-for-μ",
+    "href": "tutorials/tutorial_04.html#q6-one-sample-ci-for-μ",
+    "title": "Tutorial 04",
+    "section": "Q6 — One-Sample CI for μ",
+    "text": "Q6 — One-Sample CI for μ\nUsing airquality$Ozone (ignore missing), construct and print 90% CI for the true mean ozone level (ppb). Assume normality is reasonable.\n\n\n\nPhoto by Tim Witzdam on Unsplash\n\n\n\n\n\n\n\n\nNotePreview\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTwo-sided 90% → \\(t^*\\) at 0.95 with df = n−1; use s for the SD.\n\n\n\n\nw &lt;- na.omit(datasets::airquality$Ozone)\nxbar &lt;- mean(w); s &lt;- sd(w); n &lt;- length(w)\ntstar &lt;- qt(0.95, df = n - 1) # two-sided 90%\nxbar + c(-1,1) * tstar * s / sqrt(n)\nw &lt;- na.omit(datasets::airquality$Ozone)\nxbar &lt;- mean(w); s &lt;- sd(w); n &lt;- length(w)\ntstar &lt;- qt(0.95, df = n - 1) # two-sided 90%\nxbar + c(-1,1) * tstar * s / sqrt(n)"
+  },
+  {
+    "objectID": "tutorials/tutorial_04.html#q7-one-sample-ci-for-a-proportion",
+    "href": "tutorials/tutorial_04.html#q7-one-sample-ci-for-a-proportion",
+    "title": "Tutorial 04",
+    "section": "Q7 — One-Sample CI for a Proportion",
+    "text": "Q7 — One-Sample CI for a Proportion\nIn the UCBAdmissions dataset, Admit status for a student is “Admitted” or “Rejected”. Build and print c(lower, upper) for the 95% CI on the overall admission proportion.\n\n\n\nPhoto by Matt Ragland on Unsplash\n\n\n\n\n\n\n\n\nNoteInfo\n\n\n\nFor a single proportion:\n\\[\n\\mathrm{CI}_{1-\\alpha}:\\ \\hat{p} \\pm z_{1-\\alpha/2}\\,\\sqrt{\\frac{\\hat{p}(1-\\hat{p})}{n}}.\n\\]\nRule: Ensure \\(n\\hat{p}\\) and \\(n(1 - \\hat{p})\\) are not too small\n\n\n\n\n\n\n\n\nNotePreview\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nphat &lt;- sum(df\\(Freq[df\\)Admit == “Admitted”]) / n and z &lt;- qnorm(0.975) for 95%.\n\n\n\n\ndf &lt;- as.data.frame(datasets::UCBAdmissions)\nn &lt;- sum(df$Freq)\nphat &lt;- sum(df$Freq[df$Admit == \"Admitted\"]) / n\nz &lt;- qnorm(0.975)\nse &lt;- sqrt(phat*(1 - phat)/n)\nphat + c(-1,1) * z * se\ndf &lt;- as.data.frame(datasets::UCBAdmissions)\nn &lt;- sum(df$Freq)\nphat &lt;- sum(df$Freq[df$Admit == \"Admitted\"]) / n\nz &lt;- qnorm(0.975)\nse &lt;- sqrt(phat*(1 - phat)/n)\nphat + c(-1,1) * z * se"
+  },
+  {
+    "objectID": "tutorials/tutorial_04.html#q8---one-sample-ci-for-a-variance-σ²",
+    "href": "tutorials/tutorial_04.html#q8---one-sample-ci-for-a-variance-σ²",
+    "title": "Tutorial 04",
+    "section": "Q8 - One-Sample CI for a Variance (σ²)",
+    "text": "Q8 - One-Sample CI for a Variance (σ²)\nUsing PlantGrowth$weight, print c(lower, upper) for 95% CI on σ^2. (Assume normality.)\n\n\n\n\n\n\nNoteInfo\n\n\n\nFor normal data, the variance CI uses the chi-square distribution with df=n−1:\n\\[\n\\left(\\frac{(n-1)s^2}{\\chi^2_{1-\\alpha/2,\\;n-1}},\\; \\frac{(n-1)s^2}{\\chi^2_{\\alpha/2,\\;n-1}}\\right),\\qquad s^2=\\text{sample variance}.\n\\]\nFor 95%, the cutoffs are at 0.025 and 0.975.\n\n\n\n\n\n\n\n\nNotePreview\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUse \\(s^2\\), df = n−1, and chi-square quantiles at 0.975 and 0.025 (note the order).\n\n\n\n\nx &lt;- datasets::PlantGrowth$weight\nn &lt;- length(x); df &lt;- n - 1; s2 &lt;- var(x)\nchi_lo &lt;- qchisq(0.975, df = df)\nchi_hi &lt;- qchisq(0.025, df = df)\nc(df * s2/chi_lo, df * s2/chi_hi)\nx &lt;- datasets::PlantGrowth$weight\nn &lt;- length(x); df &lt;- n - 1; s2 &lt;- var(x)\nchi_lo &lt;- qchisq(0.975, df = df)\nchi_hi &lt;- qchisq(0.025, df = df)\nc(df * s2/chi_lo, df * s2/chi_hi)"
+  },
+  {
+    "objectID": "tutorials/tutorial_04.html#q9---one-sample-ci-for-a-proportion-99-practice",
+    "href": "tutorials/tutorial_04.html#q9---one-sample-ci-for-a-proportion-99-practice",
+    "title": "Tutorial 04",
+    "section": "Q9 - One-Sample CI for a Proportion (99% Practice)",
+    "text": "Q9 - One-Sample CI for a Proportion (99% Practice)\nHairEyeColor is a built-in contingency table of Hair × Eye × Gender of Statistics students with counts. Treat each person as a trial and estimate the true proportion with Brown eyes. Construct a 95% Z-interval for the population proportion p. Print c(lower, upper).\n\n\n\n\n\n\n\n\n\n\n\n\n\nNoteInfo\n\n\n\nTwo-sided 1−α CI for a proportion:\n\\[\n\\mathrm{CI}_{1-\\alpha}:\\ \\hat{p} \\pm z_{1-\\alpha/2}\\,\\sqrt{\\frac{\\hat{p}(1-\\hat{p})}{n}}.\n\\]\nFor 99%, use \\(z^* = \\phi^{-1}\\)(0.995).\n\n\n\n\n\n\n\n\nNotePreview\n\n\n\nHere is a glimpse of the UCBAdmissions dataset.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUse z &lt;- qnorm(0.975) for 95%.\n\n\n\n\ndf &lt;- as.data.frame(datasets::HairEyeColor)\nn &lt;- sum(df$Freq)\nphat &lt;- sum(df$Freq[df$Eye == \"Brown\"]) / n\nz &lt;- qnorm(0.975)\nphat + c(-1,1) * z * sqrt(phat*(1-phat)/n)\ndf &lt;- as.data.frame(datasets::HairEyeColor)\nn &lt;- sum(df$Freq)\nphat &lt;- sum(df$Freq[df$Eye == \"Brown\"]) / n\nz &lt;- qnorm(0.975)\nphat + c(-1,1) * z * sqrt(phat*(1-phat)/n)"
+  },
+  {
+    "objectID": "tutorials/tutorial_03.html#q1-standard-normal---left-tail-probability",
+    "href": "tutorials/tutorial_03.html#q1-standard-normal---left-tail-probability",
+    "title": "Tutorial 03",
+    "section": "Q1 — Standard Normal - Left Tail Probability",
+    "text": "Q1 — Standard Normal - Left Tail Probability\nCompute \\(P(Z &lt;= 1.25)\\), where \\(Z ∼ N(0,1)\\).\n\n\n\n\n\n\nNoteInfo\n\n\n\nRemember: R calculates area to the left unlike probability tables.\n\n\n\n\n\n\n\n\nNoteInfo\n\n\n\nThis is the graphical representation of the question:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUse pnorm.\n\n\n\n\npnorm(1.25)\npnorm(1.25)"
+  },
+  {
+    "objectID": "tutorials/tutorial_03.html#q2-standard-normal---right-tail-probability",
+    "href": "tutorials/tutorial_03.html#q2-standard-normal---right-tail-probability",
+    "title": "Tutorial 03",
+    "section": "Q2 — Standard Normal - Right Tail Probability",
+    "text": "Q2 — Standard Normal - Right Tail Probability\nCompute \\(P(Z &gt;= 1.25)\\), where \\(Z ∼ N(0,1)\\).\n\n\n\n\n\n\nNoteInfo\n\n\n\nRemember: R calculates area to the left unlike probability tables.\n\n\n\n\n\n\n\n\nNoteInfo\n\n\n\nThis is the graphical representation of the question:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\npnorm gives area to the left. Remember, we need area to the right.\n\n\n\n\n1 - pnorm(1.25)\n1 - pnorm(1.25)"
+  },
+  {
+    "objectID": "tutorials/tutorial_03.html#q3-standard-normal---two-sided-probability",
+    "href": "tutorials/tutorial_03.html#q3-standard-normal---two-sided-probability",
+    "title": "Tutorial 03",
+    "section": "Q3 — Standard Normal - Two-Sided Probability",
+    "text": "Q3 — Standard Normal - Two-Sided Probability\nCompute \\(P(∣Z∣ &gt;= 1.25)\\), where \\(Z ∼ N(0,1)\\).\n\n\n\n\n\n\nNoteInfo\n\n\n\nRemember: R calculates area to the left unlike probability tables.\n\n\n\n\n\n\n\n\nNoteInfo\n\n\n\nThis is the graphical representation of the question:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEffectively use pnorm.\n\n\n\n\np_two &lt;- 2 * (1 - pnorm(1.25))\np_two &lt;- 2 * (1 - pnorm(1.25))"
+  },
+  {
+    "objectID": "tutorials/tutorial_03.html#q4-normal-quantile-critical-value",
+    "href": "tutorials/tutorial_03.html#q4-normal-quantile-critical-value",
+    "title": "Tutorial 03",
+    "section": "Q4 — Normal Quantile (Critical Value)",
+    "text": "Q4 — Normal Quantile (Critical Value)\nCompute \\(Z_{0.975}\\) where \\(Z ∼ N(0,1)\\).\n\n\n\n\n\n\nNoteInfo\n\n\n\nThis is the graphical representation of the question:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUse qnorm.\n\n\n\n\nqnorm(0.975)\nqnorm(0.975)"
+  },
+  {
+    "objectID": "tutorials/tutorial_03.html#q5-t-distribution---right-tailed",
+    "href": "tutorials/tutorial_03.html#q5-t-distribution---right-tailed",
+    "title": "Tutorial 03",
+    "section": "Q5 — T-distribution - Right Tailed",
+    "text": "Q5 — T-distribution - Right Tailed\nLet \\(T ∼ t_{10}\\). Compute \\(P(T &gt;= 1.5 )\\).\n\n\n\n\n\n\nNoteInfo\n\n\n\nThis is the graphical representation of the question:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUse pt.\n\n\n\n\n1 - pt(1.5, df = 10)\n1 - pt(1.5, df = 10)"
+  },
+  {
+    "objectID": "tutorials/tutorial_03.html#q6-t-quantile---left-probability",
+    "href": "tutorials/tutorial_03.html#q6-t-quantile---left-probability",
+    "title": "Tutorial 03",
+    "section": "Q6 — T Quantile - Left Probability",
+    "text": "Q6 — T Quantile - Left Probability\nFind \\(t^*\\) such that \\(P(T &lt;= t^*)\\) = 0.975, where \\(T ∼ t_{10}\\).\n\n\n\n\n\n\nNoteInfo\n\n\n\nThis is the graphical representation of the question:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUse qt.\n\n\n\n\nqt(0.975, df = 10)\nqt(0.975, df = 10)"
+  },
+  {
+    "objectID": "tutorials/tutorial_03.html#q7-chi-square-distribution---right-tailed",
+    "href": "tutorials/tutorial_03.html#q7-chi-square-distribution---right-tailed",
+    "title": "Tutorial 03",
+    "section": "Q7 — Chi-Square Distribution - Right Tailed",
+    "text": "Q7 — Chi-Square Distribution - Right Tailed\nLet \\(X ∼ {\\chi^2}_{8}\\). Compute \\(P(X &gt;= 15 )\\).\n\n\n\n\n\n\nNoteInfo\n\n\n\nThis is the graphical representation of the question:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUse pchisq.\n\n\n\n\n1 - pchisq(15, df = 8)\n1 - pchisq(15, df = 8)"
+  },
+  {
+    "objectID": "tutorials/tutorial_03.html#q8-chi-square-quantile---left-probability",
+    "href": "tutorials/tutorial_03.html#q8-chi-square-quantile---left-probability",
+    "title": "Tutorial 03",
+    "section": "Q8 — Chi-Square Quantile - Left Probability",
+    "text": "Q8 — Chi-Square Quantile - Left Probability\nFind \\(x^*\\) such that \\(P(X &lt;= x^*)\\) = 0.95, where \\(X ∼ {\\chi^2}_{8}\\).\n\n\n\n\n\n\nNoteInfo\n\n\n\nThis is the graphical representation of the question:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUse qchisq.\n\n\n\n\nqchisq(0.95, df = 10)\nqchisq(0.95, df = 10)"
+  },
+  {
+    "objectID": "tutorials/tutorial_03.html#q9-f-distribution---right-tail",
+    "href": "tutorials/tutorial_03.html#q9-f-distribution---right-tail",
+    "title": "Tutorial 03",
+    "section": "Q9 — F Distribution - Right Tail",
+    "text": "Q9 — F Distribution - Right Tail\nLet \\(F ∼ F_{5, 12}\\). Compute \\(P(F \\ge 3)\\).\n\n\n\n\n\n\nNoteInfo\n\n\n\nThis is the graphical representation of the question:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUse pf.\n\n\n\n\n1 - pf(3, df1=5, df2=12)\n1 - pf(3, df1=5, df2=12)"
+  },
+  {
+    "objectID": "tutorials/tutorial_03.html#q10-f-quantile---left-probability",
+    "href": "tutorials/tutorial_03.html#q10-f-quantile---left-probability",
+    "title": "Tutorial 03",
+    "section": "Q10 — F Quantile - Left Probability",
+    "text": "Q10 — F Quantile - Left Probability\nFind \\(f^*\\) such that \\(P(F &lt;= f^*)\\) = 0.95, where \\(F ∼ F_{3, 20}\\).\n\n\n\n\n\n\nNoteInfo\n\n\n\nThis is the graphical representation of the question:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUse qf.\n\n\n\n\nqf(0.95, df1=3, df2=20)\nqf(0.95, df1=3, df2=20)"
+  },
+  {
+    "objectID": "tutorials/tutorial_03.html#q11-overview-with-skimr",
+    "href": "tutorials/tutorial_03.html#q11-overview-with-skimr",
+    "title": "Tutorial 03",
+    "section": "Q11 — Overview with Skimr",
+    "text": "Q11 — Overview with Skimr\nThe question below has a dataframe df created from the dataset msleep that contains data about mammal sleep traits. Make a skim summary of df and store it in ms_skim. Print it to see your result!\n\n\n\nPhoto by Mpho Mojapelo on Unsplash\n\n\n\n\n\n\n\n\nNoteInfo\n\n\n\nInfo : skimr is an R package that provides summary statistics a user can quickly skim to understand their data.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUse the skim function from skimr.\n\n\n\n\nlibrary(ggplot2)\nlibrary(skimr)\ndf &lt;- msleep\nms_skim &lt;- skim(df)\nms_skim\nlibrary(ggplot2)\nlibrary(skimr)\ndf &lt;- msleep\nms_skim &lt;- skim(df)\nms_skim"
+  },
+  {
+    "objectID": "tutorials/tutorial_03.html#q12-histogram-with-ggplot",
+    "href": "tutorials/tutorial_03.html#q12-histogram-with-ggplot",
+    "title": "Tutorial 03",
+    "section": "Q12 — Histogram with ggplot",
+    "text": "Q12 — Histogram with ggplot\nBuild a ggplot histogram of sleep_total with binwidth = 1 by replacing the ＿＿ with the correct answer. Save the plot to p_hist. Fill the histogram with any color of your choice!\n\n\n\n\n\n\nNoteInfo\n\n\n\nInfo : ggplot refers to the ggplot2 package in R, a powerful tool for creating statistical graphics.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLook up how to make plots with ggplot.\n\n\n\n\nlibrary(ggplot2)\np_hist &lt;- ggplot(df, aes(sleep_total)) +\n  geom_histogram(binwidth = 1)\np_hist\nlibrary(ggplot2)\np_hist &lt;- ggplot(df, aes(sleep_total)) +\n  geom_histogram(binwidth = 1)\np_hist"
+  },
+  {
+    "objectID": "tutorials/tutorial_03.html#q13-scatterplot-with-ggplot",
+    "href": "tutorials/tutorial_03.html#q13-scatterplot-with-ggplot",
+    "title": "Tutorial 03",
+    "section": "Q13 — Scatterplot with ggplot",
+    "text": "Q13 — Scatterplot with ggplot\nMake a scatterplot of bodywt (x) vs sleep_total (y), \\(log_{10}\\) scale on x, with a smooth trend (Read info to understand what these terms mean), by replacing the ＿＿ with the correct answer. Save the plot to p_scatter. Fill the scatterplot with any color of your choice!\n\n\n\n\n\n\nNoteInfo\n\n\n\nInfo : ggplot refers to the ggplot2 package in R, a powerful tool for creating statistical graphics.\n\n\n\n\n\n\n\n\nNoteInfo\n\n\n\nInfo : 1) A \\(log_{10}\\) scale on the x-axis transforms the x values before plotting.This spreads out small values and compresses very large ones. As an exercise, also try removing that argument and see how much harder it is to visualize the data without it.\n\nA smooth trend line is added along the points by using geom_smooth(). This leads to better visualization of trends in the data.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLook up how to make scatterplots with ggplot.\n\n\n\n\nlibrary(ggplot2)\np_scatter &lt;- ggplot(df, aes(bodywt, sleep_total)) +\n  geom_point() +\n  scale_x_log10() +\n  geom_smooth(se = FALSE)\np_scatter\nlibrary(ggplot2)\np_scatter &lt;- ggplot(df, aes(bodywt, sleep_total)) +\n  geom_point() +\n  scale_x_log10() +\n  geom_smooth(se = FALSE)\np_scatter"
+  },
+  {
+    "objectID": "tutorials/tutorial_03.html#q14-mean-and-standard-deviation",
+    "href": "tutorials/tutorial_03.html#q14-mean-and-standard-deviation",
+    "title": "Tutorial 03",
+    "section": "Q14 — Mean and Standard Deviation",
+    "text": "Q14 — Mean and Standard Deviation\nCompute the population mean and standard deviation of sleep_total. Save them in mu and sigma. Note that x is the vector containing sleep data pulled from the dataset.\n\n\n\n\n\n\nNoteInfo\n\n\n\nInfo : This and the following examples illustrate the power of the Central Limit Theorem (CLT). CLT states that for a sufficiently large sample size, the sampling distribution of the sample mean will be approximately normal, regardless of the shape of the original population distribution.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nR has direct commands to compute mean and standard deviation. Look into those.\n\n\n\n\nmu &lt;- mean(x)\nsigma &lt;- sd(x)\nmu &lt;- mean(x)\nsigma &lt;- sd(x)"
+  },
+  {
+    "objectID": "tutorials/tutorial_03.html#q15-sample-mean-and-sample-standard-deviation",
+    "href": "tutorials/tutorial_03.html#q15-sample-mean-and-sample-standard-deviation",
+    "title": "Tutorial 03",
+    "section": "Q15 — Sample Mean and Sample Standard Deviation",
+    "text": "Q15 — Sample Mean and Sample Standard Deviation\nB = 200 samples of size n = 10 with replacement from x are stored in means_10. Compute the following: m_10 = Mean of means_n10, s_10 = Standard Deviation of means_n10\n\n\n\n\n\n\n\n\n\n\n\n\nR has direct commands to compute mean and standard deviation. Look into those.\n\n\n\n\nmeans_n10 &lt;- replicate(B, mean(sample(x, n, replace = TRUE)))\nm_10  &lt;- mean(means_n10)\nm_10\ns_10    &lt;- sd(means_n10)\ns_10\nmeans_n10 &lt;- replicate(B, mean(sample(x, n, replace = TRUE)))\nm_10  &lt;- mean(means_n10)\nm_10\ns_10    &lt;- sd(means_n10)\ns_10"
+  },
+  {
+    "objectID": "tutorials/tutorial_03.html#q16-visualizing-the-distribution",
+    "href": "tutorials/tutorial_03.html#q16-visualizing-the-distribution",
+    "title": "Tutorial 03",
+    "section": "Q16 — Visualizing the Distribution",
+    "text": "Q16 — Visualizing the Distribution\nMake a histogram of means_n10 (binwidth = 0.5), and add a vertical dashed red line at the population mean mu. Save the plot in plot_clt and print it. Fill the plot with any color of your choice!\n\n\n\n\n\n\nNoteInfo\n\n\n\nNotice the distribution of the sample mean here and see if\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRefer to previous exercises for learning how to plot a histogram. To draw a vertical line at a certain intercept, use the ggplot command- geom_vline .\n\n\n\n\nlibrary(ggplot2)\np_clt_n10 &lt;- ggplot(data.frame(m = means_n10), aes(m)) +\n  geom_histogram(binwidth = 0.5, fill = \"grey80\", color = \"white\") +\n  geom_vline(xintercept = mu, linetype = 2, color = \"red\") +\n  labs(x = \"sample mean (n=10)\", y = \"count\",\n                title = \"Sampling distribution of the mean (n = 10)\") +\n  theme_minimal()\np_clt_n10\nlibrary(ggplot2)\np_clt_n10 &lt;- ggplot(data.frame(m = means_n10), aes(m)) +\n  geom_histogram(binwidth = 0.5, fill = \"grey80\", color = \"white\") +\n  geom_vline(xintercept = mu, linetype = 2, color = \"red\") +\n  labs(x = \"sample mean (n=10)\", y = \"count\",\n                title = \"Sampling distribution of the mean (n = 10)\") +\n  theme_minimal()\np_clt_n10"
+  },
+  {
+>>>>>>> c994fad85f43a18919fc23f990d8422ea69fab62
     "objectID": "practice/prac_01.html#q2",
     "href": "practice/prac_01.html#q2",
     "title": "Practice Module 01",
     "section": "Q2 — Build a vector of multiples",
+<<<<<<< HEAD
     "text": "Q2 — Build a vector of multiples\nCreate my_vec containing all multiples of 5 from 5 to 100 (inclusive) using seq() (don’t type them out).\n\n\n\n\n\n\nInfo\n\n\n\nRemember: in R, seq() is a versatile function that is used to generate a sequence of numbers with specified starting, ending points or a desired length.\n\n\n\n\n\n\n\n\n\n\n\nLearn how to use the seq() function\n\n\n\n\nmy_vec &lt;-seq(5, 100, by = 5)\nmy_vec &lt;-seq(5, 100, by = 5)"
+=======
+    "text": "Q2 — Build a vector of multiples\nCreate my_vec containing all multiples of 5 from 5 to 100 (inclusive) using seq() (don’t type them out).\n\n\n\n\n\n\nNoteInfo\n\n\n\nRemember: in R, seq() is a versatile function that is used to generate a sequence of numbers with specified starting, ending points or a desired length.\n\n\n\n\n\n\n\n\n\n\n\nLearn how to use the seq() function\n\n\n\n\nmy_vec &lt;-seq(5, 100, by = 5)\nmy_vec &lt;-seq(5, 100, by = 5)"
+>>>>>>> c994fad85f43a18919fc23f990d8422ea69fab62
   },
   {
     "objectID": "practice/prac_01.html#q3-transformed-histogram",
     "href": "practice/prac_01.html#q3-transformed-histogram",
     "title": "Practice Module 01",
     "section": "Q3 —Transformed Histogram",
+<<<<<<< HEAD
     "text": "Q3 —Transformed Histogram\nGenerate a histogram of log\\(_{10}\\)(cars$dist) with breaks = 10.\n\n\n\n\n\n\nInfo\n\n\n\nRemember: in R, the breaks argument in a hist command controls the number of bars, cells or bins of the histogram!\n\n\n\n\n\n\n\n\n\n\n\nLearn how to incorporate a breaks argument in the hist command you are already familiar with!\n\n\n\n\nhist(log10(cars$dist), breaks = 10)\nhist(log10(cars$dist), breaks = 10)"
+=======
+    "text": "Q3 —Transformed Histogram\nGenerate a histogram of log\\(_{10}\\)(cars$dist) with breaks = 10.\n\n\n\n\n\n\nNoteInfo\n\n\n\nRemember: in R, the breaks argument in a hist command controls the number of bars, cells or bins of the histogram!\n\n\n\n\n\n\n\n\n\n\n\nLearn how to incorporate a breaks argument in the hist command you are already familiar with!\n\n\n\n\nhist(log10(cars$dist), breaks = 10)\nhist(log10(cars$dist), breaks = 10)"
+>>>>>>> c994fad85f43a18919fc23f990d8422ea69fab62
   },
   {
     "objectID": "practice/prac_01.html#q4-find-the-average",
@@ -313,6 +792,7 @@
     "title": "Practice Module 01",
     "section": "Q6 — Tiny calculator function",
     "text": "Q6 — Tiny calculator function\nWrite mini_calc(a, b) that returns a named numeric vector with: sum = a+b, diff = a-b, prod = a*b, quot = a/b (NA if b==0).\n\n\n\n\n\n\n\n\n\nReturn like c(sum=…, diff=…, prod=…, quot=…). Handle b==0 for quot.\n\n\n\n\nmini_calc &lt;- function(a, b) {\n  c(\n    sum  = a + b,\n    diff = a - b,\n    prod = a * b,\n    quot = if (b == 0) NA_real_ else a / b\n  )\n}\nmini_calc &lt;- function(a, b) {\n  c(\n    sum  = a + b,\n    diff = a - b,\n    prod = a * b,\n    quot = if (b == 0) NA_real_ else a / b\n  )\n}"
+<<<<<<< HEAD
   },
   {
     "objectID": "tutorials/tut1.html",
@@ -537,5 +1017,7 @@
     "title": "Tutorial 06",
     "section": "Q4 — One-sample t-test on SPI (σ unknown, built-in)",
     "text": "Q4 — One-sample t-test on SPI (σ unknown, built-in)\nFor this question, we again use the 2014 Soccer World Cup Tournament Predictions dataset. We want to test whether the average Soccer Power Index (spi) for all teams equals 70, but we will let R do the one-sample t-test for us using the built-in t.test() function. This is the “practical” version of Q3.\n\n\n\n\n\n\nInfo\n\n\n\nWhen the population standard deviation is not given, we use a one-sample t-test: t.test(x, mu = μ₀, alternative = “two.sided”) R will estimate the standard deviation, use df = n − 1, and return the p-value.\n\n\n\n\n\n\n\n\n\n\n\nUse the SPI column from the data, test it against 70, and keep the test two-sided.\n\n\n\n\n\ndf &lt;- read.csv(\"world_cup_predictions.csv\")\nx &lt;- df$spi\nout &lt;- t.test(x, mu = 70, alternative = \"two.sided\")\nout$p.value\n\ndf &lt;- read.csv(\"world_cup_predictions.csv\")\nx &lt;- df$spi\nout &lt;- t.test(x, mu = 70, alternative = \"two.sided\")\nout$p.value"
+=======
+>>>>>>> c994fad85f43a18919fc23f990d8422ea69fab62
   }
 ]

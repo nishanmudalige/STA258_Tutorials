@@ -1,6 +1,10 @@
 {
     "left": {
+<<<<<<< HEAD
         "splitterpos": 133,
+=======
+        "splitterpos": 259,
+>>>>>>> c994fad85f43a18919fc23f990d8422ea69fab62
         "topwindowstate": "NORMAL",
         "panelheight": 793,
         "windowheight": 831
