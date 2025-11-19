@@ -546,7 +546,7 @@ fail("Check that you have the right subset, response variable, and that you are 
 
 ## Q5 — Welch two-sample t-test using built-in method (HP: Legendary vs non-Legendary)
 
-Use `pokemon.csv` to test whether the **proportion of Legendary Pokémon** is the same in **Generation 1** and **Generation 2**.
+Use `Pokemon.csv` to test whether the **proportion of Legendary Pokémon** is the same in **Generation 1** and **Generation 2**.
 
 Let “success” be **Legendary = TRUE**. Define:
 
@@ -606,7 +606,7 @@ The **test statistic**
 
 ```{webr}
 #| echo: true
-df <- read.csv("pokemon.csv")
+df <- read.csv("Pokemon.csv")
 df$Legendary <- df$Legendary == "True"
 
 sub <- df[, c("Name", "Legendary", "HP")]
@@ -629,7 +629,7 @@ par(mfrow = c(1, 1))
 #| exercise: q6_poke_ttest
 #| exercise.lines: 10
 #| echo: false
-df <- read.csv("pokemon.csv")
+df <- read.csv("Pokemon.csv")
 df$Legendary <- df$Legendary == "True"
 df$grp <- factor(df$Legendary, levels = c(___, ___))
 res <- t.test(___ ~ ___, data = df, var.equal = ___)
@@ -646,7 +646,7 @@ Form a two-level factor for Legendary status, use HP as the response in a two-sa
 #| exercise: q6_poke_ttest
 #| solution: true
 #| echo: false
-df <- read.csv("pokemon.csv")
+df <- read.csv("Pokemon.csv")
 df$Legendary <- df$Legendary == "True"
 df$grp <- factor(df$Legendary, levels = c(FALSE, TRUE))
 res <- t.test(HP ~ grp, data = df, var.equal = FALSE)
@@ -661,7 +661,7 @@ res$p.value
 #| exercise: q6_poke_ttest
 #| check: true
 gradethis::grade_this({
-df <- read.csv("pokemon.csv")
+df <- read.csv("Pokemon.csv")
 df$Legendary <- df$Legendary == "True"
 df$grp <- factor(df$Legendary, levels = c(FALSE, TRUE))
 exp <- t.test(HP ~ grp, data = df, var.equal = FALSE)$p.value
@@ -718,7 +718,7 @@ It then constructs the appropriate test statistic and p-value under the null hyp
 ::: {.callout-note title="Preview"}
 ```{webr}
 #| echo: true
-df <- read.csv("pokemon.csv")
+df <- read.csv("Pokemon.csv")
 df$Legendary <- df$Legendary == "True"
 
 sub <- subset(df, Generation %in% c(1, 2))
@@ -737,7 +737,7 @@ prop.table(tab, 1)
 #| exercise: q8_poke_prop_test
 #| exercise.lines: 12
 #| echo: false
-df <- read.csv("pokemon.csv")
+df <- read.csv("Pokemon.csv")
 df$Legendary <- df$Legendary == "True"
 df <- subset(df, Generation %in% c(___, ___))
 
@@ -761,7 +761,7 @@ Count the Legendary Pokémon and total Pokémon in Generations 1 and 2, pass tho
 #| exercise: q8_poke_prop_test
 #| solution: true
 #| echo: false
-df <- read.csv("pokemon.csv")
+df <- read.csv("Pokemon.csv")
 df$Legendary <- df$Legendary == "True"
 df <- subset(df, Generation %in% c(1, 2))
 
@@ -781,7 +781,7 @@ res$p.value
 #| exercise: q8_poke_prop_test
 #| check: true
 gradethis::grade_this({
-df <- read.csv("pokemon.csv")
+df <- read.csv("Pokemon.csv")
 df$Legendary <- df$Legendary == "True"
 df <- subset(df, Generation %in% c(1, 2))
 x1 <- sum(df$Legendary[df$Generation == 1])
@@ -808,7 +808,7 @@ fail("Check your counts, sample sizes, and how you called the built-in proportio
 
 ## Q7 — F-test for ratio of variances using built-in method (Attack: Fire vs Water)
 
-Use `pokemon.csv` to compare the **variance of Attack** between **Fire-type** and **Water-type** Pokémon (using the primary type `Type 1`).
+Use `Pokemon.csv` to compare the **variance of Attack** between **Fire-type** and **Water-type** Pokémon (using the primary type `Type 1`).
 
 Let
 
@@ -843,7 +843,7 @@ A built-in two-sample variance test compares the sample variances of two groups 
 ::: {.callout-note title="Preview"}
 ```{webr}
 #| echo: true
-df <- read.csv("pokemon.csv")
+df <- read.csv("Pokemon.csv")
 sub <- subset(df, Type.1 %in% c("Fire", "Water"))
 
 head(sub[, c("Name", "Type.1", "Attack")], 10)
@@ -860,7 +860,7 @@ tapply(sub$Attack, sub$Type.1, var)
 #| exercise: q10_poke_var_test
 #| exercise.lines: 10
 #| echo: false
-df <- read.csv("pokemon.csv")
+df <- read.csv("Pokemon.csv")
 df <- subset(df, Type.1 %in% c(___, ___))
 df$grp <- factor(df$Type.1, levels = c(___, ___))
 
@@ -878,7 +878,7 @@ Restrict the data to Fire and Water types, build a two-level factor for the type
 #| exercise: q10_poke_var_test
 #| solution: true
 #| echo: false
-df <- read.csv("pokemon.csv")
+df <- read.csv("Pokemon.csv")
 df <- subset(df, Type.1 %in% c("Fire", "Water"))
 df$grp <- factor(df$Type.1, levels = c("Fire", "Water"))
 
@@ -892,7 +892,7 @@ res$p.value
 #| exercise: q10_poke_var_test
 #| check: true
 gradethis::grade_this({
-df <- read.csv("pokemon.csv")
+df <- read.csv("Pokemon.csv")
 df <- subset(df, Type.1 %in% c("Fire", "Water"))
 df$grp <- factor(df$Type.1, levels = c("Fire", "Water"))
 exp <- var.test(Attack ~ grp, data = df)$p.value
