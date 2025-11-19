@@ -4,95 +4,514 @@ format: live-html
 engine: knitr
 resources:
   - marvel.csv
-  - pokemon.csv
-  - spotify-rankings.csv
+  - Pokemon.csv
 ---
 
 {{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
 {{< include ../_extensions/r-wasm/live/_gradethis.qmd >}}
 
+## Q1 — Pooled two-sample t-test (Audience score: Avengers vs Spider-Man)
 
-## Q1 — Pooled two-sample t-test (MCU audience score)
+For this question, we use marvel.csv. Compare the audience % score between Avengers and Spider-Man movies.
 
-For this question, we use the Marvel Movies Comparison dataset called marvel.csv. Compare audience % score between Avengers and Spider-Man movies. 
+We test $$ H_0 : \mu_{Avengers} - \mu_{Spider-Man} = 0$$
+vs $$H_1 : \mu_{Avengers} - \mu_{Spider-Man} \neq 0$$
 
-We test
-
-H₀: $\mu_{avengers}$ - $\mu_{spiderman}$  = 0 vs
-
-H₁: $\mu_{avengers}$ - $\mu_{spiderman}$ ≠ 0
-
-using a pooled t-test (var.equal=TRUE). Print only the p-value.
-
-<figure style="text-align:center">
-  <img src="./images/world_cup_2014.jpg" style="width:40%">
-  <figcaption>Photo by <a href="https://unsplash.com/@camyogi_2019?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">CamYogi</a> on <a href="https://unsplash.com/photos/amerian-football-team-NwZpT4LKwDQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-      </figcaption>
-</figure>
+assuming equal population variances and using a pooled two-sample t-test.
+Compute the p-value manually from the sample statistics and the t distribution.
+Your final output should be a single numeric p-value.
 
 ::: {.callout-note title="Info"}
-This is a two sample hypothesis test on difference of means with equal variances. In that situation, we will use a t.test approach you have seen in previous tutorials.
+In a pooled two-sample t-test for two groups with sample sizes \(n_1, n_2\),
+sample means \(\bar x_1, \bar x_2\), and sample standard deviations \(s_1, s_2\),
+we first compute the pooled variance
+
+$$
+s_p^2 = \frac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 - 2}.
+$$
+
+The test statistic for testing \(H_0: \mu_1 - \mu_2 = 0\) is
+
+$$
+t = \frac{\bar x_1 - \bar x_2}{\sqrt{s_p^2\left(\frac{1}{n_1} + \frac{1}{n_2}\right)}}.
+$$
+
+Under the null hypothesis, this statistic follows a t distribution with
+
+$$
+\text{df} = n_1 + n_2 - 2
+$$
+
+degrees of freedom. For a two-sided test, the p-value is
+
+$$
+p\text{-value} = 2\,P\bigl(T_{\text{df}} \ge |t|\bigr).
+$$
 :::
+
+
 
 ::: {.callout-note title="Preview"}
-Run this code chunk to get a glimpse of the dataset. Feel free to change the values to visualize more/less number of rows. 
+Run this code chunk to get a glimpse of the dataset and visualize the audience scores.
+
 ```{webr}
+
 #| echo: true
 df <- read.csv("marvel.csv")
-head(df [, c("film", "audience...score")], 10)
+sub <- subset(df, category %in% c("Avengers","Spider-Man"))
+sub$aud <- suppressWarnings(as.numeric(sub[["audience % score"]]))
+sub <- subset(sub, is.finite(aud))
 
+head(sub[, c("film","category","aud")], 10)
+
+par(mfrow = c(1, 2))
+hist(sub$aud,
+main = "Audience % score (Avengers + Spider-Man)",
+xlab = "Audience % score")
+boxplot(aud ~ category, data = sub,
+main = "Audience % score by category",
+xlab = "Category", ylab = "Audience % score")
+par(mfrow = c(1, 1))
 ```
 :::
 
-
-
 ```{webr}
-#| exercise: q1_mcu_pooled_audience
-#| exercise.lines: 8
+#| exercise: q1_pooled_audience
+#| exercise.lines: 10
 #| echo: false
 df <- read.csv("marvel.csv")
-df <- subset(df, category %in% c("Avengers","Spider-Man")) #isolating the 2 categories
-df$aud <- suppressWarnings(as.numeric(df[["audience % score"]])) #isolating the scores column
-df <- subset(df, is.finite(aud)) #only keeps numeric rows
-df$grp <- factor(df$category, levels = c("Avengers","Spider-Man"))
-t.test(aud ~ grp, data = df, var.equal = __)$__ #remember what to print
+df <- subset(df, category %in% c(___, ___))
+df$aud <- suppressWarnings(as.numeric(df[["audience % score"]]))
+df <- subset(df, is.finite(aud))
+
+g1 <- df$aud[df$category == ___]
+g2 <- df$aud[df$category == ___]
+
+n1 <- ___
+n2 <- ___
+
+m1 <- ___
+m2 <- ___
+
+s1 <- ___
+s2 <- ___
+
+sp2 <- ___
+tval <- ___
+df_t <- ___
+pval <- ___
+pval
 
 ```
 
-::: {.hint exercise="q1_mcu_pooled_audience"}
-Use var.equal=TRUE and return only the p-value.
+::: {.hint exercise="q1_pooled_audience"}
+Separate the audience scores for each franchise, then use their sample sizes, means, and standard deviations to construct the pooled variance, the standardized test statistic, and the two-sided p-value from the appropriate t distribution.
 :::
 
-::: {.solution exercise="q1_mcu_pooled_audience"}
+::: {.solution exercise="q1_pooled_audience"}
+
 ```{webr}
-#| exercise: q1_mcu_pooled_audience
+
+#| exercise: q1_pooled_audience
 #| solution: true
 df <- read.csv("marvel.csv")
 df <- subset(df, category %in% c("Avengers","Spider-Man"))
 df$aud <- suppressWarnings(as.numeric(df[["audience % score"]]))
 df <- subset(df, is.finite(aud))
-df$grp <- factor(df$category, levels = c("Avengers","Spider-Man"))
-t.test(aud ~ grp, data = df, var.equal = TRUE)$p.value
 
+g1 <- df$aud[df$category == "Avengers"]
+g2 <- df$aud[df$category == "Spider-Man"]
+
+n1 <- length(g1)
+n2 <- length(g2)
+
+m1 <- mean(g1)
+m2 <- mean(g2)
+
+s1 <- sd(g1)
+s2 <- sd(g2)
+
+sp2 <- ((n1 - 1) * s1^2 + (n2 - 1) * s2^2) / (n1 + n2 - 2)
+tval <- (m1 - m2) / sqrt(sp2 * (1 / n1 + 1 / n2))
+df_t <- n1 + n2 - 2
+pval <- 2 * pt(-abs(tval), df_t)
+pval
 ```
 :::
 
 ```{webr}
-#| exercise: q1_mcu_pooled_audience
+
+#| exercise: q1_pooled_audience
 #| check: true
 gradethis::grade_this({
 df <- read.csv("marvel.csv")
 df$aud <- suppressWarnings(as.numeric(df[["audience % score"]]))
 df <- subset(df, category %in% c("Avengers","Spider-Man") & is.finite(aud))
-df$grp <- factor(df$category, levels=c("Avengers","Spider-Man"))
-exp <- t.test(aud~grp, data=df, var.equal=TRUE)$p.value
-x <- .result; ok <- is.numeric(x) && length(x)==1L && is.finite(x)
-if(!ok) fail("Print one numeric p-value.")
-if(abs(x-exp)<1e-12) pass("Correct pooled t-test p-value.")
-else fail("Recheck groups and var.equal=TRUE.")
+g1 <- df$aud[df$category == "Avengers"]
+g2 <- df$aud[df$category == "Spider-Man"]
+n1 <- length(g1); n2 <- length(g2)
+m1 <- mean(g1); m2 <- mean(g2)
+s1 <- sd(g1); s2 <- sd(g2)
+sp2 <- ((n1 - 1) * s1^2 + (n2 - 1) * s2^2) / (n1 + n2 - 2)
+tval <- (m1 - m2) / sqrt(sp2 * (1 / n1 + 1 / n2))
+df_t <- n1 + n2 - 2
+exp <- 2 * pt(-abs(tval), df_t)
+
+x <- .result
+ok <- is.numeric(x) && length(x) == 1L && is.finite(x)
+
+if (!ok) {
+fail("Return a single numeric p-value.")
+} else if (abs(x - exp) < 1e-10) {
+pass("Pooled two-sample p-value computed correctly.")
+} else {
+fail("Your p-value does not match the pooled two-sample calculation.")
+}
 })
+```
+
+## Q2 — Welch two-sample t-test (Opening weekend: Avengers vs Spider-Man)
+
+Now use marvel.csv to compare the opening weekend gross (in $m) between Avengers and Spider-Man movies.
+
+We test $$ H_0 : \mu_{Avengers} - \mu_{Spider-Man} = 0$$
+vs $$H_1 : \mu_{Avengers} - \mu_{Spider-Man} \neq 0$$
+
+without assuming equal variances. Use the Welch two-sample t-test formula and compute the p-value manually from the t distribution.
+Do not call the built-in t.test function in this question.
+Return a single numeric p-value.
+
+::: {.callout-note title="Info"}
+In the Welch two-sample t-test, we keep the sample variances separate.
+For two groups with sample sizes \(n_1, n_2\), means \(\bar x_1, \bar x_2\),
+and standard deviations \(s_1, s_2\), the test statistic is
+
+$$
+t = \frac{\bar x_1 - \bar x_2}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}.
+$$
+
+The approximate Welch degrees of freedom are
+
+$$
+\text{df}_W =
+\frac{\left(\dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2}\right)^2}{
+\dfrac{\left(\dfrac{s_1^2}{n_1}\right)^2}{n_1 - 1}
++
+\dfrac{\left(\dfrac{s_2^2}{n_2}\right)^2}{n_2 - 1}
+}.
+$$
+
+For a two-sided test of \(H_0: \mu_1 - \mu_2 = 0\), the p-value is
+
+$$
+p\text{-value} = 2\,P\bigl(T_{\text{df}_W} \ge |t|\bigr).
+$$
+:::
 
 
+::: {.callout-note title="Preview"}
+
+```{webr}
+
+#| echo: true
+df <- read.csv("marvel.csv")
+sub <- subset(df, category %in% c("Avengers","Spider-Man"))
+sub$open <- sub[["opening weekend ($m)"]]
+sub <- subset(sub, is.finite(open))
+
+head(sub[, c("film","category","open")], 10)
+
+par(mfrow = c(1, 2))
+hist(sub$open,
+main = "Opening weekend gross (Avengers + Spider-Man)",
+xlab = "Opening weekend ($m)")
+boxplot(open ~ category, data = sub,
+main = "Opening weekend by category",
+xlab = "Category", ylab = "Opening weekend ($m)")
+par(mfrow = c(1, 1))
+```
+:::
+
+```{webr}
+
+#| exercise: q2_mcu_welch_open
+#| exercise.lines: 8
+#| echo: false
+df <- read.csv("marvel.csv")
+df <- subset(df, category %in% c(___, ___))
+df$open <- df[["opening weekend ($m)"]]
+df <- subset(df, is.finite(open))
+
+g1 <- df$open[df$category == ___]
+g2 <- df$open[df$category == ___]
+
+n1 <- ___
+n2 <- ___
+
+m1 <- ___
+m2 <- ___
+
+s1 <- ___
+s2 <- ___
+
+se_diff <- ___
+tval <- ___
+
+df_w <- ___
+pval <- ___
+pval
+```
+
+::: {.hint exercise="q2_mcu_welch_open"}
+Separate the opening weekend values by franchise, compute the sample means and variances, standardize the difference using the Welch standard error, then use the Welch degrees-of-freedom formula and a two-sided t distribution to obtain the p-value.
+:::
+
+::: {.solution exercise="q2_mcu_welch_open"}
+
+```{webr}
+
+#| exercise: q2_mcu_welch_open
+#| solution: true
+df <- read.csv("marvel.csv")
+df <- subset(df, category %in% c("Avengers","Spider-Man"))
+df$open <- df[["opening weekend ($m)"]]
+df <- subset(df, is.finite(open))
+
+g1 <- df$open[df$category == "Avengers"]
+g2 <- df$open[df$category == "Spider-Man"]
+
+n1 <- length(g1)
+n2 <- length(g2)
+
+m1 <- mean(g1)
+m2 <- mean(g2)
+
+s1 <- sd(g1)
+s2 <- sd(g2)
+
+se_diff <- sqrt(s1^2 / n1 + s2^2 / n2)
+tval <- (m1 - m2) / se_diff
+
+df_w <- (s1^2 / n1 + s2^2 / n2)^2 /
+((s1^2 / n1)^2 / (n1 - 1) + (s2^2 / n2)^2 / (n2 - 1))
+
+pval <- 2 * pt(-abs(tval), df_w)
+pval
+```
+
+:::
+
+```{webr}
+
+#| exercise: q2_mcu_welch_open
+#| check: true
+gradethis::grade_this({
+df <- read.csv("marvel.csv")
+df$open <- df[["opening weekend ($m)"]]
+df <- subset(df, category %in% c("Avengers","Spider-Man") & is.finite(open))
+g1 <- df$open[df$category == "Avengers"]
+g2 <- df$open[df$category == "Spider-Man"]
+n1 <- length(g1); n2 <- length(g2)
+m1 <- mean(g1); m2 <- mean(g2)
+s1 <- sd(g1); s2 <- sd(g2)
+se_diff <- sqrt(s1^2 / n1 + s2^2 / n2)
+tval <- (m1 - m2) / se_diff
+df_w <- (s1^2 / n1 + s2^2 / n2)^2 /
+((s1^2 / n1)^2 / (n1 - 1) + (s2^2 / n2)^2 / (n2 - 1))
+exp <- 2 * pt(-abs(tval), df_w)
+
+x <- .result
+ok <- is.numeric(x) && length(x) == 1L && is.finite(x)
+
+if (!ok) {
+fail("Return a single numeric p-value.")
+} else if (abs(x - exp) < 1e-10) {
+pass("Welch two-sample p-value computed correctly.")
+} else {
+fail("Your p-value does not match the Welch two-sample calculation.")
+}
+})
+```
+
+## Q3 — Pooled two-sample t-test (Critics score: Captain America vs Iron Man)
+
+Now compare critics % score between Captain America and Iron Man movies in marvel.csv.
+
+We test $$ H_0 : \mu_{Cap} - \mu_{Iron Man} = 0$$
+vs $$H_1 : \mu_{Cap} - \mu_{Iron Man} \neq 0$$
+
+and we treat the population variances as equal, using a pooled two-sample t-test. Your answer should be a single numeric p-value.
+
+::: {.callout-note title="Info"}
+This is another two-sample mean comparison where we assume the two sets of critics scores arise from populations with the same variance. Under that assumption, we combine the information from both groups into one pooled estimate of the variance to build the test statistic.
+:::
+
+::: {.callout-note title="Preview"}
+
+```{Webr}
+
+#| echo: true
+df <- read.csv("marvel.csv")
+sub <- subset(df, category %in% c("Captain America","Iron Man"))
+sub$crit <- suppressWarnings(as.numeric(sub[["critics % score"]]))
+sub <- subset(sub, is.finite(crit))
+
+head(sub[, c("film","category","crit")], 10)
+
+par(mfrow = c(1, 2))
+hist(sub$crit,
+main = "Critics % score (Cap + Iron Man)",
+xlab = "Critics % score")
+boxplot(crit ~ category, data = sub,
+main = "Critics % score by category",
+xlab = "Category", ylab = "Critics % score")
+par(mfrow = c(1, 1))
+```
+:::
+
+```{webr}
+
+#| exercise: q3_mcu_pooled_critics
+#| exercise.lines: 8
+#| echo: false
+df <- read.csv("marvel.csv")
+df <- subset(df, category %in% c("Captain America","Iron Man"))
+df$crit <- suppressWarnings(as.numeric(df[["critics % score"]]))
+df <- subset(df, is.finite(crit))
+df$grp <- factor(df$category, levels = c("Captain America","Iron Man"))
+t.test(crit ~ grp, data = df, var.equal = TRUE)$p.value
+```
+
+::: {.hint exercise="q3_mcu_pooled_critics"}
+Limit the data to the two franchises named in the question, use the critics scores as the response, and form a two-level grouping factor. Then carry out a pooled two-sample test and extract the single p-value it produces.
+:::
+
+::: {.solution exercise="q3_mcu_pooled_critics"}
+
+```{webr}
+
+#| exercise: q3_mcu_pooled_critics
+#| solution: true
+df <- read.csv("marvel.csv")
+df <- subset(df, category %in% c("Captain America","Iron Man"))
+df$crit <- suppressWarnings(as.numeric(df[["critics % score"]]))
+df <- subset(df, is.finite(crit))
+df$grp <- factor(df$category, levels = c("Captain America","Iron Man"))
+t.test(crit ~ grp, data = df, var.equal = TRUE)$p.value
+```
+:::
+
+```{webr}
+
+#| exercise: q3_mcu_pooled_critics
+#| check: true
+gradethis::grade_this({
+df <- read.csv("marvel.csv")
+df$crit <- suppressWarnings(as.numeric(df[["critics % score"]]))
+df <- subset(df, category %in% c("Captain America","Iron Man") & is.finite(crit))
+df$grp <- factor(df$category, levels = c("Captain America","Iron Man"))
+exp <- t.test(crit ~ grp, data = df, var.equal = TRUE)$p.value
+
+x <- .result
+ok <- is.numeric(x) && length(x) == 1L && is.finite(x)
+
+if (!ok) {
+fail("Your answer should be a single numeric p-value.")
+} else if (abs(x - exp) < 1e-12) {
+pass("Correct pooled two-sample p-value for the critics scores.")
+} else {
+fail("Revisit your subset, grouping, and the assumption of equal variances.")
+}
+})
+```
+
+## Q4 — Welch two-sample t-test (Domestic gross: Black Panther vs Thor)
+
+Finally, compare the domestic gross (in $m) between Black Panther movies and Thor movies in marvel.csv.
+
+We test $$ H_0 : \mu_{Black Panther} - \mu_{Thor} = 0$$
+vs $$H_1 : \mu_{Black Panther} - \mu_{Thor} \neq 0$$
+
+Here we do not assume the variances are equal and instead use a Welch two-sample t-test. Your answer should be a single numeric p-value.
+
+::: {.callout-note title="Info"}
+This is another two-sample test where the two groups may have quite different variability. The Welch approach adjusts both the test statistic and degrees of freedom to account for unequal variances.
+:::
+
+::: {.callout-note title="Preview"}
+
+```{webr}
+#| echo: true
+df <- read.csv("marvel.csv")
+sub <- subset(df, category %in% c("Black Panther","Thor"))
+sub$dom <- sub[["domestic gross ($m)"]]
+sub <- subset(sub, is.finite(dom))
+
+head(sub[, c("film","category","dom")], 10)
+
+par(mfrow = c(1, 2))
+hist(sub$dom,
+main = "Domestic gross (Black Panther + Thor)",
+xlab = "Domestic gross ($m)")
+boxplot(dom ~ category, data = sub,
+main = "Domestic gross by category",
+xlab = "Category", ylab = "Domestic gross ($m)")
+par(mfrow = c(1, 1))
+```
+:::
+
+```{webr}
+
+#| exercise: q4_mcu_welch_domestic
+#| exercise.lines: 8
+#| echo: false
+df <- read.csv("marvel.csv")
+df <- subset(df, category %in% c("Black Panther","Thor"))
+df$dom <- df[["domestic gross ($m)"]]
+df <- subset(df, is.finite(dom))
+df$grp <- factor(df$category, levels = c("Black Panther","Thor"))
+t.test(dom ~ grp, data = df, var.equal = FALSE)$p.value
+```
+
+::: {.hint exercise="q4_mcu_welch_domestic"}
+Work only with the two franchises specified, treat domestic gross as the numeric response, and compare the two groups while allowing their variances to differ. Extract just the p-value from the resulting test object.
+:::
+
+::: {.solution exercise="q4_mcu_welch_domestic"}
+
+```{webr}
+#| exercise: q4_mcu_welch_domestic
+#| solution: true
+df <- read.csv("marvel.csv")
+df <- subset(df, category %in% c("Black Panther","Thor"))
+df$dom <- df[["domestic gross ($m)"]]
+df <- subset(df, is.finite(dom))
+df$grp <- factor(df$category, levels = c("Black Panther","Thor"))
+t.test(dom ~ grp, data = df, var.equal = FALSE)$p.value
+```
+:::
+
+```{webr}
+#| exercise: q4_mcu_welch_domestic
+#| check: true
+gradethis::grade_this({
+df <- read.csv("marvel.csv")
+df$dom <- df[["domestic gross ($m)"]]
+df <- subset(df, category %in% c("Black Panther","Thor") & is.finite(dom))
+df$grp <- factor(df$category, levels = c("Black Panther","Thor"))
+exp <- t.test(dom ~ grp, data = df, var.equal = FALSE)$p.value
+
+x <- .result
+ok <- is.numeric(x) && length(x) == 1L && is.finite(x)
+
+if (!ok) {
+fail("Your answer should be a single numeric p-value.")
+} else if (abs(x - exp) < 1e-12) {
+pass("Correct Welch two-sample p-value for the domestic grosses.")
+} else {
+fail("Check that you have the right subset, response variable, and that you are not imposing equal variances.")
+}
+})
 ```
 
 

@@ -1,44 +1,38 @@
 {
-  "tutorial_01.qmd": {
-    "tutorial_01.html": "2c7e0b82"
-  },
-  "tutorials/tutorial_01.qmd": {
-    "tutorial_01.html": "6210dabc"
-  },
   "index.qmd": {
-    "index.html": "e3dc476e"
-  },
-  "tutorials/index.qmd": {
-    "index.html": "e379def9"
+    "index.html": "e3df298f"
   },
   "practice/index.qmd": {
-    "index.html": "722b54c3"
+    "index.html": "d6f726d6"
   },
   "practice/prac_01.qmd": {
-    "prac_01.html": "7368074c"
+    "prac_01.html": "286990ef"
   },
-  "tutorials/tutorial_02.qmd": {
-    "tutorial_02.html": "d137a7c6"
-  },
-  "tutorials/tutorial_03.qmd": {
-    "tutorial_03.html": "2069422b"
-  },
-  "tutorials/tutorial_04.qmd": {
-    "tutorial_04.html": "5e7005f8"
-  },
-  "tutorials/tutorial_05.qmd": {
-    "tutorial_05.html": "bc1b096a"
+  "tutorials/index.qmd": {
+    "index.html": "ea9324bc"
   },
   "tutorials/tut1.qmd": {
-    "tut1.html": "be1c9e01"
+    "tut1.html": "243377ca"
+  },
+  "tutorials/tutorial_01.qmd": {
+    "tutorial_01.html": "41090abe"
+  },
+  "tutorials/tutorial_02.qmd": {
+    "tutorial_02.html": "f9fab284"
+  },
+  "tutorials/tutorial_03.qmd": {
+    "tutorial_03.html": "89231567"
+  },
+  "tutorials/tutorial_04.qmd": {
+    "tutorial_04.html": "e023cab9"
+  },
+  "tutorials/tutorial_05.qmd": {
+    "tutorial_05.html": "c75741c5"
   },
   "tutorials/tutorial_06.qmd": {
-    "tutorial_06.html": "c41c743b"
-<<<<<<< HEAD
-=======
+    "tutorial_06.html": "cae4dadf"
   },
   "tutorials/tutorial_07.qmd": {
-    "tutorial_07.html": "dfa9f50b"
->>>>>>> c994fad85f43a18919fc23f990d8422ea69fab62
+    "tutorial_07.html": "bc9fb0c4"
   }
 }
