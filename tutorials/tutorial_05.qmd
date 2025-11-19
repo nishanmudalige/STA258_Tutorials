@@ -5,7 +5,6 @@ engine: knitr
 resources:
   - recipe_reviews.csv
   - penguins.csv
-  - coffee.csv
 ---
 
 {{< include ../_extensions/r-wasm/live/_knitr.qmd >}}

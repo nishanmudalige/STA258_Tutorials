@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Tutorial 08 — One-way ANOVA and Multiple Comparisons – Course Tutorials</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b651517ce65839d647a86e2780455cfb.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-0d4a9d19931feb4fee1ddab4b2489000.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../design.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Course Tutorials</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://nishanmudalige.github.io/STA258_Tutorials/"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tutorials" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Tutorials</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-tutorials">    
+        <li>
+    <a class="dropdown-item" href="../tutorials/tutorial_01.html">
+ <span class="dropdown-text">Tutorial 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/tutorial_02.html">
+ <span class="dropdown-text">Tutorial 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/tutorial_03.html">
+ <span class="dropdown-text">Tutorial 3</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/tutorial_04.html">
+ <span class="dropdown-text">Tutorial 4</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/tutorial_05.html">
+ <span class="dropdown-text">Tutorial 5</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/tutorial_06.html">
+ <span class="dropdown-text">Tutorial 6</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/tutorial_07.html">
+ <span class="dropdown-text">Tutorial 7</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/tutorial_08.html">
+ <span class="dropdown-text">Tutorial 8</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-practice" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Practice</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-practice">    
+        <li>
+    <a class="dropdown-item" href="../practice/prac_01.html">
+ <span class="dropdown-text">Practical 1</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Tutorial 08 — One-way ANOVA and Multiple Comparisons</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="cell" data-edit="false">
+<div>
+<div id="webr-1" class="exercise-cell">
+
+</div>
+<script type="webr-1-contents">
+eyJhdHRyIjp7ImVkaXQiOmZhbHNlLCJldmFsIjp0cnVlLCJvdXRwdXQiOmZhbHNlfSwiY29kZSI6IndlYnI6Omluc3RhbGwoXCJncmFkZXRoaXNcIiwgcXVpZXQgPSBUUlVFKVxubGlicmFyeShncmFkZXRoaXMpXG5vcHRpb25zKHdlYnIuZXhlcmNpc2UuY2hlY2tlciA9IGZ1bmN0aW9uKFxuICBsYWJlbCwgdXNlcl9jb2RlLCBzb2x1dGlvbl9jb2RlLCBjaGVja19jb2RlLCBlbnZpcl9yZXN1bHQsIGV2YWx1YXRlX3Jlc3VsdCxcbiAgZW52aXJfcHJlcCwgbGFzdF92YWx1ZSwgZW5naW5lLCBzdGFnZSwgLi4uXG4pIHtcbiAgaWYgKGlzLm51bGwoY2hlY2tfY29kZSkpIHtcbiAgICAjIE5vIGdyYWRpbmcgY29kZSwgc28ganVzdCBza2lwIGdyYWRpbmdcbiAgICBpbnZpc2libGUoTlVMTClcbiAgfSBlbHNlIGlmIChpcy5udWxsKGxhYmVsKSkge1xuICAgIGxpc3QoXG4gICAgICBjb3JyZWN0ID0gRkFMU0UsXG4gICAgICB0eXBlID0gXCJ3YXJuaW5nXCIsXG4gICAgICBtZXNzYWdlID0gXCJBbGwgZXhlcmNpc2VzIG11c3QgaGF2ZSBhIGxhYmVsLlwiXG4gICAgKVxuICB9IGVsc2UgaWYgKGlzLm51bGwoc29sdXRpb25fY29kZSkpIHtcbiAgICBsaXN0KFxuICAgICAgY29ycmVjdCA9IEZBTFNFLFxuICAgICAgdHlwZSA9IFwid2FybmluZ1wiLFxuICAgICAgbWVzc2FnZSA9IGh0bWx0b29sczo6dGFncyRkaXYoXG4gICAgICAgIGh0bWx0b29sczo6dGFncyRwKFwiQSBwcm9ibGVtIG9jY3VycmVkIGdyYWRpbmcgdGhpcyBleGVyY2lzZS5cIiksXG4gICAgICAgIGh0bWx0b29sczo6dGFncyRwKFxuICAgICAgICAgIFwiTm8gc29sdXRpb24gY29kZSB3YXMgZm91bmQuIE5vdGUgdGhhdCBncmFkaW5nIGV4ZXJjaXNlcyB1c2luZyB0aGUgXCIsXG4gICAgICAgICAgaHRtbHRvb2xzOjp0YWdzJGNvZGUoXCJncmFkZXRoaXNcIiksXG4gICAgICAgICAgXCJwYWNrYWdlIHJlcXVpcmVzIGEgbW9kZWwgc29sdXRpb24gdG8gYmUgaW5jbHVkZWQgaW4gdGhlIGRvY3VtZW50LlwiXG4gICAgICAgIClcbiAgICAgIClcbiAgICApXG4gIH0gZWxzZSB7XG4gICAgZ3JhZGV0aGlzOjpncmFkZXRoaXNfZXhlcmNpc2VfY2hlY2tlcihcbiAgICAgIGxhYmVsID0gbGFiZWwsIHNvbHV0aW9uX2NvZGUgPSBzb2x1dGlvbl9jb2RlLCB1c2VyX2NvZGUgPSB1c2VyX2NvZGUsXG4gICAgICBjaGVja19jb2RlID0gY2hlY2tfY29kZSwgZW52aXJfcmVzdWx0ID0gZW52aXJfcmVzdWx0LFxuICAgICAgZXZhbHVhdGVfcmVzdWx0ID0gZXZhbHVhdGVfcmVzdWx0LCBlbnZpcl9wcmVwID0gZW52aXJfcHJlcCxcbiAgICAgIGxhc3RfdmFsdWUgPSBsYXN0X3ZhbHVlLCBzdGFnZSA9IHN0YWdlLCBlbmdpbmUgPSBlbmdpbmUpXG4gIH1cbn0pIn0=
+</script>
+</div>
+</div>
+<section id="q1-one-way-anova-manual-happiness-score-by-region" class="level2">
+<h2 class="anchored" data-anchor-id="q1-one-way-anova-manual-happiness-score-by-region">Q1 — One-way ANOVA (manual): Happiness score by region</h2>
+<p>In the city lifestyle dataset, we want to test whether the <strong>mean happiness score</strong> differs across four regions: Europe, Asia, North America, and Africa.</p>
+<p>We test:</p>
+<p><span class="math display">\[
+H_0: \mu_{\text{Europe}} = \mu_{\text{Asia}} = \mu_{\text{NorthAm}} = \mu_{\text{Africa}}
+\]</span></p>
+<p>vs</p>
+<p><span class="math display">\[
+H_1:\ \text{at least one regional mean is different.}
+\]</span></p>
+<p>Use a <strong>one-way ANOVA</strong> on happiness score, computed <em>manually</em> from sums of squares.</p>
+<p>Your task:</p>
+<ul>
+<li>Subset to those four regions.<br>
+</li>
+<li>Remove rows with missing happiness scores.<br>
+</li>
+<li>Compute SSB, SSW, <code>df_between</code>, <code>df_within</code>, MSB, MSW, F, and the p-value</li>
+</ul>
+<p><span class="math display">\[
+F = \frac{\text{MSB}}{\text{MSW}}, \qquad
+p = P\bigl(F_{df_1, df_2} \ge F\bigr).
+\]</span></p>
+<p>Return a named numeric vector: <code>c(F = Fstat, df1 = df_between, df2 = df_within, p_value = pval)</code>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Info">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Info
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For a one-way ANOVA with response (y_{ij}) in group (i) (of size (n_i)), group means ({y}_i), and overall mean ({y}):</p>
+<p><strong>Between–group sum of squares</strong> <span class="math display">\[
+\mathrm{SSB} = \sum_i n_i \, (\bar{y}_i - \bar{y})^2
+\]</span></p>
+<p><strong>Within–group sum of squares</strong> <span class="math display">\[
+\mathrm{SSW} = \sum_i \sum_j (y_{ij} - \bar{y}_i)^2
+\]</span></p>
+<p><strong>Degrees of freedom</strong> <span class="math display">\[
+df_{\text{between}} = k - 1, \qquad
+df_{\text{within}} = N - k
+\]</span></p>
+<p><strong>Mean squares</strong> <span class="math display">\[
+\mathrm{MSB} = \frac{\mathrm{SSB}}{df_{\text{between}}}, \qquad
+\mathrm{MSW} = \frac{\mathrm{SSW}}{df_{\text{within}}}
+\]</span></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Preview">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Preview
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div>
+<div id="webr-2" class="exercise-cell">
+
+</div>
+<script type="webr-2-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0gcmVhZC5jc3YoXCJjaXR5X2xpZmVzdHlsZV9kYXRhc2V0LmNzdlwiKVxuXG5zdWIgPC0gc3Vic2V0KFxuICBkZixcbiAgY291bnRyeSAlaW4lIGMoXCJFdXJvcGVcIixcIkFzaWFcIixcIk5vcnRoIEFtZXJpY2FcIixcIkFmcmljYVwiKVxuICAmIGlzLmZpbml0ZShoYXBwaW5lc3Nfc2NvcmUpXG4pXG5cbnRhYmxlKHN1YiRjb3VudHJ5KVxuXG50YXBwbHkoc3ViJGhhcHBpbmVzc19zY29yZSwgc3ViJGNvdW50cnksIHN1bW1hcnkpXG5cbnBhcihtZnJvdyA9IGMoMSwgMikpXG5ib3hwbG90KGhhcHBpbmVzc19zY29yZSB+IGNvdW50cnksIGRhdGEgPSBzdWIsXG4gICAgICAgIG1haW4gPSBcIkhhcHBpbmVzcyBieSByZWdpb25cIiwgeGxhYiA9IFwiUmVnaW9uXCIsXG4gICAgICAgIHlsYWIgPSBcIkhhcHBpbmVzcyBzY29yZVwiKVxuaGlzdChzdWIkaGFwcGluZXNzX3Njb3JlLFxuICAgICBtYWluID0gXCJIaXN0b2dyYW0gb2YgaGFwcGluZXNzXCIsIHhsYWIgPSBcIkhhcHBpbmVzcyBzY29yZVwiKVxucGFyKG1mcm93ID0gYygxLCAxKSkifQ==
+</script>
+</div>
+</div>
+</div>
+</div>
+<div class="cell" data-exercise="q1_city_anova_manual" data-exercise.lines="18">
+<div>
+<div id="webr-3" class="exercise-cell">
+
+</div>
+<script type="webr-3-contents">
+eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxMV9jaXR5X2Fub3ZhX21hbnVhbCIsImV4ZXJjaXNlLmxpbmVzIjoxOH0sImNvZGUiOiJcbmRmIDwtIHJlYWQuY3N2KFwiY2l0eV9saWZlc3R5bGVfZGF0YXNldC5jc3ZcIilcblxuc3ViIDwtIHN1YnNldChcbmRmLFxuY291bnRyeSAlaW4lIGMoXCJFdXJvcGVcIixcIkFzaWFcIixcIk5vcnRoIEFtZXJpY2FcIixcIkFmcmljYVwiKVxuJiBpcy5maW5pdGUoaGFwcGluZXNzX3Njb3JlKVxuKVxuXG5zdWIkcmVnaW9uIDwtIGZhY3RvcihzdWIkY291bnRyeSlcblxueSA8LSBzdWIkaGFwcGluZXNzX3Njb3JlXG5nIDwtIHN1YiRyZWdpb25cblxuZ3JvdXBfbWVhbnMgPC0gdGFwcGx5KHksIGcsIF9fXylcbmdyb3VwX25zIDwtIHRhcHBseSh5LCBnLCBfX18pXG5cbm92ZXJhbGxfbWVhbiA8LSBfX18oeSlcblxuU1NCIDwtIHN1bShncm91cF9ucyAqIChncm91cF9tZWFucyAtIG92ZXJhbGxfbWVhbileMilcblxuU1NXIDwtIHN1bSh0YXBwbHkoeSwgZywgZnVuY3Rpb24oeCkgc3VtKCh4IC0gX19fKHgpKV4yKSkpXG5cbmsgPC0gbGVuZ3RoKGdyb3VwX21lYW5zKVxuTiA8LSBsZW5ndGgoeSlcblxuZGZfYmV0d2VlbiA8LSBfX19cbmRmX3dpdGhpbiA8LSBfX19cblxuTVNCIDwtIF9fX1xuTVNXIDwtIF9fX1xuXG5Gc3RhdCA8LSBfX18gLyBfX19cbnB2YWwgPC0gcGYoX19fLCBkZl9iZXR3ZWVuLCBkZl93aXRoaW4sIGxvd2VyLnRhaWwgPSBGQUxTRSlcblxuYyhGID0gRnN0YXQsIGRmMSA9IGRmX2JldHdlZW4sIGRmMiA9IGRmX3dpdGhpbiwgcF92YWx1ZSA9IHB2YWwpIn0=
+</script>
+</div>
+</div>
+<div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="q1_city_anova_manual">
+<p>Use mean for both group and overall means. df_between = k - 1, df_within = N - k. MSB = SSB / df_between, MSW = SSW / df_within, then Fstat = MSB / MSW.</p>
+</div>
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q1_city_anova_manual">
+<div class="cell" data-exercise="q1_city_anova_manual" data-solution="true">
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q1_city_anova_manual">
+<code id="interpolate-5" class="solution-code d-none">
+df &lt;- read.csv("city_lifestyle_dataset.csv")
+
+sub &lt;- subset(
+df,
+country %in% c("Europe","Asia","North America","Africa")
+&amp; is.finite(happiness_score)
+)
+
+sub$region &lt;- factor(sub$country)
+
+y &lt;- sub$happiness_score
+g &lt;- sub$region
+
+group_means &lt;- tapply(y, g, mean)
+group_ns    &lt;- tapply(y, g, length)
+
+overall_mean &lt;- mean(y)
+
+SSB &lt;- sum(group_ns * (group_means - overall_mean)^2)
+
+SSW &lt;- sum(tapply(y, g, function(x) sum((x - mean(x))^2)))
+
+k  &lt;- length(group_means)
+N  &lt;- length(y)
+
+df_between &lt;- k - 1
+df_within  &lt;- N - k
+
+MSB &lt;- SSB / df_between
+MSW &lt;- SSW / df_within
+
+Fstat &lt;- MSB / MSW
+pval  &lt;- pf(Fstat, df_between, df_within, lower.tail = FALSE)
+
+c(F = Fstat, df1 = df_between, df2 = df_within, p_value = pval)</code>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-6-1"><a href="#interpolate-6-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-2"><a href="#interpolate-6-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"city_lifestyle_dataset.csv"</span>)</span>
+<span id="interpolate-6-3"><a href="#interpolate-6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-4"><a href="#interpolate-6-4" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">&lt;-</span> <span class="fu">subset</span>(</span>
+<span id="interpolate-6-5"><a href="#interpolate-6-5" aria-hidden="true" tabindex="-1"></a>df,</span>
+<span id="interpolate-6-6"><a href="#interpolate-6-6" aria-hidden="true" tabindex="-1"></a>country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Europe"</span>,<span class="st">"Asia"</span>,<span class="st">"North America"</span>,<span class="st">"Africa"</span>)</span>
+<span id="interpolate-6-7"><a href="#interpolate-6-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&amp;</span> <span class="fu">is.finite</span>(happiness_score)</span>
+<span id="interpolate-6-8"><a href="#interpolate-6-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="interpolate-6-9"><a href="#interpolate-6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-10"><a href="#interpolate-6-10" aria-hidden="true" tabindex="-1"></a>sub<span class="sc">$</span>region <span class="ot">&lt;-</span> <span class="fu">factor</span>(sub<span class="sc">$</span>country)</span>
+<span id="interpolate-6-11"><a href="#interpolate-6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-12"><a href="#interpolate-6-12" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> sub<span class="sc">$</span>happiness_score</span>
+<span id="interpolate-6-13"><a href="#interpolate-6-13" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> sub<span class="sc">$</span>region</span>
+<span id="interpolate-6-14"><a href="#interpolate-6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-15"><a href="#interpolate-6-15" aria-hidden="true" tabindex="-1"></a>group_means <span class="ot">&lt;-</span> <span class="fu">tapply</span>(y, g, mean)</span>
+<span id="interpolate-6-16"><a href="#interpolate-6-16" aria-hidden="true" tabindex="-1"></a>group_ns    <span class="ot">&lt;-</span> <span class="fu">tapply</span>(y, g, length)</span>
+<span id="interpolate-6-17"><a href="#interpolate-6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-18"><a href="#interpolate-6-18" aria-hidden="true" tabindex="-1"></a>overall_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(y)</span>
+<span id="interpolate-6-19"><a href="#interpolate-6-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-20"><a href="#interpolate-6-20" aria-hidden="true" tabindex="-1"></a>SSB <span class="ot">&lt;-</span> <span class="fu">sum</span>(group_ns <span class="sc">*</span> (group_means <span class="sc">-</span> overall_mean)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="interpolate-6-21"><a href="#interpolate-6-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-22"><a href="#interpolate-6-22" aria-hidden="true" tabindex="-1"></a>SSW <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">tapply</span>(y, g, <span class="cf">function</span>(x) <span class="fu">sum</span>((x <span class="sc">-</span> <span class="fu">mean</span>(x))<span class="sc">^</span><span class="dv">2</span>)))</span>
+<span id="interpolate-6-23"><a href="#interpolate-6-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-24"><a href="#interpolate-6-24" aria-hidden="true" tabindex="-1"></a>k  <span class="ot">&lt;-</span> <span class="fu">length</span>(group_means)</span>
+<span id="interpolate-6-25"><a href="#interpolate-6-25" aria-hidden="true" tabindex="-1"></a>N  <span class="ot">&lt;-</span> <span class="fu">length</span>(y)</span>
+<span id="interpolate-6-26"><a href="#interpolate-6-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-27"><a href="#interpolate-6-27" aria-hidden="true" tabindex="-1"></a>df_between <span class="ot">&lt;-</span> k <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="interpolate-6-28"><a href="#interpolate-6-28" aria-hidden="true" tabindex="-1"></a>df_within  <span class="ot">&lt;-</span> N <span class="sc">-</span> k</span>
+<span id="interpolate-6-29"><a href="#interpolate-6-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-30"><a href="#interpolate-6-30" aria-hidden="true" tabindex="-1"></a>MSB <span class="ot">&lt;-</span> SSB <span class="sc">/</span> df_between</span>
+<span id="interpolate-6-31"><a href="#interpolate-6-31" aria-hidden="true" tabindex="-1"></a>MSW <span class="ot">&lt;-</span> SSW <span class="sc">/</span> df_within</span>
+<span id="interpolate-6-32"><a href="#interpolate-6-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-33"><a href="#interpolate-6-33" aria-hidden="true" tabindex="-1"></a>Fstat <span class="ot">&lt;-</span> MSB <span class="sc">/</span> MSW</span>
+<span id="interpolate-6-34"><a href="#interpolate-6-34" aria-hidden="true" tabindex="-1"></a>pval  <span class="ot">&lt;-</span> <span class="fu">pf</span>(Fstat, df_between, df_within, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="interpolate-6-35"><a href="#interpolate-6-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-36"><a href="#interpolate-6-36" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">F =</span> Fstat, <span class="at">df1 =</span> df_between, <span class="at">df2 =</span> df_within, <span class="at">p_value =</span> pval)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<div class="cell" data-exercise="q1_city_anova_manual" data-check="true">
+<script type="exercise-check-q1_city_anova_manual-contents">
+eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InExX2NpdHlfYW5vdmFfbWFudWFsIn0sImNvZGUiOiJcbmdyYWRldGhpczo6Z3JhZGVfdGhpcyh7XG5kZiA8LSB0cnlDYXRjaChyZWFkLmNzdihcImNpdHlfbGlmZXN0eWxlX2RhdGFzZXQuY3N2XCIpLCBlcnJvciA9IGZ1bmN0aW9uKGUpIE5VTEwpXG5pZiAoaXMubnVsbChkZikpIGZhaWwoXCJDb3VsZG4ndCByZWFkICdjaXR5X2xpZmVzdHlsZV9kYXRhc2V0LmNzdicuXCIpXG5cbnN1YiA8LSBzdWJzZXQoXG5kZixcbmNvdW50cnkgJWluJSBjKFwiRXVyb3BlXCIsXCJBc2lhXCIsXCJOb3J0aCBBbWVyaWNhXCIsXCJBZnJpY2FcIilcbiYgaXMuZmluaXRlKGhhcHBpbmVzc19zY29yZSlcbilcbnN1YiRyZWdpb24gPC0gZmFjdG9yKHN1YiRjb3VudHJ5KVxueSA8LSBzdWIkaGFwcGluZXNzX3Njb3JlXG5nIDwtIHN1YiRyZWdpb25cblxuZ3JvdXBfbWVhbnMgPC0gdGFwcGx5KHksIGcsIG1lYW4pXG5ncm91cF9ucyAgICA8LSB0YXBwbHkoeSwgZywgbGVuZ3RoKVxub3ZlcmFsbF9tZWFuIDwtIG1lYW4oeSlcblxuU1NCIDwtIHN1bShncm91cF9ucyAqIChncm91cF9tZWFucyAtIG92ZXJhbGxfbWVhbileMilcblNTVyA8LSBzdW0odGFwcGx5KHksIGcsIGZ1bmN0aW9uKHgpIHN1bSgoeCAtIG1lYW4oeCkpXjIpKSlcblxuayAgPC0gbGVuZ3RoKGdyb3VwX21lYW5zKVxuTiAgPC0gbGVuZ3RoKHkpXG5cbmRmX2JldHdlZW4gPC0gayAtIDFcbmRmX3dpdGhpbiAgPC0gTiAtIGtcblxuTVNCIDwtIFNTQiAvIGRmX2JldHdlZW5cbk1TVyA8LSBTU1cgLyBkZl93aXRoaW5cblxuRnN0YXQgPC0gTVNCIC8gTVNXXG5wdmFsICA8LSBwZihGc3RhdCwgZGZfYmV0d2VlbiwgZGZfd2l0aGluLCBsb3dlci50YWlsID0gRkFMU0UpXG5cbmV4cCA8LSBjKEYgPSBGc3RhdCwgZGYxID0gZGZfYmV0d2VlbiwgZGYyID0gZGZfd2l0aGluLCBwX3ZhbHVlID0gcHZhbClcblxucmVzIDwtIC5yZXN1bHRcbmlmICghaXMubnVtZXJpYyhyZXMpIHx8IGxlbmd0aChyZXMpICE9IDRMIHx8IGFueSghaXMuZmluaXRlKHJlcykpKSB7XG5mYWlsKFwiUmV0dXJuIGMoRiA9IC4uLiwgZGYxID0gLi4uLCBkZjIgPSAuLi4sIHBfdmFsdWUgPSAuLi4pLlwiKVxufSBlbHNlIGlmIChtYXgoYWJzKHJlcyAtIGV4cCkpIDwgMWUtNikge1xucGFzcyhcIkNvcnJlY3QgbWFudWFsIG9uZS13YXkgQU5PVkEgZm9yIGhhcHBpbmVzcyBieSByZWdpb24uXCIpXG59IGVsc2Uge1xuZmFpbChcIlNvbWV0aGluZyBpcyBvZmYgaW4gU1NCL1NTVywgZGVncmVlcyBvZiBmcmVlZG9tLCBvciB0aGUgRiB0byBwLXZhbHVlIHN0ZXAuXCIpXG59XG59KSJ9
+</script>
+</div>
+</section>
+<section id="q2-one-way-anova-built-in-happiness-score-by-region" class="level2">
+<h2 class="anchored" data-anchor-id="q2-one-way-anova-built-in-happiness-score-by-region">Q2 — One-way ANOVA (built-in): Happiness score by region</h2>
+<p>Now we will redo the same test using R’s built-in aov() function on the same subset of the city dataset.</p>
+<p>Return c(F = Fstat, df1 = df_region, df2 = df_resid, p_value = p) extracted from the ANOVA table.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Info">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Info
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For a one-way ANOVA fit with fit &lt;- aov(y ~ group, data = …), you can extract the ANOVA table with summary(fit)[[1]]. The row corresponding to the factor has columns:</p>
+<p>“Df”: factor degrees of freedom</p>
+<p>“F value”: F statistic</p>
+<p>“Pr(&gt;F)”: p-value</p>
+</div>
+</div>
+<div class="cell" data-exercise="q2_city_anova_builtin" data-exercise.lines="10">
+<div>
+<div id="webr-8" class="exercise-cell">
+
+</div>
+<script type="webr-8-contents">
+eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxMl9jaXR5X2Fub3ZhX2J1aWx0aW4iLCJleGVyY2lzZS5saW5lcyI6MTB9LCJjb2RlIjoiXG5kZiA8LSByZWFkLmNzdihcImNpdHlfbGlmZXN0eWxlX2RhdGFzZXQuY3N2XCIpXG5cbnN1YiA8LSBzdWJzZXQoXG5kZixcbmNvdW50cnkgJWluJSBjKFwiRXVyb3BlXCIsXCJBc2lhXCIsXCJOb3J0aCBBbWVyaWNhXCIsXCJBZnJpY2FcIilcbiYgaXMuZmluaXRlKGhhcHBpbmVzc19zY29yZSlcbilcblxuc3ViJHJlZ2lvbiA8LSBmYWN0b3Ioc3ViJGNvdW50cnkpXG5cbmZpdCA8LSBhb3Yo77y/77y/IH4g77y/77y/LCBkYXRhID0gc3ViKVxuXG50YWIgPC0gc3VtbWFyeShmaXQpW1sxXV1cblxuZGZfcmVnaW9uIDwtIHRhYltcIu+8v++8v1wiLCBcIkRmXCJdXG5kZl9yZXNpZCAgPC0gdGFiW1wiUmVzaWR1YWxzXCIsIFwiRGZcIl1cbkZzdGF0ICAgICA8LSB0YWJbXCLvvL/vvL9cIiwgXCJGIHZhbHVlXCJdXG5wdmFsICAgICAgPC0gdGFiW1wi77y/77y/XCIsIFwiUHIoPkYpXCJdXG5cbmMoRiA9IEZzdGF0LCBkZjEgPSBkZl9yZWdpb24sIGRmMiA9IGRmX3Jlc2lkLCBwX3ZhbHVlID0gcHZhbCkifQ==
+</script>
+</div>
+</div>
+<div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="q2_city_anova_builtin">
+<p>Use happiness_score ~ region in aov(), and “region” as the row name in the ANOVA table.</p>
+</div>
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q2_city_anova_builtin">
+<div class="cell" data-exercise="q2_city_anova_builtin" data-solution="true">
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q2_city_anova_builtin">
+<code id="interpolate-10" class="solution-code d-none">
+df &lt;- read.csv("city_lifestyle_dataset.csv")
+
+sub &lt;- subset(
+df,
+country %in% c("Europe","Asia","North America","Africa")
+&amp; is.finite(happiness_score)
+)
+
+sub$region &lt;- factor(sub$country)
+
+fit &lt;- aov(happiness_score ~ region, data = sub)
+
+tab &lt;- summary(fit)[[1]]
+
+df_region &lt;- tab["region", "Df"]
+df_resid  &lt;- tab["Residuals", "Df"]
+Fstat     &lt;- tab["region", "F value"]
+pval      &lt;- tab["region", "Pr(&gt;F)"]
+
+c(F = Fstat, df1 = df_region, df2 = df_resid, p_value = pval)</code>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-11-1"><a href="#interpolate-11-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-11-2"><a href="#interpolate-11-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"city_lifestyle_dataset.csv"</span>)</span>
+<span id="interpolate-11-3"><a href="#interpolate-11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-11-4"><a href="#interpolate-11-4" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">&lt;-</span> <span class="fu">subset</span>(</span>
+<span id="interpolate-11-5"><a href="#interpolate-11-5" aria-hidden="true" tabindex="-1"></a>df,</span>
+<span id="interpolate-11-6"><a href="#interpolate-11-6" aria-hidden="true" tabindex="-1"></a>country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Europe"</span>,<span class="st">"Asia"</span>,<span class="st">"North America"</span>,<span class="st">"Africa"</span>)</span>
+<span id="interpolate-11-7"><a href="#interpolate-11-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&amp;</span> <span class="fu">is.finite</span>(happiness_score)</span>
+<span id="interpolate-11-8"><a href="#interpolate-11-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="interpolate-11-9"><a href="#interpolate-11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-11-10"><a href="#interpolate-11-10" aria-hidden="true" tabindex="-1"></a>sub<span class="sc">$</span>region <span class="ot">&lt;-</span> <span class="fu">factor</span>(sub<span class="sc">$</span>country)</span>
+<span id="interpolate-11-11"><a href="#interpolate-11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-11-12"><a href="#interpolate-11-12" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">aov</span>(happiness_score <span class="sc">~</span> region, <span class="at">data =</span> sub)</span>
+<span id="interpolate-11-13"><a href="#interpolate-11-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-11-14"><a href="#interpolate-11-14" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> <span class="fu">summary</span>(fit)[[<span class="dv">1</span>]]</span>
+<span id="interpolate-11-15"><a href="#interpolate-11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-11-16"><a href="#interpolate-11-16" aria-hidden="true" tabindex="-1"></a>df_region <span class="ot">&lt;-</span> tab[<span class="st">"region"</span>, <span class="st">"Df"</span>]</span>
+<span id="interpolate-11-17"><a href="#interpolate-11-17" aria-hidden="true" tabindex="-1"></a>df_resid  <span class="ot">&lt;-</span> tab[<span class="st">"Residuals"</span>, <span class="st">"Df"</span>]</span>
+<span id="interpolate-11-18"><a href="#interpolate-11-18" aria-hidden="true" tabindex="-1"></a>Fstat     <span class="ot">&lt;-</span> tab[<span class="st">"region"</span>, <span class="st">"F value"</span>]</span>
+<span id="interpolate-11-19"><a href="#interpolate-11-19" aria-hidden="true" tabindex="-1"></a>pval      <span class="ot">&lt;-</span> tab[<span class="st">"region"</span>, <span class="st">"Pr(&gt;F)"</span>]</span>
+<span id="interpolate-11-20"><a href="#interpolate-11-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-11-21"><a href="#interpolate-11-21" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">F =</span> Fstat, <span class="at">df1 =</span> df_region, <span class="at">df2 =</span> df_resid, <span class="at">p_value =</span> pval)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<div class="cell" data-exercise="q2_city_anova_builtin" data-check="true">
+<script type="exercise-check-q2_city_anova_builtin-contents">
+eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InEyX2NpdHlfYW5vdmFfYnVpbHRpbiJ9LCJjb2RlIjoiXG5ncmFkZXRoaXM6OmdyYWRlX3RoaXMoe1xuZGYgPC0gdHJ5Q2F0Y2gocmVhZC5jc3YoXCJjaXR5X2xpZmVzdHlsZV9kYXRhc2V0LmNzdlwiKSwgZXJyb3IgPSBmdW5jdGlvbihlKSBOVUxMKVxuaWYgKGlzLm51bGwoZGYpKSBmYWlsKFwiQ291bGRuJ3QgcmVhZCAnY2l0eV9saWZlc3R5bGVfZGF0YXNldC5jc3YnLlwiKVxuXG5zdWIgPC0gc3Vic2V0KFxuZGYsXG5jb3VudHJ5ICVpbiUgYyhcIkV1cm9wZVwiLFwiQXNpYVwiLFwiTm9ydGggQW1lcmljYVwiLFwiQWZyaWNhXCIpXG4mIGlzLmZpbml0ZShoYXBwaW5lc3Nfc2NvcmUpXG4pXG5zdWIkcmVnaW9uIDwtIGZhY3RvcihzdWIkY291bnRyeSlcblxuZml0IDwtIGFvdihoYXBwaW5lc3Nfc2NvcmUgfiByZWdpb24sIGRhdGEgPSBzdWIpXG50YWIgPC0gc3VtbWFyeShmaXQpW1sxXV1cblxuZGZfcmVnaW9uIDwtIHRhYltcInJlZ2lvblwiLCBcIkRmXCJdXG5kZl9yZXNpZCAgPC0gdGFiW1wiUmVzaWR1YWxzXCIsIFwiRGZcIl1cbkZzdGF0ICAgICA8LSB0YWJbXCJyZWdpb25cIiwgXCJGIHZhbHVlXCJdXG5wdmFsICAgICAgPC0gdGFiW1wicmVnaW9uXCIsIFwiUHIoPkYpXCJdXG5cbmV4cCA8LSBjKEYgPSBGc3RhdCwgZGYxID0gZGZfcmVnaW9uLCBkZjIgPSBkZl9yZXNpZCwgcF92YWx1ZSA9IHB2YWwpXG5cbnJlcyA8LSAucmVzdWx0XG5pZiAoIWlzLm51bWVyaWMocmVzKSB8fCBsZW5ndGgocmVzKSAhPSA0TCB8fCBhbnkoIWlzLmZpbml0ZShyZXMpKSkge1xuZmFpbChcIlJldHVybiBjKEYgPSAuLi4sIGRmMSA9IC4uLiwgZGYyID0gLi4uLCBwX3ZhbHVlID0gLi4uKS5cIilcbn0gZWxzZSBpZiAobWF4KGFicyhyZXMgLSBleHApKSA8IDFlLTYpIHtcbnBhc3MoXCJDb3JyZWN0IG9uZS13YXkgQU5PVkEgdXNpbmcgYW92KCkgZm9yIGhhcHBpbmVzcyBieSByZWdpb24uXCIpXG59IGVsc2Uge1xuZmFpbChcIlJldmlzaXQgdGhlIGFvdigpIGNhbGwgb3IgdGhlIGV4dHJhY3Rpb24gZnJvbSBzdW1tYXJ5KGZpdClbWzFdXS5cIilcbn1cbn0pIn0=
+</script>
+</div>
+</section>
+<section id="q3-fishers-lsd-no-adjustment-pairwise-region-comparisons" class="level2">
+<h2 class="anchored" data-anchor-id="q3-fishers-lsd-no-adjustment-pairwise-region-comparisons">Q3 — Fisher’s LSD (no adjustment): Pairwise region comparisons</h2>
+<p>Using the same city subset as in Q1–Q2, perform pairwise t-tests on happiness scores between regions without multiple-comparison adjustment. This corresponds to Fisher’s LSD after a significant global ANOVA.</p>
+<p>Use pairwise.t.test() with p.adjust.method = “none” and return the matrix of p-values.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Info">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Info
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Fisher’s LSD (Least Significant Difference) is essentially:</p>
+<p>Run a global ANOVA to check that at least one mean differs.</p>
+<p>If significant, run unadjusted pairwise t-tests between groups, using the same residual variance.</p>
+<p>In R, pairwise.t.test(y, group, p.adjust.method = “none”)$p.value gives a matrix of unadjusted pairwise p-values.</p>
+</div>
+</div>
+<div class="cell" data-exercise="q3_city_lsd" data-exercise.lines="8">
+<div>
+<div id="webr-13" class="exercise-cell">
+
+</div>
+<script type="webr-13-contents">
+eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxM19jaXR5X2xzZCIsImV4ZXJjaXNlLmxpbmVzIjo4fSwiY29kZSI6IlxuZGYgPC0gcmVhZC5jc3YoXCJjaXR5X2xpZmVzdHlsZV9kYXRhc2V0LmNzdlwiKVxuXG5zdWIgPC0gc3Vic2V0KFxuZGYsXG5jb3VudHJ5ICVpbiUgYyhcIkV1cm9wZVwiLFwiQXNpYVwiLFwiTm9ydGggQW1lcmljYVwiLFwiQWZyaWNhXCIpXG4mIGlzLmZpbml0ZShoYXBwaW5lc3Nfc2NvcmUpXG4pXG5cbnN1YiRyZWdpb24gPC0gZmFjdG9yKHN1YiRjb3VudHJ5KVxuXG5vdXQgPC0gcGFpcndpc2UudC50ZXN0KO+8v++8vywg77y/77y/LCBwLmFkanVzdC5tZXRob2QgPSBcIu+8v++8v1wiKVxuXG5vdXQkcC52YWx1ZSJ9
+</script>
+</div>
+</div>
+<div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="q3_city_lsd">
+<p>Use sub<span class="math inline">\(happiness_score as the response, sub\)</span>region as the group, and “none” for p.adjust.method.</p>
+</div>
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q3_city_lsd">
+<div class="cell" data-exercise="q3_city_lsd" data-solution="true">
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q3_city_lsd">
+<code id="interpolate-15" class="solution-code d-none">
+df &lt;- read.csv("city_lifestyle_dataset.csv")
+
+sub &lt;- subset(
+df,
+country %in% c("Europe","Asia","North America","Africa")
+&amp; is.finite(happiness_score)
+)
+
+sub$region &lt;- factor(sub$country)
+
+out &lt;- pairwise.t.test(sub$happiness_score,
+sub$region,
+p.adjust.method = "none")
+
+out$p.value</code>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-16-1"><a href="#interpolate-16-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-16-2"><a href="#interpolate-16-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"city_lifestyle_dataset.csv"</span>)</span>
+<span id="interpolate-16-3"><a href="#interpolate-16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-16-4"><a href="#interpolate-16-4" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">&lt;-</span> <span class="fu">subset</span>(</span>
+<span id="interpolate-16-5"><a href="#interpolate-16-5" aria-hidden="true" tabindex="-1"></a>df,</span>
+<span id="interpolate-16-6"><a href="#interpolate-16-6" aria-hidden="true" tabindex="-1"></a>country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Europe"</span>,<span class="st">"Asia"</span>,<span class="st">"North America"</span>,<span class="st">"Africa"</span>)</span>
+<span id="interpolate-16-7"><a href="#interpolate-16-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&amp;</span> <span class="fu">is.finite</span>(happiness_score)</span>
+<span id="interpolate-16-8"><a href="#interpolate-16-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="interpolate-16-9"><a href="#interpolate-16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-16-10"><a href="#interpolate-16-10" aria-hidden="true" tabindex="-1"></a>sub<span class="sc">$</span>region <span class="ot">&lt;-</span> <span class="fu">factor</span>(sub<span class="sc">$</span>country)</span>
+<span id="interpolate-16-11"><a href="#interpolate-16-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-16-12"><a href="#interpolate-16-12" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">pairwise.t.test</span>(sub<span class="sc">$</span>happiness_score,</span>
+<span id="interpolate-16-13"><a href="#interpolate-16-13" aria-hidden="true" tabindex="-1"></a>sub<span class="sc">$</span>region,</span>
+<span id="interpolate-16-14"><a href="#interpolate-16-14" aria-hidden="true" tabindex="-1"></a><span class="at">p.adjust.method =</span> <span class="st">"none"</span>)</span>
+<span id="interpolate-16-15"><a href="#interpolate-16-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-16-16"><a href="#interpolate-16-16" aria-hidden="true" tabindex="-1"></a>out<span class="sc">$</span>p.value</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<div class="cell" data-exercise="q3_city_lsd" data-check="true">
+<script type="exercise-check-q3_city_lsd-contents">
+eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InEzX2NpdHlfbHNkIn0sImNvZGUiOiJcbmdyYWRldGhpczo6Z3JhZGVfdGhpcyh7XG5kZiA8LSB0cnlDYXRjaChyZWFkLmNzdihcImNpdHlfbGlmZXN0eWxlX2RhdGFzZXQuY3N2XCIpLCBlcnJvciA9IGZ1bmN0aW9uKGUpIE5VTEwpXG5pZiAoaXMubnVsbChkZikpIGZhaWwoXCJDb3VsZG4ndCByZWFkICdjaXR5X2xpZmVzdHlsZV9kYXRhc2V0LmNzdicuXCIpXG5cbnN1YiA8LSBzdWJzZXQoXG5kZixcbmNvdW50cnkgJWluJSBjKFwiRXVyb3BlXCIsXCJBc2lhXCIsXCJOb3J0aCBBbWVyaWNhXCIsXCJBZnJpY2FcIilcbiYgaXMuZmluaXRlKGhhcHBpbmVzc19zY29yZSlcbilcbnN1YiRyZWdpb24gPC0gZmFjdG9yKHN1YiRjb3VudHJ5KVxuXG5leHAgPC0gcGFpcndpc2UudC50ZXN0KHN1YiRoYXBwaW5lc3Nfc2NvcmUsXG5zdWIkcmVnaW9uLFxucC5hZGp1c3QubWV0aG9kID0gXCJub25lXCIpJHAudmFsdWVcblxucmVzIDwtIC5yZXN1bHRcbmlmICghaXMubWF0cml4KHJlcykgfHwgYW55KCFpcy5maW5pdGUocmVzKSkpIHtcbmZhaWwoXCJSZXR1cm4gdGhlIHAtdmFsdWUgbWF0cml4IGZyb20gcGFpcndpc2UudC50ZXN0KC4uLikuXCIpXG59IGVsc2UgaWYgKGFsbChkaW0ocmVzKSA9PSBkaW0oZXhwKSkgJiZcbm1heChhYnMocmVzIC0gZXhwKSkgPCAxZS04KSB7XG5wYXNzKFwiQ29ycmVjdCBGaXNoZXIncyBMU0QgcGFpcndpc2UgcC12YWx1ZXMgKG5vIGFkanVzdG1lbnQpLlwiKVxufSBlbHNlIHtcbmZhaWwoXCJDaGVjayB5b3VyIHBhaXJ3aXNlLnQudGVzdCgpIGNhbGwgYW5kIHRoYXQgeW91IHVzZWQgcC5hZGp1c3QubWV0aG9kID0gJ25vbmUnLlwiKVxufVxufSkifQ==
+</script>
+</div>
+</section>
+<section id="q4-bonferroni-adjusted-pairwise-region-comparisons" class="level2">
+<h2 class="anchored" data-anchor-id="q4-bonferroni-adjusted-pairwise-region-comparisons">Q4 — Bonferroni-adjusted pairwise region comparisons</h2>
+<p>Now repeat the previous question but use a Bonferroni correction for multiple comparisons. Again, return the matrix of p-values.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Info">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Info
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The Bonferroni adjustment is a simple and conservative way to control the family-wise error rate when making many comparisons. In R, use p.adjust.method = “bonferroni” in pairwise.t.test().</p>
+</div>
+</div>
+<div class="cell" data-exercise="q4_city_bonferroni" data-exercise.lines="8">
+<div>
+<div id="webr-18" class="exercise-cell">
+
+</div>
+<script type="webr-18-contents">
+eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxNF9jaXR5X2JvbmZlcnJvbmkiLCJleGVyY2lzZS5saW5lcyI6OH0sImNvZGUiOiJcbmRmIDwtIHJlYWQuY3N2KFwiY2l0eV9saWZlc3R5bGVfZGF0YXNldC5jc3ZcIilcblxuc3ViIDwtIHN1YnNldChcbmRmLFxuY291bnRyeSAlaW4lIGMoXCJFdXJvcGVcIixcIkFzaWFcIixcIk5vcnRoIEFtZXJpY2FcIixcIkFmcmljYVwiKVxuJiBpcy5maW5pdGUoaGFwcGluZXNzX3Njb3JlKVxuKVxuXG5zdWIkcmVnaW9uIDwtIGZhY3RvcihzdWIkY291bnRyeSlcblxub3V0IDwtIHBhaXJ3aXNlLnQudGVzdCjvvL/vvL8sIO+8v++8vyxcbnAuYWRqdXN0Lm1ldGhvZCA9IFwi77y/77y/XCIpXG5cbm91dCRwLnZhbHVlIn0=
+</script>
+</div>
+</div>
+<div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="q4_city_bonferroni">
+<p>Use the same sub<span class="math inline">\(happiness_score and sub\)</span>region, but set p.adjust.method = “bonferroni”.</p>
+</div>
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q4_city_bonferroni">
+<div class="cell" data-exercise="q4_city_bonferroni" data-solution="true">
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q4_city_bonferroni">
+<code id="interpolate-20" class="solution-code d-none">
+df &lt;- read.csv("city_lifestyle_dataset.csv")
+
+sub &lt;- subset(
+df,
+country %in% c("Europe","Asia","North America","Africa")
+&amp; is.finite(happiness_score)
+)
+
+sub$region &lt;- factor(sub$country)
+
+out &lt;- pairwise.t.test(sub$happiness_score,
+sub$region,
+p.adjust.method = "bonferroni")
+
+out$p.value</code>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-21-1"><a href="#interpolate-21-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-21-2"><a href="#interpolate-21-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"city_lifestyle_dataset.csv"</span>)</span>
+<span id="interpolate-21-3"><a href="#interpolate-21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-21-4"><a href="#interpolate-21-4" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">&lt;-</span> <span class="fu">subset</span>(</span>
+<span id="interpolate-21-5"><a href="#interpolate-21-5" aria-hidden="true" tabindex="-1"></a>df,</span>
+<span id="interpolate-21-6"><a href="#interpolate-21-6" aria-hidden="true" tabindex="-1"></a>country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Europe"</span>,<span class="st">"Asia"</span>,<span class="st">"North America"</span>,<span class="st">"Africa"</span>)</span>
+<span id="interpolate-21-7"><a href="#interpolate-21-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&amp;</span> <span class="fu">is.finite</span>(happiness_score)</span>
+<span id="interpolate-21-8"><a href="#interpolate-21-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="interpolate-21-9"><a href="#interpolate-21-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-21-10"><a href="#interpolate-21-10" aria-hidden="true" tabindex="-1"></a>sub<span class="sc">$</span>region <span class="ot">&lt;-</span> <span class="fu">factor</span>(sub<span class="sc">$</span>country)</span>
+<span id="interpolate-21-11"><a href="#interpolate-21-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-21-12"><a href="#interpolate-21-12" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">pairwise.t.test</span>(sub<span class="sc">$</span>happiness_score,</span>
+<span id="interpolate-21-13"><a href="#interpolate-21-13" aria-hidden="true" tabindex="-1"></a>sub<span class="sc">$</span>region,</span>
+<span id="interpolate-21-14"><a href="#interpolate-21-14" aria-hidden="true" tabindex="-1"></a><span class="at">p.adjust.method =</span> <span class="st">"bonferroni"</span>)</span>
+<span id="interpolate-21-15"><a href="#interpolate-21-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-21-16"><a href="#interpolate-21-16" aria-hidden="true" tabindex="-1"></a>out<span class="sc">$</span>p.value</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<div class="cell" data-exercise="q4_city_bonferroni" data-check="true">
+<script type="exercise-check-q4_city_bonferroni-contents">
+eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE0X2NpdHlfYm9uZmVycm9uaSJ9LCJjb2RlIjoiXG5ncmFkZXRoaXM6OmdyYWRlX3RoaXMoe1xuZGYgPC0gdHJ5Q2F0Y2gocmVhZC5jc3YoXCJjaXR5X2xpZmVzdHlsZV9kYXRhc2V0LmNzdlwiKSwgZXJyb3IgPSBmdW5jdGlvbihlKSBOVUxMKVxuaWYgKGlzLm51bGwoZGYpKSBmYWlsKFwiQ291bGRuJ3QgcmVhZCAnY2l0eV9saWZlc3R5bGVfZGF0YXNldC5jc3YnLlwiKVxuXG5zdWIgPC0gc3Vic2V0KFxuZGYsXG5jb3VudHJ5ICVpbiUgYyhcIkV1cm9wZVwiLFwiQXNpYVwiLFwiTm9ydGggQW1lcmljYVwiLFwiQWZyaWNhXCIpXG4mIGlzLmZpbml0ZShoYXBwaW5lc3Nfc2NvcmUpXG4pXG5zdWIkcmVnaW9uIDwtIGZhY3RvcihzdWIkY291bnRyeSlcblxuZXhwIDwtIHBhaXJ3aXNlLnQudGVzdChzdWIkaGFwcGluZXNzX3Njb3JlLFxuc3ViJHJlZ2lvbixcbnAuYWRqdXN0Lm1ldGhvZCA9IFwiYm9uZmVycm9uaVwiKSRwLnZhbHVlXG5cbnJlcyA8LSAucmVzdWx0XG5pZiAoIWlzLm1hdHJpeChyZXMpIHx8IGFueSghaXMuZmluaXRlKHJlcykpKSB7XG5mYWlsKFwiUmV0dXJuIHRoZSBwLXZhbHVlIG1hdHJpeCBmcm9tIHBhaXJ3aXNlLnQudGVzdCguLi4pLlwiKVxufSBlbHNlIGlmIChhbGwoZGltKHJlcykgPT0gZGltKGV4cCkpICYmXG5tYXgoYWJzKHJlcyAtIGV4cCkpIDwgMWUtOCkge1xucGFzcyhcIkNvcnJlY3QgQm9uZmVycm9uaS1hZGp1c3RlZCBwYWlyd2lzZSBwLXZhbHVlcy5cIilcbn0gZWxzZSB7XG5mYWlsKFwiQ2hlY2sgdGhhdCB5b3UgdXNlZCBwLmFkanVzdC5tZXRob2QgPSAnYm9uZmVycm9uaScgb24gdGhlIHNhbWUgc3Vic2V0LlwiKVxufVxufSkifQ==
+</script>
+</div>
+</section>
+<section id="q5-one-way-anova-manual-exam-score-by-motivation-level" class="level2">
+<h2 class="anchored" data-anchor-id="q5-one-way-anova-manual-exam-score-by-motivation-level">Q5 — One-way ANOVA (manual): Exam score by motivation level</h2>
+<p>In the student performance dataset, we want to test whether the <strong>mean exam score</strong> differs across <strong>motivation levels</strong> (Low, Medium, High).</p>
+<p>We test</p>
+<p><span class="math display">\[
+H_0:\ \mu_{\text{Low}} = \mu_{\text{Medium}} = \mu_{\text{High}}
+\]</span></p>
+<p>vs</p>
+<p><span class="math display">\[
+H_1:\ \text{at least one of } \mu_{\text{Low}},\, \mu_{\text{Medium}},\, \mu_{\text{High}} \text{ is different.}
+\]</span></p>
+<p>Use a <strong>one-way ANOVA</strong> on <code>Exam_Score</code>, computed <em>manually</em> from sums of squares.</p>
+<p>Your task:</p>
+<ul>
+<li>Subset to rows with non-missing <code>Exam_Score</code> and <code>Motivation_Level</code>.<br>
+</li>
+<li>Treat <code>Motivation_Level</code> as a factor with three levels (Low, Medium, High).<br>
+</li>
+<li>Compute SSB, SSW, <code>df_between</code>, <code>df_within</code>, MSB, MSW, (F), and the p-value</li>
+</ul>
+<p><span class="math display">\[
+F = \frac{\mathrm{MSB}}{\mathrm{MSW}}, \qquad
+p = P\bigl(F_{df_1, df_2} \ge F\bigr).
+\]</span></p>
+<p>Return a named numeric vector:<br>
+<code>c(F = Fstat, df1 = df_between, df2 = df_within, p_value = pval)</code>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Preview">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Preview
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div>
+<div id="webr-23" class="exercise-cell">
+
+</div>
+<script type="webr-23-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0gcmVhZC5jc3YoXCJzdHVkZW50X3BlcmZvcm1hbmNlLmNzdlwiKVxuXG5zdWIgPC0gc3Vic2V0KGRmLFxuIWlzLm5hKEV4YW1fU2NvcmUpICZcbiFpcy5uYShNb3RpdmF0aW9uX0xldmVsKSlcblxudGFibGUoc3ViJE1vdGl2YXRpb25fTGV2ZWwpXG5cbnRhcHBseShzdWIkRXhhbV9TY29yZSwgc3ViJE1vdGl2YXRpb25fTGV2ZWwsIHN1bW1hcnkpXG5cbnBhcihtZnJvdyA9IGMoMSwgMikpXG5ib3hwbG90KEV4YW1fU2NvcmUgfiBNb3RpdmF0aW9uX0xldmVsLCBkYXRhID0gc3ViLFxubWFpbiA9IFwiRXhhbSBzY29yZSBieSBtb3RpdmF0aW9uXCIsXG54bGFiID0gXCJNb3RpdmF0aW9uIGxldmVsXCIsIHlsYWIgPSBcIkV4YW0gc2NvcmVcIilcbmhpc3Qoc3ViJEV4YW1fU2NvcmUsXG5tYWluID0gXCJIaXN0b2dyYW0gb2YgZXhhbSBzY29yZXNcIixcbnhsYWIgPSBcIkV4YW0gc2NvcmVcIilcbnBhcihtZnJvdyA9IGMoMSwgMSkpIn0=
+</script>
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div>
+<div id="webr-24" class="exercise-cell">
+
+</div>
+<script type="webr-24-contents">
+eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxNV9zdHVkX2Fub3ZhX21hbnVhbCIsImV4ZXJjaXNlLmxpbmVzIjoxOH0sImNvZGUiOiJcblxuZGYgPC0gcmVhZC5jc3YoXCJzdHVkZW50X3BlcmZvcm1hbmNlLmNzdlwiKVxuXG5zdWIgPC0gc3Vic2V0KGRmLFxuIWlzLm5hKEV4YW1fU2NvcmUpICZcbiFpcy5uYShNb3RpdmF0aW9uX0xldmVsKSlcblxuc3ViJG1vdCA8LSBmYWN0b3Ioc3ViJE1vdGl2YXRpb25fTGV2ZWwpXG5cbnkgPC0gc3ViJEV4YW1fU2NvcmVcbmcgPC0gc3ViJG1vdFxuXG5ncm91cF9tZWFucyA8LSB0YXBwbHkoeSwgZywgX19fKVxuZ3JvdXBfbnMgICAgPC0gdGFwcGx5KHksIGcsIF9fXylcblxub3ZlcmFsbF9tZWFuIDwtIF9fXyh5KVxuXG5TU0IgPC0gc3VtKGdyb3VwX25zICogKGdyb3VwX21lYW5zIC0gb3ZlcmFsbF9tZWFuKV4yKVxuXG5TU1cgPC0gc3VtKHRhcHBseSh5LCBnLCBmdW5jdGlvbih4KSBzdW0oKHggLSBfX18oeCkpXjIpKSlcblxuayAgPC0gbGVuZ3RoKGdyb3VwX21lYW5zKVxuTiAgPC0gbGVuZ3RoKHkpXG5cbmRmX2JldHdlZW4gPC0gX19fXG5kZl93aXRoaW4gIDwtIF9fX1xuXG5NU0IgPC0gX19fXG5NU1cgPC0gX19fXG5cbkZzdGF0IDwtIF9fXyAvIF9fX1xucHZhbCAgPC0gcGYoX19fLCBkZl9iZXR3ZWVuLCBkZl93aXRoaW4sIGxvd2VyLnRhaWwgPSBGQUxTRSlcblxuYyhGID0gRnN0YXQsIGRmMSA9IGRmX2JldHdlZW4sIGRmMiA9IGRmX3dpdGhpbiwgcF92YWx1ZSA9IHB2YWwpIn0=
+</script>
+</div>
+</div>
+<div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="q5_stud_anova_manual">
+<p>Same pattern as Q1: use mean for group and overall means. df_between = k - 1, df_within = N - k, MSB = SSB/df_between, MSW = SSW/df_within.</p>
+</div>
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q5_stud_anova_manual">
+<div class="cell" data-exercise="q5_stud_anova_manual" data-solution="true">
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q5_stud_anova_manual">
+<code id="interpolate-26" class="solution-code d-none">
+df &lt;- read.csv("student_performance.csv")
+
+sub &lt;- subset(df,
+!is.na(Exam_Score) &amp;
+!is.na(Motivation_Level))
+
+sub$mot &lt;- factor(sub$Motivation_Level)
+
+y &lt;- sub$Exam_Score
+g &lt;- sub$mot
+
+group_means &lt;- tapply(y, g, mean)
+group_ns    &lt;- tapply(y, g, length)
+
+overall_mean &lt;- mean(y)
+
+SSB &lt;- sum(group_ns * (group_means - overall_mean)^2)
+
+SSW &lt;- sum(tapply(y, g, function(x) sum((x - mean(x))^2)))
+
+k  &lt;- length(group_means)
+N  &lt;- length(y)
+
+df_between &lt;- k - 1
+df_within  &lt;- N - k
+
+MSB &lt;- SSB / df_between
+MSW &lt;- SSW / df_within
+
+Fstat &lt;- MSB / MSW
+pval  &lt;- pf(Fstat, df_between, df_within, lower.tail = FALSE)
+
+c(F = Fstat, df1 = df_between, df2 = df_within, p_value = pval)</code>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-27-1"><a href="#interpolate-27-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-27-2"><a href="#interpolate-27-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"student_performance.csv"</span>)</span>
+<span id="interpolate-27-3"><a href="#interpolate-27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-27-4"><a href="#interpolate-27-4" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">&lt;-</span> <span class="fu">subset</span>(df,</span>
+<span id="interpolate-27-5"><a href="#interpolate-27-5" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="fu">is.na</span>(Exam_Score) <span class="sc">&amp;</span></span>
+<span id="interpolate-27-6"><a href="#interpolate-27-6" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="fu">is.na</span>(Motivation_Level))</span>
+<span id="interpolate-27-7"><a href="#interpolate-27-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-27-8"><a href="#interpolate-27-8" aria-hidden="true" tabindex="-1"></a>sub<span class="sc">$</span>mot <span class="ot">&lt;-</span> <span class="fu">factor</span>(sub<span class="sc">$</span>Motivation_Level)</span>
+<span id="interpolate-27-9"><a href="#interpolate-27-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-27-10"><a href="#interpolate-27-10" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> sub<span class="sc">$</span>Exam_Score</span>
+<span id="interpolate-27-11"><a href="#interpolate-27-11" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> sub<span class="sc">$</span>mot</span>
+<span id="interpolate-27-12"><a href="#interpolate-27-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-27-13"><a href="#interpolate-27-13" aria-hidden="true" tabindex="-1"></a>group_means <span class="ot">&lt;-</span> <span class="fu">tapply</span>(y, g, mean)</span>
+<span id="interpolate-27-14"><a href="#interpolate-27-14" aria-hidden="true" tabindex="-1"></a>group_ns    <span class="ot">&lt;-</span> <span class="fu">tapply</span>(y, g, length)</span>
+<span id="interpolate-27-15"><a href="#interpolate-27-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-27-16"><a href="#interpolate-27-16" aria-hidden="true" tabindex="-1"></a>overall_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(y)</span>
+<span id="interpolate-27-17"><a href="#interpolate-27-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-27-18"><a href="#interpolate-27-18" aria-hidden="true" tabindex="-1"></a>SSB <span class="ot">&lt;-</span> <span class="fu">sum</span>(group_ns <span class="sc">*</span> (group_means <span class="sc">-</span> overall_mean)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="interpolate-27-19"><a href="#interpolate-27-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-27-20"><a href="#interpolate-27-20" aria-hidden="true" tabindex="-1"></a>SSW <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">tapply</span>(y, g, <span class="cf">function</span>(x) <span class="fu">sum</span>((x <span class="sc">-</span> <span class="fu">mean</span>(x))<span class="sc">^</span><span class="dv">2</span>)))</span>
+<span id="interpolate-27-21"><a href="#interpolate-27-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-27-22"><a href="#interpolate-27-22" aria-hidden="true" tabindex="-1"></a>k  <span class="ot">&lt;-</span> <span class="fu">length</span>(group_means)</span>
+<span id="interpolate-27-23"><a href="#interpolate-27-23" aria-hidden="true" tabindex="-1"></a>N  <span class="ot">&lt;-</span> <span class="fu">length</span>(y)</span>
+<span id="interpolate-27-24"><a href="#interpolate-27-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-27-25"><a href="#interpolate-27-25" aria-hidden="true" tabindex="-1"></a>df_between <span class="ot">&lt;-</span> k <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="interpolate-27-26"><a href="#interpolate-27-26" aria-hidden="true" tabindex="-1"></a>df_within  <span class="ot">&lt;-</span> N <span class="sc">-</span> k</span>
+<span id="interpolate-27-27"><a href="#interpolate-27-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-27-28"><a href="#interpolate-27-28" aria-hidden="true" tabindex="-1"></a>MSB <span class="ot">&lt;-</span> SSB <span class="sc">/</span> df_between</span>
+<span id="interpolate-27-29"><a href="#interpolate-27-29" aria-hidden="true" tabindex="-1"></a>MSW <span class="ot">&lt;-</span> SSW <span class="sc">/</span> df_within</span>
+<span id="interpolate-27-30"><a href="#interpolate-27-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-27-31"><a href="#interpolate-27-31" aria-hidden="true" tabindex="-1"></a>Fstat <span class="ot">&lt;-</span> MSB <span class="sc">/</span> MSW</span>
+<span id="interpolate-27-32"><a href="#interpolate-27-32" aria-hidden="true" tabindex="-1"></a>pval  <span class="ot">&lt;-</span> <span class="fu">pf</span>(Fstat, df_between, df_within, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="interpolate-27-33"><a href="#interpolate-27-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-27-34"><a href="#interpolate-27-34" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">F =</span> Fstat, <span class="at">df1 =</span> df_between, <span class="at">df2 =</span> df_within, <span class="at">p_value =</span> pval)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<div class="cell" data-exercise="q5_stud_anova_manual" data-check="true">
+<script type="exercise-check-q5_stud_anova_manual-contents">
+eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE1X3N0dWRfYW5vdmFfbWFudWFsIn0sImNvZGUiOiJcbmdyYWRldGhpczo6Z3JhZGVfdGhpcyh7XG5kZiA8LSB0cnlDYXRjaChyZWFkLmNzdihcInN0dWRlbnRfcGVyZm9ybWFuY2UuY3N2XCIpLCBlcnJvciA9IGZ1bmN0aW9uKGUpIE5VTEwpXG5pZiAoaXMubnVsbChkZikpIGZhaWwoXCJDb3VsZG4ndCByZWFkICdzdHVkZW50X3BlcmZvcm1hbmNlLmNzdicuXCIpXG5cbnN1YiA8LSBzdWJzZXQoZGYsXG4haXMubmEoRXhhbV9TY29yZSkgJlxuIWlzLm5hKE1vdGl2YXRpb25fTGV2ZWwpKVxuXG5zdWIkbW90IDwtIGZhY3RvcihzdWIkTW90aXZhdGlvbl9MZXZlbClcblxueSA8LSBzdWIkRXhhbV9TY29yZVxuZyA8LSBzdWIkbW90XG5cbmdyb3VwX21lYW5zIDwtIHRhcHBseSh5LCBnLCBtZWFuKVxuZ3JvdXBfbnMgICAgPC0gdGFwcGx5KHksIGcsIGxlbmd0aClcblxub3ZlcmFsbF9tZWFuIDwtIG1lYW4oeSlcblxuU1NCIDwtIHN1bShncm91cF9ucyAqIChncm91cF9tZWFucyAtIG92ZXJhbGxfbWVhbileMilcblNTVyA8LSBzdW0odGFwcGx5KHksIGcsIGZ1bmN0aW9uKHgpIHN1bSgoeCAtIG1lYW4oeCkpXjIpKSlcblxuayAgPC0gbGVuZ3RoKGdyb3VwX21lYW5zKVxuTiAgPC0gbGVuZ3RoKHkpXG5cbmRmX2JldHdlZW4gPC0gayAtIDFcbmRmX3dpdGhpbiAgPC0gTiAtIGtcblxuTVNCIDwtIFNTQiAvIGRmX2JldHdlZW5cbk1TVyA8LSBNU1cgPC0gU1NXIC8gZGZfd2l0aGluXG5cbkZzdGF0IDwtIE1TQiAvIE1TV1xucHZhbCAgPC0gcGYoRnN0YXQsIGRmX2JldHdlZW4sIGRmX3dpdGhpbiwgbG93ZXIudGFpbCA9IEZBTFNFKVxuXG5leHAgPC0gYyhGID0gRnN0YXQsIGRmMSA9IGRmX2JldHdlZW4sIGRmMiA9IGRmX3dpdGhpbiwgcF92YWx1ZSA9IHB2YWwpXG5cbnJlcyA8LSAucmVzdWx0XG5pZiAoIWlzLm51bWVyaWMocmVzKSB8fCBsZW5ndGgocmVzKSAhPSA0TCB8fCBhbnkoIWlzLmZpbml0ZShyZXMpKSkge1xuZmFpbChcIlJldHVybiBjKEYgPSAuLi4sIGRmMSA9IC4uLiwgZGYyID0gLi4uLCBwX3ZhbHVlID0gLi4uKS5cIilcbn0gZWxzZSBpZiAobWF4KGFicyhyZXMgLSBleHApKSA8IDFlLTYpIHtcbnBhc3MoXCJDb3JyZWN0IG1hbnVhbCBvbmUtd2F5IEFOT1ZBIGZvciBleGFtIHNjb3JlIGJ5IG1vdGl2YXRpb24uXCIpXG59IGVsc2Uge1xuZmFpbChcIlJlLWNoZWNrIHlvdXIgU1NCL1NTVywgZGVncmVlcyBvZiBmcmVlZG9tLCBhbmQgRiB0byBwLXZhbHVlIGNvbXB1dGF0aW9uLlwiKVxufVxufSkifQ==
+</script>
+</div>
+</section>
+<section id="q6-one-way-anova-built-in-exam-score-by-motivation-level" class="level2">
+<h2 class="anchored" data-anchor-id="q6-one-way-anova-built-in-exam-score-by-motivation-level">Q6 — One-way ANOVA (built-in): Exam score by motivation level</h2>
+<p>Now use aov() to test for differences in mean exam score across motivation levels.</p>
+<p>Return c(F = Fstat, df1 = df_mot, df2 = df_resid, p_value = pval).</p>
+<div class="cell" data-exercise="q6_stud_anova_builtin" data-exercise.lines="10">
+<div>
+<div id="webr-29" class="exercise-cell">
+
+</div>
+<script type="webr-29-contents">
+eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxNl9zdHVkX2Fub3ZhX2J1aWx0aW4iLCJleGVyY2lzZS5saW5lcyI6MTB9LCJjb2RlIjoiXG5kZiA8LSByZWFkLmNzdihcInN0dWRlbnRfcGVyZm9ybWFuY2UuY3N2XCIpXG5cbnN1YiA8LSBzdWJzZXQoZGYsXG4haXMubmEoRXhhbV9TY29yZSkgJlxuIWlzLm5hKE1vdGl2YXRpb25fTGV2ZWwpKVxuXG5zdWIkbW90IDwtIGZhY3RvcihzdWIkTW90aXZhdGlvbl9MZXZlbClcblxuZml0IDwtIGFvdijvvL/vvL8gfiDvvL/vvL8sIGRhdGEgPSBzdWIpXG5cbnRhYiA8LSBzdW1tYXJ5KGZpdClbWzFdXVxuXG5kZl9tb3QgICA8LSB0YWJbXCLvvL/vvL9cIiwgXCJEZlwiXVxuZGZfcmVzaWQgPC0gdGFiW1wiUmVzaWR1YWxzXCIsIFwiRGZcIl1cbkZzdGF0ICAgIDwtIHRhYltcIu+8v++8v1wiLCBcIkYgdmFsdWVcIl1cbnB2YWwgICAgIDwtIHRhYltcIu+8v++8v1wiLCBcIlByKD5GKVwiXVxuXG5jKEYgPSBGc3RhdCwgZGYxID0gZGZfbW90LCBkZjIgPSBkZl9yZXNpZCwgcF92YWx1ZSA9IHB2YWwpIn0=
+</script>
+</div>
+</div>
+<div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="q6_stud_anova_builtin">
+<p>Use Exam_Score ~ mot, and the row name “mot” in the ANOVA table.</p>
+</div>
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q6_stud_anova_builtin">
+<div class="cell" data-exercise="q6_stud_anova_builtin" data-solution="true">
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q6_stud_anova_builtin">
+<code id="interpolate-31" class="solution-code d-none">
+df &lt;- read.csv("student_performance.csv")
+
+sub &lt;- subset(df,
+!is.na(Exam_Score) &amp;
+!is.na(Motivation_Level))
+
+sub$mot &lt;- factor(sub$Motivation_Level)
+
+fit &lt;- aov(Exam_Score ~ mot, data = sub)
+
+tab &lt;- summary(fit)[[1]]
+
+df_mot   &lt;- tab["mot", "Df"]
+df_resid &lt;- tab["Residuals", "Df"]
+Fstat    &lt;- tab["mot", "F value"]
+pval     &lt;- tab["mot", "Pr(&gt;F)"]
+
+c(F = Fstat, df1 = df_mot, df2 = df_resid, p_value = pval)</code>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-32-1"><a href="#interpolate-32-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-32-2"><a href="#interpolate-32-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"student_performance.csv"</span>)</span>
+<span id="interpolate-32-3"><a href="#interpolate-32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-32-4"><a href="#interpolate-32-4" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">&lt;-</span> <span class="fu">subset</span>(df,</span>
+<span id="interpolate-32-5"><a href="#interpolate-32-5" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="fu">is.na</span>(Exam_Score) <span class="sc">&amp;</span></span>
+<span id="interpolate-32-6"><a href="#interpolate-32-6" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="fu">is.na</span>(Motivation_Level))</span>
+<span id="interpolate-32-7"><a href="#interpolate-32-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-32-8"><a href="#interpolate-32-8" aria-hidden="true" tabindex="-1"></a>sub<span class="sc">$</span>mot <span class="ot">&lt;-</span> <span class="fu">factor</span>(sub<span class="sc">$</span>Motivation_Level)</span>
+<span id="interpolate-32-9"><a href="#interpolate-32-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-32-10"><a href="#interpolate-32-10" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">aov</span>(Exam_Score <span class="sc">~</span> mot, <span class="at">data =</span> sub)</span>
+<span id="interpolate-32-11"><a href="#interpolate-32-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-32-12"><a href="#interpolate-32-12" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span> <span class="fu">summary</span>(fit)[[<span class="dv">1</span>]]</span>
+<span id="interpolate-32-13"><a href="#interpolate-32-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-32-14"><a href="#interpolate-32-14" aria-hidden="true" tabindex="-1"></a>df_mot   <span class="ot">&lt;-</span> tab[<span class="st">"mot"</span>, <span class="st">"Df"</span>]</span>
+<span id="interpolate-32-15"><a href="#interpolate-32-15" aria-hidden="true" tabindex="-1"></a>df_resid <span class="ot">&lt;-</span> tab[<span class="st">"Residuals"</span>, <span class="st">"Df"</span>]</span>
+<span id="interpolate-32-16"><a href="#interpolate-32-16" aria-hidden="true" tabindex="-1"></a>Fstat    <span class="ot">&lt;-</span> tab[<span class="st">"mot"</span>, <span class="st">"F value"</span>]</span>
+<span id="interpolate-32-17"><a href="#interpolate-32-17" aria-hidden="true" tabindex="-1"></a>pval     <span class="ot">&lt;-</span> tab[<span class="st">"mot"</span>, <span class="st">"Pr(&gt;F)"</span>]</span>
+<span id="interpolate-32-18"><a href="#interpolate-32-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-32-19"><a href="#interpolate-32-19" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">F =</span> Fstat, <span class="at">df1 =</span> df_mot, <span class="at">df2 =</span> df_resid, <span class="at">p_value =</span> pval)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<div class="cell" data-exercise="q6_stud_anova_builtin" data-check="true">
+<script type="exercise-check-q6_stud_anova_builtin-contents">
+eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE2X3N0dWRfYW5vdmFfYnVpbHRpbiJ9LCJjb2RlIjoiXG5ncmFkZXRoaXM6OmdyYWRlX3RoaXMoe1xuZGYgPC0gdHJ5Q2F0Y2gocmVhZC5jc3YoXCJzdHVkZW50X3BlcmZvcm1hbmNlLmNzdlwiKSwgZXJyb3IgPSBmdW5jdGlvbihlKSBOVUxMKVxuaWYgKGlzLm51bGwoZGYpKSBmYWlsKFwiQ291bGRuJ3QgcmVhZCAnc3R1ZGVudF9wZXJmb3JtYW5jZS5jc3YnLlwiKVxuXG5zdWIgPC0gc3Vic2V0KGRmLFxuIWlzLm5hKEV4YW1fU2NvcmUpICZcbiFpcy5uYShNb3RpdmF0aW9uX0xldmVsKSlcblxuc3ViJG1vdCA8LSBmYWN0b3Ioc3ViJE1vdGl2YXRpb25fTGV2ZWwpXG5cbmZpdCA8LSBhb3YoRXhhbV9TY29yZSB+IG1vdCwgZGF0YSA9IHN1YilcbnRhYiA8LSBzdW1tYXJ5KGZpdClbWzFdXVxuXG5kZl9tb3QgICA8LSB0YWJbXCJtb3RcIiwgXCJEZlwiXVxuZGZfcmVzaWQgPC0gdGFiW1wiUmVzaWR1YWxzXCIsIFwiRGZcIl1cbkZzdGF0ICAgIDwtIHRhYltcIm1vdFwiLCBcIkYgdmFsdWVcIl1cbnB2YWwgICAgIDwtIHRhYltcIm1vdFwiLCBcIlByKD5GKVwiXVxuXG5leHAgPC0gYyhGID0gRnN0YXQsIGRmMSA9IGRmX21vdCwgZGYyID0gZGZfcmVzaWQsIHBfdmFsdWUgPSBwdmFsKVxuXG5yZXMgPC0gLnJlc3VsdFxuaWYgKCFpcy5udW1lcmljKHJlcykgfHwgbGVuZ3RoKHJlcykgIT0gNEwgfHwgYW55KCFpcy5maW5pdGUocmVzKSkpIHtcbmZhaWwoXCJSZXR1cm4gYyhGID0gLi4uLCBkZjEgPSAuLi4sIGRmMiA9IC4uLiwgcF92YWx1ZSA9IC4uLikuXCIpXG59IGVsc2UgaWYgKG1heChhYnMocmVzIC0gZXhwKSkgPCAxZS02KSB7XG5wYXNzKFwiQ29ycmVjdCBBTk9WQSB2aWEgYW92KCkgZm9yIGV4YW0gc2NvcmUgYnkgbW90aXZhdGlvbi5cIilcbn0gZWxzZSB7XG5mYWlsKFwiQ2hlY2sgeW91ciBhb3YoKSBtb2RlbCBmb3JtdWxhIGFuZCBleHRyYWN0aW9uIGZyb20gc3VtbWFyeSgpLlwiKVxufVxufSkifQ==
+</script>
+</div>
+</section>
+<section id="q7-fishers-lsd-exam-score-pairwise-comparisons-by-motivation" class="level2">
+<h2 class="anchored" data-anchor-id="q7-fishers-lsd-exam-score-pairwise-comparisons-by-motivation">Q7 — Fisher’s LSD: Exam score pairwise comparisons by motivation</h2>
+<p>Using the same subset as Q5–Q6, compute unadjusted pairwise t-tests on Exam_Score across motivation levels (Fisher’s LSD).</p>
+<p>Return the matrix of p-values.</p>
+<div class="cell" data-exercise="q7_stud_lsd" data-exercise.lines="8">
+<div>
+<div id="webr-34" class="exercise-cell">
+
+</div>
+<script type="webr-34-contents">
+eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxN19zdHVkX2xzZCIsImV4ZXJjaXNlLmxpbmVzIjo4fSwiY29kZSI6IlxuZGYgPC0gcmVhZC5jc3YoXCJzdHVkZW50X3BlcmZvcm1hbmNlLmNzdlwiKVxuXG5zdWIgPC0gc3Vic2V0KGRmLFxuIWlzLm5hKEV4YW1fU2NvcmUpICZcbiFpcy5uYShNb3RpdmF0aW9uX0xldmVsKSlcblxuc3ViJG1vdCA8LSBmYWN0b3Ioc3ViJE1vdGl2YXRpb25fTGV2ZWwpXG5cbm91dCA8LSBwYWlyd2lzZS50LnRlc3Qo77y/77y/LCDvvL/vvL8sXG5wLmFkanVzdC5tZXRob2QgPSBcIu+8v++8v1wiKVxuXG5vdXQkcC52YWx1ZSJ9
+</script>
+</div>
+</div>
+<div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="q7_stud_lsd">
+<p>Use sub<span class="math inline">\(Exam_Score, sub\)</span>mot, and “none” as the adjustment method.</p>
+</div>
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q7_stud_lsd">
+<div class="cell" data-exercise="q7_stud_lsd" data-solution="true">
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q7_stud_lsd">
+<code id="interpolate-36" class="solution-code d-none">
+df &lt;- read.csv("student_performance.csv")
+
+sub &lt;- subset(df,
+!is.na(Exam_Score) &amp;
+!is.na(Motivation_Level))
+
+sub$mot &lt;- factor(sub$Motivation_Level)
+
+out &lt;- pairwise.t.test(sub$Exam_Score,
+sub$mot,
+p.adjust.method = "none")
+
+out$p.value</code>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-37-1"><a href="#interpolate-37-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-37-2"><a href="#interpolate-37-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"student_performance.csv"</span>)</span>
+<span id="interpolate-37-3"><a href="#interpolate-37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-37-4"><a href="#interpolate-37-4" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">&lt;-</span> <span class="fu">subset</span>(df,</span>
+<span id="interpolate-37-5"><a href="#interpolate-37-5" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="fu">is.na</span>(Exam_Score) <span class="sc">&amp;</span></span>
+<span id="interpolate-37-6"><a href="#interpolate-37-6" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="fu">is.na</span>(Motivation_Level))</span>
+<span id="interpolate-37-7"><a href="#interpolate-37-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-37-8"><a href="#interpolate-37-8" aria-hidden="true" tabindex="-1"></a>sub<span class="sc">$</span>mot <span class="ot">&lt;-</span> <span class="fu">factor</span>(sub<span class="sc">$</span>Motivation_Level)</span>
+<span id="interpolate-37-9"><a href="#interpolate-37-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-37-10"><a href="#interpolate-37-10" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">pairwise.t.test</span>(sub<span class="sc">$</span>Exam_Score,</span>
+<span id="interpolate-37-11"><a href="#interpolate-37-11" aria-hidden="true" tabindex="-1"></a>sub<span class="sc">$</span>mot,</span>
+<span id="interpolate-37-12"><a href="#interpolate-37-12" aria-hidden="true" tabindex="-1"></a><span class="at">p.adjust.method =</span> <span class="st">"none"</span>)</span>
+<span id="interpolate-37-13"><a href="#interpolate-37-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-37-14"><a href="#interpolate-37-14" aria-hidden="true" tabindex="-1"></a>out<span class="sc">$</span>p.value</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<div class="cell" data-exercise="q7_stud_lsd" data-check="true">
+<script type="exercise-check-q7_stud_lsd-contents">
+eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE3X3N0dWRfbHNkIn0sImNvZGUiOiJcbmdyYWRldGhpczo6Z3JhZGVfdGhpcyh7XG5kZiA8LSB0cnlDYXRjaChyZWFkLmNzdihcInN0dWRlbnRfcGVyZm9ybWFuY2UuY3N2XCIpLCBlcnJvciA9IGZ1bmN0aW9uKGUpIE5VTEwpXG5pZiAoaXMubnVsbChkZikpIGZhaWwoXCJDb3VsZG4ndCByZWFkICdzdHVkZW50X3BlcmZvcm1hbmNlLmNzdicuXCIpXG5cbnN1YiA8LSBzdWJzZXQoZGYsXG4haXMubmEoRXhhbV9TY29yZSkgJlxuIWlzLm5hKE1vdGl2YXRpb25fTGV2ZWwpKVxuc3ViJG1vdCA8LSBmYWN0b3Ioc3ViJE1vdGl2YXRpb25fTGV2ZWwpXG5cbmV4cCA8LSBwYWlyd2lzZS50LnRlc3Qoc3ViJEV4YW1fU2NvcmUsXG5zdWIkbW90LFxucC5hZGp1c3QubWV0aG9kID0gXCJub25lXCIpJHAudmFsdWVcblxucmVzIDwtIC5yZXN1bHRcbmlmICghaXMubWF0cml4KHJlcykgfHwgYW55KCFpcy5maW5pdGUocmVzKSkpIHtcbmZhaWwoXCJSZXR1cm4gdGhlIHAtdmFsdWUgbWF0cml4IGZyb20gcGFpcndpc2UudC50ZXN0KC4uLikuXCIpXG59IGVsc2UgaWYgKGFsbChkaW0ocmVzKSA9PSBkaW0oZXhwKSkgJiZcbm1heChhYnMocmVzIC0gZXhwKSkgPCAxZS04KSB7XG5wYXNzKFwiQ29ycmVjdCBGaXNoZXIncyBMU0QgcGFpcndpc2UgcC12YWx1ZXMgZm9yIG1vdGl2YXRpb24gbGV2ZWxzLlwiKVxufSBlbHNlIHtcbmZhaWwoXCJDaGVjayB5b3VyIHBhaXJ3aXNlLnQudGVzdCgpIGNhbGwgYW5kIHRoYXQgeW91IHVzZWQgcC5hZGp1c3QubWV0aG9kID0gJ25vbmUnLlwiKVxufVxufSkifQ==
+</script>
+</div>
+</section>
+<section id="q8-bonferroni-exam-score-pairwise-comparisons-by-parental-education" class="level2">
+<h2 class="anchored" data-anchor-id="q8-bonferroni-exam-score-pairwise-comparisons-by-parental-education">Q8 — Bonferroni: Exam score pairwise comparisons by parental education</h2>
+<p>Finally, investigate another factor: parental education level (High School, College, Postgraduate).</p>
+<p>Use the student dataset to:</p>
+<p>Subset to rows with non-missing Exam_Score and Parental_Education_Level.</p>
+<p>Treat Parental_Education_Level as a factor with three levels.</p>
+<p>Run pairwise.t.test() on Exam_Score across parental education levels, using Bonferroni adjustment.</p>
+<p>Return the p-value matrix.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Preview">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Preview
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div>
+<div id="webr-39" class="exercise-cell">
+
+</div>
+<script type="webr-39-contents">
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0gcmVhZC5jc3YoXCJzdHVkZW50X3BlcmZvcm1hbmNlLmNzdlwiKVxuc3ViIDwtIHN1YnNldChkZixcbiFpcy5uYShFeGFtX1Njb3JlKSAmXG4haXMubmEoUGFyZW50YWxfRWR1Y2F0aW9uX0xldmVsKSlcblxudGFibGUoc3ViJFBhcmVudGFsX0VkdWNhdGlvbl9MZXZlbClcblxudGFwcGx5KHN1YiRFeGFtX1Njb3JlLCBzdWIkUGFyZW50YWxfRWR1Y2F0aW9uX0xldmVsLCBzdW1tYXJ5KVxuXG5wYXIobWZyb3cgPSBjKDEsIDIpKVxuYm94cGxvdChFeGFtX1Njb3JlIH4gUGFyZW50YWxfRWR1Y2F0aW9uX0xldmVsLCBkYXRhID0gc3ViLFxubWFpbiA9IFwiRXhhbSBzY29yZSBieSBwYXJlbnRhbCBlZHVjYXRpb25cIixcbnhsYWIgPSBcIlBhcmVudGFsIGVkdWNhdGlvblwiLCB5bGFiID0gXCJFeGFtIHNjb3JlXCIpXG5oaXN0KHN1YiRFeGFtX1Njb3JlLFxubWFpbiA9IFwiSGlzdG9ncmFtIG9mIGV4YW0gc2NvcmVzXCIsXG54bGFiID0gXCJFeGFtIHNjb3JlXCIpXG5wYXIobWZyb3cgPSBjKDEsIDEpKSJ9
+</script>
+</div>
+</div>
+<div class="cell" data-exercise="q8_stud_bonf_edu" data-exercise.lines="8">
+<div>
+<div id="webr-40" class="exercise-cell">
+
+</div>
+<script type="webr-40-contents">
+eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxOF9zdHVkX2JvbmZfZWR1IiwiZXhlcmNpc2UubGluZXMiOjh9LCJjb2RlIjoiXG5kZiA8LSByZWFkLmNzdihcInN0dWRlbnRfcGVyZm9ybWFuY2UuY3N2XCIpXG5cbnN1YiA8LSBzdWJzZXQoZGYsXG4haXMubmEoRXhhbV9TY29yZSkgJlxuIWlzLm5hKFBhcmVudGFsX0VkdWNhdGlvbl9MZXZlbCkpXG5cbnN1YiRlZHUgPC0gZmFjdG9yKHN1YiRQYXJlbnRhbF9FZHVjYXRpb25fTGV2ZWwpXG5cbm91dCA8LSBwYWlyd2lzZS50LnRlc3Qo77y/77y/LCDvvL/vvL8sXG5wLmFkanVzdC5tZXRob2QgPSBcIu+8v++8v1wiKVxuXG5vdXQkcC52YWx1ZSJ9
+</script>
+</div>
+</div>
+<div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="q8_stud_bonf_edu">
+<p>Use sub<span class="math inline">\(Exam_Score and sub\)</span>edu with p.adjust.method = “bonferroni”.</p>
+</div>
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q8_stud_bonf_edu">
+<div class="cell" data-exercise="q8_stud_bonf_edu" data-solution="true">
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q8_stud_bonf_edu">
+<code id="interpolate-42" class="solution-code d-none">
+df &lt;- read.csv("student_performance.csv")
+
+sub &lt;- subset(df,
+!is.na(Exam_Score) &amp;
+!is.na(Parental_Education_Level))
+
+sub$edu &lt;- factor(sub$Parental_Education_Level)
+
+out &lt;- pairwise.t.test(sub$Exam_Score,
+sub$edu,
+p.adjust.method = "bonferroni")
+
+out$p.value</code>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-43-1"><a href="#interpolate-43-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-43-2"><a href="#interpolate-43-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"student_performance.csv"</span>)</span>
+<span id="interpolate-43-3"><a href="#interpolate-43-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-43-4"><a href="#interpolate-43-4" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">&lt;-</span> <span class="fu">subset</span>(df,</span>
+<span id="interpolate-43-5"><a href="#interpolate-43-5" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="fu">is.na</span>(Exam_Score) <span class="sc">&amp;</span></span>
+<span id="interpolate-43-6"><a href="#interpolate-43-6" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="fu">is.na</span>(Parental_Education_Level))</span>
+<span id="interpolate-43-7"><a href="#interpolate-43-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-43-8"><a href="#interpolate-43-8" aria-hidden="true" tabindex="-1"></a>sub<span class="sc">$</span>edu <span class="ot">&lt;-</span> <span class="fu">factor</span>(sub<span class="sc">$</span>Parental_Education_Level)</span>
+<span id="interpolate-43-9"><a href="#interpolate-43-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-43-10"><a href="#interpolate-43-10" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">pairwise.t.test</span>(sub<span class="sc">$</span>Exam_Score,</span>
+<span id="interpolate-43-11"><a href="#interpolate-43-11" aria-hidden="true" tabindex="-1"></a>sub<span class="sc">$</span>edu,</span>
+<span id="interpolate-43-12"><a href="#interpolate-43-12" aria-hidden="true" tabindex="-1"></a><span class="at">p.adjust.method =</span> <span class="st">"bonferroni"</span>)</span>
+<span id="interpolate-43-13"><a href="#interpolate-43-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-43-14"><a href="#interpolate-43-14" aria-hidden="true" tabindex="-1"></a>out<span class="sc">$</span>p.value</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="cell" data-exercise="q8_stud_bonf_edu" data-check="true">
+<script type="exercise-check-q8_stud_bonf_edu-contents">
+eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE4X3N0dWRfYm9uZl9lZHUifSwiY29kZSI6IlxuZ3JhZGV0aGlzOjpncmFkZV90aGlzKHtcbmRmIDwtIHRyeUNhdGNoKHJlYWQuY3N2KFwic3R1ZGVudF9wZXJmb3JtYW5jZS5jc3ZcIiksIGVycm9yID0gZnVuY3Rpb24oZSkgTlVMTClcbmlmIChpcy5udWxsKGRmKSkgZmFpbChcIkNvdWxkbid0IHJlYWQgJ3N0dWRlbnRfcGVyZm9ybWFuY2UuY3N2Jy5cIilcblxuc3ViIDwtIHN1YnNldChkZixcbiFpcy5uYShFeGFtX1Njb3JlKSAmXG4haXMubmEoUGFyZW50YWxfRWR1Y2F0aW9uX0xldmVsKSlcblxuc3ViJGVkdSA8LSBmYWN0b3Ioc3ViJFBhcmVudGFsX0VkdWNhdGlvbl9MZXZlbClcblxuZXhwIDwtIHBhaXJ3aXNlLnQudGVzdChzdWIkRXhhbV9TY29yZSxcbnN1YiRlZHUsXG5wLmFkanVzdC5tZXRob2QgPSBcImJvbmZlcnJvbmlcIikkcC52YWx1ZVxuXG5yZXMgPC0gLnJlc3VsdFxuaWYgKCFpcy5tYXRyaXgocmVzKSB8fCBhbnkoIWlzLmZpbml0ZShyZXMpKSkge1xuZmFpbChcIlJldHVybiB0aGUgcC12YWx1ZSBtYXRyaXggZnJvbSBwYWlyd2lzZS50LnRlc3QoLi4uKS5cIilcbn0gZWxzZSBpZiAoYWxsKGRpbShyZXMpID09IGRpbShleHApKSAmJlxubWF4KGFicyhyZXMgLSBleHApKSA8IDFlLTgpIHtcbnBhc3MoXCJDb3JyZWN0IEJvbmZlcnJvbmktYWRqdXN0ZWQgcGFpcndpc2UgcC12YWx1ZXMgYnkgcGFyZW50YWwgZWR1Y2F0aW9uLlwiKVxufSBlbHNlIHtcbmZhaWwoXCJSZS1jaGVjayB0aGUgc3Vic2V0LCB0aGUgZ3JvdXBpbmcgZmFjdG9yLCBhbmQgcC5hZGp1c3QubWV0aG9kID0gJ2JvbmZlcnJvbmknLlwiKVxufVxufSkifQ==
+</script>
+</div>
+
+
+</div>
+</div>
+</div>
+<script type="webr-data">
+eyJvcHRpb25zIjp7ImJhc2VVcmwiOiJodHRwczovL3dlYnIuci13YXNtLm9yZy92MC41LjQvIn0sInBhY2thZ2VzIjp7InBrZ3MiOlsiZXZhbHVhdGUiLCJrbml0ciIsImh0bWx0b29scyJdLCJyZXBvcyI6W119LCJyZW5kZXJfZGYiOiJkZWZhdWx0In0=
+</script>
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3siY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC00MCIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgLy8gV2FpdCBmb3Igb3V0cHV0IHRvIGJlIHdyaXR0ZW4gdG8gdGhlIERPTSwgdGhlbiB0cmlnZ2VyIHdpZGdldCByZW5kZXJpbmdcbiAgYXdhaXQgX3dlYnJfdmFsdWVfNDA7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici00MCIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzQwID0ge1xuICBjb25zdCB7IFdlYlJFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItNDAtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICAvLyBEZWZhdWx0IGV4ZXJjaXNlIGNvbmZpZ3VyYXRpb25cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oXG4gICAge1xuICAgICAgaWQ6IFwid2Vici00MC1jb250ZW50c1wiLFxuICAgICAgZW52aXI6IGBleGVyY2lzZS1lbnYtJHtibG9jay5hdHRyLmV4ZXJjaXNlfWAsXG4gICAgICBlcnJvcjogZmFsc2UsXG4gICAgICBjYXB0aW9uOiAnRXhlcmNpc2UnLFxuICAgIH0sXG4gICAgYmxvY2suYXR0clxuICApO1xuXG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxudmlld29mIF93ZWJyX3ZhbHVlXzQwID0gd2ViUk9qcy5wcm9jZXNzKF93ZWJyX2VkaXRvcl80MCwge30pO1xuX3dlYnJfZmVlZGJhY2tfNDAgPSB7XG4gIGNvbnN0IHsgV2ViUkdyYWRlciB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3QgZW1wdHlGZWVkYmFjayA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2RpdicpO1xuXG4gIGNvbnN0IGdyYWRlciA9IG5ldyBXZWJSR3JhZGVyKF93ZWJyX3ZhbHVlXzQwLmV2YWx1YXRvcik7XG4gIGNvbnN0IGZlZWRiYWNrID0gYXdhaXQgZ3JhZGVyLmdyYWRlRXhlcmNpc2UoKTtcbiAgaWYgKCFmZWVkYmFjaykgcmV0dXJuIGVtcHR5RmVlZGJhY2s7XG4gIHJldHVybiBmZWVkYmFjaztcbn1cbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC0zOSIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgLy8gV2FpdCBmb3Igb3V0cHV0IHRvIGJlIHdyaXR0ZW4gdG8gdGhlIERPTSwgdGhlbiB0cmlnZ2VyIHdpZGdldCByZW5kZXJpbmdcbiAgYXdhaXQgX3dlYnJfdmFsdWVfMzk7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici0zOSIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzM5ID0ge1xuICBjb25zdCB7IFdlYlJFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItMzktY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7IGlkOiBgd2Vici0zOS1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fd2Vicl92YWx1ZV8zOSA9IHdlYlJPanMucHJvY2Vzcyhfd2Vicl9lZGl0b3JfMzksIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC0zNCIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgLy8gV2FpdCBmb3Igb3V0cHV0IHRvIGJlIHdyaXR0ZW4gdG8gdGhlIERPTSwgdGhlbiB0cmlnZ2VyIHdpZGdldCByZW5kZXJpbmdcbiAgYXdhaXQgX3dlYnJfdmFsdWVfMzQ7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici0zNCIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzM0ID0ge1xuICBjb25zdCB7IFdlYlJFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItMzQtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICAvLyBEZWZhdWx0IGV4ZXJjaXNlIGNvbmZpZ3VyYXRpb25cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oXG4gICAge1xuICAgICAgaWQ6IFwid2Vici0zNC1jb250ZW50c1wiLFxuICAgICAgZW52aXI6IGBleGVyY2lzZS1lbnYtJHtibG9jay5hdHRyLmV4ZXJjaXNlfWAsXG4gICAgICBlcnJvcjogZmFsc2UsXG4gICAgICBjYXB0aW9uOiAnRXhlcmNpc2UnLFxuICAgIH0sXG4gICAgYmxvY2suYXR0clxuICApO1xuXG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxudmlld29mIF93ZWJyX3ZhbHVlXzM0ID0gd2ViUk9qcy5wcm9jZXNzKF93ZWJyX2VkaXRvcl8zNCwge30pO1xuX3dlYnJfZmVlZGJhY2tfMzQgPSB7XG4gIGNvbnN0IHsgV2ViUkdyYWRlciB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3QgZW1wdHlGZWVkYmFjayA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2RpdicpO1xuXG4gIGNvbnN0IGdyYWRlciA9IG5ldyBXZWJSR3JhZGVyKF93ZWJyX3ZhbHVlXzM0LmV2YWx1YXRvcik7XG4gIGNvbnN0IGZlZWRiYWNrID0gYXdhaXQgZ3JhZGVyLmdyYWRlRXhlcmNpc2UoKTtcbiAgaWYgKCFmZWVkYmFjaykgcmV0dXJuIGVtcHR5RmVlZGJhY2s7XG4gIHJldHVybiBmZWVkYmFjaztcbn1cbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC0yOSIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgLy8gV2FpdCBmb3Igb3V0cHV0IHRvIGJlIHdyaXR0ZW4gdG8gdGhlIERPTSwgdGhlbiB0cmlnZ2VyIHdpZGdldCByZW5kZXJpbmdcbiAgYXdhaXQgX3dlYnJfdmFsdWVfMjk7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici0yOSIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzI5ID0ge1xuICBjb25zdCB7IFdlYlJFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItMjktY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICAvLyBEZWZhdWx0IGV4ZXJjaXNlIGNvbmZpZ3VyYXRpb25cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oXG4gICAge1xuICAgICAgaWQ6IFwid2Vici0yOS1jb250ZW50c1wiLFxuICAgICAgZW52aXI6IGBleGVyY2lzZS1lbnYtJHtibG9jay5hdHRyLmV4ZXJjaXNlfWAsXG4gICAgICBlcnJvcjogZmFsc2UsXG4gICAgICBjYXB0aW9uOiAnRXhlcmNpc2UnLFxuICAgIH0sXG4gICAgYmxvY2suYXR0clxuICApO1xuXG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxudmlld29mIF93ZWJyX3ZhbHVlXzI5ID0gd2ViUk9qcy5wcm9jZXNzKF93ZWJyX2VkaXRvcl8yOSwge30pO1xuX3dlYnJfZmVlZGJhY2tfMjkgPSB7XG4gIGNvbnN0IHsgV2ViUkdyYWRlciB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3QgZW1wdHlGZWVkYmFjayA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2RpdicpO1xuXG4gIGNvbnN0IGdyYWRlciA9IG5ldyBXZWJSR3JhZGVyKF93ZWJyX3ZhbHVlXzI5LmV2YWx1YXRvcik7XG4gIGNvbnN0IGZlZWRiYWNrID0gYXdhaXQgZ3JhZGVyLmdyYWRlRXhlcmNpc2UoKTtcbiAgaWYgKCFmZWVkYmFjaykgcmV0dXJuIGVtcHR5RmVlZGJhY2s7XG4gIHJldHVybiBmZWVkYmFjaztcbn1cbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC0yNCIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgLy8gV2FpdCBmb3Igb3V0cHV0IHRvIGJlIHdyaXR0ZW4gdG8gdGhlIERPTSwgdGhlbiB0cmlnZ2VyIHdpZGdldCByZW5kZXJpbmdcbiAgYXdhaXQgX3dlYnJfdmFsdWVfMjQ7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici0yNCIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzI0ID0ge1xuICBjb25zdCB7IFdlYlJFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItMjQtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICAvLyBEZWZhdWx0IGV4ZXJjaXNlIGNvbmZpZ3VyYXRpb25cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oXG4gICAge1xuICAgICAgaWQ6IFwid2Vici0yNC1jb250ZW50c1wiLFxuICAgICAgZW52aXI6IGBleGVyY2lzZS1lbnYtJHtibG9jay5hdHRyLmV4ZXJjaXNlfWAsXG4gICAgICBlcnJvcjogZmFsc2UsXG4gICAgICBjYXB0aW9uOiAnRXhlcmNpc2UnLFxuICAgIH0sXG4gICAgYmxvY2suYXR0clxuICApO1xuXG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxudmlld29mIF93ZWJyX3ZhbHVlXzI0ID0gd2ViUk9qcy5wcm9jZXNzKF93ZWJyX2VkaXRvcl8yNCwge30pO1xuX3dlYnJfZmVlZGJhY2tfMjQgPSB7XG4gIGNvbnN0IHsgV2ViUkdyYWRlciB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3QgZW1wdHlGZWVkYmFjayA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2RpdicpO1xuXG4gIGNvbnN0IGdyYWRlciA9IG5ldyBXZWJSR3JhZGVyKF93ZWJyX3ZhbHVlXzI0LmV2YWx1YXRvcik7XG4gIGNvbnN0IGZlZWRiYWNrID0gYXdhaXQgZ3JhZGVyLmdyYWRlRXhlcmNpc2UoKTtcbiAgaWYgKCFmZWVkYmFjaykgcmV0dXJuIGVtcHR5RmVlZGJhY2s7XG4gIHJldHVybiBmZWVkYmFjaztcbn1cbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC0yMyIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgLy8gV2FpdCBmb3Igb3V0cHV0IHRvIGJlIHdyaXR0ZW4gdG8gdGhlIERPTSwgdGhlbiB0cmlnZ2VyIHdpZGdldCByZW5kZXJpbmdcbiAgYXdhaXQgX3dlYnJfdmFsdWVfMjM7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici0yMyIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzIzID0ge1xuICBjb25zdCB7IFdlYlJFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItMjMtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICBjb25zdCBvcHRpb25zID0gT2JqZWN0LmFzc2lnbih7IGlkOiBgd2Vici0yMy1jb250ZW50c2AgfSwgYmxvY2suYXR0cik7XG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG5cbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG5fd2Vicl92YWx1ZV8yMyA9IHdlYlJPanMucHJvY2Vzcyhfd2Vicl9lZGl0b3JfMjMsIHt9KTtcbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC0xOCIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgLy8gV2FpdCBmb3Igb3V0cHV0IHRvIGJlIHdyaXR0ZW4gdG8gdGhlIERPTSwgdGhlbiB0cmlnZ2VyIHdpZGdldCByZW5kZXJpbmdcbiAgYXdhaXQgX3dlYnJfdmFsdWVfMTg7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici0xOCIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzE4ID0ge1xuICBjb25zdCB7IFdlYlJFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItMTgtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICAvLyBEZWZhdWx0IGV4ZXJjaXNlIGNvbmZpZ3VyYXRpb25cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oXG4gICAge1xuICAgICAgaWQ6IFwid2Vici0xOC1jb250ZW50c1wiLFxuICAgICAgZW52aXI6IGBleGVyY2lzZS1lbnYtJHtibG9jay5hdHRyLmV4ZXJjaXNlfWAsXG4gICAgICBlcnJvcjogZmFsc2UsXG4gICAgICBjYXB0aW9uOiAnRXhlcmNpc2UnLFxuICAgIH0sXG4gICAgYmxvY2suYXR0clxuICApO1xuXG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxudmlld29mIF93ZWJyX3ZhbHVlXzE4ID0gd2ViUk9qcy5wcm9jZXNzKF93ZWJyX2VkaXRvcl8xOCwge30pO1xuX3dlYnJfZmVlZGJhY2tfMTggPSB7XG4gIGNvbnN0IHsgV2ViUkdyYWRlciB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3QgZW1wdHlGZWVkYmFjayA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2RpdicpO1xuXG4gIGNvbnN0IGdyYWRlciA9IG5ldyBXZWJSR3JhZGVyKF93ZWJyX3ZhbHVlXzE4LmV2YWx1YXRvcik7XG4gIGNvbnN0IGZlZWRiYWNrID0gYXdhaXQgZ3JhZGVyLmdyYWRlRXhlcmNpc2UoKTtcbiAgaWYgKCFmZWVkYmFjaykgcmV0dXJuIGVtcHR5RmVlZGJhY2s7XG4gIHJldHVybiBmZWVkYmFjaztcbn1cbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC0xMyIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgLy8gV2FpdCBmb3Igb3V0cHV0IHRvIGJlIHdyaXR0ZW4gdG8gdGhlIERPTSwgdGhlbiB0cmlnZ2VyIHdpZGdldCByZW5kZXJpbmdcbiAgYXdhaXQgX3dlYnJfdmFsdWVfMTM7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici0xMyIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzEzID0ge1xuICBjb25zdCB7IFdlYlJFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItMTMtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICAvLyBEZWZhdWx0IGV4ZXJjaXNlIGNvbmZpZ3VyYXRpb25cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oXG4gICAge1xuICAgICAgaWQ6IFwid2Vici0xMy1jb250ZW50c1wiLFxuICAgICAgZW52aXI6IGBleGVyY2lzZS1lbnYtJHtibG9jay5hdHRyLmV4ZXJjaXNlfWAsXG4gICAgICBlcnJvcjogZmFsc2UsXG4gICAgICBjYXB0aW9uOiAnRXhlcmNpc2UnLFxuICAgIH0sXG4gICAgYmxvY2suYXR0clxuICApO1xuXG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxudmlld29mIF93ZWJyX3ZhbHVlXzEzID0gd2ViUk9qcy5wcm9jZXNzKF93ZWJyX2VkaXRvcl8xMywge30pO1xuX3dlYnJfZmVlZGJhY2tfMTMgPSB7XG4gIGNvbnN0IHsgV2ViUkdyYWRlciB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3QgZW1wdHlGZWVkYmFjayA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2RpdicpO1xuXG4gIGNvbnN0IGdyYWRlciA9IG5ldyBXZWJSR3JhZGVyKF93ZWJyX3ZhbHVlXzEzLmV2YWx1YXRvcik7XG4gIGNvbnN0IGZlZWRiYWNrID0gYXdhaXQgZ3JhZGVyLmdyYWRlRXhlcmNpc2UoKTtcbiAgaWYgKCFmZWVkYmFjaykgcmV0dXJuIGVtcHR5RmVlZGJhY2s7XG4gIHJldHVybiBmZWVkYmFjaztcbn1cbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC04IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoie1xuICAvLyBXYWl0IGZvciBvdXRwdXQgdG8gYmUgd3JpdHRlbiB0byB0aGUgRE9NLCB0aGVuIHRyaWdnZXIgd2lkZ2V0IHJlbmRlcmluZ1xuICBhd2FpdCBfd2Vicl92YWx1ZV84O1xuICBpZiAod2luZG93LkhUTUxXaWRnZXRzKSB7XG4gICAgd2luZG93LkhUTUxXaWRnZXRzLnN0YXRpY1JlbmRlcigpO1xuICB9XG4gIGlmICh3aW5kb3cuUGFnZWRUYWJsZURvYykge1xuICAgIHdpbmRvdy5QYWdlZFRhYmxlRG9jLmluaXRBbGwoKTtcbiAgfVxufVxuIn0seyJjZWxsTmFtZSI6IndlYnItOCIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJzb3VyY2UiOiJ2aWV3b2YgX3dlYnJfZWRpdG9yXzggPSB7XG4gIGNvbnN0IHsgV2ViUkV4ZXJjaXNlRWRpdG9yLCBiNjREZWNvZGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG4gIGNvbnN0IHNjcmlwdENvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwid2Vici04LWNvbnRlbnRzXFxcIl1gKS50ZXh0Q29udGVudDtcbiAgY29uc3QgYmxvY2sgPSBKU09OLnBhcnNlKGI2NERlY29kZShzY3JpcHRDb250ZW50KSk7XG5cbiAgLy8gRGVmYXVsdCBleGVyY2lzZSBjb25maWd1cmF0aW9uXG4gIGNvbnN0IG9wdGlvbnMgPSBPYmplY3QuYXNzaWduKFxuICAgIHtcbiAgICAgIGlkOiBcIndlYnItOC1jb250ZW50c1wiLFxuICAgICAgZW52aXI6IGBleGVyY2lzZS1lbnYtJHtibG9jay5hdHRyLmV4ZXJjaXNlfWAsXG4gICAgICBlcnJvcjogZmFsc2UsXG4gICAgICBjYXB0aW9uOiAnRXhlcmNpc2UnLFxuICAgIH0sXG4gICAgYmxvY2suYXR0clxuICApO1xuXG4gIGNvbnN0IGVkaXRvciA9IG5ldyBXZWJSRXhlcmNpc2VFZGl0b3Iod2ViUk9qcy53ZWJSUHJvbWlzZSwgYmxvY2suY29kZSwgb3B0aW9ucyk7XG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxudmlld29mIF93ZWJyX3ZhbHVlXzggPSB3ZWJST2pzLnByb2Nlc3MoX3dlYnJfZWRpdG9yXzgsIHt9KTtcbl93ZWJyX2ZlZWRiYWNrXzggPSB7XG4gIGNvbnN0IHsgV2ViUkdyYWRlciB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3QgZW1wdHlGZWVkYmFjayA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2RpdicpO1xuXG4gIGNvbnN0IGdyYWRlciA9IG5ldyBXZWJSR3JhZGVyKF93ZWJyX3ZhbHVlXzguZXZhbHVhdG9yKTtcbiAgY29uc3QgZmVlZGJhY2sgPSBhd2FpdCBncmFkZXIuZ3JhZGVFeGVyY2lzZSgpO1xuICBpZiAoIWZlZWRiYWNrKSByZXR1cm4gZW1wdHlGZWVkYmFjaztcbiAgcmV0dXJuIGZlZWRiYWNrO1xufVxuIn0seyJjZWxsTmFtZSI6IndlYnItd2lkZ2V0LTMiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJ7XG4gIC8vIFdhaXQgZm9yIG91dHB1dCB0byBiZSB3cml0dGVuIHRvIHRoZSBET00sIHRoZW4gdHJpZ2dlciB3aWRnZXQgcmVuZGVyaW5nXG4gIGF3YWl0IF93ZWJyX3ZhbHVlXzM7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici0zIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6InZpZXdvZiBfd2Vicl9lZGl0b3JfMyA9IHtcbiAgY29uc3QgeyBXZWJSRXhlcmNpc2VFZGl0b3IsIGI2NERlY29kZSB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3Qgc2NyaXB0Q29udGVudCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoYHNjcmlwdFt0eXBlPVxcXCJ3ZWJyLTMtY29udGVudHNcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBibG9jayA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKHNjcmlwdENvbnRlbnQpKTtcblxuICAvLyBEZWZhdWx0IGV4ZXJjaXNlIGNvbmZpZ3VyYXRpb25cbiAgY29uc3Qgb3B0aW9ucyA9IE9iamVjdC5hc3NpZ24oXG4gICAge1xuICAgICAgaWQ6IFwid2Vici0zLWNvbnRlbnRzXCIsXG4gICAgICBlbnZpcjogYGV4ZXJjaXNlLWVudi0ke2Jsb2NrLmF0dHIuZXhlcmNpc2V9YCxcbiAgICAgIGVycm9yOiBmYWxzZSxcbiAgICAgIGNhcHRpb246ICdFeGVyY2lzZScsXG4gICAgfSxcbiAgICBibG9jay5hdHRyXG4gICk7XG5cbiAgY29uc3QgZWRpdG9yID0gbmV3IFdlYlJFeGVyY2lzZUVkaXRvcih3ZWJST2pzLndlYlJQcm9taXNlLCBibG9jay5jb2RlLCBvcHRpb25zKTtcbiAgcmV0dXJuIGVkaXRvci5jb250YWluZXI7XG59XG52aWV3b2YgX3dlYnJfdmFsdWVfMyA9IHdlYlJPanMucHJvY2Vzcyhfd2Vicl9lZGl0b3JfMywge30pO1xuX3dlYnJfZmVlZGJhY2tfMyA9IHtcbiAgY29uc3QgeyBXZWJSR3JhZGVyIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBlbXB0eUZlZWRiYWNrID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgnZGl2Jyk7XG5cbiAgY29uc3QgZ3JhZGVyID0gbmV3IFdlYlJHcmFkZXIoX3dlYnJfdmFsdWVfMy5ldmFsdWF0b3IpO1xuICBjb25zdCBmZWVkYmFjayA9IGF3YWl0IGdyYWRlci5ncmFkZUV4ZXJjaXNlKCk7XG4gIGlmICghZmVlZGJhY2spIHJldHVybiBlbXB0eUZlZWRiYWNrO1xuICByZXR1cm4gZmVlZGJhY2s7XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici13aWRnZXQtMiIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgLy8gV2FpdCBmb3Igb3V0cHV0IHRvIGJlIHdyaXR0ZW4gdG8gdGhlIERPTSwgdGhlbiB0cmlnZ2VyIHdpZGdldCByZW5kZXJpbmdcbiAgYXdhaXQgX3dlYnJfdmFsdWVfMjtcbiAgaWYgKHdpbmRvdy5IVE1MV2lkZ2V0cykge1xuICAgIHdpbmRvdy5IVE1MV2lkZ2V0cy5zdGF0aWNSZW5kZXIoKTtcbiAgfVxuICBpZiAod2luZG93LlBhZ2VkVGFibGVEb2MpIHtcbiAgICB3aW5kb3cuUGFnZWRUYWJsZURvYy5pbml0QWxsKCk7XG4gIH1cbn1cbiJ9LHsiY2VsbE5hbWUiOiJ3ZWJyLTIiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0Iiwic291cmNlIjoidmlld29mIF93ZWJyX2VkaXRvcl8yID0ge1xuICBjb25zdCB7IFdlYlJFeGVyY2lzZUVkaXRvciwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItMi1jb250ZW50c1xcXCJdYCkudGV4dENvbnRlbnQ7XG4gIGNvbnN0IGJsb2NrID0gSlNPTi5wYXJzZShiNjREZWNvZGUoc2NyaXB0Q29udGVudCkpO1xuXG4gIGNvbnN0IG9wdGlvbnMgPSBPYmplY3QuYXNzaWduKHsgaWQ6IGB3ZWJyLTItY29udGVudHNgIH0sIGJsb2NrLmF0dHIpO1xuICBjb25zdCBlZGl0b3IgPSBuZXcgV2ViUkV4ZXJjaXNlRWRpdG9yKHdlYlJPanMud2ViUlByb21pc2UsIGJsb2NrLmNvZGUsIG9wdGlvbnMpO1xuXG4gIHJldHVybiBlZGl0b3IuY29udGFpbmVyO1xufVxuX3dlYnJfdmFsdWVfMiA9IHdlYlJPanMucHJvY2Vzcyhfd2Vicl9lZGl0b3JfMiwge30pO1xuIn0seyJjZWxsTmFtZSI6IndlYnItd2lkZ2V0LTEiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJ7XG4gIC8vIFdhaXQgZm9yIG91dHB1dCB0byBiZSB3cml0dGVuIHRvIHRoZSBET00sIHRoZW4gdHJpZ2dlciB3aWRnZXQgcmVuZGVyaW5nXG4gIGF3YWl0IF93ZWJyX3ZhbHVlXzE7XG4gIGlmICh3aW5kb3cuSFRNTFdpZGdldHMpIHtcbiAgICB3aW5kb3cuSFRNTFdpZGdldHMuc3RhdGljUmVuZGVyKCk7XG4gIH1cbiAgaWYgKHdpbmRvdy5QYWdlZFRhYmxlRG9jKSB7XG4gICAgd2luZG93LlBhZ2VkVGFibGVEb2MuaW5pdEFsbCgpO1xuICB9XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici0xIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldCIsInNvdXJjZSI6Il93ZWJyX3ZhbHVlXzEgPSB7XG4gIGNvbnN0IHsgaGlnaGxpZ2h0UiwgYjY0RGVjb2RlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBzY3JpcHRDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItMS1jb250ZW50c1xcXCJdYCkudGV4dENvbnRlbnQ7XG4gIGNvbnN0IGJsb2NrID0gSlNPTi5wYXJzZShiNjREZWNvZGUoc2NyaXB0Q29udGVudCkpO1xuXG4gIC8vIERlZmF1bHQgZXZhbHVhdGlvbiBjb25maWd1cmF0aW9uXG4gIGNvbnN0IG9wdGlvbnMgPSBPYmplY3QuYXNzaWduKHtcbiAgICBpZDogXCJ3ZWJyLTEtY29udGVudHNcIixcbiAgICBlY2hvOiB0cnVlLFxuICAgIG91dHB1dDogdHJ1ZVxuICB9LCBibG9jay5hdHRyKTtcblxuICAvLyBFdmFsdWF0ZSB0aGUgcHJvdmlkZWQgUiBjb2RlXG4gIGNvbnN0IHJlc3VsdCA9IHdlYlJPanMucHJvY2Vzcyh7Y29kZTogYmxvY2suY29kZSwgb3B0aW9uc30sIHt9KTtcblxuICAvLyBFYXJseSB5aWVsZCB3aGlsZSB3ZSB3YWl0IGZvciB0aGUgZmlyc3QgZXZhbHVhdGlvbiBhbmQgcmVuZGVyXG4gIGlmIChvcHRpb25zLm91dHB1dCAmJiAhKFwiMVwiIGluIHdlYlJPanMucmVuZGVyZWRPanMpKSB7XG4gICAgY29uc3QgY29udGFpbmVyID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImRpdlwiKTtcbiAgICBjb25zdCBzcGlubmVyID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImRpdlwiKTtcblxuICAgIGlmIChvcHRpb25zLmVjaG8pIHtcbiAgICAgIC8vIFNob3cgb3V0cHV0IGFzIGhpZ2hsaWdodGVkIHNvdXJjZVxuICAgICAgY29uc3QgcHJlRWxlbSA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoXCJwcmVcIik7XG4gICAgICBjb250YWluZXIuY2xhc3NOYW1lID0gXCJzb3VyY2VDb2RlXCI7XG4gICAgICBwcmVFbGVtLmNsYXNzTmFtZSA9IFwic291cmNlQ29kZSByXCI7XG4gICAgICBwcmVFbGVtLmFwcGVuZENoaWxkKGhpZ2hsaWdodFIoYmxvY2suY29kZSkpO1xuICAgICAgc3Bpbm5lci5jbGFzc05hbWUgPSBcInNwaW5uZXItZ3JvdyBzcGlubmVyLWdyb3ctc20gbS0yIHBvc2l0aW9uLWFic29sdXRlIHRvcC0wIGVuZC0wXCI7XG4gICAgICBwcmVFbGVtLmFwcGVuZENoaWxkKHNwaW5uZXIpO1xuICAgICAgY29udGFpbmVyLmFwcGVuZENoaWxkKHByZUVsZW0pO1xuICAgIH0gZWxzZSB7XG4gICAgICBzcGlubmVyLmNsYXNzTmFtZSA9IFwic3Bpbm5lci1ib3JkZXIgc3Bpbm5lci1ib3JkZXItc21cIjtcbiAgICAgIGNvbnRhaW5lci5hcHBlbmRDaGlsZChzcGlubmVyKTtcbiAgICB9XG5cbiAgICB5aWVsZCBjb250YWluZXI7XG4gIH1cblxuICB3ZWJST2pzLnJlbmRlcmVkT2pzW1wiMVwiXSA9IHRydWU7XG4gIHlpZWxkIGF3YWl0IHJlc3VsdDtcbn1cbiJ9LHsiY2VsbE5hbWUiOiJpbnRlcnBvbGF0ZS01IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoie1xuICBjb25zdCB7IGludGVycG9sYXRlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBibG9ja19pZCA9IFwiNVwiO1xuICBjb25zdCBsYW5ndWFnZSA9IFwibm9uZVwiO1xuICBjb25zdCBkZWZfbWFwID0ge1xufTtcbiAgY29uc3QgZWxlbSA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKGBpbnRlcnBvbGF0ZS0ke2Jsb2NrX2lkfWApO1xuXG4gIC8vIFN0b3JlIG9yaWdpbmFsIHRlbXBsYXRlZCBIVE1MIGZvciByZWZlcmVuY2UgaW4gZnV0dXJlIHJlYWN0aXZlIHVwZGF0ZXNcbiAgaWYgKCFlbGVtLm9yaWdIVE1MKSBlbGVtLm9yaWdIVE1MID0gZWxlbS5pbm5lckhUTUw7XG5cbiAgLy8gSW50ZXJwb2xhdGUgcmVhY3RpdmUgT0pTIHZhcmlhYmxlcyBpbnRvIGVzdGFibGlzaGVkIEhUTUwgZWxlbWVudFxuICBlbGVtLmlubmVySFRNTCA9IGVsZW0ub3JpZ0hUTUw7XG4gIE9iamVjdC5rZXlzKGRlZl9tYXApLmZvckVhY2goKGRlZikgPT5cbiAgICBpbnRlcnBvbGF0ZShlbGVtLCBcIiR7XCIgKyBkZWYgKyBcIn1cIiwgZGVmX21hcFtkZWZdLCBsYW5ndWFnZSlcbiAgKTtcbn1cbiJ9LHsiY2VsbE5hbWUiOiJpbnRlcnBvbGF0ZS02IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoie1xuICBjb25zdCB7IGludGVycG9sYXRlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBibG9ja19pZCA9IFwiNlwiO1xuICBjb25zdCBsYW5ndWFnZSA9IFwiclwiO1xuICBjb25zdCBkZWZfbWFwID0ge1xufTtcbiAgY29uc3QgZWxlbSA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKGBpbnRlcnBvbGF0ZS0ke2Jsb2NrX2lkfWApO1xuXG4gIC8vIFN0b3JlIG9yaWdpbmFsIHRlbXBsYXRlZCBIVE1MIGZvciByZWZlcmVuY2UgaW4gZnV0dXJlIHJlYWN0aXZlIHVwZGF0ZXNcbiAgaWYgKCFlbGVtLm9yaWdIVE1MKSBlbGVtLm9yaWdIVE1MID0gZWxlbS5pbm5lckhUTUw7XG5cbiAgLy8gSW50ZXJwb2xhdGUgcmVhY3RpdmUgT0pTIHZhcmlhYmxlcyBpbnRvIGVzdGFibGlzaGVkIEhUTUwgZWxlbWVudFxuICBlbGVtLmlubmVySFRNTCA9IGVsZW0ub3JpZ0hUTUw7XG4gIE9iamVjdC5rZXlzKGRlZl9tYXApLmZvckVhY2goKGRlZikgPT5cbiAgICBpbnRlcnBvbGF0ZShlbGVtLCBcIiR7XCIgKyBkZWYgKyBcIn1cIiwgZGVmX21hcFtkZWZdLCBsYW5ndWFnZSlcbiAgKTtcbn1cbiJ9LHsiY2VsbE5hbWUiOiJpbnRlcnBvbGF0ZS0xMCIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgY29uc3QgeyBpbnRlcnBvbGF0ZSB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3QgYmxvY2tfaWQgPSBcIjEwXCI7XG4gIGNvbnN0IGxhbmd1YWdlID0gXCJub25lXCI7XG4gIGNvbnN0IGRlZl9tYXAgPSB7XG59O1xuICBjb25zdCBlbGVtID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoYGludGVycG9sYXRlLSR7YmxvY2tfaWR9YCk7XG5cbiAgLy8gU3RvcmUgb3JpZ2luYWwgdGVtcGxhdGVkIEhUTUwgZm9yIHJlZmVyZW5jZSBpbiBmdXR1cmUgcmVhY3RpdmUgdXBkYXRlc1xuICBpZiAoIWVsZW0ub3JpZ0hUTUwpIGVsZW0ub3JpZ0hUTUwgPSBlbGVtLmlubmVySFRNTDtcblxuICAvLyBJbnRlcnBvbGF0ZSByZWFjdGl2ZSBPSlMgdmFyaWFibGVzIGludG8gZXN0YWJsaXNoZWQgSFRNTCBlbGVtZW50XG4gIGVsZW0uaW5uZXJIVE1MID0gZWxlbS5vcmlnSFRNTDtcbiAgT2JqZWN0LmtleXMoZGVmX21hcCkuZm9yRWFjaCgoZGVmKSA9PlxuICAgIGludGVycG9sYXRlKGVsZW0sIFwiJHtcIiArIGRlZiArIFwifVwiLCBkZWZfbWFwW2RlZl0sIGxhbmd1YWdlKVxuICApO1xufVxuIn0seyJjZWxsTmFtZSI6ImludGVycG9sYXRlLTExIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoie1xuICBjb25zdCB7IGludGVycG9sYXRlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBibG9ja19pZCA9IFwiMTFcIjtcbiAgY29uc3QgbGFuZ3VhZ2UgPSBcInJcIjtcbiAgY29uc3QgZGVmX21hcCA9IHtcbn07XG4gIGNvbnN0IGVsZW0gPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChgaW50ZXJwb2xhdGUtJHtibG9ja19pZH1gKTtcblxuICAvLyBTdG9yZSBvcmlnaW5hbCB0ZW1wbGF0ZWQgSFRNTCBmb3IgcmVmZXJlbmNlIGluIGZ1dHVyZSByZWFjdGl2ZSB1cGRhdGVzXG4gIGlmICghZWxlbS5vcmlnSFRNTCkgZWxlbS5vcmlnSFRNTCA9IGVsZW0uaW5uZXJIVE1MO1xuXG4gIC8vIEludGVycG9sYXRlIHJlYWN0aXZlIE9KUyB2YXJpYWJsZXMgaW50byBlc3RhYmxpc2hlZCBIVE1MIGVsZW1lbnRcbiAgZWxlbS5pbm5lckhUTUwgPSBlbGVtLm9yaWdIVE1MO1xuICBPYmplY3Qua2V5cyhkZWZfbWFwKS5mb3JFYWNoKChkZWYpID0+XG4gICAgaW50ZXJwb2xhdGUoZWxlbSwgXCIke1wiICsgZGVmICsgXCJ9XCIsIGRlZl9tYXBbZGVmXSwgbGFuZ3VhZ2UpXG4gICk7XG59XG4ifSx7ImNlbGxOYW1lIjoiaW50ZXJwb2xhdGUtMTUiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJ7XG4gIGNvbnN0IHsgaW50ZXJwb2xhdGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG4gIGNvbnN0IGJsb2NrX2lkID0gXCIxNVwiO1xuICBjb25zdCBsYW5ndWFnZSA9IFwibm9uZVwiO1xuICBjb25zdCBkZWZfbWFwID0ge1xufTtcbiAgY29uc3QgZWxlbSA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKGBpbnRlcnBvbGF0ZS0ke2Jsb2NrX2lkfWApO1xuXG4gIC8vIFN0b3JlIG9yaWdpbmFsIHRlbXBsYXRlZCBIVE1MIGZvciByZWZlcmVuY2UgaW4gZnV0dXJlIHJlYWN0aXZlIHVwZGF0ZXNcbiAgaWYgKCFlbGVtLm9yaWdIVE1MKSBlbGVtLm9yaWdIVE1MID0gZWxlbS5pbm5lckhUTUw7XG5cbiAgLy8gSW50ZXJwb2xhdGUgcmVhY3RpdmUgT0pTIHZhcmlhYmxlcyBpbnRvIGVzdGFibGlzaGVkIEhUTUwgZWxlbWVudFxuICBlbGVtLmlubmVySFRNTCA9IGVsZW0ub3JpZ0hUTUw7XG4gIE9iamVjdC5rZXlzKGRlZl9tYXApLmZvckVhY2goKGRlZikgPT5cbiAgICBpbnRlcnBvbGF0ZShlbGVtLCBcIiR7XCIgKyBkZWYgKyBcIn1cIiwgZGVmX21hcFtkZWZdLCBsYW5ndWFnZSlcbiAgKTtcbn1cbiJ9LHsiY2VsbE5hbWUiOiJpbnRlcnBvbGF0ZS0xNiIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgY29uc3QgeyBpbnRlcnBvbGF0ZSB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3QgYmxvY2tfaWQgPSBcIjE2XCI7XG4gIGNvbnN0IGxhbmd1YWdlID0gXCJyXCI7XG4gIGNvbnN0IGRlZl9tYXAgPSB7XG59O1xuICBjb25zdCBlbGVtID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoYGludGVycG9sYXRlLSR7YmxvY2tfaWR9YCk7XG5cbiAgLy8gU3RvcmUgb3JpZ2luYWwgdGVtcGxhdGVkIEhUTUwgZm9yIHJlZmVyZW5jZSBpbiBmdXR1cmUgcmVhY3RpdmUgdXBkYXRlc1xuICBpZiAoIWVsZW0ub3JpZ0hUTUwpIGVsZW0ub3JpZ0hUTUwgPSBlbGVtLmlubmVySFRNTDtcblxuICAvLyBJbnRlcnBvbGF0ZSByZWFjdGl2ZSBPSlMgdmFyaWFibGVzIGludG8gZXN0YWJsaXNoZWQgSFRNTCBlbGVtZW50XG4gIGVsZW0uaW5uZXJIVE1MID0gZWxlbS5vcmlnSFRNTDtcbiAgT2JqZWN0LmtleXMoZGVmX21hcCkuZm9yRWFjaCgoZGVmKSA9PlxuICAgIGludGVycG9sYXRlKGVsZW0sIFwiJHtcIiArIGRlZiArIFwifVwiLCBkZWZfbWFwW2RlZl0sIGxhbmd1YWdlKVxuICApO1xufVxuIn0seyJjZWxsTmFtZSI6ImludGVycG9sYXRlLTIwIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoie1xuICBjb25zdCB7IGludGVycG9sYXRlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBibG9ja19pZCA9IFwiMjBcIjtcbiAgY29uc3QgbGFuZ3VhZ2UgPSBcIm5vbmVcIjtcbiAgY29uc3QgZGVmX21hcCA9IHtcbn07XG4gIGNvbnN0IGVsZW0gPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChgaW50ZXJwb2xhdGUtJHtibG9ja19pZH1gKTtcblxuICAvLyBTdG9yZSBvcmlnaW5hbCB0ZW1wbGF0ZWQgSFRNTCBmb3IgcmVmZXJlbmNlIGluIGZ1dHVyZSByZWFjdGl2ZSB1cGRhdGVzXG4gIGlmICghZWxlbS5vcmlnSFRNTCkgZWxlbS5vcmlnSFRNTCA9IGVsZW0uaW5uZXJIVE1MO1xuXG4gIC8vIEludGVycG9sYXRlIHJlYWN0aXZlIE9KUyB2YXJpYWJsZXMgaW50byBlc3RhYmxpc2hlZCBIVE1MIGVsZW1lbnRcbiAgZWxlbS5pbm5lckhUTUwgPSBlbGVtLm9yaWdIVE1MO1xuICBPYmplY3Qua2V5cyhkZWZfbWFwKS5mb3JFYWNoKChkZWYpID0+XG4gICAgaW50ZXJwb2xhdGUoZWxlbSwgXCIke1wiICsgZGVmICsgXCJ9XCIsIGRlZl9tYXBbZGVmXSwgbGFuZ3VhZ2UpXG4gICk7XG59XG4ifSx7ImNlbGxOYW1lIjoiaW50ZXJwb2xhdGUtMjEiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJ7XG4gIGNvbnN0IHsgaW50ZXJwb2xhdGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG4gIGNvbnN0IGJsb2NrX2lkID0gXCIyMVwiO1xuICBjb25zdCBsYW5ndWFnZSA9IFwiclwiO1xuICBjb25zdCBkZWZfbWFwID0ge1xufTtcbiAgY29uc3QgZWxlbSA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKGBpbnRlcnBvbGF0ZS0ke2Jsb2NrX2lkfWApO1xuXG4gIC8vIFN0b3JlIG9yaWdpbmFsIHRlbXBsYXRlZCBIVE1MIGZvciByZWZlcmVuY2UgaW4gZnV0dXJlIHJlYWN0aXZlIHVwZGF0ZXNcbiAgaWYgKCFlbGVtLm9yaWdIVE1MKSBlbGVtLm9yaWdIVE1MID0gZWxlbS5pbm5lckhUTUw7XG5cbiAgLy8gSW50ZXJwb2xhdGUgcmVhY3RpdmUgT0pTIHZhcmlhYmxlcyBpbnRvIGVzdGFibGlzaGVkIEhUTUwgZWxlbWVudFxuICBlbGVtLmlubmVySFRNTCA9IGVsZW0ub3JpZ0hUTUw7XG4gIE9iamVjdC5rZXlzKGRlZl9tYXApLmZvckVhY2goKGRlZikgPT5cbiAgICBpbnRlcnBvbGF0ZShlbGVtLCBcIiR7XCIgKyBkZWYgKyBcIn1cIiwgZGVmX21hcFtkZWZdLCBsYW5ndWFnZSlcbiAgKTtcbn1cbiJ9LHsiY2VsbE5hbWUiOiJpbnRlcnBvbGF0ZS0yNiIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgY29uc3QgeyBpbnRlcnBvbGF0ZSB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3QgYmxvY2tfaWQgPSBcIjI2XCI7XG4gIGNvbnN0IGxhbmd1YWdlID0gXCJub25lXCI7XG4gIGNvbnN0IGRlZl9tYXAgPSB7XG59O1xuICBjb25zdCBlbGVtID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoYGludGVycG9sYXRlLSR7YmxvY2tfaWR9YCk7XG5cbiAgLy8gU3RvcmUgb3JpZ2luYWwgdGVtcGxhdGVkIEhUTUwgZm9yIHJlZmVyZW5jZSBpbiBmdXR1cmUgcmVhY3RpdmUgdXBkYXRlc1xuICBpZiAoIWVsZW0ub3JpZ0hUTUwpIGVsZW0ub3JpZ0hUTUwgPSBlbGVtLmlubmVySFRNTDtcblxuICAvLyBJbnRlcnBvbGF0ZSByZWFjdGl2ZSBPSlMgdmFyaWFibGVzIGludG8gZXN0YWJsaXNoZWQgSFRNTCBlbGVtZW50XG4gIGVsZW0uaW5uZXJIVE1MID0gZWxlbS5vcmlnSFRNTDtcbiAgT2JqZWN0LmtleXMoZGVmX21hcCkuZm9yRWFjaCgoZGVmKSA9PlxuICAgIGludGVycG9sYXRlKGVsZW0sIFwiJHtcIiArIGRlZiArIFwifVwiLCBkZWZfbWFwW2RlZl0sIGxhbmd1YWdlKVxuICApO1xufVxuIn0seyJjZWxsTmFtZSI6ImludGVycG9sYXRlLTI3IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoie1xuICBjb25zdCB7IGludGVycG9sYXRlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBibG9ja19pZCA9IFwiMjdcIjtcbiAgY29uc3QgbGFuZ3VhZ2UgPSBcInJcIjtcbiAgY29uc3QgZGVmX21hcCA9IHtcbn07XG4gIGNvbnN0IGVsZW0gPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChgaW50ZXJwb2xhdGUtJHtibG9ja19pZH1gKTtcblxuICAvLyBTdG9yZSBvcmlnaW5hbCB0ZW1wbGF0ZWQgSFRNTCBmb3IgcmVmZXJlbmNlIGluIGZ1dHVyZSByZWFjdGl2ZSB1cGRhdGVzXG4gIGlmICghZWxlbS5vcmlnSFRNTCkgZWxlbS5vcmlnSFRNTCA9IGVsZW0uaW5uZXJIVE1MO1xuXG4gIC8vIEludGVycG9sYXRlIHJlYWN0aXZlIE9KUyB2YXJpYWJsZXMgaW50byBlc3RhYmxpc2hlZCBIVE1MIGVsZW1lbnRcbiAgZWxlbS5pbm5lckhUTUwgPSBlbGVtLm9yaWdIVE1MO1xuICBPYmplY3Qua2V5cyhkZWZfbWFwKS5mb3JFYWNoKChkZWYpID0+XG4gICAgaW50ZXJwb2xhdGUoZWxlbSwgXCIke1wiICsgZGVmICsgXCJ9XCIsIGRlZl9tYXBbZGVmXSwgbGFuZ3VhZ2UpXG4gICk7XG59XG4ifSx7ImNlbGxOYW1lIjoiaW50ZXJwb2xhdGUtMzEiLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJ7XG4gIGNvbnN0IHsgaW50ZXJwb2xhdGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG4gIGNvbnN0IGJsb2NrX2lkID0gXCIzMVwiO1xuICBjb25zdCBsYW5ndWFnZSA9IFwibm9uZVwiO1xuICBjb25zdCBkZWZfbWFwID0ge1xufTtcbiAgY29uc3QgZWxlbSA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKGBpbnRlcnBvbGF0ZS0ke2Jsb2NrX2lkfWApO1xuXG4gIC8vIFN0b3JlIG9yaWdpbmFsIHRlbXBsYXRlZCBIVE1MIGZvciByZWZlcmVuY2UgaW4gZnV0dXJlIHJlYWN0aXZlIHVwZGF0ZXNcbiAgaWYgKCFlbGVtLm9yaWdIVE1MKSBlbGVtLm9yaWdIVE1MID0gZWxlbS5pbm5lckhUTUw7XG5cbiAgLy8gSW50ZXJwb2xhdGUgcmVhY3RpdmUgT0pTIHZhcmlhYmxlcyBpbnRvIGVzdGFibGlzaGVkIEhUTUwgZWxlbWVudFxuICBlbGVtLmlubmVySFRNTCA9IGVsZW0ub3JpZ0hUTUw7XG4gIE9iamVjdC5rZXlzKGRlZl9tYXApLmZvckVhY2goKGRlZikgPT5cbiAgICBpbnRlcnBvbGF0ZShlbGVtLCBcIiR7XCIgKyBkZWYgKyBcIn1cIiwgZGVmX21hcFtkZWZdLCBsYW5ndWFnZSlcbiAgKTtcbn1cbiJ9LHsiY2VsbE5hbWUiOiJpbnRlcnBvbGF0ZS0zMiIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgY29uc3QgeyBpbnRlcnBvbGF0ZSB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3QgYmxvY2tfaWQgPSBcIjMyXCI7XG4gIGNvbnN0IGxhbmd1YWdlID0gXCJyXCI7XG4gIGNvbnN0IGRlZl9tYXAgPSB7XG59O1xuICBjb25zdCBlbGVtID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoYGludGVycG9sYXRlLSR7YmxvY2tfaWR9YCk7XG5cbiAgLy8gU3RvcmUgb3JpZ2luYWwgdGVtcGxhdGVkIEhUTUwgZm9yIHJlZmVyZW5jZSBpbiBmdXR1cmUgcmVhY3RpdmUgdXBkYXRlc1xuICBpZiAoIWVsZW0ub3JpZ0hUTUwpIGVsZW0ub3JpZ0hUTUwgPSBlbGVtLmlubmVySFRNTDtcblxuICAvLyBJbnRlcnBvbGF0ZSByZWFjdGl2ZSBPSlMgdmFyaWFibGVzIGludG8gZXN0YWJsaXNoZWQgSFRNTCBlbGVtZW50XG4gIGVsZW0uaW5uZXJIVE1MID0gZWxlbS5vcmlnSFRNTDtcbiAgT2JqZWN0LmtleXMoZGVmX21hcCkuZm9yRWFjaCgoZGVmKSA9PlxuICAgIGludGVycG9sYXRlKGVsZW0sIFwiJHtcIiArIGRlZiArIFwifVwiLCBkZWZfbWFwW2RlZl0sIGxhbmd1YWdlKVxuICApO1xufVxuIn0seyJjZWxsTmFtZSI6ImludGVycG9sYXRlLTM2IiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoie1xuICBjb25zdCB7IGludGVycG9sYXRlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBibG9ja19pZCA9IFwiMzZcIjtcbiAgY29uc3QgbGFuZ3VhZ2UgPSBcIm5vbmVcIjtcbiAgY29uc3QgZGVmX21hcCA9IHtcbn07XG4gIGNvbnN0IGVsZW0gPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChgaW50ZXJwb2xhdGUtJHtibG9ja19pZH1gKTtcblxuICAvLyBTdG9yZSBvcmlnaW5hbCB0ZW1wbGF0ZWQgSFRNTCBmb3IgcmVmZXJlbmNlIGluIGZ1dHVyZSByZWFjdGl2ZSB1cGRhdGVzXG4gIGlmICghZWxlbS5vcmlnSFRNTCkgZWxlbS5vcmlnSFRNTCA9IGVsZW0uaW5uZXJIVE1MO1xuXG4gIC8vIEludGVycG9sYXRlIHJlYWN0aXZlIE9KUyB2YXJpYWJsZXMgaW50byBlc3RhYmxpc2hlZCBIVE1MIGVsZW1lbnRcbiAgZWxlbS5pbm5lckhUTUwgPSBlbGVtLm9yaWdIVE1MO1xuICBPYmplY3Qua2V5cyhkZWZfbWFwKS5mb3JFYWNoKChkZWYpID0+XG4gICAgaW50ZXJwb2xhdGUoZWxlbSwgXCIke1wiICsgZGVmICsgXCJ9XCIsIGRlZl9tYXBbZGVmXSwgbGFuZ3VhZ2UpXG4gICk7XG59XG4ifSx7ImNlbGxOYW1lIjoiaW50ZXJwb2xhdGUtMzciLCJpbmxpbmUiOmZhbHNlLCJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJ7XG4gIGNvbnN0IHsgaW50ZXJwb2xhdGUgfSA9IHdpbmRvdy5fZXhlcmNpc2Vfb2pzX3J1bnRpbWU7XG4gIGNvbnN0IGJsb2NrX2lkID0gXCIzN1wiO1xuICBjb25zdCBsYW5ndWFnZSA9IFwiclwiO1xuICBjb25zdCBkZWZfbWFwID0ge1xufTtcbiAgY29uc3QgZWxlbSA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKGBpbnRlcnBvbGF0ZS0ke2Jsb2NrX2lkfWApO1xuXG4gIC8vIFN0b3JlIG9yaWdpbmFsIHRlbXBsYXRlZCBIVE1MIGZvciByZWZlcmVuY2UgaW4gZnV0dXJlIHJlYWN0aXZlIHVwZGF0ZXNcbiAgaWYgKCFlbGVtLm9yaWdIVE1MKSBlbGVtLm9yaWdIVE1MID0gZWxlbS5pbm5lckhUTUw7XG5cbiAgLy8gSW50ZXJwb2xhdGUgcmVhY3RpdmUgT0pTIHZhcmlhYmxlcyBpbnRvIGVzdGFibGlzaGVkIEhUTUwgZWxlbWVudFxuICBlbGVtLmlubmVySFRNTCA9IGVsZW0ub3JpZ0hUTUw7XG4gIE9iamVjdC5rZXlzKGRlZl9tYXApLmZvckVhY2goKGRlZikgPT5cbiAgICBpbnRlcnBvbGF0ZShlbGVtLCBcIiR7XCIgKyBkZWYgKyBcIn1cIiwgZGVmX21hcFtkZWZdLCBsYW5ndWFnZSlcbiAgKTtcbn1cbiJ9LHsiY2VsbE5hbWUiOiJpbnRlcnBvbGF0ZS00MiIsImlubGluZSI6ZmFsc2UsIm1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6IntcbiAgY29uc3QgeyBpbnRlcnBvbGF0ZSB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZTtcbiAgY29uc3QgYmxvY2tfaWQgPSBcIjQyXCI7XG4gIGNvbnN0IGxhbmd1YWdlID0gXCJub25lXCI7XG4gIGNvbnN0IGRlZl9tYXAgPSB7XG59O1xuICBjb25zdCBlbGVtID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoYGludGVycG9sYXRlLSR7YmxvY2tfaWR9YCk7XG5cbiAgLy8gU3RvcmUgb3JpZ2luYWwgdGVtcGxhdGVkIEhUTUwgZm9yIHJlZmVyZW5jZSBpbiBmdXR1cmUgcmVhY3RpdmUgdXBkYXRlc1xuICBpZiAoIWVsZW0ub3JpZ0hUTUwpIGVsZW0ub3JpZ0hUTUwgPSBlbGVtLmlubmVySFRNTDtcblxuICAvLyBJbnRlcnBvbGF0ZSByZWFjdGl2ZSBPSlMgdmFyaWFibGVzIGludG8gZXN0YWJsaXNoZWQgSFRNTCBlbGVtZW50XG4gIGVsZW0uaW5uZXJIVE1MID0gZWxlbS5vcmlnSFRNTDtcbiAgT2JqZWN0LmtleXMoZGVmX21hcCkuZm9yRWFjaCgoZGVmKSA9PlxuICAgIGludGVycG9sYXRlKGVsZW0sIFwiJHtcIiArIGRlZiArIFwifVwiLCBkZWZfbWFwW2RlZl0sIGxhbmd1YWdlKVxuICApO1xufVxuIn0seyJjZWxsTmFtZSI6ImludGVycG9sYXRlLTQzIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoie1xuICBjb25zdCB7IGludGVycG9sYXRlIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuICBjb25zdCBibG9ja19pZCA9IFwiNDNcIjtcbiAgY29uc3QgbGFuZ3VhZ2UgPSBcInJcIjtcbiAgY29uc3QgZGVmX21hcCA9IHtcbn07XG4gIGNvbnN0IGVsZW0gPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChgaW50ZXJwb2xhdGUtJHtibG9ja19pZH1gKTtcblxuICAvLyBTdG9yZSBvcmlnaW5hbCB0ZW1wbGF0ZWQgSFRNTCBmb3IgcmVmZXJlbmNlIGluIGZ1dHVyZSByZWFjdGl2ZSB1cGRhdGVzXG4gIGlmICghZWxlbS5vcmlnSFRNTCkgZWxlbS5vcmlnSFRNTCA9IGVsZW0uaW5uZXJIVE1MO1xuXG4gIC8vIEludGVycG9sYXRlIHJlYWN0aXZlIE9KUyB2YXJpYWJsZXMgaW50byBlc3RhYmxpc2hlZCBIVE1MIGVsZW1lbnRcbiAgZWxlbS5pbm5lckhUTUwgPSBlbGVtLm9yaWdIVE1MO1xuICBPYmplY3Qua2V5cyhkZWZfbWFwKS5mb3JFYWNoKChkZWYpID0+XG4gICAgaW50ZXJwb2xhdGUoZWxlbSwgXCIke1wiICsgZGVmICsgXCJ9XCIsIGRlZl9tYXBbZGVmXSwgbGFuZ3VhZ2UpXG4gICk7XG59XG4ifSx7ImNlbGxOYW1lIjoid2Vici1wcmVsdWRlIiwiaW5saW5lIjpmYWxzZSwibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoid2ViUk9qcyA9IHtcbiAgY29uc3QgeyBXZWJSLCBDaGFubmVsVHlwZSB9ID0gd2luZG93Ll9leGVyY2lzZV9vanNfcnVudGltZS5XZWJSO1xuICBjb25zdCB7XG4gICAgV2ViUkV2YWx1YXRvcixcbiAgICBXZWJSRW52aXJvbm1lbnRNYW5hZ2VyLFxuICAgIHNldHVwUixcbiAgICBiNjREZWNvZGUsXG4gICAgY29sbGFwc2VQYXRoXG4gIH0gPSB3aW5kb3cuX2V4ZXJjaXNlX29qc19ydW50aW1lO1xuXG4gIGNvbnN0IHN0YXR1c0NvbnRhaW5lciA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKFwiZXhlcmNpc2UtbG9hZGluZy1zdGF0dXNcIik7XG4gIGNvbnN0IGluZGljYXRvckNvbnRhaW5lciA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKFwiZXhlcmNpc2UtbG9hZGluZy1pbmRpY2F0b3JcIik7XG4gIGluZGljYXRvckNvbnRhaW5lci5jbGFzc0xpc3QucmVtb3ZlKFwiZC1ub25lXCIpO1xuXG4gIGxldCBzdGF0dXNUZXh0ID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImRpdlwiKVxuICBzdGF0dXNUZXh0LmNsYXNzTGlzdCA9IFwiZXhlcmNpc2UtbG9hZGluZy1kZXRhaWxzXCI7XG4gIHN0YXR1c1RleHQgPSBzdGF0dXNDb250YWluZXIuYXBwZW5kQ2hpbGQoc3RhdHVzVGV4dCk7XG4gIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgSW5pdGlhbGlzZWA7XG5cbiAgLy8gSG9pc3QgaW5kaWNhdG9yIG91dCBmcm9tIGZpbmFsIHNsaWRlIHdoZW4gcnVubmluZyB1bmRlciByZXZlYWxcbiAgY29uc3QgcmV2ZWFsU3RhdHVzID0gZG9jdW1lbnQucXVlcnlTZWxlY3RvcihcIi5yZXZlYWwgLmV4ZXJjaXNlLWxvYWRpbmctaW5kaWNhdG9yXCIpO1xuICBpZiAocmV2ZWFsU3RhdHVzKSB7XG4gICAgcmV2ZWFsU3RhdHVzLnJlbW92ZSgpO1xuICAgIGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCIucmV2ZWFsID4gLnNsaWRlc1wiKS5hcHBlbmRDaGlsZChyZXZlYWxTdGF0dXMpO1xuICB9XG5cbiAgLy8gTWFrZSBhbnkgcmV2ZWFsIHNsaWRlcyB3aXRoIGxpdmUgY2VsbHMgc2Nyb2xsYWJsZVxuICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKFwiLnJldmVhbCAuZXhlcmNpc2UtY2VsbFwiKS5mb3JFYWNoKChlbCkgPT4ge1xuICAgIGVsLmNsb3Nlc3QoJ3NlY3Rpb24uc2xpZGUnKS5jbGFzc0xpc3QuYWRkKFwic2Nyb2xsYWJsZVwiKTtcbiAgfSlcblxuICAvLyB3ZWJSIHN1cHBsZW1lbnRhbCBkYXRhIGFuZCBvcHRpb25zXG4gIGNvbnN0IGRhdGFDb250ZW50ID0gZG9jdW1lbnQucXVlcnlTZWxlY3Rvcihgc2NyaXB0W3R5cGU9XFxcIndlYnItZGF0YVxcXCJdYCkudGV4dENvbnRlbnQ7XG4gIGNvbnN0IGRhdGEgPSBKU09OLnBhcnNlKGI2NERlY29kZShkYXRhQ29udGVudCkpO1xuXG4gIC8vIEdyYWIgbGlzdCBvZiByZXNvdXJjZXMgdG8gYmUgZG93bmxvYWRlZFxuICBjb25zdCBmaWxlc0NvbnRlbnQgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKGBzY3JpcHRbdHlwZT1cXFwidmZzLWZpbGVcXFwiXWApLnRleHRDb250ZW50O1xuICBjb25zdCBmaWxlcyA9IEpTT04ucGFyc2UoYjY0RGVjb2RlKGZpbGVzQ29udGVudCkpO1xuXG4gIC8vIFVzZSBQb3N0TWVzc2FnZSBjaGFubmVsIGZvciBhc3luYyBjb21tdW5pY2F0aW9uXG4gIC8vIFdlIGRvIG5vdCBleHBlY3QgdG8gdGFrZSBuZXN0ZWQgcHJvbXB0IGlucHV0IGluIFF1YXJ0byBMaXZlIGNlbGxzXG4gIGRhdGEub3B0aW9ucy5jaGFubmVsVHlwZSA9IENoYW5uZWxUeXBlLlBvc3RNZXNzYWdlO1xuXG4gIC8vIEluaXRpYWxpc2Ugd2ViUiBhbmQgc2V0dXAgZm9yIFIgY29kZSBldmFsdWF0aW9uXG4gIGxldCB3ZWJSUHJvbWlzZSA9IChhc3luYyAod2ViUikgPT4ge1xuICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgd2ViUmA7XG4gICAgYXdhaXQgd2ViUi5pbml0KCk7XG5cbiAgICAvLyBJbnN0YWxsIHByb3ZpZGVkIGxpc3Qgb2YgcGFja2FnZXNcbiAgICAvLyBFbnN1cmUgd2ViUiBkZWZhdWx0IHJlcG8gaXMgaW5jbHVkZWRcbiAgICBkYXRhLnBhY2thZ2VzLnJlcG9zLnB1c2goXCJodHRwczovL3JlcG8uci13YXNtLm9yZ1wiKVxuICAgIGF3YWl0IGRhdGEucGFja2FnZXMucGtncy5tYXAoKHBrZykgPT4gKCkgPT4ge1xuICAgICAgc3RhdHVzVGV4dC50ZXh0Q29udGVudCA9IGBEb3dubG9hZGluZyBwYWNrYWdlOiAke3BrZ31gO1xuICAgICAgcmV0dXJuIHdlYlIuZXZhbFJWb2lkKGBcbiAgICAgICAgd2Vicjo6aW5zdGFsbChwa2csIHJlcG9zID0gcmVwb3MpXG4gICAgICAgIGxpYnJhcnkocGtnLCBjaGFyYWN0ZXIub25seSA9IFRSVUUpXG4gICAgICBgLCB7IGVudjoge1xuICAgICAgICBwa2c6IHBrZyxcbiAgICAgICAgcmVwb3M6IGRhdGEucGFja2FnZXMucmVwb3MsXG4gICAgICB9fSk7XG4gICAgfSkucmVkdWNlKChjdXIsIG5leHQpID0+IGN1ci50aGVuKG5leHQpLCBQcm9taXNlLnJlc29sdmUoKSk7XG5cbiAgICAvLyBEb3dubG9hZCBhbmQgaW5zdGFsbCByZXNvdXJjZXNcbiAgICBhd2FpdCBmaWxlcy5tYXAoKGZpbGUpID0+IGFzeW5jICgpID0+IHtcbiAgICAgIGNvbnN0IG5hbWUgPSBmaWxlLnN1YnN0cmluZyhmaWxlLmxhc3RJbmRleE9mKCcvJykgKyAxKTtcbiAgICAgIHN0YXR1c1RleHQudGV4dENvbnRlbnQgPSBgRG93bmxvYWRpbmcgcmVzb3VyY2U6ICR7bmFtZX1gO1xuICAgICAgY29uc3QgcmVzcG9uc2UgPSBhd2FpdCBmZXRjaChmaWxlKTtcbiAgICAgIGlmICghcmVzcG9uc2Uub2spIHtcbiAgICAgICAgdGhyb3cgbmV3IEVycm9yKGBDYW4ndCBkb3dubG9hZCBcXGAke2ZpbGV9XFxgLiBFcnJvciAke3Jlc3BvbnNlLnN0YXR1c306IFwiJHtyZXNwb25zZS5zdGF0dXNUZXh0fVwiLmApO1xuICAgICAgfVxuICAgICAgY29uc3QgZGF0YSA9IGF3YWl0IHJlc3BvbnNlLmFycmF5QnVmZmVyKCk7XG5cbiAgICAgIC8vIFN0b3JlIFVSTHMgaW4gdGhlIGN3ZCB3aXRob3V0IGFueSBzdWJkaXJlY3Rvcnkgc3RydWN0dXJlXG4gICAgICBpZiAoZmlsZS5pbmNsdWRlcyhcIjovL1wiKSkge1xuICAgICAgICBmaWxlID0gbmFtZTtcbiAgICAgIH1cblxuICAgICAgLy8gQ29sbGFwc2UgaGlnaGVyIGRpcmVjdG9yeSBzdHJ1Y3R1cmVcbiAgICAgIGZpbGUgPSBjb2xsYXBzZVBhdGgoZmlsZSk7XG5cbiAgICAgIC8vIENyZWF0ZSBkaXJlY3RvcnkgdHJlZSwgaWdub3JpbmcgXCJkaXJlY3RvcnkgZXhpc3RzXCIgVkZTIGVycm9yc1xuICAgICAgY29uc3QgcGFydHMgPSBmaWxlLnNwbGl0KCcvJykuc2xpY2UoMCwgLTEpO1xuICAgICAgbGV0IHBhdGggPSAnJztcbiAgICAgIHdoaWxlIChwYXJ0cy5sZW5ndGggPiAwKSB7XG4gICAgICAgIHBhdGggKz0gcGFydHMuc2hpZnQoKSArICcvJztcbiAgICAgICAgY29uc3QgYW5hbHlzaXMgPSBhd2FpdCB3ZWJSLkZTLmFuYWx5emVQYXRoKHBhdGgpO1xuICAgICAgICBpZiAoIWFuYWx5c2lzLmV4aXN0cykge1xuICAgICAgICAgIHRyeSB7XG4gICAgICAgICAgICBhd2FpdCB3ZWJSLkZTLm1rZGlyKHBhdGgpO1xuICAgICAgICAgIH0gY2F0Y2ggKGUpIHtcbiAgICAgICAgICAgIHRocm93IG5ldyBFcnJvcihgRmlsZXN5c3RlbSBFcnJvcjogXCIke2UubWVzc2FnZX1cIi5gKTtcbiAgICAgICAgICB9XG4gICAgICAgIH1cbiAgICAgIH1cblxuICAgICAgLy8gV3JpdGUgdGhpcyBmaWxlIHRvIHRoZSBWRlNcbiAgICAgIHJldHVybiBhd2FpdCB3ZWJSLkZTLndyaXRlRmlsZShmaWxlLCBuZXcgVWludDhBcnJheShkYXRhKSk7XG4gICAgfSkucmVkdWNlKChjdXIsIG5leHQpID0+IGN1ci50aGVuKG5leHQpLCBQcm9taXNlLnJlc29sdmUoKSk7XG5cbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYEluc3RhbGxpbmcgd2ViUiBzaGltc2A7XG4gICAgYXdhaXQgd2ViUi5ldmFsUlZvaWQoYHdlYnI6OnNoaW1faW5zdGFsbCgpYCk7XG5cbiAgICBzdGF0dXNUZXh0LnRleHRDb250ZW50ID0gYFdlYlIgZW52aXJvbm1lbnQgc2V0dXBgO1xuICAgIGF3YWl0IHNldHVwUih3ZWJSLCBkYXRhKTtcblxuICAgIHN0YXR1c1RleHQucmVtb3ZlKCk7XG4gICAgaWYgKHN0YXR1c0NvbnRhaW5lci5jaGlsZHJlbi5sZW5ndGggPT0gMCkge1xuICAgICAgc3RhdHVzQ29udGFpbmVyLnBhcmVudE5vZGUucmVtb3ZlKCk7XG4gICAgfVxuICAgIHJldHVybiB3ZWJSO1xuICB9KShuZXcgV2ViUihkYXRhLm9wdGlvbnMpKTtcblxuICAvLyBLZWVwIHRyYWNrIG9mIGluaXRpYWwgT0pTIGJsb2NrIHJlbmRlclxuICBjb25zdCByZW5kZXJlZE9qcyA9IHt9O1xuXG4gIGNvbnN0IHByb2Nlc3MgPSBhc3luYyAoY29udGV4dCwgaW5wdXRzKSA9PiB7XG4gICAgY29uc3Qgd2ViUiA9IGF3YWl0IHdlYlJQcm9taXNlO1xuICAgIGNvbnN0IGV2YWx1YXRvciA9IG5ldyBXZWJSRXZhbHVhdG9yKHdlYlIsIGNvbnRleHQpXG4gICAgYXdhaXQgZXZhbHVhdG9yLnByb2Nlc3MoaW5wdXRzKTtcbiAgICByZXR1cm4gZXZhbHVhdG9yLmNvbnRhaW5lcjtcbiAgfVxuXG4gIHJldHVybiB7XG4gICAgcHJvY2VzcyxcbiAgICB3ZWJSUHJvbWlzZSxcbiAgICByZW5kZXJlZE9qcyxcbiAgfTtcbn1cbiJ9XX0=
+</script>
+<div id="exercise-loading-indicator" class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
+<div id="exercise-loading-status" class="d-flex gap-2">
+
+</div>
+<div class="spinner-grow spinner-grow-sm">
+
+</div>
+</div>
+<script type="vfs-file">
+WyJjaXR5X2xpZmVzdHlsZV9kYXRhc2V0LmNzdiIsInN0dWRlbnRfcGVyZm9ybWFuY2UuY3N2Il0=
+</script>
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../tutorials";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/nishanmudalige\.github\.io\/STA258_Tutorials\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
