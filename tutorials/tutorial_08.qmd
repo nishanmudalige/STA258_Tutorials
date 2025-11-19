@@ -1,5 +1,5 @@
 ---
-title: "Tutorial 08 — One-way ANOVA and Multiple Comparisons"
+title: "Tutorial 08"
 format: live-html
 engine: knitr
 resources:
@@ -13,7 +13,7 @@ resources:
 
 ## Q1 — One-way ANOVA (manual): Happiness score by region
 
-In the city lifestyle dataset, we want to test whether the **mean happiness score** differs across four regions:
+We start this tutorial with the city lifestyle dataset, that gives info about In the city lifestyle dataset, we want to test whether the **mean happiness score** differs across four regions:
 Europe, Asia, North America, and Africa.
 
 We test:
@@ -34,26 +34,32 @@ Your task:
 
 - Subset to those four regions.  
 - Remove rows with missing happiness scores.  
-- Compute SSB, SSW, `df_between`, `df_within`, MSB, MSW, F, and the p-value
+- Compute SSR, SSE, $df1$, $df2$, MSR, MSE, F, and the p-value
 
 $$
-F = \frac{\text{MSB}}{\text{MSW}}, \qquad
-p = P\bigl(F_{df_1, df_2} \ge F\bigr).
+F = \frac{\text{MSR}}{\text{MSE}}, \qquad
+p = P\bigl(F_{df1, df2} \ge F\bigr).
 $$
 
-Return a named numeric vector: `c(F = Fstat, df1 = df_between, df2 = df_within, p_value = pval)`.
+Return a named numeric vector: `c(F = Fstat, df1 = df1, df2 = df2, p_value = pval)`.
+
+<figure style="text-align:center">
+  <img src="./images/pokemons.jpg" style="width:40%">
+  <figcaption>Photo by <a href="https://unsplash.com/@lifetimevalues?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Life Time Values</a> on <a href="https://unsplash.com/photos/six-pokemon-figurines-lined-up-on-a-wooden-surface-caF_z0aTPtQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+      </figcaption>
+</figure>
 
 ::: {.callout-note title="Info"}
-For a one-way ANOVA with response \(y_{ij}\) in group \(i\) (of size \(n_i\)), group means \(\bar{y}_i\), and overall mean \(\bar{y}\):
+For a one-way ANOVA with response $y_{ij}$ in group \(i\) (of size $n_i$), group means $bar{y}_i$, and overall mean $bar{y}$:
 
 **Between–group sum of squares**
 $$
-\mathrm{SSB} = \sum_i n_i \, (\bar{y}_i - \bar{y})^2
+\mathrm{SSR} = \sum_i n_i \, (\hat{y}_i - \bar{y})^2
 $$
 
 **Within–group sum of squares**
 $$
-\mathrm{SSW} = \sum_i \sum_j (y_{ij} - \bar{y}_i)^2
+\mathrm{SSE} = \sum_i (y_{i} - \hat{y_{i}})^2
 $$
 
 **Degrees of freedom**
@@ -64,8 +70,8 @@ $$
 
 **Mean squares**
 $$
-\mathrm{MSB} = \frac{\mathrm{SSB}}{df_{\text{between}}}, \qquad
-\mathrm{MSW} = \frac{\mathrm{SSW}}{df_{\text{within}}}
+\mathrm{MSR} = \frac{\mathrm{SSB}}{df_{\text{between}}}, \qquad
+\mathrm{MSE} = \frac{\mathrm{SSW}}{df_{\text{within}}}
 $$
 :::
 
@@ -117,29 +123,29 @@ group_ns <- tapply(y, g, ___)
 
 overall_mean <- ___(y)
 
-SSB <- sum(group_ns * (group_means - overall_mean)^2)
+SSR <- sum(group_ns * (group_means - overall_mean)^2)
 
-SSW <- sum(tapply(y, g, function(x) sum((x - ___(x))^2)))
+SSE <- sum(tapply(y, g, function(x) sum((x - ___(x))^2)))
 
 k <- length(group_means)
 N <- length(y)
 
-df_between <- ___
-df_within <- ___
+df1 <- ___
+df2 <- ___
 
-MSB <- ___
-MSW <- ___
+MR <- ___
+MSE <- ___
 
 Fstat <- ___ / ___
-pval <- pf(___, df_between, df_within, lower.tail = FALSE)
+pval <- pf(___, df1, df2, lower.tail = FALSE)
 
-c(F = Fstat, df1 = df_between, df2 = df_within, p_value = pval)
+c(F = Fstat, df1 = df1, df2 = df2, p_value = pval)
 ```
 
 ::: {.hint exercise="q1_city_anova_manual"}
 Use mean for both group and overall means.
-df_between = k - 1, df_within = N - k.
-MSB = SSB / df_between, MSW = SSW / df_within, then Fstat = MSB / MSW.
+df1 = k - 1, df2 = N - k.
+MSR = SSB / df1, MSE = SSW / df2, then Fstat = MSR / MSE.
 :::
 
 
@@ -173,16 +179,16 @@ SSW <- sum(tapply(y, g, function(x) sum((x - mean(x))^2)))
 k  <- length(group_means)
 N  <- length(y)
 
-df_between <- k - 1
-df_within  <- N - k
+df1 <- k - 1
+df2  <- N - k
 
-MSB <- SSB / df_between
-MSW <- SSW / df_within
+MSR <- SSB / df1
+MSE <- SSW / df2
 
-Fstat <- MSB / MSW
-pval  <- pf(Fstat, df_between, df_within, lower.tail = FALSE)
+Fstat <- MSR / MSE
+pval  <- pf(Fstat, df1, df2, lower.tail = FALSE)
 
-c(F = Fstat, df1 = df_between, df2 = df_within, p_value = pval)
+c(F = Fstat, df1 = df1, df2 = df2, p_value = pval)
 ```
 :::
 
@@ -207,22 +213,22 @@ group_means <- tapply(y, g, mean)
 group_ns    <- tapply(y, g, length)
 overall_mean <- mean(y)
 
-SSB <- sum(group_ns * (group_means - overall_mean)^2)
-SSW <- sum(tapply(y, g, function(x) sum((x - mean(x))^2)))
+SSR <- sum(group_ns * (group_means - overall_mean)^2)
+SSE <- sum(tapply(y, g, function(x) sum((x - mean(x))^2)))
 
 k  <- length(group_means)
 N  <- length(y)
 
-df_between <- k - 1
-df_within  <- N - k
+df1 <- k - 1
+df2  <- N - k
 
-MSB <- SSB / df_between
-MSW <- SSW / df_within
+MSR <- SSR / df1
+MSE <- SSE / df2
 
-Fstat <- MSB / MSW
-pval  <- pf(Fstat, df_between, df_within, lower.tail = FALSE)
+Fstat <- MSR / MSE
+pval  <- pf(Fstat, df1, df2, lower.tail = FALSE)
 
-exp <- c(F = Fstat, df1 = df_between, df2 = df_within, p_value = pval)
+exp <- c(F = Fstat, df1 = df1, df2 = df2, p_value = pval)
 
 res <- .result
 if (!is.numeric(res) || length(res) != 4L || any(!is.finite(res))) {
@@ -230,7 +236,7 @@ fail("Return c(F = ..., df1 = ..., df2 = ..., p_value = ...).")
 } else if (max(abs(res - exp)) < 1e-6) {
 pass("Correct manual one-way ANOVA for happiness by region.")
 } else {
-fail("Something is off in SSB/SSW, degrees of freedom, or the F to p-value step.")
+fail("Something is off in SSR/SSE, degrees of freedom, or the F to p-value step.")
 }
 })
 
@@ -243,6 +249,13 @@ Now we will redo the same test using R’s built-in aov() function on the same s
 
 Return c(F = Fstat, df1 = df_region, df2 = df_resid, p_value = p) extracted from the ANOVA table.
 
+
+<figure style="text-align:center">
+  <img src="./images/pokemons.jpg" style="width:40%">
+  <figcaption>Photo by <a href="https://unsplash.com/@lifetimevalues?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Life Time Values</a> on <a href="https://unsplash.com/photos/six-pokemon-figurines-lined-up-on-a-wooden-surface-caF_z0aTPtQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+      </figcaption>
+</figure>
+
 ::: {.callout-note title="Info"}
 For a one-way ANOVA fit with fit <- aov(y ~ group, data = ...), you can extract the ANOVA table with summary(fit)[[1]]. The row corresponding to the factor has columns:
 
@@ -251,6 +264,31 @@ For a one-way ANOVA fit with fit <- aov(y ~ group, data = ...), you can extract 
 "F value": F statistic
 
 "Pr(>F)": p-value
+:::
+
+::: {.callout-note title="Preview"}
+```{webr}
+#| echo: true
+df <- read.csv("city_lifestyle_dataset.csv")
+
+sub <- subset(
+  df,
+  country %in% c("Europe","Asia","North America","Africa")
+  & is.finite(happiness_score)
+)
+
+table(sub$country)
+
+tapply(sub$happiness_score, sub$country, summary)
+
+par(mfrow = c(1, 2))
+boxplot(happiness_score ~ country, data = sub,
+        main = "Happiness by region", xlab = "Region",
+        ylab = "Happiness score")
+hist(sub$happiness_score,
+     main = "Histogram of happiness", xlab = "Happiness score")
+par(mfrow = c(1, 1))
+```
 :::
 
 ```{webr}
@@ -357,6 +395,12 @@ Using the same city subset as in Q1–Q2, perform pairwise t-tests on happiness 
 
 Use pairwise.t.test() with p.adjust.method = "none" and return the matrix of p-values.
 
+<figure style="text-align:center">
+  <img src="./images/pokemons.jpg" style="width:40%">
+  <figcaption>Photo by <a href="https://unsplash.com/@lifetimevalues?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Life Time Values</a> on <a href="https://unsplash.com/photos/six-pokemon-figurines-lined-up-on-a-wooden-surface-caF_z0aTPtQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+      </figcaption>
+</figure>
+
 ::: {.callout-note title="Info"}
 Fisher's LSD (Least Significant Difference) is essentially:
 
@@ -365,6 +409,31 @@ Run a global ANOVA to check that at least one mean differs.
 If significant, run unadjusted pairwise t-tests between groups, using the same residual variance.
 
 In R, pairwise.t.test(y, group, p.adjust.method = "none")$p.value gives a matrix of unadjusted pairwise p-values.
+:::
+
+::: {.callout-note title="Preview"}
+```{webr}
+#| echo: true
+df <- read.csv("city_lifestyle_dataset.csv")
+
+sub <- subset(
+  df,
+  country %in% c("Europe","Asia","North America","Africa")
+  & is.finite(happiness_score)
+)
+
+table(sub$country)
+
+tapply(sub$happiness_score, sub$country, summary)
+
+par(mfrow = c(1, 2))
+boxplot(happiness_score ~ country, data = sub,
+        main = "Happiness by region", xlab = "Region",
+        ylab = "Happiness score")
+hist(sub$happiness_score,
+     main = "Histogram of happiness", xlab = "Happiness score")
+par(mfrow = c(1, 1))
+```
 :::
 
 ```{webr}
@@ -451,9 +520,41 @@ fail("Check your pairwise.t.test() call and that you used p.adjust.method = 'non
 
 Now repeat the previous question but use a Bonferroni correction for multiple comparisons. Again, return the matrix of p-values.
 
+<figure style="text-align:center">
+  <img src="./images/pokemons.jpg" style="width:40%">
+  <figcaption>Photo by <a href="https://unsplash.com/@lifetimevalues?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Life Time Values</a> on <a href="https://unsplash.com/photos/six-pokemon-figurines-lined-up-on-a-wooden-surface-caF_z0aTPtQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+      </figcaption>
+</figure>
+
 ::: {.callout-note title="Info"}
 The Bonferroni adjustment is a simple and conservative way to control the family-wise error rate when making many comparisons. In R, use p.adjust.method = "bonferroni" in pairwise.t.test().
 :::
+
+::: {.callout-note title="Preview"}
+```{webr}
+#| echo: true
+df <- read.csv("city_lifestyle_dataset.csv")
+
+sub <- subset(
+  df,
+  country %in% c("Europe","Asia","North America","Africa")
+  & is.finite(happiness_score)
+)
+
+table(sub$country)
+
+tapply(sub$happiness_score, sub$country, summary)
+
+par(mfrow = c(1, 2))
+boxplot(happiness_score ~ country, data = sub,
+        main = "Happiness by region", xlab = "Region",
+        ylab = "Happiness score")
+hist(sub$happiness_score,
+     main = "Histogram of happiness", xlab = "Happiness score")
+par(mfrow = c(1, 1))
+```
+:::
+
 
 ```{webr}
 #| exercise: q4_city_bonferroni
@@ -560,15 +661,21 @@ Your task:
 
 - Subset to rows with non-missing `Exam_Score` and `Motivation_Level`.  
 - Treat `Motivation_Level` as a factor with three levels (Low, Medium, High).  
-- Compute SSB, SSW, `df_between`, `df_within`, MSB, MSW, \(F\), and the p-value
+- Compute SSR, SSE, `df1`, `df2`, MSR, MSE, \(F\), and the p-value
 
 $$
-F = \frac{\mathrm{MSB}}{\mathrm{MSW}}, \qquad
+F = \frac{\mathrm{MSR}}{\mathrm{MSE}}, \qquad
 p = P\bigl(F_{df_1, df_2} \ge F\bigr).
 $$
 
 Return a named numeric vector:  
-`c(F = Fstat, df1 = df_between, df2 = df_within, p_value = pval)`.
+`c(F = Fstat, df1 = df1, df2 = df2, p_value = pval)`.
+
+<figure style="text-align:center">
+  <img src="./images/pokemons.jpg" style="width:40%">
+  <figcaption>Photo by <a href="https://unsplash.com/@lifetimevalues?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Life Time Values</a> on <a href="https://unsplash.com/photos/six-pokemon-figurines-lined-up-on-a-wooden-surface-caF_z0aTPtQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+      </figcaption>
+</figure>
 
 ::: {.callout-note title="Preview"}
 ```{webr}
@@ -618,29 +725,29 @@ group_ns    <- tapply(y, g, ___)
 
 overall_mean <- ___(y)
 
-SSB <- sum(group_ns * (group_means - overall_mean)^2)
+SSR <- sum(group_ns * (group_means - overall_mean)^2)
 
-SSW <- sum(tapply(y, g, function(x) sum((x - ___(x))^2)))
+SSE <- sum(tapply(y, g, function(x) sum((x - ___(x))^2)))
 
 k  <- length(group_means)
 N  <- length(y)
 
-df_between <- ___
-df_within  <- ___
+df1 <- ___
+df2  <- ___
 
-MSB <- ___
-MSW <- ___
+MSR <- ___
+MSE <- ___
 
 Fstat <- ___ / ___
-pval  <- pf(___, df_between, df_within, lower.tail = FALSE)
+pval  <- pf(___, df1, df2, lower.tail = FALSE)
 
-c(F = Fstat, df1 = df_between, df2 = df_within, p_value = pval)
+c(F = Fstat, df1 = df1, df2 = df2, p_value = pval)
 
 ```
 
 ::: {.hint exercise="q5_stud_anova_manual"}
 Same pattern as Q1: use mean for group and overall means.
-df_between = k - 1, df_within = N - k, MSB = SSB/df_between, MSW = SSW/df_within.
+df1 = k - 1, df2 = N - k, MSR = SSR/df1, MSE = SSE/df2.
 :::
 
 ::: {.solution exercise="q5_stud_anova_manual"}
@@ -671,16 +778,16 @@ SSW <- sum(tapply(y, g, function(x) sum((x - mean(x))^2)))
 k  <- length(group_means)
 N  <- length(y)
 
-df_between <- k - 1
-df_within  <- N - k
+df1 <- k - 1
+df2  <- N - k
 
-MSB <- SSB / df_between
-MSW <- SSW / df_within
+MSR <- SSB / df1
+MSE <- SSW / df2
 
-Fstat <- MSB / MSW
-pval  <- pf(Fstat, df_between, df_within, lower.tail = FALSE)
+Fstat <- MSR / MSE
+pval  <- pf(Fstat, df1, df2, lower.tail = FALSE)
 
-c(F = Fstat, df1 = df_between, df2 = df_within, p_value = pval)
+c(F = Fstat, df1 = df1, df2 = df2, p_value = pval)
 
 ```
 :::
@@ -707,22 +814,22 @@ group_ns    <- tapply(y, g, length)
 
 overall_mean <- mean(y)
 
-SSB <- sum(group_ns * (group_means - overall_mean)^2)
-SSW <- sum(tapply(y, g, function(x) sum((x - mean(x))^2)))
+SSR <- sum(group_ns * (group_means - overall_mean)^2)
+SSE <- sum(tapply(y, g, function(x) sum((x - mean(x))^2)))
 
 k  <- length(group_means)
 N  <- length(y)
 
-df_between <- k - 1
-df_within  <- N - k
+df1 <- k - 1
+df2  <- N - k
 
-MSB <- SSB / df_between
-MSW <- MSW <- SSW / df_within
+MSR <- SSR / df1
+MSE <- MSE <- SSE / df2
 
-Fstat <- MSB / MSW
-pval  <- pf(Fstat, df_between, df_within, lower.tail = FALSE)
+Fstat <- MSR / MSE
+pval  <- pf(Fstat, df1, df2, lower.tail = FALSE)
 
-exp <- c(F = Fstat, df1 = df_between, df2 = df_within, p_value = pval)
+exp <- c(F = Fstat, df1 = df1, df2 = df2, p_value = pval)
 
 res <- .result
 if (!is.numeric(res) || length(res) != 4L || any(!is.finite(res))) {
@@ -730,7 +837,7 @@ fail("Return c(F = ..., df1 = ..., df2 = ..., p_value = ...).")
 } else if (max(abs(res - exp)) < 1e-6) {
 pass("Correct manual one-way ANOVA for exam score by motivation.")
 } else {
-fail("Re-check your SSB/SSW, degrees of freedom, and F to p-value computation.")
+fail("Re-check your SSR/SSE, degrees of freedom, and F to p-value computation.")
 }
 })
 
@@ -742,6 +849,37 @@ fail("Re-check your SSB/SSW, degrees of freedom, and F to p-value computation.")
 Now use aov() to test for differences in mean exam score across motivation levels.
 
 Return c(F = Fstat, df1 = df_mot, df2 = df_resid, p_value = pval).
+
+<figure style="text-align:center">
+  <img src="./images/pokemons.jpg" style="width:40%">
+  <figcaption>Photo by <a href="https://unsplash.com/@lifetimevalues?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Life Time Values</a> on <a href="https://unsplash.com/photos/six-pokemon-figurines-lined-up-on-a-wooden-surface-caF_z0aTPtQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+      </figcaption>
+</figure>
+
+::: {.callout-note title="Preview"}
+```{webr}
+#| echo: true
+df <- read.csv("student_performance.csv")
+
+sub <- subset(df,
+!is.na(Exam_Score) &
+!is.na(Motivation_Level))
+
+table(sub$Motivation_Level)
+
+tapply(sub$Exam_Score, sub$Motivation_Level, summary)
+
+par(mfrow = c(1, 2))
+boxplot(Exam_Score ~ Motivation_Level, data = sub,
+main = "Exam score by motivation",
+xlab = "Motivation level", ylab = "Exam score")
+hist(sub$Exam_Score,
+main = "Histogram of exam scores",
+xlab = "Exam score")
+par(mfrow = c(1, 1))
+
+```
+:::
 
 ```{webr}
 #| exercise: q6_stud_anova_builtin
@@ -842,6 +980,37 @@ Using the same subset as Q5–Q6, compute unadjusted pairwise t-tests on Exam_Sc
 
 Return the matrix of p-values.
 
+<figure style="text-align:center">
+  <img src="./images/pokemons.jpg" style="width:40%">
+  <figcaption>Photo by <a href="https://unsplash.com/@lifetimevalues?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Life Time Values</a> on <a href="https://unsplash.com/photos/six-pokemon-figurines-lined-up-on-a-wooden-surface-caF_z0aTPtQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+      </figcaption>
+</figure>
+
+::: {.callout-note title="Preview"}
+```{webr}
+#| echo: true
+df <- read.csv("student_performance.csv")
+
+sub <- subset(df,
+!is.na(Exam_Score) &
+!is.na(Motivation_Level))
+
+table(sub$Motivation_Level)
+
+tapply(sub$Exam_Score, sub$Motivation_Level, summary)
+
+par(mfrow = c(1, 2))
+boxplot(Exam_Score ~ Motivation_Level, data = sub,
+main = "Exam score by motivation",
+xlab = "Motivation level", ylab = "Exam score")
+hist(sub$Exam_Score,
+main = "Histogram of exam scores",
+xlab = "Exam score")
+par(mfrow = c(1, 1))
+
+```
+:::
+
 ```{webr}
 #| exercise: q7_stud_lsd
 #| exercise.lines: 8
@@ -931,6 +1100,12 @@ Treat Parental_Education_Level as a factor with three levels.
 Run pairwise.t.test() on Exam_Score across parental education levels, using Bonferroni adjustment.
 
 Return the p-value matrix.
+
+<figure style="text-align:center">
+  <img src="./images/pokemons.jpg" style="width:40%">
+  <figcaption>Photo by <a href="https://unsplash.com/@lifetimevalues?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Life Time Values</a> on <a href="https://unsplash.com/photos/six-pokemon-figurines-lined-up-on-a-wooden-surface-caF_z0aTPtQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+      </figcaption>
+</figure>
 
 ::: {.callout-note title="Preview"}
 ```{webr}

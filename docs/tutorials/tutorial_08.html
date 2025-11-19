@@ -427,7 +427,7 @@ eyJhdHRyIjp7ImVkaXQiOmZhbHNlLCJldmFsIjp0cnVlLCJvdXRwdXQiOmZhbHNlfSwiY29kZSI6Indl
 </div>
 <section id="q1-one-way-anova-manual-happiness-score-by-region" class="level2">
 <h2 class="anchored" data-anchor-id="q1-one-way-anova-manual-happiness-score-by-region">Q1 — One-way ANOVA (manual): Happiness score by region</h2>
-<p>In the city lifestyle dataset, we want to test whether the <strong>mean happiness score</strong> differs across four regions: Europe, Asia, North America, and Africa.</p>
+<p>We start this tutorial with the city lifestyle dataset, that gives info about In the city lifestyle dataset, we want to test whether the <strong>mean happiness score</strong> differs across four regions: Europe, Asia, North America, and Africa.</p>
 <p>We test:</p>
 <p><span class="math display">\[
 H_0: \mu_{\text{Europe}} = \mu_{\text{Asia}} = \mu_{\text{NorthAm}} = \mu_{\text{Africa}}
@@ -443,10 +443,10 @@ H_1:\ \text{at least one regional mean is different.}
 </li>
 <li>Remove rows with missing happiness scores.<br>
 </li>
-<li>Compute SSB, SSW, <code>df_between</code>, <code>df_within</code>, MSB, MSW, F, and the p-value</li>
+<li>Compute SSR, SSE, <span class="math inline">\(df_1\)</span>, <span class="math inline">\(df_2\)</span>, MSR, MSE, F, and the p-value</li>
 </ul>
 <p><span class="math display">\[
-F = \frac{\text{MSB}}{\text{MSW}}, \qquad
+F = \frac{\text{MSR}}{\text{MSE}}, \qquad
 p = P\bigl(F_{df_1, df_2} \ge F\bigr).
 \]</span></p>
 <p>Return a named numeric vector: <code>c(F = Fstat, df1 = df_between, df2 = df_within, p_value = pval)</code>.</p>
