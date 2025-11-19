@@ -495,8 +495,8 @@ if (is.null(df)) fail("Couldn't read 'city_lifestyle_dataset.csv'.")
 
 sub <- subset(
 df,
-country %in% c("Europe","Asia","North America","Africa")
-& is.finite(happiness_score)
+country %in% c("Europe","Asia","North America","Africa") &
+is.finite(happiness_score)
 )
 sub$region <- factor(sub$country)
 
@@ -505,15 +505,27 @@ sub$region,
 p.adjust.method = "none")$p.value
 
 res <- .result
-if (!is.matrix(res) || any(!is.finite(res))) {
+
+if (!is.matrix(res)) {
 fail("Return the p-value matrix from pairwise.t.test(...).")
-} else if (all(dim(res) == dim(exp)) &&
-max(abs(res - exp)) < 1e-8) {
+}
+
+# check dimensions and dimnames match
+
+if (!identical(dim(res), dim(exp)) ||
+!identical(dimnames(res), dimnames(exp))) {
+fail("Row/column structure should match pairwise.t.test(...).")
+}
+
+# numeric comparison, ignoring NA entries
+
+if (max(abs(res - exp), na.rm = TRUE) < 1e-8) {
 pass("Correct Fisher's LSD pairwise p-values (no adjustment).")
 } else {
 fail("Check your pairwise.t.test() call and that you used p.adjust.method = 'none'.")
 }
 })
+
 ```
 
 ## Q4 — Bonferroni-adjusted pairwise region comparisons
