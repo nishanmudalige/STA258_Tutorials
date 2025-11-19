@@ -1,10 +1,4 @@
 ---
-<<<<<<< HEAD
-title: "tutorial_07"
-format: html
----
-
-=======
 title: "Tutorial 07"
 format: live-html
 engine: knitr
@@ -863,4 +857,3 @@ else fail("Confirm vector order (Adelie first) and conf.level=0.80.")
 ```
 
 
->>>>>>> c994fad85f43a18919fc23f990d8422ea69fab62

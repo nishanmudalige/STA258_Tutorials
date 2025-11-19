@@ -107,17 +107,9 @@ library(palmerpenguins)
 x <- na.omit(palmerpenguins::penguins$body_mass_g)
 xbar <- mean(x)
 n <- length(x)
-<<<<<<< HEAD
-z <- qnorm(0.975)
-sigma <- 450
-xbar + c(-1,1) * z * sigma / sqrt(n)
-
-
-=======
 z <- qnorm(0.95) # 90% two-sided
 sigma <- 450
 xbar + c(-1,1) * z * sigma / sqrt(n)
->>>>>>> c994fad85f43a18919fc23f990d8422ea69fab62
 ```
 :::
 
@@ -162,12 +154,6 @@ head(plantgrowth_data, 10)
 ```
 :::
 
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> c994fad85f43a18919fc23f990d8422ea69fab62
 ```{webr}
 #| exercise: q3_tstar_95
 #| exercise.lines: 1
@@ -207,12 +193,6 @@ else fail("Check df and make sure it's two-sided 95%.")
 
 ```
 
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> c994fad85f43a18919fc23f990d8422ea69fab62
 ## Q4 — One-Sample Confidence Interval for μ (σ Unknown)
 
 Using PlantGrowth$weight (σ unknown), construct a 95% CI for the true mean plant weight. Give your output as a vector of the form c(lower, upper).
@@ -270,17 +250,7 @@ xbar + c(-1,1)*critical_value*sd/sqrt(n)
 #| exercise: q4_t_ci_weight
 #| check: true
 gradethis::grade_this({
-<<<<<<< HEAD
-n <- length(datasets::PlantGrowth$weight)
-exp <- qt(0.975, df = n - 1)
-x <- .result
-if (!is.numeric(x) || length(x)!=1L || !is.finite(x)) fail("Print a single numeric value.")
-if (abs(x - exp) < 1e-6) pass("✅ Correct t* for 95%.")
-else fail("Check df and make sure it's two-sided 95%.")
-})
 
-
-=======
 x <- datasets::PlantGrowth$weight
 xbar <- mean(x); s <- sd(x); n <- length(x)
 tstar <- qt(0.975, df = n - 1)
@@ -292,10 +262,6 @@ if (!ok) fail("Print a numeric vector c(lower, upper).")
 if (max(abs(r - exp)) < 1e-6) pass("✅ Correct 95% t-interval for PlantGrowth$weight.")
 else fail("Recheck x̄, s, n, and t* with df = n−1.")
 })
-
-
-
->>>>>>> c994fad85f43a18919fc23f990d8422ea69fab62
 ```
 
 ## Q5 — One sample CI for μ
@@ -345,12 +311,7 @@ Find n from the length_miles vector and compute the two-sided 95% z critical val
 rivers_data <- data.frame(length_miles = as.numeric(datasets::rivers))
 x <- rivers_data$length_miles
 xbar <- mean(x); n <- length(x); z <- qnorm(0.975); sigma <- 300
-<<<<<<< HEAD
-xbar + c(-1,1)zsigma/sqrt(n)
-
-=======
 xbar + c(-1,1) * z * sigma / sqrt(n)
->>>>>>> c994fad85f43a18919fc23f990d8422ea69fab62
 ```
 :::
 
@@ -396,15 +357,10 @@ head(oz, 10)
 
 ```{webr}
 #| exercise: q6_t_ci_ozone
-<<<<<<< HEAD
-w <- oz
-xbar <- mean(w); s <- ＿＿ ; n <- length(w)
-=======
 w <- na.omit(datasets::airquality$Ozone)
 xbar <- mean(w)
 s <- ＿＿ 
 n <- length(w)
->>>>>>> c994fad85f43a18919fc23f990d8422ea69fab62
 tstar <- ＿＿ 
 xbar + c(-1,1)*tstar * s/sqrt(n)
 ```
@@ -418,17 +374,10 @@ at 0.95 with df = n−1; use s for the SD.
 ```{webr}
 #| exercise: q6_t_ci_ozone
 #| solution: true
-<<<<<<< HEAD
-w <- oz
-xbar <- mean(w); s <- sd(w); n <- length(w)
-tstar <- qt(0.95, df = n - 1) # two-sided 90%
-xbar + c(-1,1)tstar * s/sqrt(n)
-=======
 w <- na.omit(datasets::airquality$Ozone)
 xbar <- mean(w); s <- sd(w); n <- length(w)
 tstar <- qt(0.95, df = n - 1) # two-sided 90%
 xbar + c(-1,1) * tstar * s / sqrt(n)
->>>>>>> c994fad85f43a18919fc23f990d8422ea69fab62
 ```
 :::
 
@@ -573,15 +522,9 @@ Use $s^2$, df = n−1, and chi-square quantiles at 0.975 and 0.025 (note the ord
 #| solution: true
 x <- datasets::PlantGrowth$weight
 n <- length(x); df <- n - 1; s2 <- var(x)
-<<<<<<< HEAD
 chi_lo <- qchisq(0.975, df = df) # upper-tail cutoff
 chi_hi <- qchisq(0.025, df = df) # lower-tail cutoff
 c(df * s2/chi_lo, df*s2/chi_hi)
-=======
-chi_lo <- qchisq(0.975, df = df)
-chi_hi <- qchisq(0.025, df = df)
-c(df * s2/chi_lo, df * s2/chi_hi)
->>>>>>> c994fad85f43a18919fc23f990d8422ea69fab62
 ```
 :::
 
