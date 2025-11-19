@@ -629,8 +629,8 @@ if (is.null(df)) fail("Couldn't read 'city_lifestyle_dataset.csv'.")
 
 sub <- subset(
 df,
-country %in% c("Europe","Asia","North America","Africa")
-& is.finite(happiness_score)
+country %in% c("Europe","Asia","North America","Africa") &
+is.finite(happiness_score)
 )
 sub$region <- factor(sub$country)
 
@@ -639,10 +639,23 @@ sub$region,
 p.adjust.method = "bonferroni")$p.value
 
 res <- .result
-if (!is.matrix(res) || any(!is.finite(res))) {
+
+# Must be a matrix
+
+if (!is.matrix(res)) {
 fail("Return the p-value matrix from pairwise.t.test(...).")
-} else if (all(dim(res) == dim(exp)) &&
-max(abs(res - exp)) < 1e-8) {
+}
+
+# Structure (dims + names) must match
+
+if (!identical(dim(res), dim(exp)) ||
+!identical(dimnames(res), dimnames(exp))) {
+fail("Row/column structure should match pairwise.t.test(...).")
+}
+
+# Compare numeric entries, ignoring NAs
+
+if (max(abs(res - exp), na.rm = TRUE) < 1e-8) {
 pass("Correct Bonferroni-adjusted pairwise p-values.")
 } else {
 fail("Check that you used p.adjust.method = 'bonferroni' on the same subset.")
@@ -1076,20 +1089,37 @@ gradethis::grade_this({
 df <- tryCatch(read.csv("student_performance.csv"), error = function(e) NULL)
 if (is.null(df)) fail("Couldn't read 'student_performance.csv'.")
 
-sub <- subset(df,
+sub <- subset(
+df,
 !is.na(Exam_Score) &
-!is.na(Motivation_Level))
+!is.na(Motivation_Level)
+)
 sub$mot <- factor(sub$Motivation_Level)
 
-exp <- pairwise.t.test(sub$Exam_Score,
+exp <- pairwise.t.test(
+sub$Exam_Score,
 sub$mot,
-p.adjust.method = "none")$p.value
+p.adjust.method = "none"
+)$p.value
 
 res <- .result
-if (!is.matrix(res) || any(!is.finite(res))) {
+
+# Must be a matrix
+
+if (!is.matrix(res)) {
 fail("Return the p-value matrix from pairwise.t.test(...).")
-} else if (all(dim(res) == dim(exp)) &&
-max(abs(res - exp)) < 1e-8) {
+}
+
+# Dimensions and dimnames should match
+
+if (!identical(dim(res), dim(exp)) ||
+!identical(dimnames(res), dimnames(exp))) {
+fail("Row/column structure should match pairwise.t.test(...).")
+}
+
+# Compare numeric entries, ignoring NAs
+
+if (max(abs(res - exp), na.rm = TRUE) < 1e-8) {
 pass("Correct Fisher's LSD pairwise p-values for motivation levels.")
 } else {
 fail("Check your pairwise.t.test() call and that you used p.adjust.method = 'none'.")
@@ -1189,32 +1219,50 @@ out$p.value
 
 
 ```{webr}
-#| exercise: q8_stud_bonf_edu
+#| exercise: q8_student_edu_bonf
 #| check: true
 
 gradethis::grade_this({
 df <- tryCatch(read.csv("student_performance.csv"), error = function(e) NULL)
 if (is.null(df)) fail("Couldn't read 'student_performance.csv'.")
 
-sub <- subset(df,
+sub <- subset(
+df,
 !is.na(Exam_Score) &
-!is.na(Parental_Education_Level))
+!is.na(Parental_Education_Level)
+)
 
 sub$edu <- factor(sub$Parental_Education_Level)
 
-exp <- pairwise.t.test(sub$Exam_Score,
+exp <- pairwise.t.test(
+sub$Exam_Score,
 sub$edu,
-p.adjust.method = "bonferroni")$p.value
+p.adjust.method = "bonferroni"
+)$p.value
 
 res <- .result
-if (!is.matrix(res) || any(!is.finite(res))) {
+
+# Must be a matrix
+
+if (!is.matrix(res)) {
 fail("Return the p-value matrix from pairwise.t.test(...).")
-} else if (all(dim(res) == dim(exp)) &&
-max(abs(res - exp)) < 1e-8) {
+}
+
+# Structure must match
+
+if (!identical(dim(res), dim(exp)) ||
+!identical(dimnames(res), dimnames(exp))) {
+fail("Row/column structure should match pairwise.t.test(...).")
+}
+
+# Compare numeric entries, ignoring NAs
+
+if (max(abs(res - exp), na.rm = TRUE) < 1e-8) {
 pass("Correct Bonferroni-adjusted pairwise p-values by parental education.")
 } else {
 fail("Re-check the subset, the grouping factor, and p.adjust.method = 'bonferroni'.")
 }
 })
+
 
 ```
