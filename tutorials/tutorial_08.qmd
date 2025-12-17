@@ -1219,50 +1219,29 @@ out$p.value
 
 
 ```{webr}
-#| exercise: q8_student_edu_bonf
+#| exercise: q8_stud_bonf_edu
 #| check: true
 
 gradethis::grade_this({
-df <- tryCatch(read.csv("student_performance.csv"), error = function(e) NULL)
-if (is.null(df)) fail("Couldn't read 'student_performance.csv'.")
+  df <- tryCatch(read.csv("student_performance.csv"), error = function(e) NULL)
+  if (is.null(df)) fail("Couldn't read 'student_performance.csv'.")
 
-sub <- subset(
-df,
-!is.na(Exam_Score) &
-!is.na(Parental_Education_Level)
-)
+  sub <- subset(df, !is.na(Exam_Score) & !is.na(Parental_Education_Level))
+  sub$edu <- factor(sub$Parental_Education_Level)
 
-sub$edu <- factor(sub$Parental_Education_Level)
+  exp <- pairwise.t.test(sub$Exam_Score, sub$edu, p.adjust.method = "bonferroni")$p.value
+  res <- .result
 
-exp <- pairwise.t.test(
-sub$Exam_Score,
-sub$edu,
-p.adjust.method = "bonferroni"
-)$p.value
+  if (!is.matrix(res)) fail("Return the p-value matrix from pairwise.t.test(...).")
 
-res <- .result
+  if (!identical(dim(res), dim(exp)) || !identical(dimnames(res), dimnames(exp))) {
+    fail("Row/column structure should match pairwise.t.test(...).")
+  }
 
-# Must be a matrix
-
-if (!is.matrix(res)) {
-fail("Return the p-value matrix from pairwise.t.test(...).")
-}
-
-# Structure must match
-
-if (!identical(dim(res), dim(exp)) ||
-!identical(dimnames(res), dimnames(exp))) {
-fail("Row/column structure should match pairwise.t.test(...).")
-}
-
-# Compare numeric entries, ignoring NAs
-
-if (max(abs(res - exp), na.rm = TRUE) < 1e-8) {
-pass("Correct Bonferroni-adjusted pairwise p-values by parental education.")
-} else {
-fail("Re-check the subset, the grouping factor, and p.adjust.method = 'bonferroni'.")
-}
+  if (max(abs(res - exp), na.rm = TRUE) < 1e-8) {
+    pass("Correct Bonferroni-adjusted pairwise p-values by parental education.")
+  } else {
+    fail("Re-check the subset, the grouping factor, and p.adjust.method = 'bonferroni'.")
+  }
 })
-
-
 ```

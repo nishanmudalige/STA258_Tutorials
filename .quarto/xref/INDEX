@@ -38,10 +38,15 @@
   "tutorials/tutorial_08.qmd": {
     "tutorial_08.html": "64832853"
   },
+<<<<<<< HEAD
   "tutorials/tutorial_10.qmd": {
     "tutorial_10.html": "1e501513"
   },
   "tutorials/tutorial_11.qmd": {
     "tutorial_11.html": "a2f1a32a"
+=======
+  "tutorials/tutorial_09.qmd": {
+    "tutorial_09.html": "6abda4ad"
+>>>>>>> tut9p
   }
 }
