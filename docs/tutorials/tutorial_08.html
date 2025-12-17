@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -66,18 +66,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b651517ce65839d647a86e2780455cfb.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-cc63fce9873912f1bbbccf05079cc9ea.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-08799928d293638fe9563d5c5a2794e5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-cc63fce9873912f1bbbccf05079cc9ea.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-0d4a9d19931feb4fee1ddab4b2489000.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -124,7 +125,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -312,6 +313,8 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Course Tutorials</span>
     </a>
@@ -459,7 +462,7 @@ Photo by <a href="https://unsplash.com/@lifetimevalues?utm_source=unsplash&amp;u
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Info
+<span class="screen-reader-only">Note</span>Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -486,7 +489,7 @@ df_{\text{within}} = N - k
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Preview
+<span class="screen-reader-only">Note</span>Preview
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -554,7 +557,7 @@ Fstat &lt;- MSR / MSE
 pval  &lt;- pf(Fstat, df1, df2, lower.tail = FALSE)
 
 c(F = Fstat, df1 = df1, df2 = df2, p_value = pval)</code>
-<div class="sourceCode cell-code" id="interpolate-6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-6-1"><a href="#interpolate-6-1" aria-hidden="true" tabindex="-1"></a></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-6-1"><a href="#interpolate-6-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-6-2"><a href="#interpolate-6-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"city_lifestyle_dataset.csv"</span>)</span>
 <span id="interpolate-6-3"><a href="#interpolate-6-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-6-4"><a href="#interpolate-6-4" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">&lt;-</span> <span class="fu">subset</span>(</span>
@@ -589,7 +592,7 @@ c(F = Fstat, df1 = df1, df2 = df2, p_value = pval)</code>
 <span id="interpolate-6-33"><a href="#interpolate-6-33" aria-hidden="true" tabindex="-1"></a>Fstat <span class="ot">&lt;-</span> MSR <span class="sc">/</span> MSE</span>
 <span id="interpolate-6-34"><a href="#interpolate-6-34" aria-hidden="true" tabindex="-1"></a>pval  <span class="ot">&lt;-</span> <span class="fu">pf</span>(Fstat, df1, df2, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
 <span id="interpolate-6-35"><a href="#interpolate-6-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-6-36"><a href="#interpolate-6-36" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">F =</span> Fstat, <span class="at">df1 =</span> df1, <span class="at">df2 =</span> df2, <span class="at">p_value =</span> pval)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="interpolate-6-36"><a href="#interpolate-6-36" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">F =</span> Fstat, <span class="at">df1 =</span> df1, <span class="at">df2 =</span> df2, <span class="at">p_value =</span> pval)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -615,7 +618,7 @@ Photo by <a href="https://unsplash.com/@lifetimevalues?utm_source=unsplash&amp;u
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Info
+<span class="screen-reader-only">Note</span>Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -631,7 +634,7 @@ Info
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Preview
+<span class="screen-reader-only">Note</span>Preview
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -684,7 +687,7 @@ Fstat     &lt;- tab["region", "F value"]
 pval      &lt;- tab["region", "Pr(&gt;F)"]
 
 c(F = Fstat, df1 = df_region, df2 = df_resid, p_value = pval)</code>
-<div class="sourceCode cell-code" id="interpolate-12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-12-1"><a href="#interpolate-12-1" aria-hidden="true" tabindex="-1"></a></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-12-1"><a href="#interpolate-12-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-12-2"><a href="#interpolate-12-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"city_lifestyle_dataset.csv"</span>)</span>
 <span id="interpolate-12-3"><a href="#interpolate-12-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-12-4"><a href="#interpolate-12-4" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">&lt;-</span> <span class="fu">subset</span>(</span>
@@ -704,7 +707,7 @@ c(F = Fstat, df1 = df_region, df2 = df_resid, p_value = pval)</code>
 <span id="interpolate-12-18"><a href="#interpolate-12-18" aria-hidden="true" tabindex="-1"></a>Fstat     <span class="ot">&lt;-</span> tab[<span class="st">"region"</span>, <span class="st">"F value"</span>]</span>
 <span id="interpolate-12-19"><a href="#interpolate-12-19" aria-hidden="true" tabindex="-1"></a>pval      <span class="ot">&lt;-</span> tab[<span class="st">"region"</span>, <span class="st">"Pr(&gt;F)"</span>]</span>
 <span id="interpolate-12-20"><a href="#interpolate-12-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-12-21"><a href="#interpolate-12-21" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">F =</span> Fstat, <span class="at">df1 =</span> df_region, <span class="at">df2 =</span> df_resid, <span class="at">p_value =</span> pval)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="interpolate-12-21"><a href="#interpolate-12-21" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">F =</span> Fstat, <span class="at">df1 =</span> df_region, <span class="at">df2 =</span> df_resid, <span class="at">p_value =</span> pval)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -730,7 +733,7 @@ Photo by <a href="https://unsplash.com/@lifetimevalues?utm_source=unsplash&amp;u
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Info
+<span class="screen-reader-only">Note</span>Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -746,7 +749,7 @@ Info
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Preview
+<span class="screen-reader-only">Note</span>Preview
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -794,7 +797,7 @@ sub$region,
 p.adjust.method = "none")
 
 out$p.value</code>
-<div class="sourceCode cell-code" id="interpolate-18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-18-1"><a href="#interpolate-18-1" aria-hidden="true" tabindex="-1"></a></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-18-1"><a href="#interpolate-18-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-18-2"><a href="#interpolate-18-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"city_lifestyle_dataset.csv"</span>)</span>
 <span id="interpolate-18-3"><a href="#interpolate-18-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-18-4"><a href="#interpolate-18-4" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">&lt;-</span> <span class="fu">subset</span>(</span>
@@ -809,7 +812,7 @@ out$p.value</code>
 <span id="interpolate-18-13"><a href="#interpolate-18-13" aria-hidden="true" tabindex="-1"></a>sub<span class="sc">$</span>region,</span>
 <span id="interpolate-18-14"><a href="#interpolate-18-14" aria-hidden="true" tabindex="-1"></a><span class="at">p.adjust.method =</span> <span class="st">"none"</span>)</span>
 <span id="interpolate-18-15"><a href="#interpolate-18-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-18-16"><a href="#interpolate-18-16" aria-hidden="true" tabindex="-1"></a>out<span class="sc">$</span>p.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="interpolate-18-16"><a href="#interpolate-18-16" aria-hidden="true" tabindex="-1"></a>out<span class="sc">$</span>p.value</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -834,7 +837,7 @@ Photo by <a href="https://unsplash.com/@lifetimevalues?utm_source=unsplash&amp;u
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Info
+<span class="screen-reader-only">Note</span>Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -847,7 +850,7 @@ Info
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Preview
+<span class="screen-reader-only">Note</span>Preview
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -895,7 +898,7 @@ sub$region,
 p.adjust.method = "bonferroni")
 
 out$p.value</code>
-<div class="sourceCode cell-code" id="interpolate-24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-24-1"><a href="#interpolate-24-1" aria-hidden="true" tabindex="-1"></a></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-24-1"><a href="#interpolate-24-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-24-2"><a href="#interpolate-24-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"city_lifestyle_dataset.csv"</span>)</span>
 <span id="interpolate-24-3"><a href="#interpolate-24-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-24-4"><a href="#interpolate-24-4" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">&lt;-</span> <span class="fu">subset</span>(</span>
@@ -910,7 +913,7 @@ out$p.value</code>
 <span id="interpolate-24-13"><a href="#interpolate-24-13" aria-hidden="true" tabindex="-1"></a>sub<span class="sc">$</span>region,</span>
 <span id="interpolate-24-14"><a href="#interpolate-24-14" aria-hidden="true" tabindex="-1"></a><span class="at">p.adjust.method =</span> <span class="st">"bonferroni"</span>)</span>
 <span id="interpolate-24-15"><a href="#interpolate-24-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-24-16"><a href="#interpolate-24-16" aria-hidden="true" tabindex="-1"></a>out<span class="sc">$</span>p.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="interpolate-24-16"><a href="#interpolate-24-16" aria-hidden="true" tabindex="-1"></a>out<span class="sc">$</span>p.value</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -958,7 +961,7 @@ Photo by <a href="https://unsplash.com/@lifetimevalues?utm_source=unsplash&amp;u
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Preview
+<span class="screen-reader-only">Note</span>Preview
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1024,7 +1027,7 @@ Fstat &lt;- MSR / MSE
 pval  &lt;- pf(Fstat, df1, df2, lower.tail = FALSE)
 
 c(F = Fstat, df1 = df1, df2 = df2, p_value = pval)</code>
-<div class="sourceCode cell-code" id="interpolate-30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-30-1"><a href="#interpolate-30-1" aria-hidden="true" tabindex="-1"></a></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-30-1"><a href="#interpolate-30-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-30-2"><a href="#interpolate-30-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"student_performance.csv"</span>)</span>
 <span id="interpolate-30-3"><a href="#interpolate-30-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-30-4"><a href="#interpolate-30-4" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">&lt;-</span> <span class="fu">subset</span>(df,</span>
@@ -1057,7 +1060,7 @@ c(F = Fstat, df1 = df1, df2 = df2, p_value = pval)</code>
 <span id="interpolate-30-31"><a href="#interpolate-30-31" aria-hidden="true" tabindex="-1"></a>Fstat <span class="ot">&lt;-</span> MSR <span class="sc">/</span> MSE</span>
 <span id="interpolate-30-32"><a href="#interpolate-30-32" aria-hidden="true" tabindex="-1"></a>pval  <span class="ot">&lt;-</span> <span class="fu">pf</span>(Fstat, df1, df2, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
 <span id="interpolate-30-33"><a href="#interpolate-30-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-30-34"><a href="#interpolate-30-34" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">F =</span> Fstat, <span class="at">df1 =</span> df1, <span class="at">df2 =</span> df2, <span class="at">p_value =</span> pval)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="interpolate-30-34"><a href="#interpolate-30-34" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">F =</span> Fstat, <span class="at">df1 =</span> df1, <span class="at">df2 =</span> df2, <span class="at">p_value =</span> pval)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -1083,7 +1086,7 @@ Photo by <a href="https://unsplash.com/@lifetimevalues?utm_source=unsplash&amp;u
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Preview
+<span class="screen-reader-only">Note</span>Preview
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1134,7 +1137,7 @@ Fstat    &lt;- tab["mot", "F value"]
 pval     &lt;- tab["mot", "Pr(&gt;F)"]
 
 c(F = Fstat, df1 = df_mot, df2 = df_resid, p_value = pval)</code>
-<div class="sourceCode cell-code" id="interpolate-36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-36-1"><a href="#interpolate-36-1" aria-hidden="true" tabindex="-1"></a></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-36-1"><a href="#interpolate-36-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-36-2"><a href="#interpolate-36-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"student_performance.csv"</span>)</span>
 <span id="interpolate-36-3"><a href="#interpolate-36-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-36-4"><a href="#interpolate-36-4" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">&lt;-</span> <span class="fu">subset</span>(df,</span>
@@ -1152,7 +1155,7 @@ c(F = Fstat, df1 = df_mot, df2 = df_resid, p_value = pval)</code>
 <span id="interpolate-36-16"><a href="#interpolate-36-16" aria-hidden="true" tabindex="-1"></a>Fstat    <span class="ot">&lt;-</span> tab[<span class="st">"mot"</span>, <span class="st">"F value"</span>]</span>
 <span id="interpolate-36-17"><a href="#interpolate-36-17" aria-hidden="true" tabindex="-1"></a>pval     <span class="ot">&lt;-</span> tab[<span class="st">"mot"</span>, <span class="st">"Pr(&gt;F)"</span>]</span>
 <span id="interpolate-36-18"><a href="#interpolate-36-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-36-19"><a href="#interpolate-36-19" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">F =</span> Fstat, <span class="at">df1 =</span> df_mot, <span class="at">df2 =</span> df_resid, <span class="at">p_value =</span> pval)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="interpolate-36-19"><a href="#interpolate-36-19" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">F =</span> Fstat, <span class="at">df1 =</span> df_mot, <span class="at">df2 =</span> df_resid, <span class="at">p_value =</span> pval)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -1178,7 +1181,7 @@ Photo by <a href="https://unsplash.com/@lifetimevalues?utm_source=unsplash&amp;u
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Preview
+<span class="screen-reader-only">Note</span>Preview
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1224,7 +1227,7 @@ sub$mot,
 p.adjust.method = "none")
 
 out$p.value</code>
-<div class="sourceCode cell-code" id="interpolate-42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-42-1"><a href="#interpolate-42-1" aria-hidden="true" tabindex="-1"></a></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-42-1"><a href="#interpolate-42-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-42-2"><a href="#interpolate-42-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"student_performance.csv"</span>)</span>
 <span id="interpolate-42-3"><a href="#interpolate-42-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-42-4"><a href="#interpolate-42-4" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">&lt;-</span> <span class="fu">subset</span>(df,</span>
@@ -1237,7 +1240,7 @@ out$p.value</code>
 <span id="interpolate-42-11"><a href="#interpolate-42-11" aria-hidden="true" tabindex="-1"></a>sub<span class="sc">$</span>mot,</span>
 <span id="interpolate-42-12"><a href="#interpolate-42-12" aria-hidden="true" tabindex="-1"></a><span class="at">p.adjust.method =</span> <span class="st">"none"</span>)</span>
 <span id="interpolate-42-13"><a href="#interpolate-42-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-42-14"><a href="#interpolate-42-14" aria-hidden="true" tabindex="-1"></a>out<span class="sc">$</span>p.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="interpolate-42-14"><a href="#interpolate-42-14" aria-hidden="true" tabindex="-1"></a>out<span class="sc">$</span>p.value</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -1267,7 +1270,7 @@ Photo by <a href="https://unsplash.com/@lifetimevalues?utm_source=unsplash&amp;u
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Preview
+<span class="screen-reader-only">Note</span>Preview
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1311,7 +1314,7 @@ sub$edu,
 p.adjust.method = "bonferroni")
 
 out$p.value</code>
-<div class="sourceCode cell-code" id="interpolate-48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-48-1"><a href="#interpolate-48-1" aria-hidden="true" tabindex="-1"></a></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-48-1"><a href="#interpolate-48-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-48-2"><a href="#interpolate-48-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"student_performance.csv"</span>)</span>
 <span id="interpolate-48-3"><a href="#interpolate-48-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-48-4"><a href="#interpolate-48-4" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">&lt;-</span> <span class="fu">subset</span>(df,</span>
@@ -1324,7 +1327,7 @@ out$p.value</code>
 <span id="interpolate-48-11"><a href="#interpolate-48-11" aria-hidden="true" tabindex="-1"></a>sub<span class="sc">$</span>edu,</span>
 <span id="interpolate-48-12"><a href="#interpolate-48-12" aria-hidden="true" tabindex="-1"></a><span class="at">p.adjust.method =</span> <span class="st">"bonferroni"</span>)</span>
 <span id="interpolate-48-13"><a href="#interpolate-48-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-48-14"><a href="#interpolate-48-14" aria-hidden="true" tabindex="-1"></a>out<span class="sc">$</span>p.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="interpolate-48-14"><a href="#interpolate-48-14" aria-hidden="true" tabindex="-1"></a>out<span class="sc">$</span>p.value</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <div class="cell" data-exercise="q8_stud_bonf_edu" data-check="true">
@@ -1432,13 +1435,14 @@ window._ojs.runtime.interpretFromScriptTags();
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

@@ -501,3 +501,340 @@ fail("Check the row/column names: '(Intercept)' and 'runtime', column 'Estimate'
 })
 
 ```
+
+## Q5 — Point prediction by hand (using b0, b1)
+
+Using the same filtered movie subset and the fitted line, compute the predicted IMDB score when:
+
+- $x_0 = 90$ minutes
+
+Return a single numeric value: `yhat_90`.
+
+::: {.callout-note title="Info"}
+A point prediction on a fitted line is the model’s estimated mean response at a chosen $x_0$. Conceptually: “plug in $x_0$ into the fitted line.”
+:::
+
+::: {.callout-note title="Preview"}
+```{webr}
+#| echo: true
+df <- read.csv("titles.csv")
+
+sub <- subset(df,
+  type == "MOVIE" &
+  is.finite(runtime) &
+  is.finite(imdb_score) &
+  runtime > 0
+)
+
+fit <- lm(imdb_score ~ runtime, data = sub)
+coef(fit)
+
+plot(imdb_score ~ runtime, data = sub,
+     xlab = "runtime (minutes)", ylab = "imdb_score",
+     main = "IMDB score vs runtime (movies)")
+abline(fit)
+```
+
+:::
+```{webr}
+#| exercise: q5_titles_pred_hand
+#| exercise.lines: 14
+#| echo: false
+
+df <- read.csv("titles.csv")
+
+sub <- subset(df,
+type == "MOVIE" &
+is.finite(runtime) &
+is.finite(imdb_score) &
+runtime > 0
+)
+
+fit <- lm(imdb_score ~ runtime, data = sub)
+b <- coef(fit)
+
+x0 <- 90
+yhat_90 <- ___
+yhat_90
+```
+
+::: {.hint exercise="q5_titles_pred_hand"}
+A point prediction uses the fitted line’s two coefficients and a chosen (x_0). Use the intercept + slope idea (one part is the “baseline”, the other is the “change per minute” times (x_0)).
+:::
+
+::: {.solution exercise="q5_titles_pred_hand"}
+```{webr}
+#| exercise: q5_titles_pred_hand
+#| solution: true
+
+df <- read.csv("titles.csv")
+
+sub <- subset(df,
+type == "MOVIE" &
+is.finite(runtime) &
+is.finite(imdb_score) &
+runtime > 0
+)
+
+fit <- lm(imdb_score ~ runtime, data = sub)
+b <- coef(fit)
+
+x0 <- 90
+yhat_90 <- unname(b[1] + b[2] * x0)
+yhat_90
+```
+:::
+
+```{webr}
+#| exercise: q5_titles_pred_hand
+#| check: true
+
+gradethis::grade_this({
+df <- tryCatch(read.csv("titles.csv"), error = function(e) NULL)
+if (is.null(df)) fail("Couldn't read 'titles.csv'.")
+
+sub <- subset(df,
+type == "MOVIE" &
+is.finite(runtime) &
+is.finite(imdb_score) &
+runtime > 0
+)
+fit <- lm(imdb_score ~ runtime, data = sub)
+b <- coef(fit)
+
+x0 <- 90
+exp <- unname(b[1] + b[2] * x0)
+
+res <- .result
+if (!is.numeric(res) || length(res) != 1L || !is.finite(res)) {
+fail("Return a single numeric value yhat_90.")
+} else if (abs(res - exp) < 1e-6) {
+pass("Correct point prediction at runtime = 90.")
+} else {
+fail("Prediction is off. Re-check how you used the two fitted coefficients with x0.")
+}
+})
+```
+
+## Q6 — Point prediction using `predict()`
+
+Use the fitted model to predict the IMDB score at:
+
+* $(x_0 = 90)$ minutes
+
+This time, use `predict()` and a `newdata` data frame.
+
+Return a single numeric value: `yhat_90`.
+
+::: {.callout-note title="Info"}
+Built-in prediction methods require:
+
+* a fitted model object
+* a `newdata` data frame with the predictor column named exactly as in the model
+
+:::
+
+::: {.callout-note title="Preview"}
+
+```{webr}
+#| echo: true
+df <- read.csv("titles.csv")
+
+sub <- subset(df,
+type == "MOVIE" &
+is.finite(runtime) &
+is.finite(imdb_score) &
+runtime > 0
+)
+
+fit <- lm(imdb_score ~ runtime, data = sub)
+
+new <- data.frame(runtime = c(90, 120))
+new
+```
+
+:::
+```{webr}
+#| exercise: q6_titles_pred_predict
+#| exercise.lines: 12
+#| echo: false
+
+df <- read.csv("titles.csv")
+
+sub <- subset(df,
+type == "MOVIE" &
+is.finite(runtime) &
+is.finite(imdb_score) &
+runtime > 0
+)
+
+fit <- lm(imdb_score ~ runtime, data = sub)
+
+new <- data.frame(runtime = 90)
+yhat_90 <- ___
+unname(yhat_90)
+```
+
+::: {.hint exercise="q6_titles_pred_predict"}
+Create a one-row `newdata` data frame whose column name matches the predictor used in the model, then call the model’s prediction function and extract the numeric value.
+:::
+
+::: {.solution exercise="q6_titles_pred_predict"}
+```{webr}
+#| exercise: q6_titles_pred_predict
+#| solution: true
+
+df <- read.csv("titles.csv")
+
+sub <- subset(df,
+type == "MOVIE" &
+is.finite(runtime) &
+is.finite(imdb_score) &
+runtime > 0
+)
+
+fit <- lm(imdb_score ~ runtime, data = sub)
+
+new <- data.frame(runtime = 90)
+yhat_90 <- predict(fit, newdata = new)
+unname(yhat_90)
+```
+
+:::
+
+```{webr}
+#| exercise: q6_titles_pred_predict
+#| check: true
+
+gradethis::grade_this({
+df <- tryCatch(read.csv("titles.csv"), error = function(e) NULL)
+if (is.null(df)) fail("Couldn't read 'titles.csv'.")
+
+sub <- subset(df,
+type == "MOVIE" &
+is.finite(runtime) &
+is.finite(imdb_score) &
+runtime > 0
+)
+fit <- lm(imdb_score ~ runtime, data = sub)
+
+exp <- unname(predict(fit, newdata = data.frame(runtime = 90)))
+
+res <- .result
+if (!is.numeric(res) || length(res) != 1L || !is.finite(res)) {
+fail("Return a single numeric prediction yhat_90.")
+} else if (abs(res - exp) < 1e-6) {
+pass("Correct predict() result at runtime = 90.")
+} else {
+fail("Prediction mismatch. Check newdata column name and the predict() call.")
+}
+})
+```
+
+## Q7 — Compare two predictions (difference in fitted values)
+
+Using the fitted model, compute:
+
+$$\hat{y}(120) - \hat y(80)$$
+
+Return a single numeric value: `diff_hat`.
+
+::: {.callout-note title="Info"}
+This question is about comparing fitted values at two predictor values. Conceptually: “how much does the model expect the response to change when (x) changes from 80 to 120?”
+:::
+
+::: {.callout-note title="Preview"}
+```{webr}
+#| echo: true
+df <- read.csv("titles.csv")
+
+sub <- subset(df,
+type == "MOVIE" &
+is.finite(runtime) &
+is.finite(imdb_score) &
+runtime > 0
+)
+
+fit <- lm(imdb_score ~ runtime, data = sub)
+
+predict(fit, newdata = data.frame(runtime = c(80, 120)))
+```
+
+:::
+```{webr}
+#| exercise: q7_titles_pred_diff
+#| exercise.lines: 12
+#| echo: false
+
+df <- read.csv("titles.csv")
+
+sub <- subset(df,
+type == "MOVIE" &
+is.finite(runtime) &
+is.finite(imdb_score) &
+runtime > 0
+)
+
+fit <- lm(imdb_score ~ runtime, data = sub)
+
+yhat <- ___
+diff_hat <- ___
+unname(diff_hat)
+```
+
+::: {.hint exercise="q7_titles_pred_diff"}
+Get two fitted values for (x=80) and (x=120) (any reasonable method), then subtract in the requested order.
+:::
+
+::: {.solution exercise="q7_titles_pred_diff"}
+```{webr}
+#| exercise: q7_titles_pred_diff
+#| solution: true
+
+df <- read.csv("titles.csv")
+
+sub <- subset(df,
+type == "MOVIE" &
+is.finite(runtime) &
+is.finite(imdb_score) &
+runtime > 0
+)
+
+fit <- lm(imdb_score ~ runtime, data = sub)
+
+yhat <- predict(fit, newdata = data.frame(runtime = c(80, 120)))
+diff_hat <- yhat[2] - yhat[1]
+unname(diff_hat)
+```
+
+
+:::
+```{webr}
+#| exercise: q7_titles_pred_diff
+#| check: true
+
+gradethis::grade_this({
+df <- tryCatch(read.csv("titles.csv"), error = function(e) NULL)
+if (is.null(df)) fail("Couldn't read 'titles.csv'.")
+
+sub <- subset(df,
+type == "MOVIE" &
+is.finite(runtime) &
+is.finite(imdb_score) &
+runtime > 0
+)
+fit <- lm(imdb_score ~ runtime, data = sub)
+
+yhat <- predict(fit, newdata = data.frame(runtime = c(80, 120)))
+exp <- unname(yhat[2] - yhat[1])
+
+res <- .result
+if (!is.numeric(res) || length(res) != 1L || !is.finite(res)) {
+fail("Return a single numeric value diff_hat.")
+} else if (abs(res - exp) < 1e-6) {
+pass("Correct difference in predictions: yhat(120) - yhat(80).")
+} else {
+fail("Difference is off. Check that you predicted at both x values and subtracted in the right order.")
+}
+})
+```
