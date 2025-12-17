@@ -108,6 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 <script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
 <link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
@@ -144,7 +145,7 @@ window.Quarto = {
 <link rel="stylesheet" href="../design.css">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -367,7 +368,7 @@ window.Quarto = {
  <span class="dropdown-text">Tutorial 8</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../tutorials/tutorial_09.qmd">
+    <a class="dropdown-item" href="../tutorials/tutorial_09.html">
  <span class="dropdown-text">Tutorial 9</span></a>
   </li>  
         <li>
@@ -402,8 +403,25 @@ window.Quarto = {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#q1---proportion-of-fruity-candies" id="toc-q1---proportion-of-fruity-candies" class="nav-link active" data-scroll-target="#q1---proportion-of-fruity-candies">Q1 - Proportion of fruity candies</a></li>
+  <li><a href="#q2-conditional-proportion" id="toc-q2-conditional-proportion" class="nav-link" data-scroll-target="#q2-conditional-proportion">Q2 — Conditional Proportion</a></li>
+  <li><a href="#q3-difference-in-conditional-proportions" id="toc-q3-difference-in-conditional-proportions" class="nav-link" data-scroll-target="#q3-difference-in-conditional-proportions">Q3 — Difference in Conditional Proportions</a></li>
+  <li><a href="#q4-chi-square-test-of-independence" id="toc-q4-chi-square-test-of-independence" class="nav-link" data-scroll-target="#q4-chi-square-test-of-independence">Q4 — Chi-square Test of Independence</a></li>
+  <li><a href="#q5-fishers-exact-test" id="toc-q5-fishers-exact-test" class="nav-link" data-scroll-target="#q5-fishers-exact-test">Q5 — Fisher’s Exact Test</a></li>
+  <li><a href="#q6-create-a-categorical-outcome" id="toc-q6-create-a-categorical-outcome" class="nav-link" data-scroll-target="#q6-create-a-categorical-outcome">Q6 — Create a Categorical Outcome</a></li>
+  <li><a href="#q7-odds-ratio" id="toc-q7-odds-ratio" class="nav-link" data-scroll-target="#q7-odds-ratio">Q7 — Odds Ratio</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -440,6 +458,12 @@ eyJhdHRyIjp7ImVkaXQiOmZhbHNlLCJldmFsIjp0cnVlLCJvdXRwdXQiOmZhbHNlfSwiY29kZSI6Indl
 <section id="q1---proportion-of-fruity-candies" class="level2">
 <h2 class="anchored" data-anchor-id="q1---proportion-of-fruity-candies">Q1 - Proportion of fruity candies</h2>
 <p>For this tutorial, we will be using a Halloween candy dataset that compares different popular candy brands. Calculate the proportion of fruity candies from the dataset.</p>
+<figure style="text-align:center" class="figure">
+<img src="./images/fruit_candy.jpg" style="width:40%" class="figure-img">
+<figcaption>
+Photo by <a href="https://unsplash.com/@joannakosinska?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Joanna Kosinska</a> on <a href="https://unsplash.com/photos/assorted-color-candies-on-container--ayOfwsd9mY?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
+</figcaption>
+</figure>
 <div class="callout callout-style-default callout-note callout-titled" title="Info">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -511,9 +535,9 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6ImNh
 <h2 class="anchored" data-anchor-id="q2-conditional-proportion">Q2 — Conditional Proportion</h2>
 <p>Return the proportion of hard candies among all fruity candies, i.e.&nbsp;return a single numeric value for P(Hard Candy = 1 | Fruity Candy = 1).</p>
 <figure style="text-align:center" class="figure">
-<img src="./images/marvel.jpg" style="width:40%" class="figure-img">
+<img src="./images/fruit_candy.jpg" style="width:40%" class="figure-img">
 <figcaption>
-Photo by <a href="https://unsplash.com/@introspectivedsgn?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Erik Mclean</a> on <a href="https://unsplash.com/photos/a-pile-of-comics-sitting-next-to-each-other-8SeJUmfahu0?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
+Photo by <a href="https://unsplash.com/@joannakosinska?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Joanna Kosinska</a> on <a href="https://unsplash.com/photos/assorted-color-candies-on-container--ayOfwsd9mY?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
 </figcaption>
 </figure>
 <div class="callout callout-style-default callout-note callout-titled" title="Preview">
@@ -576,9 +600,9 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6ImNh
 <h2 class="anchored" data-anchor-id="q3-difference-in-conditional-proportions">Q3 — Difference in Conditional Proportions</h2>
 <p>Compute <span class="math inline">\(p_1\)</span> = P(bar == 1 | chocolate == 1), i.e.&nbsp;proportion of candy bars among all chocolate candies and then compute <span class="math inline">\(p_0\)</span> P(bar == 1 | chocolate == 0), i.e.&nbsp;proportion of candy bars among candies that are not made of chocolate. Finally return <span class="math inline">\(p_1\)</span> - <span class="math inline">\(p_0\)</span> .</p>
 <figure style="text-align:center" class="figure">
-<img src="./images/captain_vs_iron.jpg" style="width:40%" class="figure-img">
+<img src="./images/chocolate.jpg" style="width:40%" class="figure-img">
 <figcaption>
-Photo by <a href="https://unsplash.com/@wacalke?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Mateusz Wacławek</a> on <a href="https://unsplash.com/photos/red-and-blue-robot-toy-t2b2svMf8ek?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
+Photo by <a href="https://unsplash.com/@redaquamedia?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Denny Müller</a> on <a href="https://unsplash.com/photos/orange-and-red-plastic-pack-mGP8gyGb8zY?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
 </figcaption>
 </figure>
 <div class="callout callout-style-default callout-note callout-titled" title="Preview">
@@ -645,9 +669,9 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6ImNh
 <h2 class="anchored" data-anchor-id="q4-chi-square-test-of-independence">Q4 — Chi-square Test of Independence</h2>
 <p>Perform a chi-sq test of independence between chocolate and bar and return the p-value.</p>
 <figure style="text-align:center" class="figure">
-<img src="./images/thor.jpg" style="width:40%" class="figure-img">
+<img src="./images/chocolate.jpg" style="width:40%" class="figure-img">
 <figcaption>
-Photo by <a href="https://unsplash.com/@wacalke?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Mateusz Wacławek</a> on <a href="https://unsplash.com/photos/red-and-blue-robot-toy-t2b2svMf8ek?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
+Photo by <a href="https://unsplash.com/@redaquamedia?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Denny Müller</a> on <a href="https://unsplash.com/photos/orange-and-red-plastic-pack-mGP8gyGb8zY?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
 </figcaption>
 </figure>
 <div class="callout callout-style-default callout-note callout-titled" title="Info">
@@ -724,9 +748,9 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6ImNh
 <h2 class="anchored" data-anchor-id="q5-fishers-exact-test">Q5 — Fisher’s Exact Test</h2>
 <p>Run Fisher’s exact test for association between fruity and hard candies. Return the p-value.</p>
 <figure style="text-align:center" class="figure">
-<img src="./images/pokeball.jpg" style="width:40%" class="figure-img">
+<img src="./images/fruit_candy.jpg" style="width:40%" class="figure-img">
 <figcaption>
-Photo by <a href="https://unsplash.com/@thimo?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Thimo Pedersen</a> on <a href="https://unsplash.com/photos/red-and-white-ladybug-toy-on-white-and-yellow-book-dip9IIwUK6w?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
+Photo by <a href="https://unsplash.com/@joannakosinska?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Joanna Kosinska</a> on <a href="https://unsplash.com/photos/assorted-color-candies-on-container--ayOfwsd9mY?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
 </figcaption>
 </figure>
 <div class="callout callout-style-default callout-note callout-titled" title="Info">
@@ -804,12 +828,6 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6ImNh
 <p>Hence, each candy has a win percent rate associated with it. For this question:</p>
 <p>Create high_win as:<br> “High” if winpercent &gt;= median(winpercent) <br> “Low” otherwise</p>
 <p>Then test whether the proportion of High differs between chocolate and non-chocolate candies using prop.test(…). Return the p-value.</p>
-<figure style="text-align:center" class="figure">
-<img src="./images/pokeball.jpg" style="width:40%" class="figure-img">
-<figcaption>
-Photo by <a href="https://unsplash.com/@thimo?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Thimo Pedersen</a> on <a href="https://unsplash.com/photos/red-and-white-ladybug-toy-on-white-and-yellow-book-dip9IIwUK6w?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
-</figcaption>
-</figure>
 <div class="callout callout-style-default callout-note callout-titled" title="Info">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -904,9 +922,9 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6ImNh
 OR = ad/bc
 \]</span> where: <br> - a = #(chocolate=1, bar=1) <br> - b = #(chocolate=1, bar=0) <br> - c = #(chocolate=0, bar=1) <br> - d = #(chocolate=0, bar=0) <br></p>
 <figure style="text-align:center" class="figure">
-<img src="./images/pokemons.jpg" style="width:40%" class="figure-img">
+<img src="./images/chocolate.jpg" style="width:40%" class="figure-img">
 <figcaption>
-Photo by <a href="https://unsplash.com/@lifetimevalues?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Life Time Values</a> on <a href="https://unsplash.com/photos/six-pokemon-figurines-lined-up-on-a-wooden-surface-caF_z0aTPtQ?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
+Photo by <a href="https://unsplash.com/@redaquamedia?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Denny Müller</a> on <a href="https://unsplash.com/photos/orange-and-red-plastic-pack-mGP8gyGb8zY?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
 </figcaption>
 </figure>
 <div class="callout callout-style-default callout-note callout-titled" title="Info">
@@ -1442,4 +1460,5 @@ window._ojs.runtime.interpretFromScriptTags();
 
 
 
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

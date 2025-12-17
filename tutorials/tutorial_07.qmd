@@ -66,7 +66,7 @@ Run this code chunk to get a glimpse of the dataset and visualize the audience s
 ```{webr}
 
 #| echo: true
-df <- read.csv("marvel.csv")
+df <- read.csv("marvel.csv", check.names = FALSE)
 sub <- subset(df, category %in% c("Avengers","Spider-Man"))
 sub$aud <- suppressWarnings(as.numeric(sub[["audience % score"]]))
 sub <- subset(sub, is.finite(aud))
@@ -88,27 +88,24 @@ par(mfrow = c(1, 1))
 #| exercise: q1_pooled_audience
 #| exercise.lines: 10
 #| echo: false
-df <- read.csv("marvel.csv")
-df <- subset(df, category %in% c(___, ___))
-df$aud <- suppressWarnings(as.numeric(df[["audience % score"]]))
+
+df <- read.csv("marvel.csv", check.names = FALSE)
+
+df <- subset(df, category %in% c("Avengers","Spider-Man"))
+df$aud <- suppressWarnings(as.numeric(sub("%", "", df[["audience % score"]], fixed = TRUE)))
 df <- subset(df, is.finite(aud))
 
-g1 <- df$aud[df$category == ___]
-g2 <- df$aud[df$category == ___]
+g1 <- df$aud[df$category == "Avengers"]
+g2 <- df$aud[df$category == "Spider-Man"]
 
-n1 <- ___
-n2 <- ___
+n1 <- length(g1); n2 <- length(g2)
+m1 <- mean(g1);   m2 <- mean(g2)
+s1 <- sd(g1);     s2 <- sd(g2)
 
-m1 <- ___
-m2 <- ___
-
-s1 <- ___
-s2 <- ___
-
-sp2 <- ___
-tval <- ___
-df_t <- ___
-pval <- ___
+sp2  <- _
+tval <- _
+df_t <- _
+pval <- _
 pval
 
 ```
@@ -123,27 +120,23 @@ Separate the audience scores for each franchise, then use their sample sizes, me
 
 #| exercise: q1_pooled_audience
 #| solution: true
-df <- read.csv("marvel.csv")
+df <- read.csv("marvel.csv", check.names = FALSE)
+
 df <- subset(df, category %in% c("Avengers","Spider-Man"))
-df$aud <- suppressWarnings(as.numeric(df[["audience % score"]]))
+df$aud <- suppressWarnings(as.numeric(sub("%", "", df[["audience % score"]], fixed = TRUE)))
 df <- subset(df, is.finite(aud))
 
 g1 <- df$aud[df$category == "Avengers"]
 g2 <- df$aud[df$category == "Spider-Man"]
 
-n1 <- length(g1)
-n2 <- length(g2)
+n1 <- length(g1); n2 <- length(g2)
+m1 <- mean(g1);   m2 <- mean(g2)
+s1 <- sd(g1);     s2 <- sd(g2)
 
-m1 <- mean(g1)
-m2 <- mean(g2)
-
-s1 <- sd(g1)
-s2 <- sd(g2)
-
-sp2 <- ((n1 - 1) * s1^2 + (n2 - 1) * s2^2) / (n1 + n2 - 2)
-tval <- (m1 - m2) / sqrt(sp2 * (1 / n1 + 1 / n2))
-df_t <- n1 + n2 - 2
-pval <- 2 * pt(-abs(tval), df_t)
+sp2  <- ((n1-1)*s1^2 + (n2-1)*s2^2)/(n1+n2-2)
+tval <- (m1-m2)/sqrt(sp2*(1/n1 + 1/n2))
+df_t <- n1+n2-2
+pval <- 2*pt(-abs(tval), df_t)
 pval
 ```
 :::
@@ -153,30 +146,42 @@ pval
 #| exercise: q1_pooled_audience
 #| check: true
 gradethis::grade_this({
-df <- read.csv("marvel.csv")
-df$aud <- suppressWarnings(as.numeric(df[["audience % score"]]))
-df <- subset(df, category %in% c("Avengers","Spider-Man") & is.finite(aud))
-g1 <- df$aud[df$category == "Avengers"]
-g2 <- df$aud[df$category == "Spider-Man"]
-n1 <- length(g1); n2 <- length(g2)
-m1 <- mean(g1); m2 <- mean(g2)
-s1 <- sd(g1); s2 <- sd(g2)
-sp2 <- ((n1 - 1) * s1^2 + (n2 - 1) * s2^2) / (n1 + n2 - 2)
-tval <- (m1 - m2) / sqrt(sp2 * (1 / n1 + 1 / n2))
-df_t <- n1 + n2 - 2
-exp <- 2 * pt(-abs(tval), df_t)
+  df <- read.csv("marvel.csv", check.names = FALSE)
 
-x <- .result
-ok <- is.numeric(x) && length(x) == 1L && is.finite(x)
+  # robust column lookup (works whether names were preserved or not)
+  aud_col <- if ("audience % score" %in% names(df)) {
+    "audience % score"
+  } else {
+    grep("^audience", names(df), value = TRUE)[1]
+  }
 
-if (!ok) {
-fail("Return a single numeric p-value.")
-} else if (abs(x - exp) < 1e-10) {
-pass("Pooled two-sample p-value computed correctly.")
-} else {
-fail("Your p-value does not match the pooled two-sample calculation.")
-}
+  df$aud <- suppressWarnings(as.numeric(sub("%", "", df[[aud_col]], fixed = TRUE)))
+
+  df <- subset(df, category %in% c("Avengers","Spider-Man") & is.finite(aud))
+  g1 <- df$aud[df$category == "Avengers"]
+  g2 <- df$aud[df$category == "Spider-Man"]
+
+  n1 <- length(g1); n2 <- length(g2)
+  m1 <- mean(g1);   m2 <- mean(g2)
+  s1 <- sd(g1);     s2 <- sd(g2)
+
+  sp2  <- ((n1 - 1) * s1^2 + (n2 - 1) * s2^2) / (n1 + n2 - 2)
+  tval <- (m1 - m2) / sqrt(sp2 * (1 / n1 + 1 / n2))
+  df_t <- n1 + n2 - 2
+  exp  <- 2 * pt(-abs(tval), df_t)
+
+  x <- .result
+  ok <- is.numeric(x) && length(x) == 1L && is.finite(x)
+
+  if (!ok) {
+    fail("Return a single numeric p-value.")
+  } else if (abs(x - exp) < 1e-10) {
+    pass("Pooled two-sample p-value computed correctly.")
+  } else {
+    fail("Your p-value does not match the pooled two-sample calculation.")
+  }
 })
+
 ```
 
 ## Q2 — Welch two-sample t-test (Opening weekend: Avengers vs Spider-Man)
@@ -229,7 +234,7 @@ $$
 ```{webr}
 
 #| echo: true
-df <- read.csv("marvel.csv")
+df <- read.csv("marvel.csv", check.names=FALSE)
 sub <- subset(df, category %in% c("Avengers","Spider-Man"))
 sub$open <- sub[["opening weekend ($m)"]]
 sub <- subset(sub, is.finite(open))
@@ -252,7 +257,7 @@ par(mfrow = c(1, 1))
 #| exercise: q2_mcu_welch_open
 #| exercise.lines: 8
 #| echo: false
-df <- read.csv("marvel.csv")
+df <- read.csv("marvel.csv", check.names=FALSE)
 df <- subset(df, category %in% c(___, ___))
 df$open <- df[["opening weekend ($m)"]]
 df <- subset(df, is.finite(open))
@@ -287,28 +292,23 @@ Separate the opening weekend values by franchise, compute the sample means and v
 
 #| exercise: q2_mcu_welch_open
 #| solution: true
-df <- read.csv("marvel.csv")
+df <- read.csv("marvel.csv", check.names = FALSE)
 df <- subset(df, category %in% c("Avengers","Spider-Man"))
 df$open <- df[["opening weekend ($m)"]]
-df <- subset(df, is.finite(open))
+df <- df[is.finite(df$open), ]
 
 g1 <- df$open[df$category == "Avengers"]
 g2 <- df$open[df$category == "Spider-Man"]
 
-n1 <- length(g1)
-n2 <- length(g2)
-
-m1 <- mean(g1)
-m2 <- mean(g2)
-
-s1 <- sd(g1)
-s2 <- sd(g2)
+n1 <- length(g1); n2 <- length(g2)
+m1 <- mean(g1);   m2 <- mean(g2)
+s1 <- sd(g1);     s2 <- sd(g2)
 
 se_diff <- sqrt(s1^2 / n1 + s2^2 / n2)
 tval <- (m1 - m2) / se_diff
 
 df_w <- (s1^2 / n1 + s2^2 / n2)^2 /
-((s1^2 / n1)^2 / (n1 - 1) + (s2^2 / n2)^2 / (n2 - 1))
+  ((s1^2 / n1)^2 / (n1 - 1) + (s2^2 / n2)^2 / (n2 - 1))
 
 pval <- 2 * pt(-abs(tval), df_w)
 pval
@@ -321,31 +321,33 @@ pval
 #| exercise: q2_mcu_welch_open
 #| check: true
 gradethis::grade_this({
-df <- read.csv("marvel.csv")
-df$open <- df[["opening weekend ($m)"]]
-df <- subset(df, category %in% c("Avengers","Spider-Man") & is.finite(open))
-g1 <- df$open[df$category == "Avengers"]
-g2 <- df$open[df$category == "Spider-Man"]
-n1 <- length(g1); n2 <- length(g2)
-m1 <- mean(g1); m2 <- mean(g2)
-s1 <- sd(g1); s2 <- sd(g2)
-se_diff <- sqrt(s1^2 / n1 + s2^2 / n2)
-tval <- (m1 - m2) / se_diff
-df_w <- (s1^2 / n1 + s2^2 / n2)^2 /
-((s1^2 / n1)^2 / (n1 - 1) + (s2^2 / n2)^2 / (n2 - 1))
-exp <- 2 * pt(-abs(tval), df_w)
+  df <- read.csv("marvel.csv", check.names = FALSE)
+  df$open <- df[["opening weekend ($m)"]]
+  df <- df[df$category %in% c("Avengers","Spider-Man") & is.finite(df$open), ]
 
-x <- .result
-ok <- is.numeric(x) && length(x) == 1L && is.finite(x)
+  g1 <- df$open[df$category == "Avengers"]
+  g2 <- df$open[df$category == "Spider-Man"]
 
-if (!ok) {
-fail("Return a single numeric p-value.")
-} else if (abs(x - exp) < 1e-10) {
-pass("Welch two-sample p-value computed correctly.")
-} else {
-fail("Your p-value does not match the Welch two-sample calculation.")
-}
+  n1 <- length(g1); n2 <- length(g2)
+  m1 <- mean(g1);   m2 <- mean(g2)
+  s1 <- sd(g1);     s2 <- sd(g2)
+
+  se_diff <- sqrt(s1^2 / n1 + s2^2 / n2)
+  tval <- (m1 - m2) / se_diff
+
+  df_w <- (s1^2 / n1 + s2^2 / n2)^2 /
+    ((s1^2 / n1)^2 / (n1 - 1) + (s2^2 / n2)^2 / (n2 - 1))
+
+  exp <- 2 * pt(-abs(tval), df_w)
+
+  x <- .result
+  ok <- is.numeric(x) && length(x) == 1L && is.finite(x)
+
+  if (!ok) fail("Return a single numeric p-value.")
+  else if (abs(x - exp) < 1e-10) pass("Welch two-sample p-value computed correctly.")
+  else fail("Your p-value does not match the Welch two-sample calculation.")
 })
+
 ```
 
 ## Q3 — Pooled two-sample t-test (Critics score: Captain America vs Iron Man)
@@ -370,10 +372,10 @@ This is another two-sample mean comparison where we assume the two sets of criti
 
 ::: {.callout-note title="Preview"}
 
-```{Webr}
+```{webr}
 
 #| echo: true
-df <- read.csv("marvel.csv")
+df <- read.csv("marvel.csv", check.names=FALSE)
 sub <- subset(df, category %in% c("Captain America","Iron Man"))
 sub$crit <- suppressWarnings(as.numeric(sub[["critics % score"]]))
 sub <- subset(sub, is.finite(crit))
@@ -396,9 +398,11 @@ par(mfrow = c(1, 1))
 #| exercise: q3_mcu_pooled_critics
 #| exercise.lines: 8
 #| echo: false
-df <- read.csv("marvel.csv")
+df <- read.csv("marvel.csv", check.names = FALSE)
 df <- subset(df, category %in% c("___","___"))
-df$crit <- suppressWarnings(as.numeric(df[["critics % score"]]))
+df$crit <- suppressWarnings(as.numeric(sub("%","", df[["critics % score"]], fixed=TRUE)))
+
+
 df <- subset(df, is.finite(crit))
 df$grp <- ___(df$category, levels = c("Captain America","Iron Man"))
 t.test(crit ~ grp, data = df, var.equal = ___)$___
@@ -411,40 +415,39 @@ Limit the data to the two franchises named in the question, use the critics scor
 ::: {.solution exercise="q3_mcu_pooled_critics"}
 
 ```{webr}
-
 #| exercise: q3_mcu_pooled_critics
 #| solution: true
-df <- read.csv("marvel.csv")
+df <- read.csv("marvel.csv", check.names = FALSE)
 df <- subset(df, category %in% c("Captain America","Iron Man"))
-df$crit <- suppressWarnings(as.numeric(df[["critics % score"]]))
+
+df$crit <- suppressWarnings(as.numeric(sub("%","", df[["critics % score"]], fixed = TRUE)))
 df <- subset(df, is.finite(crit))
+
 df$grp <- factor(df$category, levels = c("Captain America","Iron Man"))
 t.test(crit ~ grp, data = df, var.equal = TRUE)$p.value
+
+
 ```
 :::
 
 ```{webr}
-
 #| exercise: q3_mcu_pooled_critics
 #| check: true
 gradethis::grade_this({
-df <- read.csv("marvel.csv")
-df$crit <- suppressWarnings(as.numeric(df[["critics % score"]]))
-df <- subset(df, category %in% c("Captain America","Iron Man") & is.finite(crit))
-df$grp <- factor(df$category, levels = c("Captain America","Iron Man"))
-exp <- t.test(crit ~ grp, data = df, var.equal = TRUE)$p.value
+  df <- read.csv("marvel.csv", check.names = FALSE)
+  df$crit <- suppressWarnings(as.numeric(sub("%","", df[["critics % score"]], fixed = TRUE)))
+  df <- subset(df, category %in% c("Captain America","Iron Man") & is.finite(crit))
+  df$grp <- factor(df$category, levels = c("Captain America","Iron Man"))
+  exp <- t.test(crit ~ grp, data = df, var.equal = TRUE)$p.value
 
-x <- .result
-ok <- is.numeric(x) && length(x) == 1L && is.finite(x)
+  x <- .result
+  ok <- is.numeric(x) && length(x) == 1L && is.finite(x)
 
-if (!ok) {
-fail("Your answer should be a single numeric p-value.")
-} else if (abs(x - exp) < 1e-12) {
-pass("Correct pooled two-sample p-value for the critics scores.")
-} else {
-fail("Revisit your subset, grouping, and the assumption of equal variances.")
-}
+  if (!ok) fail("Your answer should be a single numeric p-value.")
+  else if (abs(x - exp) < 1e-12) pass("Correct pooled two-sample p-value for the critics scores.")
+  else fail("Revisit your subset, grouping, and the assumption of equal variances.")
 })
+
 ```
 
 ## Q4 — Welch two-sample t-test (Domestic gross: Black Panther vs Thor)
@@ -471,7 +474,7 @@ This is another two-sample test where the two groups may have quite different va
 
 ```{webr}
 #| echo: true
-df <- read.csv("marvel.csv")
+df <- read.csv("marvel.csv", check.names=FALSE)
 sub <- subset(df, category %in% c("Black Panther","Thor"))
 sub$dom <- sub[["domestic gross ($m)"]]
 sub <- subset(sub, is.finite(dom))
@@ -494,12 +497,14 @@ par(mfrow = c(1, 1))
 #| exercise: q4_mcu_welch_domestic
 #| exercise.lines: 8
 #| echo: false
-df <- read.csv("marvel.csv")
+df <- read.csv("marvel.csv", check.names=FALSE)
 df <- subset(df, category %in% c("___","___"))
-df$dom <- df[["domestic gross ($m)"]]
-df <- subset(df, is.finite(dom))
+df$dom <- suppressWarnings(as.numeric(df[["domestic gross ($m)"]]))
+df <- df[is.finite(df$dom), ]
 df$grp <- ___(df$category, ___ = c("___","___"))
-t.test(dom ~ grp, data = df, var.equal = ___)$___
+p-val <- t.test(dom ~ grp, data = df, var.equal = ___)$___
+unname(as.numeric(pval))
+
 ```
 
 ::: {.hint exercise="q4_mcu_welch_domestic"}
@@ -511,12 +516,17 @@ Work only with the two franchises specified, treat domestic gross as the numeric
 ```{webr}
 #| exercise: q4_mcu_welch_domestic
 #| solution: true
-df <- read.csv("marvel.csv")
+df <- read.csv("marvel.csv", check.names = FALSE)
 df <- subset(df, category %in% c("Black Panther","Thor"))
-df$dom <- df[["domestic gross ($m)"]]
-df <- subset(df, is.finite(dom))
+
+df$dom <- suppressWarnings(as.numeric(df[["domestic gross ($m)"]]))
+df <- df[is.finite(df$dom), ]
+
 df$grp <- factor(df$category, levels = c("Black Panther","Thor"))
-t.test(dom ~ grp, data = df, var.equal = FALSE)$p.value
+
+pval <- t.test(dom ~ grp, data = df, var.equal = FALSE)$p.value
+unname(as.numeric(pval))
+
 ```
 :::
 
@@ -524,23 +534,29 @@ t.test(dom ~ grp, data = df, var.equal = FALSE)$p.value
 #| exercise: q4_mcu_welch_domestic
 #| check: true
 gradethis::grade_this({
-df <- read.csv("marvel.csv")
-df$dom <- df[["domestic gross ($m)"]]
-df <- subset(df, category %in% c("Black Panther","Thor") & is.finite(dom))
-df$grp <- factor(df$category, levels = c("Black Panther","Thor"))
-exp <- t.test(dom ~ grp, data = df, var.equal = FALSE)$p.value
+  df <- read.csv("marvel.csv", check.names = FALSE)
+  df <- subset(df, category %in% c("Black Panther","Thor"))
 
-x <- .result
-ok <- is.numeric(x) && length(x) == 1L && is.finite(x)
+  df$dom <- suppressWarnings(as.numeric(df[["domestic gross ($m)"]]))
+  df <- df[is.finite(df$dom), ]
 
-if (!ok) {
-fail("Your answer should be a single numeric p-value.")
-} else if (abs(x - exp) < 1e-12) {
-pass("Correct Welch two-sample p-value for the domestic grosses.")
-} else {
-fail("Check that you have the right subset, response variable, and that you are not imposing equal variances.")
-}
+  df$grp <- factor(df$category, levels = c("Black Panther","Thor"))
+
+  exp <- t.test(dom ~ grp, data = df, var.equal = FALSE)$p.value
+  exp <- unname(as.numeric(exp))
+
+  x <- .result
+  ok <- is.numeric(x) && length(x) == 1L && is.finite(x)
+
+  if (!ok) {
+    fail("Your answer should be a single numeric p-value.")
+  } else if (abs(unname(as.numeric(x)) - exp) < 1e-12) {
+    pass("Correct Welch two-sample p-value for the domestic grosses.")
+  } else {
+    fail("Check that you have the right subset, response variable, and that you are not imposing equal variances.")
+  }
 })
+
 ```
 
 
@@ -747,7 +763,7 @@ x2 <- sum(df$Legendary[df$Generation == ___])
 n1 <- sum(df$Generation == ___)
 n2 <- sum(df$Generation == ___)
 
-res <- prop.test(c(___, ___), c(___, ___), correct = TRUE)
+res <- suppressWarnings(prop.test(c(___, ___), c(___, ___), correct = TRUE))
 res$___
 
 ```
@@ -771,7 +787,7 @@ x2 <- sum(df$Legendary[df$Generation == 2])
 n1 <- sum(df$Generation == 1)
 n2 <- sum(df$Generation == 2)
 
-res <- prop.test(c(x1, x2), c(n1, n2), correct = TRUE)
+res <- suppressWarnings(prop.test(c(x1, x2), c(n1, n2), correct = TRUE))
 res$p.value
 
 ```

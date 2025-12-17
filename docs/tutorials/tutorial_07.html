@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -66,18 +66,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b651517ce65839d647a86e2780455cfb.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-cc63fce9873912f1bbbccf05079cc9ea.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-08799928d293638fe9563d5c5a2794e5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-cc63fce9873912f1bbbccf05079cc9ea.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-0d4a9d19931feb4fee1ddab4b2489000.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -107,6 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 <script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
 <link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
@@ -124,7 +126,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -143,7 +145,7 @@ window.Quarto = {
 <link rel="stylesheet" href="../design.css">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -312,6 +314,8 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Course Tutorials</span>
     </a>
@@ -363,6 +367,18 @@ window.Quarto = {
     <a class="dropdown-item" href="../tutorials/tutorial_08.html">
  <span class="dropdown-text">Tutorial 8</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/tutorial_09.html">
+ <span class="dropdown-text">Tutorial 9</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/tutorial_10.html">
+ <span class="dropdown-text">Tutorial 10</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/tutorial_11.html">
+ <span class="dropdown-text">Tutorial 11</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -387,8 +403,25 @@ window.Quarto = {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#q1-pooled-two-sample-t-test-audience-score-avengers-vs-spider-man" id="toc-q1-pooled-two-sample-t-test-audience-score-avengers-vs-spider-man" class="nav-link active" data-scroll-target="#q1-pooled-two-sample-t-test-audience-score-avengers-vs-spider-man">Q1 — Pooled two-sample t-test (Audience score: Avengers vs Spider-Man)</a></li>
+  <li><a href="#q2-welch-two-sample-t-test-opening-weekend-avengers-vs-spider-man" id="toc-q2-welch-two-sample-t-test-opening-weekend-avengers-vs-spider-man" class="nav-link" data-scroll-target="#q2-welch-two-sample-t-test-opening-weekend-avengers-vs-spider-man">Q2 — Welch two-sample t-test (Opening weekend: Avengers vs Spider-Man)</a></li>
+  <li><a href="#q3-pooled-two-sample-t-test-critics-score-captain-america-vs-iron-man" id="toc-q3-pooled-two-sample-t-test-critics-score-captain-america-vs-iron-man" class="nav-link" data-scroll-target="#q3-pooled-two-sample-t-test-critics-score-captain-america-vs-iron-man">Q3 — Pooled two-sample t-test (Critics score: Captain America vs Iron Man)</a></li>
+  <li><a href="#q4-welch-two-sample-t-test-domestic-gross-black-panther-vs-thor" id="toc-q4-welch-two-sample-t-test-domestic-gross-black-panther-vs-thor" class="nav-link" data-scroll-target="#q4-welch-two-sample-t-test-domestic-gross-black-panther-vs-thor">Q4 — Welch two-sample t-test (Domestic gross: Black Panther vs Thor)</a></li>
+  <li><a href="#q5-welch-two-sample-t-test-using-built-in-method-hp-legendary-vs-non-legendary" id="toc-q5-welch-two-sample-t-test-using-built-in-method-hp-legendary-vs-non-legendary" class="nav-link" data-scroll-target="#q5-welch-two-sample-t-test-using-built-in-method-hp-legendary-vs-non-legendary">Q5 — Welch two-sample t-test using built-in method (HP: Legendary vs non-Legendary)</a></li>
+  <li><a href="#q6-two-sample-test-for-difference-of-proportions-using-built-in-method" id="toc-q6-two-sample-test-for-difference-of-proportions-using-built-in-method" class="nav-link" data-scroll-target="#q6-two-sample-test-for-difference-of-proportions-using-built-in-method">Q6 — Two-sample test for difference of proportions using built-in method</a></li>
+  <li><a href="#q7-f-test-for-ratio-of-variances-using-built-in-method-attack-fire-vs-water" id="toc-q7-f-test-for-ratio-of-variances-using-built-in-method-attack-fire-vs-water" class="nav-link" data-scroll-target="#q7-f-test-for-ratio-of-variances-using-built-in-method-attack-fire-vs-water">Q7 — F-test for ratio of variances using built-in method (Attack: Fire vs Water)</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -439,7 +472,7 @@ Photo by <a href="https://unsplash.com/@introspectivedsgn?utm_source=unsplash&am
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Info
+<span class="screen-reader-only">Note</span>Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -467,7 +500,7 @@ p\text{-value} = 2\,P\bigl(T_{\text{df}} \ge |t|\bigr).
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Preview
+<span class="screen-reader-only">Note</span>Preview
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -478,7 +511,7 @@ Preview
 
 </div>
 <script type="webr-2-contents">
-eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiXG5kZiA8LSByZWFkLmNzdihcIm1hcnZlbC5jc3ZcIilcbnN1YiA8LSBzdWJzZXQoZGYsIGNhdGVnb3J5ICVpbiUgYyhcIkF2ZW5nZXJzXCIsXCJTcGlkZXItTWFuXCIpKVxuc3ViJGF1ZCA8LSBzdXBwcmVzc1dhcm5pbmdzKGFzLm51bWVyaWMoc3ViW1tcImF1ZGllbmNlICUgc2NvcmVcIl1dKSlcbnN1YiA8LSBzdWJzZXQoc3ViLCBpcy5maW5pdGUoYXVkKSlcblxuaGVhZChzdWJbLCBjKFwiZmlsbVwiLFwiY2F0ZWdvcnlcIixcImF1ZFwiKV0sIDEwKVxuXG5wYXIobWZyb3cgPSBjKDEsIDIpKVxuaGlzdChzdWIkYXVkLFxubWFpbiA9IFwiQXVkaWVuY2UgJSBzY29yZSAoQXZlbmdlcnMgKyBTcGlkZXItTWFuKVwiLFxueGxhYiA9IFwiQXVkaWVuY2UgJSBzY29yZVwiKVxuYm94cGxvdChhdWQgfiBjYXRlZ29yeSwgZGF0YSA9IHN1Yixcbm1haW4gPSBcIkF1ZGllbmNlICUgc2NvcmUgYnkgY2F0ZWdvcnlcIixcbnhsYWIgPSBcIkNhdGVnb3J5XCIsIHlsYWIgPSBcIkF1ZGllbmNlICUgc2NvcmVcIilcbnBhcihtZnJvdyA9IGMoMSwgMSkpIn0=
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiXG5kZiA8LSByZWFkLmNzdihcIm1hcnZlbC5jc3ZcIiwgY2hlY2submFtZXMgPSBGQUxTRSlcbnN1YiA8LSBzdWJzZXQoZGYsIGNhdGVnb3J5ICVpbiUgYyhcIkF2ZW5nZXJzXCIsXCJTcGlkZXItTWFuXCIpKVxuc3ViJGF1ZCA8LSBzdXBwcmVzc1dhcm5pbmdzKGFzLm51bWVyaWMoc3ViW1tcImF1ZGllbmNlICUgc2NvcmVcIl1dKSlcbnN1YiA8LSBzdWJzZXQoc3ViLCBpcy5maW5pdGUoYXVkKSlcblxuaGVhZChzdWJbLCBjKFwiZmlsbVwiLFwiY2F0ZWdvcnlcIixcImF1ZFwiKV0sIDEwKVxuXG5wYXIobWZyb3cgPSBjKDEsIDIpKVxuaGlzdChzdWIkYXVkLFxubWFpbiA9IFwiQXVkaWVuY2UgJSBzY29yZSAoQXZlbmdlcnMgKyBTcGlkZXItTWFuKVwiLFxueGxhYiA9IFwiQXVkaWVuY2UgJSBzY29yZVwiKVxuYm94cGxvdChhdWQgfiBjYXRlZ29yeSwgZGF0YSA9IHN1Yixcbm1haW4gPSBcIkF1ZGllbmNlICUgc2NvcmUgYnkgY2F0ZWdvcnlcIixcbnhsYWIgPSBcIkNhdGVnb3J5XCIsIHlsYWIgPSBcIkF1ZGllbmNlICUgc2NvcmVcIilcbnBhcihtZnJvdyA9IGMoMSwgMSkpIn0=
 </script>
 </div>
 </div>
@@ -490,7 +523,7 @@ eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiXG5kZiA8
 
 </div>
 <script type="webr-3-contents">
-eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxMV9wb29sZWRfYXVkaWVuY2UiLCJleGVyY2lzZS5saW5lcyI6MTB9LCJjb2RlIjoiZGYgPC0gcmVhZC5jc3YoXCJtYXJ2ZWwuY3N2XCIpXG5kZiA8LSBzdWJzZXQoZGYsIGNhdGVnb3J5ICVpbiUgYyhfX18sIF9fXykpXG5kZiRhdWQgPC0gc3VwcHJlc3NXYXJuaW5ncyhhcy5udW1lcmljKGRmW1tcImF1ZGllbmNlICUgc2NvcmVcIl1dKSlcbmRmIDwtIHN1YnNldChkZiwgaXMuZmluaXRlKGF1ZCkpXG5cbmcxIDwtIGRmJGF1ZFtkZiRjYXRlZ29yeSA9PSBfX19dXG5nMiA8LSBkZiRhdWRbZGYkY2F0ZWdvcnkgPT0gX19fXVxuXG5uMSA8LSBfX19cbm4yIDwtIF9fX1xuXG5tMSA8LSBfX19cbm0yIDwtIF9fX1xuXG5zMSA8LSBfX19cbnMyIDwtIF9fX1xuXG5zcDIgPC0gX19fXG50dmFsIDwtIF9fX1xuZGZfdCA8LSBfX19cbnB2YWwgPC0gX19fXG5wdmFsIn0=
+eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxMV9wb29sZWRfYXVkaWVuY2UiLCJleGVyY2lzZS5saW5lcyI6MTB9LCJjb2RlIjoiXG5kZiA8LSByZWFkLmNzdihcIm1hcnZlbC5jc3ZcIiwgY2hlY2submFtZXMgPSBGQUxTRSlcblxuZGYgPC0gc3Vic2V0KGRmLCBjYXRlZ29yeSAlaW4lIGMoXCJBdmVuZ2Vyc1wiLFwiU3BpZGVyLU1hblwiKSlcbmRmJGF1ZCA8LSBzdXBwcmVzc1dhcm5pbmdzKGFzLm51bWVyaWMoc3ViKFwiJVwiLCBcIlwiLCBkZltbXCJhdWRpZW5jZSAlIHNjb3JlXCJdXSwgZml4ZWQgPSBUUlVFKSkpXG5kZiA8LSBzdWJzZXQoZGYsIGlzLmZpbml0ZShhdWQpKVxuXG5nMSA8LSBkZiRhdWRbZGYkY2F0ZWdvcnkgPT0gXCJBdmVuZ2Vyc1wiXVxuZzIgPC0gZGYkYXVkW2RmJGNhdGVnb3J5ID09IFwiU3BpZGVyLU1hblwiXVxuXG5uMSA8LSBsZW5ndGgoZzEpOyBuMiA8LSBsZW5ndGgoZzIpXG5tMSA8LSBtZWFuKGcxKTsgICBtMiA8LSBtZWFuKGcyKVxuczEgPC0gc2QoZzEpOyAgICAgczIgPC0gc2QoZzIpXG5cbnNwMiAgPC0gX1xudHZhbCA8LSBfXG5kZl90IDwtIF9cbnB2YWwgPC0gX1xucHZhbCJ9
 </script>
 </div>
 </div>
@@ -501,57 +534,49 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJx
 <div class="cell">
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q1_pooled_audience">
 <code id="interpolate-5" class="solution-code d-none">
-df &lt;- read.csv("marvel.csv")
+df &lt;- read.csv("marvel.csv", check.names = FALSE)
+
 df &lt;- subset(df, category %in% c("Avengers","Spider-Man"))
-df$aud &lt;- suppressWarnings(as.numeric(df[["audience % score"]]))
+df$aud &lt;- suppressWarnings(as.numeric(sub("%", "", df[["audience % score"]], fixed = TRUE)))
 df &lt;- subset(df, is.finite(aud))
 
 g1 &lt;- df$aud[df$category == "Avengers"]
 g2 &lt;- df$aud[df$category == "Spider-Man"]
 
-n1 &lt;- length(g1)
-n2 &lt;- length(g2)
+n1 &lt;- length(g1); n2 &lt;- length(g2)
+m1 &lt;- mean(g1);   m2 &lt;- mean(g2)
+s1 &lt;- sd(g1);     s2 &lt;- sd(g2)
 
-m1 &lt;- mean(g1)
-m2 &lt;- mean(g2)
-
-s1 &lt;- sd(g1)
-s2 &lt;- sd(g2)
-
-sp2 &lt;- ((n1 - 1) * s1^2 + (n2 - 1) * s2^2) / (n1 + n2 - 2)
-tval &lt;- (m1 - m2) / sqrt(sp2 * (1 / n1 + 1 / n2))
-df_t &lt;- n1 + n2 - 2
-pval &lt;- 2 * pt(-abs(tval), df_t)
+sp2  &lt;- ((n1-1)*s1^2 + (n2-1)*s2^2)/(n1+n2-2)
+tval &lt;- (m1-m2)/sqrt(sp2*(1/n1 + 1/n2))
+df_t &lt;- n1+n2-2
+pval &lt;- 2*pt(-abs(tval), df_t)
 pval</code>
-<div class="sourceCode cell-code" id="interpolate-6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-6-1"><a href="#interpolate-6-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-6-2"><a href="#interpolate-6-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"marvel.csv"</span>)</span>
-<span id="interpolate-6-3"><a href="#interpolate-6-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, category <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Avengers"</span>,<span class="st">"Spider-Man"</span>))</span>
-<span id="interpolate-6-4"><a href="#interpolate-6-4" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>aud <span class="ot">&lt;-</span> <span class="fu">suppressWarnings</span>(<span class="fu">as.numeric</span>(df[[<span class="st">"audience % score"</span>]]))</span>
-<span id="interpolate-6-5"><a href="#interpolate-6-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, <span class="fu">is.finite</span>(aud))</span>
-<span id="interpolate-6-6"><a href="#interpolate-6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-6-7"><a href="#interpolate-6-7" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> df<span class="sc">$</span>aud[df<span class="sc">$</span>category <span class="sc">==</span> <span class="st">"Avengers"</span>]</span>
-<span id="interpolate-6-8"><a href="#interpolate-6-8" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> df<span class="sc">$</span>aud[df<span class="sc">$</span>category <span class="sc">==</span> <span class="st">"Spider-Man"</span>]</span>
-<span id="interpolate-6-9"><a href="#interpolate-6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-6-10"><a href="#interpolate-6-10" aria-hidden="true" tabindex="-1"></a>n1 <span class="ot">&lt;-</span> <span class="fu">length</span>(g1)</span>
-<span id="interpolate-6-11"><a href="#interpolate-6-11" aria-hidden="true" tabindex="-1"></a>n2 <span class="ot">&lt;-</span> <span class="fu">length</span>(g2)</span>
-<span id="interpolate-6-12"><a href="#interpolate-6-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-6-13"><a href="#interpolate-6-13" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(g1)</span>
-<span id="interpolate-6-14"><a href="#interpolate-6-14" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">mean</span>(g2)</span>
-<span id="interpolate-6-15"><a href="#interpolate-6-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-6-16"><a href="#interpolate-6-16" aria-hidden="true" tabindex="-1"></a>s1 <span class="ot">&lt;-</span> <span class="fu">sd</span>(g1)</span>
-<span id="interpolate-6-17"><a href="#interpolate-6-17" aria-hidden="true" tabindex="-1"></a>s2 <span class="ot">&lt;-</span> <span class="fu">sd</span>(g2)</span>
-<span id="interpolate-6-18"><a href="#interpolate-6-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-6-19"><a href="#interpolate-6-19" aria-hidden="true" tabindex="-1"></a>sp2 <span class="ot">&lt;-</span> ((n1 <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> s1<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (n2 <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> s2<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> (n1 <span class="sc">+</span> n2 <span class="sc">-</span> <span class="dv">2</span>)</span>
-<span id="interpolate-6-20"><a href="#interpolate-6-20" aria-hidden="true" tabindex="-1"></a>tval <span class="ot">&lt;-</span> (m1 <span class="sc">-</span> m2) <span class="sc">/</span> <span class="fu">sqrt</span>(sp2 <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">/</span> n1 <span class="sc">+</span> <span class="dv">1</span> <span class="sc">/</span> n2))</span>
-<span id="interpolate-6-21"><a href="#interpolate-6-21" aria-hidden="true" tabindex="-1"></a>df_t <span class="ot">&lt;-</span> n1 <span class="sc">+</span> n2 <span class="sc">-</span> <span class="dv">2</span></span>
-<span id="interpolate-6-22"><a href="#interpolate-6-22" aria-hidden="true" tabindex="-1"></a>pval <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">pt</span>(<span class="sc">-</span><span class="fu">abs</span>(tval), df_t)</span>
-<span id="interpolate-6-23"><a href="#interpolate-6-23" aria-hidden="true" tabindex="-1"></a>pval</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-6-1"><a href="#interpolate-6-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-2"><a href="#interpolate-6-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"marvel.csv"</span>, <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="interpolate-6-3"><a href="#interpolate-6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-4"><a href="#interpolate-6-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, category <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Avengers"</span>,<span class="st">"Spider-Man"</span>))</span>
+<span id="interpolate-6-5"><a href="#interpolate-6-5" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>aud <span class="ot">&lt;-</span> <span class="fu">suppressWarnings</span>(<span class="fu">as.numeric</span>(<span class="fu">sub</span>(<span class="st">"%"</span>, <span class="st">""</span>, df[[<span class="st">"audience % score"</span>]], <span class="at">fixed =</span> <span class="cn">TRUE</span>)))</span>
+<span id="interpolate-6-6"><a href="#interpolate-6-6" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, <span class="fu">is.finite</span>(aud))</span>
+<span id="interpolate-6-7"><a href="#interpolate-6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-8"><a href="#interpolate-6-8" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> df<span class="sc">$</span>aud[df<span class="sc">$</span>category <span class="sc">==</span> <span class="st">"Avengers"</span>]</span>
+<span id="interpolate-6-9"><a href="#interpolate-6-9" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> df<span class="sc">$</span>aud[df<span class="sc">$</span>category <span class="sc">==</span> <span class="st">"Spider-Man"</span>]</span>
+<span id="interpolate-6-10"><a href="#interpolate-6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-11"><a href="#interpolate-6-11" aria-hidden="true" tabindex="-1"></a>n1 <span class="ot">&lt;-</span> <span class="fu">length</span>(g1); n2 <span class="ot">&lt;-</span> <span class="fu">length</span>(g2)</span>
+<span id="interpolate-6-12"><a href="#interpolate-6-12" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(g1);   m2 <span class="ot">&lt;-</span> <span class="fu">mean</span>(g2)</span>
+<span id="interpolate-6-13"><a href="#interpolate-6-13" aria-hidden="true" tabindex="-1"></a>s1 <span class="ot">&lt;-</span> <span class="fu">sd</span>(g1);     s2 <span class="ot">&lt;-</span> <span class="fu">sd</span>(g2)</span>
+<span id="interpolate-6-14"><a href="#interpolate-6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-6-15"><a href="#interpolate-6-15" aria-hidden="true" tabindex="-1"></a>sp2  <span class="ot">&lt;-</span> ((n1<span class="dv">-1</span>)<span class="sc">*</span>s1<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (n2<span class="dv">-1</span>)<span class="sc">*</span>s2<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(n1<span class="sc">+</span>n2<span class="dv">-2</span>)</span>
+<span id="interpolate-6-16"><a href="#interpolate-6-16" aria-hidden="true" tabindex="-1"></a>tval <span class="ot">&lt;-</span> (m1<span class="sc">-</span>m2)<span class="sc">/</span><span class="fu">sqrt</span>(sp2<span class="sc">*</span>(<span class="dv">1</span><span class="sc">/</span>n1 <span class="sc">+</span> <span class="dv">1</span><span class="sc">/</span>n2))</span>
+<span id="interpolate-6-17"><a href="#interpolate-6-17" aria-hidden="true" tabindex="-1"></a>df_t <span class="ot">&lt;-</span> n1<span class="sc">+</span>n2<span class="dv">-2</span></span>
+<span id="interpolate-6-18"><a href="#interpolate-6-18" aria-hidden="true" tabindex="-1"></a>pval <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">pt</span>(<span class="sc">-</span><span class="fu">abs</span>(tval), df_t)</span>
+<span id="interpolate-6-19"><a href="#interpolate-6-19" aria-hidden="true" tabindex="-1"></a>pval</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
 <div class="cell">
 <script type="exercise-check-q1_pooled_audience-contents">
-eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InExX3Bvb2xlZF9hdWRpZW5jZSJ9LCJjb2RlIjoiXG5ncmFkZXRoaXM6OmdyYWRlX3RoaXMoe1xuZGYgPC0gcmVhZC5jc3YoXCJtYXJ2ZWwuY3N2XCIpXG5kZiRhdWQgPC0gc3VwcHJlc3NXYXJuaW5ncyhhcy5udW1lcmljKGRmW1tcImF1ZGllbmNlICUgc2NvcmVcIl1dKSlcbmRmIDwtIHN1YnNldChkZiwgY2F0ZWdvcnkgJWluJSBjKFwiQXZlbmdlcnNcIixcIlNwaWRlci1NYW5cIikgJiBpcy5maW5pdGUoYXVkKSlcbmcxIDwtIGRmJGF1ZFtkZiRjYXRlZ29yeSA9PSBcIkF2ZW5nZXJzXCJdXG5nMiA8LSBkZiRhdWRbZGYkY2F0ZWdvcnkgPT0gXCJTcGlkZXItTWFuXCJdXG5uMSA8LSBsZW5ndGgoZzEpOyBuMiA8LSBsZW5ndGgoZzIpXG5tMSA8LSBtZWFuKGcxKTsgbTIgPC0gbWVhbihnMilcbnMxIDwtIHNkKGcxKTsgczIgPC0gc2QoZzIpXG5zcDIgPC0gKChuMSAtIDEpICogczFeMiArIChuMiAtIDEpICogczJeMikgLyAobjEgKyBuMiAtIDIpXG50dmFsIDwtIChtMSAtIG0yKSAvIHNxcnQoc3AyICogKDEgLyBuMSArIDEgLyBuMikpXG5kZl90IDwtIG4xICsgbjIgLSAyXG5leHAgPC0gMiAqIHB0KC1hYnModHZhbCksIGRmX3QpXG5cbnggPC0gLnJlc3VsdFxub2sgPC0gaXMubnVtZXJpYyh4KSAmJiBsZW5ndGgoeCkgPT0gMUwgJiYgaXMuZmluaXRlKHgpXG5cbmlmICghb2spIHtcbmZhaWwoXCJSZXR1cm4gYSBzaW5nbGUgbnVtZXJpYyBwLXZhbHVlLlwiKVxufSBlbHNlIGlmIChhYnMoeCAtIGV4cCkgPCAxZS0xMCkge1xucGFzcyhcIlBvb2xlZCB0d28tc2FtcGxlIHAtdmFsdWUgY29tcHV0ZWQgY29ycmVjdGx5LlwiKVxufSBlbHNlIHtcbmZhaWwoXCJZb3VyIHAtdmFsdWUgZG9lcyBub3QgbWF0Y2ggdGhlIHBvb2xlZCB0d28tc2FtcGxlIGNhbGN1bGF0aW9uLlwiKVxufVxufSkifQ==
+eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InExX3Bvb2xlZF9hdWRpZW5jZSJ9LCJjb2RlIjoiXG5ncmFkZXRoaXM6OmdyYWRlX3RoaXMoe1xuICBkZiA8LSByZWFkLmNzdihcIm1hcnZlbC5jc3ZcIiwgY2hlY2submFtZXMgPSBGQUxTRSlcblxuICAjIHJvYnVzdCBjb2x1bW4gbG9va3VwICh3b3JrcyB3aGV0aGVyIG5hbWVzIHdlcmUgcHJlc2VydmVkIG9yIG5vdClcbiAgYXVkX2NvbCA8LSBpZiAoXCJhdWRpZW5jZSAlIHNjb3JlXCIgJWluJSBuYW1lcyhkZikpIHtcbiAgICBcImF1ZGllbmNlICUgc2NvcmVcIlxuICB9IGVsc2Uge1xuICAgIGdyZXAoXCJeYXVkaWVuY2VcIiwgbmFtZXMoZGYpLCB2YWx1ZSA9IFRSVUUpWzFdXG4gIH1cblxuICBkZiRhdWQgPC0gc3VwcHJlc3NXYXJuaW5ncyhhcy5udW1lcmljKHN1YihcIiVcIiwgXCJcIiwgZGZbW2F1ZF9jb2xdXSwgZml4ZWQgPSBUUlVFKSkpXG5cbiAgZGYgPC0gc3Vic2V0KGRmLCBjYXRlZ29yeSAlaW4lIGMoXCJBdmVuZ2Vyc1wiLFwiU3BpZGVyLU1hblwiKSAmIGlzLmZpbml0ZShhdWQpKVxuICBnMSA8LSBkZiRhdWRbZGYkY2F0ZWdvcnkgPT0gXCJBdmVuZ2Vyc1wiXVxuICBnMiA8LSBkZiRhdWRbZGYkY2F0ZWdvcnkgPT0gXCJTcGlkZXItTWFuXCJdXG5cbiAgbjEgPC0gbGVuZ3RoKGcxKTsgbjIgPC0gbGVuZ3RoKGcyKVxuICBtMSA8LSBtZWFuKGcxKTsgICBtMiA8LSBtZWFuKGcyKVxuICBzMSA8LSBzZChnMSk7ICAgICBzMiA8LSBzZChnMilcblxuICBzcDIgIDwtICgobjEgLSAxKSAqIHMxXjIgKyAobjIgLSAxKSAqIHMyXjIpIC8gKG4xICsgbjIgLSAyKVxuICB0dmFsIDwtIChtMSAtIG0yKSAvIHNxcnQoc3AyICogKDEgLyBuMSArIDEgLyBuMikpXG4gIGRmX3QgPC0gbjEgKyBuMiAtIDJcbiAgZXhwICA8LSAyICogcHQoLWFicyh0dmFsKSwgZGZfdClcblxuICB4IDwtIC5yZXN1bHRcbiAgb2sgPC0gaXMubnVtZXJpYyh4KSAmJiBsZW5ndGgoeCkgPT0gMUwgJiYgaXMuZmluaXRlKHgpXG5cbiAgaWYgKCFvaykge1xuICAgIGZhaWwoXCJSZXR1cm4gYSBzaW5nbGUgbnVtZXJpYyBwLXZhbHVlLlwiKVxuICB9IGVsc2UgaWYgKGFicyh4IC0gZXhwKSA8IDFlLTEwKSB7XG4gICAgcGFzcyhcIlBvb2xlZCB0d28tc2FtcGxlIHAtdmFsdWUgY29tcHV0ZWQgY29ycmVjdGx5LlwiKVxuICB9IGVsc2Uge1xuICAgIGZhaWwoXCJZb3VyIHAtdmFsdWUgZG9lcyBub3QgbWF0Y2ggdGhlIHBvb2xlZCB0d28tc2FtcGxlIGNhbGN1bGF0aW9uLlwiKVxuICB9XG59KSJ9
 </script>
 </div>
 </section>
@@ -572,7 +597,7 @@ Photo by <a href="https://unsplash.com/@introspectivedsgn?utm_source=unsplash&am
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Info
+<span class="screen-reader-only">Note</span>Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -601,7 +626,7 @@ p\text{-value} = 2\,P\bigl(T_{\text{df}_W} \ge |t|\bigr).
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Preview
+<span class="screen-reader-only">Note</span>Preview
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -611,7 +636,7 @@ Preview
 
 </div>
 <script type="webr-8-contents">
-eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiXG5kZiA8LSByZWFkLmNzdihcIm1hcnZlbC5jc3ZcIilcbnN1YiA8LSBzdWJzZXQoZGYsIGNhdGVnb3J5ICVpbiUgYyhcIkF2ZW5nZXJzXCIsXCJTcGlkZXItTWFuXCIpKVxuc3ViJG9wZW4gPC0gc3ViW1tcIm9wZW5pbmcgd2Vla2VuZCAoJG0pXCJdXVxuc3ViIDwtIHN1YnNldChzdWIsIGlzLmZpbml0ZShvcGVuKSlcblxuaGVhZChzdWJbLCBjKFwiZmlsbVwiLFwiY2F0ZWdvcnlcIixcIm9wZW5cIildLCAxMClcblxucGFyKG1mcm93ID0gYygxLCAyKSlcbmhpc3Qoc3ViJG9wZW4sXG5tYWluID0gXCJPcGVuaW5nIHdlZWtlbmQgZ3Jvc3MgKEF2ZW5nZXJzICsgU3BpZGVyLU1hbilcIixcbnhsYWIgPSBcIk9wZW5pbmcgd2Vla2VuZCAoJG0pXCIpXG5ib3hwbG90KG9wZW4gfiBjYXRlZ29yeSwgZGF0YSA9IHN1Yixcbm1haW4gPSBcIk9wZW5pbmcgd2Vla2VuZCBieSBjYXRlZ29yeVwiLFxueGxhYiA9IFwiQ2F0ZWdvcnlcIiwgeWxhYiA9IFwiT3BlbmluZyB3ZWVrZW5kICgkbSlcIilcbnBhcihtZnJvdyA9IGMoMSwgMSkpIn0=
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiXG5kZiA8LSByZWFkLmNzdihcIm1hcnZlbC5jc3ZcIiwgY2hlY2submFtZXM9RkFMU0UpXG5zdWIgPC0gc3Vic2V0KGRmLCBjYXRlZ29yeSAlaW4lIGMoXCJBdmVuZ2Vyc1wiLFwiU3BpZGVyLU1hblwiKSlcbnN1YiRvcGVuIDwtIHN1YltbXCJvcGVuaW5nIHdlZWtlbmQgKCRtKVwiXV1cbnN1YiA8LSBzdWJzZXQoc3ViLCBpcy5maW5pdGUob3BlbikpXG5cbmhlYWQoc3ViWywgYyhcImZpbG1cIixcImNhdGVnb3J5XCIsXCJvcGVuXCIpXSwgMTApXG5cbnBhcihtZnJvdyA9IGMoMSwgMikpXG5oaXN0KHN1YiRvcGVuLFxubWFpbiA9IFwiT3BlbmluZyB3ZWVrZW5kIGdyb3NzIChBdmVuZ2VycyArIFNwaWRlci1NYW4pXCIsXG54bGFiID0gXCJPcGVuaW5nIHdlZWtlbmQgKCRtKVwiKVxuYm94cGxvdChvcGVuIH4gY2F0ZWdvcnksIGRhdGEgPSBzdWIsXG5tYWluID0gXCJPcGVuaW5nIHdlZWtlbmQgYnkgY2F0ZWdvcnlcIixcbnhsYWIgPSBcIkNhdGVnb3J5XCIsIHlsYWIgPSBcIk9wZW5pbmcgd2Vla2VuZCAoJG0pXCIpXG5wYXIobWZyb3cgPSBjKDEsIDEpKSJ9
 </script>
 </div>
 </div>
@@ -623,7 +648,7 @@ eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiXG5kZiA8
 
 </div>
 <script type="webr-9-contents">
-eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxMl9tY3Vfd2VsY2hfb3BlbiIsImV4ZXJjaXNlLmxpbmVzIjo4fSwiY29kZSI6IlxuZGYgPC0gcmVhZC5jc3YoXCJtYXJ2ZWwuY3N2XCIpXG5kZiA8LSBzdWJzZXQoZGYsIGNhdGVnb3J5ICVpbiUgYyhfX18sIF9fXykpXG5kZiRvcGVuIDwtIGRmW1tcIm9wZW5pbmcgd2Vla2VuZCAoJG0pXCJdXVxuZGYgPC0gc3Vic2V0KGRmLCBpcy5maW5pdGUob3BlbikpXG5cbmcxIDwtIGRmJG9wZW5bZGYkY2F0ZWdvcnkgPT0gX19fXVxuZzIgPC0gZGYkb3BlbltkZiRjYXRlZ29yeSA9PSBfX19dXG5cbm4xIDwtIF9fX1xubjIgPC0gX19fXG5cbm0xIDwtIF9fX1xubTIgPC0gX19fXG5cbnMxIDwtIF9fX1xuczIgPC0gX19fXG5cbnNlX2RpZmYgPC0gX19fXG50dmFsIDwtIF9fX1xuXG5kZl93IDwtIF9fX1xucHZhbCA8LSBfX19cbnB2YWwifQ==
+eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxMl9tY3Vfd2VsY2hfb3BlbiIsImV4ZXJjaXNlLmxpbmVzIjo4fSwiY29kZSI6IlxuZGYgPC0gcmVhZC5jc3YoXCJtYXJ2ZWwuY3N2XCIsIGNoZWNrLm5hbWVzPUZBTFNFKVxuZGYgPC0gc3Vic2V0KGRmLCBjYXRlZ29yeSAlaW4lIGMoX19fLCBfX18pKVxuZGYkb3BlbiA8LSBkZltbXCJvcGVuaW5nIHdlZWtlbmQgKCRtKVwiXV1cbmRmIDwtIHN1YnNldChkZiwgaXMuZmluaXRlKG9wZW4pKVxuXG5nMSA8LSBkZiRvcGVuW2RmJGNhdGVnb3J5ID09IF9fX11cbmcyIDwtIGRmJG9wZW5bZGYkY2F0ZWdvcnkgPT0gX19fXVxuXG5uMSA8LSBfX19cbm4yIDwtIF9fX1xuXG5tMSA8LSBfX19cbm0yIDwtIF9fX1xuXG5zMSA8LSBfX19cbnMyIDwtIF9fX1xuXG5zZV9kaWZmIDwtIF9fX1xudHZhbCA8LSBfX19cblxuZGZfdyA8LSBfX19cbnB2YWwgPC0gX19fXG5wdmFsIn0=
 </script>
 </div>
 </div>
@@ -634,63 +659,53 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJx
 <div class="cell">
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q2_mcu_welch_open">
 <code id="interpolate-11" class="solution-code d-none">
-df &lt;- read.csv("marvel.csv")
+df &lt;- read.csv("marvel.csv", check.names = FALSE)
 df &lt;- subset(df, category %in% c("Avengers","Spider-Man"))
 df$open &lt;- df[["opening weekend ($m)"]]
-df &lt;- subset(df, is.finite(open))
+df &lt;- df[is.finite(df$open), ]
 
 g1 &lt;- df$open[df$category == "Avengers"]
 g2 &lt;- df$open[df$category == "Spider-Man"]
 
-n1 &lt;- length(g1)
-n2 &lt;- length(g2)
-
-m1 &lt;- mean(g1)
-m2 &lt;- mean(g2)
-
-s1 &lt;- sd(g1)
-s2 &lt;- sd(g2)
+n1 &lt;- length(g1); n2 &lt;- length(g2)
+m1 &lt;- mean(g1);   m2 &lt;- mean(g2)
+s1 &lt;- sd(g1);     s2 &lt;- sd(g2)
 
 se_diff &lt;- sqrt(s1^2 / n1 + s2^2 / n2)
 tval &lt;- (m1 - m2) / se_diff
 
 df_w &lt;- (s1^2 / n1 + s2^2 / n2)^2 /
-((s1^2 / n1)^2 / (n1 - 1) + (s2^2 / n2)^2 / (n2 - 1))
+  ((s1^2 / n1)^2 / (n1 - 1) + (s2^2 / n2)^2 / (n2 - 1))
 
 pval &lt;- 2 * pt(-abs(tval), df_w)
 pval</code>
-<div class="sourceCode cell-code" id="interpolate-12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-12-1"><a href="#interpolate-12-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-12-2"><a href="#interpolate-12-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"marvel.csv"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-12-1"><a href="#interpolate-12-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-12-2"><a href="#interpolate-12-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"marvel.csv"</span>, <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
 <span id="interpolate-12-3"><a href="#interpolate-12-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, category <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Avengers"</span>,<span class="st">"Spider-Man"</span>))</span>
 <span id="interpolate-12-4"><a href="#interpolate-12-4" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>open <span class="ot">&lt;-</span> df[[<span class="st">"opening weekend ($m)"</span>]]</span>
-<span id="interpolate-12-5"><a href="#interpolate-12-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, <span class="fu">is.finite</span>(open))</span>
+<span id="interpolate-12-5"><a href="#interpolate-12-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df[<span class="fu">is.finite</span>(df<span class="sc">$</span>open), ]</span>
 <span id="interpolate-12-6"><a href="#interpolate-12-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-12-7"><a href="#interpolate-12-7" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> df<span class="sc">$</span>open[df<span class="sc">$</span>category <span class="sc">==</span> <span class="st">"Avengers"</span>]</span>
 <span id="interpolate-12-8"><a href="#interpolate-12-8" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> df<span class="sc">$</span>open[df<span class="sc">$</span>category <span class="sc">==</span> <span class="st">"Spider-Man"</span>]</span>
 <span id="interpolate-12-9"><a href="#interpolate-12-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-12-10"><a href="#interpolate-12-10" aria-hidden="true" tabindex="-1"></a>n1 <span class="ot">&lt;-</span> <span class="fu">length</span>(g1)</span>
-<span id="interpolate-12-11"><a href="#interpolate-12-11" aria-hidden="true" tabindex="-1"></a>n2 <span class="ot">&lt;-</span> <span class="fu">length</span>(g2)</span>
-<span id="interpolate-12-12"><a href="#interpolate-12-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-12-13"><a href="#interpolate-12-13" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(g1)</span>
-<span id="interpolate-12-14"><a href="#interpolate-12-14" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">mean</span>(g2)</span>
-<span id="interpolate-12-15"><a href="#interpolate-12-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-12-16"><a href="#interpolate-12-16" aria-hidden="true" tabindex="-1"></a>s1 <span class="ot">&lt;-</span> <span class="fu">sd</span>(g1)</span>
-<span id="interpolate-12-17"><a href="#interpolate-12-17" aria-hidden="true" tabindex="-1"></a>s2 <span class="ot">&lt;-</span> <span class="fu">sd</span>(g2)</span>
-<span id="interpolate-12-18"><a href="#interpolate-12-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-12-19"><a href="#interpolate-12-19" aria-hidden="true" tabindex="-1"></a>se_diff <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(s1<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> n1 <span class="sc">+</span> s2<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> n2)</span>
-<span id="interpolate-12-20"><a href="#interpolate-12-20" aria-hidden="true" tabindex="-1"></a>tval <span class="ot">&lt;-</span> (m1 <span class="sc">-</span> m2) <span class="sc">/</span> se_diff</span>
-<span id="interpolate-12-21"><a href="#interpolate-12-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-12-22"><a href="#interpolate-12-22" aria-hidden="true" tabindex="-1"></a>df_w <span class="ot">&lt;-</span> (s1<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> n1 <span class="sc">+</span> s2<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> n2)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span></span>
-<span id="interpolate-12-23"><a href="#interpolate-12-23" aria-hidden="true" tabindex="-1"></a>((s1<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> n1)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> (n1 <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">+</span> (s2<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> n2)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> (n2 <span class="sc">-</span> <span class="dv">1</span>))</span>
-<span id="interpolate-12-24"><a href="#interpolate-12-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-12-25"><a href="#interpolate-12-25" aria-hidden="true" tabindex="-1"></a>pval <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">pt</span>(<span class="sc">-</span><span class="fu">abs</span>(tval), df_w)</span>
-<span id="interpolate-12-26"><a href="#interpolate-12-26" aria-hidden="true" tabindex="-1"></a>pval</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="interpolate-12-10"><a href="#interpolate-12-10" aria-hidden="true" tabindex="-1"></a>n1 <span class="ot">&lt;-</span> <span class="fu">length</span>(g1); n2 <span class="ot">&lt;-</span> <span class="fu">length</span>(g2)</span>
+<span id="interpolate-12-11"><a href="#interpolate-12-11" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">mean</span>(g1);   m2 <span class="ot">&lt;-</span> <span class="fu">mean</span>(g2)</span>
+<span id="interpolate-12-12"><a href="#interpolate-12-12" aria-hidden="true" tabindex="-1"></a>s1 <span class="ot">&lt;-</span> <span class="fu">sd</span>(g1);     s2 <span class="ot">&lt;-</span> <span class="fu">sd</span>(g2)</span>
+<span id="interpolate-12-13"><a href="#interpolate-12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-12-14"><a href="#interpolate-12-14" aria-hidden="true" tabindex="-1"></a>se_diff <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(s1<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> n1 <span class="sc">+</span> s2<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> n2)</span>
+<span id="interpolate-12-15"><a href="#interpolate-12-15" aria-hidden="true" tabindex="-1"></a>tval <span class="ot">&lt;-</span> (m1 <span class="sc">-</span> m2) <span class="sc">/</span> se_diff</span>
+<span id="interpolate-12-16"><a href="#interpolate-12-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-12-17"><a href="#interpolate-12-17" aria-hidden="true" tabindex="-1"></a>df_w <span class="ot">&lt;-</span> (s1<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> n1 <span class="sc">+</span> s2<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> n2)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span></span>
+<span id="interpolate-12-18"><a href="#interpolate-12-18" aria-hidden="true" tabindex="-1"></a>  ((s1<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> n1)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> (n1 <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">+</span> (s2<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> n2)<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> (n2 <span class="sc">-</span> <span class="dv">1</span>))</span>
+<span id="interpolate-12-19"><a href="#interpolate-12-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-12-20"><a href="#interpolate-12-20" aria-hidden="true" tabindex="-1"></a>pval <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">pt</span>(<span class="sc">-</span><span class="fu">abs</span>(tval), df_w)</span>
+<span id="interpolate-12-21"><a href="#interpolate-12-21" aria-hidden="true" tabindex="-1"></a>pval</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
 <div class="cell">
 <script type="exercise-check-q2_mcu_welch_open-contents">
-eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InEyX21jdV93ZWxjaF9vcGVuIn0sImNvZGUiOiJcbmdyYWRldGhpczo6Z3JhZGVfdGhpcyh7XG5kZiA8LSByZWFkLmNzdihcIm1hcnZlbC5jc3ZcIilcbmRmJG9wZW4gPC0gZGZbW1wib3BlbmluZyB3ZWVrZW5kICgkbSlcIl1dXG5kZiA8LSBzdWJzZXQoZGYsIGNhdGVnb3J5ICVpbiUgYyhcIkF2ZW5nZXJzXCIsXCJTcGlkZXItTWFuXCIpICYgaXMuZmluaXRlKG9wZW4pKVxuZzEgPC0gZGYkb3BlbltkZiRjYXRlZ29yeSA9PSBcIkF2ZW5nZXJzXCJdXG5nMiA8LSBkZiRvcGVuW2RmJGNhdGVnb3J5ID09IFwiU3BpZGVyLU1hblwiXVxubjEgPC0gbGVuZ3RoKGcxKTsgbjIgPC0gbGVuZ3RoKGcyKVxubTEgPC0gbWVhbihnMSk7IG0yIDwtIG1lYW4oZzIpXG5zMSA8LSBzZChnMSk7IHMyIDwtIHNkKGcyKVxuc2VfZGlmZiA8LSBzcXJ0KHMxXjIgLyBuMSArIHMyXjIgLyBuMilcbnR2YWwgPC0gKG0xIC0gbTIpIC8gc2VfZGlmZlxuZGZfdyA8LSAoczFeMiAvIG4xICsgczJeMiAvIG4yKV4yIC9cbigoczFeMiAvIG4xKV4yIC8gKG4xIC0gMSkgKyAoczJeMiAvIG4yKV4yIC8gKG4yIC0gMSkpXG5leHAgPC0gMiAqIHB0KC1hYnModHZhbCksIGRmX3cpXG5cbnggPC0gLnJlc3VsdFxub2sgPC0gaXMubnVtZXJpYyh4KSAmJiBsZW5ndGgoeCkgPT0gMUwgJiYgaXMuZmluaXRlKHgpXG5cbmlmICghb2spIHtcbmZhaWwoXCJSZXR1cm4gYSBzaW5nbGUgbnVtZXJpYyBwLXZhbHVlLlwiKVxufSBlbHNlIGlmIChhYnMoeCAtIGV4cCkgPCAxZS0xMCkge1xucGFzcyhcIldlbGNoIHR3by1zYW1wbGUgcC12YWx1ZSBjb21wdXRlZCBjb3JyZWN0bHkuXCIpXG59IGVsc2Uge1xuZmFpbChcIllvdXIgcC12YWx1ZSBkb2VzIG5vdCBtYXRjaCB0aGUgV2VsY2ggdHdvLXNhbXBsZSBjYWxjdWxhdGlvbi5cIilcbn1cbn0pIn0=
+eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InEyX21jdV93ZWxjaF9vcGVuIn0sImNvZGUiOiJcbmdyYWRldGhpczo6Z3JhZGVfdGhpcyh7XG4gIGRmIDwtIHJlYWQuY3N2KFwibWFydmVsLmNzdlwiLCBjaGVjay5uYW1lcyA9IEZBTFNFKVxuICBkZiRvcGVuIDwtIGRmW1tcIm9wZW5pbmcgd2Vla2VuZCAoJG0pXCJdXVxuICBkZiA8LSBkZltkZiRjYXRlZ29yeSAlaW4lIGMoXCJBdmVuZ2Vyc1wiLFwiU3BpZGVyLU1hblwiKSAmIGlzLmZpbml0ZShkZiRvcGVuKSwgXVxuXG4gIGcxIDwtIGRmJG9wZW5bZGYkY2F0ZWdvcnkgPT0gXCJBdmVuZ2Vyc1wiXVxuICBnMiA8LSBkZiRvcGVuW2RmJGNhdGVnb3J5ID09IFwiU3BpZGVyLU1hblwiXVxuXG4gIG4xIDwtIGxlbmd0aChnMSk7IG4yIDwtIGxlbmd0aChnMilcbiAgbTEgPC0gbWVhbihnMSk7ICAgbTIgPC0gbWVhbihnMilcbiAgczEgPC0gc2QoZzEpOyAgICAgczIgPC0gc2QoZzIpXG5cbiAgc2VfZGlmZiA8LSBzcXJ0KHMxXjIgLyBuMSArIHMyXjIgLyBuMilcbiAgdHZhbCA8LSAobTEgLSBtMikgLyBzZV9kaWZmXG5cbiAgZGZfdyA8LSAoczFeMiAvIG4xICsgczJeMiAvIG4yKV4yIC9cbiAgICAoKHMxXjIgLyBuMSleMiAvIChuMSAtIDEpICsgKHMyXjIgLyBuMileMiAvIChuMiAtIDEpKVxuXG4gIGV4cCA8LSAyICogcHQoLWFicyh0dmFsKSwgZGZfdylcblxuICB4IDwtIC5yZXN1bHRcbiAgb2sgPC0gaXMubnVtZXJpYyh4KSAmJiBsZW5ndGgoeCkgPT0gMUwgJiYgaXMuZmluaXRlKHgpXG5cbiAgaWYgKCFvaykgZmFpbChcIlJldHVybiBhIHNpbmdsZSBudW1lcmljIHAtdmFsdWUuXCIpXG4gIGVsc2UgaWYgKGFicyh4IC0gZXhwKSA8IDFlLTEwKSBwYXNzKFwiV2VsY2ggdHdvLXNhbXBsZSBwLXZhbHVlIGNvbXB1dGVkIGNvcnJlY3RseS5cIilcbiAgZWxzZSBmYWlsKFwiWW91ciBwLXZhbHVlIGRvZXMgbm90IG1hdGNoIHRoZSBXZWxjaCB0d28tc2FtcGxlIGNhbGN1bGF0aW9uLlwiKVxufSkifQ==
 </script>
 </div>
 </section>
@@ -711,7 +726,7 @@ Photo by <a href="https://unsplash.com/@wacalke?utm_source=unsplash&amp;utm_medi
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Info
+<span class="screen-reader-only">Note</span>Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -724,7 +739,7 @@ Info
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Preview
+<span class="screen-reader-only">Note</span>Preview
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -734,7 +749,7 @@ Preview
 
 </div>
 <script type="webr-14-contents">
-eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiXG5kZiA8LSByZWFkLmNzdihcIm1hcnZlbC5jc3ZcIilcbnN1YiA8LSBzdWJzZXQoZGYsIGNhdGVnb3J5ICVpbiUgYyhcIkNhcHRhaW4gQW1lcmljYVwiLFwiSXJvbiBNYW5cIikpXG5zdWIkY3JpdCA8LSBzdXBwcmVzc1dhcm5pbmdzKGFzLm51bWVyaWMoc3ViW1tcImNyaXRpY3MgJSBzY29yZVwiXV0pKVxuc3ViIDwtIHN1YnNldChzdWIsIGlzLmZpbml0ZShjcml0KSlcblxuaGVhZChzdWJbLCBjKFwiZmlsbVwiLFwiY2F0ZWdvcnlcIixcImNyaXRcIildLCAxMClcblxucGFyKG1mcm93ID0gYygxLCAyKSlcbmhpc3Qoc3ViJGNyaXQsXG5tYWluID0gXCJDcml0aWNzICUgc2NvcmUgKENhcCArIElyb24gTWFuKVwiLFxueGxhYiA9IFwiQ3JpdGljcyAlIHNjb3JlXCIpXG5ib3hwbG90KGNyaXQgfiBjYXRlZ29yeSwgZGF0YSA9IHN1Yixcbm1haW4gPSBcIkNyaXRpY3MgJSBzY29yZSBieSBjYXRlZ29yeVwiLFxueGxhYiA9IFwiQ2F0ZWdvcnlcIiwgeWxhYiA9IFwiQ3JpdGljcyAlIHNjb3JlXCIpXG5wYXIobWZyb3cgPSBjKDEsIDEpKSJ9
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiXG5kZiA8LSByZWFkLmNzdihcIm1hcnZlbC5jc3ZcIiwgY2hlY2submFtZXM9RkFMU0UpXG5zdWIgPC0gc3Vic2V0KGRmLCBjYXRlZ29yeSAlaW4lIGMoXCJDYXB0YWluIEFtZXJpY2FcIixcIklyb24gTWFuXCIpKVxuc3ViJGNyaXQgPC0gc3VwcHJlc3NXYXJuaW5ncyhhcy5udW1lcmljKHN1YltbXCJjcml0aWNzICUgc2NvcmVcIl1dKSlcbnN1YiA8LSBzdWJzZXQoc3ViLCBpcy5maW5pdGUoY3JpdCkpXG5cbmhlYWQoc3ViWywgYyhcImZpbG1cIixcImNhdGVnb3J5XCIsXCJjcml0XCIpXSwgMTApXG5cbnBhcihtZnJvdyA9IGMoMSwgMikpXG5oaXN0KHN1YiRjcml0LFxubWFpbiA9IFwiQ3JpdGljcyAlIHNjb3JlIChDYXAgKyBJcm9uIE1hbilcIixcbnhsYWIgPSBcIkNyaXRpY3MgJSBzY29yZVwiKVxuYm94cGxvdChjcml0IH4gY2F0ZWdvcnksIGRhdGEgPSBzdWIsXG5tYWluID0gXCJDcml0aWNzICUgc2NvcmUgYnkgY2F0ZWdvcnlcIixcbnhsYWIgPSBcIkNhdGVnb3J5XCIsIHlsYWIgPSBcIkNyaXRpY3MgJSBzY29yZVwiKVxucGFyKG1mcm93ID0gYygxLCAxKSkifQ==
 </script>
 </div>
 </div>
@@ -746,7 +761,7 @@ eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiXG5kZiA8
 
 </div>
 <script type="webr-15-contents">
-eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxM19tY3VfcG9vbGVkX2NyaXRpY3MiLCJleGVyY2lzZS5saW5lcyI6OH0sImNvZGUiOiJcbmRmIDwtIHJlYWQuY3N2KFwibWFydmVsLmNzdlwiKVxuZGYgPC0gc3Vic2V0KGRmLCBjYXRlZ29yeSAlaW4lIGMoXCJfX19cIixcIl9fX1wiKSlcbmRmJGNyaXQgPC0gc3VwcHJlc3NXYXJuaW5ncyhhcy5udW1lcmljKGRmW1tcImNyaXRpY3MgJSBzY29yZVwiXV0pKVxuZGYgPC0gc3Vic2V0KGRmLCBpcy5maW5pdGUoY3JpdCkpXG5kZiRncnAgPC0gX19fKGRmJGNhdGVnb3J5LCBsZXZlbHMgPSBjKFwiQ2FwdGFpbiBBbWVyaWNhXCIsXCJJcm9uIE1hblwiKSlcbnQudGVzdChjcml0IH4gZ3JwLCBkYXRhID0gZGYsIHZhci5lcXVhbCA9IF9fXykkX19fIn0=
+eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxM19tY3VfcG9vbGVkX2NyaXRpY3MiLCJleGVyY2lzZS5saW5lcyI6OH0sImNvZGUiOiJcbmRmIDwtIHJlYWQuY3N2KFwibWFydmVsLmNzdlwiLCBjaGVjay5uYW1lcyA9IEZBTFNFKVxuZGYgPC0gc3Vic2V0KGRmLCBjYXRlZ29yeSAlaW4lIGMoXCJfX19cIixcIl9fX1wiKSlcbmRmJGNyaXQgPC0gc3VwcHJlc3NXYXJuaW5ncyhhcy5udW1lcmljKHN1YihcIiVcIixcIlwiLCBkZltbXCJjcml0aWNzICUgc2NvcmVcIl1dLCBmaXhlZD1UUlVFKSkpXG5cblxuZGYgPC0gc3Vic2V0KGRmLCBpcy5maW5pdGUoY3JpdCkpXG5kZiRncnAgPC0gX19fKGRmJGNhdGVnb3J5LCBsZXZlbHMgPSBjKFwiQ2FwdGFpbiBBbWVyaWNhXCIsXCJJcm9uIE1hblwiKSlcbnQudGVzdChjcml0IH4gZ3JwLCBkYXRhID0gZGYsIHZhci5lcXVhbCA9IF9fXykkX19fIn0=
 </script>
 </div>
 </div>
@@ -754,28 +769,30 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJx
 <p>Limit the data to the two franchises named in the question, use the critics scores as the response, and form a two-level grouping factor. Then carry out a pooled two-sample test and extract the single p-value it produces.</p>
 </div>
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q3_mcu_pooled_critics">
-<div class="cell">
+<div class="cell" data-exercise="q3_mcu_pooled_critics" data-solution="true">
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q3_mcu_pooled_critics">
-<code id="interpolate-17" class="solution-code d-none">
-df &lt;- read.csv("marvel.csv")
+<code id="interpolate-17" class="solution-code d-none">df &lt;- read.csv("marvel.csv", check.names = FALSE)
 df &lt;- subset(df, category %in% c("Captain America","Iron Man"))
-df$crit &lt;- suppressWarnings(as.numeric(df[["critics % score"]]))
+
+df$crit &lt;- suppressWarnings(as.numeric(sub("%","", df[["critics % score"]], fixed = TRUE)))
 df &lt;- subset(df, is.finite(crit))
+
 df$grp &lt;- factor(df$category, levels = c("Captain America","Iron Man"))
 t.test(crit ~ grp, data = df, var.equal = TRUE)$p.value</code>
-<div class="sourceCode cell-code" id="interpolate-18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-18-1"><a href="#interpolate-18-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-18-2"><a href="#interpolate-18-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"marvel.csv"</span>)</span>
-<span id="interpolate-18-3"><a href="#interpolate-18-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, category <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Captain America"</span>,<span class="st">"Iron Man"</span>))</span>
-<span id="interpolate-18-4"><a href="#interpolate-18-4" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>crit <span class="ot">&lt;-</span> <span class="fu">suppressWarnings</span>(<span class="fu">as.numeric</span>(df[[<span class="st">"critics % score"</span>]]))</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-18-1"><a href="#interpolate-18-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"marvel.csv"</span>, <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="interpolate-18-2"><a href="#interpolate-18-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, category <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Captain America"</span>,<span class="st">"Iron Man"</span>))</span>
+<span id="interpolate-18-3"><a href="#interpolate-18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-18-4"><a href="#interpolate-18-4" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>crit <span class="ot">&lt;-</span> <span class="fu">suppressWarnings</span>(<span class="fu">as.numeric</span>(<span class="fu">sub</span>(<span class="st">"%"</span>,<span class="st">""</span>, df[[<span class="st">"critics % score"</span>]], <span class="at">fixed =</span> <span class="cn">TRUE</span>)))</span>
 <span id="interpolate-18-5"><a href="#interpolate-18-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, <span class="fu">is.finite</span>(crit))</span>
-<span id="interpolate-18-6"><a href="#interpolate-18-6" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>grp <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>category, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Captain America"</span>,<span class="st">"Iron Man"</span>))</span>
-<span id="interpolate-18-7"><a href="#interpolate-18-7" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(crit <span class="sc">~</span> grp, <span class="at">data =</span> df, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)<span class="sc">$</span>p.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="interpolate-18-6"><a href="#interpolate-18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-18-7"><a href="#interpolate-18-7" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>grp <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>category, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Captain America"</span>,<span class="st">"Iron Man"</span>))</span>
+<span id="interpolate-18-8"><a href="#interpolate-18-8" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(crit <span class="sc">~</span> grp, <span class="at">data =</span> df, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)<span class="sc">$</span>p.value</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
-<div class="cell">
+<div class="cell" data-exercise="q3_mcu_pooled_critics" data-check="true">
 <script type="exercise-check-q3_mcu_pooled_critics-contents">
-eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InEzX21jdV9wb29sZWRfY3JpdGljcyJ9LCJjb2RlIjoiXG5ncmFkZXRoaXM6OmdyYWRlX3RoaXMoe1xuZGYgPC0gcmVhZC5jc3YoXCJtYXJ2ZWwuY3N2XCIpXG5kZiRjcml0IDwtIHN1cHByZXNzV2FybmluZ3MoYXMubnVtZXJpYyhkZltbXCJjcml0aWNzICUgc2NvcmVcIl1dKSlcbmRmIDwtIHN1YnNldChkZiwgY2F0ZWdvcnkgJWluJSBjKFwiQ2FwdGFpbiBBbWVyaWNhXCIsXCJJcm9uIE1hblwiKSAmIGlzLmZpbml0ZShjcml0KSlcbmRmJGdycCA8LSBmYWN0b3IoZGYkY2F0ZWdvcnksIGxldmVscyA9IGMoXCJDYXB0YWluIEFtZXJpY2FcIixcIklyb24gTWFuXCIpKVxuZXhwIDwtIHQudGVzdChjcml0IH4gZ3JwLCBkYXRhID0gZGYsIHZhci5lcXVhbCA9IFRSVUUpJHAudmFsdWVcblxueCA8LSAucmVzdWx0XG5vayA8LSBpcy5udW1lcmljKHgpICYmIGxlbmd0aCh4KSA9PSAxTCAmJiBpcy5maW5pdGUoeClcblxuaWYgKCFvaykge1xuZmFpbChcIllvdXIgYW5zd2VyIHNob3VsZCBiZSBhIHNpbmdsZSBudW1lcmljIHAtdmFsdWUuXCIpXG59IGVsc2UgaWYgKGFicyh4IC0gZXhwKSA8IDFlLTEyKSB7XG5wYXNzKFwiQ29ycmVjdCBwb29sZWQgdHdvLXNhbXBsZSBwLXZhbHVlIGZvciB0aGUgY3JpdGljcyBzY29yZXMuXCIpXG59IGVsc2Uge1xuZmFpbChcIlJldmlzaXQgeW91ciBzdWJzZXQsIGdyb3VwaW5nLCBhbmQgdGhlIGFzc3VtcHRpb24gb2YgZXF1YWwgdmFyaWFuY2VzLlwiKVxufVxufSkifQ==
+eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InEzX21jdV9wb29sZWRfY3JpdGljcyJ9LCJjb2RlIjoiZ3JhZGV0aGlzOjpncmFkZV90aGlzKHtcbiAgZGYgPC0gcmVhZC5jc3YoXCJtYXJ2ZWwuY3N2XCIsIGNoZWNrLm5hbWVzID0gRkFMU0UpXG4gIGRmJGNyaXQgPC0gc3VwcHJlc3NXYXJuaW5ncyhhcy5udW1lcmljKHN1YihcIiVcIixcIlwiLCBkZltbXCJjcml0aWNzICUgc2NvcmVcIl1dLCBmaXhlZCA9IFRSVUUpKSlcbiAgZGYgPC0gc3Vic2V0KGRmLCBjYXRlZ29yeSAlaW4lIGMoXCJDYXB0YWluIEFtZXJpY2FcIixcIklyb24gTWFuXCIpICYgaXMuZmluaXRlKGNyaXQpKVxuICBkZiRncnAgPC0gZmFjdG9yKGRmJGNhdGVnb3J5LCBsZXZlbHMgPSBjKFwiQ2FwdGFpbiBBbWVyaWNhXCIsXCJJcm9uIE1hblwiKSlcbiAgZXhwIDwtIHQudGVzdChjcml0IH4gZ3JwLCBkYXRhID0gZGYsIHZhci5lcXVhbCA9IFRSVUUpJHAudmFsdWVcblxuICB4IDwtIC5yZXN1bHRcbiAgb2sgPC0gaXMubnVtZXJpYyh4KSAmJiBsZW5ndGgoeCkgPT0gMUwgJiYgaXMuZmluaXRlKHgpXG5cbiAgaWYgKCFvaykgZmFpbChcIllvdXIgYW5zd2VyIHNob3VsZCBiZSBhIHNpbmdsZSBudW1lcmljIHAtdmFsdWUuXCIpXG4gIGVsc2UgaWYgKGFicyh4IC0gZXhwKSA8IDFlLTEyKSBwYXNzKFwiQ29ycmVjdCBwb29sZWQgdHdvLXNhbXBsZSBwLXZhbHVlIGZvciB0aGUgY3JpdGljcyBzY29yZXMuXCIpXG4gIGVsc2UgZmFpbChcIlJldmlzaXQgeW91ciBzdWJzZXQsIGdyb3VwaW5nLCBhbmQgdGhlIGFzc3VtcHRpb24gb2YgZXF1YWwgdmFyaWFuY2VzLlwiKVxufSkifQ==
 </script>
 </div>
 </section>
@@ -796,7 +813,7 @@ Photo by <a href="https://unsplash.com/@wacalke?utm_source=unsplash&amp;utm_medi
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Info
+<span class="screen-reader-only">Note</span>Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -809,7 +826,7 @@ Info
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Preview
+<span class="screen-reader-only">Note</span>Preview
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -819,7 +836,7 @@ Preview
 
 </div>
 <script type="webr-20-contents">
-eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0gcmVhZC5jc3YoXCJtYXJ2ZWwuY3N2XCIpXG5zdWIgPC0gc3Vic2V0KGRmLCBjYXRlZ29yeSAlaW4lIGMoXCJCbGFjayBQYW50aGVyXCIsXCJUaG9yXCIpKVxuc3ViJGRvbSA8LSBzdWJbW1wiZG9tZXN0aWMgZ3Jvc3MgKCRtKVwiXV1cbnN1YiA8LSBzdWJzZXQoc3ViLCBpcy5maW5pdGUoZG9tKSlcblxuaGVhZChzdWJbLCBjKFwiZmlsbVwiLFwiY2F0ZWdvcnlcIixcImRvbVwiKV0sIDEwKVxuXG5wYXIobWZyb3cgPSBjKDEsIDIpKVxuaGlzdChzdWIkZG9tLFxubWFpbiA9IFwiRG9tZXN0aWMgZ3Jvc3MgKEJsYWNrIFBhbnRoZXIgKyBUaG9yKVwiLFxueGxhYiA9IFwiRG9tZXN0aWMgZ3Jvc3MgKCRtKVwiKVxuYm94cGxvdChkb20gfiBjYXRlZ29yeSwgZGF0YSA9IHN1Yixcbm1haW4gPSBcIkRvbWVzdGljIGdyb3NzIGJ5IGNhdGVnb3J5XCIsXG54bGFiID0gXCJDYXRlZ29yeVwiLCB5bGFiID0gXCJEb21lc3RpYyBncm9zcyAoJG0pXCIpXG5wYXIobWZyb3cgPSBjKDEsIDEpKSJ9
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0gcmVhZC5jc3YoXCJtYXJ2ZWwuY3N2XCIsIGNoZWNrLm5hbWVzPUZBTFNFKVxuc3ViIDwtIHN1YnNldChkZiwgY2F0ZWdvcnkgJWluJSBjKFwiQmxhY2sgUGFudGhlclwiLFwiVGhvclwiKSlcbnN1YiRkb20gPC0gc3ViW1tcImRvbWVzdGljIGdyb3NzICgkbSlcIl1dXG5zdWIgPC0gc3Vic2V0KHN1YiwgaXMuZmluaXRlKGRvbSkpXG5cbmhlYWQoc3ViWywgYyhcImZpbG1cIixcImNhdGVnb3J5XCIsXCJkb21cIildLCAxMClcblxucGFyKG1mcm93ID0gYygxLCAyKSlcbmhpc3Qoc3ViJGRvbSxcbm1haW4gPSBcIkRvbWVzdGljIGdyb3NzIChCbGFjayBQYW50aGVyICsgVGhvcilcIixcbnhsYWIgPSBcIkRvbWVzdGljIGdyb3NzICgkbSlcIilcbmJveHBsb3QoZG9tIH4gY2F0ZWdvcnksIGRhdGEgPSBzdWIsXG5tYWluID0gXCJEb21lc3RpYyBncm9zcyBieSBjYXRlZ29yeVwiLFxueGxhYiA9IFwiQ2F0ZWdvcnlcIiwgeWxhYiA9IFwiRG9tZXN0aWMgZ3Jvc3MgKCRtKVwiKVxucGFyKG1mcm93ID0gYygxLCAxKSkifQ==
 </script>
 </div>
 </div>
@@ -831,7 +848,7 @@ eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0g
 
 </div>
 <script type="webr-21-contents">
-eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxNF9tY3Vfd2VsY2hfZG9tZXN0aWMiLCJleGVyY2lzZS5saW5lcyI6OH0sImNvZGUiOiJcbmRmIDwtIHJlYWQuY3N2KFwibWFydmVsLmNzdlwiKVxuZGYgPC0gc3Vic2V0KGRmLCBjYXRlZ29yeSAlaW4lIGMoXCJfX19cIixcIl9fX1wiKSlcbmRmJGRvbSA8LSBkZltbXCJkb21lc3RpYyBncm9zcyAoJG0pXCJdXVxuZGYgPC0gc3Vic2V0KGRmLCBpcy5maW5pdGUoZG9tKSlcbmRmJGdycCA8LSBfX18oZGYkY2F0ZWdvcnksIF9fXyA9IGMoXCJfX19cIixcIl9fX1wiKSlcbnQudGVzdChkb20gfiBncnAsIGRhdGEgPSBkZiwgdmFyLmVxdWFsID0gX19fKSRfX18ifQ==
+eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxNF9tY3Vfd2VsY2hfZG9tZXN0aWMiLCJleGVyY2lzZS5saW5lcyI6OH0sImNvZGUiOiJcbmRmIDwtIHJlYWQuY3N2KFwibWFydmVsLmNzdlwiLCBjaGVjay5uYW1lcz1GQUxTRSlcbmRmIDwtIHN1YnNldChkZiwgY2F0ZWdvcnkgJWluJSBjKFwiX19fXCIsXCJfX19cIikpXG5kZiRkb20gPC0gc3VwcHJlc3NXYXJuaW5ncyhhcy5udW1lcmljKGRmW1tcImRvbWVzdGljIGdyb3NzICgkbSlcIl1dKSlcbmRmIDwtIGRmW2lzLmZpbml0ZShkZiRkb20pLCBdXG5kZiRncnAgPC0gX19fKGRmJGNhdGVnb3J5LCBfX18gPSBjKFwiX19fXCIsXCJfX19cIikpXG5wLXZhbCA8LSB0LnRlc3QoZG9tIH4gZ3JwLCBkYXRhID0gZGYsIHZhci5lcXVhbCA9IF9fXykkX19fXG51bm5hbWUoYXMubnVtZXJpYyhwdmFsKSkifQ==
 </script>
 </div>
 </div>
@@ -841,24 +858,32 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJx
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q4_mcu_welch_domestic">
 <div class="cell" data-exercise="q4_mcu_welch_domestic" data-solution="true">
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q4_mcu_welch_domestic">
-<code id="interpolate-23" class="solution-code d-none">df &lt;- read.csv("marvel.csv")
+<code id="interpolate-23" class="solution-code d-none">df &lt;- read.csv("marvel.csv", check.names = FALSE)
 df &lt;- subset(df, category %in% c("Black Panther","Thor"))
-df$dom &lt;- df[["domestic gross ($m)"]]
-df &lt;- subset(df, is.finite(dom))
+
+df$dom &lt;- suppressWarnings(as.numeric(df[["domestic gross ($m)"]]))
+df &lt;- df[is.finite(df$dom), ]
+
 df$grp &lt;- factor(df$category, levels = c("Black Panther","Thor"))
-t.test(dom ~ grp, data = df, var.equal = FALSE)$p.value</code>
-<div class="sourceCode cell-code" id="interpolate-24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-24-1"><a href="#interpolate-24-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"marvel.csv"</span>)</span>
+
+pval &lt;- t.test(dom ~ grp, data = df, var.equal = FALSE)$p.value
+unname(as.numeric(pval))</code>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-24-1"><a href="#interpolate-24-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"marvel.csv"</span>, <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
 <span id="interpolate-24-2"><a href="#interpolate-24-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, category <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Black Panther"</span>,<span class="st">"Thor"</span>))</span>
-<span id="interpolate-24-3"><a href="#interpolate-24-3" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>dom <span class="ot">&lt;-</span> df[[<span class="st">"domestic gross ($m)"</span>]]</span>
-<span id="interpolate-24-4"><a href="#interpolate-24-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, <span class="fu">is.finite</span>(dom))</span>
-<span id="interpolate-24-5"><a href="#interpolate-24-5" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>grp <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>category, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Black Panther"</span>,<span class="st">"Thor"</span>))</span>
-<span id="interpolate-24-6"><a href="#interpolate-24-6" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(dom <span class="sc">~</span> grp, <span class="at">data =</span> df, <span class="at">var.equal =</span> <span class="cn">FALSE</span>)<span class="sc">$</span>p.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="interpolate-24-3"><a href="#interpolate-24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-24-4"><a href="#interpolate-24-4" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>dom <span class="ot">&lt;-</span> <span class="fu">suppressWarnings</span>(<span class="fu">as.numeric</span>(df[[<span class="st">"domestic gross ($m)"</span>]]))</span>
+<span id="interpolate-24-5"><a href="#interpolate-24-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df[<span class="fu">is.finite</span>(df<span class="sc">$</span>dom), ]</span>
+<span id="interpolate-24-6"><a href="#interpolate-24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-24-7"><a href="#interpolate-24-7" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>grp <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>category, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Black Panther"</span>,<span class="st">"Thor"</span>))</span>
+<span id="interpolate-24-8"><a href="#interpolate-24-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-24-9"><a href="#interpolate-24-9" aria-hidden="true" tabindex="-1"></a>pval <span class="ot">&lt;-</span> <span class="fu">t.test</span>(dom <span class="sc">~</span> grp, <span class="at">data =</span> df, <span class="at">var.equal =</span> <span class="cn">FALSE</span>)<span class="sc">$</span>p.value</span>
+<span id="interpolate-24-10"><a href="#interpolate-24-10" aria-hidden="true" tabindex="-1"></a><span class="fu">unname</span>(<span class="fu">as.numeric</span>(pval))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
 <div class="cell" data-exercise="q4_mcu_welch_domestic" data-check="true">
 <script type="exercise-check-q4_mcu_welch_domestic-contents">
-eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE0X21jdV93ZWxjaF9kb21lc3RpYyJ9LCJjb2RlIjoiZ3JhZGV0aGlzOjpncmFkZV90aGlzKHtcbmRmIDwtIHJlYWQuY3N2KFwibWFydmVsLmNzdlwiKVxuZGYkZG9tIDwtIGRmW1tcImRvbWVzdGljIGdyb3NzICgkbSlcIl1dXG5kZiA8LSBzdWJzZXQoZGYsIGNhdGVnb3J5ICVpbiUgYyhcIkJsYWNrIFBhbnRoZXJcIixcIlRob3JcIikgJiBpcy5maW5pdGUoZG9tKSlcbmRmJGdycCA8LSBmYWN0b3IoZGYkY2F0ZWdvcnksIGxldmVscyA9IGMoXCJCbGFjayBQYW50aGVyXCIsXCJUaG9yXCIpKVxuZXhwIDwtIHQudGVzdChkb20gfiBncnAsIGRhdGEgPSBkZiwgdmFyLmVxdWFsID0gRkFMU0UpJHAudmFsdWVcblxueCA8LSAucmVzdWx0XG5vayA8LSBpcy5udW1lcmljKHgpICYmIGxlbmd0aCh4KSA9PSAxTCAmJiBpcy5maW5pdGUoeClcblxuaWYgKCFvaykge1xuZmFpbChcIllvdXIgYW5zd2VyIHNob3VsZCBiZSBhIHNpbmdsZSBudW1lcmljIHAtdmFsdWUuXCIpXG59IGVsc2UgaWYgKGFicyh4IC0gZXhwKSA8IDFlLTEyKSB7XG5wYXNzKFwiQ29ycmVjdCBXZWxjaCB0d28tc2FtcGxlIHAtdmFsdWUgZm9yIHRoZSBkb21lc3RpYyBncm9zc2VzLlwiKVxufSBlbHNlIHtcbmZhaWwoXCJDaGVjayB0aGF0IHlvdSBoYXZlIHRoZSByaWdodCBzdWJzZXQsIHJlc3BvbnNlIHZhcmlhYmxlLCBhbmQgdGhhdCB5b3UgYXJlIG5vdCBpbXBvc2luZyBlcXVhbCB2YXJpYW5jZXMuXCIpXG59XG59KSJ9
+eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE0X21jdV93ZWxjaF9kb21lc3RpYyJ9LCJjb2RlIjoiZ3JhZGV0aGlzOjpncmFkZV90aGlzKHtcbiAgZGYgPC0gcmVhZC5jc3YoXCJtYXJ2ZWwuY3N2XCIsIGNoZWNrLm5hbWVzID0gRkFMU0UpXG4gIGRmIDwtIHN1YnNldChkZiwgY2F0ZWdvcnkgJWluJSBjKFwiQmxhY2sgUGFudGhlclwiLFwiVGhvclwiKSlcblxuICBkZiRkb20gPC0gc3VwcHJlc3NXYXJuaW5ncyhhcy5udW1lcmljKGRmW1tcImRvbWVzdGljIGdyb3NzICgkbSlcIl1dKSlcbiAgZGYgPC0gZGZbaXMuZmluaXRlKGRmJGRvbSksIF1cblxuICBkZiRncnAgPC0gZmFjdG9yKGRmJGNhdGVnb3J5LCBsZXZlbHMgPSBjKFwiQmxhY2sgUGFudGhlclwiLFwiVGhvclwiKSlcblxuICBleHAgPC0gdC50ZXN0KGRvbSB+IGdycCwgZGF0YSA9IGRmLCB2YXIuZXF1YWwgPSBGQUxTRSkkcC52YWx1ZVxuICBleHAgPC0gdW5uYW1lKGFzLm51bWVyaWMoZXhwKSlcblxuICB4IDwtIC5yZXN1bHRcbiAgb2sgPC0gaXMubnVtZXJpYyh4KSAmJiBsZW5ndGgoeCkgPT0gMUwgJiYgaXMuZmluaXRlKHgpXG5cbiAgaWYgKCFvaykge1xuICAgIGZhaWwoXCJZb3VyIGFuc3dlciBzaG91bGQgYmUgYSBzaW5nbGUgbnVtZXJpYyBwLXZhbHVlLlwiKVxuICB9IGVsc2UgaWYgKGFicyh1bm5hbWUoYXMubnVtZXJpYyh4KSkgLSBleHApIDwgMWUtMTIpIHtcbiAgICBwYXNzKFwiQ29ycmVjdCBXZWxjaCB0d28tc2FtcGxlIHAtdmFsdWUgZm9yIHRoZSBkb21lc3RpYyBncm9zc2VzLlwiKVxuICB9IGVsc2Uge1xuICAgIGZhaWwoXCJDaGVjayB0aGF0IHlvdSBoYXZlIHRoZSByaWdodCBzdWJzZXQsIHJlc3BvbnNlIHZhcmlhYmxlLCBhbmQgdGhhdCB5b3UgYXJlIG5vdCBpbXBvc2luZyBlcXVhbCB2YXJpYW5jZXMuXCIpXG4gIH1cbn0pIn0=
 </script>
 </div>
 </section>
@@ -893,7 +918,7 @@ Photo by <a href="https://unsplash.com/@thimo?utm_source=unsplash&amp;utm_medium
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Info
+<span class="screen-reader-only">Note</span>Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -949,11 +974,11 @@ df$Legendary &lt;- df$Legendary == "True"
 df$grp &lt;- factor(df$Legendary, levels = c(FALSE, TRUE))
 res &lt;- t.test(HP ~ grp, data = df, var.equal = FALSE)
 res$p.value</code>
-<div class="sourceCode cell-code" id="interpolate-30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-30-1"><a href="#interpolate-30-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"Pokemon.csv"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-30-1"><a href="#interpolate-30-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"Pokemon.csv"</span>)</span>
 <span id="interpolate-30-2"><a href="#interpolate-30-2" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Legendary <span class="ot">&lt;-</span> df<span class="sc">$</span>Legendary <span class="sc">==</span> <span class="st">"True"</span></span>
 <span id="interpolate-30-3"><a href="#interpolate-30-3" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>grp <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>Legendary, <span class="at">levels =</span> <span class="fu">c</span>(<span class="cn">FALSE</span>, <span class="cn">TRUE</span>))</span>
 <span id="interpolate-30-4"><a href="#interpolate-30-4" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">t.test</span>(HP <span class="sc">~</span> grp, <span class="at">data =</span> df, <span class="at">var.equal =</span> <span class="cn">FALSE</span>)</span>
-<span id="interpolate-30-5"><a href="#interpolate-30-5" aria-hidden="true" tabindex="-1"></a>res<span class="sc">$</span>p.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="interpolate-30-5"><a href="#interpolate-30-5" aria-hidden="true" tabindex="-1"></a>res<span class="sc">$</span>p.value</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -989,7 +1014,7 @@ Photo by <a href="https://unsplash.com/@thimo?utm_source=unsplash&amp;utm_medium
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Info
+<span class="screen-reader-only">Note</span>Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1004,7 +1029,7 @@ Info
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Preview
+<span class="screen-reader-only">Note</span>Preview
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1026,7 +1051,7 @@ eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0g
 
 </div>
 <script type="webr-33-contents">
-eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxOF9wb2tlX3Byb3BfdGVzdCIsImV4ZXJjaXNlLmxpbmVzIjoxMn0sImNvZGUiOiJcbmRmIDwtIHJlYWQuY3N2KFwiUG9rZW1vbi5jc3ZcIilcbmRmJExlZ2VuZGFyeSA8LSBkZiRMZWdlbmRhcnkgPT0gXCJUcnVlXCJcbmRmIDwtIHN1YnNldChkZiwgR2VuZXJhdGlvbiAlaW4lIGMoX19fLCBfX18pKVxuXG54MSA8LSBzdW0oZGYkTGVnZW5kYXJ5W2RmJEdlbmVyYXRpb24gPT0gX19fXSlcbngyIDwtIHN1bShkZiRMZWdlbmRhcnlbZGYkR2VuZXJhdGlvbiA9PSBfX19dKVxuXG5uMSA8LSBzdW0oZGYkR2VuZXJhdGlvbiA9PSBfX18pXG5uMiA8LSBzdW0oZGYkR2VuZXJhdGlvbiA9PSBfX18pXG5cbnJlcyA8LSBwcm9wLnRlc3QoYyhfX18sIF9fXyksIGMoX19fLCBfX18pLCBjb3JyZWN0ID0gVFJVRSlcbnJlcyRfX18ifQ==
+eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxOF9wb2tlX3Byb3BfdGVzdCIsImV4ZXJjaXNlLmxpbmVzIjoxMn0sImNvZGUiOiJcbmRmIDwtIHJlYWQuY3N2KFwiUG9rZW1vbi5jc3ZcIilcbmRmJExlZ2VuZGFyeSA8LSBkZiRMZWdlbmRhcnkgPT0gXCJUcnVlXCJcbmRmIDwtIHN1YnNldChkZiwgR2VuZXJhdGlvbiAlaW4lIGMoX19fLCBfX18pKVxuXG54MSA8LSBzdW0oZGYkTGVnZW5kYXJ5W2RmJEdlbmVyYXRpb24gPT0gX19fXSlcbngyIDwtIHN1bShkZiRMZWdlbmRhcnlbZGYkR2VuZXJhdGlvbiA9PSBfX19dKVxuXG5uMSA8LSBzdW0oZGYkR2VuZXJhdGlvbiA9PSBfX18pXG5uMiA8LSBzdW0oZGYkR2VuZXJhdGlvbiA9PSBfX18pXG5cbnJlcyA8LSBzdXBwcmVzc1dhcm5pbmdzKHByb3AudGVzdChjKF9fXywgX19fKSwgYyhfX18sIF9fXyksIGNvcnJlY3QgPSBUUlVFKSlcbnJlcyRfX18ifQ==
 </script>
 </div>
 </div>
@@ -1046,9 +1071,9 @@ x2 &lt;- sum(df$Legendary[df$Generation == 2])
 n1 &lt;- sum(df$Generation == 1)
 n2 &lt;- sum(df$Generation == 2)
 
-res &lt;- prop.test(c(x1, x2), c(n1, n2), correct = TRUE)
+res &lt;- suppressWarnings(prop.test(c(x1, x2), c(n1, n2), correct = TRUE))
 res$p.value</code>
-<div class="sourceCode cell-code" id="interpolate-36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-36-1"><a href="#interpolate-36-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"Pokemon.csv"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-36-1"><a href="#interpolate-36-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"Pokemon.csv"</span>)</span>
 <span id="interpolate-36-2"><a href="#interpolate-36-2" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Legendary <span class="ot">&lt;-</span> df<span class="sc">$</span>Legendary <span class="sc">==</span> <span class="st">"True"</span></span>
 <span id="interpolate-36-3"><a href="#interpolate-36-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, Generation <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
 <span id="interpolate-36-4"><a href="#interpolate-36-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -1058,8 +1083,8 @@ res$p.value</code>
 <span id="interpolate-36-8"><a href="#interpolate-36-8" aria-hidden="true" tabindex="-1"></a>n1 <span class="ot">&lt;-</span> <span class="fu">sum</span>(df<span class="sc">$</span>Generation <span class="sc">==</span> <span class="dv">1</span>)</span>
 <span id="interpolate-36-9"><a href="#interpolate-36-9" aria-hidden="true" tabindex="-1"></a>n2 <span class="ot">&lt;-</span> <span class="fu">sum</span>(df<span class="sc">$</span>Generation <span class="sc">==</span> <span class="dv">2</span>)</span>
 <span id="interpolate-36-10"><a href="#interpolate-36-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-36-11"><a href="#interpolate-36-11" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">prop.test</span>(<span class="fu">c</span>(x1, x2), <span class="fu">c</span>(n1, n2), <span class="at">correct =</span> <span class="cn">TRUE</span>)</span>
-<span id="interpolate-36-12"><a href="#interpolate-36-12" aria-hidden="true" tabindex="-1"></a>res<span class="sc">$</span>p.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="interpolate-36-11"><a href="#interpolate-36-11" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">suppressWarnings</span>(<span class="fu">prop.test</span>(<span class="fu">c</span>(x1, x2), <span class="fu">c</span>(n1, n2), <span class="at">correct =</span> <span class="cn">TRUE</span>))</span>
+<span id="interpolate-36-12"><a href="#interpolate-36-12" aria-hidden="true" tabindex="-1"></a>res<span class="sc">$</span>p.value</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -1099,7 +1124,7 @@ Photo by <a href="https://unsplash.com/@lifetimevalues?utm_source=unsplash&amp;u
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Info
+<span class="screen-reader-only">Note</span>Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1112,7 +1137,7 @@ Info
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Preview
+<span class="screen-reader-only">Note</span>Preview
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1150,12 +1175,12 @@ df$grp &lt;- factor(df$Type.1, levels = c("Fire", "Water"))
 
 res &lt;- var.test(Attack ~ grp, data = df)
 res$p.value</code>
-<div class="sourceCode cell-code" id="interpolate-42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-42-1"><a href="#interpolate-42-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"Pokemon.csv"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-42-1"><a href="#interpolate-42-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"Pokemon.csv"</span>)</span>
 <span id="interpolate-42-2"><a href="#interpolate-42-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, Type<span class="fl">.1</span> <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Fire"</span>, <span class="st">"Water"</span>))</span>
 <span id="interpolate-42-3"><a href="#interpolate-42-3" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>grp <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>Type<span class="fl">.1</span>, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Fire"</span>, <span class="st">"Water"</span>))</span>
 <span id="interpolate-42-4"><a href="#interpolate-42-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-42-5"><a href="#interpolate-42-5" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">var.test</span>(Attack <span class="sc">~</span> grp, <span class="at">data =</span> df)</span>
-<span id="interpolate-42-6"><a href="#interpolate-42-6" aria-hidden="true" tabindex="-1"></a>res<span class="sc">$</span>p.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="interpolate-42-6"><a href="#interpolate-42-6" aria-hidden="true" tabindex="-1"></a>res<span class="sc">$</span>p.value</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -1261,13 +1286,14 @@ window._ojs.runtime.interpretFromScriptTags();
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -1614,4 +1640,5 @@ window._ojs.runtime.interpretFromScriptTags();
 
 
 
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

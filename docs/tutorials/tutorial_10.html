@@ -108,6 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 <script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
 <link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
@@ -144,7 +145,7 @@ window.Quarto = {
 <link rel="stylesheet" href="../design.css">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -366,6 +367,18 @@ window.Quarto = {
     <a class="dropdown-item" href="../tutorials/tutorial_08.html">
  <span class="dropdown-text">Tutorial 8</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/tutorial_09.html">
+ <span class="dropdown-text">Tutorial 9</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/tutorial_10.html">
+ <span class="dropdown-text">Tutorial 10</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/tutorial_11.html">
+ <span class="dropdown-text">Tutorial 11</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -390,8 +403,26 @@ window.Quarto = {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#q1---fit-the-regression-model" id="toc-q1---fit-the-regression-model" class="nav-link active" data-scroll-target="#q1---fit-the-regression-model">Q1 - Fit the Regression Model</a></li>
+  <li><a href="#q2-interpret-the-slope" id="toc-q2-interpret-the-slope" class="nav-link" data-scroll-target="#q2-interpret-the-slope">Q2 — Interpret the slope:</a></li>
+  <li><a href="#q3-compute-r2" id="toc-q3-compute-r2" class="nav-link" data-scroll-target="#q3-compute-r2">Q3 — Compute <span class="math inline">\(R^2\)</span></a></li>
+  <li><a href="#q4-computing-p-value" id="toc-q4-computing-p-value" class="nav-link" data-scroll-target="#q4-computing-p-value">Q4 — Computing P-value</a></li>
+  <li><a href="#q5-95-ci-for-the-slope" id="toc-q5-95-ci-for-the-slope" class="nav-link" data-scroll-target="#q5-95-ci-for-the-slope">Q5 — 95% CI for the slope</a></li>
+  <li><a href="#q6-predict-the-mean-life-expectancy" id="toc-q6-predict-the-mean-life-expectancy" class="nav-link" data-scroll-target="#q6-predict-the-mean-life-expectancy">Q6 — Predict the mean life expectancy</a></li>
+  <li><a href="#q7-residuals-sum" id="toc-q7-residuals-sum" class="nav-link" data-scroll-target="#q7-residuals-sum">Q7 — Residuals sum</a></li>
+  <li><a href="#q8-standardized-residuals" id="toc-q8-standardized-residuals" class="nav-link" data-scroll-target="#q8-standardized-residuals">Q8 — Standardized residuals</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -428,6 +459,12 @@ eyJhdHRyIjp7ImVkaXQiOmZhbHNlLCJldmFsIjp0cnVlLCJvdXRwdXQiOmZhbHNlfSwiY29kZSI6Indl
 <section id="q1---fit-the-regression-model" class="level2">
 <h2 class="anchored" data-anchor-id="q1---fit-the-regression-model">Q1 - Fit the Regression Model</h2>
 <p>For this tutorial, we will be using a Life Expectancy dataset from the World Health Organization (WHO). From your tutorial 9 knowledge, fit a simple linear regression model with Life Expectancy as X and Schooling as Y. Return the estimated slope.</p>
+<figure style="text-align:center" class="figure">
+<img src="./images/school.jpg" style="width:40%" class="figure-img">
+<figcaption>
+Photo by <a href="https://unsplash.com/@heyquilia?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Kenny Eliason</a> on <a href="https://unsplash.com/photos/man-and-woman-sitting-on-chairs-zFSo6bnZJTw?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
+</figcaption>
+</figure>
 <div class="callout callout-style-default callout-note callout-titled" title="Preview">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -496,11 +533,16 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InQx
 </section>
 <section id="q2-interpret-the-slope" class="level2">
 <h2 class="anchored" data-anchor-id="q2-interpret-the-slope">Q2 — Interpret the slope:</h2>
-<p>Compute the predicted change in life expectancy if schooling is increased in all countries by 2 years. Return a single number.</p>
+<p>A policy increases schooling by <strong>2 years</strong> for every country. Using the fitted regression model, compute the predicted change in life expectancy caused by this policy.</p>
+<p>Do this in two ways:<br></p>
+<ol type="1">
+<li>Compute two fitted values at <span class="math inline">\(x_0\)</span> and <span class="math inline">\(x_0 + 2\)</span>, then take the difference. <br></li>
+<li>Use the model’s slope to compute the same change.</li>
+</ol>
 <figure style="text-align:center" class="figure">
-<img src="./images/marvel.jpg" style="width:40%" class="figure-img">
+<img src="./images/education.jpg" style="width:40%" class="figure-img">
 <figcaption>
-Photo by <a href="https://unsplash.com/@introspectivedsgn?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Erik Mclean</a> on <a href="https://unsplash.com/photos/a-pile-of-comics-sitting-next-to-each-other-8SeJUmfahu0?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
+Photo by <a href="https://unsplash.com/@mdesign85?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">MD Duran</a> on <a href="https://unsplash.com/photos/woman-wearing-academic-cap-and-dress-selective-focus-photography-1VqHRwxcCCw?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
 </figcaption>
 </figure>
 <div class="callout callout-style-default callout-note callout-titled" title="Info">
@@ -513,7 +555,8 @@ Photo by <a href="https://unsplash.com/@introspectivedsgn?utm_source=unsplash&am
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If the slope is <span class="math inline">\(b_1\)</span>, then increasing schooling by 2 years will also double <span class="math inline">\(b_1\)</span>.</p>
+<p>In a simple linear regression line, the “effect” of increasing (x) by a fixed amount (x) can be seen by comparing fitted values at two (x)-values separated by (x).</p>
+<p>A good way to sanity-check an interpretation is to compute the same effect using (1) fitted values and (2) the slope coefficient, and confirm they agree.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title="Preview">
@@ -533,64 +576,80 @@ Photo by <a href="https://unsplash.com/@introspectivedsgn?utm_source=unsplash&am
 
 </div>
 <script type="webr-8-contents">
-eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0gcmVhZC5jc3YoXCJsaWZlX2V4cGVjdGFuY3kuY3N2XCIsIGNoZWNrLm5hbWVzID0gRkFMU0UpXG5uYW1lcyhkZikgPC0gdHJpbXdzKG5hbWVzKGRmKSlcblxubGUgPC0gZGZbLCBjKFwiTGlmZSBleHBlY3RhbmN5XCIsIFwiU2Nob29saW5nXCIpXVxubmFtZXMobGUpIDwtIGMoXCJsaWZlX2V4cFwiLCBcInNjaG9vbGluZ1wiKVxubGUgPC0gbmEub21pdChsZSlcblxuaGVhZChsZSwgOClcblxuXG5wbG90KGxlJHNjaG9vbGluZywgbGUkbGlmZV9leHAsIFxueGxhYiA9IFwiU2Nob29saW5nICh5ZWFycylcIiwgeWxhYiA9IFwiTGlmZSBleHBlY3RhbmN5XCIsXG5tYWluID0gXCJMaWZlIGV4cGVjdGFuY3kgdnMgU2Nob29saW5nXCIpIn0=
+eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0gcmVhZC5jc3YoXCJsaWZlX2V4cGVjdGFuY3kuY3N2XCIsIGNoZWNrLm5hbWVzID0gRkFMU0UpXG5uYW1lcyhkZikgPC0gdHJpbXdzKG5hbWVzKGRmKSlcblxubGUgPC0gZGZbLCBjKFwiTGlmZSBleHBlY3RhbmN5XCIsIFwiU2Nob29saW5nXCIpXVxubmFtZXMobGUpIDwtIGMoXCJsaWZlX2V4cFwiLCBcInNjaG9vbGluZ1wiKVxubGUgPC0gbmEub21pdChsZSlcblxucGxvdChsZSRzY2hvb2xpbmcsIGxlJGxpZmVfZXhwLFxuICAgICB4bGFiID0gXCJTY2hvb2xpbmcgKHllYXJzKVwiLCB5bGFiID0gXCJMaWZlIGV4cGVjdGFuY3lcIixcbiAgICAgbWFpbiA9IFwiTGlmZSBleHBlY3RhbmN5IHZzIFNjaG9vbGluZ1wiKVxuXG5tb2RlbCA8LSBsbShsaWZlX2V4cCB+IHNjaG9vbGluZywgZGF0YSA9IGxlKVxuY29lZihtb2RlbClcblxueDAgPC0gbWVhbihsZSRzY2hvb2xpbmcpXG54MCJ9
 </script>
 </div>
 </div>
 </div>
 </div>
-<div class="cell" data-exercise="t10_q2_two_year_effect" data-exercise.lines="8">
+<div class="cell" data-exercise="t10_q2_two_year_effect_demo" data-exercise.lines="16">
 <div>
 <div id="webr-9" class="exercise-cell">
 
 </div>
 <script type="webr-9-contents">
-eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJ0MTBfcTJfdHdvX3llYXJfZWZmZWN0IiwiZXhlcmNpc2UubGluZXMiOjh9LCJjb2RlIjoiZGYgPC0gcmVhZC5jc3YoXCJsaWZlX2V4cGVjdGFuY3kuY3N2XCIsIGNoZWNrLm5hbWVzID0gRkFMU0UpXG5uYW1lcyhkZikgPC0gdHJpbXdzKG5hbWVzKGRmKSlcbmxlIDwtIGRmWywgYyhcIkxpZmUgZXhwZWN0YW5jeVwiLFwiU2Nob29saW5nXCIpXVxubmFtZXMobGUpIDwtIGMoXCJsaWZlX2V4cFwiLFwic2Nob29saW5nXCIpXG5sZSA8LSBuYS5vbWl0KGxlKVxubW9kZWwgPC0gbG0obGlmZV9leHAgfiBzY2hvb2xpbmcsIGRhdGEgPSBsZSlcblxuYjEgPC0gX19fXG4gI3RyYW5zZm9ybSBzbG9wZSBoZXJlIn0=
+eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJ0MTBfcTJfdHdvX3llYXJfZWZmZWN0X2RlbW8iLCJleGVyY2lzZS5saW5lcyI6MTZ9LCJjb2RlIjoiXG5kZiA8LSByZWFkLmNzdihcImxpZmVfZXhwZWN0YW5jeS5jc3ZcIiwgY2hlY2submFtZXMgPSBGQUxTRSlcbm5hbWVzKGRmKSA8LSB0cmltd3MobmFtZXMoZGYpKVxuXG5sZSA8LSBkZlssIGMoXCJMaWZlIGV4cGVjdGFuY3lcIixcIlNjaG9vbGluZ1wiKV1cbm5hbWVzKGxlKSA8LSBjKFwibGlmZV9leHBcIixcInNjaG9vbGluZ1wiKVxubGUgPC0gbmEub21pdChsZSlcblxubW9kZWwgPC0gbG0obGlmZV9leHAgfiBzY2hvb2xpbmcsIGRhdGEgPSBsZSlcblxuIyBwaWNrIGEgcmVmZXJlbmNlIHNjaG9vbGluZyBsZXZlbFxuXG54MCA8LSBtZWFuKGxlJHNjaG9vbGluZylcblxuIyBtZXRob2QgMTogY29tcGFyZSBmaXR0ZWQgdmFsdWVzIGF0IHgwIGFuZCB4MCArIDJcblxueWhhdDAgPC0gX19fXG55aGF0MiA8LSBfX19cbmVmZmVjdF92aWFfcHJlZHMgPC0gX19fXG5cbiMgbWV0aG9kIDI6IHVzZSB0aGUgc2xvcGUgY29lZmZpY2llbnRcblxuYjEgPC0gX19fXG5lZmZlY3RfdmlhX3Nsb3BlIDwtIF9fX1xuXG5jKGVmZmVjdF92aWFfcHJlZHMgPSBlZmZlY3RfdmlhX3ByZWRzLFxuZWZmZWN0X3ZpYV9zbG9wZSA9IGVmZmVjdF92aWFfc2xvcGUpIn0=
 </script>
 </div>
 </div>
-<div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="t10_q2_two_year_effect">
-<p>Slope will be doubled! Discuss why.</p>
+<div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="t10_q2_two_year_effect_demo">
+<p>Use the idea “effect = fitted value at (new x) minus fitted value at (old x)”. You can get fitted values either from the line equation or from predict() using newdata. For the slope method, interpret the slope as “change in fitted response per 1 unit of x”.</p>
 </div>
-<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="t10_q2_two_year_effect">
-<div class="cell" data-exercise="t10_q2_two_year_effect" data-solution="true">
-<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="t10_q2_two_year_effect">
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="t10_q2_two_year_effect_demo">
+<div class="cell" data-exercise="t10_q2_two_year_effect_demo" data-solution="true">
+<div class="webr-ojs-exercise exercise-solution d-none" data-exercise="t10_q2_two_year_effect_demo">
 <code id="interpolate-11" class="solution-code d-none">df &lt;- read.csv("life_expectancy.csv", check.names = FALSE)
 names(df) &lt;- trimws(names(df))
+
 le &lt;- df[, c("Life expectancy","Schooling")]
 names(le) &lt;- c("life_exp","schooling")
 le &lt;- na.omit(le)
+
 model &lt;- lm(life_exp ~ schooling, data = le)
 
-b1 &lt;- coef(model)["schooling"]
-2 * b1</code>
+x0 &lt;- mean(le$schooling)
+
+yhat0 &lt;- unname(predict(model, newdata = data.frame(schooling = x0)))
+yhat2 &lt;- unname(predict(model, newdata = data.frame(schooling = x0 + 2)))
+effect_via_preds &lt;- yhat2 - yhat0
+
+b1 &lt;- unname(coef(model)["schooling"])
+effect_via_slope &lt;- 2 * b1
+
+c(effect_via_preds = effect_via_preds,
+effect_via_slope = effect_via_slope)</code>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-12-1"><a href="#interpolate-12-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"life_expectancy.csv"</span>, <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
 <span id="interpolate-12-2"><a href="#interpolate-12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(df) <span class="ot">&lt;-</span> <span class="fu">trimws</span>(<span class="fu">names</span>(df))</span>
-<span id="interpolate-12-3"><a href="#interpolate-12-3" aria-hidden="true" tabindex="-1"></a>le <span class="ot">&lt;-</span> df[, <span class="fu">c</span>(<span class="st">"Life expectancy"</span>,<span class="st">"Schooling"</span>)]</span>
-<span id="interpolate-12-4"><a href="#interpolate-12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(le) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"life_exp"</span>,<span class="st">"schooling"</span>)</span>
-<span id="interpolate-12-5"><a href="#interpolate-12-5" aria-hidden="true" tabindex="-1"></a>le <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(le)</span>
-<span id="interpolate-12-6"><a href="#interpolate-12-6" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(life_exp <span class="sc">~</span> schooling, <span class="at">data =</span> le)</span>
+<span id="interpolate-12-3"><a href="#interpolate-12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-12-4"><a href="#interpolate-12-4" aria-hidden="true" tabindex="-1"></a>le <span class="ot">&lt;-</span> df[, <span class="fu">c</span>(<span class="st">"Life expectancy"</span>,<span class="st">"Schooling"</span>)]</span>
+<span id="interpolate-12-5"><a href="#interpolate-12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(le) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"life_exp"</span>,<span class="st">"schooling"</span>)</span>
+<span id="interpolate-12-6"><a href="#interpolate-12-6" aria-hidden="true" tabindex="-1"></a>le <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(le)</span>
 <span id="interpolate-12-7"><a href="#interpolate-12-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-12-8"><a href="#interpolate-12-8" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="fu">coef</span>(model)[<span class="st">"schooling"</span>]</span>
-<span id="interpolate-12-9"><a href="#interpolate-12-9" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> b1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="interpolate-12-8"><a href="#interpolate-12-8" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(life_exp <span class="sc">~</span> schooling, <span class="at">data =</span> le)</span>
+<span id="interpolate-12-9"><a href="#interpolate-12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-12-10"><a href="#interpolate-12-10" aria-hidden="true" tabindex="-1"></a>x0 <span class="ot">&lt;-</span> <span class="fu">mean</span>(le<span class="sc">$</span>schooling)</span>
+<span id="interpolate-12-11"><a href="#interpolate-12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-12-12"><a href="#interpolate-12-12" aria-hidden="true" tabindex="-1"></a>yhat0 <span class="ot">&lt;-</span> <span class="fu">unname</span>(<span class="fu">predict</span>(model, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">schooling =</span> x0)))</span>
+<span id="interpolate-12-13"><a href="#interpolate-12-13" aria-hidden="true" tabindex="-1"></a>yhat2 <span class="ot">&lt;-</span> <span class="fu">unname</span>(<span class="fu">predict</span>(model, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">schooling =</span> x0 <span class="sc">+</span> <span class="dv">2</span>)))</span>
+<span id="interpolate-12-14"><a href="#interpolate-12-14" aria-hidden="true" tabindex="-1"></a>effect_via_preds <span class="ot">&lt;-</span> yhat2 <span class="sc">-</span> yhat0</span>
+<span id="interpolate-12-15"><a href="#interpolate-12-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-12-16"><a href="#interpolate-12-16" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="fu">unname</span>(<span class="fu">coef</span>(model)[<span class="st">"schooling"</span>])</span>
+<span id="interpolate-12-17"><a href="#interpolate-12-17" aria-hidden="true" tabindex="-1"></a>effect_via_slope <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> b1</span>
+<span id="interpolate-12-18"><a href="#interpolate-12-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-12-19"><a href="#interpolate-12-19" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">effect_via_preds =</span> effect_via_preds,</span>
+<span id="interpolate-12-20"><a href="#interpolate-12-20" aria-hidden="true" tabindex="-1"></a><span class="at">effect_via_slope =</span> effect_via_slope)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
-<div class="cell" data-exercise="t10_q2_two_year_effect" data-check="true">
-<script type="exercise-check-t10_q2_two_year_effect-contents">
-eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InQxMF9xMl90d29feWVhcl9lZmZlY3QifSwiY29kZSI6ImdyYWRldGhpczo6Z3JhZGVfdGhpcyh7XG5kZiA8LSByZWFkLmNzdihcImxpZmVfZXhwZWN0YW5jeS5jc3ZcIiwgY2hlY2submFtZXMgPSBGQUxTRSlcbm5hbWVzKGRmKSA8LSB0cmltd3MobmFtZXMoZGYpKVxubGUgPC0gZGZbLCBjKFwiTGlmZSBleHBlY3RhbmN5XCIsXCJTY2hvb2xpbmdcIildXG5uYW1lcyhsZSkgPC0gYyhcImxpZmVfZXhwXCIsXCJzY2hvb2xpbmdcIilcbmxlIDwtIG5hLm9taXQobGUpXG5tb2QgPC0gbG0obGlmZV9leHAgfiBzY2hvb2xpbmcsIGRhdGEgPSBsZSlcbmV4cCA8LSAyICogY29lZihtb2QpW1wic2Nob29saW5nXCJdXG5cbnggPC0gLnJlc3VsdFxub2sgPC0gaXMubnVtZXJpYyh4KSAmJiBsZW5ndGgoeCkgPT0gMUwgJiYgaXMuZmluaXRlKHgpXG5pZiAoIW9rKSBmYWlsKFwiUmV0dXJuIGEgc2luZ2xlIG51bWVyaWMgdmFsdWUgKHRoZSArMiB5ZWFycyBlZmZlY3QpLlwiKVxuZWxzZSBpZiAoYWJzKHggLSBleHApIDwgMWUtMTApIHBhc3MoXCJDb3JyZWN0LlwiKVxuZWxzZSBmYWlsKFwiTWlzbWF0Y2guIENoZWNrIGIxIGFuZCBtdWx0aXBseSBieSAyLlwiKVxufSkifQ==
+<div class="cell" data-exercise="t10_q2_two_year_effect_demo" data-check="true">
+<script type="exercise-check-t10_q2_two_year_effect_demo-contents">
+eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InQxMF9xMl90d29feWVhcl9lZmZlY3RfZGVtbyJ9LCJjb2RlIjoiZ3JhZGV0aGlzOjpncmFkZV90aGlzKHtcbmRmIDwtIHJlYWQuY3N2KFwibGlmZV9leHBlY3RhbmN5LmNzdlwiLCBjaGVjay5uYW1lcyA9IEZBTFNFKVxubmFtZXMoZGYpIDwtIHRyaW13cyhuYW1lcyhkZikpXG5cbmxlIDwtIGRmWywgYyhcIkxpZmUgZXhwZWN0YW5jeVwiLFwiU2Nob29saW5nXCIpXVxubmFtZXMobGUpIDwtIGMoXCJsaWZlX2V4cFwiLFwic2Nob29saW5nXCIpXG5sZSA8LSBuYS5vbWl0KGxlKVxuXG5tb2QgPC0gbG0obGlmZV9leHAgfiBzY2hvb2xpbmcsIGRhdGEgPSBsZSlcblxueDAgPC0gbWVhbihsZSRzY2hvb2xpbmcpXG5cbmV4cF9wcmVkcyA8LSB1bm5hbWUocHJlZGljdChtb2QsIG5ld2RhdGEgPSBkYXRhLmZyYW1lKHNjaG9vbGluZyA9IHgwICsgMikpKSAtXG51bm5hbWUocHJlZGljdChtb2QsIG5ld2RhdGEgPSBkYXRhLmZyYW1lKHNjaG9vbGluZyA9IHgwKSkpXG5cbmV4cF9zbG9wZSA8LSAyICogdW5uYW1lKGNvZWYobW9kKVtcInNjaG9vbGluZ1wiXSlcblxuZXhwIDwtIGMoZWZmZWN0X3ZpYV9wcmVkcyA9IGV4cF9wcmVkcywgZWZmZWN0X3ZpYV9zbG9wZSA9IGV4cF9zbG9wZSlcblxucmVzIDwtIC5yZXN1bHRcbm9rIDwtIGlzLm51bWVyaWMocmVzKSAmJiBsZW5ndGgocmVzKSA9PSAyTCAmJiBhbGwoaXMuZmluaXRlKHJlcykpICYmXG5pZGVudGljYWwobmFtZXMocmVzKSwgbmFtZXMoZXhwKSlcblxuaWYgKCFvaykgZmFpbChcIlJldHVybiBjKGVmZmVjdF92aWFfcHJlZHMgPSAuLi4sIGVmZmVjdF92aWFfc2xvcGUgPSAuLi4pICh0d28gbnVtYmVycywgbmFtZWQpLlwiKVxuZWxzZSBpZiAobWF4KGFicyhyZXMgLSBleHApKSA8IDFlLTgpIHBhc3MoXCJDb3JyZWN0LiBCb3RoIG1ldGhvZHMgYWdyZWUuXCIpXG5lbHNlIGZhaWwoXCJNaXNtYXRjaC4gUmUtY2hlY2sgaG93IHlvdSBjb21wdXRlZCBmaXR0ZWQgdmFsdWVzIGFuZC9vciBleHRyYWN0ZWQgdGhlIHNsb3BlLlwiKVxufSkifQ==
 </script>
 </div>
 </section>
 <section id="q3-compute-r2" class="level2">
 <h2 class="anchored" data-anchor-id="q3-compute-r2">Q3 — Compute <span class="math inline">\(R^2\)</span></h2>
 <p>Return the model’s <span class="math inline">\(R^2\)</span></p>
-<figure style="text-align:center" class="figure">
-<img src="./images/captain_vs_iron.jpg" style="width:40%" class="figure-img">
-<figcaption>
-Photo by <a href="https://unsplash.com/@wacalke?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Mateusz Wacławek</a> on <a href="https://unsplash.com/photos/red-and-blue-robot-toy-t2b2svMf8ek?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
-</figcaption>
-</figure>
 <div class="callout callout-style-default callout-note callout-titled" title="Info">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -671,12 +730,6 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InQx
 <section id="q4-computing-p-value" class="level2">
 <h2 class="anchored" data-anchor-id="q4-computing-p-value">Q4 — Computing P-value</h2>
 <p>Compute the p-value for <span class="math inline">\(b_1\)</span> for testing <span class="math inline">\(H_0: b_1 = 0\)</span>.</p>
-<figure style="text-align:center" class="figure">
-<img src="./images/thor.jpg" style="width:40%" class="figure-img">
-<figcaption>
-Photo by <a href="https://unsplash.com/@wacalke?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Mateusz Wacławek</a> on <a href="https://unsplash.com/photos/red-and-blue-robot-toy-t2b2svMf8ek?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
-</figcaption>
-</figure>
 <div class="callout callout-style-default callout-note callout-titled" title="Info">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -757,12 +810,6 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InQx
 <section id="q5-95-ci-for-the-slope" class="level2">
 <h2 class="anchored" data-anchor-id="q5-95-ci-for-the-slope">Q5 — 95% CI for the slope</h2>
 <p>Return a 95% confidence interval for the slope using the R built-in command confint().</p>
-<figure style="text-align:center" class="figure">
-<img src="./images/pokeball.jpg" style="width:40%" class="figure-img">
-<figcaption>
-Photo by <a href="https://unsplash.com/@thimo?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Thimo Pedersen</a> on <a href="https://unsplash.com/photos/red-and-white-ladybug-toy-on-white-and-yellow-book-dip9IIwUK6w?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
-</figcaption>
-</figure>
 <div class="callout callout-style-default callout-note callout-titled" title="Info">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -844,9 +891,9 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InQx
 <h2 class="anchored" data-anchor-id="q6-predict-the-mean-life-expectancy">Q6 — Predict the mean life expectancy</h2>
 <p>Predict the mean life expectancy at schooling = 12 years.</p>
 <figure style="text-align:center" class="figure">
-<img src="./images/pokeball.jpg" style="width:40%" class="figure-img">
+<img src="./images/school.jpg" style="width:40%" class="figure-img">
 <figcaption>
-Photo by <a href="https://unsplash.com/@thimo?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Thimo Pedersen</a> on <a href="https://unsplash.com/photos/red-and-white-ladybug-toy-on-white-and-yellow-book-dip9IIwUK6w?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
+Photo by <a href="https://unsplash.com/@heyquilia?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Kenny Eliason</a> on <a href="https://unsplash.com/photos/man-and-woman-sitting-on-chairs-zFSo6bnZJTw?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
 </figcaption>
 </figure>
 <div class="callout callout-style-default callout-note callout-titled" title="Info">
@@ -929,12 +976,6 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InQx
 <section id="q7-residuals-sum" class="level2">
 <h2 class="anchored" data-anchor-id="q7-residuals-sum">Q7 — Residuals sum</h2>
 <p>Confirm if the residuals in the model sum to 0 or not. Round the sum.</p>
-<figure style="text-align:center" class="figure">
-<img src="./images/pokemons.jpg" style="width:40%" class="figure-img">
-<figcaption>
-Photo by <a href="https://unsplash.com/@lifetimevalues?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Life Time Values</a> on <a href="https://unsplash.com/photos/six-pokemon-figurines-lined-up-on-a-wooden-surface-caF_z0aTPtQ?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
-</figcaption>
-</figure>
 <div class="callout callout-style-default callout-note callout-titled" title="Info">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1014,12 +1055,6 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InQx
 <section id="q8-standardized-residuals" class="level2">
 <h2 class="anchored" data-anchor-id="q8-standardized-residuals">Q8 — Standardized residuals</h2>
 <p>Compute standardized residuals and figure out how many satisfy the condition |<span class="math inline">\(r_i\)</span>| &gt; 2.</p>
-<figure style="text-align:center" class="figure">
-<img src="./images/pokemons.jpg" style="width:40%" class="figure-img">
-<figcaption>
-Photo by <a href="https://unsplash.com/@lifetimevalues?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Life Time Values</a> on <a href="https://unsplash.com/photos/six-pokemon-figurines-lined-up-on-a-wooden-surface-caF_z0aTPtQ?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
-</figcaption>
-</figure>
 <div class="callout callout-style-default callout-note callout-titled" title="Info">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1548,4 +1583,5 @@ window._ojs.runtime.interpretFromScriptTags();
 
 
 
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

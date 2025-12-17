@@ -1,52 +1,50 @@
 {
   "index.qmd": {
-    "index.html": "e3df298f"
-  },
-  "practice/index.qmd": {
-    "index.html": "d6f726d6"
-  },
-  "practice/prac_01.qmd": {
-    "prac_01.html": "286990ef"
-  },
-  "tutorials/index.qmd": {
-    "index.html": "ea9324bc"
+    "index.html": "6c5557ed"
   },
   "tutorials/tut1.qmd": {
-    "tut1.html": "243377ca"
+    "tut1.html": "9fdb8472"
   },
-  "tutorials/tutorial_01.qmd": {
-    "tutorial_01.html": "41090abe"
-  },
-  "tutorials/tutorial_02.qmd": {
-    "tutorial_02.html": "f9fab284"
-  },
-  "tutorials/tutorial_03.qmd": {
-    "tutorial_03.html": "89231567"
-  },
-  "tutorials/tutorial_04.qmd": {
-    "tutorial_04.html": "e023cab9"
-  },
-  "tutorials/tutorial_05.qmd": {
-    "tutorial_05.html": "c75741c5"
-  },
-  "tutorials/tutorial_06.qmd": {
-    "tutorial_06.html": "cae4dadf"
-  },
-  "tutorials/tutorial_07.qmd": {
-    "tutorial_07.html": "bc9fb0c4"
+  "tutorials/tutorial_09.qmd": {
+    "tutorial_09.html": "a915c8cb"
   },
   "tutorials/tutorial_08.qmd": {
-    "tutorial_08.html": "64832853"
+    "tutorial_08.html": "24902772"
   },
-<<<<<<< HEAD
-  "tutorials/tutorial_10.qmd": {
-    "tutorial_10.html": "1e501513"
+  "tutorials/index.qmd": {
+    "index.html": "9adb3624"
+  },
+  "tutorials/tutorial_06.qmd": {
+    "tutorial_06.html": "b529b1df"
+  },
+  "tutorials/tutorial_07.qmd": {
+    "tutorial_07.html": "dd7aa72f"
   },
   "tutorials/tutorial_11.qmd": {
-    "tutorial_11.html": "a2f1a32a"
-=======
-  "tutorials/tutorial_09.qmd": {
-    "tutorial_09.html": "6abda4ad"
->>>>>>> tut9p
+    "tutorial_11.html": "c1cc9f4c"
+  },
+  "tutorials/tutorial_05.qmd": {
+    "tutorial_05.html": "17ee1291"
+  },
+  "tutorials/tutorial_04.qmd": {
+    "tutorial_04.html": "79d68f2c"
+  },
+  "tutorials/tutorial_10.qmd": {
+    "tutorial_10.html": "ef5c78ed"
+  },
+  "tutorials/tutorial_01.qmd": {
+    "tutorial_01.html": "732b1039"
+  },
+  "tutorials/tutorial_03.qmd": {
+    "tutorial_03.html": "0c01db40"
+  },
+  "tutorials/tutorial_02.qmd": {
+    "tutorial_02.html": "88f19033"
+  },
+  "practice/prac_01.qmd": {
+    "prac_01.html": "f7696322"
+  },
+  "practice/index.qmd": {
+    "index.html": "7e8f93de"
   }
 }

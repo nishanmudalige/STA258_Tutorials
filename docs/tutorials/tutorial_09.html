@@ -108,6 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 <script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
 <link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
@@ -144,7 +145,7 @@ window.Quarto = {
 <link rel="stylesheet" href="../design.css">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -366,6 +367,18 @@ window.Quarto = {
     <a class="dropdown-item" href="../tutorials/tutorial_08.html">
  <span class="dropdown-text">Tutorial 8</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/tutorial_09.html">
+ <span class="dropdown-text">Tutorial 9</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/tutorial_10.html">
+ <span class="dropdown-text">Tutorial 10</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/tutorial_11.html">
+ <span class="dropdown-text">Tutorial 11</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -390,8 +403,25 @@ window.Quarto = {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#q1-fit-a-simple-linear-regression-model-movies-only" id="toc-q1-fit-a-simple-linear-regression-model-movies-only" class="nav-link active" data-scroll-target="#q1-fit-a-simple-linear-regression-model-movies-only">Q1 — Fit a simple linear regression model (movies only)</a></li>
+  <li><a href="#q2-compute-hatbeta_1-slope-by-computation" id="toc-q2-compute-hatbeta_1-slope-by-computation" class="nav-link" data-scroll-target="#q2-compute-hatbeta_1-slope-by-computation">Q2 — Compute (<span class="math inline">\(\hat\beta_1\)</span>) (slope) by computation</a></li>
+  <li><a href="#q3-compute-hatbeta_0-intercept-by-computation" id="toc-q3-compute-hatbeta_0-intercept-by-computation" class="nav-link" data-scroll-target="#q3-compute-hatbeta_0-intercept-by-computation">Q3 — Compute (<span class="math inline">\(\hat\beta_0\)</span>) (intercept) by computation</a></li>
+  <li><a href="#q4-cross-check-hatbeta_0-hatbeta_1-using-summarylm" id="toc-q4-cross-check-hatbeta_0-hatbeta_1-using-summarylm" class="nav-link" data-scroll-target="#q4-cross-check-hatbeta_0-hatbeta_1-using-summarylm">Q4 — Cross-check ( <span class="math inline">\(\hat\beta_0\)</span>, <span class="math inline">\(\hat\beta_1\)</span>) using <code>summary(lm)</code></a></li>
+  <li><a href="#q5-point-prediction-by-hand-using-b0-b1" id="toc-q5-point-prediction-by-hand-using-b0-b1" class="nav-link" data-scroll-target="#q5-point-prediction-by-hand-using-b0-b1">Q5 — Point prediction by hand (using b0, b1)</a></li>
+  <li><a href="#q6-point-prediction-using-predict" id="toc-q6-point-prediction-using-predict" class="nav-link" data-scroll-target="#q6-point-prediction-using-predict">Q6 — Point prediction using <code>predict()</code></a></li>
+  <li><a href="#q7-compare-two-predictions-difference-in-fitted-values" id="toc-q7-compare-two-predictions-difference-in-fitted-values" class="nav-link" data-scroll-target="#q7-compare-two-predictions-difference-in-fitted-values">Q7 — Compare two predictions (difference in fitted values)</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -430,6 +460,12 @@ eyJhdHRyIjp7ImVkaXQiOmZhbHNlLCJldmFsIjp0cnVlLCJvdXRwdXQiOmZhbHNlfSwiY29kZSI6Indl
 <p>Using <code>titles.csv</code>, we will work with <strong>movies only</strong> and fit:</p>
 <p><span class="math display">\[y = \beta_0 + \beta_1 x + \varepsilon\]</span></p>
 <p>Your task: <br> - Fit a regression line <br> - Return a named numeric vector: <code>c(b0 = ..., b1 = ...)</code></p>
+<figure style="text-align:center" class="figure">
+<img src="./images/netflix.jpg" style="width:40%" class="figure-img">
+<figcaption>
+Photo by <a href="https://unsplash.com/@thibaultpenin?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Thibault Penin</a> on <a href="https://unsplash.com/photos/a-television-with-the-netflix-logo-lit-up-in-the-dark-GrzoKN1aqSg?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
+</figcaption>
+</figure>
 <div class="callout callout-style-default callout-note callout-titled" title="Info">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1598,4 +1634,5 @@ window._ojs.runtime.interpretFromScriptTags();
 
 
 
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

@@ -108,6 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 <script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
 <link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
@@ -144,7 +145,7 @@ window.Quarto = {
 <link rel="stylesheet" href="../design.css">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -366,6 +367,18 @@ window.Quarto = {
     <a class="dropdown-item" href="../tutorials/tutorial_08.html">
  <span class="dropdown-text">Tutorial 8</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/tutorial_09.html">
+ <span class="dropdown-text">Tutorial 9</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/tutorial_10.html">
+ <span class="dropdown-text">Tutorial 10</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../tutorials/tutorial_11.html">
+ <span class="dropdown-text">Tutorial 11</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -390,8 +403,26 @@ window.Quarto = {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#q1-pooled-equal-variances-reviews" id="toc-q1-pooled-equal-variances-reviews" class="nav-link active" data-scroll-target="#q1-pooled-equal-variances-reviews">Q1 — Pooled (Equal Variances): Reviews</a></li>
+  <li><a href="#q2-pooled-equal-variances-using-t.test" id="toc-q2-pooled-equal-variances-using-t.test" class="nav-link" data-scroll-target="#q2-pooled-equal-variances-using-t.test">Q2 — Pooled (Equal Variances): Using t.test()</a></li>
+  <li><a href="#q3-welch-unequal-variances-using-t.test" id="toc-q3-welch-unequal-variances-using-t.test" class="nav-link" data-scroll-target="#q3-welch-unequal-variances-using-t.test">Q3 — Welch (Unequal Variances): Using t.test()</a></li>
+  <li><a href="#q4-two-sample-ci-for-a-difference-of-proportions" id="toc-q4-two-sample-ci-for-a-difference-of-proportions" class="nav-link" data-scroll-target="#q4-two-sample-ci-for-a-difference-of-proportions">Q4 — Two-Sample CI for a Difference of Proportions</a></li>
+  <li><a href="#q5-two-sample-ci-for-a-difference-of-proportions-using-prop.test" id="toc-q5-two-sample-ci-for-a-difference-of-proportions-using-prop.test" class="nav-link" data-scroll-target="#q5-two-sample-ci-for-a-difference-of-proportions-using-prop.test">Q5 — Two-Sample CI for a Difference of Proportions using prop.test</a></li>
+  <li><a href="#q6-two-sample-ci-for-a-difference-of-proportions-islandbiscoe" id="toc-q6-two-sample-ci-for-a-difference-of-proportions-islandbiscoe" class="nav-link" data-scroll-target="#q6-two-sample-ci-for-a-difference-of-proportions-islandbiscoe">Q6 — Two-Sample CI for a Difference of Proportions (island=Biscoe)</a></li>
+  <li><a href="#q7-two-sample-ci-for-a-ratio-of-variances-manual-f-based" id="toc-q7-two-sample-ci-for-a-ratio-of-variances-manual-f-based" class="nav-link" data-scroll-target="#q7-two-sample-ci-for-a-ratio-of-variances-manual-f-based">Q7 — Two-Sample CI for a Ratio of Variances (manual F-based)</a></li>
+  <li><a href="#q8---two-sample-ci-for-a-ratio-of-variances-using-var.test" id="toc-q8---two-sample-ci-for-a-ratio-of-variances-using-var.test" class="nav-link" data-scroll-target="#q8---two-sample-ci-for-a-ratio-of-variances-using-var.test">Q8 - Two-Sample CI for a Ratio of Variances using var.test</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -1592,4 +1623,5 @@ window._ojs.runtime.interpretFromScriptTags();
 
 
 
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

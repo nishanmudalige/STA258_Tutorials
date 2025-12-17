@@ -13,6 +13,12 @@ resources:
 
 For this tutorial, we will be using a Life Expectancy dataset from the World Health Organization (WHO). From your tutorial 9 knowledge, fit a simple linear regression model with Life Expectancy as X and Schooling as Y. Return the estimated slope. 
 
+<figure style="text-align:center">
+  <img src="./images/school.jpg" style="width:40%">
+  <figcaption>Photo by <a href="https://unsplash.com/@heyquilia?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kenny Eliason</a> on <a href="https://unsplash.com/photos/man-and-woman-sitting-on-chairs-zFSo6bnZJTw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+      </figcaption>
+</figure>
+
 ::: {.callout-note title="Preview"}
 Feel free to run this code block to visualize the data.
 ```{webr}
@@ -95,17 +101,27 @@ else fail("Slope mismatch. Check your lm() formula and coefficient name.")
 
 ## Q2 — Interpret the slope: 
 
-Compute the predicted change in life expectancy if schooling is increased in all countries by 2 years. Return a single number.
+A policy increases schooling by **2 years** for every country. Using the fitted regression model,
+compute the predicted change in life expectancy caused by this policy.
+
+Do this in two ways:<br>
+
+1) Compute two fitted values at $x_0$ and $x_0 + 2$, then take the difference. <br> 
+2) Use the model’s slope to compute the same change.
 
 
 <figure style="text-align:center">
-  <img src="./images/marvel.jpg" style="width:40%">
-  <figcaption>Photo by <a href="https://unsplash.com/@introspectivedsgn?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Erik Mclean</a> on <a href="https://unsplash.com/photos/a-pile-of-comics-sitting-next-to-each-other-8SeJUmfahu0?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  <img src="./images/education.jpg" style="width:40%">
+  <figcaption>Photo by <a href="https://unsplash.com/@mdesign85?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">MD Duran</a> on <a href="https://unsplash.com/photos/woman-wearing-academic-cap-and-dress-selective-focus-photography-1VqHRwxcCCw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>
 
 ::: {.callout-note title="Info"}
-If the slope is $b_1$, then increasing schooling by 2 years will also double $b_1$. 
+In a simple linear regression line, the “effect” of increasing \(x\) by a fixed amount \(\Delta x\)
+can be seen by comparing fitted values at two \(x\)-values separated by \(\Delta x\).
+
+A good way to sanity-check an interpretation is to compute the same effect using
+(1) fitted values and (2) the slope coefficient, and confirm they agree. 
 :::
 
 
@@ -120,71 +136,118 @@ le <- df[, c("Life expectancy", "Schooling")]
 names(le) <- c("life_exp", "schooling")
 le <- na.omit(le)
 
-head(le, 8)
+plot(le$schooling, le$life_exp,
+     xlab = "Schooling (years)", ylab = "Life expectancy",
+     main = "Life expectancy vs Schooling")
 
+model <- lm(life_exp ~ schooling, data = le)
+coef(model)
 
-plot(le$schooling, le$life_exp, 
-xlab = "Schooling (years)", ylab = "Life expectancy",
-main = "Life expectancy vs Schooling")
-
+x0 <- mean(le$schooling)
+x0
 ```
 :::
 
 ```{webr}
-#| exercise: t10_q2_two_year_effect
-#| exercise.lines: 8
+#| exercise: t10_q2_two_year_effect_demo
+#| exercise.lines: 16
 #| echo: false
+
 df <- read.csv("life_expectancy.csv", check.names = FALSE)
 names(df) <- trimws(names(df))
+
 le <- df[, c("Life expectancy","Schooling")]
 names(le) <- c("life_exp","schooling")
 le <- na.omit(le)
+
 model <- lm(life_exp ~ schooling, data = le)
 
+# pick a reference schooling level
+
+x0 <- mean(le$schooling)
+
+# method 1: compare fitted values at x0 and x0 + 2
+
+yhat0 <- ___
+yhat2 <- ___
+effect_via_preds <- ___
+
+# method 2: use the slope coefficient
+
 b1 <- ___
- #transform slope here
+effect_via_slope <- ___
+
+c(effect_via_preds = effect_via_preds,
+effect_via_slope = effect_via_slope)
+
 ```
 
-::: {.hint exercise="t10_q2_two_year_effect"}
-Slope will be doubled! Discuss why.
+::: {.hint exercise="t10_q2_two_year_effect_demo"}
+Use the idea “effect = fitted value at (new x) minus fitted value at (old x)”.
+You can get fitted values either from the line equation or from predict() using newdata.
+For the slope method, interpret the slope as “change in fitted response per 1 unit of x”.
 :::
 
-::: {.solution exercise="t10_q2_two_year_effect"}
+::: {.solution exercise="t10_q2_two_year_effect_demo"}
 
 ```{webr}
-#| exercise: t10_q2_two_year_effect
+#| exercise: t10_q2_two_year_effect_demo
 #| solution: true
 df <- read.csv("life_expectancy.csv", check.names = FALSE)
 names(df) <- trimws(names(df))
+
 le <- df[, c("Life expectancy","Schooling")]
 names(le) <- c("life_exp","schooling")
 le <- na.omit(le)
+
 model <- lm(life_exp ~ schooling, data = le)
 
-b1 <- coef(model)["schooling"]
-2 * b1
+x0 <- mean(le$schooling)
+
+yhat0 <- unname(predict(model, newdata = data.frame(schooling = x0)))
+yhat2 <- unname(predict(model, newdata = data.frame(schooling = x0 + 2)))
+effect_via_preds <- yhat2 - yhat0
+
+b1 <- unname(coef(model)["schooling"])
+effect_via_slope <- 2 * b1
+
+c(effect_via_preds = effect_via_preds,
+effect_via_slope = effect_via_slope)
+
 
 ```
 
 :::
 
 ```{webr}
-#| exercise: t10_q2_two_year_effect
+#| exercise: t10_q2_two_year_effect_demo
 #| check: true
 gradethis::grade_this({
 df <- read.csv("life_expectancy.csv", check.names = FALSE)
 names(df) <- trimws(names(df))
+
 le <- df[, c("Life expectancy","Schooling")]
 names(le) <- c("life_exp","schooling")
 le <- na.omit(le)
-mod <- lm(life_exp ~ schooling, data = le)
-exp <- 2 * coef(mod)["schooling"]
 
-x <- .result
-ok <- is.numeric(x) && length(x) == 1L && is.finite(x)
-if (!ok) fail("Return a single numeric value (the +2 years effect).")
-else if (abs(x - exp) < 1e-10) pass("Correct.")
-else fail("Mismatch. Check b1 and multiply by 2.")
+mod <- lm(life_exp ~ schooling, data = le)
+
+x0 <- mean(le$schooling)
+
+exp_preds <- unname(predict(mod, newdata = data.frame(schooling = x0 + 2))) -
+unname(predict(mod, newdata = data.frame(schooling = x0)))
+
+exp_slope <- 2 * unname(coef(mod)["schooling"])
+
+exp <- c(effect_via_preds = exp_preds, effect_via_slope = exp_slope)
+
+res <- .result
+ok <- is.numeric(res) && length(res) == 2L && all(is.finite(res)) &&
+identical(names(res), names(exp))
+
+if (!ok) fail("Return c(effect_via_preds = ..., effect_via_slope = ...) (two numbers, named).")
+else if (max(abs(res - exp)) < 1e-8) pass("Correct. Both methods agree.")
+else fail("Mismatch. Re-check how you computed fitted values and/or extracted the slope.")
 })
 
 ```
@@ -193,12 +256,6 @@ else fail("Mismatch. Check b1 and multiply by 2.")
 
 Return the model's $R^2$
 
-
-<figure style="text-align:center">
-  <img src="./images/captain_vs_iron.jpg" style="width:40%">
-  <figcaption>Photo by <a href="https://unsplash.com/@wacalke?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Mateusz Wacławek</a> on <a href="https://unsplash.com/photos/red-and-blue-robot-toy-t2b2svMf8ek?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-      </figcaption>
-</figure>
 
 
 ::: {.callout-note title="Info"}
@@ -287,11 +344,6 @@ else fail("R-squared mismatch.")
 
 Compute the p-value for $b_1$ for testing $H_0: b_1 = 0$. 
 
-<figure style="text-align:center">
-  <img src="./images/thor.jpg" style="width:40%">
-  <figcaption>Photo by <a href="https://unsplash.com/@wacalke?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Mateusz Wacławek</a> on <a href="https://unsplash.com/photos/red-and-blue-robot-toy-t2b2svMf8ek?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-      </figcaption>
-</figure>
 
 ::: {.callout-note title="Info"}
 This tests whether there is evidence of a linear relationship between schooling and life expectancy.
@@ -380,11 +432,6 @@ else fail("P-value mismatch.")
 
 Return a 95% confidence interval for the slope using the R built-in command confint(). 
 
-<figure style="text-align:center">
-  <img src="./images/pokeball.jpg" style="width:40%">
-  <figcaption>Photo by <a href="https://unsplash.com/@thimo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Thimo Pedersen</a> on <a href="https://unsplash.com/photos/red-and-white-ladybug-toy-on-white-and-yellow-book-dip9IIwUK6w?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-      </figcaption>
-</figure>
 
 ::: {.callout-note title="Info"}
 The confint() function in R is used to compute confidence intervals for one or more parameters in a fitted model. 
@@ -477,8 +524,8 @@ Predict the mean life expectancy at schooling = 12 years.
 
 
 <figure style="text-align:center">
-  <img src="./images/pokeball.jpg" style="width:40%">
-  <figcaption>Photo by <a href="https://unsplash.com/@thimo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Thimo Pedersen</a> on <a href="https://unsplash.com/photos/red-and-white-ladybug-toy-on-white-and-yellow-book-dip9IIwUK6w?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  <img src="./images/school.jpg" style="width:40%">
+  <figcaption>Photo by <a href="https://unsplash.com/@heyquilia?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kenny Eliason</a> on <a href="https://unsplash.com/photos/man-and-woman-sitting-on-chairs-zFSo6bnZJTw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>
 
@@ -573,11 +620,6 @@ else fail("Prediction mismatch.")
 Confirm if the residuals in the model sum to 0 or not. Round the sum. 
 
 
-<figure style="text-align:center">
-  <img src="./images/pokemons.jpg" style="width:40%">
-  <figcaption>Photo by <a href="https://unsplash.com/@lifetimevalues?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Life Time Values</a> on <a href="https://unsplash.com/photos/six-pokemon-figurines-lined-up-on-a-wooden-surface-caF_z0aTPtQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-      </figcaption>
-</figure>
 
 ::: {.callout-note title="Info"}
 Usually with an intercept in the model, the residuals sum up to 0 (with a tiny numerical error).
@@ -673,11 +715,6 @@ else fail("Mismatch.")
 Compute standardized residuals and figure out how many satisfy the condition |$r_i$| > 2.  
 
 
-<figure style="text-align:center">
-  <img src="./images/pokemons.jpg" style="width:40%">
-  <figcaption>Photo by <a href="https://unsplash.com/@lifetimevalues?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Life Time Values</a> on <a href="https://unsplash.com/photos/six-pokemon-figurines-lined-up-on-a-wooden-surface-caF_z0aTPtQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-      </figcaption>
-</figure>
 
 ::: {.callout-note title="Info"}
 Standardized residuals are useful for spotting outliers in data. If the condition |$r_i$| > 2 is satisfied, it could be a common red flag. 
