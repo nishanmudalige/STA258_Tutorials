@@ -1,5 +1,5 @@
 ---
-title: "Tutorial 07"
+title: "Tutorial 07: Two Sample Hypothesis Tests"
 format: live-html
 engine: knitr
 resources:
@@ -25,7 +25,7 @@ Compute the p-value manually from the sample statistics and the t distribution.
 Your final output should be a single numeric p-value.
 
 <figure style="text-align:center">
-  <img src="./images/marvel.jpg" style="width:40%">
+  <img src="./images/marvel.jpg" style="width:60%">
   <figcaption>Photo by <a href="https://unsplash.com/@introspectivedsgn?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Erik Mclean</a> on <a href="https://unsplash.com/photos/a-pile-of-comics-sitting-next-to-each-other-8SeJUmfahu0?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>
@@ -196,7 +196,7 @@ Do not call the built-in t.test function in this question.
 Return a single numeric p-value.
 
 <figure style="text-align:center">
-  <img src="./images/marvel.jpg" style="width:40%">
+  <img src="./images/marvel.jpg" style="width:60%">
   <figcaption>Photo by <a href="https://unsplash.com/@introspectivedsgn?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Erik Mclean</a> on <a href="https://unsplash.com/photos/a-pile-of-comics-sitting-next-to-each-other-8SeJUmfahu0?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>
@@ -360,7 +360,7 @@ vs $$H_1 : \mu_{Cap} - \mu_{Iron Man} \neq 0$$
 and we treat the population variances as equal, using a pooled two-sample t-test. Your answer should be a single numeric p-value.
 
 <figure style="text-align:center">
-  <img src="./images/captain_vs_iron.jpg" style="width:40%">
+  <img src="./images/captain_vs_iron.jpg" style="width:60%">
   <figcaption>Photo by <a href="https://unsplash.com/@wacalke?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Mateusz Wacławek</a> on <a href="https://unsplash.com/photos/red-and-blue-robot-toy-t2b2svMf8ek?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>
@@ -461,7 +461,7 @@ Here we do not assume the variances are equal and instead use a Welch two-sample
 
 
 <figure style="text-align:center">
-  <img src="./images/thor.jpg" style="width:40%">
+  <img src="./images/thor.jpg" style="width:60%">
   <figcaption>Photo by <a href="https://unsplash.com/@wacalke?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Mateusz Wacławek</a> on <a href="https://unsplash.com/photos/red-and-blue-robot-toy-t2b2svMf8ek?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>
@@ -586,7 +586,7 @@ where \(p_1\) and \(p_2\) are the true proportions of Legendary Pokémon in Gene
 Compute the p-value **manually** using the normal approximation formulas. Your final output must be a single numeric p-value.
 
 <figure style="text-align:center">
-  <img src="./images/pokeball.jpg" style="width:40%">
+  <img src="./images/pokeball.jpg" style="width:60%">
   <figcaption>Photo by <a href="https://unsplash.com/@thimo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Thimo Pedersen</a> on <a href="https://unsplash.com/photos/red-and-white-ladybug-toy-on-white-and-yellow-book-dip9IIwUK6w?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>
@@ -718,7 +718,7 @@ where \(p_1\) and \(p_2\) are the true proportions of Legendary Pokémon in Gene
 Use a built-in two-sample test for proportions and return a **single numeric p-value**.
 
 <figure style="text-align:center">
-  <img src="./images/pokeball.jpg" style="width:40%">
+  <img src="./images/pokeball.jpg" style="width:60%">
   <figcaption>Photo by <a href="https://unsplash.com/@thimo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Thimo Pedersen</a> on <a href="https://unsplash.com/photos/red-and-white-ladybug-toy-on-white-and-yellow-book-dip9IIwUK6w?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>
@@ -847,7 +847,7 @@ Use an appropriate built-in two-sample test for equality of variances and return
 
 
 <figure style="text-align:center">
-  <img src="./images/pokemons.jpg" style="width:40%">
+  <img src="./images/pokemons.jpg" style="width:60%">
   <figcaption>Photo by <a href="https://unsplash.com/@lifetimevalues?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Life Time Values</a> on <a href="https://unsplash.com/photos/six-pokemon-figurines-lined-up-on-a-wooden-surface-caF_z0aTPtQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Tutorial 09 – Course Tutorials</title>
+<title>Tutorial 09: Intro to Regression – Course Tutorials</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -337,58 +337,47 @@ window.Quarto = {
     <ul class="dropdown-menu" aria-labelledby="nav-menu-tutorials">    
         <li>
     <a class="dropdown-item" href="../tutorials/tutorial_01.html">
- <span class="dropdown-text">Tutorial 1</span></a>
+ <span class="dropdown-text">Tutorial on Intro to R</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tutorials/tutorial_02.html">
- <span class="dropdown-text">Tutorial 2</span></a>
+ <span class="dropdown-text">Tutorial on Descriptive Statistics</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tutorials/tutorial_03.html">
- <span class="dropdown-text">Tutorial 3</span></a>
+ <span class="dropdown-text">Tutorial on Distributions</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tutorials/tutorial_04.html">
- <span class="dropdown-text">Tutorial 4</span></a>
+ <span class="dropdown-text">Tutorial on One Sample Confidence Intervals</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tutorials/tutorial_05.html">
- <span class="dropdown-text">Tutorial 5</span></a>
+ <span class="dropdown-text">Tutorial on Two Sample Confidence Intervals</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tutorials/tutorial_06.html">
- <span class="dropdown-text">Tutorial 6</span></a>
+ <span class="dropdown-text">Tutorial on One Sample Hypothesis Tests</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tutorials/tutorial_07.html">
- <span class="dropdown-text">Tutorial 7</span></a>
+ <span class="dropdown-text">Tutorial on Two Sample Hypothesis Tests</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tutorials/tutorial_08.html">
- <span class="dropdown-text">Tutorial 8</span></a>
+ <span class="dropdown-text">Tutorial on ANOVA</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tutorials/tutorial_09.html">
- <span class="dropdown-text">Tutorial 9</span></a>
+ <span class="dropdown-text">Tutorial on Intro to Regression</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tutorials/tutorial_10.html">
- <span class="dropdown-text">Tutorial 10</span></a>
+ <span class="dropdown-text">Tutorial on Inference Techniques on Regression</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tutorials/tutorial_11.html">
- <span class="dropdown-text">Tutorial 11</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-practice" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Practice</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-practice">    
-        <li>
-    <a class="dropdown-item" href="../practice/prac_01.html">
- <span class="dropdown-text">Practical 1</span></a>
+ <span class="dropdown-text">Tutorial on Categorical Data</span></a>
   </li>  
     </ul>
   </li>
@@ -411,9 +400,9 @@ window.Quarto = {
   <li><a href="#q1-fit-a-simple-linear-regression-model-movies-only" id="toc-q1-fit-a-simple-linear-regression-model-movies-only" class="nav-link active" data-scroll-target="#q1-fit-a-simple-linear-regression-model-movies-only">Q1 — Fit a simple linear regression model (movies only)</a></li>
   <li><a href="#q2-compute-hatbeta_1-slope-by-computation" id="toc-q2-compute-hatbeta_1-slope-by-computation" class="nav-link" data-scroll-target="#q2-compute-hatbeta_1-slope-by-computation">Q2 — Compute (<span class="math inline">\(\hat\beta_1\)</span>) (slope) by computation</a></li>
   <li><a href="#q3-compute-hatbeta_0-intercept-by-computation" id="toc-q3-compute-hatbeta_0-intercept-by-computation" class="nav-link" data-scroll-target="#q3-compute-hatbeta_0-intercept-by-computation">Q3 — Compute (<span class="math inline">\(\hat\beta_0\)</span>) (intercept) by computation</a></li>
-  <li><a href="#q4-cross-check-hatbeta_0-hatbeta_1-using-summarylm" id="toc-q4-cross-check-hatbeta_0-hatbeta_1-using-summarylm" class="nav-link" data-scroll-target="#q4-cross-check-hatbeta_0-hatbeta_1-using-summarylm">Q4 — Cross-check ( <span class="math inline">\(\hat\beta_0\)</span>, <span class="math inline">\(\hat\beta_1\)</span>) using <code>summary(lm)</code></a></li>
+  <li><a href="#q4-cross-check-hatbeta_0-hatbeta_1-using-summarylm" id="toc-q4-cross-check-hatbeta_0-hatbeta_1-using-summarylm" class="nav-link" data-scroll-target="#q4-cross-check-hatbeta_0-hatbeta_1-using-summarylm">Q4 — Cross-check ( <span class="math inline">\(\hat\beta_0\)</span>, <span class="math inline">\(\hat\beta_1\)</span>) using summary(lm)</a></li>
   <li><a href="#q5-point-prediction-by-hand-using-b0-b1" id="toc-q5-point-prediction-by-hand-using-b0-b1" class="nav-link" data-scroll-target="#q5-point-prediction-by-hand-using-b0-b1">Q5 — Point prediction by hand (using b0, b1)</a></li>
-  <li><a href="#q6-point-prediction-using-predict" id="toc-q6-point-prediction-using-predict" class="nav-link" data-scroll-target="#q6-point-prediction-using-predict">Q6 — Point prediction using <code>predict()</code></a></li>
+  <li><a href="#q6-point-prediction-using-predict" id="toc-q6-point-prediction-using-predict" class="nav-link" data-scroll-target="#q6-point-prediction-using-predict">Q6 — Point prediction using predict()</a></li>
   <li><a href="#q7-compare-two-predictions-difference-in-fitted-values" id="toc-q7-compare-two-predictions-difference-in-fitted-values" class="nav-link" data-scroll-target="#q7-compare-two-predictions-difference-in-fitted-values">Q7 — Compare two predictions (difference in fitted values)</a></li>
   </ul>
 </nav>
@@ -428,7 +417,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Tutorial 09</h1>
+<h1 class="title">Tutorial 09: Intro to Regression</h1>
 </div>
 
 
@@ -458,7 +447,7 @@ eyJhdHRyIjp7ImVkaXQiOmZhbHNlLCJldmFsIjp0cnVlLCJvdXRwdXQiOmZhbHNlfSwiY29kZSI6Indl
 <section id="q1-fit-a-simple-linear-regression-model-movies-only" class="level2">
 <h2 class="anchored" data-anchor-id="q1-fit-a-simple-linear-regression-model-movies-only">Q1 — Fit a simple linear regression model (movies only)</h2>
 <p>Using <code>titles.csv</code>, we will work with <strong>movies only</strong> and fit:</p>
-<p><span class="math display">\[y = \beta_0 + \beta_1 x + \varepsilon\]</span></p>
+<p><span class="math display">\[y = \beta_0 + \beta_1 x + \varepsilon\]</span> keeping y = imdb_score and x = runtime.</p>
 <p>Your task: <br> - Fit a regression line <br> - Return a named numeric vector: <code>c(b0 = ..., b1 = ...)</code></p>
 <figure style="text-align:center" class="figure">
 <img src="./images/netflix.jpg" style="width:60%" class="figure-img">
@@ -783,7 +772,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InEz
 </div>
 </section>
 <section id="q4-cross-check-hatbeta_0-hatbeta_1-using-summarylm" class="level2">
-<h2 class="anchored" data-anchor-id="q4-cross-check-hatbeta_0-hatbeta_1-using-summarylm">Q4 — Cross-check ( <span class="math inline">\(\hat\beta_0\)</span>, <span class="math inline">\(\hat\beta_1\)</span>) using <code>summary(lm)</code></h2>
+<h2 class="anchored" data-anchor-id="q4-cross-check-hatbeta_0-hatbeta_1-using-summarylm">Q4 — Cross-check ( <span class="math inline">\(\hat\beta_0\)</span>, <span class="math inline">\(\hat\beta_1\)</span>) using summary(lm)</h2>
 <p>Fit the same model as Q1 and extract coefficients from:</p>
 <p><code>summary(fit)$coefficients</code></p>
 <p>Return <code>c(b0 = ..., b1 = ...)</code>.</p>
@@ -833,7 +822,7 @@ eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0g
 
 </div>
 <script type="webr-21-contents">
-eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxNF90aXRsZXNfc3VtbWFyeV9leHRyYWN0IiwiZXhlcmNpc2UubGluZXMiOjE2fSwiY29kZSI6IlxuZGYgPC0gcmVhZC5jc3YoXCJ0aXRsZXMuY3N2XCIpXG5cbnN1YiA8LSBzdWJzZXQoZGYsXG50eXBlID09IFwiTU9WSUVcIiAmXG5pcy5maW5pdGUocnVudGltZSkgJlxuaXMuZmluaXRlKGltZGJfc2NvcmUpICZcbnJ1bnRpbWUgPiAwXG4pXG5cbmZpdCA8LSBsbShpbWRiX3Njb3JlIH4gcnVudGltZSwgZGF0YSA9IHN1YilcblxudGFiIDwtIHN1bW1hcnkoZml0KSRjb2VmZmljaWVudHNcblxuYjAgPC0gdGFiW1wiKioqXCIsIFwiKioqXCJdXG5iMSA8LSB0YWJbXCIqKipcIiwgXCIqKipcIl1cblxuYyhiMCA9IGIwLCBiMSA9IGIxKSJ9
+eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxNF90aXRsZXNfc3VtbWFyeV9leHRyYWN0IiwiZXhlcmNpc2UubGluZXMiOjE2fSwiY29kZSI6IlxuZGYgPC0gcmVhZC5jc3YoXCJ0aXRsZXMuY3N2XCIpXG5cbnN1YiA8LSBzdWJzZXQoZGYsXG50eXBlID09IFwiTU9WSUVcIiAmXG5pcy5maW5pdGUocnVudGltZSkgJlxuaXMuZmluaXRlKGltZGJfc2NvcmUpICZcbnJ1bnRpbWUgPiAwXG4pXG5cbmZpdCA8LSBsbShpbWRiX3Njb3JlIH4gcnVudGltZSwgZGF0YSA9IHN1YilcblxudGFiIDwtIHN1bW1hcnkoZml0KSRjb2VmZmljaWVudHNcblxuYjAgPC0gdGFiW1wiX19fXCIsIFwiX19fXCJdXG5iMSA8LSB0YWJbXCJfX19cIiwgXCJfX19cIl1cblxuYyhiMCA9IGIwLCBiMSA9IGIxKSJ9
 </script>
 </div>
 </div>
@@ -960,7 +949,7 @@ fit &lt;- lm(imdb_score ~ runtime, data = sub)
 b &lt;- coef(fit)
 
 x0 &lt;- 90
-yhat_90 &lt;- unname(b[1] + b[2] * x0)
+yhat_90 &lt;- b[1] + b[2] * x0
 yhat_90</code>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-30-1"><a href="#interpolate-30-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-30-2"><a href="#interpolate-30-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"titles.csv"</span>)</span>
@@ -976,7 +965,7 @@ yhat_90</code>
 <span id="interpolate-30-12"><a href="#interpolate-30-12" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">coef</span>(fit)</span>
 <span id="interpolate-30-13"><a href="#interpolate-30-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-30-14"><a href="#interpolate-30-14" aria-hidden="true" tabindex="-1"></a>x0 <span class="ot">&lt;-</span> <span class="dv">90</span></span>
-<span id="interpolate-30-15"><a href="#interpolate-30-15" aria-hidden="true" tabindex="-1"></a>yhat_90 <span class="ot">&lt;-</span> <span class="fu">unname</span>(b[<span class="dv">1</span>] <span class="sc">+</span> b[<span class="dv">2</span>] <span class="sc">*</span> x0)</span>
+<span id="interpolate-30-15"><a href="#interpolate-30-15" aria-hidden="true" tabindex="-1"></a>yhat_90 <span class="ot">&lt;-</span> b[<span class="dv">1</span>] <span class="sc">+</span> b[<span class="dv">2</span>] <span class="sc">*</span> x0</span>
 <span id="interpolate-30-16"><a href="#interpolate-30-16" aria-hidden="true" tabindex="-1"></a>yhat_90</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
@@ -988,7 +977,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE1
 </div>
 </section>
 <section id="q6-point-prediction-using-predict" class="level2">
-<h2 class="anchored" data-anchor-id="q6-point-prediction-using-predict">Q6 — Point prediction using <code>predict()</code></h2>
+<h2 class="anchored" data-anchor-id="q6-point-prediction-using-predict">Q6 — Point prediction using predict()</h2>
 <p>Use the fitted model to predict the IMDB score at:</p>
 <ul>
 <li><span class="math inline">\((x_0 = 90)\)</span> minutes</li>
@@ -1040,7 +1029,7 @@ eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0g
 
 </div>
 <script type="webr-33-contents">
-eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxNl90aXRsZXNfcHJlZF9wcmVkaWN0IiwiZXhlcmNpc2UubGluZXMiOjEyfSwiY29kZSI6IlxuZGYgPC0gcmVhZC5jc3YoXCJ0aXRsZXMuY3N2XCIpXG5cbnN1YiA8LSBzdWJzZXQoZGYsXG50eXBlID09IFwiTU9WSUVcIiAmXG5pcy5maW5pdGUocnVudGltZSkgJlxuaXMuZmluaXRlKGltZGJfc2NvcmUpICZcbnJ1bnRpbWUgPiAwXG4pXG5cbmZpdCA8LSBsbShpbWRiX3Njb3JlIH4gcnVudGltZSwgZGF0YSA9IHN1YilcblxubmV3IDwtIGRhdGEuZnJhbWUocnVudGltZSA9IDkwKVxueWhhdF85MCA8LSBfX19cbnVubmFtZSh5aGF0XzkwKSJ9
+eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxNl90aXRsZXNfcHJlZF9wcmVkaWN0IiwiZXhlcmNpc2UubGluZXMiOjEyfSwiY29kZSI6IlxuZGYgPC0gcmVhZC5jc3YoXCJ0aXRsZXMuY3N2XCIpXG5cbnN1YiA8LSBzdWJzZXQoZGYsXG50eXBlID09IFwiTU9WSUVcIiAmXG5pcy5maW5pdGUocnVudGltZSkgJlxuaXMuZmluaXRlKGltZGJfc2NvcmUpICZcbnJ1bnRpbWUgPiAwXG4pXG5cbmZpdCA8LSBsbShpbWRiX3Njb3JlIH4gcnVudGltZSwgZGF0YSA9IHN1YilcblxubmV3IDwtIGRhdGEuZnJhbWUocnVudGltZSA9IDkwKVxueWhhdF85MCA8LSBfX19cbnloYXRfOTAifQ==
 </script>
 </div>
 </div>
@@ -1064,7 +1053,7 @@ fit &lt;- lm(imdb_score ~ runtime, data = sub)
 
 new &lt;- data.frame(runtime = 90)
 yhat_90 &lt;- predict(fit, newdata = new)
-unname(yhat_90)</code>
+yhat_90</code>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-36-1"><a href="#interpolate-36-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-36-2"><a href="#interpolate-36-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"titles.csv"</span>)</span>
 <span id="interpolate-36-3"><a href="#interpolate-36-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1079,7 +1068,7 @@ unname(yhat_90)</code>
 <span id="interpolate-36-12"><a href="#interpolate-36-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-36-13"><a href="#interpolate-36-13" aria-hidden="true" tabindex="-1"></a>new <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">runtime =</span> <span class="dv">90</span>)</span>
 <span id="interpolate-36-14"><a href="#interpolate-36-14" aria-hidden="true" tabindex="-1"></a>yhat_90 <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit, <span class="at">newdata =</span> new)</span>
-<span id="interpolate-36-15"><a href="#interpolate-36-15" aria-hidden="true" tabindex="-1"></a><span class="fu">unname</span>(yhat_90)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="interpolate-36-15"><a href="#interpolate-36-15" aria-hidden="true" tabindex="-1"></a>yhat_90</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -1135,7 +1124,7 @@ eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0g
 
 </div>
 <script type="webr-39-contents">
-eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxN190aXRsZXNfcHJlZF9kaWZmIiwiZXhlcmNpc2UubGluZXMiOjEyfSwiY29kZSI6IlxuZGYgPC0gcmVhZC5jc3YoXCJ0aXRsZXMuY3N2XCIpXG5cbnN1YiA8LSBzdWJzZXQoZGYsXG50eXBlID09IFwiTU9WSUVcIiAmXG5pcy5maW5pdGUocnVudGltZSkgJlxuaXMuZmluaXRlKGltZGJfc2NvcmUpICZcbnJ1bnRpbWUgPiAwXG4pXG5cbmZpdCA8LSBsbShpbWRiX3Njb3JlIH4gcnVudGltZSwgZGF0YSA9IHN1YilcblxueWhhdCA8LSBfX19cbmRpZmZfaGF0IDwtIF9fX1xudW5uYW1lKGRpZmZfaGF0KSJ9
+eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxN190aXRsZXNfcHJlZF9kaWZmIiwiZXhlcmNpc2UubGluZXMiOjEyfSwiY29kZSI6IlxuZGYgPC0gcmVhZC5jc3YoXCJ0aXRsZXMuY3N2XCIpXG5cbnN1YiA8LSBzdWJzZXQoZGYsXG50eXBlID09IFwiTU9WSUVcIiAmXG5pcy5maW5pdGUocnVudGltZSkgJlxuaXMuZmluaXRlKGltZGJfc2NvcmUpICZcbnJ1bnRpbWUgPiAwXG4pXG5cbmZpdCA8LSBsbShpbWRiX3Njb3JlIH4gcnVudGltZSwgZGF0YSA9IHN1YilcblxueWhhdCA8LSBfX19cbmRpZmZfaGF0IDwtIF9fX1xuZGlmZl9oYXQifQ==
 </script>
 </div>
 </div>
@@ -1159,7 +1148,7 @@ fit &lt;- lm(imdb_score ~ runtime, data = sub)
 
 yhat &lt;- predict(fit, newdata = data.frame(runtime = c(80, 120)))
 diff_hat &lt;- yhat[2] - yhat[1]
-unname(diff_hat)</code>
+diff_hat</code>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-42-1"><a href="#interpolate-42-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-42-2"><a href="#interpolate-42-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"titles.csv"</span>)</span>
 <span id="interpolate-42-3"><a href="#interpolate-42-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1174,7 +1163,7 @@ unname(diff_hat)</code>
 <span id="interpolate-42-12"><a href="#interpolate-42-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-42-13"><a href="#interpolate-42-13" aria-hidden="true" tabindex="-1"></a>yhat <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">runtime =</span> <span class="fu">c</span>(<span class="dv">80</span>, <span class="dv">120</span>)))</span>
 <span id="interpolate-42-14"><a href="#interpolate-42-14" aria-hidden="true" tabindex="-1"></a>diff_hat <span class="ot">&lt;-</span> yhat[<span class="dv">2</span>] <span class="sc">-</span> yhat[<span class="dv">1</span>]</span>
-<span id="interpolate-42-15"><a href="#interpolate-42-15" aria-hidden="true" tabindex="-1"></a><span class="fu">unname</span>(diff_hat)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="interpolate-42-15"><a href="#interpolate-42-15" aria-hidden="true" tabindex="-1"></a>diff_hat</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>

@@ -1,5 +1,5 @@
 ---
-title: "Tutorial 09"
+title: "Tutorial 09: Intro to Regression"
 format: live-html
 engine: knitr
 resources:
@@ -14,7 +14,7 @@ resources:
 
 Using `titles.csv`, we will work with **movies only** and fit:
 
-$$y = \beta_0 + \beta_1 x + \varepsilon$$
+$$y = \beta_0 + \beta_1 x + \varepsilon$$ keeping y = imdb_score and x = runtime.
 
 Your task: <br>
 - Fit a regression line <br>
@@ -388,7 +388,7 @@ fail("Check: b0_hat = ybar - b1_hat * xbar.")
 ```
 
 
-## Q4 — Cross-check ( $\hat\beta_0$, $\hat\beta_1$) using `summary(lm)`
+## Q4 — Cross-check ( $\hat\beta_0$, $\hat\beta_1$) using summary(lm)
 
 Fit the same model as Q1 and extract coefficients from:
 
@@ -440,8 +440,8 @@ fit <- lm(imdb_score ~ runtime, data = sub)
 
 tab <- summary(fit)$coefficients
 
-b0 <- tab["***", "***"]
-b1 <- tab["***", "***"]
+b0 <- tab["___", "___"]
+b1 <- tab["___", "___"]
 
 c(b0 = b0, b1 = b1)
 ```
@@ -586,7 +586,7 @@ fit <- lm(imdb_score ~ runtime, data = sub)
 b <- coef(fit)
 
 x0 <- 90
-yhat_90 <- unname(b[1] + b[2] * x0)
+yhat_90 <- b[1] + b[2] * x0
 yhat_90
 ```
 :::
@@ -622,7 +622,7 @@ fail("Prediction is off. Re-check how you used the two fitted coefficients with 
 })
 ```
 
-## Q6 — Point prediction using `predict()`
+## Q6 — Point prediction using predict()
 
 Use the fitted model to predict the IMDB score at:
 
@@ -678,7 +678,7 @@ fit <- lm(imdb_score ~ runtime, data = sub)
 
 new <- data.frame(runtime = 90)
 yhat_90 <- ___
-unname(yhat_90)
+yhat_90
 ```
 
 ::: {.hint exercise="q6_titles_pred_predict"}
@@ -703,7 +703,7 @@ fit <- lm(imdb_score ~ runtime, data = sub)
 
 new <- data.frame(runtime = 90)
 yhat_90 <- predict(fit, newdata = new)
-unname(yhat_90)
+yhat_90
 ```
 
 :::
@@ -785,7 +785,7 @@ fit <- lm(imdb_score ~ runtime, data = sub)
 
 yhat <- ___
 diff_hat <- ___
-unname(diff_hat)
+diff_hat
 ```
 
 ::: {.hint exercise="q7_titles_pred_diff"}
@@ -810,7 +810,7 @@ fit <- lm(imdb_score ~ runtime, data = sub)
 
 yhat <- predict(fit, newdata = data.frame(runtime = c(80, 120)))
 diff_hat <- yhat[2] - yhat[1]
-unname(diff_hat)
+diff_hat
 ```
 
 

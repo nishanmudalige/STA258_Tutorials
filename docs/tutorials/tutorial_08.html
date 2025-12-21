@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Tutorial 08 – Course Tutorials</title>
+<title>Tutorial 08: ANOVA – Course Tutorials</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -108,6 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 <script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
 <link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
@@ -144,7 +145,7 @@ window.Quarto = {
 <link rel="stylesheet" href="../design.css">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -336,58 +337,47 @@ window.Quarto = {
     <ul class="dropdown-menu" aria-labelledby="nav-menu-tutorials">    
         <li>
     <a class="dropdown-item" href="../tutorials/tutorial_01.html">
- <span class="dropdown-text">Tutorial 1</span></a>
+ <span class="dropdown-text">Tutorial on Intro to R</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tutorials/tutorial_02.html">
- <span class="dropdown-text">Tutorial 2</span></a>
+ <span class="dropdown-text">Tutorial on Descriptive Statistics</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tutorials/tutorial_03.html">
- <span class="dropdown-text">Tutorial 3</span></a>
+ <span class="dropdown-text">Tutorial on Distributions</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tutorials/tutorial_04.html">
- <span class="dropdown-text">Tutorial 4</span></a>
+ <span class="dropdown-text">Tutorial on One Sample Confidence Intervals</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tutorials/tutorial_05.html">
- <span class="dropdown-text">Tutorial 5</span></a>
+ <span class="dropdown-text">Tutorial on Two Sample Confidence Intervals</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tutorials/tutorial_06.html">
- <span class="dropdown-text">Tutorial 6</span></a>
+ <span class="dropdown-text">Tutorial on One Sample Hypothesis Tests</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tutorials/tutorial_07.html">
- <span class="dropdown-text">Tutorial 7</span></a>
+ <span class="dropdown-text">Tutorial on Two Sample Hypothesis Tests</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tutorials/tutorial_08.html">
- <span class="dropdown-text">Tutorial 8</span></a>
+ <span class="dropdown-text">Tutorial on ANOVA</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tutorials/tutorial_09.html">
- <span class="dropdown-text">Tutorial 9</span></a>
+ <span class="dropdown-text">Tutorial on Intro to Regression</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tutorials/tutorial_10.html">
- <span class="dropdown-text">Tutorial 10</span></a>
+ <span class="dropdown-text">Tutorial on Inference Techniques on Regression</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tutorials/tutorial_11.html">
- <span class="dropdown-text">Tutorial 11</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-practice" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Practice</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-practice">    
-        <li>
-    <a class="dropdown-item" href="../practice/prac_01.html">
- <span class="dropdown-text">Practical 1</span></a>
+ <span class="dropdown-text">Tutorial on Categorical Data</span></a>
   </li>  
     </ul>
   </li>
@@ -402,15 +392,33 @@ window.Quarto = {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#q1-one-way-anova-manual-happiness-score-by-region" id="toc-q1-one-way-anova-manual-happiness-score-by-region" class="nav-link active" data-scroll-target="#q1-one-way-anova-manual-happiness-score-by-region">Q1 — One-way ANOVA (manual): Happiness score by region</a></li>
+  <li><a href="#q2-one-way-anova-built-in-happiness-score-by-region" id="toc-q2-one-way-anova-built-in-happiness-score-by-region" class="nav-link" data-scroll-target="#q2-one-way-anova-built-in-happiness-score-by-region">Q2 — One-way ANOVA (built-in): Happiness score by region</a></li>
+  <li><a href="#q3-fishers-lsd-no-adjustment-pairwise-region-comparisons" id="toc-q3-fishers-lsd-no-adjustment-pairwise-region-comparisons" class="nav-link" data-scroll-target="#q3-fishers-lsd-no-adjustment-pairwise-region-comparisons">Q3 — Fisher’s LSD (no adjustment): Pairwise region comparisons</a></li>
+  <li><a href="#q4-bonferroni-adjusted-pairwise-region-comparisons" id="toc-q4-bonferroni-adjusted-pairwise-region-comparisons" class="nav-link" data-scroll-target="#q4-bonferroni-adjusted-pairwise-region-comparisons">Q4 — Bonferroni-adjusted pairwise region comparisons</a></li>
+  <li><a href="#q5-one-way-anova-manual-exam-score-by-motivation-level" id="toc-q5-one-way-anova-manual-exam-score-by-motivation-level" class="nav-link" data-scroll-target="#q5-one-way-anova-manual-exam-score-by-motivation-level">Q5 — One-way ANOVA (manual): Exam score by motivation level</a></li>
+  <li><a href="#q6-one-way-anova-built-in-exam-score-by-motivation-level" id="toc-q6-one-way-anova-built-in-exam-score-by-motivation-level" class="nav-link" data-scroll-target="#q6-one-way-anova-built-in-exam-score-by-motivation-level">Q6 — One-way ANOVA (built-in): Exam score by motivation level</a></li>
+  <li><a href="#q7-fishers-lsd-exam-score-pairwise-comparisons-by-motivation" id="toc-q7-fishers-lsd-exam-score-pairwise-comparisons-by-motivation" class="nav-link" data-scroll-target="#q7-fishers-lsd-exam-score-pairwise-comparisons-by-motivation">Q7 — Fisher’s LSD: Exam score pairwise comparisons by motivation</a></li>
+  <li><a href="#q8-bonferroni-exam-score-pairwise-comparisons-by-parental-education" id="toc-q8-bonferroni-exam-score-pairwise-comparisons-by-parental-education" class="nav-link" data-scroll-target="#q8-bonferroni-exam-score-pairwise-comparisons-by-parental-education">Q8 — Bonferroni: Exam score pairwise comparisons by parental education</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Tutorial 08</h1>
+<h1 class="title">Tutorial 08: ANOVA</h1>
 </div>
 
 
@@ -463,9 +471,9 @@ p = P\bigl(F_{df1, df2} \ge F\bigr).
 \]</span></p>
 <p>Return a named numeric vector: <code>c(F = Fstat, df1 = df1, df2 = df2, p_value = pval)</code>.</p>
 <figure style="text-align:center" class="figure">
-<img src="./images/pokemons.jpg" style="width:40%" class="figure-img">
+<img src="./images/citylife.jpg" style="width:60%" class="figure-img">
 <figcaption>
-Photo by <a href="https://unsplash.com/@lifetimevalues?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Life Time Values</a> on <a href="https://unsplash.com/photos/six-pokemon-figurines-lined-up-on-a-wooden-surface-caF_z0aTPtQ?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
+Photo by <a href="https://unsplash.com/@duplexuno?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Arno Retief</a> on <a href="https://unsplash.com/photos/a-couple-of-people-walking-down-a-street-next-to-tall-buildings-CvylIFJTWKo?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
 </figcaption>
 </figure>
 <div class="callout callout-style-default callout-note callout-titled" title="Info">
@@ -618,12 +626,6 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InEx
 <h2 class="anchored" data-anchor-id="q2-one-way-anova-built-in-happiness-score-by-region">Q2 — One-way ANOVA (built-in): Happiness score by region</h2>
 <p>Now we will redo the same test using R’s built-in aov() function on the same subset of the city dataset.</p>
 <p>Return c(F = Fstat, df1 = df_region, df2 = df_resid, p_value = p) extracted from the ANOVA table.</p>
-<figure style="text-align:center" class="figure">
-<img src="./images/pokemons.jpg" style="width:40%" class="figure-img">
-<figcaption>
-Photo by <a href="https://unsplash.com/@lifetimevalues?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Life Time Values</a> on <a href="https://unsplash.com/photos/six-pokemon-figurines-lined-up-on-a-wooden-surface-caF_z0aTPtQ?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
-</figcaption>
-</figure>
 <div class="callout callout-style-default callout-note callout-titled" title="Info">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -733,12 +735,6 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InEy
 <h2 class="anchored" data-anchor-id="q3-fishers-lsd-no-adjustment-pairwise-region-comparisons">Q3 — Fisher’s LSD (no adjustment): Pairwise region comparisons</h2>
 <p>Using the same city subset as in Q1–Q2, perform pairwise t-tests on happiness scores between regions without multiple-comparison adjustment. This corresponds to Fisher’s LSD after a significant global ANOVA.</p>
 <p>Use pairwise.t.test() with p.adjust.method = “none” and return the matrix of p-values.</p>
-<figure style="text-align:center" class="figure">
-<img src="./images/pokemons.jpg" style="width:40%" class="figure-img">
-<figcaption>
-Photo by <a href="https://unsplash.com/@lifetimevalues?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Life Time Values</a> on <a href="https://unsplash.com/photos/six-pokemon-figurines-lined-up-on-a-wooden-surface-caF_z0aTPtQ?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
-</figcaption>
-</figure>
 <div class="callout callout-style-default callout-note callout-titled" title="Info">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -788,7 +784,7 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJx
 </div>
 </div>
 <div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="q3_city_lsd">
-<p>Use sub<span class="math inline">\(happiness_score as the response, sub\)</span>region as the group, and “none” for p.adjust.method.</p>
+<p>Use sub$happiness_score as the response, sub$region as the group, and “none” for p.adjust.method.</p>
 </div>
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q3_city_lsd">
 <div class="cell" data-exercise="q3_city_lsd" data-solution="true">
@@ -837,12 +833,6 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InEz
 <section id="q4-bonferroni-adjusted-pairwise-region-comparisons" class="level2">
 <h2 class="anchored" data-anchor-id="q4-bonferroni-adjusted-pairwise-region-comparisons">Q4 — Bonferroni-adjusted pairwise region comparisons</h2>
 <p>Now repeat the previous question but use a Bonferroni correction for multiple comparisons. Again, return the matrix of p-values.</p>
-<figure style="text-align:center" class="figure">
-<img src="./images/pokemons.jpg" style="width:40%" class="figure-img">
-<figcaption>
-Photo by <a href="https://unsplash.com/@lifetimevalues?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Life Time Values</a> on <a href="https://unsplash.com/photos/six-pokemon-figurines-lined-up-on-a-wooden-surface-caF_z0aTPtQ?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
-</figcaption>
-</figure>
 <div class="callout callout-style-default callout-note callout-titled" title="Info">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -889,7 +879,7 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJx
 </div>
 </div>
 <div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="q4_city_bonferroni">
-<p>Use the same sub<span class="math inline">\(happiness_score and sub\)</span>region, but set p.adjust.method = “bonferroni”.</p>
+<p>Use the same sub$happiness_score and sub$region, but set p.adjust.method = “bonferroni”.</p>
 </div>
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q4_city_bonferroni">
 <div class="cell" data-exercise="q4_city_bonferroni" data-solution="true">
@@ -962,9 +952,9 @@ p = P\bigl(F_{df_1, df_2} \ge F\bigr).
 <p>Return a named numeric vector:<br>
 <code>c(F = Fstat, df1 = df1, df2 = df2, p_value = pval)</code>.</p>
 <figure style="text-align:center" class="figure">
-<img src="./images/pokemons.jpg" style="width:40%" class="figure-img">
+<img src="./images/studentprog.jpg" style="width:60%" class="figure-img">
 <figcaption>
-Photo by <a href="https://unsplash.com/@lifetimevalues?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Life Time Values</a> on <a href="https://unsplash.com/photos/six-pokemon-figurines-lined-up-on-a-wooden-surface-caF_z0aTPtQ?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
+Photo by <a href="https://unsplash.com/@leovamexican?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Leonardo Vargas</a> on <a href="https://unsplash.com/photos/graduates-in-caps-and-gowns-seated-outdoors-xw2TSvMNRgQ?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
 </figcaption>
 </figure>
 <div class="callout callout-style-default callout-note callout-titled" title="Preview">
@@ -1086,12 +1076,6 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE1
 <h2 class="anchored" data-anchor-id="q6-one-way-anova-built-in-exam-score-by-motivation-level">Q6 — One-way ANOVA (built-in): Exam score by motivation level</h2>
 <p>Now use aov() to test for differences in mean exam score across motivation levels.</p>
 <p>Return c(F = Fstat, df1 = df_mot, df2 = df_resid, p_value = pval).</p>
-<figure style="text-align:center" class="figure">
-<img src="./images/pokemons.jpg" style="width:40%" class="figure-img">
-<figcaption>
-Photo by <a href="https://unsplash.com/@lifetimevalues?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Life Time Values</a> on <a href="https://unsplash.com/photos/six-pokemon-figurines-lined-up-on-a-wooden-surface-caF_z0aTPtQ?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
-</figcaption>
-</figure>
 <div class="callout callout-style-default callout-note callout-titled" title="Preview">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1181,12 +1165,6 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE2
 <h2 class="anchored" data-anchor-id="q7-fishers-lsd-exam-score-pairwise-comparisons-by-motivation">Q7 — Fisher’s LSD: Exam score pairwise comparisons by motivation</h2>
 <p>Using the same subset as Q5–Q6, compute unadjusted pairwise t-tests on Exam_Score across motivation levels (Fisher’s LSD).</p>
 <p>Return the matrix of p-values.</p>
-<figure style="text-align:center" class="figure">
-<img src="./images/pokemons.jpg" style="width:40%" class="figure-img">
-<figcaption>
-Photo by <a href="https://unsplash.com/@lifetimevalues?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Life Time Values</a> on <a href="https://unsplash.com/photos/six-pokemon-figurines-lined-up-on-a-wooden-surface-caF_z0aTPtQ?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
-</figcaption>
-</figure>
 <div class="callout callout-style-default callout-note callout-titled" title="Preview">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1220,7 +1198,7 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJx
 </div>
 </div>
 <div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="q7_stud_lsd">
-<p>Use sub<span class="math inline">\(Exam_Score, sub\)</span>mot, and “none” as the adjustment method.</p>
+<p>Use sub$Exam_Score, sub$mot, and “none” as the adjustment method.</p>
 </div>
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q7_stud_lsd">
 <div class="cell" data-exercise="q7_stud_lsd" data-solution="true">
@@ -1270,12 +1248,6 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE3
 <p>Treat Parental_Education_Level as a factor with three levels.</p>
 <p>Run pairwise.t.test() on Exam_Score across parental education levels, using Bonferroni adjustment.</p>
 <p>Return the p-value matrix.</p>
-<figure style="text-align:center" class="figure">
-<img src="./images/pokemons.jpg" style="width:40%" class="figure-img">
-<figcaption>
-Photo by <a href="https://unsplash.com/@lifetimevalues?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Life Time Values</a> on <a href="https://unsplash.com/photos/six-pokemon-figurines-lined-up-on-a-wooden-surface-caF_z0aTPtQ?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
-</figcaption>
-</figure>
 <div class="callout callout-style-default callout-note callout-titled" title="Preview">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1307,7 +1279,7 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJx
 </div>
 </div>
 <div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="q8_stud_bonf_edu">
-<p>Use sub<span class="math inline">\(Exam_Score and sub\)</span>edu with p.adjust.method = “bonferroni”.</p>
+<p>Use sub$Exam_Score and sub$edu with p.adjust.method = “bonferroni”.</p>
 </div>
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q8_stud_bonf_edu">
 <div class="cell" data-exercise="q8_stud_bonf_edu" data-solution="true">
@@ -1801,4 +1773,5 @@ window._ojs.runtime.interpretFromScriptTags();
 
 
 
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

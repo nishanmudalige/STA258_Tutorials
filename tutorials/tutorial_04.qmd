@@ -1,5 +1,5 @@
 ---
-title: "Tutorial 04"
+title: "Tutorial 04: One Sample Confidence Intervals"
 format: live-html
 engine: knitr
 ---

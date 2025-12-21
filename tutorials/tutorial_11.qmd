@@ -1,5 +1,5 @@
 ---
-title: "Tutorial 11"
+title: "Tutorial 11: Categorical Data"
 format: live-html
 engine: knitr
 resources:
@@ -15,7 +15,7 @@ For this tutorial, we will be using a Halloween candy dataset that compares diff
 Calculate the proportion of fruity candies from the dataset. 
 
 <figure style="text-align:center">
-  <img src="./images/fruit_candy.jpg" style="width:40%">
+  <img src="./images/fruit_candy.jpg" style="width:60%">
   <figcaption>Photo by <a href="https://unsplash.com/@joannakosinska?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Joanna Kosinska</a> on <a href="https://unsplash.com/photos/assorted-color-candies-on-container--ayOfwsd9mY?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>
@@ -92,7 +92,7 @@ Return the proportion of hard candies among all fruity candies, i.e. return a si
 
 
 <figure style="text-align:center">
-  <img src="./images/fruit_candy.jpg" style="width:40%">
+  <img src="./images/fruit_candy.jpg" style="width:60%">
   <figcaption>Photo by <a href="https://unsplash.com/@joannakosinska?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Joanna Kosinska</a> on <a href="https://unsplash.com/photos/assorted-color-candies-on-container--ayOfwsd9mY?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>
@@ -169,7 +169,7 @@ Finally return $p_1$ - $p_0$ .
 
 
 <figure style="text-align:center">
-  <img src="./images/chocolate.jpg" style="width:40%">
+  <img src="./images/chocolate.jpg" style="width:60%">
   <figcaption>Photo by <a href="https://unsplash.com/@redaquamedia?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Denny Müller</a> on <a href="https://unsplash.com/photos/orange-and-red-plastic-pack-mGP8gyGb8zY?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>
@@ -247,7 +247,7 @@ else fail("Mismatch. Check your subsetting and mean(bar==1).")
 Perform a chi-sq test of independence between chocolate and bar and return the p-value. 
 
 <figure style="text-align:center">
-  <img src="./images/chocolate.jpg" style="width:40%">
+  <img src="./images/chocolate.jpg" style="width:60%">
   <figcaption>Photo by <a href="https://unsplash.com/@redaquamedia?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Denny Müller</a> on <a href="https://unsplash.com/photos/orange-and-red-plastic-pack-mGP8gyGb8zY?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>
@@ -329,7 +329,7 @@ else fail("Mismatch. Check table order and chisq.test(..., correct=FALSE).")
 Run Fisher’s exact test for association between fruity and hard candies. Return the p-value. 
 
 <figure style="text-align:center">
-  <img src="./images/fruit_candy.jpg" style="width:40%">
+  <img src="./images/fruit_candy.jpg" style="width:60%">
   <figcaption>Photo by <a href="https://unsplash.com/@joannakosinska?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Joanna Kosinska</a> on <a href="https://unsplash.com/photos/assorted-color-candies-on-container--ayOfwsd9mY?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>
@@ -522,7 +522,7 @@ else fail("Mismatch. Check x1,n1,x2,n2 and prop.test(..., correct=FALSE).")
 Compute the odds ratio for the 2×2 table of chocolate (rows) vs bar (columns)
 
 $$
-OR = ad/bc
+OR = (a/b) / (c/d)
 $$
 where:  <br>
 - a = #(chocolate=1, bar=1)
@@ -536,7 +536,7 @@ where:  <br>
 
 
 <figure style="text-align:center">
-  <img src="./images/chocolate.jpg" style="width:40%">
+  <img src="./images/chocolate.jpg" style="width:60%">
   <figcaption>Photo by <a href="https://unsplash.com/@redaquamedia?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Denny Müller</a> on <a href="https://unsplash.com/photos/orange-and-red-plastic-pack-mGP8gyGb8zY?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>
@@ -576,7 +576,10 @@ b <- tab["1","0"]
 c <- tab["0","1"]
 d <- tab["0","0"]
 
-(or <- ___ / ___)
+odds_choc1 <- __ / __
+odds_choc0 <- __ / __
+
+odds_ratio <- odds_choc1 / odds_choc0
 
 
 ```
@@ -598,7 +601,10 @@ b <- tab["1","0"]
 c <- tab["0","1"]
 d <- tab["0","0"]
 
-(or <- (a * d) / (b * c))
+odds_choc1 <- a / b
+odds_choc0 <- c / d
+
+(or <- odds_choc1 / odds_choc0)
 
 
 ```
@@ -608,22 +614,28 @@ d <- tab["0","0"]
 #| exercise: cat_q8_odds_ratio
 #| check: true
 gradethis::grade_this({
-df <- read.csv("candy-data.csv")
-tab <- table(df$chocolate, df$bar)
+  df <- tryCatch(read.csv("candy-data.csv"), error = function(e) NULL)
+  if (is.null(df)) fail("Couldn't read 'candy-data.csv'.")
 
-a <- tab["1","1"]
-b <- tab["1","0"]
-c <- tab["0","1"]
-d <- tab["0","0"]
-exp <- (a * d) / (b * c)
+  if (!all(c("chocolate","bar") %in% names(df))) {
+    fail("CSV must contain 'chocolate' and 'bar' columns.")
+  }
 
-x <- .result
-ok <- is.numeric(x) && length(x) == 1L && is.finite(x)
+  tab <- table(df$chocolate, df$bar)
 
-if (!ok) fail("Return a single numeric odds ratio.")
-else if (abs(x - exp) < 1e-12) pass("Correct odds ratio.")
-else fail("Mismatch. Check a,b,c,d assignments from the 2x2 table.")
+  a <- tab["1","1"]
+  b <- tab["1","0"]
+  c <- tab["0","1"]
+  d <- tab["0","0"]
+
+  exp <- as.numeric((a * d) / (b * c))
+
+  x <- .result
+  ok <- is.numeric(x) && length(x) == 1L && is.finite(x)
+
+  if (!ok) fail("Return a single numeric odds ratio.")
+  else if (isTRUE(all.equal(as.numeric(x), exp, tolerance = 1e-12))) pass("Correct odds ratio.")
+  else fail("Mismatch. Check the odds (a/b) and (c/d), then take their ratio.")
 })
-
 ```
 

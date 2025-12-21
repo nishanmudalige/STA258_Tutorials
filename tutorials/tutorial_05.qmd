@@ -1,5 +1,5 @@
 ---
-title: "Tutorial 05"
+title: "Tutorial 05: Two Sample Confidence Intervals"
 format: live-html
 engine: knitr
 resources:
@@ -19,7 +19,7 @@ Read the CSV with read.csv("recipe_reviews.csv"), build the two groups, and prin
 
 
 <figure style="text-align:center">
-  <img src="./images/food_review.jpg" style="width:40%">
+  <img src="./images/food_review.jpg" style="width:60%">
   <figcaption>Photo by <a href="https://unsplash.com/@withmazar?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Maximus Mazar</a> on <a href="https://unsplash.com/photos/a-white-plate-topped-with-a-salad-on-top-of-a-table-gCT7s8QlTHs?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>
@@ -160,7 +160,7 @@ and only the two species Adelie and Gentoo.
 
 
 <figure style="text-align:center">
-  <img src="./images/penguin_species.jpg" style="width:40%">
+  <img src="./images/penguin_species.jpg" style="width:60%">
   <figcaption>Photo by <a href="https://unsplash.com/@niceguy1966?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Adam Tarshis</a> on <a href="https://unsplash.com/photos/a-couple-of-penguins-walking-on-sand-5hIWiJiZUpM?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>
@@ -207,7 +207,7 @@ df$yield <- df$bill_length_mm
 
 
 tt <- t.test(＿＿ ~ ＿＿, data = df, var.equal = TRUE, conf.level = ＿＿)
-tt$conf.int
+tt$conf.int #gives confidence interval
 ```
 
 ::: {.hint exercise="q2_pooled_penguins"}
@@ -288,8 +288,6 @@ for flipper_length_mm using Welch’s unequal-variance method (the default in t.
 
 ::: {.callout-note title="Info"}
 t.test(y ~ g, conf.level = 0.80) uses Welch by default (var.equal = FALSE). To obtain Chinstrap − Gentoo, set the factor level order to c("Chinstrap","Gentoo").
-
-
 :::
 
 ::: {.callout-note title="Preview"}
@@ -426,10 +424,6 @@ p1 <- mean( ＿＿ , na.rm = TRUE)
 p2 <- mean( ＿＿ , na.rm = TRUE)
 se <- ＿＿
 z <- ＿＿ 
-
-
-
-
 ```
 
 ::: {.hint exercise="q11_wald_2prop_reviews"}
@@ -477,14 +471,7 @@ if (!ok) fail("Print c(lower, upper).")
 if (max(abs(x - exp)) < 1e-6) pass("✅ Correct 95% Wald CI for p_FiveStar − p_NotFive.")
 else fail("Recheck successes, n1/n2, and z*.")
 })
-
-
-
 ```
-
-
-
-
 
 ## Q5 — Two-Sample CI for a Difference of Proportions using prop.test
 

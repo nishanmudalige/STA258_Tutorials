@@ -1,5 +1,5 @@
 ---
-title: "Tutorial 08"
+title: "Tutorial 08: ANOVA"
 format: live-html
 engine: knitr
 resources:
@@ -44,8 +44,8 @@ $$
 Return a named numeric vector: `c(F = Fstat, df1 = df1, df2 = df2, p_value = pval)`.
 
 <figure style="text-align:center">
-  <img src="./images/pokemons.jpg" style="width:40%">
-  <figcaption>Photo by <a href="https://unsplash.com/@lifetimevalues?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Life Time Values</a> on <a href="https://unsplash.com/photos/six-pokemon-figurines-lined-up-on-a-wooden-surface-caF_z0aTPtQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  <img src="./images/citylife.jpg" style="width:60%">
+  <figcaption>Photo by <a href="https://unsplash.com/@duplexuno?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Arno Retief</a> on <a href="https://unsplash.com/photos/a-couple-of-people-walking-down-a-street-next-to-tall-buildings-CvylIFJTWKo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>
 
@@ -249,13 +249,6 @@ Now we will redo the same test using R’s built-in aov() function on the same s
 
 Return c(F = Fstat, df1 = df_region, df2 = df_resid, p_value = p) extracted from the ANOVA table.
 
-
-<figure style="text-align:center">
-  <img src="./images/pokemons.jpg" style="width:40%">
-  <figcaption>Photo by <a href="https://unsplash.com/@lifetimevalues?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Life Time Values</a> on <a href="https://unsplash.com/photos/six-pokemon-figurines-lined-up-on-a-wooden-surface-caF_z0aTPtQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-      </figcaption>
-</figure>
-
 ::: {.callout-note title="Info"}
 For a one-way ANOVA fit with fit <- aov(y ~ group, data = ...), you can extract the ANOVA table with summary(fit)[[1]]. The row corresponding to the factor has columns:
 
@@ -395,12 +388,6 @@ Using the same city subset as in Q1–Q2, perform pairwise t-tests on happiness 
 
 Use pairwise.t.test() with p.adjust.method = "none" and return the matrix of p-values.
 
-<figure style="text-align:center">
-  <img src="./images/pokemons.jpg" style="width:40%">
-  <figcaption>Photo by <a href="https://unsplash.com/@lifetimevalues?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Life Time Values</a> on <a href="https://unsplash.com/photos/six-pokemon-figurines-lined-up-on-a-wooden-surface-caF_z0aTPtQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-      </figcaption>
-</figure>
-
 ::: {.callout-note title="Info"}
 Fisher's LSD (Least Significant Difference) is essentially:
 
@@ -458,7 +445,7 @@ out$p.value
 ```
 
 ::: {.hint exercise="q3_city_lsd"}
-Use sub$happiness_score as the response, sub$region as the group, and "none" for p.adjust.method.
+Use sub\$happiness_score as the response, sub\$region as the group, and "none" for p.adjust.method.
 :::
 
 ::: {.solution exercise="q3_city_lsd"}
@@ -532,11 +519,6 @@ fail("Check your pairwise.t.test() call and that you used p.adjust.method = 'non
 
 Now repeat the previous question but use a Bonferroni correction for multiple comparisons. Again, return the matrix of p-values.
 
-<figure style="text-align:center">
-  <img src="./images/pokemons.jpg" style="width:40%">
-  <figcaption>Photo by <a href="https://unsplash.com/@lifetimevalues?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Life Time Values</a> on <a href="https://unsplash.com/photos/six-pokemon-figurines-lined-up-on-a-wooden-surface-caF_z0aTPtQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-      </figcaption>
-</figure>
 
 ::: {.callout-note title="Info"}
 The Bonferroni adjustment is a simple and conservative way to control the family-wise error rate when making many comparisons. In R, use p.adjust.method = "bonferroni" in pairwise.t.test().
@@ -591,7 +573,7 @@ out$p.value
 ```
 
 ::: {.hint exercise="q4_city_bonferroni"}
-Use the same sub$happiness_score and sub$region, but set p.adjust.method = "bonferroni".
+Use the same sub\$happiness_score and sub\$region, but set p.adjust.method = "bonferroni".
 :::
 
 ::: {.solution exercise="q4_city_bonferroni"}
@@ -697,8 +679,8 @@ Return a named numeric vector:
 `c(F = Fstat, df1 = df1, df2 = df2, p_value = pval)`.
 
 <figure style="text-align:center">
-  <img src="./images/pokemons.jpg" style="width:40%">
-  <figcaption>Photo by <a href="https://unsplash.com/@lifetimevalues?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Life Time Values</a> on <a href="https://unsplash.com/photos/six-pokemon-figurines-lined-up-on-a-wooden-surface-caF_z0aTPtQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  <img src="./images/studentprog.jpg" style="width:60%">
+  <figcaption>Photo by <a href="https://unsplash.com/@leovamexican?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Leonardo Vargas</a> on <a href="https://unsplash.com/photos/graduates-in-caps-and-gowns-seated-outdoors-xw2TSvMNRgQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>
 
@@ -875,12 +857,6 @@ Now use aov() to test for differences in mean exam score across motivation level
 
 Return c(F = Fstat, df1 = df_mot, df2 = df_resid, p_value = pval).
 
-<figure style="text-align:center">
-  <img src="./images/pokemons.jpg" style="width:40%">
-  <figcaption>Photo by <a href="https://unsplash.com/@lifetimevalues?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Life Time Values</a> on <a href="https://unsplash.com/photos/six-pokemon-figurines-lined-up-on-a-wooden-surface-caF_z0aTPtQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-      </figcaption>
-</figure>
-
 ::: {.callout-note title="Preview"}
 ```{webr}
 #| echo: true
@@ -1005,12 +981,6 @@ Using the same subset as Q5–Q6, compute unadjusted pairwise t-tests on Exam_Sc
 
 Return the matrix of p-values.
 
-<figure style="text-align:center">
-  <img src="./images/pokemons.jpg" style="width:40%">
-  <figcaption>Photo by <a href="https://unsplash.com/@lifetimevalues?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Life Time Values</a> on <a href="https://unsplash.com/photos/six-pokemon-figurines-lined-up-on-a-wooden-surface-caF_z0aTPtQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-      </figcaption>
-</figure>
-
 ::: {.callout-note title="Preview"}
 ```{webr}
 #| echo: true
@@ -1057,7 +1027,7 @@ out$p.value
 ```
 
 ::: {.hint exercise="q7_stud_lsd"}
-Use sub$Exam_Score, sub$mot, and "none" as the adjustment method.
+Use sub\$Exam_Score, sub\$mot, and "none" as the adjustment method.
 :::
 
 ::: {.solution exercise="q7_stud_lsd"}
@@ -1143,12 +1113,6 @@ Run pairwise.t.test() on Exam_Score across parental education levels, using Bonf
 
 Return the p-value matrix.
 
-<figure style="text-align:center">
-  <img src="./images/pokemons.jpg" style="width:40%">
-  <figcaption>Photo by <a href="https://unsplash.com/@lifetimevalues?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Life Time Values</a> on <a href="https://unsplash.com/photos/six-pokemon-figurines-lined-up-on-a-wooden-surface-caF_z0aTPtQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-      </figcaption>
-</figure>
-
 ::: {.callout-note title="Preview"}
 ```{webr}
 #| echo: true
@@ -1193,7 +1157,7 @@ out$p.value
 ```
 
 ::: {.hint exercise="q8_stud_bonf_edu"}
-Use sub$Exam_Score and sub$edu with p.adjust.method = "bonferroni".
+Use sub\$Exam_Score and sub\$edu with p.adjust.method = "bonferroni".
 :::
 
 ::: {.solution exercise="q8_stud_bonf_edu"}

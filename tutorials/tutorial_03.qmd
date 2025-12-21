@@ -1,5 +1,5 @@
 ---
-title: "Tutorial 03"
+title: "Tutorial 03: Distributions"
 format: live-html
 engine: knitr
 # prevent any project filters from interfering

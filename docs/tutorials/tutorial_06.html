@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Tutorial 06 – Course Tutorials</title>
+<title>Tutorial 06: One Sample Hypothesis Tests – Course Tutorials</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -108,6 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 <script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
 <link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
@@ -144,7 +145,7 @@ window.Quarto = {
 <link rel="stylesheet" href="../design.css">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -336,58 +337,47 @@ window.Quarto = {
     <ul class="dropdown-menu" aria-labelledby="nav-menu-tutorials">    
         <li>
     <a class="dropdown-item" href="../tutorials/tutorial_01.html">
- <span class="dropdown-text">Tutorial 1</span></a>
+ <span class="dropdown-text">Tutorial on Intro to R</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tutorials/tutorial_02.html">
- <span class="dropdown-text">Tutorial 2</span></a>
+ <span class="dropdown-text">Tutorial on Descriptive Statistics</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tutorials/tutorial_03.html">
- <span class="dropdown-text">Tutorial 3</span></a>
+ <span class="dropdown-text">Tutorial on Distributions</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tutorials/tutorial_04.html">
- <span class="dropdown-text">Tutorial 4</span></a>
+ <span class="dropdown-text">Tutorial on One Sample Confidence Intervals</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tutorials/tutorial_05.html">
- <span class="dropdown-text">Tutorial 5</span></a>
+ <span class="dropdown-text">Tutorial on Two Sample Confidence Intervals</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tutorials/tutorial_06.html">
- <span class="dropdown-text">Tutorial 6</span></a>
+ <span class="dropdown-text">Tutorial on One Sample Hypothesis Tests</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tutorials/tutorial_07.html">
- <span class="dropdown-text">Tutorial 7</span></a>
+ <span class="dropdown-text">Tutorial on Two Sample Hypothesis Tests</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tutorials/tutorial_08.html">
- <span class="dropdown-text">Tutorial 8</span></a>
+ <span class="dropdown-text">Tutorial on ANOVA</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tutorials/tutorial_09.html">
- <span class="dropdown-text">Tutorial 9</span></a>
+ <span class="dropdown-text">Tutorial on Intro to Regression</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tutorials/tutorial_10.html">
- <span class="dropdown-text">Tutorial 10</span></a>
+ <span class="dropdown-text">Tutorial on Inference Techniques on Regression</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../tutorials/tutorial_11.html">
- <span class="dropdown-text">Tutorial 11</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-practice" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Practice</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-practice">    
-        <li>
-    <a class="dropdown-item" href="../practice/prac_01.html">
- <span class="dropdown-text">Practical 1</span></a>
+ <span class="dropdown-text">Tutorial on Categorical Data</span></a>
   </li>  
     </ul>
   </li>
@@ -402,15 +392,34 @@ window.Quarto = {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#q1-one-sample-hypothesis-test-on-the-mean-σ-known" id="toc-q1-one-sample-hypothesis-test-on-the-mean-σ-known" class="nav-link active" data-scroll-target="#q1-one-sample-hypothesis-test-on-the-mean-σ-known">Q1 — One Sample Hypothesis Test on the Mean (σ known)</a></li>
+  <li><a href="#q2-one-sample-z-test-on-spi-σ-known-using-bsda" id="toc-q2-one-sample-z-test-on-spi-σ-known-using-bsda" class="nav-link" data-scroll-target="#q2-one-sample-z-test-on-spi-σ-known-using-bsda">Q2 — One-sample z-test on SPI (σ known, using BSDA)</a></li>
+  <li><a href="#q3-one-sample-test-on-spi-σ-unknown" id="toc-q3-one-sample-test-on-spi-σ-unknown" class="nav-link" data-scroll-target="#q3-one-sample-test-on-spi-σ-unknown">Q3 — One-sample test on SPI (σ unknown)</a></li>
+  <li><a href="#q4-one-sample-t-test-on-spi-σ-unknown-built-in" id="toc-q4-one-sample-t-test-on-spi-σ-unknown-built-in" class="nav-link" data-scroll-target="#q4-one-sample-t-test-on-spi-σ-unknown-built-in">Q4 — One-sample t-test on SPI (σ unknown, built-in)</a></li>
+  <li><a href="#q5-one-sample-t-test-on-track-score-σ-unknown-manual-large-n" id="toc-q5-one-sample-t-test-on-track-score-σ-unknown-manual-large-n" class="nav-link" data-scroll-target="#q5-one-sample-t-test-on-track-score-σ-unknown-manual-large-n">Q5 — One-sample t-test on Track Score (σ unknown, manual, large n)</a></li>
+  <li><a href="#q6-one-sample-t-test-on-track-score-σ-unknown-built-in" id="toc-q6-one-sample-t-test-on-track-score-σ-unknown-built-in" class="nav-link" data-scroll-target="#q6-one-sample-t-test-on-track-score-σ-unknown-built-in">Q6 — One-sample t-test on Track Score (σ unknown, built-in)</a></li>
+  <li><a href="#q7-one-sample-test-on-a-proportion-base-r-prop.test" id="toc-q7-one-sample-test-on-a-proportion-base-r-prop.test" class="nav-link" data-scroll-target="#q7-one-sample-test-on-a-proportion-base-r-prop.test">Q7 — One-sample test on a proportion (base R <code>prop.test()</code>)</a></li>
+  <li><a href="#q8-from-chi-square-to-z-follow-up-on-the-same-test" id="toc-q8-from-chi-square-to-z-follow-up-on-the-same-test" class="nav-link" data-scroll-target="#q8-from-chi-square-to-z-follow-up-on-the-same-test">Q8 — From chi-square to z (follow-up on the same test)</a></li>
+  <li><a href="#q9-one-sample-proportion-using-prop_test-rstatix" id="toc-q9-one-sample-proportion-using-prop_test-rstatix" class="nav-link" data-scroll-target="#q9-one-sample-proportion-using-prop_test-rstatix">Q9 — One-sample proportion using <code>prop_test()</code> (rstatix)</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Tutorial 06</h1>
+<h1 class="title">Tutorial 06: One Sample Hypothesis Tests</h1>
 </div>
 
 
@@ -445,7 +454,7 @@ eyJhdHRyIjp7ImVkaXQiOmZhbHNlLCJldmFsIjp0cnVlLCJvdXRwdXQiOmZhbHNlfSwiY29kZSI6Indl
 <p>H₁: μ ≠ 70</p>
 <p>Use a two-sided z-test with σ known.</p>
 <figure style="text-align:center" class="figure">
-<img src="./images/world_cup_2014.jpg" style="width:40%" class="figure-img">
+<img src="./images/world_cup_2014.jpg" style="width:60%" class="figure-img">
 <figcaption>
 Photo by <a href="https://unsplash.com/@camyogi_2019?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">CamYogi</a> on <a href="https://unsplash.com/photos/amerian-football-team-NwZpT4LKwDQ?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
 </figcaption>
@@ -746,7 +755,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InEy
 
 </div>
 <script type="webr-20-contents">
-eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxNF9zcGlfdF9idWlsdGluIiwiZXhlcmNpc2UubGluZXMiOjh9LCJjb2RlIjoiXG5kZiA8LSByZWFkLmNzdihcIndvcmxkX2N1cF9wcmVkaWN0aW9ucy5jc3ZcIilcbnggPC0gZGYkc3BpXG5cbm91dCA8LSB0LnRlc3Qo77y/77y/LFxubXUgPSDvvL/vvL8sXG5hbHRlcm5hdGl2ZSA9IFwidHdvLnNpZGVkXCIpXG5cbm91dCRwLnZhbHVlIn0=
+eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxNF9zcGlfdF9idWlsdGluIiwiZXhlcmNpc2UubGluZXMiOjh9LCJjb2RlIjoiXG5kZiA8LSByZWFkLmNzdihcIndvcmxkX2N1cF9wcmVkaWN0aW9ucy5jc3ZcIilcbnggPC0g77y/77y/XG5cbm91dCA8LSB0LnRlc3Qo77y/77y/LFxubXUgPSDvvL/vvL8sXG5hbHRlcm5hdGl2ZSA9IFwidHdvLnNpZGVkXCIpXG5cbm91dCRwLnZhbHVlIn0=
 </script>
 </div>
 </div>
@@ -823,12 +832,12 @@ eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0g
 
 </div>
 <script type="webr-26-contents">
-eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxNV90cmFja3Njb3JlX3RfbWFudWFsIiwiZXhlcmNpc2UubGluZXMiOjE0fSwiY29kZSI6ImRmIDwtIHJlYWQuY3N2KFwic3BvdGlmeS0yMDI0LmNzdlwiKVxuXG5udW1lcmljIHZhcmlhYmxlXG5cbnggPC0gZGYkVHJhY2suU2NvcmVcblxubXVfMCA8LSDvvL/vvL8gIyA0NVxueCA8LSB4W2lzLmZpbml0ZSh4KV0gIyBkcm9wIE5Bc1xubiA8LSBsZW5ndGgoeClcbnhiYXIgPC0g77y/77y/KHgpICMgbWVhblxucyA8LSDvvL/vvL8oeCkgIyBzYW1wbGUgc2RcblxuZGZyZWUgPC0gbiAtIDFcblxudF9zdGF0IDwtICh4YmFyIC0gbXVfMCkgLyAocyAvIHNxcnQobikpXG5cbnBfdHdvIDwtIDIgKiAoMSAtIHB0KGFicyh0X3N0YXQpLCBkZiA9IGRmcmVlKSlcblxuYyh0ID0gdF9zdGF0LCBkZiA9IGRmcmVlLCBwX3ZhbHVlID0gcF90d28pIn0=
+eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxNV90cmFja3Njb3JlX3RfbWFudWFsIiwiZXhlcmNpc2UubGluZXMiOjE0fSwiY29kZSI6ImRmIDwtIHJlYWQuY3N2KFwic3BvdGlmeS0yMDI0LmNzdlwiKVxuXG5udW1lcmljIHZhcmlhYmxlXG5cbnggPC0g77y/77y/XG5cbm11XzAgPC0g77y/77y/ICMgNDVcbnggPC0geFtpcy5maW5pdGUoeCldICMgZHJvcCBOQXNcbm4gPC0gbGVuZ3RoKHgpXG54YmFyIDwtIO+8v++8vyh4KSAjIG1lYW5cbnMgPC0g77y/77y/KHgpICMgc2FtcGxlIHNkXG5cbmRmcmVlIDwtIG4gLSAxXG5cbnRfc3RhdCA8LSAoeGJhciAtIG11XzApIC8gKHMgLyBzcXJ0KG4pKVxuXG5wX3R3byA8LSAyICogKDEgLSBwdChhYnModF9zdGF0KSwgZGYgPSBkZnJlZSkpXG5cbmModCA9IHRfc3RhdCwgZGYgPSBkZnJlZSwgcF92YWx1ZSA9IHBfdHdvKSJ9
 </script>
 </div>
 </div>
 <div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="q5_trackscore_t_manual">
-<p>Use Track.Score as x, test against 45, and use mean() and sd() before plugging into the t formula. Make it two-sided.</p>
+<p>Use Track.Score as x, use mean() and sd() before plugging into the t formula. Make it two-sided.</p>
 </div>
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q5_trackscore_t_manual">
 <div class="cell" data-exercise="q5_trackscore_t_manual" data-solution="true">
@@ -917,12 +926,12 @@ eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0g
 
 </div>
 <script type="webr-32-contents">
-eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxNl90cmFja3Njb3JlX3RfYnVpbHRpbiIsImV4ZXJjaXNlLmxpbmVzIjo4fSwiY29kZSI6IlxuZGYgPC0gcmVhZC5jc3YoXCJzcG90aWZ5LTIwMjQuY3N2XCIpXG54IDwtIGRmJFRyYWNrLlNjb3JlXG5cbm91dCA8LSB0LnRlc3Qo77y/77y/LFxubXUgPSDvvL/vvL8sXG5hbHRlcm5hdGl2ZSA9IFwidHdvLnNpZGVkXCIpXG5cbm91dCRwLnZhbHVlIn0=
+eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxNl90cmFja3Njb3JlX3RfYnVpbHRpbiIsImV4ZXJjaXNlLmxpbmVzIjo4fSwiY29kZSI6IlxuZGYgPC0gcmVhZC5jc3YoXCJzcG90aWZ5LTIwMjQuY3N2XCIpXG54IDwtIO+8v++8v1xuXG5vdXQgPC0gdC50ZXN0KO+8v++8vyxcbm11ID0g77y/77y/LFxuYWx0ZXJuYXRpdmUgPSBcInR3by5zaWRlZFwiKVxuXG5vdXQkcC52YWx1ZSJ9
 </script>
 </div>
 </div>
 <div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="q6_trackscore_t_builtin">
-<p>Use the Track.Score column and test it against 45, two-sided.</p>
+<p>Use the Track.Score column.</p>
 </div>
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q6_trackscore_t_builtin">
 <div class="cell" data-exercise="q6_trackscore_t_builtin" data-solution="true">
@@ -1001,7 +1010,7 @@ eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoidmcgPC0g
 
 </div>
 <script type="webr-38-contents">
-eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxN192Z3NfcHJvcF9iYXNlIiwiZXhlcmNpc2UubGluZXMiOjEwfSwiY29kZSI6IlxudmcgPC0gcmVhZC5jc3YoXCJ2Z3NhbGVzLmNzdlwiKVxuXG4jIHN1Y2Nlc3NlcyA9IHJvd3Mgd2hlcmUgUHVibGlzaGVyID09IFwiTmludGVuZG9cIlxueCA8LSBzdW0odmckUHVibGlzaGVyID09IFwiTmludGVuZG9cIiwgbmEucm0gPSBUUlVFKVxuXG4jIHRvdGFsIHRyaWFsc1xubiA8LSBzdW0oIWlzLm5hKHZnJFB1Ymxpc2hlcikpXG5cbm91dCA8LSBwcm9wLnRlc3QoeCA9IHgsXG4gICAgICAgICAgICAgICAgIG4gPSBuLFxuICAgICAgICAgICAgICAgICBwID0g77y/77y/LCAgICAgICAgICAgICAgIyB1c2UgMC4wNDVcbiAgICAgICAgICAgICAgICAgYWx0ZXJuYXRpdmUgPSBcInR3by5zaWRlZFwiKVxuXG4jIHByaW50IHAtdmFsdWVcbm91dCRwLnZhbHVlIn0=
+eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxN192Z3NfcHJvcF9iYXNlIiwiZXhlcmNpc2UubGluZXMiOjEwfSwiY29kZSI6IlxudmcgPC0gcmVhZC5jc3YoXCJ2Z3NhbGVzLmNzdlwiKVxuXG54IDwtIHN1bSjvvL/vvL8sIG5hLnJtID0gVFJVRSlcblxuIyB0b3RhbCB0cmlhbHNcbm4gPC0gc3VtKCFpcy5uYSh2ZyRQdWJsaXNoZXIpKVxuXG5vdXQgPC0gcHJvcC50ZXN0KHggPSB4LFxuICAgICAgICAgICAgICAgICBuID0gbixcbiAgICAgICAgICAgICAgICAgcCA9IO+8v++8vywgICAgXG4gICAgICAgICAgICAgICAgIGFsdGVybmF0aXZlID0g77y/77y/KVxuXG4jIHByaW50IHAtdmFsdWVcbu+8v++8vyJ9
 </script>
 </div>
 </div>
@@ -1068,7 +1077,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE3
 
 </div>
 <script type="webr-43-contents">
-eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxOF92Z3NfcHJvcF9jaGlzcV90b196IiwiZXhlcmNpc2UubGluZXMiOjEwfSwiY29kZSI6IlxudmcgPC0gcmVhZC5jc3YoXCJ2Z3NhbGVzLmNzdlwiKVxuXG54IDwtIHN1bSh2ZyRQdWJsaXNoZXIgPT0gXCJOaW50ZW5kb1wiLCBuYS5ybSA9IFRSVUUpXG5uIDwtIHN1bSghaXMubmEodmckUHVibGlzaGVyKSlcblxub3V0IDwtIHByb3AudGVzdCh4ID0geCxcbiAgICAgICAgICAgICAgICAgbiA9IG4sXG4gICAgICAgICAgICAgICAgIHAgPSAwLjA0NSxcbiAgICAgICAgICAgICAgICAgYWx0ZXJuYXRpdmUgPSBcInR3by5zaWRlZFwiKVxuXG5jaGlzcV92YWwgPC0gb3V0JHN0YXRpc3RpYyAgICMgY2hpLXNxdWFyZSB3aXRoIDEgZGZcbnpfdmFsIDwtIHNxcnQoY2hpc3FfdmFsKSAgICAgIyBjb3JyZXNwb25kaW5nIHogbWFnbml0dWRlXG5cbmMoY2hpc3EgPSBjaGlzcV92YWwsIHpfZnJvbV9jaGlzcSA9IHpfdmFsKSJ9
+eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxOF92Z3NfcHJvcF9jaGlzcV90b196IiwiZXhlcmNpc2UubGluZXMiOjEwfSwiY29kZSI6IlxudmcgPC0gcmVhZC5jc3YoXCJ2Z3NhbGVzLmNzdlwiKVxuXG54IDwtIHN1bSh2ZyRQdWJsaXNoZXIgPT0gXCJOaW50ZW5kb1wiLCBuYS5ybSA9IFRSVUUpXG5uIDwtIHN1bSghaXMubmEodmckUHVibGlzaGVyKSlcblxub3V0IDwtIO+8v++8v1xuXG5jaGlzcV92YWwgPC0g77y/77y/XG56X3ZhbCA8LSDvvL/vvL9cblxuYyhjaGlzcSA9IGNoaXNxX3ZhbCwgel9mcm9tX2NoaXNxID0gel92YWwpIn0=
 </script>
 </div>
 </div>
@@ -1141,44 +1150,48 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE4
 
 </div>
 <script type="webr-48-contents">
-eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxOV92Z3NfcHJvcF9yc3RhdGl4IiwiZXhlcmNpc2UubGluZXMiOjEyfSwiY29kZSI6IlxubGlicmFyeShyc3RhdGl4KVxuXG52ZyA8LSByZWFkLmNzdihcInZnc2FsZXMuY3N2XCIpXG5cbnZnJGlzX25pbnRlbmRvIDwtIHZnJFB1Ymxpc2hlciA9PSBcIk5pbnRlbmRvXCJcblxub3V0IDwtIHByb3BfdGVzdChkYXRhID0gdmcsXG4gICAgICAgICAgICAgICAgIGZvcm11bGEgPSBpc19uaW50ZW5kbyB+IDEsXG4gICAgICAgICAgICAgICAgIHAgPSDvvL/vvL8pICAgICAjIDAuMDQ1XG5cbm91dCJ9
+eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJxOV92Z3NfcHJvcF9yc3RhdGl4IiwiZXhlcmNpc2UubGluZXMiOjEyfSwiY29kZSI6IlxubGlicmFyeShyc3RhdGl4KVxuXG52ZyA8LSByZWFkLmNzdihcInZnc2FsZXMuY3N2XCIpXG5cbnZnJGlzX25pbnRlbmRvIDwtIHZnJFB1Ymxpc2hlciA9PSBcIk5pbnRlbmRvXCJcblxub3V0IDwtIHJzdGF0aXg6OnByb3BfdGVzdChcbiAgeCA9IHN1bSjvvL/vvL8sIG5hLnJtID0gVFJVRSksXG4gIG4gPSBzdW0o77y/77y/KSxcbiAgcCA9IO+8v++8v1xuKVxuXG7vvL/vvL8ifQ==
 </script>
 </div>
 </div>
 <div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="q9_vgs_prop_rstatix">
-<p>Use the logical column <code>is_nintendo</code> and test it against 0.045.</p>
+<p>Use the logical column <code>is_nintendo</code>.</p>
 </div>
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q9_vgs_prop_rstatix">
 <div class="cell" data-exercise="q9_vgs_prop_rstatix" data-solution="true">
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="q9_vgs_prop_rstatix">
-<code id="interpolate-50" class="solution-code d-none">
-library(rstatix)
+<code id="interpolate-50" class="solution-code d-none">library(rstatix)
 
 vg &lt;- read.csv("vgsales.csv")
+
 vg$is_nintendo &lt;- vg$Publisher == "Nintendo"
 
-out &lt;- rstatix::prop_test(data = vg,
-                          formula = is_nintendo ~ 1,
-                          p = 0.045)
+out &lt;- rstatix::prop_test(
+  x = sum(vg$is_nintendo, na.rm = TRUE),
+  n = sum(!is.na(vg$is_nintendo)),
+  p = 0.045
+)
 
 out</code>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-51-1"><a href="#interpolate-51-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-51-2"><a href="#interpolate-51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstatix)</span>
-<span id="interpolate-51-3"><a href="#interpolate-51-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-51-4"><a href="#interpolate-51-4" aria-hidden="true" tabindex="-1"></a>vg <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"vgsales.csv"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-51-1"><a href="#interpolate-51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstatix)</span>
+<span id="interpolate-51-2"><a href="#interpolate-51-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-51-3"><a href="#interpolate-51-3" aria-hidden="true" tabindex="-1"></a>vg <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"vgsales.csv"</span>)</span>
+<span id="interpolate-51-4"><a href="#interpolate-51-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-51-5"><a href="#interpolate-51-5" aria-hidden="true" tabindex="-1"></a>vg<span class="sc">$</span>is_nintendo <span class="ot">&lt;-</span> vg<span class="sc">$</span>Publisher <span class="sc">==</span> <span class="st">"Nintendo"</span></span>
 <span id="interpolate-51-6"><a href="#interpolate-51-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-51-7"><a href="#interpolate-51-7" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> rstatix<span class="sc">::</span><span class="fu">prop_test</span>(<span class="at">data =</span> vg,</span>
-<span id="interpolate-51-8"><a href="#interpolate-51-8" aria-hidden="true" tabindex="-1"></a>                          <span class="at">formula =</span> is_nintendo <span class="sc">~</span> <span class="dv">1</span>,</span>
-<span id="interpolate-51-9"><a href="#interpolate-51-9" aria-hidden="true" tabindex="-1"></a>                          <span class="at">p =</span> <span class="fl">0.045</span>)</span>
-<span id="interpolate-51-10"><a href="#interpolate-51-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-51-11"><a href="#interpolate-51-11" aria-hidden="true" tabindex="-1"></a>out</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="interpolate-51-7"><a href="#interpolate-51-7" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> rstatix<span class="sc">::</span><span class="fu">prop_test</span>(</span>
+<span id="interpolate-51-8"><a href="#interpolate-51-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">sum</span>(vg<span class="sc">$</span>is_nintendo, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="interpolate-51-9"><a href="#interpolate-51-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">n =</span> <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(vg<span class="sc">$</span>is_nintendo)),</span>
+<span id="interpolate-51-10"><a href="#interpolate-51-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">p =</span> <span class="fl">0.045</span></span>
+<span id="interpolate-51-11"><a href="#interpolate-51-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="interpolate-51-12"><a href="#interpolate-51-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="interpolate-51-13"><a href="#interpolate-51-13" aria-hidden="true" tabindex="-1"></a>out</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
 <div class="cell" data-exercise="q9_vgs_prop_rstatix" data-check="true">
 <script type="exercise-check-q9_vgs_prop_rstatix-contents">
-eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE5X3Znc19wcm9wX3JzdGF0aXgifSwiY29kZSI6ImdyYWRldGhpczo6Z3JhZGVfdGhpcyh7XG4gIHZnIDwtIHRyeUNhdGNoKHJlYWQuY3N2KFwidmdzYWxlcy5jc3ZcIiksIGVycm9yID0gZnVuY3Rpb24oZSkgTlVMTClcbiAgaWYgKGlzLm51bGwodmcpKSBmYWlsKFwiQ291bGRuJ3QgcmVhZCAndmdzYWxlcy5jc3YnLlwiKVxuICBpZiAoIVwiUHVibGlzaGVyXCIgJWluJSBuYW1lcyh2ZykpIGZhaWwoXCJDU1YgbXVzdCBjb250YWluICdQdWJsaXNoZXInLlwiKVxuXG4gIHN1cHByZXNzTWVzc2FnZXMobGlicmFyeShyc3RhdGl4KSlcblxuICB2ZyRpc19uaW50ZW5kbyA8LSB2ZyRQdWJsaXNoZXIgPT0gXCJOaW50ZW5kb1wiXG5cbiAgZXhwX291dCA8LSByc3RhdGl4Ojpwcm9wX3Rlc3QoZGF0YSA9IHZnLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBmb3JtdWxhID0gaXNfbmludGVuZG8gfiAxLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwID0gMC4wNDUpXG5cbiAgcmVzIDwtIC5yZXN1bHRcbiAgIyBXZSBjYW4ndCBwZXJmZWN0bHkgcHJlZGljdCBvYmplY3Qgc2hhcGUgc3R1ZGVudHMgcHJpbnQsIHNvIGNoZWNrIHRoYXQgdGhleSByYW4gcnN0YXRpeDo6cHJvcF90ZXN0XG4gICMgYnkgY2hlY2tpbmcgZm9yIGEgZGF0YS5mcmFtZS1saWtlIHJlc3VsdCB3aXRoIGV4cGVjdGVkIGNvbHVtbnMuXG4gIGlmIChpcy5kYXRhLmZyYW1lKHJlcykgJiYgYWxsKGMoXCJzdGF0aXN0aWNcIixcInBcIikgJWluJSBuYW1lcyhyZXMpKSkge1xuICAgIHBhc3MoXCJMb29rcyBsaWtlIHRoZSBjb3JyZWN0IHJzdGF0aXg6OnByb3BfdGVzdCBvdXRwdXQuXCIpXG4gIH0gZWxzZSB7XG4gICAgZmFpbChcIk1ha2Ugc3VyZSB5b3UgdXNlZCByc3RhdGl4Ojpwcm9wX3Rlc3QoLi4uKSBvbiBpc19uaW50ZW5kbyB+IDEgd2l0aCBwID0gMC4wNDUuXCIpXG4gIH1cbn0pIn0=
+eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE5X3Znc19wcm9wX3JzdGF0aXgifSwiY29kZSI6ImdyYWRldGhpczo6Z3JhZGVfdGhpcyh7XG4gIHZnIDwtIHRyeUNhdGNoKHJlYWQuY3N2KFwidmdzYWxlcy5jc3ZcIiksIGVycm9yID0gZnVuY3Rpb24oZSkgTlVMTClcbiAgaWYgKGlzLm51bGwodmcpKSBmYWlsKFwiQ291bGRuJ3QgcmVhZCAndmdzYWxlcy5jc3YnLlwiKVxuICBpZiAoIVwiUHVibGlzaGVyXCIgJWluJSBuYW1lcyh2ZykpIGZhaWwoXCJDU1YgbXVzdCBjb250YWluICdQdWJsaXNoZXInLlwiKVxuXG4gIHN1cHByZXNzTWVzc2FnZXMobGlicmFyeShyc3RhdGl4KSlcblxuICAjIEJ1aWxkIHRoZSBleHBlY3RlZCByZXN1bHQgdXNpbmcgcnN0YXRpeDo6cHJvcF90ZXN0KHgsIG4sIHApXG4gIGlzX25pbnRlbmRvIDwtIHZnJFB1Ymxpc2hlciA9PSBcIk5pbnRlbmRvXCJcbiAgeCA8LSBzdW0oaXNfbmludGVuZG8sIG5hLnJtID0gVFJVRSlcbiAgbiA8LSBzdW0oIWlzLm5hKGlzX25pbnRlbmRvKSlcblxuICBleHBfb3V0IDwtIHJzdGF0aXg6OnByb3BfdGVzdCh4ID0geCwgbiA9IG4sIHAgPSAwLjA0NSlcblxuICByZXMgPC0gLnJlc3VsdFxuXG4gICMgQWNjZXB0IGVpdGhlcjpcbiAgIyAxKSB0aGUgcnN0YXRpeCB0aWJibGUvZGF0YS5mcmFtZSBvdXRwdXQsIG9yXG4gICMgMikgYSBiYXNlIHN0YXRzOjpwcm9wLnRlc3QoKSBodGVzdCBvYmplY3QgKGluIGNhc2Ugc29tZW9uZSB1c2VkIHRoYXQpXG4gIGlmIChpcy5kYXRhLmZyYW1lKHJlcykgJiYgYWxsKGMoXCJzdGF0aXN0aWNcIiwgXCJwXCIpICVpbiUgbmFtZXMocmVzKSkpIHtcbiAgICBnb3RfeiA8LSBhcy5udW1lcmljKHJlcyRzdGF0aXN0aWNbMV0pXG4gICAgZ290X3AgPC0gYXMubnVtZXJpYyhyZXMkcFsxXSlcblxuICAgIGV4cF96IDwtIGFzLm51bWVyaWMoZXhwX291dCRzdGF0aXN0aWNbMV0pXG4gICAgZXhwX3AgPC0gYXMubnVtZXJpYyhleHBfb3V0JHBbMV0pXG5cbiAgICBpZiAoaXNUUlVFKGFsbC5lcXVhbChnb3RfeiwgZXhwX3osIHRvbGVyYW5jZSA9IDFlLTYpKSAmJlxuICAgICAgICBpc1RSVUUoYWxsLmVxdWFsKGdvdF9wLCBleHBfcCwgdG9sZXJhbmNlID0gMWUtNikpKSB7XG4gICAgICBwYXNzKFwiQ29ycmVjdDogcnN0YXRpeDo6cHJvcF90ZXN0IG91dHB1dCBtYXRjaGVzIGV4cGVjdGVkIHogYW5kIHAtdmFsdWUuXCIpXG4gICAgfSBlbHNlIHtcbiAgICAgIGZhaWwoXCJDbG9zZSwgYnV0IHRoZSB6IHN0YXRpc3RpYyAvIHAtdmFsdWUgZG9uJ3QgbWF0Y2ggdGhlIGV4cGVjdGVkIHRlc3QgKHAgPSAwLjA0NSkuXCIpXG4gICAgfVxuXG4gIH0gZWxzZSBpZiAoaW5oZXJpdHMocmVzLCBcImh0ZXN0XCIpKSB7XG4gICAgZ290X3ogPC0gdW5uYW1lKGFzLm51bWVyaWMocmVzJHN0YXRpc3RpYykpXG4gICAgZ290X3AgPC0gdW5uYW1lKGFzLm51bWVyaWMocmVzJHAudmFsdWUpKVxuXG4gICAgZXhwX3ogPC0gYXMubnVtZXJpYyhleHBfb3V0JHN0YXRpc3RpY1sxXSlcbiAgICBleHBfcCA8LSBhcy5udW1lcmljKGV4cF9vdXQkcFsxXSlcblxuICAgIGlmIChpc1RSVUUoYWxsLmVxdWFsKGdvdF96LCBleHBfeiwgdG9sZXJhbmNlID0gMWUtNikpICYmXG4gICAgICAgIGlzVFJVRShhbGwuZXF1YWwoZ290X3AsIGV4cF9wLCB0b2xlcmFuY2UgPSAxZS02KSkpIHtcbiAgICAgIHBhc3MoXCJDb3JyZWN0IHRlc3QgcmVzdWx0IChtYXRjaGVzIGV4cGVjdGVkIHogYW5kIHAtdmFsdWUpLlwiKVxuICAgIH0gZWxzZSB7XG4gICAgICBmYWlsKFwiWW91IHJhbiBhIHByb3BvcnRpb24gdGVzdCwgYnV0IHRoZSByZXN1bHQgZG9lc24ndCBtYXRjaCB0aGUgZXhwZWN0ZWQgdGVzdCAocCA9IDAuMDQ1KS5cIilcbiAgICB9XG5cbiAgfSBlbHNlIHtcbiAgICBmYWlsKFwiTWFrZSBzdXJlIHlvdXIgbGFzdCBsaW5lIHByaW50cyB0aGUgcmVzdWx0IG9mIHJzdGF0aXg6OnByb3BfdGVzdCguLi4pLlwiKVxuICB9XG59KSJ9
 </script>
 </div>
 
@@ -1198,7 +1211,7 @@ eyJjb250ZW50cyI6W3siY2VsbE5hbWUiOiJ3ZWJyLXdpZGdldC00OCIsImlubGluZSI6ZmFsc2UsIm1l
 </div>
 </div>
 <script type="vfs-file">
-WyJ3b3JsZF9jdXBfcHJlZGljdGlvbnMuY3N2IiwidmdzYWxlcy5jc3YiXQ==
+WyJ3b3JsZF9jdXBfcHJlZGljdGlvbnMuY3N2IiwidmdzYWxlcy5jc3YiLCJzcG90aWZ5LTIwMjQuY3N2Il0=
 </script>
 </section>
 
@@ -1632,4 +1645,5 @@ window._ojs.runtime.interpretFromScriptTags();
 
 
 
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

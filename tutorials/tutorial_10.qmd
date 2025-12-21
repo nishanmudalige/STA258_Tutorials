@@ -1,5 +1,5 @@
 ---
-title: "Tutorial 10"
+title: "Tutorial 10: Inference Techniques on Regression"
 format: live-html
 engine: knitr
 resources:
@@ -14,7 +14,7 @@ resources:
 For this tutorial, we will be using a Life Expectancy dataset from the World Health Organization (WHO). From your tutorial 9 knowledge, fit a simple linear regression model with Life Expectancy as X and Schooling as Y. Return the estimated slope. 
 
 <figure style="text-align:center">
-  <img src="./images/school.jpg" style="width:40%">
+  <img src="./images/school.jpg" style="width:60%">
   <figcaption>Photo by <a href="https://unsplash.com/@heyquilia?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kenny Eliason</a> on <a href="https://unsplash.com/photos/man-and-woman-sitting-on-chairs-zFSo6bnZJTw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>
@@ -111,7 +111,7 @@ Do this in two ways:<br>
 
 
 <figure style="text-align:center">
-  <img src="./images/education.jpg" style="width:40%">
+  <img src="./images/education.jpg" style="width:60%">
   <figcaption>Photo by <a href="https://unsplash.com/@mdesign85?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">MD Duran</a> on <a href="https://unsplash.com/photos/woman-wearing-academic-cap-and-dress-selective-focus-photography-1VqHRwxcCCw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>
@@ -524,7 +524,7 @@ Predict the mean life expectancy at schooling = 12 years.
 
 
 <figure style="text-align:center">
-  <img src="./images/school.jpg" style="width:40%">
+  <img src="./images/school.jpg" style="width:60%">
   <figcaption>Photo by <a href="https://unsplash.com/@heyquilia?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kenny Eliason</a> on <a href="https://unsplash.com/photos/man-and-woman-sitting-on-chairs-zFSo6bnZJTw?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>

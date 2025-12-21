@@ -1,10 +1,11 @@
 ---
-title: "Tutorial 06"
+title: "Tutorial 06: One Sample Hypothesis Tests"
 format: live-html
 engine: knitr
 resources:
   - world_cup_predictions.csv
   - vgsales.csv
+  - spotify-2024.csv
 ---
 
 {{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
@@ -24,7 +25,7 @@ H₁: μ ≠ 70
 Use a two-sided z-test with σ known.
 
 <figure style="text-align:center">
-  <img src="./images/world_cup_2014.jpg" style="width:40%">
+  <img src="./images/world_cup_2014.jpg" style="width:60%">
   <figcaption>Photo by <a href="https://unsplash.com/@camyogi_2019?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">CamYogi</a> on <a href="https://unsplash.com/photos/amerian-football-team-NwZpT4LKwDQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>
@@ -171,7 +172,6 @@ sigma.x = 12,
 alternative = "two.sided")
 
 out$p.value
-
 ```
 :::
 
@@ -340,7 +340,7 @@ R will estimate the standard deviation, use df = n − 1, and return the p-value
 #| echo: false
 
 df <- read.csv("world_cup_predictions.csv")
-x <- df$spi
+x <- ＿＿
 
 out <- t.test(＿＿,
 mu = ＿＿,
@@ -438,7 +438,7 @@ df <- read.csv("spotify-2024.csv")
 
 numeric variable
 
-x <- df$Track.Score
+x <- ＿＿
 
 mu_0 <- ＿＿ # 45
 x <- x[is.finite(x)] # drop NAs
@@ -456,7 +456,7 @@ c(t = t_stat, df = dfree, p_value = p_two)
 ```
 
 ::: {.hint exercise="q5_trackscore_t_manual"}
-Use Track.Score as x, test against 45, and use mean() and sd() before plugging into the t formula. Make it two-sided.
+Use Track.Score as x, use mean() and sd() before plugging into the t formula. Make it two-sided.
 :::
 
 ::: {.solution exercise="q5_trackscore_t_manual"}
@@ -548,7 +548,7 @@ summary(df$Track.Score)
 #| echo: false
 
 df <- read.csv("spotify-2024.csv")
-x <- df$Track.Score
+x <- ＿＿
 
 out <- t.test(＿＿,
 mu = ＿＿,
@@ -559,7 +559,7 @@ out$p.value
 ```
 
 ::: {.hint exercise="q6_trackscore_t_builtin"}
-Use the Track.Score column and test it against 45, two-sided.
+Use the Track.Score column.
 :::
 
 ::: {.solution exercise="q6_trackscore_t_builtin"}
@@ -643,19 +643,18 @@ mean(vg$Publisher == "Nintendo", na.rm = TRUE)
 
 vg <- read.csv("vgsales.csv")
 
-# successes = rows where Publisher == "Nintendo"
-x <- sum(vg$Publisher == "Nintendo", na.rm = TRUE)
+x <- sum(＿＿, na.rm = TRUE)
 
 # total trials
 n <- sum(!is.na(vg$Publisher))
 
 out <- prop.test(x = x,
                  n = n,
-                 p = ＿＿,              # use 0.045
-                 alternative = "two.sided")
+                 p = ＿＿,    
+                 alternative = ＿＿)
 
 # print p-value
-out$p.value
+＿＿
 ```
 
 ::: {.hint exercise="q7_vgs_prop_base"}
@@ -733,13 +732,10 @@ vg <- read.csv("vgsales.csv")
 x <- sum(vg$Publisher == "Nintendo", na.rm = TRUE)
 n <- sum(!is.na(vg$Publisher))
 
-out <- prop.test(x = x,
-                 n = n,
-                 p = 0.045,
-                 alternative = "two.sided")
+out <- ＿＿
 
-chisq_val <- out$statistic   # chi-square with 1 df
-z_val <- sqrt(chisq_val)     # corresponding z magnitude
+chisq_val <- ＿＿
+z_val <- ＿＿
 
 c(chisq = chisq_val, z_from_chisq = z_val)
 ```
@@ -821,15 +817,17 @@ vg <- read.csv("vgsales.csv")
 
 vg$is_nintendo <- vg$Publisher == "Nintendo"
 
-out <- prop_test(data = vg,
-                 formula = is_nintendo ~ 1,
-                 p = ＿＿)     # 0.045
+out <- rstatix::prop_test(
+  x = sum(＿＿, na.rm = TRUE),
+  n = sum(＿＿),
+  p = ＿＿
+)
 
-out
+＿＿
 ```
 
 ::: {.hint exercise="q9_vgs_prop_rstatix"}
-Use the logical column `is_nintendo` and test it against 0.045.
+Use the logical column `is_nintendo`.
 :::
 
 ::: {.solution exercise="q9_vgs_prop_rstatix"}
@@ -837,15 +835,17 @@ Use the logical column `is_nintendo` and test it against 0.045.
 ```{webr}
 #| exercise: q9_vgs_prop_rstatix
 #| solution: true
-
 library(rstatix)
 
 vg <- read.csv("vgsales.csv")
+
 vg$is_nintendo <- vg$Publisher == "Nintendo"
 
-out <- rstatix::prop_test(data = vg,
-                          formula = is_nintendo ~ 1,
-                          p = 0.045)
+out <- rstatix::prop_test(
+  x = sum(vg$is_nintendo, na.rm = TRUE),
+  n = sum(!is.na(vg$is_nintendo)),
+  p = 0.045
+)
 
 out
 ```
@@ -862,19 +862,48 @@ gradethis::grade_this({
 
   suppressMessages(library(rstatix))
 
-  vg$is_nintendo <- vg$Publisher == "Nintendo"
+  # Build the expected result using rstatix::prop_test(x, n, p)
+  is_nintendo <- vg$Publisher == "Nintendo"
+  x <- sum(is_nintendo, na.rm = TRUE)
+  n <- sum(!is.na(is_nintendo))
 
-  exp_out <- rstatix::prop_test(data = vg,
-                                formula = is_nintendo ~ 1,
-                                p = 0.045)
+  exp_out <- rstatix::prop_test(x = x, n = n, p = 0.045)
 
   res <- .result
-  # We can't perfectly predict object shape students print, so check that they ran rstatix::prop_test
-  # by checking for a data.frame-like result with expected columns.
-  if (is.data.frame(res) && all(c("statistic","p") %in% names(res))) {
-    pass("Looks like the correct rstatix::prop_test output.")
+
+  # Accept either:
+  # 1) the rstatix tibble/data.frame output, or
+  # 2) a base stats::prop.test() htest object (in case someone used that)
+  if (is.data.frame(res) && all(c("statistic", "p") %in% names(res))) {
+    got_z <- as.numeric(res$statistic[1])
+    got_p <- as.numeric(res$p[1])
+
+    exp_z <- as.numeric(exp_out$statistic[1])
+    exp_p <- as.numeric(exp_out$p[1])
+
+    if (isTRUE(all.equal(got_z, exp_z, tolerance = 1e-6)) &&
+        isTRUE(all.equal(got_p, exp_p, tolerance = 1e-6))) {
+      pass("Correct: rstatix::prop_test output matches expected z and p-value.")
+    } else {
+      fail("Close, but the z statistic / p-value don't match the expected test (p = 0.045).")
+    }
+
+  } else if (inherits(res, "htest")) {
+    got_z <- unname(as.numeric(res$statistic))
+    got_p <- unname(as.numeric(res$p.value))
+
+    exp_z <- as.numeric(exp_out$statistic[1])
+    exp_p <- as.numeric(exp_out$p[1])
+
+    if (isTRUE(all.equal(got_z, exp_z, tolerance = 1e-6)) &&
+        isTRUE(all.equal(got_p, exp_p, tolerance = 1e-6))) {
+      pass("Correct test result (matches expected z and p-value).")
+    } else {
+      fail("You ran a proportion test, but the result doesn't match the expected test (p = 0.045).")
+    }
+
   } else {
-    fail("Make sure you used rstatix::prop_test(...) on is_nintendo ~ 1 with p = 0.045.")
+    fail("Make sure your last line prints the result of rstatix::prop_test(...).")
   }
 })
 ```
