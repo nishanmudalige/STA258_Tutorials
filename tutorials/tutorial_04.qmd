@@ -140,7 +140,7 @@ PlantGrowth is a dataset that contains results from an experiment to compare yie
 
 
 <figure style="text-align:center">
-  <img src="./images/plant_growth.jpg" style="width:40%">
+  <img src="./images/plant_growth.jpg" style="width:60%">
   <figcaption>Photo by <a href="https://unsplash.com/@arnold_nagy?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Nagy Arnold</a> on <a href="https://unsplash.com/photos/green-leafed-bonsai-tree-against-black-background-X_IvVDuHvDQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>
@@ -270,7 +270,7 @@ The dataset used here is river lengths, which gives the lengths (in miles) of 14
 
 
 <figure style="text-align:center">
-  <img src="./images/river.jpg" style="width:40%">
+  <img src="./images/river.jpg" style="width:60%">
   <figcaption>Photo by <a href="https://unsplash.com/@kazuend?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">kazuend</a> on <a href="https://unsplash.com/photos/body-river-surrounded-by-dress-cCthPLHmrzI?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>
@@ -340,7 +340,7 @@ Using airquality$Ozone (ignore missing), construct and print 90% CI for the true
 mean ozone level (ppb). Assume normality is reasonable.
 
 <figure style="text-align:center">
-  <img src="./images/air_quality.jpg" style="width:40%">
+  <img src="./images/air_quality.jpg" style="width:60%">
   <figcaption>Photo by <a href="https://unsplash.com/@timwitzdam?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Tim Witzdam</a> on <a href="https://unsplash.com/photos/plant-next-to-a-device-displaying-readings-NH4RJjtDaNk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>
@@ -403,7 +403,7 @@ In the UCBAdmissions dataset, Admit status for a student is "Admitted" or "Rejec
 
 
 <figure style="text-align:center">
-  <img src="./images/admissions.jpg" style="width:40%">
+  <img src="./images/admissions.jpg" style="width:60%">
   <figcaption>Photo by <a href="https://unsplash.com/@mattragland?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Matt Ragland</a> on <a href="https://unsplash.com/photos/flat-lay-photography-of-blue-backpack-beside-book-and-silver-macbook-02z1I7gv4ao?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>
@@ -550,7 +550,7 @@ else fail("Check df=n−1 and chi-square cutoffs (0.025 & 0.975).")
 HairEyeColor is a built-in contingency table of Hair × Eye × Gender of Statistics students with counts. Treat each person as a trial and estimate the true proportion with Brown eyes. Construct a 95% Z-interval for the population proportion p. Print c(lower, upper).
 
 ::: {.decor-img}
-![](./images/hair_eye_color.jpg){alt="" aria-hidden="true" width="40%" fig-align="center"}
+![](./images/hair_eye_color.jpg){alt="" aria-hidden="true" width="60%" fig-align="center"}
 :::
 
 ::: {.callout-note title="Info"}

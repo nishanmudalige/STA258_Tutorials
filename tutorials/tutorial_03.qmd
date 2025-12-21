@@ -1563,7 +1563,7 @@ gradethis::grade_this({
 Make a histogram of means_n10 (binwidth = 0.5), and add a vertical dashed red line at the population mean mu. Save the plot in plot_clt and print it. Fill the plot with any color of your choice!
 
 ::: {.callout-note title="Info"}
-Notice the distribution of the sample mean here and see if 
+Notice the distribution of the sample mean here and see if it resembles a normal distribution. Which theorem is in play here?
 :::
 
 

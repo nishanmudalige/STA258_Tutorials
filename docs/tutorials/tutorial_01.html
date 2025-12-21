@@ -532,7 +532,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6ImV4
 <h2 class="anchored" data-anchor-id="q4-draw-a-histogram-from-toothgrowth-type-the-full-call">Q4 — Draw a histogram from ToothGrowth (type the full call)</h2>
 <p>Use exactly one of these numeric columns and nothing else: len or dose</p>
 <figure style="text-align:center" class="figure">
-<img src="./images/toothgrowth.jpg" style="width:40%" class="figure-img">
+<img src="./images/toothgrowth.jpg" style="width:60%" class="figure-img">
 <figcaption>
 Photo by <a href="https://unsplash.com/@thehumbleco?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">The Humble Co.</a> on <a href="https://unsplash.com/photos/blue-and-white-toothbrush-in-clear-glass-jar-cADflhZzgyo?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
 </figcaption>
@@ -569,6 +569,9 @@ eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaGVhZChU
 eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiZXhfaGlzdF9leGFjdCJ9LCJjb2RlIjoiIyBUeXBlIHlvdXIgYW5zd2VyIG9uIHRoZSBuZXh0IGxpbmUgKG9uZSBjb21tYW5kIG9ubHkpOiJ9
 </script>
 </div>
+</div>
+<div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="ex_hist_exact">
+<p>Use the hist command.</p>
 </div>
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="ex_hist_exact">
 <div class="cell" data-exercise="ex_hist_exact" data-solution="true">
@@ -619,6 +622,9 @@ eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiaGVhZChU
 eyJhdHRyIjp7ImVkaXQiOnRydWUsImV2YWwiOnRydWUsImV4ZXJjaXNlIjoiZXhfYm94cGxvdF9leGFjdCJ9LCJjb2RlIjoiIyBUeXBlIHlvdXIgYW5zd2VyIG9uIHRoZSBuZXh0IGxpbmUgKG9uZSBjb21tYW5kIG9ubHkpOiJ9
 </script>
 </div>
+</div>
+<div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="ex_boxplot_exact">
+<p>Use the boxplot command.</p>
 </div>
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="ex_boxplot_exact">
 <div class="cell" data-exercise="ex_boxplot_exact" data-solution="true">
@@ -698,7 +704,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6ImV4
 <h2 class="anchored" data-anchor-id="q8-load-a-csv-as-a-dataframe">Q8 — Load a CSV as a DataFrame</h2>
 <p>Load iris.csv into a dataframe named df.</p>
 <figure style="text-align:center" class="figure">
-<img src="./images/iris.jpg" style="width:40%" class="figure-img">
+<img src="./images/iris.jpg" style="width:60%" class="figure-img">
 <figcaption>
 Photo by <a href="https://unsplash.com/@andsmall?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Andrew Small</a> on <a href="https://unsplash.com/photos/selective-focus-photography-of-pink-petaled-flower-EfhCUc_fjrU?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
 </figcaption>
@@ -719,7 +725,7 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJl
 </div>
 </div>
 <div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="ex_csv_load">
-<p>Use df &lt;- read.csv(“iris.csv”).</p>
+<p>Use read.csv here.</p>
 </div>
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="ex_csv_load">
 <div class="cell" data-exercise="ex_csv_load" data-solution="true" data-files="data/iris.csv">
@@ -759,8 +765,10 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJl
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="ex_csv_nrows">
 <div class="cell" data-exercise="ex_csv_nrows" data-solution="true" data-files="data/iris.csv">
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="ex_csv_nrows">
-<code id="interpolate-49" class="solution-code d-none">rows &lt;- nrow("iris.csv")</code>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-50-1"><a href="#interpolate-50-1" aria-hidden="true" tabindex="-1"></a>rows <span class="ot">&lt;-</span> <span class="fu">nrow</span>(<span class="st">"iris.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<code id="interpolate-49" class="solution-code d-none">df &lt;- read.csv("iris.csv")
+rows &lt;- nrow(df)</code>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-50-1"><a href="#interpolate-50-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"iris.csv"</span>)</span>
+<span id="interpolate-50-2"><a href="#interpolate-50-2" aria-hidden="true" tabindex="-1"></a>rows <span class="ot">&lt;-</span> <span class="fu">nrow</span>(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -794,10 +802,12 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJl
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="ex_csv_names">
 <div class="cell" data-exercise="ex_csv_names" data-solution="true" data-files="data/iris.csv">
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="ex_csv_names">
-<code id="interpolate-55" class="solution-code d-none">cols &lt;- names("iris.csv")
+<code id="interpolate-55" class="solution-code d-none">df   &lt;- read.csv("iris.csv")
+cols &lt;- names(df)
 cols</code>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-56-1"><a href="#interpolate-56-1" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="st">"iris.csv"</span>)</span>
-<span id="interpolate-56-2"><a href="#interpolate-56-2" aria-hidden="true" tabindex="-1"></a>cols</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-56-1"><a href="#interpolate-56-1" aria-hidden="true" tabindex="-1"></a>df   <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"iris.csv"</span>)</span>
+<span id="interpolate-56-2"><a href="#interpolate-56-2" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">names</span>(df)</span>
+<span id="interpolate-56-3"><a href="#interpolate-56-3" aria-hidden="true" tabindex="-1"></a>cols</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -926,7 +936,7 @@ eyJhdHRyIjp7ImVjaG8iOmZhbHNlLCJlZGl0IjpmYWxzZSwiZXZhbCI6dHJ1ZSwiZXhlcmNpc2UiOiJl
 </div>
 </div>
 <div class="hint webr-ojs-exercise exercise-hint d-none" data-exercise="ex_fun_div">
-<p>Start with: res1 &lt;- a / b res2 &lt;- b / a list(res1, res2)</p>
+<p>Start with: res1 &lt;- a / b res2 &lt;- b / a and then use the list command.</p>
 </div>
 <div class="webr-ojs-exercise exercise-solution d-none" data-exercise="ex_fun_div">
 <div class="cell" data-exercise="ex_fun_div" data-solution="true">

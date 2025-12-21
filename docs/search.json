@@ -46,7 +46,7 @@
     "href": "tutorials/tutorial_02.html#q6-histogram-of-weight-ggplot2",
     "title": "Tutorial 02",
     "section": "Q6 — Histogram of Weight (ggplot2)",
-    "text": "Q6 — Histogram of Weight (ggplot2)\nMake a histogram with ~12 bins. Store in p_hist.\n\n\n\n\n\n\nNoteInfo\n\n\n\nUse the built-in mtcars dataset. Plot the distribution of mpg as a histogram with about 12 bins and assign the plot to`p_hist. Return a ggplot object (no printing required).\n\n\n\n\n\n\n\n\nNotePreview\n\n\n\nHere is a preview of the dataset:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCreate a ggplot using ChickWeight with weight mapped on x. Add a histogram layer with ~12 bins. Assign the plot object to p_hist.\n\n\n\n\nlibrary(ggplot2)\np_hist &lt;- ggplot(ChickWeight, aes(weight)) +\ngeom_histogram(bins = 12)\np_hist\nlibrary(ggplot2)\np_hist &lt;- ggplot(ChickWeight, aes(weight)) +\ngeom_histogram(bins = 12)\np_hist"
+    "text": "Q6 — Histogram of Weight (ggplot2)\nMake a histogram with ~12 bins. Store in p_hist.\n\n\n\n\n\n\nNoteInfo\n\n\n\nUse the built-in ChickWeight dataset. Plot the distribution of weight as a histogram with about 12 bins and assign the plot to`p_hist. Return a ggplot object (no printing required).\n\n\n\n\n\n\n\n\nNotePreview\n\n\n\nHere is a preview of the dataset:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCreate a ggplot using ChickWeight with weight mapped on x. Add a histogram layer with ~12 bins. Assign the plot object to p_hist.\n\n\n\n\nlibrary(ggplot2)\np_hist &lt;- ggplot(ChickWeight, aes(weight)) +\ngeom_histogram(bins = 12)\np_hist\nlibrary(ggplot2)\np_hist &lt;- ggplot(ChickWeight, aes(weight)) +\ngeom_histogram(bins = 12)\np_hist"
   },
   {
     "objectID": "tutorials/tutorial_02.html#q7-boxplot-of-weight-by-diet-ggplot2",
@@ -88,14 +88,14 @@
     "href": "tutorials/tutorial_01.html#q4-draw-a-histogram-from-toothgrowth-type-the-full-call",
     "title": "Tutorial 01",
     "section": "Q4 — Draw a histogram from ToothGrowth (type the full call)",
-    "text": "Q4 — Draw a histogram from ToothGrowth (type the full call)\nUse exactly one of these numeric columns and nothing else: len or dose\n\n\n\nPhoto by The Humble Co. on Unsplash\n\n\n\n\n\n\n\n\nNotePreview\n\n\n\nFind a preview of the ToothGrowth dataset here:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nhist(ToothGrowth$len)\nhist(ToothGrowth$len)"
+    "text": "Q4 — Draw a histogram from ToothGrowth (type the full call)\nUse exactly one of these numeric columns and nothing else: len or dose\n\n\n\nPhoto by The Humble Co. on Unsplash\n\n\n\n\n\n\n\n\nNotePreview\n\n\n\nFind a preview of the ToothGrowth dataset here:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUse the hist command.\n\n\n\n\nhist(ToothGrowth$len)\nhist(ToothGrowth$len)"
   },
   {
     "objectID": "tutorials/tutorial_01.html#q5-draw-a-boxplot-from-toothgrowth-type-the-full-call",
     "href": "tutorials/tutorial_01.html#q5-draw-a-boxplot-from-toothgrowth-type-the-full-call",
     "title": "Tutorial 01",
     "section": "Q5 — Draw a boxplot from ToothGrowth (type the full call)",
-    "text": "Q5 — Draw a boxplot from ToothGrowth (type the full call)\nUse exactly one of these numeric columns and nothing else: len or dose\n\n\n\n\n\n\nNotePreview\n\n\n\nFind a preview of the ToothGrowth dataset here:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nboxplot(ToothGrowth$len)\nboxplot(ToothGrowth$len)"
+    "text": "Q5 — Draw a boxplot from ToothGrowth (type the full call)\nUse exactly one of these numeric columns and nothing else: len or dose\n\n\n\n\n\n\nNotePreview\n\n\n\nFind a preview of the ToothGrowth dataset here:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUse the boxplot command.\n\n\n\n\nboxplot(ToothGrowth$len)\nboxplot(ToothGrowth$len)"
   },
   {
     "objectID": "tutorials/tutorial_01.html#q6-add-a-color-to-the-histogram",
@@ -116,21 +116,21 @@
     "href": "tutorials/tutorial_01.html#q8-load-a-csv-as-a-dataframe",
     "title": "Tutorial 01",
     "section": "Q8 — Load a CSV as a DataFrame",
-    "text": "Q8 — Load a CSV as a DataFrame\nLoad iris.csv into a dataframe named df.\n\n\n\nPhoto by Andrew Small on Unsplash\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUse df &lt;- read.csv(“iris.csv”).\n\n\n\n\ndf &lt;- read.csv(\"iris.csv\")\ndf &lt;- read.csv(\"iris.csv\")"
+    "text": "Q8 — Load a CSV as a DataFrame\nLoad iris.csv into a dataframe named df.\n\n\n\nPhoto by Andrew Small on Unsplash\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUse read.csv here.\n\n\n\n\ndf &lt;- read.csv(\"iris.csv\")\ndf &lt;- read.csv(\"iris.csv\")"
   },
   {
     "objectID": "tutorials/tutorial_01.html#q9-count-rows-in-iris.csv",
     "href": "tutorials/tutorial_01.html#q9-count-rows-in-iris.csv",
     "title": "Tutorial 01",
     "section": "Q9 — Count rows in iris.csv",
-    "text": "Q9 — Count rows in iris.csv\nCount the number of rows in iris.csv and store them in the variable rows\n\n\n\n\n\n\n\n\n\n\n\n\nUse nrow.\n\n\n\n\nrows &lt;- nrow(\"iris.csv\")\nrows &lt;- nrow(\"iris.csv\")"
+    "text": "Q9 — Count rows in iris.csv\nCount the number of rows in iris.csv and store them in the variable rows\n\n\n\n\n\n\n\n\n\n\n\n\nUse nrow.\n\n\n\n\ndf &lt;- read.csv(\"iris.csv\")\nrows &lt;- nrow(df)\ndf &lt;- read.csv(\"iris.csv\")\nrows &lt;- nrow(df)"
   },
   {
     "objectID": "tutorials/tutorial_01.html#q10-show-column-names",
     "href": "tutorials/tutorial_01.html#q10-show-column-names",
     "title": "Tutorial 01",
     "section": "Q10 — Show column names",
-    "text": "Q10 — Show column names\nPrint the column names from iris.csv\n\n\n\n\n\n\n\n\n\n\n\n\nUse names.\n\n\n\n\ncols &lt;- names(\"iris.csv\")\ncols\ncols &lt;- names(\"iris.csv\")\ncols"
+    "text": "Q10 — Show column names\nPrint the column names from iris.csv\n\n\n\n\n\n\n\n\n\n\n\n\nUse names.\n\n\n\n\ndf   &lt;- read.csv(\"iris.csv\")\ncols &lt;- names(df)\ncols\ndf   &lt;- read.csv(\"iris.csv\")\ncols &lt;- names(df)\ncols"
   },
   {
     "objectID": "tutorials/tutorial_01.html#q11-print-some-of-the-data",
@@ -151,7 +151,7 @@
     "href": "tutorials/tutorial_01.html#q2",
     "title": "Tutorial 01",
     "section": "Q13 — Write a function using division",
-    "text": "Q13 — Write a function using division\nDefine a function called divide_nums that takes two arguments (a and b) and returns the results of:\n\na / b\nb / a\n\nBoth results should be stored in separate variables before being returned.\n\n\n\n\n\n\nNoteInfo\n\n\n\nRemember: in R, division by zero (1/0) will return Inf rather than an error.\n\n\n\n\n\n\n\n\nNoteInfo\n\n\n\nIn R, lists are written with list(a, b, c). Each element can be anything: a number, a string, or even another list.\n\n\n\n\n\n\n\n\n\n\n\nStart with: res1 &lt;- a / b res2 &lt;- b / a list(res1, res2)\n\n\n\n\ndivide_nums &lt;- function(a, b) {\n  res1 &lt;- a / b\n  res2 &lt;- b / a\n  list(res1, res2)\n}\ndivide_nums &lt;- function(a, b) {\n  res1 &lt;- a / b\n  res2 &lt;- b / a\n  list(res1, res2)\n}"
+    "text": "Q13 — Write a function using division\nDefine a function called divide_nums that takes two arguments (a and b) and returns the results of:\n\na / b\nb / a\n\nBoth results should be stored in separate variables before being returned.\n\n\n\n\n\n\nNoteInfo\n\n\n\nRemember: in R, division by zero (1/0) will return Inf rather than an error.\n\n\n\n\n\n\n\n\nNoteInfo\n\n\n\nIn R, lists are written with list(a, b, c). Each element can be anything: a number, a string, or even another list.\n\n\n\n\n\n\n\n\n\n\n\nStart with: res1 &lt;- a / b res2 &lt;- b / a and then use the list command.\n\n\n\n\ndivide_nums &lt;- function(a, b) {\n  res1 &lt;- a / b\n  res2 &lt;- b / a\n  list(res1, res2)\n}\ndivide_nums &lt;- function(a, b) {\n  res1 &lt;- a / b\n  res2 &lt;- b / a\n  list(res1, res2)\n}"
   },
   {
     "objectID": "tutorials/tutorial_04.html#q1-z-critical-value",
@@ -732,7 +732,7 @@
     "href": "tutorials/tutorial_03.html#q16-visualizing-the-distribution",
     "title": "Tutorial 03",
     "section": "Q16 — Visualizing the Distribution",
-    "text": "Q16 — Visualizing the Distribution\nMake a histogram of means_n10 (binwidth = 0.5), and add a vertical dashed red line at the population mean mu. Save the plot in plot_clt and print it. Fill the plot with any color of your choice!\n\n\n\n\n\n\nNoteInfo\n\n\n\nNotice the distribution of the sample mean here and see if\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRefer to previous exercises for learning how to plot a histogram. To draw a vertical line at a certain intercept, use the ggplot command- geom_vline .\n\n\n\n\nlibrary(ggplot2)\np_clt_n10 &lt;- ggplot(data.frame(m = means_n10), aes(m)) +\n  geom_histogram(binwidth = 0.5, fill = \"grey80\", color = \"white\") +\n  geom_vline(xintercept = mu, linetype = 2, color = \"red\") +\n  labs(x = \"sample mean (n=10)\", y = \"count\",\n                title = \"Sampling distribution of the mean (n = 10)\") +\n  theme_minimal()\np_clt_n10\nlibrary(ggplot2)\np_clt_n10 &lt;- ggplot(data.frame(m = means_n10), aes(m)) +\n  geom_histogram(binwidth = 0.5, fill = \"grey80\", color = \"white\") +\n  geom_vline(xintercept = mu, linetype = 2, color = \"red\") +\n  labs(x = \"sample mean (n=10)\", y = \"count\",\n                title = \"Sampling distribution of the mean (n = 10)\") +\n  theme_minimal()\np_clt_n10"
+    "text": "Q16 — Visualizing the Distribution\nMake a histogram of means_n10 (binwidth = 0.5), and add a vertical dashed red line at the population mean mu. Save the plot in plot_clt and print it. Fill the plot with any color of your choice!\n\n\n\n\n\n\nNoteInfo\n\n\n\nNotice the distribution of the sample mean here and see if it resembles a normal distribution. Which theorem is in play here?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRefer to previous exercises for learning how to plot a histogram. To draw a vertical line at a certain intercept, use the ggplot command- geom_vline .\n\n\n\n\nlibrary(ggplot2)\np_clt_n10 &lt;- ggplot(data.frame(m = means_n10), aes(m)) +\n  geom_histogram(binwidth = 0.5, fill = \"grey80\", color = \"white\") +\n  geom_vline(xintercept = mu, linetype = 2, color = \"red\") +\n  labs(x = \"sample mean (n=10)\", y = \"count\",\n                title = \"Sampling distribution of the mean (n = 10)\") +\n  theme_minimal()\np_clt_n10\nlibrary(ggplot2)\np_clt_n10 &lt;- ggplot(data.frame(m = means_n10), aes(m)) +\n  geom_histogram(binwidth = 0.5, fill = \"grey80\", color = \"white\") +\n  geom_vline(xintercept = mu, linetype = 2, color = \"red\") +\n  labs(x = \"sample mean (n=10)\", y = \"count\",\n                title = \"Sampling distribution of the mean (n = 10)\") +\n  theme_minimal()\np_clt_n10"
   },
   {
     "objectID": "practice/prac_01.html#q2",

@@ -369,7 +369,7 @@ else fail("❌ Recheck quartiles and fence formulas.")
 Make a histogram with ~12 bins. Store in p_hist.
 
 ::: {.callout-note title="Info"}
-Use the built-in mtcars dataset. Plot the distribution of mpg as a histogram with about 12 bins and assign the plot to`p_hist. Return a ggplot object (no printing required).
+Use the built-in ChickWeight dataset. Plot the distribution of weight as a histogram with about 12 bins and assign the plot to`p_hist. Return a ggplot object (no printing required).
 :::
 
 ::: {.callout-note title="Preview"}
@@ -413,18 +413,37 @@ p_hist
 #| exercise: ex_hist
 #| check: true
 gradethis::grade_this({
-if (!requireNamespace("ggplot2", quietly = TRUE)) fail("Load **ggplot2**.")
-e <- get0(".envir_result", ifnotfound = parent.frame())
-if (!exists("p_hist", envir = e)) fail("Create `p_hist`.")
-p <- get("p_hist", envir = e)
-if (!inherits(p, "ggplot")) fail("Should be a ggplot object.")
-has_hist <- any(vapply(p$layers, function(L) inherits(L$geom, "GeomBar"), logical(1)))
-if (!has_hist) fail("Use `geom_histogram()`.")
+  if (!requireNamespace("ggplot2", quietly = TRUE)) fail("Load **ggplot2**.")
 
-# light mapping sanity
+  e <- get0(".envir_result", ifnotfound = parent.frame())
+  if (!exists("p_hist", envir = e)) fail("Create `p_hist`.")
+  p <- get("p_hist", envir = e)
+  if (!inherits(p, "ggplot")) fail("`p_hist` must be a ggplot object.")
 
-if (!identical(as.character(p$mapping$x), "~weight")) fail("Map `weight` to x.")
-pass("✅ Histogram done.")
+  # Must include a histogram layer (geom_histogram() uses GeomBar under the hood)
+  has_hist <- any(vapply(p$layers, function(L) inherits(L$geom, "GeomBar"), logical(1)))
+  if (!has_hist) fail("Use `geom_histogram()`.")
+
+  # Accept x mapping as weight (handles weight / x=weight / ~weight etc.)
+  if (!requireNamespace("rlang", quietly = TRUE)) fail("Missing `rlang`.")
+  x_lab <- rlang::as_label(rlang::get_expr(p$mapping$x))
+  x_lab <- sub("^~", "", x_lab)  # strip leading ~ if present
+  if (x_lab != "weight") fail("Map `weight` to x.")
+
+  # Optional: bins sanity (only if explicitly set)
+  bins_vals <- vapply(
+    p$layers,
+    function(L) {
+      if (!is.null(L$geom_params$bins)) L$geom_params$bins else NA_real_
+    },
+    numeric(1)
+  )
+  bins_vals <- bins_vals[!is.na(bins_vals)]
+  if (length(bins_vals) > 0 && !any(bins_vals >= 10 & bins_vals <= 14)) {
+    fail("Use about 12 bins (e.g., 10–14).")
+  }
+
+  pass("✅ Histogram done.")
 })
 
 ```
@@ -473,17 +492,26 @@ p_box
 #| exercise: ex_box
 #| check: true
 gradethis::grade_this({
-if (!requireNamespace("ggplot2", quietly = TRUE)) fail("Load **ggplot2**.")
-e <- get0(".envir_result", ifnotfound = parent.frame())
-if (!exists("p_box", envir = e)) fail("Create `p_box`.")
-p <- get("p_box", envir = e)
-if (!inherits(p, "ggplot")) fail("Return a ggplot.")
-has_geom <- any(vapply(p$layers, function(L) inherits(L$geom, "GeomBoxplot"), logical(1)))
-if (!has_geom) fail("Use `geom_boxplot()`.")
-mx <- deparse(p$mapping$x); my <- deparse(p$mapping$y)
-if (!grepl("factor\(Diet\)", mx)) fail("Map `factor(Diet)` to x.")
-if (!grepl("^~?weight$", my)) fail("Map `weight` to y.")
-pass("✅ Boxplot good.")
+  if (!requireNamespace("ggplot2", quietly = TRUE)) fail("Load ggplot2.")
+
+  e <- get0(".envir_result", ifnotfound = parent.frame())
+  if (!exists("p_box", envir = e)) fail("Create `p_box`.")
+  p <- get("p_box", envir = e)
+  if (!inherits(p, "ggplot")) fail("`p_box` must be a ggplot object.")
+
+  has_geom <- any(vapply(p$layers, function(L) inherits(L$geom, "GeomBoxplot"), logical(1)))
+  if (!has_geom) fail("Use `geom_boxplot()`.")
+
+  mx <- deparse(p$mapping$x)
+  my <- deparse(p$mapping$y)
+
+  # Allow factor(Diet) or ~factor(Diet)
+  if (!grepl("^~?factor\\(Diet\\)$", mx)) fail("Map `factor(Diet)` to x.")
+
+  # Allow weight or ~weight
+  if (!grepl("^~?weight$", my)) fail("Map `weight` to y.")
+
+  pass("✅ Boxplot good.")
 })
 
 ```

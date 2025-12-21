@@ -235,7 +235,7 @@ head(ToothGrowth, 8)
 #| exercise: ex_boxplot_exact
 # Type your answer on the next line (one command only):
 ```
-::: {.hint exercise="ex_hist_exact"}
+::: {.hint exercise="ex_boxplot_exact"}
 Use the boxplot command. 
 :::
 ::: {.solution exercise="ex_boxplot_exact"}
@@ -416,7 +416,7 @@ df <-
 ```
 
 ::: {.hint exercise="ex_csv_load"}
-Use df \<- read.csv("iris.csv").
+Use read.csv here.
 :::
 
 ::: {.solution exercise="ex_csv_load"}
@@ -663,7 +663,9 @@ divide_nums <- function(a, b) {
 ```
 
 ::: {.hint exercise="ex_fun_div"}
-Start with: res1 \<- a / b res2 \<- b / a list(res1, res2)
+Start with: res1 \<- a / b 
+res2 \<- b / a 
+and then use the list command.
 :::
 
 ::: {.solution exercise="ex_fun_div"}

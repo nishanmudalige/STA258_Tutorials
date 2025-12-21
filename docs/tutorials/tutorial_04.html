@@ -108,6 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 <script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
 <link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
@@ -144,7 +145,7 @@ window.Quarto = {
 <link rel="stylesheet" href="../design.css">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -402,8 +403,27 @@ window.Quarto = {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#q1-z-critical-value" id="toc-q1-z-critical-value" class="nav-link active" data-scroll-target="#q1-z-critical-value">Q1 — Z Critical Value</a></li>
+  <li><a href="#q2-one-sample-z-confidence-interval" id="toc-q2-one-sample-z-confidence-interval" class="nav-link" data-scroll-target="#q2-one-sample-z-confidence-interval">Q2 — One Sample Z Confidence Interval</a></li>
+  <li><a href="#q3-t-critical-value" id="toc-q3-t-critical-value" class="nav-link" data-scroll-target="#q3-t-critical-value">Q3 — T Critical Value</a></li>
+  <li><a href="#q4-one-sample-confidence-interval-for-μ-σ-unknown" id="toc-q4-one-sample-confidence-interval-for-μ-σ-unknown" class="nav-link" data-scroll-target="#q4-one-sample-confidence-interval-for-μ-σ-unknown">Q4 — One-Sample Confidence Interval for μ (σ Unknown)</a></li>
+  <li><a href="#q5-one-sample-ci-for-μ" id="toc-q5-one-sample-ci-for-μ" class="nav-link" data-scroll-target="#q5-one-sample-ci-for-μ">Q5 — One sample CI for μ</a></li>
+  <li><a href="#q6-one-sample-ci-for-μ" id="toc-q6-one-sample-ci-for-μ" class="nav-link" data-scroll-target="#q6-one-sample-ci-for-μ">Q6 — One-Sample CI for μ</a></li>
+  <li><a href="#q7-one-sample-ci-for-a-proportion" id="toc-q7-one-sample-ci-for-a-proportion" class="nav-link" data-scroll-target="#q7-one-sample-ci-for-a-proportion">Q7 — One-Sample CI for a Proportion</a></li>
+  <li><a href="#q8---one-sample-ci-for-a-variance-σ²" id="toc-q8---one-sample-ci-for-a-variance-σ²" class="nav-link" data-scroll-target="#q8---one-sample-ci-for-a-variance-σ²">Q8 - One-Sample CI for a Variance (σ²)</a></li>
+  <li><a href="#q9---one-sample-ci-for-a-proportion-99-practice" id="toc-q9---one-sample-ci-for-a-proportion-99-practice" class="nav-link" data-scroll-target="#q9---one-sample-ci-for-a-proportion-99-practice">Q9 - One-Sample CI for a Proportion (99% Practice)</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -579,7 +599,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InEy
 <h2 class="anchored" data-anchor-id="q3-t-critical-value">Q3 — T Critical Value</h2>
 <p>PlantGrowth is a dataset that contains results from an experiment to compare yields (as measured by dried weight of plants) obtained under a control and two different treatment conditions. Print the 95% two-sided t* using PlantGrowth’s weight column when <span class="math inline">\(\alpha = 0.05\)</span>.</p>
 <figure style="text-align:center" class="figure">
-<img src="./images/plant_growth.jpg" style="width:40%" class="figure-img">
+<img src="./images/plant_growth.jpg" style="width:60%" class="figure-img">
 <figcaption>
 Photo by <a href="https://unsplash.com/@arnold_nagy?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Nagy Arnold</a> on <a href="https://unsplash.com/photos/green-leafed-bonsai-tree-against-black-background-X_IvVDuHvDQ?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
 </figcaption>
@@ -721,7 +741,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE0
 <h2 class="anchored" data-anchor-id="q5-one-sample-ci-for-μ">Q5 — One sample CI for μ</h2>
 <p>The dataset used here is river lengths, which gives the lengths (in miles) of 141 “major” rivers in North America, as compiled by the US Geological Survey. Assume river lengths (miles) have known population SD σ = 300. Build a 95% CI for the true mean river length using rivers whe <span class="math inline">\(\alpha = 0.05\)</span>.</p>
 <figure style="text-align:center" class="figure">
-<img src="./images/river.jpg" style="width:40%" class="figure-img">
+<img src="./images/river.jpg" style="width:60%" class="figure-img">
 <figcaption>
 Photo by <a href="https://unsplash.com/@kazuend?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">kazuend</a> on <a href="https://unsplash.com/photos/body-river-surrounded-by-dress-cCthPLHmrzI?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
 </figcaption>
@@ -799,7 +819,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE1
 <h2 class="anchored" data-anchor-id="q6-one-sample-ci-for-μ">Q6 — One-Sample CI for μ</h2>
 <p>Using airquality$Ozone (ignore missing), construct and print 90% CI for the true mean ozone level (ppb). Assume normality is reasonable.</p>
 <figure style="text-align:center" class="figure">
-<img src="./images/air_quality.jpg" style="width:40%" class="figure-img">
+<img src="./images/air_quality.jpg" style="width:60%" class="figure-img">
 <figcaption>
 Photo by <a href="https://unsplash.com/@timwitzdam?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Tim Witzdam</a> on <a href="https://unsplash.com/photos/plant-next-to-a-device-displaying-readings-NH4RJjtDaNk?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
 </figcaption>
@@ -863,7 +883,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE2
 <h2 class="anchored" data-anchor-id="q7-one-sample-ci-for-a-proportion">Q7 — One-Sample CI for a Proportion</h2>
 <p>In the UCBAdmissions dataset, Admit status for a student is “Admitted” or “Rejected”. Build and print c(lower, upper) for the 95% CI on the overall admission proportion.</p>
 <figure style="text-align:center" class="figure">
-<img src="./images/admissions.jpg" style="width:40%" class="figure-img">
+<img src="./images/admissions.jpg" style="width:60%" class="figure-img">
 <figcaption>
 Photo by <a href="https://unsplash.com/@mattragland?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Matt Ragland</a> on <a href="https://unsplash.com/photos/flat-lay-photography-of-blue-backpack-beside-book-and-silver-macbook-02z1I7gv4ao?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
 </figcaption>
@@ -1027,7 +1047,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE4
 <div class="decor-img">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./images/hair_eye_color.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%" alt="" aria-hidden="true"></p>
+<p><img src="./images/hair_eye_color.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%" alt="" aria-hidden="true"></p>
 </figure>
 </div>
 </div>
@@ -1556,4 +1576,5 @@ window._ojs.runtime.interpretFromScriptTags();
 
 
 
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
