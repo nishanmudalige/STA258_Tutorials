@@ -108,6 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 <script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
 <link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
@@ -115,7 +116,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../design.css">
 </head>
 
-<body class="nav-fixed fullcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -373,8 +374,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#q1" id="toc-q1" class="nav-link active" data-scroll-target="#q1">Q1 — Five-number summary</a></li>
+  <li><a href="#q2" id="toc-q2" class="nav-link" data-scroll-target="#q2">Q2 — Mean, variance, and sd</a></li>
+  <li><a href="#q3-grouped-summary-by-month" id="toc-q3-grouped-summary-by-month" class="nav-link" data-scroll-target="#q3-grouped-summary-by-month">Q3 — Grouped summary by Month</a></li>
+  <li><a href="#q4-ggplot-boxplot-ordered-by-median-chickweight" id="toc-q4-ggplot-boxplot-ordered-by-median-chickweight" class="nav-link" data-scroll-target="#q4-ggplot-boxplot-ordered-by-median-chickweight">Q4 — ggplot Boxplot ordered by median (ChickWeight)</a></li>
+  <li><a href="#q5-histogram-with-tukey-fences" id="toc-q5-histogram-with-tukey-fences" class="nav-link" data-scroll-target="#q5-histogram-with-tukey-fences">Q5 — Histogram with Tukey fences</a></li>
+  <li><a href="#q6-histogram-of-weight-ggplot2" id="toc-q6-histogram-of-weight-ggplot2" class="nav-link" data-scroll-target="#q6-histogram-of-weight-ggplot2">Q6 — Histogram of Weight (ggplot2)</a></li>
+  <li><a href="#q7-boxplot-of-weight-by-diet-ggplot2" id="toc-q7-boxplot-of-weight-by-diet-ggplot2" class="nav-link" data-scroll-target="#q7-boxplot-of-weight-by-diet-ggplot2">Q7 — Boxplot of weight by Diet (ggplot2)</a></li>
+  <li><a href="#q8-scatter-with-smoother-time-vs-weight-ggplot2" id="toc-q8-scatter-with-smoother-time-vs-weight-ggplot2" class="nav-link" data-scroll-target="#q8-scatter-with-smoother-time-vs-weight-ggplot2">Q8 — Scatter with smoother: Time vs weight (ggplot2)</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -1392,4 +1411,5 @@ window._ojs.runtime.interpretFromScriptTags();
 
 
 
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

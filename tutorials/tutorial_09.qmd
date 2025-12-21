@@ -21,7 +21,7 @@ Your task: <br>
 - Return a named numeric vector: `c(b0 = ..., b1 = ...)`
 
 <figure style="text-align:center">
-  <img src="./images/netflix.jpg" style="width:40%">
+  <img src="./images/netflix.jpg" style="width:60%">
   <figcaption>Photo by <a href="https://unsplash.com/@thibaultpenin?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Thibault Penin</a> on <a href="https://unsplash.com/photos/a-television-with-the-netflix-logo-lit-up-in-the-dark-GrzoKN1aqSg?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>
