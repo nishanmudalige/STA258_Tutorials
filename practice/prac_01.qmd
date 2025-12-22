@@ -1,0 +1,384 @@
+---
+title: "Practice Module 01"
+format: live-html
+engine: knitr
+# prevent any project filters from interfering
+filters: []
+sidebar:
+  style: docked
+  contents:
+    - text: "Q1 — Sum to 10"
+      href: "#q1"
+    - text: "Q2 — Division"
+      href: "#q2"
+    - text: "Q3 — Histogram"
+      href: "#q3"
+---
+
+{{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
+{{< include ../_extensions/r-wasm/live/_gradethis.qmd >}}
+
+:::{.callout-note title="Q1 _ Pythagorean Triples" #Q1}
+
+
+```{r, echo=FALSE} 
+# Left-tail shading for z = 1.28 under N(0,1) in base R
+z <- 1.28
+ 
+# Draw the standard normal density
+curve(dnorm(x), from = -4, to = 4, n = 1000,
+      xlab = "z", ylab = "Density",
+      main = bquote("Standard Normal: " ~ P(Z <= .(z))))
+ 
+# Shade the area to the left of z
+x_shade <- seq(-4, z, length.out = 500)
+y_shade <- dnorm(x_shade)
+polygon(c(x_shade, rev(x_shade)),
+        c(y_shade, rep(0, length(y_shade))),
+        col = rgb(0, 114, 178, 120, maxColorValue = 255),  # semi-transparent fill
+        border = NA)
+ 
+# Vertical reference line and redraw the curve on top
+abline(v = z, lty = 2)
+lines(seq(-4, 4, length.out = 1000), dnorm(seq(-4, 4, length.out = 1000)))
+ 
+```
+
+
+
+Set three positive integers a, b, and c such that: \ a^2^ \+\ b^2^ \=\ c^2^ \, 
+0<a<b<c, and c <= 50.
+:::
+
+```{webr}
+#| exercise: ex_pythag
+#| exercise.lines: 5
+#| echo: false
+a <- NA
+b <- NA
+c <- NA
+```
+
+::: {.hint exercise="ex_pythag"}
+Try well-known triples like (3, 4, 5) or (5, 12, 13). Remember to satisfy a<b<c 
+and c≤50.
+:::
+
+::: {.solution exercise="ex_pythag"}
+```{webr}
+#| exercise: ex_pythag
+#| solution: true
+a <- 5
+b <- 12
+c <- 13
+```
+:::
+
+```{webr}
+#| exercise: ex_pythag
+#| check: true
+gradethis::grade_this({
+  e <- get0(".envir_result", ifnotfound = parent.frame())
+
+  req <- function(x) {
+    if (!exists(x, envir = e)) fail(paste0("Define `", x, "`.")) 
+    get(x, envir = e)
+  }
+  a <- req("a"); b <- req("b"); c <- req("c")
+
+  # Basic numeric checks
+  all_defined <- is.numeric(a) && is.numeric(b) && is.numeric(c)
+  if (!all_defined) fail("`a`, `b`, and `c` must be numeric (integers).")
+
+  # Integers & positivity
+  ints <- all(a %% 1 == 0, b %% 1 == 0, c %% 1 == 0)
+  pos  <- all(a > 0, b > 0, c > 0)
+  if (!ints) fail("All three must be integers (no decimals).")
+  if (!pos)  fail("All three must be **positive** integers.")
+
+  # Ordering & bound
+  if (!(a < b && b < c)) fail("Ensure `a < b < c`.")
+  if (c > 50) fail("Make sure `c <= 50`.")
+
+  # Pythagorean condition
+  if (a^2 + b^2 != c^2) fail("Not a Pythagorean triple: check that a^2 + b^2 == c^2.")
+
+  pass("✅ Nice! You found a valid Pythagorean triple with c ≤ 50.")
+})
+```
+
+## Q2 — Build a vector of multiples {#q2}
+
+Create my_vec containing all multiples of 5 from 5 to 100 (inclusive) using seq() (don’t type them out).
+
+
+::: {.callout-note title="Info"}
+Remember: in R, seq() is a versatile function that is used to generate a sequence of numbers with specified starting, ending points or a desired length. 
+:::
+
+
+```{webr}
+#| exercise: ex_vec_mult5
+#| exercise.lines: 2
+#| echo: false
+my_vec <- NULL
+```
+
+::: {.hint exercise="ex_vec_mult5"}
+Learn how to use the seq() function
+:::
+
+::: {.solution exercise="_ex_vec_mult5"}
+```{webr}
+#| exercise: ex_vec_mult5
+#| solution: true
+my_vec <-seq(5, 100, by = 5)
+
+```
+
+:::
+
+
+```{webr}
+#| exercise: ex_vec_mult5
+#| check: true
+gradethis::grade_this({
+  if (!exists("my_vec", envir = .envir_result)) fail("Define `my_vec`.")
+  v <- get("my_vec", envir = .envir_result)
+  if (!is.numeric(v)) fail("`my_vec` must be numeric.")
+  if (!identical(v, seq(5, 100, by = 5))) fail("Use `seq(5, 100, by = 5)` and include both ends.")
+  pass("✅ Looks good.")
+})
+
+```
+
+## Q3 —Transformed Histogram
+
+Generate a histogram of log$_{10}$(cars$dist) with breaks = 10. 
+
+::: {.callout-note title="Info"}
+Remember: in R, the breaks argument in a hist command controls the number of bars, cells or bins of the histogram! 
+:::
+
+```{webr}
+#| exercise: ex_hist_log10
+#type one command here:
+
+```
+
+::: {.hint exercise="ex_hist_log10"}
+Learn how to incorporate a breaks argument in the hist command you are already familiar with!
+:::
+
+::: {.solution exercise="ex_hist_log10"}
+```{webr}
+#| exercise: ex_hist_log10
+#| solution: true
+hist(log10(cars$dist), breaks = 10)
+
+
+```
+
+:::
+
+```{webr}
+#| exercise: ex_hist_log10
+#| check: true
+gradethis::grade_this({
+  code <- .user_code
+  lines <- strsplit(code, "\n", fixed = TRUE)[[1]]
+  lines <- sub("#.*$", "", lines)
+  lines <- trimws(lines)
+  lines <- lines[nzchar(lines)]
+  if (length(lines) == 0) fail("Type your answer.")
+  if (length(lines) > 1) fail("Enter **one** command.")
+  one <- lines[1]
+
+  if (!inherits(.result, "histogram")) fail("Your code should draw a histogram.")
+  norm <- gsub("\\s+", "", one)
+  if (norm == "hist(log10(cars$dist),breaks=10)") pass("✅ Correct.")
+  else if (grepl("^hist\\(", one) && grepl("log10\\s*\\(\\s*cars\\$dist\\s*\\)", one)) {
+    if (!grepl("breaks\\s*=\\s*10", one)) fail("There should be 10 breaks.")
+    else pass("✅ Correct.")
+  } else {
+    fail("Use exactly: `hist(log10(cars$dist), breaks = 10)`.")
+  }
+})
+
+
+```
+## Q4 — Find the average
+
+Compute the mean of the vector `c(2, 4, 6, 8, 10)`.  
+Your answer should be stored in a variable called `avg_val`.
+
+```{webr}
+#| exercise: ex_mean
+#| exercise.lines: 2
+#| echo: false
+avg_val <- NULL
+```
+
+::: {.hint exercise="ex_mean"}
+Use the mean() function: mean(c(...))
+:::
+
+::: {.solution exercise="ex_mean"}
+```{webr}
+#| exercise: ex_mean
+#| solution: true
+avg_val <- mean(c(2, 4, 6, 8, 10))
+
+```
+:::
+```{webr}
+#| exercise: ex_mean
+#| check: true
+gradethis::grade_this({
+  if (!exists("avg_val", envir = .envir_result)) {
+    fail("You need to define `avg_val`.")
+  }
+  v <- get("avg_val", envir = .envir_result)
+  if (!is.numeric(v) || length(v) != 1) {
+    fail("`avg_val` should be a single numeric value.")
+  }
+  if (!isTRUE(all.equal(v, 6, tol = 1e-8))) {
+    fail("Not quite — the mean of c(2,4,6,8,10) is 6.")
+  }
+  pass("✅ Correct! You computed the mean successfully.")
+})
+
+```
+
+## Q5 — Sequence of evens {#q3}
+
+Create evens_20_60 with all even numbers from 20 to 60 inclusive using seq().
+
+```{webr}
+#| exercise: ex_evens_seq
+#| exercise.lines: 2
+#| echo: false
+evens_20_60 <- NULL
+```
+
+::: {.hint exercise="ex_evens_seq"}
+seq(20, 60, by = 2)
+:::
+
+::: {.solution exercise="ex_evens_seq"}
+```{webr}
+#| exercise: ex_evens_seq
+#| solution: true
+evens_20_60 <- seq(20, 60, by = 2)
+```
+:::
+
+```{webr}
+#| exercise: ex_evens_seq
+#| check: true
+gradethis::grade_this({
+  if (!exists("evens_20_60", envir = .envir_result)) fail("Define `evens_20_60`.")
+  v <- get("evens_20_60", envir = .envir_result)
+  if (!is.numeric(v)) fail("`evens_20_60` must be numeric.")
+  if (!identical(v, seq(20, 60, by = 2))) fail("Use `seq(20, 60, by = 2)` and include both ends.")
+  pass("✅ Correct sequence.")
+})
+```
+
+## Q6 — Tiny calculator function {#q4}
+
+Write mini_calc(a, b) that returns a named numeric vector with:
+sum = a+b, diff = a-b, prod = a*b, quot = a/b (NA if b==0).
+
+```{webr}
+#| exercise: ex_mini_calc
+#| exercise.lines: 10
+#| echo: false
+mini_calc <- function(a, b) {
+  # your code here
+}
+```
+
+::: {.hint exercise="ex_mini_calc"}
+Return like c(sum=..., diff=..., prod=..., quot=...). Handle b==0 for quot.
+:::
+
+::: {.solution exercise="ex_mini_calc"}
+```{webr}
+#| exercise: ex_mini_calc
+#| solution: true
+mini_calc <- function(a, b) {
+  c(
+    sum  = a + b,
+    diff = a - b,
+    prod = a * b,
+    quot = if (b == 0) NA_real_ else a / b
+  )
+}
+```
+:::
+
+
+```{webr}
+#| exercise: ex_mini_calc
+#| check: true
+gradethis::grade_this({
+  # 1) Find the student's environment
+  env <- get0(".envir_result", ifnotfound = NULL)
+  if (is.null(env)) env <- get0(".user_env", ifnotfound = NULL)
+  if (is.null(env)) env <- parent.frame()
+
+  # 2) Get their function (prefer named binding; don't rely on .result)
+  if (!exists("mini_calc", envir = env, inherits = FALSE)) {
+    fail("Define `mini_calc <- function(a, b) { ... }` in the editor (no extra calls below it).")
+  }
+  f <- get("mini_calc", envir = env)
+  if (!is.function(f)) fail("`mini_calc` must be a function.")
+
+  # 3) Run and validate
+  out <- tryCatch(f(8, 2), error = function(e) e)
+  if (inherits(out, "error")) {
+    fail(paste0("Your function raised an error: ", conditionMessage(out)))
+  }
+
+  # Accept vector or list -> coerce to named numeric vector
+  if (is.list(out)) out <- unlist(out, use.names = TRUE)
+
+  # Must be numeric vector length 4 with required names (order-insensitive)
+  needed <- c("sum","diff","prod","quot")
+  if (!is.numeric(out) || length(out) != 4L) {
+    fail("Return a **numeric vector of length 4** (not a list).")
+  }
+  if (is.null(names(out)) || !setequal(names(out), needed)) {
+    fail("Name entries exactly: `sum`, `diff`, `prod`, `quot`.")
+  }
+
+  # Compare values (tolerant); re-order by names to avoid name-order issues
+  out <- out[needed]
+  target <- c(sum = 10, diff = 6, prod = 16, quot = 4)
+  ok_vals <- all(mapply(function(a,b) isTRUE(all.equal(a, b, tol = 1e-8)), out, target))
+
+  # Zero-division behavior
+  out0 <- tryCatch(f(5, 0), error = function(e) e)
+  if (inherits(out0, "error")) {
+    fail(paste0("Error when b == 0: ", conditionMessage(out0)))
+  }
+  if (is.list(out0)) out0 <- unlist(out0, use.names = TRUE)
+  out0 <- out0[needed]
+  ok_zero <- isTRUE(is.na(out0["quot"]))
+
+  if (ok_vals && ok_zero) {
+    pass("✅ Looks good (correct values, names, and zero-division handling).")
+  } else {
+    # Diagnostic to show exactly what the grader saw
+    diag <- paste0(
+      "I saw: ", paste(sprintf("%s=%s", names(out), format(out, trim=TRUE)), collapse=", "),
+      "; when b==0, quot=", format(out0["quot"], trim=TRUE)
+    )
+    if (!ok_zero && !ok_vals) fail(paste("Recheck values and handle b==0 -> NA for `quot`.\n", diag))
+    else if (!ok_zero)       fail(paste("Handle b==0 -> NA for `quot`.\n", diag))
+    else                     fail(paste("Recheck the values for (a,b)=(8,2): 10, 6, 16, 4.\n", diag))
+  }
+})
+```
+
