@@ -234,10 +234,12 @@ par(mfrow = c(1,1))
 :::
 
 ::: {.callout-note title="Info"}
-For a one-sample test with unknown σ, use
-\( t = \dfrac{\bar{x} - \mu_0}{s / \sqrt{n}} \)
-with \(df = n - 1\), and a two-sided p-value
-\( p = 2 \times (1 - F_t(|t|)) \).
+
+For a one-sample test with unknown $\sigma$, use
+$t = \dfrac{\bar{x} - \mu_0}{s / \sqrt{n}}$
+with $df = n - 1$, and a two-sided p-value
+$p = 2 \times (1 - F_t(|t|))$.
+
 :::
 
 ```{webr}
@@ -400,10 +402,13 @@ H₁: μ ≠ 45
 We will compute the test statistic and the p-value manually.
 
 ::: {.callout-note title="Info"}
+
+
 One-sample t (σ unknown):
 
 $t=\frac{\bar{x} - \mu_0}{s/\sqrt{n}}$, with df = n-1, and two-sided p-value
 $p = 2 \times(1 - F_t(|t|)).$
+
 :::
 
 
@@ -718,8 +723,10 @@ gradethis::grade_this({
 We use the **same dataset and the same hypothesis** as Q7.
 
 ::: {.callout-note title="Info"}
-If a one-sample proportion test gives (\chi^2) with 1 df, then
-( z = \sqrt{\chi^2} ) (keep the sign if you need direction).
+
+If a one-sample proportion test gives $(\chi^2)$ with 1 df, then
+$( z = \sqrt{\chi^2} )$ (keep the sign if you need direction).
+
 :::
 
 ```{webr}

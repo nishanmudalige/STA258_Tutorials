@@ -31,6 +31,7 @@ Your final output should be a single numeric p-value.
 </figure>
 
 ::: {.callout-note title="Info"}
+
 In a pooled two-sample t-test for two groups with sample sizes \(n_1, n_2\),
 sample means \(\bar x_1, \bar x_2\), and sample standard deviations \(s_1, s_2\),
 we first compute the pooled variance
@@ -56,6 +57,7 @@ degrees of freedom. For a two-sided test, the p-value is
 $$
 p\text{-value} = 2\,P\bigl(T_{\text{df}} \ge |t|\bigr).
 $$
+
 :::
 
 
@@ -202,6 +204,7 @@ Return a single numeric p-value.
 </figure>
 
 ::: {.callout-note title="Info"}
+
 In the Welch two-sample t-test, we keep the sample variances separate.
 For two groups with sample sizes \(n_1, n_2\), means \(\bar x_1, \bar x_2\),
 and standard deviations \(s_1, s_2\), the test statistic is
@@ -226,6 +229,7 @@ For a two-sided test of \(H_0: \mu_1 - \mu_2 = 0\), the p-value is
 $$
 p\text{-value} = 2\,P\bigl(T_{\text{df}_W} \ge |t|\bigr).
 $$
+
 :::
 
 
