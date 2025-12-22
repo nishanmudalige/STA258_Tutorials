@@ -28,5 +28,21 @@ div.main-container {
   overflow: visible;          /* allow dropdown to extend */
 }
 
+.webr-ojs-exercise.exercise-solution,
+.webr-ojs-exercise.exercise-solution * {
+  display: none !important;
+}
+
+/* Extra: hide any solution code blocks */
+code.solution-code,
+.solution-code {
+  display: none !important;
+}
+
+a.btn-exercise-solution[aria-label="Show Solution"],
+a.btn-exercise-solution {
+  display: none !important;
+}
+
 /* Do NOT set position on .header or .headroom. Do NOT add transforms. */
 /* Remove any other z-index/position rules you had for .header/.headroom. */
