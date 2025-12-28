@@ -4,6 +4,8 @@
   <img style="float:left;height:150px;" src="https://raw.githubusercontent.com/nishanmudalige/STA258/refs/heads/main/Hex%20Badges/STA258.svg">
 </p>
 
+[![pages-build-deployment](https://github.com/nishanmudalige/STA258_Tutorials/actions/workflows/pages/pages-build-deployment/badge.svg?branch=main)](https://github.com/nishanmudalige/STA258_Tutorials/actions/workflows/pages/pages-build-deployment)
+
 ---
 
 Files for a custom interactive R tutorials for STA258: Statistics with Applied Probability at the University of Toronto Mississauga.
