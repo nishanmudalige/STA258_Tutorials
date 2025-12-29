@@ -39,6 +39,7 @@ Visit [https://nishanmudalige.github.io/STA258_Tutorials/](https://nishanmudalig
 <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/dplyr.svg">
 <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/tidyr.svg"> 
 <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/tidyverse.svg">
+<img style="float:left;height:100px;" src="https://raw.githubusercontent.com/allisonhorst/palmerpenguins/refs/heads/main/man/figures/palmerpenguins.png">
 </p>
 
 ---
