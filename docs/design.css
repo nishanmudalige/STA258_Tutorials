@@ -46,3 +46,10 @@ a.btn-exercise-solution {
 
 /* Do NOT set position on .header or .headroom. Do NOT add transforms. */
 /* Remove any other z-index/position rules you had for .header/.headroom. */
+
+
+/* Reduce font size for all figure captions */
+figure figcaption, .figure-caption {
+  font-size: 0.65rem;
+  color: #555; /* Optional: dim the color to make it less prominent */
+}
