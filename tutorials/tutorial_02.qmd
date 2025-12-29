@@ -95,7 +95,7 @@ Mean, variance, and standard deviation summarize center and spread. Variance and
 
 
 <figure style="text-align:center">
-  <img src="./images/air_quality.jpg" style="width:40%">
+  <img src="./images/air_quality.jpg" style="width:75%">
   <figcaption>Photo by <a href="https://unsplash.com/@timwitzdam?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Tim Witzdam</a> on <a href="https://unsplash.com/photos/plant-next-to-a-device-displaying-readings-NH4RJjtDaNk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>
@@ -216,7 +216,7 @@ Now, we are moving on to the ChickWeight dataset which has data from an experime
 
 
 <figure style="text-align:center">
-  <img src="./images/chick_weight.jpg" style="width:40%">
+  <img src="./images/chick_weight.jpg" style="width:75%">
   <figcaption>Photo by <a href="https://unsplash.com/@karim_manjra?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Karim MANJRA</a> on <a href="https://unsplash.com/photos/two-yellow-chicks-on-ground-hQV3s7J6eM4?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>

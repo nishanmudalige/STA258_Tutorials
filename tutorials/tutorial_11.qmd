@@ -15,7 +15,7 @@ For this tutorial, we will be using a Halloween candy dataset that compares diff
 Calculate the proportion of fruity candies from the dataset. 
 
 <figure style="text-align:center">
-  <img src="./images/fruit_candy.jpg" style="width:60%">
+  <img src="./images/fruit_candy.jpg" style="width:75%">
   <figcaption>Photo by <a href="https://unsplash.com/@joannakosinska?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Joanna Kosinska</a> on <a href="https://unsplash.com/photos/assorted-color-candies-on-container--ayOfwsd9mY?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>
@@ -92,7 +92,7 @@ Return the proportion of hard candies among all fruity candies, i.e. return a si
 
 
 <figure style="text-align:center">
-  <img src="./images/fruit_candy.jpg" style="width:60%">
+  <img src="./images/fruit_candy.jpg" style="width:75%">
   <figcaption>Photo by <a href="https://unsplash.com/@joannakosinska?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Joanna Kosinska</a> on <a href="https://unsplash.com/photos/assorted-color-candies-on-container--ayOfwsd9mY?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>
@@ -169,7 +169,7 @@ Finally return $p_1$ - $p_0$ .
 
 
 <figure style="text-align:center">
-  <img src="./images/chocolate.jpg" style="width:60%">
+  <img src="./images/chocolate.jpg" style="width:75%">
   <figcaption>Photo by <a href="https://unsplash.com/@redaquamedia?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Denny Müller</a> on <a href="https://unsplash.com/photos/orange-and-red-plastic-pack-mGP8gyGb8zY?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>
@@ -247,7 +247,7 @@ else fail("Mismatch. Check your subsetting and mean(bar==1).")
 Perform a chi-sq test of independence between chocolate and bar and return the p-value. 
 
 <figure style="text-align:center">
-  <img src="./images/chocolate.jpg" style="width:60%">
+  <img src="./images/chocolate.jpg" style="width:75%">
   <figcaption>Photo by <a href="https://unsplash.com/@redaquamedia?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Denny Müller</a> on <a href="https://unsplash.com/photos/orange-and-red-plastic-pack-mGP8gyGb8zY?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>
@@ -329,7 +329,7 @@ else fail("Mismatch. Check table order and chisq.test(..., correct=FALSE).")
 Run Fisher’s exact test for association between fruity and hard candies. Return the p-value. 
 
 <figure style="text-align:center">
-  <img src="./images/fruit_candy.jpg" style="width:60%">
+  <img src="./images/fruit_candy.jpg" style="width:75%">
   <figcaption>Photo by <a href="https://unsplash.com/@joannakosinska?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Joanna Kosinska</a> on <a href="https://unsplash.com/photos/assorted-color-candies-on-container--ayOfwsd9mY?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>
@@ -536,7 +536,7 @@ where:  <br>
 
 
 <figure style="text-align:center">
-  <img src="./images/chocolate.jpg" style="width:60%">
+  <img src="./images/chocolate.jpg" style="width:75%">
   <figcaption>Photo by <a href="https://unsplash.com/@redaquamedia?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Denny Müller</a> on <a href="https://unsplash.com/photos/orange-and-red-plastic-pack-mGP8gyGb8zY?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>

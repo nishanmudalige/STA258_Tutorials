@@ -44,7 +44,7 @@ $$
 Return a named numeric vector: `c(F = Fstat, df1 = df1, df2 = df2, p_value = pval)`.
 
 <figure style="text-align:center">
-  <img src="./images/citylife.jpg" style="width:60%">
+  <img src="./images/citylife.jpg" style="width:75%">
   <figcaption>Photo by <a href="https://unsplash.com/@duplexuno?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Arno Retief</a> on <a href="https://unsplash.com/photos/a-couple-of-people-walking-down-a-street-next-to-tall-buildings-CvylIFJTWKo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>
@@ -679,7 +679,7 @@ Return a named numeric vector:
 `c(F = Fstat, df1 = df1, df2 = df2, p_value = pval)`.
 
 <figure style="text-align:center">
-  <img src="./images/studentprog.jpg" style="width:60%">
+  <img src="./images/studentprog.jpg" style="width:75%">
   <figcaption>Photo by <a href="https://unsplash.com/@leovamexican?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Leonardo Vargas</a> on <a href="https://unsplash.com/photos/graduates-in-caps-and-gowns-seated-outdoors-xw2TSvMNRgQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>

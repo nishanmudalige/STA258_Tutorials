@@ -19,7 +19,7 @@ Read the CSV with read.csv("recipe_reviews.csv"), build the two groups, and prin
 
 
 <figure style="text-align:center">
-  <img src="./images/food_review.jpg" style="width:60%">
+  <img src="./images/food_review.jpg" style="width:75%">
   <figcaption>Photo by <a href="https://unsplash.com/@withmazar?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Maximus Mazar</a> on <a href="https://unsplash.com/photos/a-white-plate-topped-with-a-salad-on-top-of-a-table-gCT7s8QlTHs?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>
@@ -160,7 +160,7 @@ and only the two species Adelie and Gentoo.
 
 
 <figure style="text-align:center">
-  <img src="./images/penguin_species.jpg" style="width:60%">
+  <img src="./images/penguin_species.jpg" style="width:75%">
   <figcaption>Photo by <a href="https://unsplash.com/@niceguy1966?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Adam Tarshis</a> on <a href="https://unsplash.com/photos/a-couple-of-penguins-walking-on-sand-5hIWiJiZUpM?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
       </figcaption>
 </figure>
