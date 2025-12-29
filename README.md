@@ -10,6 +10,12 @@
 ![GitHub branch check runs](https://img.shields.io/github/check-runs/nishanmudalige/STA258_Tutorials/main)
 ![Website](https://img.shields.io/website?url=https%3A%2F%2Fnishanmudalige.github.io%2FSTA258_Tutorials%2F)
 
+![GitHub License](https://img.shields.io/github/license/nishanmudalige/STA258_tutorials)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.1%20adopted-pink)](code_of_conduct.md)
+
+
+
+
 
 
 ---
