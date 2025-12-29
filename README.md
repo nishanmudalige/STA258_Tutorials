@@ -14,13 +14,15 @@
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.1%20adopted-pink)](code_of_conduct.md)
 
 
-
-
-
-
 ---
 
-Files for a custom interactive R tutorials for STA258: Statistics with Applied Probability at the University of Toronto Mississauga.
+![GitHub commit activity](https://img.shields.io/github/commit-activity/t/nishanmudalige/STA258_tutorials)
+![GitHub contributors](https://img.shields.io/github/contributors/nishanmudalige/STA258_Tutorials)
+![GitHub language count](https://img.shields.io/github/languages/count/nishanmudalige/STA258_Tutorials)
+![GitHub top language](https://img.shields.io/github/languages/top/nishanmudalige/STA258_Tutorials)
+
+
+Files for custom interactive R tutorials for STA258: Statistics with Applied Probability at the University of Toronto Mississauga.
 
 Visit [https://nishanmudalige.github.io/STA258_Tutorials/](https://nishanmudalige.github.io/STA258_Tutorials/) to access the interactive tutorials.
 
