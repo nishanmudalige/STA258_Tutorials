@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.24">
+<meta name="generator" content="quarto-1.7.31">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -66,19 +66,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b651517ce65839d647a86e2780455cfb.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ef56b68f8fa1e9d2ba328e99e439f80.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-0d4a9d19931feb4fee1ddab4b2489000.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-6bdd2aebeb936dcddaa5f935a5de481c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-ccd81253fefb92e9cd3f9eb5b5d87b54.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-6bdd2aebeb936dcddaa5f935a5de481c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -126,7 +125,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+      if (mathElements[i].tagName == "SPAN") {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -314,8 +313,6 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Course Tutorials</span>
     </a>
@@ -465,7 +462,7 @@ Photo by <a href="https://unsplash.com/@camyogi_2019?utm_source=unsplash&amp;utm
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Info
+Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -478,7 +475,7 @@ Photo by <a href="https://unsplash.com/@camyogi_2019?utm_source=unsplash&amp;utm
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Preview
+Preview
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -521,7 +518,7 @@ z &lt;- (xbar - mu_0) / (sigma / sqrt(n))
 p_two &lt;- 2 * (1 - pnorm(abs(z)))
 
 c(z = z, p_value = p_two)</code>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-6-1"><a href="#interpolate-6-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"world_cup_predictions.csv"</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>, <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
+<div class="sourceCode cell-code" id="interpolate-6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-6-1"><a href="#interpolate-6-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"world_cup_predictions.csv"</span>, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>, <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
 <span id="interpolate-6-2"><a href="#interpolate-6-2" aria-hidden="true" tabindex="-1"></a>spi_col <span class="ot">&lt;-</span> df<span class="sc">$</span>spi</span>
 <span id="interpolate-6-3"><a href="#interpolate-6-3" aria-hidden="true" tabindex="-1"></a>mu_0 <span class="ot">&lt;-</span> <span class="dv">70</span></span>
 <span id="interpolate-6-4"><a href="#interpolate-6-4" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="dv">12</span></span>
@@ -530,7 +527,7 @@ c(z = z, p_value = p_two)</code>
 <span id="interpolate-6-7"><a href="#interpolate-6-7" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> (xbar <span class="sc">-</span> mu_0) <span class="sc">/</span> (sigma <span class="sc">/</span> <span class="fu">sqrt</span>(n)) </span>
 <span id="interpolate-6-8"><a href="#interpolate-6-8" aria-hidden="true" tabindex="-1"></a>p_two <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(z)))</span>
 <span id="interpolate-6-9"><a href="#interpolate-6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-6-10"><a href="#interpolate-6-10" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">z =</span> z, <span class="at">p_value =</span> p_two)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="interpolate-6-10"><a href="#interpolate-6-10" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">z =</span> z, <span class="at">p_value =</span> p_two)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -549,7 +546,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InEx
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Info
+Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -562,7 +559,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InEx
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Preview
+Preview
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -606,7 +603,7 @@ sigma.x = 12,
 alternative = "two.sided")
 
 out$p.value</code>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-12-1"><a href="#interpolate-12-1" aria-hidden="true" tabindex="-1"></a></span>
+<div class="sourceCode cell-code" id="interpolate-12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-12-1"><a href="#interpolate-12-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-12-2"><a href="#interpolate-12-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"world_cup_predictions.csv"</span>)</span>
 <span id="interpolate-12-3"><a href="#interpolate-12-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> df<span class="sc">$</span>spi</span>
 <span id="interpolate-12-4"><a href="#interpolate-12-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -617,7 +614,7 @@ out$p.value</code>
 <span id="interpolate-12-9"><a href="#interpolate-12-9" aria-hidden="true" tabindex="-1"></a><span class="at">sigma.x =</span> <span class="dv">12</span>,</span>
 <span id="interpolate-12-10"><a href="#interpolate-12-10" aria-hidden="true" tabindex="-1"></a><span class="at">alternative =</span> <span class="st">"two.sided"</span>)</span>
 <span id="interpolate-12-11"><a href="#interpolate-12-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-12-12"><a href="#interpolate-12-12" aria-hidden="true" tabindex="-1"></a>out<span class="sc">$</span>p.value</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="interpolate-12-12"><a href="#interpolate-12-12" aria-hidden="true" tabindex="-1"></a>out<span class="sc">$</span>p.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -639,7 +636,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InEy
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Info
+Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -652,7 +649,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InEy
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Preview
+Preview
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -675,7 +672,7 @@ eyJhdHRyIjp7ImVjaG8iOnRydWUsImVkaXQiOnRydWUsImV2YWwiOnRydWV9LCJjb2RlIjoiZGYgPC0g
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Info
+Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -711,7 +708,7 @@ t_stat &lt;- (xbar - mu_0) / (s / sqrt(n))
 p_two &lt;- 2 * (1 - pt(abs(t_stat), df = dfree))
 
 c(t = t_stat, df = dfree, p_value = p_two)</code>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-18-1"><a href="#interpolate-18-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"world_cup_predictions.csv"</span>)</span>
+<div class="sourceCode cell-code" id="interpolate-18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-18-1"><a href="#interpolate-18-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"world_cup_predictions.csv"</span>)</span>
 <span id="interpolate-18-2"><a href="#interpolate-18-2" aria-hidden="true" tabindex="-1"></a>spi_col <span class="ot">&lt;-</span> df<span class="sc">$</span>spi</span>
 <span id="interpolate-18-3"><a href="#interpolate-18-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-18-4"><a href="#interpolate-18-4" aria-hidden="true" tabindex="-1"></a>mu_0 <span class="ot">&lt;-</span> <span class="dv">70</span></span>
@@ -723,7 +720,7 @@ c(t = t_stat, df = dfree, p_value = p_two)</code>
 <span id="interpolate-18-10"><a href="#interpolate-18-10" aria-hidden="true" tabindex="-1"></a>t_stat <span class="ot">&lt;-</span> (xbar <span class="sc">-</span> mu_0) <span class="sc">/</span> (s <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span>
 <span id="interpolate-18-11"><a href="#interpolate-18-11" aria-hidden="true" tabindex="-1"></a>p_two <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pt</span>(<span class="fu">abs</span>(t_stat), <span class="at">df =</span> dfree))</span>
 <span id="interpolate-18-12"><a href="#interpolate-18-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-18-13"><a href="#interpolate-18-13" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">t =</span> t_stat, <span class="at">df =</span> dfree, <span class="at">p_value =</span> p_two)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="interpolate-18-13"><a href="#interpolate-18-13" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">t =</span> t_stat, <span class="at">df =</span> dfree, <span class="at">p_value =</span> p_two)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -742,7 +739,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InEy
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Info
+Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -770,11 +767,11 @@ df &lt;- read.csv("world_cup_predictions.csv")
 x &lt;- df$spi
 out &lt;- t.test(x, mu = 70, alternative = "two.sided")
 out$p.value</code>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-23-1"><a href="#interpolate-23-1" aria-hidden="true" tabindex="-1"></a></span>
+<div class="sourceCode cell-code" id="interpolate-23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-23-1"><a href="#interpolate-23-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-23-2"><a href="#interpolate-23-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"world_cup_predictions.csv"</span>)</span>
 <span id="interpolate-23-3"><a href="#interpolate-23-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> df<span class="sc">$</span>spi</span>
 <span id="interpolate-23-4"><a href="#interpolate-23-4" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">t.test</span>(x, <span class="at">mu =</span> <span class="dv">70</span>, <span class="at">alternative =</span> <span class="st">"two.sided"</span>)</span>
-<span id="interpolate-23-5"><a href="#interpolate-23-5" aria-hidden="true" tabindex="-1"></a>out<span class="sc">$</span>p.value</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="interpolate-23-5"><a href="#interpolate-23-5" aria-hidden="true" tabindex="-1"></a>out<span class="sc">$</span>p.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -795,7 +792,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE0
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Info
+Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -809,7 +806,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE0
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Preview
+Preview
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -857,7 +854,7 @@ t_stat &lt;- (xbar - mu_0) / (s / sqrt(n))
 p_two &lt;- 2 * (1 - pt(abs(t_stat), df = dfree))
 
 c(t = t_stat, df = dfree, p_value = p_two)</code>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-29-1"><a href="#interpolate-29-1" aria-hidden="true" tabindex="-1"></a></span>
+<div class="sourceCode cell-code" id="interpolate-29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-29-1"><a href="#interpolate-29-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-29-2"><a href="#interpolate-29-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"spotify-2024.csv"</span>)</span>
 <span id="interpolate-29-3"><a href="#interpolate-29-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> df<span class="sc">$</span>Track.Score</span>
 <span id="interpolate-29-4"><a href="#interpolate-29-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> x[<span class="fu">is.finite</span>(x)]</span>
@@ -871,7 +868,7 @@ c(t = t_stat, df = dfree, p_value = p_two)</code>
 <span id="interpolate-29-12"><a href="#interpolate-29-12" aria-hidden="true" tabindex="-1"></a>t_stat <span class="ot">&lt;-</span> (xbar <span class="sc">-</span> mu_0) <span class="sc">/</span> (s <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span>
 <span id="interpolate-29-13"><a href="#interpolate-29-13" aria-hidden="true" tabindex="-1"></a>p_two <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pt</span>(<span class="fu">abs</span>(t_stat), <span class="at">df =</span> dfree))</span>
 <span id="interpolate-29-14"><a href="#interpolate-29-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-29-15"><a href="#interpolate-29-15" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">t =</span> t_stat, <span class="at">df =</span> dfree, <span class="at">p_value =</span> p_two)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="interpolate-29-15"><a href="#interpolate-29-15" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">t =</span> t_stat, <span class="at">df =</span> dfree, <span class="at">p_value =</span> p_two)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -891,7 +888,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE1
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Info
+Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -904,7 +901,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE1
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Preview
+Preview
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -945,7 +942,7 @@ mu = 45,
 alternative = "two.sided")
 
 out$p.value</code>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-35-1"><a href="#interpolate-35-1" aria-hidden="true" tabindex="-1"></a></span>
+<div class="sourceCode cell-code" id="interpolate-35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-35-1"><a href="#interpolate-35-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-35-2"><a href="#interpolate-35-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"spotify-2024.csv"</span>)</span>
 <span id="interpolate-35-3"><a href="#interpolate-35-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> df<span class="sc">$</span>Track.Score</span>
 <span id="interpolate-35-4"><a href="#interpolate-35-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -953,7 +950,7 @@ out$p.value</code>
 <span id="interpolate-35-6"><a href="#interpolate-35-6" aria-hidden="true" tabindex="-1"></a><span class="at">mu =</span> <span class="dv">45</span>,</span>
 <span id="interpolate-35-7"><a href="#interpolate-35-7" aria-hidden="true" tabindex="-1"></a><span class="at">alternative =</span> <span class="st">"two.sided"</span>)</span>
 <span id="interpolate-35-8"><a href="#interpolate-35-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-35-9"><a href="#interpolate-35-9" aria-hidden="true" tabindex="-1"></a>out<span class="sc">$</span>p.value</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="interpolate-35-9"><a href="#interpolate-35-9" aria-hidden="true" tabindex="-1"></a>out<span class="sc">$</span>p.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -975,7 +972,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE2
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Info
+Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -988,7 +985,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE2
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Preview
+Preview
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1032,7 +1029,7 @@ out &lt;- prop.test(x = x,
                  alternative = "two.sided")
 
 out$p.value</code>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-41-1"><a href="#interpolate-41-1" aria-hidden="true" tabindex="-1"></a></span>
+<div class="sourceCode cell-code" id="interpolate-41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-41-1"><a href="#interpolate-41-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-41-2"><a href="#interpolate-41-2" aria-hidden="true" tabindex="-1"></a>vg <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"vgsales.csv"</span>)</span>
 <span id="interpolate-41-3"><a href="#interpolate-41-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-41-4"><a href="#interpolate-41-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sum</span>(vg<span class="sc">$</span>Publisher <span class="sc">==</span> <span class="st">"Nintendo"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
@@ -1043,7 +1040,7 @@ out$p.value</code>
 <span id="interpolate-41-9"><a href="#interpolate-41-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">p =</span> <span class="fl">0.045</span>,</span>
 <span id="interpolate-41-10"><a href="#interpolate-41-10" aria-hidden="true" tabindex="-1"></a>                 <span class="at">alternative =</span> <span class="st">"two.sided"</span>)</span>
 <span id="interpolate-41-11"><a href="#interpolate-41-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-41-12"><a href="#interpolate-41-12" aria-hidden="true" tabindex="-1"></a>out<span class="sc">$</span>p.value</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="interpolate-41-12"><a href="#interpolate-41-12" aria-hidden="true" tabindex="-1"></a>out<span class="sc">$</span>p.value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1064,7 +1061,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE3
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Info
+Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1102,7 +1099,7 @@ chisq_val &lt;- out$statistic
 z_val &lt;- sqrt(chisq_val)
 
 c(chisq = chisq_val, z_from_chisq = z_val)</code>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-46-1"><a href="#interpolate-46-1" aria-hidden="true" tabindex="-1"></a></span>
+<div class="sourceCode cell-code" id="interpolate-46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-46-1"><a href="#interpolate-46-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-46-2"><a href="#interpolate-46-2" aria-hidden="true" tabindex="-1"></a>vg <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"vgsales.csv"</span>)</span>
 <span id="interpolate-46-3"><a href="#interpolate-46-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-46-4"><a href="#interpolate-46-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sum</span>(vg<span class="sc">$</span>Publisher <span class="sc">==</span> <span class="st">"Nintendo"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
@@ -1116,7 +1113,7 @@ c(chisq = chisq_val, z_from_chisq = z_val)</code>
 <span id="interpolate-46-12"><a href="#interpolate-46-12" aria-hidden="true" tabindex="-1"></a>chisq_val <span class="ot">&lt;-</span> out<span class="sc">$</span>statistic</span>
 <span id="interpolate-46-13"><a href="#interpolate-46-13" aria-hidden="true" tabindex="-1"></a>z_val <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(chisq_val)</span>
 <span id="interpolate-46-14"><a href="#interpolate-46-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-46-15"><a href="#interpolate-46-15" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">chisq =</span> chisq_val, <span class="at">z_from_chisq =</span> z_val)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="interpolate-46-15"><a href="#interpolate-46-15" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">chisq =</span> chisq_val, <span class="at">z_from_chisq =</span> z_val)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1137,7 +1134,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE4
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Info
+Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1173,7 +1170,7 @@ out &lt;- rstatix::prop_test(
 )
 
 out</code>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-51-1"><a href="#interpolate-51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstatix)</span>
+<div class="sourceCode cell-code" id="interpolate-51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-51-1"><a href="#interpolate-51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstatix)</span>
 <span id="interpolate-51-2"><a href="#interpolate-51-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-51-3"><a href="#interpolate-51-3" aria-hidden="true" tabindex="-1"></a>vg <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"vgsales.csv"</span>)</span>
 <span id="interpolate-51-4"><a href="#interpolate-51-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -1185,7 +1182,7 @@ out</code>
 <span id="interpolate-51-10"><a href="#interpolate-51-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">p =</span> <span class="fl">0.045</span></span>
 <span id="interpolate-51-11"><a href="#interpolate-51-11" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="interpolate-51-12"><a href="#interpolate-51-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-51-13"><a href="#interpolate-51-13" aria-hidden="true" tabindex="-1"></a>out</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="interpolate-51-13"><a href="#interpolate-51-13" aria-hidden="true" tabindex="-1"></a>out</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -1291,14 +1288,13 @@ window._ojs.runtime.interpretFromScriptTags();
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
         }
-      }
-      return codeEl.innerText;
+        return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
