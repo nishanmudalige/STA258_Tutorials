@@ -34,6 +34,7 @@ Visit [https://nishanmudalige.github.io/STA258_Tutorials/](https://nishanmudalig
 <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/quarto.svg">
 <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/webr.svg">  
 <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/ggplot2.svg">
+<img style="float:left;height:100px;" src="https://docs.ropensci.org/skimr/reference/figures/logo.png">
 <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/pipe.svg">
 <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/dplyr.svg">
 <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/tidyr.svg"> 
