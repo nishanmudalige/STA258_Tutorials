@@ -5,6 +5,12 @@
 </p>
 
 [![pages-build-deployment](https://github.com/nishanmudalige/STA258_Tutorials/actions/workflows/pages/pages-build-deployment/badge.svg?branch=main)](https://github.com/nishanmudalige/STA258_Tutorials/actions/workflows/pages/pages-build-deployment)
+![Uptime Robot status](https://img.shields.io/uptimerobot/status/m802062925-a9dbd4418d7fa39696b3560e)
+![Uptime Robot status](https://img.shields.io/uptimerobot/ratio/m802062925-a9dbd4418d7fa39696b3560e)
+![GitHub branch check runs](https://img.shields.io/github/check-runs/nishanmudalige/STA258_Tutorials/main)
+![Website](https://img.shields.io/website?url=https%3A%2F%2Fnishanmudalige.github.io%2FSTA258_Tutorials%2F)
+
+
 
 ---
 
