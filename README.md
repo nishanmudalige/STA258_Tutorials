@@ -35,17 +35,26 @@ Visit [https://nishanmudalige.github.io/STA258_Tutorials/](https://nishanmudalig
 <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/webr.svg">
 <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/gtable.svg">
 <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/rlang.svg">
+</p>
+
+<p align="center"> 
 <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/scales.svg">
 <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/withr.svg">
 <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/glue.svg">
 <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/htmltools.svg">
 <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/rstudioapi.svg">
+</p>
+
+<p align="center"> 
 <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/covr.svg">
 <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/ggplot2.svg">
 <img style="float:left;height:100px;" src="https://docs.ropensci.org/skimr/reference/figures/logo.png">
 <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/pipe.svg">
 <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/dplyr.svg">
 <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/tidyr.svg"> 
+</p>
+
+<p align="center"> 
 <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/tidyverse.svg">
 <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/deepayan/lattice/fa110fafbaa99cecf8a1e6bc355e87a2a05d1fe2/man/figures/logo.svg">
 <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/allisonhorst/palmerpenguins/refs/heads/main/man/figures/palmerpenguins.png">
