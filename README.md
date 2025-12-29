@@ -36,18 +36,14 @@ Visit [https://nishanmudalige.github.io/STA258_Tutorials/](https://nishanmudalig
 <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/gtable.svg">
 <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/rlang.svg">
 <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/scales.svg">
-</p>
-
-<p align="center"> 
+<br>
 <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/withr.svg">
 <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/glue.svg">
 <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/htmltools.svg">
 <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/rstudioapi.svg">
 <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/covr.svg">
 <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/ggplot2.svg">
-</p>
-
-<p align="center"> 
+<br>
 <img style="float:left;height:100px;" src="https://docs.ropensci.org/skimr/reference/figures/logo.png">
 <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/pipe.svg">
 <img style="float:left;height:100px;" src="https://raw.githubusercontent.com/rstudio/hex-stickers/refs/heads/main/SVG/dplyr.svg">
