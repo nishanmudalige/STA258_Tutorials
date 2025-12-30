@@ -53,3 +53,61 @@ figure figcaption, .figure-caption {
   font-size: 0.65rem;
   color: #555; /* Optional: dim the color to make it less prominent */
 }
+
+
+
+/* Bigger page title (Quarto) */
+.quarto-title-banner .title,
+.quarto-title-block .title,
+h1.title {
+  font-size: clamp(1.0rem, 3.5vw, 3.5rem) !important;
+  line-height: 1.50 !important; /* line height */
+}
+
+/* Optional: give the banner more room so the larger title never feels cramped */
+.quarto-title-banner {
+  padding-top: 2.5rem !important;
+  padding-bottom: 2.5rem !important;
+}
+
+
+
+
+
+
+/* Center the welcome heading */
+.welcome-block {
+  text-align: center;
+}
+
+/* Remove any theme "decorative lines"" on this heading */
+.welcome-title {
+  border: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+.welcome-title::before,
+.welcome-title::after {
+  content: none !important;
+  display: none !important;
+  border: 0 !important;
+  background: none !important;
+}
+
+/* If the lines are actually <hr> elements near it, hide them only in this block */
+.welcome-block hr {
+  display: none !important;
+}
+
+
+
+/* Make markdown '---' (hr) thicker */
+#quarto-content hr,
+main.content hr,
+hr {
+  border: 0 !important;
+  border-top: 4px solid var(--bs-border-color, #d0d0d0) !important;
+  opacity: 1 !important;
+  margin: 1.5rem 0 !important; /* optional: nicer spacing */
+}
