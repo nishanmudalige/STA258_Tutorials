@@ -24,26 +24,38 @@ title-block-banner: "#000000"
 
 ---
 
-<center><h3>Welcome to STA258 tutorials!</h3></center>
+<center><h2>Welcome to STA258 tutorials!<br></h2></center>
 
-<br>  
-
-<strong>About the course</strong>: 
-
-<br>
+<strong><h3>About the course</h3></strong>
 
 <a href="https://utm.calendar.utoronto.ca/course/sta258h5" target="_blank">STA258</a> 
 is an Applied Statistics course at the 
 <a href="https://www.utm.utoronto.ca/" target="_blank">University of Toronto Mississauga</a> 
-which discusses a survey of statistical methodology with emphasis on the relationship between data analysis and probability theory. Topics covered include descriptive statistics, limit theorems, sampling distribution, point and interval estimation, hypothesis testing, contingency tables and count data, simple linear regression. <hr><br><br>
+which discusses a survey of statistical methodology with emphasis on the relationship between data analysis and probability theory. Topics covered include descriptive statistics, limit theorems, sampling distribution, point and interval estimation, hypothesis testing, contingency tables and count data, simple linear regression. 
 
-<strong>Authors</strong>: <br>
+<hr>
+
+<strong><h3>Authors</h3></strong>
+
+<script async defer src="https://buttons.github.io/buttons.js"></script>
 
 
+Aarushi Alreja 
+<br>
+<a class="github-button" href="https://github.com/aarushi-codes" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" aria-label="@aarushi-codes on GitHub">Follow @aarushi-codes</a>
 
-Aarushi Alreja <br>
-Kabir Bhatia <br>
-Nishan Mudalige <br>
+
+Kabir Bhatia 
+<br>
+<a class="github-button" href="https://github.com/kabir-codes" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" aria-label="@kabir-codes on GitHub">Follow @kabir-codes</a>
+
+
+Nishan Mudalige
+<br>
+<a class="github-button" href="https://github.com/nishanmudalige" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" aria-label="@nishanmudalige on GitHub">Follow @nishanmudalige</a>
+
+
+<br>
 
 
 
