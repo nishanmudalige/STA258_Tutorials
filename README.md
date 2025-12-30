@@ -22,6 +22,15 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/nishanmudalige/STA258_Tutorials)
 
 
+![Language](https://img.shields.io/badge/language-HTML5-917fff?logo=HTML5&logoColor=f5f5f5)
+![Language](https://img.shields.io/badge/language-R-6da4ff?logo=R)
+![Language](https://img.shields.io/badge/language-Markdown-68f1ff?logo=Markdown&logoColor=f5f5f5)
+![Language](https://img.shields.io/badge/language-Latex-a0ff8c?logo=latex)
+![Language](https://img.shields.io/badge/language-JavaScript-fcff83?logo=JavaScript&logoColor=f5f5f5)
+![Language](https://img.shields.io/badge/language-CSS-ffbf72?logo=CSS&logoColor=f5f5f5)
+![Language](https://img.shields.io/badge/language-YAML-ff7a7a?logo=YAML&logoColor=f5f5f5)
+
+
 Files for custom interactive R tutorials for STA258: Statistics with Applied Probability at the University of Toronto Mississauga.
 
 Visit [https://nishanmudalige.github.io/STA258_Tutorials/](https://nishanmudalige.github.io/STA258_Tutorials/) to access the interactive tutorials.
