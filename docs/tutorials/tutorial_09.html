@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.31">
+<meta name="generator" content="quarto-1.8.24">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -66,18 +66,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ef56b68f8fa1e9d2ba328e99e439f80.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b651517ce65839d647a86e2780455cfb.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-6bdd2aebeb936dcddaa5f935a5de481c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-ccd81253fefb92e9cd3f9eb5b5d87b54.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-6bdd2aebeb936dcddaa5f935a5de481c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-0d4a9d19931feb4fee1ddab4b2489000.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-f93c2b1f3f0577f377aefa4848a86a36.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/live-runtime/live-runtime.js" type="module"></script>
 <link href="../site_libs/quarto-contrib/live-runtime/live-runtime.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -125,7 +126,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -313,6 +314,8 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Course Tutorials</span>
     </a>
@@ -447,7 +450,7 @@ eyJhdHRyIjp7ImVkaXQiOmZhbHNlLCJldmFsIjp0cnVlLCJvdXRwdXQiOmZhbHNlfSwiY29kZSI6Indl
 <p><span class="math display">\[y = \beta_0 + \beta_1 x + \varepsilon\]</span> keeping y = imdb_score and x = runtime.</p>
 <p>Your task: <br> - Fit a regression line <br> - Return a named numeric vector: <code>c(b0 = ..., b1 = ...)</code></p>
 <figure style="text-align:center" class="figure">
-<img src="./images/netflix.jpg" style="width:60%" class="figure-img">
+<img src="./images/netflix.jpg" style="width:75%" class="figure-img">
 <figcaption>
 Photo by <a href="https://unsplash.com/@thibaultpenin?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Thibault Penin</a> on <a href="https://unsplash.com/photos/a-television-with-the-netflix-logo-lit-up-in-the-dark-GrzoKN1aqSg?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
 </figcaption>
@@ -458,7 +461,7 @@ Photo by <a href="https://unsplash.com/@thibaultpenin?utm_source=unsplash&amp;ut
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Info
+<span class="screen-reader-only">Note</span>Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -476,7 +479,7 @@ Info
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Preview
+<span class="screen-reader-only">Note</span>Preview
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -522,7 +525,7 @@ fit &lt;- lm(imdb_score ~ runtime, data = sub)
 
 b &lt;- coef(fit)
 c(b0 = unname(b[1]), b1 = unname(b[2]))</code>
-<div class="sourceCode cell-code" id="interpolate-6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-6-1"><a href="#interpolate-6-1" aria-hidden="true" tabindex="-1"></a></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-6-1"><a href="#interpolate-6-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-6-2"><a href="#interpolate-6-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"titles.csv"</span>)</span>
 <span id="interpolate-6-3"><a href="#interpolate-6-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-6-4"><a href="#interpolate-6-4" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">&lt;-</span> <span class="fu">subset</span>(df,</span>
@@ -535,7 +538,7 @@ c(b0 = unname(b[1]), b1 = unname(b[2]))</code>
 <span id="interpolate-6-11"><a href="#interpolate-6-11" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(imdb_score <span class="sc">~</span> runtime, <span class="at">data =</span> sub)</span>
 <span id="interpolate-6-12"><a href="#interpolate-6-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-6-13"><a href="#interpolate-6-13" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">coef</span>(fit)</span>
-<span id="interpolate-6-14"><a href="#interpolate-6-14" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">b0 =</span> <span class="fu">unname</span>(b[<span class="dv">1</span>]), <span class="at">b1 =</span> <span class="fu">unname</span>(b[<span class="dv">2</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="interpolate-6-14"><a href="#interpolate-6-14" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">b0 =</span> <span class="fu">unname</span>(b[<span class="dv">1</span>]), <span class="at">b1 =</span> <span class="fu">unname</span>(b[<span class="dv">2</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -556,7 +559,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InEx
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Info
+<span class="screen-reader-only">Note</span>Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -574,7 +577,7 @@ Info
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Preview
+<span class="screen-reader-only">Note</span>Preview
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -627,7 +630,7 @@ den &lt;- sum((x - xbar)^2)
 
 b1_hat &lt;- num / den
 b1_hat</code>
-<div class="sourceCode cell-code" id="interpolate-12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-12-1"><a href="#interpolate-12-1" aria-hidden="true" tabindex="-1"></a></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-12-1"><a href="#interpolate-12-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-12-2"><a href="#interpolate-12-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"titles.csv"</span>)</span>
 <span id="interpolate-12-3"><a href="#interpolate-12-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-12-4"><a href="#interpolate-12-4" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">&lt;-</span> <span class="fu">subset</span>(df,</span>
@@ -647,7 +650,7 @@ b1_hat</code>
 <span id="interpolate-12-18"><a href="#interpolate-12-18" aria-hidden="true" tabindex="-1"></a>den <span class="ot">&lt;-</span> <span class="fu">sum</span>((x <span class="sc">-</span> xbar)<span class="sc">^</span><span class="dv">2</span>)</span>
 <span id="interpolate-12-19"><a href="#interpolate-12-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-12-20"><a href="#interpolate-12-20" aria-hidden="true" tabindex="-1"></a>b1_hat <span class="ot">&lt;-</span> num <span class="sc">/</span> den</span>
-<span id="interpolate-12-21"><a href="#interpolate-12-21" aria-hidden="true" tabindex="-1"></a>b1_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="interpolate-12-21"><a href="#interpolate-12-21" aria-hidden="true" tabindex="-1"></a>b1_hat</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -670,7 +673,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InEy
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Info
+<span class="screen-reader-only">Note</span>Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -687,7 +690,7 @@ Info
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Preview
+<span class="screen-reader-only">Note</span>Preview
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -739,7 +742,7 @@ b1_hat &lt;- sum((x - xbar) * (y - ybar)) / sum((x - xbar)^2)
 
 b0_hat &lt;- ybar - b1_hat * xbar
 b0_hat</code>
-<div class="sourceCode cell-code" id="interpolate-18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-18-1"><a href="#interpolate-18-1" aria-hidden="true" tabindex="-1"></a></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-18-1"><a href="#interpolate-18-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-18-2"><a href="#interpolate-18-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"titles.csv"</span>)</span>
 <span id="interpolate-18-3"><a href="#interpolate-18-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-18-4"><a href="#interpolate-18-4" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">&lt;-</span> <span class="fu">subset</span>(df,</span>
@@ -758,7 +761,7 @@ b0_hat</code>
 <span id="interpolate-18-17"><a href="#interpolate-18-17" aria-hidden="true" tabindex="-1"></a>b1_hat <span class="ot">&lt;-</span> <span class="fu">sum</span>((x <span class="sc">-</span> xbar) <span class="sc">*</span> (y <span class="sc">-</span> ybar)) <span class="sc">/</span> <span class="fu">sum</span>((x <span class="sc">-</span> xbar)<span class="sc">^</span><span class="dv">2</span>)</span>
 <span id="interpolate-18-18"><a href="#interpolate-18-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-18-19"><a href="#interpolate-18-19" aria-hidden="true" tabindex="-1"></a>b0_hat <span class="ot">&lt;-</span> ybar <span class="sc">-</span> b1_hat <span class="sc">*</span> xbar</span>
-<span id="interpolate-18-20"><a href="#interpolate-18-20" aria-hidden="true" tabindex="-1"></a>b0_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="interpolate-18-20"><a href="#interpolate-18-20" aria-hidden="true" tabindex="-1"></a>b0_hat</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -779,7 +782,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InEz
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Info
+<span class="screen-reader-only">Note</span>Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -797,7 +800,7 @@ Info
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Preview
+<span class="screen-reader-only">Note</span>Preview
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -847,7 +850,7 @@ b0 &lt;- tab["(Intercept)", "Estimate"]
 b1 &lt;- tab["runtime", "Estimate"]
 
 c(b0 = b0, b1 = b1)</code>
-<div class="sourceCode cell-code" id="interpolate-24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-24-1"><a href="#interpolate-24-1" aria-hidden="true" tabindex="-1"></a></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-24-1"><a href="#interpolate-24-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-24-2"><a href="#interpolate-24-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"titles.csv"</span>)</span>
 <span id="interpolate-24-3"><a href="#interpolate-24-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-24-4"><a href="#interpolate-24-4" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">&lt;-</span> <span class="fu">subset</span>(df,</span>
@@ -864,7 +867,7 @@ c(b0 = b0, b1 = b1)</code>
 <span id="interpolate-24-15"><a href="#interpolate-24-15" aria-hidden="true" tabindex="-1"></a>b0 <span class="ot">&lt;-</span> tab[<span class="st">"(Intercept)"</span>, <span class="st">"Estimate"</span>]</span>
 <span id="interpolate-24-16"><a href="#interpolate-24-16" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> tab[<span class="st">"runtime"</span>, <span class="st">"Estimate"</span>]</span>
 <span id="interpolate-24-17"><a href="#interpolate-24-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="interpolate-24-18"><a href="#interpolate-24-18" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">b0 =</span> b0, <span class="at">b1 =</span> b1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="interpolate-24-18"><a href="#interpolate-24-18" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">b0 =</span> b0, <span class="at">b1 =</span> b1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -887,7 +890,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE0
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Info
+<span class="screen-reader-only">Note</span>Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -900,7 +903,7 @@ Info
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Preview
+<span class="screen-reader-only">Note</span>Preview
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -948,7 +951,7 @@ b &lt;- coef(fit)
 x0 &lt;- 90
 yhat_90 &lt;- b[1] + b[2] * x0
 yhat_90</code>
-<div class="sourceCode cell-code" id="interpolate-30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-30-1"><a href="#interpolate-30-1" aria-hidden="true" tabindex="-1"></a></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-30-1"><a href="#interpolate-30-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-30-2"><a href="#interpolate-30-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"titles.csv"</span>)</span>
 <span id="interpolate-30-3"><a href="#interpolate-30-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-30-4"><a href="#interpolate-30-4" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">&lt;-</span> <span class="fu">subset</span>(df,</span>
@@ -963,7 +966,7 @@ yhat_90</code>
 <span id="interpolate-30-13"><a href="#interpolate-30-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-30-14"><a href="#interpolate-30-14" aria-hidden="true" tabindex="-1"></a>x0 <span class="ot">&lt;-</span> <span class="dv">90</span></span>
 <span id="interpolate-30-15"><a href="#interpolate-30-15" aria-hidden="true" tabindex="-1"></a>yhat_90 <span class="ot">&lt;-</span> b[<span class="dv">1</span>] <span class="sc">+</span> b[<span class="dv">2</span>] <span class="sc">*</span> x0</span>
-<span id="interpolate-30-16"><a href="#interpolate-30-16" aria-hidden="true" tabindex="-1"></a>yhat_90</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="interpolate-30-16"><a href="#interpolate-30-16" aria-hidden="true" tabindex="-1"></a>yhat_90</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -987,7 +990,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE1
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Info
+<span class="screen-reader-only">Note</span>Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1004,7 +1007,7 @@ Info
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Preview
+<span class="screen-reader-only">Note</span>Preview
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1051,7 +1054,7 @@ fit &lt;- lm(imdb_score ~ runtime, data = sub)
 new &lt;- data.frame(runtime = 90)
 yhat_90 &lt;- predict(fit, newdata = new)
 yhat_90</code>
-<div class="sourceCode cell-code" id="interpolate-36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-36-1"><a href="#interpolate-36-1" aria-hidden="true" tabindex="-1"></a></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-36-1"><a href="#interpolate-36-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-36-2"><a href="#interpolate-36-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"titles.csv"</span>)</span>
 <span id="interpolate-36-3"><a href="#interpolate-36-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-36-4"><a href="#interpolate-36-4" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">&lt;-</span> <span class="fu">subset</span>(df,</span>
@@ -1065,7 +1068,7 @@ yhat_90</code>
 <span id="interpolate-36-12"><a href="#interpolate-36-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-36-13"><a href="#interpolate-36-13" aria-hidden="true" tabindex="-1"></a>new <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">runtime =</span> <span class="dv">90</span>)</span>
 <span id="interpolate-36-14"><a href="#interpolate-36-14" aria-hidden="true" tabindex="-1"></a>yhat_90 <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit, <span class="at">newdata =</span> new)</span>
-<span id="interpolate-36-15"><a href="#interpolate-36-15" aria-hidden="true" tabindex="-1"></a>yhat_90</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="interpolate-36-15"><a href="#interpolate-36-15" aria-hidden="true" tabindex="-1"></a>yhat_90</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -1086,7 +1089,7 @@ eyJhdHRyIjp7ImNoZWNrIjp0cnVlLCJlZGl0Ijp0cnVlLCJldmFsIjp0cnVlLCJleGVyY2lzZSI6InE2
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Info
+<span class="screen-reader-only">Note</span>Info
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1099,7 +1102,7 @@ Info
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Preview
+<span class="screen-reader-only">Note</span>Preview
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1146,7 +1149,7 @@ fit &lt;- lm(imdb_score ~ runtime, data = sub)
 yhat &lt;- predict(fit, newdata = data.frame(runtime = c(80, 120)))
 diff_hat &lt;- yhat[2] - yhat[1]
 diff_hat</code>
-<div class="sourceCode cell-code" id="interpolate-42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-42-1"><a href="#interpolate-42-1" aria-hidden="true" tabindex="-1"></a></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="interpolate-42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="interpolate-42-1"><a href="#interpolate-42-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-42-2"><a href="#interpolate-42-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"titles.csv"</span>)</span>
 <span id="interpolate-42-3"><a href="#interpolate-42-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-42-4"><a href="#interpolate-42-4" aria-hidden="true" tabindex="-1"></a>sub <span class="ot">&lt;-</span> <span class="fu">subset</span>(df,</span>
@@ -1160,7 +1163,7 @@ diff_hat</code>
 <span id="interpolate-42-12"><a href="#interpolate-42-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="interpolate-42-13"><a href="#interpolate-42-13" aria-hidden="true" tabindex="-1"></a>yhat <span class="ot">&lt;-</span> <span class="fu">predict</span>(fit, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">runtime =</span> <span class="fu">c</span>(<span class="dv">80</span>, <span class="dv">120</span>)))</span>
 <span id="interpolate-42-14"><a href="#interpolate-42-14" aria-hidden="true" tabindex="-1"></a>diff_hat <span class="ot">&lt;-</span> yhat[<span class="dv">2</span>] <span class="sc">-</span> yhat[<span class="dv">1</span>]</span>
-<span id="interpolate-42-15"><a href="#interpolate-42-15" aria-hidden="true" tabindex="-1"></a>diff_hat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="interpolate-42-15"><a href="#interpolate-42-15" aria-hidden="true" tabindex="-1"></a>diff_hat</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -1266,13 +1269,14 @@ window._ojs.runtime.interpretFromScriptTags();
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

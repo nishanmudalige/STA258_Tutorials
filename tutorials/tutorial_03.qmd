@@ -705,7 +705,7 @@ gradethis::grade_this({
 
 ## Q8 — Chi-Square Quantile - Left Probability
 
-Find $x^*$ such that $P(X <= x^*)$ = 0.95, where  $X ∼ {\chi^2}_{8}$.
+Find $x^*$ such that $P(X <= x^*)$ = 0.95, where  $X ∼ {\chi^2}_{10}$.
 
 ::: {.callout-note title="Info"}
 This is the graphical representation of the question:
