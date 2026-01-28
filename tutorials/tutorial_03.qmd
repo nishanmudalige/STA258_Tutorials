@@ -1608,7 +1608,7 @@ p_clt_n10 <- ＿＿ (data.frame(m = means_n10), aes(m)) +
    ＿＿ (xintercept = ＿＿ , linetype = 2, color = "red") +
   labs(x = "sample mean (n=10)", y = "count",
                 title = "Sampling distribution of the mean (n = 10)") +
-  =theme_minimal()
+  theme_minimal()
 p_clt_n10
 
 
