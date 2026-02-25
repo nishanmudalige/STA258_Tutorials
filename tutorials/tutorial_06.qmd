@@ -612,7 +612,7 @@ fail("Not quite — check mu = 45 and alternative = 'two.sided'.")
 
 ## Q7 — One-sample test on a proportion (base R `prop.test()`)
 
-We use the video game sales dataset. Let’s test whether **30% of the listed games were published by Nintendo**.
+We use the video game sales dataset. Let’s test whether **4.5% of the listed games were published by Nintendo**.
 
 Hypotheses:
 
@@ -805,7 +805,7 @@ gradethis::grade_this({
 
 ## Q9 — One-sample proportion using `prop_test()` (rstatix)
 
-Now we repeat the same test — “is the proportion of Nintendo-published games 30%?” — but use the `prop_test()` function from the **rstatix** package, which gives the **z** statistic directly.
+Now we repeat the same test — “is the proportion of Nintendo-published games 4.5%?” — but use the `prop_test()` function from the **rstatix** package, which gives the **z** statistic directly.
 
 We’ll create a logical column and then test it.
 
